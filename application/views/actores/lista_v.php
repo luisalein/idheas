@@ -44,13 +44,22 @@
         <?php if(isset($listado) && $listado != null){
             if($is_active == 'actores'){
                 foreach($listado as $actor): ?>
-                <?php $total=$total+1?>
-                <div class="twelve columns" id="caja<?=$actor['actorId']; ?>" onclick="cargarActor(<?=$actor['actorId']; ?>,<?=$is_actor_type; ?>)" style="cursor: pointer;">
-                    <img class="five columns" src="<?=base_url().$actor['foto']; ?>" />
-                        <b style="color:#0080FF;"><?=$actor['nombre'].' '.$actor['apellidosSiglas']; ?></b>
-                </div>
-                <hr />
-            <?php endforeach;
+	                <?php $total=$total+1?>
+	                <?php if($actorId == $actor['actorId']): ?>
+	                	 <div class="twelve columns" id="caja<?=$actor['actorId']; ?>" onclick="cargarActor(<?=$actor['actorId']; ?>,<?=$is_actor_type; ?>)" style="cursor: pointer;background:#ccc;">
+		                    <img class="five columns" src="<?=base_url().$actor['foto']; ?>" />
+		                    <p style="color:#0080FF;"><?=$actor['nombre'].' '.$actor['apellidosSiglas']; ?></p>
+			             </div>
+			             <hr />	  
+	                <?php else:?>
+	                	 <div class="twelve columns" id="caja<?=$actor['actorId']; ?>" onclick="cargarActor(<?=$actor['actorId']; ?>,<?=$is_actor_type; ?>)" style="cursor: pointer;">		        
+		                    <img class="five columns" src="<?=base_url().$actor['foto']; ?>" />
+		                    <p style="color:#0080FF;"><?=$actor['nombre'].' '.$actor['apellidosSiglas']; ?></p>
+			             </div>
+			             <hr />	                	
+	                <?php endif?>
+	               
+            	<?php endforeach;
             } else if($listado['mensaje'] == 'ok') {
                 foreach($listado as $index => $caso): ?>
                 <?php $total=$total+1;?>
