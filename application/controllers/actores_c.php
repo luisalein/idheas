@@ -829,12 +829,11 @@ class Actores_c extends CI_Controller {
 					
 					foreach ($data as $individual) {
 						
-						$datos = $datos . '<div class="twelve columns">
-                    		<img class="five columns" src="'.base_url().$individual['foto'].'" />
-                   			<a href="'.base_url().'index.php/actores_c/mostrar_actor/'.$individual["actorId"].'/'.$tipoActor.'"
-                   			class="seven columns">'.$individual['nombre'].' '.$individual['apellidosSiglas'].
-                            '</a>
-                        </div><hr />';
+						$datos = $datos.  '<div class="twelve columns" id="caja'.$individual['actorId'].'" onclick="cargarActor('.$individual['actorId'].','.$tipoActor.')" style="cursor: pointer;">		        
+		                    <img class="five columns" src="'.base_url().$individual['foto'].'" />
+		                    <p style="color:#0080FF;">'.$individual['nombre'].' '.$individual['apellidosSiglas'].'</p>
+			             </div><hr />';	
+						
 					}
 				}
 		

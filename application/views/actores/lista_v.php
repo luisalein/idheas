@@ -6,12 +6,24 @@
         </div>        
     </form> 
     	<br>
+   <?php if($is_active == 'casos'): ?>  
+   	    <div style="float: right; padding: 0px 15px 0px 0px;">
+			<img class="cursor" src="<?=base_url(); ?>statics/media/img/system/clear.png" id="clearButton" onclick="returnCasos()">
+		</div>
+    	<div style="float: right; padding: 0px 15px 0px 0px;">
+         	<img class="cursor" src="<?=base_url(); ?>statics/media/img/system/search.png"  id="searchButton" onclick="searchCaso()">
+        </div>
+   <?php endif;?>	 
+   
+   <?php if($is_active == 'actores'): ?>     	
 		<div style="float: right; padding: 0px 15px 0px 0px;">
-			<img class="cursor" src="<?=base_url(); ?>statics/media/img/system/clear.png" id="clearButton">
+			<img class="cursor" src="<?=base_url(); ?>statics/media/img/system/clear.png" id="clearButton" onclick="returnActores()">
 		</div>
     	<div style="float: right; padding: 0px 15px 0px 0px;">
          	<img class="cursor" src="<?=base_url(); ?>statics/media/img/system/search.png"  id="searchButton" onclick="filtroRadio()">
         </div>
+        
+  
     <div id="pestania" data-collapse>					
 				<h2>Filtros</h2><!--título de la pestaña-->  
 				<div>
@@ -31,7 +43,7 @@
 					</form>
 				</div>	
     </div>
-  
+   <?php endif;?>
     
     <div class="twelve columns">
     	<?php if($is_active == 'actores') echo ' <h1><div class="six columns">Foto</div></h1>'?>
