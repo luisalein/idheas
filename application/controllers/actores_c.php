@@ -63,8 +63,9 @@ class Actores_c extends CI_Controller {
             $datos['datosActor'] = $this->actores_m->traer_datos_actor_m($actorId, $tipoActorId);
 
             $datos['citaActor'] = $this->actores_m->mTraerCitasActor($actorId);
-			
-			$datos['casosRelacionados'] = $this->casosRelacionados($actorId);
+			if ($tipoActorId==3) {
+            $datos['casosRelacionados'] = $this->casosRelacionados($actorId);
+            }
             
         }
         

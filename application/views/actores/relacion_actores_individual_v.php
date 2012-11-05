@@ -4,7 +4,7 @@
     <?=$head; ?>
 </head>
 <body>
-	<form action="<?=$action?>" method="post" accept-charset="utf-8">
+	<form action="" method="post" accept-charset="utf-8">
 	<input type="hidden" name="actores_actorId" value="<?=$actorId;?>" />	
 
 	<input type="hidden"  id="tipoRelacionIndividualColectivoId" name="tipoRelacionIndividualColectivoId" value="1"/>

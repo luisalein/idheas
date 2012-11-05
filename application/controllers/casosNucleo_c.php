@@ -93,6 +93,58 @@ class casosNucleo_c extends CI_Controller {
 		$this->load->view('actores/formularioNuevaDireccion',$DatosGenerales);
 	}
 
+	    function mostrar_caso($casoId = 0){
+        
+     
+		$this->load->helper(array('html', 'url'));
+        $datos['casoId'] = $casoId;
+        
+        if ($casoId!=0) {
+        $datos['clase']="";
+    }else{
+        $datos['clase']="Escondido";
+    }
+        
+        if($casoId > 0){
+            
+            $datos['catalogos'] = $this->traer_catalogos();
+            
+            $datos['datosCaso'] = $this->casos_m->mTraerDatosCaso($casoId);
+            
+        }
+        
+        $datos['is_active'] = 'casos';
+        
+        $datos['head'] = $this->load->view('general/head_v', $datos, true);
+        
+        /*
+         * se selecciona el tipo de actor y se trae la vista segun el tipo de actor
+         */
+                    
+            
+            $datos['listado'] = $this->casos_m->mListaCasos();
+            
+        
+
+        $datos['casos']=$this->load->view('casos/informacionGeneral_v', $datos, true);
+
+        $datos['casosNucleo']=$this->load->view('casos/nucleoCaso_v', $datos, true);
+
+        $datos['infoAdicional']=$this->load->view('casos/infoAdicional_v', $datos, true);
+        
+
+        $datos['lista'] = $this->load->view('actores/lista_v', $datos, true);
+        
+        $datos['form'] = $this->load->view('casos/principalCasos_v', $datos, true);
+        
+        $datos['content'] = $this->load->view('actores/principal_v', $datos, true);
+        
+        $datos['body'] = $this->load->view('general/body_v', $datos, true);
+            
+        $this->load->view('general/principal_v', $datos);
+        
+    }
+
 /**Terminan las funciones que pertenecen a la parte de información general de la sección de casos**/	
 }
 
