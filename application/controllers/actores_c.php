@@ -673,11 +673,11 @@ class Actores_c extends CI_Controller {
 			
 			foreach ($datos['actoresAfiliados'] as $valor)
 			
-				$datos['casosAfiliadosId'][$valor['actorId']]=$this->actores_m->mTraeCasosRelacionadosActor($valor['actorId']);
+				$datos['casosAfiliados'][$valor['actorId']]=$this->actores_m->mTraeCasosRelacionadosActor($valor['actorId']);
 		
 		
 			
-			foreach ($datos['casosAfiliadosId'] as $valor){
+			foreach ($datos['casosAfiliados'] as $valor){
 				
 				if(isset($datos['casosAfiliados'][$valor[1]['casos_casoId']])){
 					
