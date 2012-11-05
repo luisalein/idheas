@@ -24,7 +24,7 @@
 			<label>Persona</label>
 
 			<div class="twelve columns">
-			<img class="foto" src="<?=base_url(); ?>statics/media/img/actores/<?=$listaTodosActores[$actorId]['actorId'];?>.jpg" />
+			<img class="foto" src="<?=$listaTodosActores[$actorId]['foto']?>" />
 			<br /><br />
 			<?=$listaTodosActores[$actorId]['nombre']." ".$listaTodosActores[$actorId]['apellidosSiglas']?>
 			</div>
