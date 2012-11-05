@@ -154,7 +154,7 @@
                         else { ?>
                             <?php foreach($catalogos['ocupacionesCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
                                 <?php if($item['tipoActorId'] == 1){ ?>
-                                    <option value="<?=$item['ocupacionId']; ?>"><?=$item['descripcion']; ?></option>
+                                    <option onclick="notasCatalogos('<?=$item['notas']; ?>','notasUltimaOcupacion')" value="<?=$item['ocupacionId']; ?>"><?=$item['descripcion']; ?></option>
                                 <?php } ?>
                     <?php endforeach; } ?>
                 </select>
