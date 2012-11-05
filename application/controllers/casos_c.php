@@ -228,5 +228,33 @@ class Casos_c extends CI_Controller {
 		$this->load->view('casos/SelecionActor',$DatosGenerales);
 	}
 	
+	
+	public function buscarCasos(){
+		
+		$cadena = $this->input->post('cadena');
+		
+		if(!empty($cadena)){
+			$data = $this->casos_m->mBuscarCasosNombre($cadena);
+			
+			$datos="";
+		 		if($data == 0){
+					echo "No existen actores con ese filtro";
+				}else{
+					
+					foreach ($data as $individual) {
+						
+						$datos = $datos. '<div class="twelve columns" id="caja'.$individual['casoId'].
+						'" onclick="cargarCaso('.$individual['casoId'].')" style="cursor: pointer;">'.$individual['nombre'].'</div><hr />';
+					}
+				}
+		
+			print_r($datos);			
+			
+		}else{
+			echo 0;
+		}
+	    
+		
+	}
     
 }

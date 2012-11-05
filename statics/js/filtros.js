@@ -13,13 +13,47 @@ $(document).ready(function() {
 		eliminarActor(id,tipo);
 				
     });
-    
-    $('#clearButton').click(function() {
-		
-		document.location.href = base+'index.php/actores_c/mostrar_actor/0/1';
-				
-    });
 });
+
+
+function returnActores(){
+		document.location.href = base+'index.php/actores_c/mostrar_actor/0/1';
+}
+
+function returnCasos(){
+		document.location.href = base+'index.php/casos_c/mostrar_caso';
+}
+
+function searchCaso(){
+	
+		var nombre = $('#'+active+'_nombre').val();
+	
+		var url = base+'index.php/casos_c/buscarCasos';
+	
+		var data = 'cadena='+nombre;
+		
+			$.ajax({
+	    
+	        url: url,
+	    
+	        data: data,
+	        
+	        type: 'POST',
+	                
+	        success: function(data){ 
+	               
+	          $('#listaActorIndiv').html(data);  
+	            
+	        },
+	        
+	        error: function(){
+	        
+	           alert("no se pudo");
+	        }
+	    
+	    });
+}
+
 
 function cargarActor(actor,tipo){
 	
@@ -27,6 +61,7 @@ function cargarActor(actor,tipo){
 }
 
 function cargarCaso(casoId){
+	
    document.location.href = base+'index.php/casos_c/mostrar_caso/'+casoId;
 
 }
