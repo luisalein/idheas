@@ -26,6 +26,10 @@ function cerrarVentana(){
 };
 
 function cerrarVentanaCancelar(){
-    var datosIniciales= window.opener.document.getElementById('vistaActorRelacionado').value
-    alert(datosIniciales);
+    var datosIniciales= window.opener.document.getElementById('ValoresBotonCancelar').value;
+    var informacion=datosIniciales.split("*");
+    var nameSeleccionado= window.opener.document.getElementById('nameSeleccionado').value
+    window.opener.document.getElementById(nameSeleccionado).value = informacion[0];
+    window.opener.document.getElementById('vistaActorRelacionado').innerHTML = ('<img class="four columns"  src="'+informacion[2]+'" /><b><h4>'+informacion[1]+'</h4></b>');
+  window.close();
 };
