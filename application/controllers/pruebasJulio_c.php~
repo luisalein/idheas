@@ -1,0 +1,86 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+class PruebasJulio_c extends CI_Controller
+{
+
+	public function __construct(){
+           
+          parent::__construct();
+          
+            $this->load->helper(array('html', 'url'));
+
+        	$this->load->model(array('actores_m', 'general_m','reportes_m', 'catalogos_m','casos_m'));
+       }
+	
+	function index() 
+	{	
+		$datos = array (
+			  						'nombre' 					=> '',
+			  						'desdeFecha' 				=> '1987-05-01',
+			  						'hastaFecha' 				=> '1987-10-01',
+			  						'derechoAfectadoId' 		=> '',
+			  						'derechoAfectadoNivel' 		=> '',
+			  						'actoViolatorioId' 			=> '',
+			  						'actoViolatorioNivel'		=> ''
+			  						);
+
+			  						
+			$datos['casosRelacionadosId']=$this->actores_m->mTraeCasosRelacionadosActor(1);
+		
+		
+		foreach ($datos['casosRelacionadosId'] as $valor){
+			
+			$datos['casosActor'][$valor['casos_casoId']]=$this->casos_m->mTraerDatosCaso($valor['casos_casoId']);
+		
+			foreach ($datos['casosActor'] as $valor2){
+				
+				foreach($valor2['intervenciones'] as $valor3){
+					
+					$n = $valor3['IntervencionNId'];
+					
+					$datos['tipoIntervencionN'.$n.'Catalogo'] = $this->general_m->obtener_todo('tipoIntervencionN'.$n.'Catalogo', 'tipoIntervencionN'.$n.'Id', 'descripcion');
+					
+					foreach($datos['tipoIntervencionN'.$n.'Catalogo'] as $valor4){
+						
+						
+						if($valor4['tipoIntervencionN'.$n.'Id'] == $valor3['tipoIntervencionId']){
+							
+							$valor3['tipoIntervencionId']=$valor4['descripcion'];
+							
+							//echo $valor3['tipoIntervencionId'];
+							//print_r($valor3);
+							$valor2['intervenciones']=$valor3;
+							print_r($datos['casosActor']);
+						}
+							
+						
+					}
+					//print_r($datos['tipoIntervencionN'.$n.'Catalogo']);
+					
+					//$valor3['tipoIntervencionId'] = $datos['tipoIntervencionN'.$n.'Catalogo'][$valor3['tipoIntervencionId']];
+					
+					//echo  $valor3['tipoIntervencionId'];
+				}
+				
+			}
+		}
+
+			//print_r ($valor2['intervenciones']);
+			
+			$Data['datos'][$valor['casos_casoId']]=$this->casos_m->mTraerDatosCaso($valor['casos_casoId']);
+		
+			//print_r( $Data['datos'][$valor['casos_casoId']]['intervenciones']);
+		
+			$Data['prueba']=$Data['datos'][$valor['casos_casoId']]['intervenciones'];
+			
+			//print_r($Data['prueba']);
+			
+			//$Data['datos'][$valor['casos_casoId']]['intervenciones'][1]['tipoIntervencionId']="hola";
+			
+			//echo $Data['datos'][$valor['casos_casoId']]['intervenciones'][1]['tipoIntervencionId'];
+			
+			$this->load->view('pruebasAle', $Data);
+	}
+
+}
+
+?>

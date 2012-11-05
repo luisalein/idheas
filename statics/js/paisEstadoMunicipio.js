@@ -1,0 +1,2 @@
+function paisEstadodoMunicipio (dato,idpais) {
+}
