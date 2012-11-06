@@ -80,7 +80,8 @@
             }
 	
             return $lista;
-            
+			
+			          
         }
         
         function traer_datos_actor_m($actorId, $tipoActorId){

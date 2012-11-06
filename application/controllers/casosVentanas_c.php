@@ -288,6 +288,55 @@ class CasosVentanas_c extends CI_Controller {
 		return $mensaje;
 	}
 
+	public function eliminarLugar($lugarId){
+	
+		$mensaje = $this->casos_m->mEliminaLugar($lugarId);
+		
+		return $mensaje;
+    }
+	
+	public function eliminarFicha($fichaId){
+		
+		$mensaje = $this->casos_m->mEliminaFicha($fichaId);
+		
+		return $mensaje;
+	}
+	
+	public function eliminarDerechoAfectado(){
+		
+	}
+	
+	public function eliminarIntervencion($intervencionId){
+		
+		$mensaje =  $this->casos_m-> mEliminaIntervenciones($intervencionId);
+		
+		return $mensaje;
+	}
+	
+	public function eliminarFuenteInfoPersonal($fuenteInfoPersonalId){
+			
+		$mensaje =  $this->casos_m->mEliminaFuenteInfoPersonal($fuenteInfoPersonalId);
+		
+		return $mensaje;
+	}
+	
+	public function eliminarFuenteInfoDocumental($tipoFuenteDocumentalId){
+		
+		$mensaje =  $this->casos_m->mEliminaTipoFuenteDocumental($tipoFuenteDocumentalId);
+		
+		return $mensaje;
+	}
+	
+	
+	public function eliminaRelacionCasos($relacionId){
+		
+		$mensaje =  $this->casos_m->mEliminaRelacionCasos($relacionId);
+		
+		return $mensaje;
+	}
+	
 }
+
+
     
 ?>

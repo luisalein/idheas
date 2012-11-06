@@ -13,6 +13,14 @@ $(document).ready(function() {
 		eliminarActor(id,tipo);
 				
     });
+    
+    $('#eliminarCaso').click(function() {
+		
+		var idCaso =  $('#eliminarCaso').attr('name');
+		
+		eliminarCaso(idCaso);
+				
+    });
 });
 
 
@@ -57,7 +65,18 @@ function searchCaso(){
 
 function cargarActor(actor,tipo){
 	
-	document.location.href = base+'index.php/actores_c/mostrar_actor/'+actor+'/'+tipo;
+	var nombre = $('#'+active+'_nombre').val();
+			
+	var filtro = getRadioButtonSelectedValue(document.frmR.filtroR);
+	
+	if(filtro == null){		
+	
+		filtro=0;
+				
+	}
+	
+	document.location.href = base+'index.php/actores_c/mostrar_actor/'+actor+'/'+tipo+'/'+nombre+'/'+filtro;
+	
 }
 
 function cargarCaso(casoId){
@@ -160,6 +179,34 @@ function eliminarActor(id,tipoActor){
 	
 }
 
+function eliminarCaso(idCaso){
+	
+	var url = base+'index.php/casos_c/eliminarCaso';
+	
+	var data = 'casoId='+idCaso;
+
+	$.ajax({
+    
+        url: url,
+    
+        data: data,
+        
+        type: 'POST',
+                
+        success: function(data){
+        	
+             alert(data);    
+              
+             document.location.href = base+'index.php/casos_c/mostrar_caso';
+        },
+        
+        error: function(){
+        
+           alert("no se pudo");
+        }
+    
+    });
+}
 
 
 

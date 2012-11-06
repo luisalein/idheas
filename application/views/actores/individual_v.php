@@ -112,7 +112,7 @@
 		                        <td><?=(isset($direccion['paisesCatalogo_paisId'])) ? $catalogos['paisesCatalogo'][$direccion['paisesCatalogo_paisId']]['nombre'] : ''; ?></td>
 		                        <td><?=(isset($direccion['estadosCatalogo_estadoId'])) ? $catalogos['estadosCatalogo'][$direccion['estadosCatalogo_estadoId']]['nombre'] : ''; ?></td>
 		                        <td><?=(isset($direccion['municipiosCatalogo_municipioId'])) ? $catalogos['municipiosCatalogo'][$direccion['municipiosCatalogo_municipioId']]['nombre'] : ''; ?></td>                        
-		                        <td><input type="button" class="tiny button"  value="Editar" onclick="nuevaDireccion()/></td>
+		                        <td><input type="button" class="tiny button"  value="Editar" onclick="nuevaDireccion()"/></td>
 	            			<?php }?>
 	            		<?php }?>
                     </tr>

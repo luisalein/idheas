@@ -50,8 +50,8 @@ class Actores_c extends CI_Controller {
         
     }
     
-    function mostrar_actor($actorId = 0, $tipoActorId = 0){
-      
+    function mostrar_actor($actorId = 0, $tipoActorId = 0, $cadena = 0, $tipoFiltro = 0){
+        
         $datos['actorId'] = $actorId;
         
 		$datos['EstoyEnActor']=1;
@@ -96,9 +96,10 @@ class Actores_c extends CI_Controller {
         }
         
         if($tipoActorId > 0){
-            
-            $datos['listado'] = $this->actores_m->listado_actores_m($tipoActorId);
-            
+        	
+			
+				$datos['listado'] = $this->actores_m->listado_actores_m($tipoActorId);
+			
         }
 		
 		if(!empty($datos['casosRelacionados'])){
@@ -135,8 +136,8 @@ class Actores_c extends CI_Controller {
             $datos['datosActor'] = $this->actores_m->traer_datos_actor_m($actorId, $tipoActorId);
 
             $datos['citaActor'] = $this->actores_m->mTraerCitasActor($actorId);
-			
-			$datos['casosRelacionados'] = $this->casosRelacionados($actorId);
+			if($tipoActorId == 3)
+				$datos['casosRelacionados'] = $this->casosRelacionados($actorId);
             
         }
         
@@ -510,10 +511,12 @@ class Actores_c extends CI_Controller {
             }
 
         }
+		if(!isset($datos['actores']['foto'])){
+			$foto = $this->cargarFoto();
 		
-		$foto = $this->cargarFoto();
+			$datos['actores']['foto'] = $foto;
+		}
 		
-		$datos['actores']['foto'] = $foto;
 		
         $this->actores_m->mActualizaDatosActor($datos['actores']['actorId'], $datos);
         
@@ -958,8 +961,8 @@ class Actores_c extends CI_Controller {
 		$datos['is_active'] = 'actores';
 		
 		$datos['head'] = $this->load->view('general/head_v', $datos, true);
-		
-		$datos['catalogos'] = traer_catalogos();
+
+        $datos['catalogos'] = $this->traer_catalogos();
 		
 		$datos['actorId'] = $id;
 		

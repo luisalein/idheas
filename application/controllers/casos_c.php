@@ -140,7 +140,9 @@ class Casos_c extends CI_Controller {
 	 * Valida si hay casos o actores relacionados con el caso, si no los hay cambia el estado del caso a "inactivo"
 	 * se existen al menos un caso o un actor relacionado, manda el mensaje de que no puede eliminar el caso
 	 * */
-	public function eliminarCaso($casoId){
+	public function eliminarCaso(){
+		
+		$casoId = $this->input->post("casoId");	
 		
 		$datos['relacionesConCasos'] = $this->casos_m-> mTraeRelacionesCaso($casoId);
 		
@@ -155,10 +157,6 @@ class Casos_c extends CI_Controller {
 			$mensaje = "Este caso tiene otros casos o actores relacionados, elimina primero estas relaciones";
 			
 		}
-		
-		$url = base_url().'http://localhost/idheas/index.php/casos_c/mostrar_caso';
-		
-		redirect($url);
 		
 		return $mensaje;
 	}
