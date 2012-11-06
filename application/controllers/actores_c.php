@@ -427,7 +427,7 @@ class Actores_c extends CI_Controller {
 		echo $mensaje;
 				
    }
-    
+	
     function editar_actor($actorId, $tipoActorId){
         
         $datos['actorId'] = $actorId;
