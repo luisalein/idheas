@@ -288,16 +288,20 @@ class CasosVentanas_c extends CI_Controller {
 		return $mensaje;
 	}
 
-	public function eliminarLugar($lugarId){
+	public function eliminarLugar($lugarId,$idCaso){
 	
 		$mensaje = $this->casos_m->mEliminaLugar($lugarId);
+		
+		redirect(base_url().'index.php/casos_c/mostrar_caso/'.$idCaso);
 		
 		return $mensaje;
     }
 	
-	public function eliminarFicha($fichaId){
+	public function eliminarFicha($fichaId,$idCaso){
 		
 		$mensaje = $this->casos_m->mEliminaFicha($fichaId);
+		
+		redirect(base_url().'index.php/casos_c/mostrar_caso/'.$idCaso);
 		
 		return $mensaje;
 	}
@@ -306,31 +310,39 @@ class CasosVentanas_c extends CI_Controller {
 		
 	}
 	
-	public function eliminarIntervencion($intervencionId){
+	public function eliminarIntervencion($intervencionId,$idCaso){
 		
 		$mensaje =  $this->casos_m-> mEliminaIntervenciones($intervencionId);
 		
+		redirect(base_url().'index.php/casos_c/mostrar_caso/'.$idCaso);
+		
 		return $mensaje;
 	}
 	
-	public function eliminarFuenteInfoPersonal($fuenteInfoPersonalId){
+	public function eliminarFuenteInfoPersonal($fuenteInfoPersonalId,$idCaso){
 			
 		$mensaje =  $this->casos_m->mEliminaFuenteInfoPersonal($fuenteInfoPersonalId);
 		
+		redirect(base_url().'index.php/casos_c/mostrar_caso/'.$idCaso);
+		
 		return $mensaje;
 	}
 	
-	public function eliminarFuenteInfoDocumental($tipoFuenteDocumentalId){
+	public function eliminarFuenteInfoDocumental($tipoFuenteDocumentalId,$idCaso){
 		
 		$mensaje =  $this->casos_m->mEliminaTipoFuenteDocumental($tipoFuenteDocumentalId);
 		
+		redirect(base_url().'index.php/casos_c/mostrar_caso/'.$idCaso);
+		
 		return $mensaje;
 	}
 	
 	
-	public function eliminaRelacionCasos($relacionId){
+	public function eliminaRelacionCasos($relacionId,$idCaso){
 		
 		$mensaje =  $this->casos_m->mEliminaRelacionCasos($relacionId);
+		
+		redirect(base_url().'index.php/casos_c/mostrar_caso/'.$idCaso);
 		
 		return $mensaje;
 	}
