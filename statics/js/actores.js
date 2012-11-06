@@ -9,7 +9,7 @@ function nueva_relacion_a_Col(actorId,ventana,actorRelacionado){
 
 function nuevaDireccion(actorId,indice){
     var windowSizeArray = [ "width=770,height=535,scrollbars=yes" ];
-    window.open(base+'index.php/actore_c/direccion/'+actorId+'/'+indice, 'Nueva direccion', windowSizeArray);
+    window.open(base+'index.php/actores_c/direccion/'+actorId+'/'+indice, 'Nueva direccion', windowSizeArray);
 }
 
 

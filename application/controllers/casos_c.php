@@ -148,7 +148,7 @@ class Casos_c extends CI_Controller {
 		
 		$datos['relacionesConActores'] = $this->casos_m->mTraerActoresRelacionadosCaso($casoId);
 
-		if($datos['relaiconesConCasos'] == '0' && $datos['relacionesConActores'] == '0'){
+		if($datos['relacionesConCasos'] == '0' && $datos['relacionesConActores'] == '0'){
 			
 			 $mensaje = $this->casos_m->mCambiaEstadoActivoCaso($casoId);
 			

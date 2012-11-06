@@ -97,8 +97,22 @@ class Actores_c extends CI_Controller {
         
         if($tipoActorId > 0){
         	
-			
-				$datos['listado'] = $this->actores_m->listado_actores_m($tipoActorId);
+			 if ($cadena !=0 && ($tipoFiltro == 0)){
+		   	
+				$data['listado']  = $this->actores_m->mBuscarActoresNombre($cadena);
+			   
+			}elseif($cadena == 0 && ($tipoFiltro != 0)){
+				
+				$data['listado']  = $this->actores_m->mFiltrosBusquedaActor($tipoFiltro);	
+					
+			}elseif($cadena !=0 && ($tipoFiltro != 0)){
+				
+				$data['listado']  = $this->actores_m->mBusquedaActorFiltroNombre($tipoFiltro, $cadena);
+				
+			}else{
+            	$datos['listado'] = $this->actores_m->listado_actores_m($tipoActorId);
+			}
+				
 			
         }
 		
@@ -855,7 +869,7 @@ class Actores_c extends CI_Controller {
 		return $mensaje;
 	}
 
-	public function agregarDireccion(){
+	public function agregarDireccion($actorId){
 		
 		
 		 foreach($_POST as $campo => $valor){ 
@@ -871,9 +885,13 @@ class Actores_c extends CI_Controller {
             	$datos[$nombre_tabla][$nombre_campo] = $valor; 
 
         } 
-
-        $mensaje = $this->actores_m->mAgregarDireccionActor($datos);
-        
+		
+		$datos['direccionActor']['actores_actorId'] = $actorId;
+		
+        $mensaje = $this->actores_m->mAgregarDireccionActor($datos['direccionActor']);
+		
+       // redirect(base_url().'index.php/actores_c/mostrar_actor/'.$actorId.'/'.$tipoActor);
+		
 		return $mensaje;
 	}
 
