@@ -25,9 +25,15 @@ class PruebasAle_c extends CI_Controller
 		
 		
 
-    		
-		 $Data['datos'] = $this->actores_m->mBuscarActoresNombre('Ale');
-		 
+    	$datos['listaTodosActores'] = $this->actores_m-> mListaTodosActores();
+			
+		$datos['datos'] = $this->actores_m->traer_datos_actor_m(6, $datos['listaTodosActores'][6]['tipoActorId']);
+
+	if(isset($datos['datos']['direccionActor'][1]))
+		$Data['datos'] = $datos['datos'];
+	else 
+	 $Data['datos']="hola";
+	
 		//  $this->load->view('actores/lista_v', $datos, true);
 			
 		 $this->load->view('pruebasAle',$Data);
