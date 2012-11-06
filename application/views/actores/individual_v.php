@@ -86,7 +86,7 @@
 	</fieldset>
 	<!--Termina información del contacto-->
 	<fieldset>
-<pre><?print_r($datosActor)?></pre>
+<pre><?print_r($catalogos['tipoDireccion'])?></pre>
     <div id="pestania" data-collapse>
         <h2 class="open">Dirección(es) </h2>
         <div>
@@ -104,17 +104,17 @@
                 </thead>
                 <tbody>
                 	<tr>
-                		<?php if (isset($direccionActor)) {
-                			foreach ($variable as $key => $value) {?>
-                			<?php }?>
-                		<?php }?>
-                        <td><?=(isset($datosActor['direccionActor']['tipoDireccionId'])) ? $datosActor['direccionActor']['tipoDireccionId'] : ''; ?></td>
-                        <td><?=(isset($datosActor['direccionActor']['direccion'])) ? $datosActor['direccionActor']['direccion'] : ''; ?></td>
-                        <td><?=(isset($datosActor['actores']['codigoPostal'])) ? $datosActor['actores']['codigoPostal'] : ''; ?></td>
-                        <td><?=(isset($datosActor['direccionActor']['paisesCatalogo_paisId'])) ? $catalogos['paisesCatalogo'][$datosActor['direccionActor']['paisesCatalogo_paisId']]['nombre'] : ''; ?></td>
-                        <td><?=(isset($datosActor['direccionActor']['estadosCatalogo_estadoId'])) ? $catalogos['estadosCatalogo'][$datosActor['direccionActor']['estadosCatalogo_estadoId']]['nombre'] : ''; ?></td>
-                        <td><?=(isset($datosActor['direccionActor']['municipiosCatalogo_municipioId'])) ? $catalogos['municipiosCatalogo'][$datosActor['direccionActor']['municipiosCatalogo_municipioId']]['nombre'] : ''; ?></td>                        
-                        <td><input type="button" class="tiny button"  value="Editar" /></td>
+                		<?php if (isset($datosActor['direccionActor'])) {
+                			foreach ($datosActor['direccionActor'] as $key => $direccion) {?>
+		                        <td><?=(isset($direccion['tipoDireccionId'])) ? $catalogos['tipoDireccion'][$direccion['tipoDireccionId']]['descripcion'] : ''; ?></td>
+		                        <td><?=(isset($direccion['direccion'])) ? $direccion['direccion'] : ''; ?></td>
+		                        <td><?=(isset($direccion['codigoPostal'])) ? $direccion['codigoPostal'] : ''; ?></td>
+		                        <td><?=(isset($direccion['paisesCatalogo_paisId'])) ? $catalogos['paisesCatalogo'][$direccion['paisesCatalogo_paisId']]['nombre'] : ''; ?></td>
+		                        <td><?=(isset($direccion['estadosCatalogo_estadoId'])) ? $catalogos['estadosCatalogo'][$direccion['estadosCatalogo_estadoId']]['nombre'] : ''; ?></td>
+		                        <td><?=(isset($direccion['municipiosCatalogo_municipioId'])) ? $catalogos['municipiosCatalogo'][$direccion['municipiosCatalogo_municipioId']]['nombre'] : ''; ?></td>                        
+		                        <td><input type="button" class="tiny button"  value="Editar" onclick="nuevaDireccion()/></td>
+	            			<?php }?>
+	            		<?php }?>
                     </tr>
                 </tbody>
             </table>
