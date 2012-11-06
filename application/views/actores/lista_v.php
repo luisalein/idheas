@@ -77,10 +77,17 @@
             } else if($listado['mensaje'] == 'ok') {
                 foreach($listado as $index => $caso): ?>
                 <?php $total=$total+1;?>
-                <div class="twelve columns" id="caja<?=$caso['casoId']; ?>" onclick="cargarCaso(<?=$caso['casoId']; ?>)" style="cursor: pointer;">
-                   <?=$caso['nombre']; ?>
-                </div>
-                <hr />
+                 <?php if($casoId == $caso['casoId']): ?>
+		                <div class="twelve columns" id="caja<?=$caso['casoId']; ?>" onclick="cargarCaso(<?=$caso['casoId']; ?>)" style="cursor: pointer;background:#ccc;">
+		                   <?=$caso['nombre']; ?>
+		                </div>
+		                <hr />
+                 <?php else:?>
+                 		 <div class="twelve columns" id="caja<?=$caso['casoId']; ?>" onclick="cargarCaso(<?=$caso['casoId']; ?>)" style="cursor: pointer;">
+		                   <?=$caso['nombre']; ?>
+		                </div>
+		                <hr />
+                 <?php endif?>
             <?php endforeach;
 			$total=$total-1;
             }

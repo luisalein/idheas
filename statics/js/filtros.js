@@ -13,6 +13,14 @@ $(document).ready(function() {
 		eliminarActor(id,tipo);
 				
     });
+    
+    $('#eliminarCaso').click(function() {
+		
+		var idCaso =  $('#eliminarCaso').attr('name');
+		
+		eliminarCaso(idCaso);
+				
+    });
 });
 
 
@@ -171,6 +179,34 @@ function eliminarActor(id,tipoActor){
 	
 }
 
+function eliminarCaso(idCaso){
+	
+	var url = base+'index.php/casos_c/eliminarCaso';
+	
+	var data = 'casoId='+idCaso;
+
+	$.ajax({
+    
+        url: url,
+    
+        data: data,
+        
+        type: 'POST',
+                
+        success: function(data){
+        	
+             alert(data);    
+              
+             document.location.href = base+'index.php/casos_c/mostrar_caso';
+        },
+        
+        error: function(){
+        
+           alert("no se pudo");
+        }
+    
+    });
+}
 
 
 

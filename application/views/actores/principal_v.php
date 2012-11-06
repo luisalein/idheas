@@ -29,7 +29,7 @@
                     <input type="submit" value="Agregar Caso" class="tiny button" />
                 </form>
                <form>
-					<input type="submit" class="tiny button" value="Eliminar Caso"/>
+					<input type="submit" class="tiny button" value="Eliminar Caso" name="<?=$casoId; ?>" id="eliminarCaso"/>
                </form>
                <form>
 					<input type="submit" class="tiny button" value="Editar Caso" />
