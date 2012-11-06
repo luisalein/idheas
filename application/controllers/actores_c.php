@@ -961,8 +961,8 @@ class Actores_c extends CI_Controller {
 		$datos['is_active'] = 'actores';
 		
 		$datos['head'] = $this->load->view('general/head_v', $datos, true);
-		
-		$datos['catalogos'] = traer_catalogos();
+
+        $datos['catalogos'] = $this->traer_catalogos();
 		
 		$datos['actorId'] = $id;
 		
