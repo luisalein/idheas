@@ -39,7 +39,7 @@
 			    	foreach ($actoresColectivos as $individual) {?>
 
 					    <div class="twelve columns lista" onclick="Seleccionar('<?= $individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto'] ?>')"> 
-					    		<img class="three columns imagenFoto" src="<?=$individual['foto'] ?> " />
+					    		<img class="three columns imagenFoto" src="<?=base_url().$individual['foto'] ?> " />
 					    		<b class="nine columns"> <?php print_r($individual['nombre']." ".$individual['apellidosSiglas']) ?></b>
 						</div >
 
@@ -53,5 +53,6 @@
 		</ul>
 		
 	<input type="button"  class="button" value="Aceptar" onclick="cerrarVentana()"/>
+	<input type="button"  class="button" value="Cancelar" onclick="cerrarVentanaCancelar()"/>
 	</body>
 </html>

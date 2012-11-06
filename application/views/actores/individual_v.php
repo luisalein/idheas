@@ -86,7 +86,7 @@
 	</fieldset>
 	<!--Termina información del contacto-->
 	<fieldset>
-
+<pre><?print_r($datosActor)?></pre>
     <div id="pestania" data-collapse>
         <h2 class="open">Dirección(es) </h2>
         <div>
@@ -104,6 +104,10 @@
                 </thead>
                 <tbody>
                 	<tr>
+                		<?php if (isset($direccionActor)) {
+                			foreach ($variable as $key => $value) {?>
+                			<?php }?>
+                		<?php }?>
                         <td><?=(isset($datosActor['direccionActor']['tipoDireccionId'])) ? $datosActor['direccionActor']['tipoDireccionId'] : ''; ?></td>
                         <td><?=(isset($datosActor['direccionActor']['direccion'])) ? $datosActor['direccionActor']['direccion'] : ''; ?></td>
                         <td><?=(isset($datosActor['actores']['codigoPostal'])) ? $datosActor['actores']['codigoPostal'] : ''; ?></td>
@@ -163,7 +167,11 @@
 		                                    <td><?=$nombreRelacionado?></td>
 		                                    <td><?=$relacion['fechaInicial']; ?></td>
 		                                    <td><?=$relacion['fechaTermino']; ?></td>
-		                                    <td><input type="button" class="tiny button"  value="Editar" onclick="nueva_relacion_a_a('<?=$idActor ?>', 1 , '<?=$relacion['relacionActoresId']; ?>')" /></td>
+		                                    <td><input type="button" class="tiny button"  value="Editar" onclick="nueva_relacion_a_a('<?=$idActor ?>', 1 , '<?=$relacion['relacionActoresId']; ?>')" />
+							                    <form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarRelacionActor/<?=$relacion['relacionActoresId']."/".$relacion['actorRelacionadoId']; ?>" >
+							                        <input type="submit" value="Elminar" class="tiny button" />
+							                    </form>
+		                                    </td>
 		                                </tr>
 		                            <?php }
 		                            }
