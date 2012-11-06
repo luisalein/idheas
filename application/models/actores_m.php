@@ -623,6 +623,7 @@
 			
 			$this->db->select('actorId, nombre,tipoActorId, apellidosSiglas,foto');
 			$this->db->from('actores');
+			$this->db->where('estadoActivo', 1);
 			$this->db->like('nombre', $cadena);
 			$this->db->or_like('apellidosSiglas', $cadena);
 			$consulta = $this->db->get();
@@ -769,6 +770,7 @@
 							$this->db->select('actorId,tipoActorId,nombre,apellidosSiglas,foto');
 							$this->db->from('actores');
 							$this->db->where('actorId',$row['actorId']);
+							$this->db->where('estadoActivo', 1);
 							$consultaDatosActor = $this->db->get();
 							
 							if ($consultaDatosActor->num_rows() > 0){
@@ -805,6 +807,7 @@
 								$this->db->select('actorId,tipoActorId,nombre,apellidosSiglas,foto');
 								$this->db->from('actores');
 								$this->db->where('actorId',$row['perpetradorId']);
+								$this->db->where('estadoActivo', 1);
 								$consultaDatosActor = $this->db->get();
 								
 								if ($consultaDatosActor->num_rows() > 0){
@@ -840,6 +843,7 @@
 								$this->db->select('actorId,tipoActorId,nombre,apellidosSiglas,foto');
 								$this->db->from('actores');
 								$this->db->where('actorId',$row['interventorId']);
+								$this->db->where('estadoActivo', 1);
 								$consultaDatosActor = $this->db->get();
 								
 								if ($consultaDatosActor->num_rows() > 0){
@@ -875,6 +879,7 @@
 								$this->db->select('actorId,tipoActorId,nombre,apellidosSiglas,foto');
 								$this->db->from('actores');
 								$this->db->where('actorId',$row['receptorId']);
+								$this->db->where('estadoActivo', 1);
 								$consultaDatosActor = $this->db->get();
 								
 								if ($consultaDatosActor->num_rows() > 0){
@@ -924,6 +929,7 @@
 							$this->db->like('nombre', $cadena);
 							$this->db->or_like('apellidosSiglas', $cadena);
 							$this->db->where('actorId',$row['actorId']);
+							$this->db->where('estadoActivo', 1);
 							$consultaDatosActor = $this->db->get();
 							
 							if ($consultaDatosActor->num_rows() > 0){
@@ -962,6 +968,7 @@
 								$this->db->like('nombre', $cadena);
 								$this->db->or_like('apellidosSiglas', $cadena);
 								$this->db->where('actorId',$row['perpetradorId']);
+								$this->db->where('estadoActivo', 1);
 								$consultaDatosActor = $this->db->get();
 								
 								if ($consultaDatosActor->num_rows() > 0){
@@ -999,6 +1006,7 @@
 								$this->db->like('nombre', $cadena);
 								$this->db->or_like('apellidosSiglas', $cadena);
 								$this->db->where('actorId',$row['interventorId']);
+								$this->db->where('estadoActivo', 1);
 								$consultaDatosActor = $this->db->get();
 								
 								if ($consultaDatosActor->num_rows() > 0){
@@ -1036,6 +1044,7 @@
 								$this->db->like('nombre', $cadena);
 								$this->db->or_like('apellidosSiglas', $cadena);
 								$this->db->where('actorId',$row2['receptorId']);
+								$this->db->where('estadoActivo', 1);
 								$consultaDatosActor = $this->db->get();
 								
 								if ($consultaDatosActor->num_rows() > 0){

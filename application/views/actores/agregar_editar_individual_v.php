@@ -9,6 +9,7 @@
 
                 <label>Foto </label>
                 <input name="archivo" type="file" size="10" />
+                <input type="hidden" <?php (isset($datosActor['actores']['foto'])) ? 'value="'.$datosActor['actores']['foto'].'"' : "" ;?> name="actores_foto" />
                
     </div>
 

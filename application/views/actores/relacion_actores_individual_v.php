@@ -4,7 +4,7 @@
     <?=$head; ?>
 </head>
 <body>
-	<form action="<?=$action?>" method="post" accept-charset="utf-8">
+	<form action="" method="post" accept-charset="utf-8">
 	<input type="hidden" name="actores_actorId" value="<?=$actorId;?>" />	
 
 	<input type="hidden"  id="tipoRelacionIndividualColectivoId" name="tipoRelacionIndividualColectivoId" value="1"/>
@@ -68,7 +68,7 @@
 	<div id="vistaActorRelacionado"  >
 	<?php if (isset($relaciones['actorRelacionadoId'])) {?> 
 	<?php if ($relaciones['actorRelacionadoId']!=0) {?> 
-		<img class="three columns"  src="<?php print_r($catalogos['listaTodosActores'][$relaciones['actorRelacionadoId']]['foto']) ?>" >
+		<img class="three columns"  src="<?php print_r(base_url().$catalogos['listaTodosActores'][$relaciones['actorRelacionadoId']]['foto']) ?>" >
 		<h4><b><?php print_r($catalogos['listaTodosActores'][$relaciones['actorRelacionadoId']]['nombre']." ".$catalogos['listaTodosActores'][$relaciones['actorRelacionadoId']]['apellidosSiglas']) ?></h4></b>
 	<?php }}?>
 	</div>

@@ -13,7 +13,7 @@
 
 			<input type="hidden"  id="nameSeleccionado"  value="actorRelacionadoId"> <!--Este campo me da el name al que hay modificar el value al agregar acto(SIRVE PARA AGREGAR ACTOR)-->
 
-			<input type="hidden"  id="ValoresBotonCancelar"  name="ValoresBotonCancelar" value="<?= isset($relaciones['actorRelacionadoId']) ? $relaciones['actorRelacionadoId']."*".$catalogos['listaTodosActores'][$relaciones['actorRelacionadoId']]['nombre']." ".$catalogos['listaTodosActores'][$relaciones['actorRelacionadoId']]['apellidosSiglas']."*".$catalogos['listaTodosActores'][$relaciones['actorRelacionadoId']]['foto'] : "" ;  ?>"><!--Este campo da los valores en caso de que se cancele la ventana agregar actor-->
+			<input type="hidden"  id="ValoresBotonCancelar" value="<?= isset($relaciones['actorRelacionadoId']) ? $relaciones['actorRelacionadoId']."*".$catalogos['listaTodosActores'][$relaciones['actorRelacionadoId']]['nombre']." ".$catalogos['listaTodosActores'][$relaciones['actorRelacionadoId']]['apellidosSiglas']."*".$catalogos['listaTodosActores'][$relaciones['actorRelacionadoId']]['foto'] : "" ;  ?>"><!--Este campo da los valores en caso de que se cancele la ventana agregar actor-->
 
 			<input type="hidden"  id="tipoRelacionId" name="tipoRelacionId" value=""/>
 
@@ -24,7 +24,7 @@
 			<label>Persona</label>
 
 			<div class="twelve columns">
-			<img class="foto" src="<?=$listaTodosActores[$actorId]['foto']?>" />
+			<img class="foto" src="<?=base_url().$listaTodosActores[$actorId]['foto']?>" />
 			<br /><br />
 			<?=$listaTodosActores[$actorId]['nombre']." ".$listaTodosActores[$actorId]['apellidosSiglas']?>
 			</div>
@@ -87,7 +87,7 @@
 	<div id="vistaActorRelacionado">
 	<?php if (isset($relaciones['actorRelacionadoId'])) {?> 
 	<?php if ($relaciones['actorRelacionadoId']!=0) {?> 
-		<!-- img class="four columns"  src="<?php print_r($catalogos['listaTodosActores'][$relaciones['actorRelacionadoId']]['foto']) ?>" / -->
+		< img class="four columns"  src="<?php print_r(base_url().$catalogos['listaTodosActores'][$relaciones['actorRelacionadoId']]['foto']) ?>" / >
 		<h4><b><?php print_r($catalogos['listaTodosActores'][$relaciones['actorRelacionadoId']]['nombre']." ".$catalogos['listaTodosActores'][$relaciones['actorRelacionadoId']]['apellidosSiglas']) ?></h4></b>
 	<?php }}?>
 	</div>
