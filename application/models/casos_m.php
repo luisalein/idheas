@@ -593,33 +593,13 @@ class Casos_m extends CI_Model {
 		}
 	}/* Fin de mActualizaDatosRelacionCaso */
 	
-	public function mBuscarActoresNombre($cadena){
-			
-			$this->db->select('actorId, nombre, apellidosSiglas');
-			$this->db->from('actores');
-			$this->db->like('nombre', $cadena);
-			$this->db->or_like('apellidosSiglas', $cadena);
-			$consulta = $this->db->get();
-			
-			if($consulta->num_rows() > 0){
-				/* Pasa la consulta a un cadena */
-				foreach ($consulta->result_array() as $key => $value) {
-					$datos[$value['actorId']] = $value;
-				}
-				
-				/* Regresa la cadena al controlador*/
-				return $datos;
-			}else{
-				return ($mensaje = '0');
-			}
-			
-	}/* Fin de mBuscarActores() */
-		
+	/*Este modelo lista los modelos por una cadena en el campo nombre */
 	public function mBuscarCasosNombre($cadena){
 			
 			$this->db->select('casoId, nombre');
 			$this->db->from('casos');
 			$this->db->like('nombre', $cadena);
+			$this->db->where('estadoActivo',1);
 			$consulta = $this->db->get();
 			if($consulta->num_rows() > 0){
 				/* Pasa la consulta a un cadena */
@@ -634,7 +614,7 @@ class Casos_m extends CI_Model {
 			}
 
 			
-	}/* Fin de mBuscarActores() */	
+	}/* Fin de mBuscarCasosNombre() */	
 	
 	/* Este modelo Agrega la informacion de Derechos Afectado
 	 * @param:
