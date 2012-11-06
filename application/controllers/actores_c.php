@@ -427,7 +427,7 @@ class Actores_c extends CI_Controller {
 		echo $mensaje;
 				
    }
-    
+	
     function editar_actor($actorId, $tipoActorId){
         
         $datos['actorId'] = $actorId;
@@ -877,11 +877,11 @@ class Actores_c extends CI_Controller {
 		return $mensaje;
 	}
 
-	public function eliminarDireccion($direccionId,$actorId){
+	public function eliminarDireccion($direccionId,$actorId,$tipoActor){
 		
 		$mensaje = $this->actores_m->mEliminarDireccionActor($direccionId);	
 		
-		redirect(base_url().'index.php/actores_c/mostrar_actor/'.$actorId.'/'.$_POST['actores_tipoActorId']);
+		redirect(base_url().'index.php/actores_c/mostrar_actor/'.$actorId.'/'.$tipoActor);
 		
 		return $mensaje;
 		
@@ -956,7 +956,7 @@ class Actores_c extends CI_Controller {
 		$this->load->view('casos/SeleccionrActor', $datos);
 	}
 	
-	public function direccion($id){
+	public function direccion($idActor, $direccionId = 0){
 		
 		$datos['is_active'] = 'actores';
 		
@@ -964,7 +964,21 @@ class Actores_c extends CI_Controller {
 
         $datos['catalogos'] = $this->traer_catalogos();
 		
-		$datos['actorId'] = $id;
+		$datos['actorId'] = $idActor;
+		
+		if($direccionId != 0){
+			
+			$datos['listaTodosActores'] = $this->actores_m-> mListaTodosActores();
+			
+			$datos['datos'] = $this->actores_m->traer_datos_actor_m($idActor, $datos['listaTodosActores'][$idActor]['tipoActorId']);
+
+			if(isset($datos['datos']['direccionActor'][$direccionId])){
+				
+				$datos['datosActor'] = $datos['datos']['direccionActor'][$direccionId];
+				
+			}
+			
+		}
 		
 		$this->load->view('actores/formularioNuevaDireccion', $datos);
 	}

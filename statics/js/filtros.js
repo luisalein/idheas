@@ -183,8 +183,8 @@ function eliminarCaso(idCaso){
 	
 	var url = base+'index.php/casos_c/eliminarCaso';
 	
-	var data = 'casoId='+idCaso;
-
+	var data = 'idCaso='+idCaso;
+	
 	$.ajax({
     
         url: url,

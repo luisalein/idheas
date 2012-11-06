@@ -142,7 +142,7 @@ class Casos_c extends CI_Controller {
 	 * */
 	public function eliminarCaso(){
 		
-		$casoId = $this->input->post("casoId");	
+		$casoId = $this->input->post("idCaso");	
 		
 		$datos['relacionesConCasos'] = $this->casos_m-> mTraeRelacionesCaso($casoId);
 		
@@ -158,7 +158,7 @@ class Casos_c extends CI_Controller {
 			
 		}
 		
-		return $mensaje;
+		echo $mensaje;
 	}
 	
 	function editarCaso($casoId){
