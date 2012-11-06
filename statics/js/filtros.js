@@ -57,7 +57,18 @@ function searchCaso(){
 
 function cargarActor(actor,tipo){
 	
-	document.location.href = base+'index.php/actores_c/mostrar_actor/'+actor+'/'+tipo;
+	var nombre = $('#'+active+'_nombre').val();
+			
+	var filtro = getRadioButtonSelectedValue(document.frmR.filtroR);
+	
+	if(filtro == null){		
+	
+		filtro=0;
+				
+	}
+	
+	document.location.href = base+'index.php/actores_c/mostrar_actor/'+actor+'/'+tipo+'/'+nombre+'/'+filtro;
+	
 }
 
 function cargarCaso(casoId){
