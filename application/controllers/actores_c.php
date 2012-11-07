@@ -99,15 +99,22 @@ class Actores_c extends CI_Controller {
 			 if ($cadena != '0' && ($tipoFiltro == 0)){
 		   		
 				$datos['listado']  = $this->actores_m->mBuscarActoresNombre($cadena);
+				 
+				$datos['cadena'] = $cadena; 
 			   
 			}elseif($cadena == '0' && ($tipoFiltro != 0)){
 				
 				$datos['listado']   = $this->actores_m->mFiltrosBusquedaActor($tipoFiltro);	
+				
+				$datos['tipoFiltro'] = $tipoFiltro;
 					
 			}elseif($cadena != '0' && ($tipoFiltro != 0)){
 				
 				$datos['listado']  = $this->actores_m->mBusquedaActorFiltroNombre($tipoFiltro, $cadena);
 				
+				$datos['cadena'] = $cadena; 
+				
+				$datos['tipoFiltro'] = $tipoFiltro;
 			}else{
             	$datos['listado'] = $this->actores_m->listado_actores_m($tipoActorId);
 			}

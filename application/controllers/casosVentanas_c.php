@@ -306,7 +306,12 @@ class CasosVentanas_c extends CI_Controller {
 		return $mensaje;
 	}
 	
-	public function eliminarDerechoAfectado(){
+	public function eliminarDerechoAfectado($derechoId, $idCaso){
+		$mensaje = $this->casos_m->mEliminaDerechoAfectadoCaso($derechoId);
+		
+		redirect(base_url().'index.php/casos_c/mostrar_caso/'.$idCaso);
+		
+		return $mensaje;
 		
 	}
 	

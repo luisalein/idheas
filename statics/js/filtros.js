@@ -78,7 +78,7 @@ function cargarActor(actor,tipo){
 	}
 	
 	document.location.href = base+'index.php/actores_c/mostrar_actor/'+actor+'/'+tipo+'/'+nombre+'/'+filtro;
-	$('#'+active+'_nombre').value = nombre;
+	
 }
 
 function cargarCaso(casoId){
