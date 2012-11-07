@@ -1,6 +1,5 @@
 #actores***********************
 
-
 INSERT INTO `idheasIkari`.`actores`
 
 (`nombre`,
