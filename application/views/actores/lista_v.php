@@ -2,7 +2,7 @@
 	<div class="twelve columns"><!--Lista de Actores-->  
 	<form  method="post" accept-charset="utf-8" id="formEditarActor">
         <div class="twelve columns">
-        	<input id="<?=$is_active; ?>_nombre" type="text"  name="<?=$is_active; ?>_nombre" 
+        	<input id="<?=$is_active; ?>_nombre" type="text"  name="<?=$is_active; ?>_nombre"  value="<?php if(isset($cadena)) echo $cadena;?>"
         	placeholder="<?=($is_active == 'actores') ? 'Por nombre o apellido' : 'Por nombre del caso' ; ?>" class="seven columns" />
         </div>        
     </form> 
@@ -28,6 +28,10 @@
     <div id="pestania" data-collapse>					
 				<h2>Filtros</h2><!--título de la pestaña-->  
 				<div>
+					<?php if(isset($tipoFiltro)):?>
+						<?=prueba();?>
+						
+					<?php endif;?>
 					<form name="frmR">
 						<div>
 							<input type="radio" name="filtroR" value="1" onclick="filtroRadio()" >Víctima</input>
@@ -77,7 +81,7 @@
             } else if($listado['mensaje'] == 'ok') {
                 foreach($listado as $index => $caso): ?>
                 <?php $total=$total+1;?>
-                 <?php if($casoId == $caso['casoId']): ?>
+                 <?php if(isset($casoId) && $casoId == $caso['casoId']): ?>
 		                <div class="twelve columns" id="caja<?=$caso['casoId']; ?>" onclick="cargarCaso(<?=$caso['casoId']; ?>)" style="cursor: pointer;background:#ccc;">
 		                   <?=$caso['nombre']; ?>
 		                </div>

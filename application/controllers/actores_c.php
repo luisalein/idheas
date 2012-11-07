@@ -930,7 +930,8 @@ class Actores_c extends CI_Controller {
 
 		$datos['direccionActor']['actores_actorId'] = $actorId;
 		
-        $mensaje = $this->actores_m->mAgregarDireccionActor($datos['direccionActor'],$direccionId);
+        $mensaje = $this->actores_m->mActualizaDatosDireccion($datos['direccionActor'],$direccionId);
+
 
 		//redirect(base_url().'index.php/actores_c/mostrar_actor/'.$actorId.'/'.$_POST['actores_tipoActorId']);
 		
