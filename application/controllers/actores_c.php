@@ -373,6 +373,7 @@ class Actores_c extends CI_Controller {
 
 
         if ($idRelacionActor!=0) {
+        	//print_r($datos['datosActor']['relacionActores'][$idRelacionActor]);
             $datos['relaciones']=$datos['datosActor']['relacionActores'][$idRelacionActor];
         } 
         
@@ -414,18 +415,15 @@ class Actores_c extends CI_Controller {
         
     }
     
-    function editar_relacion($relacionActoresId,$actorRelacionadoId){
+    function editar_relacion(){
         
         foreach($_POST as $campo => $valor){ 
    		
             $datos[$campo] = $valor;
 
         }
-        $datos['actorRelacionadoId'] = $actorRelacionadoId;
 		
-		$datos['relacionActoresId'] = $relacionActoresId;
-		
-        $mensaje = $this->actores_m->mActualizaDatosRelacionActor($relacionActoresId, $datos);
+        $mensaje = $this->actores_m->mActualizaDatosRelacionActor($datos['relacionActoresId'], $datos);
         
 		return $mensaje;	
     }
