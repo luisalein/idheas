@@ -50,7 +50,7 @@ class Actores_c extends CI_Controller {
         
     }
     
-    function mostrar_actor($actorId = 0, $tipoActorId = 0, $cadena = 0, $tipoFiltro = 0){
+    function mostrar_actor($actorId = 0, $tipoActorId = 0, $cadena = '', $tipoFiltro = 0){
         
         $datos['actorId'] = $actorId;
         
@@ -96,18 +96,17 @@ class Actores_c extends CI_Controller {
         }
         
         if($tipoActorId > 0){
-        	
-			 if ($cadena !=0 && ($tipoFiltro == 0)){
-		   	
-				$data['listado']  = $this->actores_m->mBuscarActoresNombre($cadena);
+			 if ($cadena != '0' && ($tipoFiltro == 0)){
+		   		
+				$datos['listado']  = $this->actores_m->mBuscarActoresNombre($cadena);
 			   
-			}elseif($cadena == 0 && ($tipoFiltro != 0)){
+			}elseif($cadena == '0' && ($tipoFiltro != 0)){
 				
-				$data['listado']  = $this->actores_m->mFiltrosBusquedaActor($tipoFiltro);	
+				$datos['listado']   = $this->actores_m->mFiltrosBusquedaActor($tipoFiltro);	
 					
-			}elseif($cadena !=0 && ($tipoFiltro != 0)){
+			}elseif($cadena != '0' && ($tipoFiltro != 0)){
 				
-				$data['listado']  = $this->actores_m->mBusquedaActorFiltroNombre($tipoFiltro, $cadena);
+				$datos['listado']  = $this->actores_m->mBusquedaActorFiltroNombre($tipoFiltro, $cadena);
 				
 			}else{
             	$datos['listado'] = $this->actores_m->listado_actores_m($tipoActorId);
@@ -890,9 +889,7 @@ class Actores_c extends CI_Controller {
 		
         $mensaje = $this->actores_m->mAgregarDireccionActor($datos['direccionActor']);
 		
-       // redirect(base_url().'index.php/actores_c/mostrar_actor/'.$actorId.'/'.$tipoActor);
-		
-		return $mensaje;
+     	return $mensaje;
 	}
 
 	public function eliminarDireccion($direccionId,$actorId,$tipoActor){

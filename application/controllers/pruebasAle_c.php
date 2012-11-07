@@ -23,13 +23,22 @@ class PruebasAle_c extends CI_Controller
 			  						'actoViolatorioNivel'		=> ''
 			  						);
 		
-		
-
-	 $Data['datos']= $this->actores_m->mFiltrosBusquedaActor(1);	;
+		$cadena = 'Ale';
+		$tipoFiltro = 0;
+		 if ($cadena != 0 && $tipoFiltro == 0){
+		   		echo 'Aqui';
+				$data['listado']  = $this->actores_m->listado_actores_m(1);;
+				
+				
+			   
+			}else{
+				echo "aqui2";
+			}
+	$Data['datos']= $data['listado'];
 	
 		//  $this->load->view('actores/lista_v', $datos, true);
 			
-		 $this->load->view('pruebasAle',$Data);
+	 $this->load->view('pruebasAle',$Data);
 	}
 	
 	public function cAgregarCatalogoTipoDeDireccion(){
