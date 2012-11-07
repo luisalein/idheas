@@ -28,22 +28,20 @@
     <div id="pestania" data-collapse>					
 				<h2>Filtros</h2><!--título de la pestaña-->  
 				<div>
-					<?php if(isset($tipoFiltro)):?>
-						<?=prueba();?>
-						
-					<?php endif;?>
+					<input type="hiidden" id="filtroNuevo" name="<?php if(isset($tipoFiltro)) echo $tipofiltro;?>"/>
+					
 					<form name="frmR">
 						<div>
-							<input type="radio" name="filtroR" value="1" onclick="filtroRadio()" >Víctima</input>
-							<input type="radio" name="filtroR" value="2" onclick="filtroRadio()">Perpetrador</input>
+							<input type="radio" name="filtroR" value="1" onclick="filtroRadio(1)" >Víctima</input>
+							<input type="radio" name="filtroR" value="2" onclick="filtroRadio(2)">Perpetrador</input>
 						</div>
 						<div>
-							<input type="radio" name="filtroR" value="3" onclick="filtroRadio()">Interventor</input>
-						    <input type="radio" name="filtroR" value="4" onclick="filtroRadio()">Receptor</input>
+							<input type="radio" name="filtroR" value="3" onclick="filtroRadio(3)">Interventor</input>
+						    <input type="radio" name="filtroR" value="4" onclick="filtroRadio(4)">Receptor</input>
 						</div>
 						<div>
 							<input type="hidden" name="<?=$is_actor_type; ?>" id="tipoActor" ></input>
-							<input type="radio" name="filtroR" value="0" onclick="filtroRadio()">Sin filtro</input>
+							<input type="radio" name="filtroR" value="0" onclick="filtroRadio(5)">Sin filtro</input>
 						</div>
 					</form>
 				</div>	

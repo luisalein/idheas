@@ -422,8 +422,9 @@ class Actores_c extends CI_Controller {
 
         }
         
-        $this->actores_m->mActualizaDatosRelacionActor($datos['relacionActoresId'], $datos);
+       $mensaje = $this->actores_m->mActualizaDatosRelacionActor($datos['relacionActoresId'], $datos);
         
+		return $mensaje;	
     }
     
     function eliminar_actor(){
