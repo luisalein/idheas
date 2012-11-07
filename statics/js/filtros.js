@@ -62,7 +62,9 @@ function searchCaso(){
 	    });
 }
 
-
+function prueba(){
+	alert("siiii");
+}
 function cargarActor(actor,tipo){
 	
 	var nombre = $('#'+active+'_nombre').val();
