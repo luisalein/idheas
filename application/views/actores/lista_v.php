@@ -29,7 +29,7 @@
 				<h2>Filtros</h2><!--título de la pestaña-->  
 				<div>
 					<?php if(isset($tipoFiltro)):?>
-						
+						<?=filtroRadio($tipoFiltro)?>
 					
 					<?php endif;?>
 					<form name="frmR">
