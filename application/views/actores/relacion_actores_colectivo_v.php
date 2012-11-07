@@ -17,7 +17,9 @@
 
 			<input type="hidden"  id="tipoRelacionId" name="tipoRelacionId" value=""/>
 
-			<input type="hidden"  id="actorRelacionadoId" name="actorRelacionadoId" value="<?php (isset($relaciones['actorRelacionadoId']) ) ? $relaciones['actorRelacionadoId'] : "" ;?>"/>
+			<input type="hidden"  id="actorRelacionadoId" name="actorRelacionadoId" value="<?= (isset($relaciones['actorRelacionadoId']) ) ? $relaciones['actorRelacionadoId'] : "" ;?>"/>
+			
+			<input type="hidden"  id="relacionActores_tipoRelacionInd" name="relacionActoresId" <?= (isset($relaciones['relacionActoresId'])) ? 'value="'.$relaciones['relacionActoresId'].'"' : '' ;?> />
 
 			<br />
 	
