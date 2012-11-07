@@ -124,12 +124,12 @@ function desplegarActores(nombre, filtro, tipoActor){
 	
 }
 
-function filtroRadio(){
+function filtroRadio(filtro){
 	
 	var nombre = $('#'+active+'_nombre').val();
 			
-	var filtro = getRadioButtonSelectedValue(document.frmR.filtroR);
-			
+	//var filtro = getRadioButtonSelectedValue(document.frmR.filtroR);
+		var filtro = filtro;	
 	var tipoActor = $('#tipoActor').attr('name');		
 			
 	if(filtro == null && nombre==''){		
