@@ -21,6 +21,8 @@ $(document).ready(function() {
 		eliminarCaso(idCaso);
 				
     });
+    
+    $('#filtroNuevo').attr('name');
 });
 
 
@@ -68,7 +70,9 @@ function cargarActor(actor,tipo){
 	var nombre = $('#'+active+'_nombre').val();
 			
 	var filtro = getRadioButtonSelectedValue(document.frmR.filtroR);
-	
+	if(nombre == ''){
+		nombre = '0';
+	}
 	if(filtro == null){		
 	
 		filtro=0;
@@ -122,11 +126,13 @@ function desplegarActores(nombre, filtro, tipoActor){
 	
 }
 
-function filtroRadio(){
+function filtroRadio(filtro){
 	
 	var nombre = $('#'+active+'_nombre').val();
-			
-	var filtro = getRadioButtonSelectedValue(document.frmR.filtroR);
+					
+	if(filtro == 5){
+		filtro = getRadioButtonSelectedValue(document.frmR.filtroR);
+	}		
 			
 	var tipoActor = $('#tipoActor').attr('name');		
 			
@@ -142,6 +148,7 @@ function filtroRadio(){
 	
 	desplegarActores(nombre, filtro, tipoActor);
 }
+
 
 function getRadioButtonSelectedValue(ctrl)
 {

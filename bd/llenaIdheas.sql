@@ -1,3 +1,4 @@
+
 #actores***********************
 
 INSERT INTO `idheasIkari`.`actores`
@@ -637,3 +638,4 @@ VALUES
 1,1,'com','obs',1
 
 );
+

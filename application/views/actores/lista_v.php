@@ -2,7 +2,7 @@
 	<div class="twelve columns"><!--Lista de Actores-->  
 	<form  method="post" accept-charset="utf-8" id="formEditarActor">
         <div class="twelve columns">
-        	<input id="<?=$is_active; ?>_nombre" type="text"  name="<?=$is_active; ?>_nombre"  
+        	<input id="<?=$is_active; ?>_nombre" type="text"  name="<?=$is_active; ?>_nombre"  value="<?php if(isset($cadena)) echo $cadena;?>"
         	placeholder="<?=($is_active == 'actores') ? 'Por nombre o apellido' : 'Por nombre del caso' ; ?>" class="seven columns" />
         </div>        
     </form> 
@@ -28,18 +28,20 @@
     <div id="pestania" data-collapse>					
 				<h2>Filtros</h2><!--título de la pestaña-->  
 				<div>
+					<input type="hiidden" id="filtroNuevo" name="<?php if(isset($tipoFiltro)) echo $tipofiltro;?>"/>
+					
 					<form name="frmR">
 						<div>
-							<input type="radio" name="filtroR" value="1" onclick="filtroRadio()">Víctima</input>
-							<input type="radio" name="filtroR" value="2" onclick="filtroRadio()">Perpetrador</input>
+							<input type="radio" name="filtroR" value="1" onclick="filtroRadio(1)" >Víctima</input>
+							<input type="radio" name="filtroR" value="2" onclick="filtroRadio(2)">Perpetrador</input>
 						</div>
 						<div>
-							<input type="radio" name="filtroR" value="3" onclick="filtroRadio()">Interventor</input>
-						    <input type="radio" name="filtroR" value="4" onclick="filtroRadio()">Receptor</input>
+							<input type="radio" name="filtroR" value="3" onclick="filtroRadio(3)">Interventor</input>
+						    <input type="radio" name="filtroR" value="4" onclick="filtroRadio(4)">Receptor</input>
 						</div>
 						<div>
 							<input type="hidden" name="<?=$is_actor_type; ?>" id="tipoActor" ></input>
-							<input type="radio" name="filtroR" value="0" onclick="filtroRadio()">Sin filtro</input>
+							<input type="radio" name="filtroR" value="0" onclick="filtroRadio(5)">Sin filtro</input>
 						</div>
 					</form>
 				</div>	
@@ -59,7 +61,7 @@
              if($is_active == 'actores'){
                 foreach($listado as $actor): ?>
 	                <?php $total=$total+1?>
-	                <?php if($actorId == $actor['actorId']): ?>
+	                <?php if(isset($actorId) && $actorId== $actor['actorId']): ?>
 	                	 <div class="twelve columns" id="caja<?=$actor['actorId']; ?>" onclick="cargarActor(<?=$actor['actorId']; ?>,<?=$is_actor_type; ?>)" style="cursor: pointer;background:#ccc;">
 		                    <img class="five columns" style="width:100px !important; height:70px !important;" src="<?=base_url().$actor['foto']; ?>" />
 		                    <p style="color:#0080FF;"><?=$actor['nombre'].' '.$actor['apellidosSiglas']; ?></p>
@@ -77,7 +79,7 @@
             } else if($listado['mensaje'] == 'ok') {
                 foreach($listado as $index => $caso): ?>
                 <?php $total=$total+1;?>
-                 <?php if($casoId == $caso['casoId']): ?>
+                 <?php if(isset($casoId) && $casoId == $caso['casoId']): ?>
 		                <div class="twelve columns" id="caja<?=$caso['casoId']; ?>" onclick="cargarCaso(<?=$caso['casoId']; ?>)" style="cursor: pointer;background:#ccc;">
 		                   <?=$caso['nombre']; ?>
 		                </div>
