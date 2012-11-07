@@ -619,11 +619,12 @@
 		/* Este modelo busca a un actor por nombre, apellidosSiglas o inicial 
 	 	* @param cadena 
 	 	*/
-		public function mBuscarActoresNombre($cadena){
+		public function mBuscarActoresNombre($cadena,$tipoActorId){
 			
 			$this->db->select('actorId, nombre,tipoActorId, apellidosSiglas,foto');
 			$this->db->from('actores');
 			$this->db->where('estadoActivo', 1);
+			$this->db->where('tipoActorId', $tipoActorId);
 			$this->db->like('nombre', $cadena);
 			$this->db->or_like('apellidosSiglas', $cadena);
 			$consulta = $this->db->get();
@@ -751,7 +752,7 @@
 		
 		
 		/* Este modelo busca a un actor por victima o perpetrador o interventor o receptor */
-		public function mFiltrosBusquedaActor($tipoFiltro)
+		public function mFiltrosBusquedaActor($tipoFiltro,$tipoActorId)
 		{
 			switch ($tipoFiltro) {
 				case '1':
@@ -773,6 +774,7 @@
 							$this->db->from('actores');
 							$this->db->where('actorId',$row2['victimaId']);
 							$this->db->where('estadoActivo', 1);
+							$this->db->where('tipoActorId', $tipoActorId);
 							$consultaDatosActor = $this->db->get();
 							
 							if ($consultaDatosActor->num_rows() > 0){
@@ -811,6 +813,7 @@
 								$this->db->from('actores');
 								$this->db->where('actorId',$row['perpetradorId']);
 								$this->db->where('estadoActivo', 1);
+								$this->db->where('tipoActorId', $tipoActorId);
 								$consultaDatosActor = $this->db->get();
 								
 								if ($consultaDatosActor->num_rows() > 0){
@@ -848,6 +851,7 @@
 								$this->db->from('actores');
 								$this->db->where('actorId',$row['interventorId']);
 								$this->db->where('estadoActivo', 1);
+								$this->db->where('tipoActorId', $tipoActorId);
 								$consultaDatosActor = $this->db->get();
 								
 								if ($consultaDatosActor->num_rows() > 0){
@@ -884,6 +888,7 @@
 								$this->db->from('actores');
 								$this->db->where('actorId',$row['receptorId']);
 								$this->db->where('estadoActivo', 1);
+								$this->db->where('tipoActorId', $tipoActorId);
 								$consultaDatosActor = $this->db->get();
 								
 								if ($consultaDatosActor->num_rows() > 0){
@@ -913,7 +918,7 @@
 		}/* filtrosBusquedaActor */
 		
 		/* Este modelo busca a un actor por victima o perpetrador o interventor o receptor y por nombre del actor */
-		public function mBusquedaActorFiltroNombre($tipoFiltro,$cadena)
+		public function mBusquedaActorFiltroNombre($tipoFiltro,$cadena,$tipoActorId)
 		{
 			switch ($tipoFiltro) {
 				case '1':
@@ -935,6 +940,7 @@
 							$this->db->or_like('apellidosSiglas', $cadena);
 							$this->db->where('actorId',$row['actorId']);
 							$this->db->where('estadoActivo', 1);
+							$this->db->where('tipoActorId', $tipoActorId);
 							$consultaDatosActor = $this->db->get();
 							
 							if ($consultaDatosActor->num_rows() > 0){
@@ -974,6 +980,7 @@
 								$this->db->or_like('apellidosSiglas', $cadena);
 								$this->db->where('actorId',$row['perpetradorId']);
 								$this->db->where('estadoActivo', 1);
+								$this->db->where('tipoActorId', $tipoActorId);
 								$consultaDatosActor = $this->db->get();
 								
 								if ($consultaDatosActor->num_rows() > 0){
@@ -1012,6 +1019,7 @@
 								$this->db->or_like('apellidosSiglas', $cadena);
 								$this->db->where('actorId',$row['interventorId']);
 								$this->db->where('estadoActivo', 1);
+								$this->db->where('tipoActorId', $tipoActorId);
 								$consultaDatosActor = $this->db->get();
 								
 								if ($consultaDatosActor->num_rows() > 0){
@@ -1050,6 +1058,7 @@
 								$this->db->or_like('apellidosSiglas', $cadena);
 								$this->db->where('actorId',$row2['receptorId']);
 								$this->db->where('estadoActivo', 1);
+								$this->db->where('tipoActorId', $tipoActorId);
 								$consultaDatosActor = $this->db->get();
 								
 								if ($consultaDatosActor->num_rows() > 0){

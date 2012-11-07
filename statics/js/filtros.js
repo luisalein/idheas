@@ -21,8 +21,10 @@ $(document).ready(function() {
 		eliminarCaso(idCaso);
 				
     });
+    
+    
+    
 });
-
 
 function returnActores(){
 		document.location.href = base+'index.php/actores_c/mostrar_actor/0/1';
@@ -62,9 +64,7 @@ function searchCaso(){
 	    });
 }
 
-function prueba(){
-	alert("siiii");
-}
+
 function cargarActor(actor,tipo){
 	
 	var nombre = $('#'+active+'_nombre').val();
@@ -126,11 +126,10 @@ function desplegarActores(nombre, filtro, tipoActor){
 	
 }
 
-function filtroRadio(){
+function filtroRadio(filtro){
 	
 	var nombre = $('#'+active+'_nombre').val();
-			
-	var filtro = getRadioButtonSelectedValue(document.frmR.filtroR);
+					
 			
 	var tipoActor = $('#tipoActor').attr('name');		
 			
@@ -146,6 +145,7 @@ function filtroRadio(){
 	
 	desplegarActores(nombre, filtro, tipoActor);
 }
+
 
 function getRadioButtonSelectedValue(ctrl)
 {
