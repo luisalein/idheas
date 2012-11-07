@@ -414,15 +414,18 @@ class Actores_c extends CI_Controller {
         
     }
     
-    function editar_relacion(){
+    function editar_relacion($relacionActoresId,$actorId){
         
         foreach($_POST as $campo => $valor){ 
    		
             $datos[$campo] = $valor;
 
         }
-        
-       $mensaje = $this->actores_m->mActualizaDatosRelacionActor($datos['relacionActoresId'], $datos);
+        $datos['actorRelacionadoId'] = $actorId;
+		
+		$datos['relacionActoresId'] = $relacionActoresId;
+		
+        $mensaje = $this->actores_m->mActualizaDatosRelacionActor($relacionActoresId, $datos);
         
 		return $mensaje;	
     }
