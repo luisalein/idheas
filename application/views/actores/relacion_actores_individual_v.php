@@ -4,19 +4,20 @@
     <?=$head; ?>
 </head>
 <body>
+
 	<form action="<?php print_r($action)?>" method="post" accept-charset="utf-8">
 	<input type="hidden" name="actores_actorId" value="<?=$actorId;?>" />	
 
 	<input type="hidden"  id="tipoRelacionIndividualColectivoId" name="tipoRelacionIndividualColectivoId" value="1"/>
 
-	<input type="hidden"  id="relacionActores_tipoRelacionInd" name="relacionActoresId" <?php (isset($relaciones['relacionActoresId'])) ? 'value="'.$relaciones['relacionActoresId'].'"' : '' ;?> />
+	<input type="hidden"  id="relacionActores_tipoRelacionInd" name="relacionActoresId" <?= (isset($relaciones['relacionActoresId'])) ? 'value="'.$relaciones['relacionActoresId'].'"' : '' ;?> />
 
 	<input type="hidden"  id="nameSeleccionado"  value="actorRelacionadoId"><!--Este campo me da el name al que hay modificar el value al agregar acto(SIRVE PARA AGREGAR ACTOR)-->
 
 	<input type="hidden"  id="ValoresBotonCancelar"   value="<?= (isset($relaciones['actorRelacionadoId'])&&($relaciones['actorRelacionadoId']!=0)) ? $relaciones['actorRelacionadoId']."*".$catalogos['listaTodosActores'][$relaciones['actorRelacionadoId']]['nombre']." ".$catalogos['listaTodosActores'][$relaciones['actorRelacionadoId']]['apellidosSiglas']."*".$catalogos['listaTodosActores'][$relaciones['actorRelacionadoId']]['foto'] : "" ;  ?>"><!--Este campo da los valores en caso de que se cancele la ventana agregar actor-->
 	
-	<input type="hidden"  id="actorRelacionadoId" name="actorRelacionadoId" value="<?php (isset($relaciones['actorRelacionadoId'])) ? $relaciones['actorRelacionadoId'] : '' ;?>"/>
-	
+	<input type="hidden"  id="actorRelacionadoId" name="actorRelacionadoId" value="<?= (isset($relaciones['actorRelacionadoId'])) ? $relaciones['actorRelacionadoId'] : '' ;?>"/>
+
 	<div class="twelve columns">
 		<br/>
 		<label for="TipoRel">Notas tipo de relación</label>
