@@ -28,22 +28,42 @@
     <div id="pestania" data-collapse>					
 				<h2>Filtros</h2><!--título de la pestaña-->  
 				<div>
-					<input type="hiidden" id="filtroNuevo" name="<?php if(isset($tipoFiltro)) echo $tipofiltro;?>"/>
 					
 					<form name="frmR">
-						<div>
-							<input type="radio" name="filtroR" value="1" onclick="filtroRadio(1)" >Víctima</input>
-							<input type="radio" name="filtroR" value="2" onclick="filtroRadio(2)">Perpetrador</input>
-						</div>
-						<div>
-							<input type="radio" name="filtroR" value="3" onclick="filtroRadio(3)">Interventor</input>
-						    <input type="radio" name="filtroR" value="4" onclick="filtroRadio(4)">Receptor</input>
-						</div>
-						<div>
-							<input type="hidden" name="<?=$is_actor_type; ?>" id="tipoActor" ></input>
-							<input type="radio" name="filtroR" value="0" onclick="filtroRadio(5)">Sin filtro</input>
-						</div>
-					</form>
+							<div>
+								<?php if(isset($tipoFiltro) && $tipoFiltro == 1): ?>
+									<input type="radio" name="filtroR" value="1" onclick="filtroRadio(1)" checked="checked">Víctima</input>
+							    <? else:?>
+							    	<input type="radio" name="filtroR" value="1" onclick="filtroRadio(1)">Víctima</input>
+							    <? endif;?>
+							    
+							    <?php if(isset($tipoFiltro) && $tipoFiltro == 2): ?>
+									<input type="radio" name="filtroR" value="2" onclick="filtroRadio(2)" checked="checked">Perpetrador</input>
+							    <? else:?>
+							    	<input type="radio" name="filtroR" value="2" onclick="filtroRadio(2)">Perpetrador</input>
+							    <? endif;?>
+							</div>
+							<div>
+								<?php if(isset($tipoFiltro) && $tipoFiltro == 3): ?>
+									<input type="radio" name="filtroR" value="3" onclick="filtroRadio(3)" checked="checked">Interventor</input>
+							    <? else:?>
+							    	<input type="radio" name="filtroR" value="3" onclick="filtroRadio(3)">Interventor</input>
+							    <? endif;?>
+							    <?php if(isset($tipoFiltro) && $tipoFiltro == 4): ?>
+									<input type="radio" name="filtroR" value="4" onclick="filtroRadio(4)" checked="checked">Receptor</input>
+							    <? else:?>
+							    	<input type="radio" name="filtroR" value="4" onclick="filtroRadio(4)">Receptor</input>
+							    <? endif;?>
+							</div>
+							<div>
+								<?php if(isset($tipoFiltro) && $tipoFiltro == 0): ?>
+									<input type="radio" name="filtroR" value="0" onclick="filtroRadio(0)" checked="checked">Sin filtro</input>
+							    <? else:?>
+							    	<input type="radio" name="filtroR" value="0" onclick="filtroRadio(0)">Sin filtro</input>
+							    <? endif;?>
+								<input type="hidden" name="<?=$is_actor_type; ?>" id="tipoActor" ></input>
+							</div>
+						</form>
 				</div>	
     </div>
    <?php endif;?>

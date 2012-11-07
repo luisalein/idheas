@@ -22,9 +22,9 @@ $(document).ready(function() {
 				
     });
     
-    $('#filtroNuevo').attr('name');
+    
+    
 });
-
 
 function returnActores(){
 		document.location.href = base+'index.php/actores_c/mostrar_actor/0/1';
@@ -130,9 +130,6 @@ function filtroRadio(filtro){
 	
 	var nombre = $('#'+active+'_nombre').val();
 					
-	if(filtro == 5){
-		filtro = getRadioButtonSelectedValue(document.frmR.filtroR);
-	}		
 			
 	var tipoActor = $('#tipoActor').attr('name');		
 			

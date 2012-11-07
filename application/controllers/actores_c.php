@@ -414,14 +414,14 @@ class Actores_c extends CI_Controller {
         
     }
     
-    function editar_relacion($relacionActoresId,$actorId){
+    function editar_relacion($relacionActoresId,$actorRelacionadoId){
         
         foreach($_POST as $campo => $valor){ 
    		
             $datos[$campo] = $valor;
 
         }
-        $datos['actorRelacionadoId'] = $actorId;
+        $datos['actorRelacionadoId'] = $actorRelacionadoId;
 		
 		$datos['relacionActoresId'] = $relacionActoresId;
 		
@@ -839,15 +839,15 @@ class Actores_c extends CI_Controller {
 		
 		   if ((!empty($cadena)) && ($tipoFiltro == 0)){
 		   	
-				$data = $this->actores_m->mBuscarActoresNombre($cadena);
+				$data = $this->actores_m->mBuscarActoresNombre($cadena,$tipoActor);
 			   
 			}elseif((empty($cadena)) && ($tipoFiltro != 0)){
 				
-				$data = $this->actores_m->mFiltrosBusquedaActor($tipoFiltro);	
+				$data = $this->actores_m->mFiltrosBusquedaActor($tipoFiltro,$tipoActor);	
 					
 			}elseif((!empty($cadena)) && ($tipoFiltro != 0)){
 				
-				$data = $this->actores_m->mBusquedaActorFiltroNombre($tipoFiltro, $cadena);
+				$data = $this->actores_m->mBusquedaActorFiltroNombre($tipoFiltro, $cadena,$tipoActor);
 				
 			}else{
             	echo "error";
