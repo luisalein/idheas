@@ -13,7 +13,7 @@ INSERT INTO `idheasIkari`.`actores`
 
 VALUES
 
-('Jan','Perez',1,'','1515'),('Jon','Perez',2,''),('Jorge','Perez',3,'');
+('Jan','Perez',1,''),('Jon','Perez',2,''),('Jorge','Perez',3,'');
 
 
 INSERT INTO `idheasIkari`.`estadoCivil`
