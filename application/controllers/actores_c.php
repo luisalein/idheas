@@ -50,7 +50,7 @@ class Actores_c extends CI_Controller {
         
     }
     
-    function mostrar_actor($actorId = 0, $tipoActorId = 0, $cadena = 0, $tipoFiltro = 0){
+    function mostrar_actor($actorId = 0, $tipoActorId = 0, $cadena = '0', $tipoFiltro = 0){
         
         $datos['actorId'] = $actorId;
         
@@ -97,19 +97,27 @@ class Actores_c extends CI_Controller {
         
         if($tipoActorId > 0){
         	
-			 if ($cadena !=0 && ($tipoFiltro == 0)){
-		   	
-				$data['listado']  = $this->actores_m->mBuscarActoresNombre($cadena);
+			 if ($cadena != '0' && ($tipoFiltro == 0)){
+		   		
+				$datos['listado']  = $this->actores_m->mBuscarActoresNombre($cadena);
+				 
+				$datos['cadena'] = $cadena; 
 			   
-			}elseif($cadena == 0 && ($tipoFiltro != 0)){
+			}elseif($cadena == '0' && ($tipoFiltro != 0)){
 				
-				$data['listado']  = $this->actores_m->mFiltrosBusquedaActor($tipoFiltro);	
+				$datos['listado']   = $this->actores_m->mFiltrosBusquedaActor($tipoFiltro);	
+				
+				$datos['tipoFiltro'] = $tipoFiltro;
 					
-			}elseif($cadena !=0 && ($tipoFiltro != 0)){
+			}elseif($cadena != '0' && ($tipoFiltro != 0)){
 				
-				$data['listado']  = $this->actores_m->mBusquedaActorFiltroNombre($tipoFiltro, $cadena);
+				$datos['listado']  = $this->actores_m->mBusquedaActorFiltroNombre($tipoFiltro, $cadena);
 				
+				$datos['cadena'] = $cadena; 
+				
+				$datos['tipoFiltro'] = $tipoFiltro;
 			}else{
+			
             	$datos['listado'] = $this->actores_m->listado_actores_m($tipoActorId);
 			}
 				
@@ -890,9 +898,7 @@ class Actores_c extends CI_Controller {
 		
         $mensaje = $this->actores_m->mAgregarDireccionActor($datos['direccionActor']);
 		
-       // redirect(base_url().'index.php/actores_c/mostrar_actor/'.$actorId.'/'.$tipoActor);
-		
-		return $mensaje;
+     	return $mensaje;
 	}
 
 	public function eliminarDireccion($direccionId,$actorId,$tipoActor){
@@ -921,9 +927,12 @@ class Actores_c extends CI_Controller {
 
         } 
 
-        $mensaje = $this->actores_m->mActualizaDatosDireccion($datos,$direccionId);
-        
-		redirect(base_url().'index.php/actores_c/mostrar_actor/'.$actorId.'/'.$_POST['actores_tipoActorId']);
+
+		$datos['direccionActor']['actores_actorId'] = $actorId;
+		
+        $mensaje = $this->actores_m->mAgregarDireccionActor($datos['direccionActor'],$direccionId);
+
+		//redirect(base_url().'index.php/actores_c/mostrar_actor/'.$actorId.'/'.$_POST['actores_tipoActorId']);
 		
 		return $mensaje;
 		

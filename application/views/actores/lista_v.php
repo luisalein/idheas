@@ -2,7 +2,7 @@
 	<div class="twelve columns"><!--Lista de Actores-->  
 	<form  method="post" accept-charset="utf-8" id="formEditarActor">
         <div class="twelve columns">
-        	<input id="<?=$is_active; ?>_nombre" type="text"  name="<?=$is_active; ?>_nombre"  
+        	<input id="<?=$is_active; ?>_nombre" type="text"  name="<?=$is_active; ?>_nombre" 
         	placeholder="<?=($is_active == 'actores') ? 'Por nombre o apellido' : 'Por nombre del caso' ; ?>" class="seven columns" />
         </div>        
     </form> 
@@ -30,7 +30,7 @@
 				<div>
 					<form name="frmR">
 						<div>
-							<input type="radio" name="filtroR" value="1" onclick="filtroRadio()">Víctima</input>
+							<input type="radio" name="filtroR" value="1" onclick="filtroRadio()" >Víctima</input>
 							<input type="radio" name="filtroR" value="2" onclick="filtroRadio()">Perpetrador</input>
 						</div>
 						<div>
@@ -59,7 +59,7 @@
              if($is_active == 'actores'){
                 foreach($listado as $actor): ?>
 	                <?php $total=$total+1?>
-	                <?php if($actorId == $actor['actorId']): ?>
+	                <?php if(isset($actorId) && $actorId== $actor['actorId']): ?>
 	                	 <div class="twelve columns" id="caja<?=$actor['actorId']; ?>" onclick="cargarActor(<?=$actor['actorId']; ?>,<?=$is_actor_type; ?>)" style="cursor: pointer;background:#ccc;">
 		                    <img class="five columns" style="width:100px !important; height:70px !important;" src="<?=base_url().$actor['foto']; ?>" />
 		                    <p style="color:#0080FF;"><?=$actor['nombre'].' '.$actor['apellidosSiglas']; ?></p>

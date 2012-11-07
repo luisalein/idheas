@@ -68,7 +68,9 @@ function cargarActor(actor,tipo){
 	var nombre = $('#'+active+'_nombre').val();
 			
 	var filtro = getRadioButtonSelectedValue(document.frmR.filtroR);
-	
+	if(nombre == ''){
+		nombre = '0';
+	}
 	if(filtro == null){		
 	
 		filtro=0;
