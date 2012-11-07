@@ -102,9 +102,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                	<tr>
-                		<?php if (isset($datosActor['direccionActor'])) {
-                			foreach ($datosActor['direccionActor'] as $key => $direccion) {?>
+            		<?php if (isset($datosActor['direccionActor'])) {
+            			foreach ($datosActor['direccionActor'] as $key => $direccion) {?>
+                			<tr>
 		                        <td><?=(isset($direccion['tipoDireccionId'])) ? $catalogos['tipoDireccion'][$direccion['tipoDireccionId']]['descripcion'] : ''; ?></td>
 		                        <td><?=(isset($direccion['direccion'])) ? $direccion['direccion'] : ''; ?></td>
 		                        <td><?=(isset($direccion['codigoPostal'])) ? $direccion['codigoPostal'] : ''; ?></td>
@@ -115,9 +115,9 @@
 		                        	<form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarDireccion/<?=$direccion['direccionId']."/".$datosActor['actores']['actorId']."/".$datosActor['actores']['tipoActorId']; ?>" >
 				                     <input type="submit" value="Elminar" class="tiny button" />
 		                        </td>
-	            			<?php }?>
-	            		<?php }?>
-                    </tr>
+                    		</tr>
+            			<?php }?>
+            		<?php }?>
                 </tbody>
             </table>
 	        <?php if (isset($datosActor)) {?>

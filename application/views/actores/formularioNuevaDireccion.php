@@ -7,8 +7,7 @@
 	</head>
 	
 <body>
-	<form action='<?= (isset($datosActor)) ? (base_url().'index.php/actores_c/actualizaDireccion'.'/'.$datosActor['direccionId'].'/'.$actorId) : (base_url().'index.php/actores_c/agregarDireccion') ;?>' method="post" accept-charset="utf-8">
-        <pre><?php print_r($datosActor)?></pre>
+	<form action='<?= (isset($datosActor)) ? (base_url().'index.php/actores_c/actualizaDireccion'.'/'.$datosActor['direccionId'].'/'.$actorId) : (base_url().'index.php/actores_c/agregarDireccion'.'/'.$actorId) ;?>' method="post" accept-charset="utf-8">
             <fieldset>
                 <legend>Dirección</legend>
                 <div class="six columns">
@@ -28,8 +27,8 @@
                 <input id="BotonmasdireccionActor_tipoDireccionId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />	
                 <label for="direccionActor_direccion">Ubicación</label>
                 <input type="text" id="direccionActor_direccion" name="direccionActor_direccion"  <?=(isset($datosActor['direccion']) ? 'value="'.$datosActor['direccion'].'"' : ''); ?> />
-                <label for="actores_codigoPostal">Código Postal</label>
-                <input type="text" id="actores_codigoPostal" name="actores_codigoPostal"  <?=(isset($datosActor['actores']['codigoPostal']) ? 'value="'.$datosActor['actores']['codigoPostal'].'"' : ''); ?> />
+                <label for="direccionActor_codigoPostal">Código Postal</label>
+                <input type="text" id="direccionActor_codigoPostal" name="direccionActor_codigoPostal"  <?=(isset($datosActor['codigoPostal']) ? 'value="'.$datosActor['codigoPostal'].'"' : ''); ?> />
                 </div>
                 <div class="six columns">
                                                                    
