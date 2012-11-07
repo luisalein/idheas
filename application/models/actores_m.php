@@ -755,33 +755,36 @@
 		{
 			switch ($tipoFiltro) {
 				case '1':
-					$this->db->select('actorId');
+					$this->db->select('actorId,victimaId');
 					$this->db->from('victimas');
 					$consulta = $this->db->get();
 					
 					if ($consulta->num_rows() > 0){		
 						/* Pasa la consulta a un cadena */
 						foreach ($consulta->result_array() as $row) {
-							$datos['actores'][$row['actorId']] = $row;
+							$datos['actores'][$row['victimaId']] = $row;
+							
+							
 						}
 						
-						foreach ($datos['actores'] as $row) {
+						foreach ($datos['actores'] as $row2) {
 							
 							$this->db->select('actorId,tipoActorId,nombre,apellidosSiglas,foto');
 							$this->db->from('actores');
-							$this->db->where('actorId',$row['actorId']);
+							$this->db->where('actorId',$row2['victimaId']);
 							$this->db->where('estadoActivo', 1);
 							$consultaDatosActor = $this->db->get();
 							
 							if ($consultaDatosActor->num_rows() > 0){
-								foreach ($consultaDatosActor->result_array() as $row) {
-									$datosActor[$row['actorId']]=$row;
+								foreach ($consultaDatosActor->result_array() as $row3) {
+									$datosActor[$row3['actorId']]=$row3;
+									
 								}
-								/* Regresa la cadena al controlador*/
-								return $datosActor;
-							}		
-						}
+								
+							}	
+						}/* fin foreach $datos*/
 						
+						return $datosActor;
 						
 					}else{
 						return $mensaje = 0;
@@ -814,11 +817,12 @@
 									foreach ($consultaDatosActor->result_array() as $row) {
 										$datosActor[$row['actorId']]=$row;
 									}
-									/* Regresa la cadena al controlador*/
-									return $datosActor;
+									
 								}		
-							}
+							}/* fin foreach $datos*/
 							
+							/* Regresa la cadena al controlador*/
+									return $datosActor;
 							
 						}else{
 							return $mensaje = 0;
@@ -850,11 +854,11 @@
 									foreach ($consultaDatosActor->result_array() as $row) {
 										$datosActor[$row['actorId']]=$row;
 									}
-									/* Regresa la cadena al controlador*/
-									return $datosActor;
 								}		
-							}
+							}/* fin foreach $datos*/
 							
+							/* Regresa la cadena al controlador*/
+									return $datosActor;
 							
 						}else{
 							return $mensaje = 0;
@@ -886,11 +890,12 @@
 									foreach ($consultaDatosActor->result_array() as $row) {
 										$datosActor[$row['actorId']]=$row;
 									}
-									/* Regresa la cadena al controlador*/
-									return $datosActor;
+									
 								}		
 							}
 							
+							/* Regresa la cadena al controlador*/
+							return $datosActor;
 							
 						}else{
 							return $mensaje =0;

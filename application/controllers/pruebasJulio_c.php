@@ -43,7 +43,7 @@ class PruebasJulio_c extends CI_Controller
 				   
 				   
 			echo 'hola';  						
-			$Data['datos']=$this->actores_m->mBuscarActoresNombre('j');
+			$Data['datos']=$this->actores_m->mFiltrosBusquedaActor(1);
 			//
 			echo 'hola2';
 			
