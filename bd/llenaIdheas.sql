@@ -447,7 +447,7 @@ INSERT INTO `idheasIkari`.`actosPerpetrador`
 
 `municipiosCatalogo_municipioId`,
 
-`perpetradores_perpetradorVitimaId`)
+`perpetradores_perpetradorVictimaId`)
 
 VALUES
 

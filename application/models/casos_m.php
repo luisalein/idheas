@@ -720,7 +720,7 @@ class Casos_m extends CI_Model {
 	
 	public function mEliminaActosPerpetrador($perpetradorVictimaId){
 		
-		$this->db->where('perpetradores_perpetradorVitimaId', $perpetradorVictimaId);
+		$this->db->where('perpetradores_perpetradorVictimaId', $perpetradorVictimaId);
 		
 		if($this->db->delete('actosPerpetrador')){
 			
