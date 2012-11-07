@@ -43,7 +43,7 @@
 						</div>
 						<div>
 							<input type="hidden" name="<?=$is_actor_type; ?>" id="tipoActor" ></input>
-							<input type="radio" name="filtroR" value="0" onclick="filtroRadio()">Sin filtro</input>
+							<input type="radio" name="filtroR" value="0" onclick="filtroRadio(5)">Sin filtro</input>
 						</div>
 					</form>
 				</div>	
