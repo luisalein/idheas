@@ -1,4 +1,5 @@
-<div class="twelve columns"><!--Lista de Actores-->  
+<div id="vista">
+	<div class="twelve columns"><!--Lista de Actores-->  
 	<form  method="post" accept-charset="utf-8" id="formEditarActor">
         <div class="twelve columns">
         	<input id="<?=$is_active; ?>_nombre" type="text"  name="<?=$is_active; ?>_nombre"  
@@ -54,18 +55,19 @@
     <?php $total=0;?>
     <div  id="listaActorIndiv" class="PruebaScorll">
         <?php if(isset($listado) && $listado != null){
-            if($is_active == 'actores'){
+        	
+             if($is_active == 'actores'){
                 foreach($listado as $actor): ?>
 	                <?php $total=$total+1?>
 	                <?php if($actorId == $actor['actorId']): ?>
 	                	 <div class="twelve columns" id="caja<?=$actor['actorId']; ?>" onclick="cargarActor(<?=$actor['actorId']; ?>,<?=$is_actor_type; ?>)" style="cursor: pointer;background:#ccc;">
-		                    <img class="five columns" src="<?=base_url().$actor['foto']; ?>" />
+		                    <img class="five columns" style="width:100px !important; height:70px !important;" src="<?=base_url().$actor['foto']; ?>" />
 		                    <p style="color:#0080FF;"><?=$actor['nombre'].' '.$actor['apellidosSiglas']; ?></p>
 			             </div>
 			             <hr />	  
 	                <?php else:?>
 	                	 <div class="twelve columns" id="caja<?=$actor['actorId']; ?>" onclick="cargarActor(<?=$actor['actorId']; ?>,<?=$is_actor_type; ?>)" style="cursor: pointer;">		        
-		                    <img class="five columns" src="<?=base_url().$actor['foto']; ?>" />
+		                    <img class="five columns" style="width:100px !important; height:70px !important;" src="<?=base_url().$actor['foto']; ?>" />
 		                    <p style="color:#0080FF;"><?=$actor['nombre'].' '.$actor['apellidosSiglas']; ?></p>
 			             </div>
 			             <hr />	                	
@@ -75,10 +77,17 @@
             } else if($listado['mensaje'] == 'ok') {
                 foreach($listado as $index => $caso): ?>
                 <?php $total=$total+1;?>
-                <div class="twelve columns" id="caja<?=$caso['casoId']; ?>" onclick="cargarCaso(<?=$caso['casoId']; ?>)" style="cursor: pointer;">
-                   <?=$caso['nombre']; ?>
-                </div>
-                <hr />
+                 <?php if($casoId == $caso['casoId']): ?>
+		                <div class="twelve columns" id="caja<?=$caso['casoId']; ?>" onclick="cargarCaso(<?=$caso['casoId']; ?>)" style="cursor: pointer;background:#ccc;">
+		                   <?=$caso['nombre']; ?>
+		                </div>
+		                <hr />
+                 <?php else:?>
+                 		 <div class="twelve columns" id="caja<?=$caso['casoId']; ?>" onclick="cargarCaso(<?=$caso['casoId']; ?>)" style="cursor: pointer;">
+		                   <?=$caso['nombre']; ?>
+		                </div>
+		                <hr />
+                 <?php endif?>
             <?php endforeach;
 			$total=$total-1;
             }
@@ -96,4 +105,5 @@
 		<?php } ?> 
     </div>
     
+</div>
 </div>

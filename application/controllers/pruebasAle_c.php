@@ -24,35 +24,12 @@ class PruebasAle_c extends CI_Controller
 			  						);
 		
 		
-<<<<<<< HEAD
-			$Data['rrr']=$this->actores_m->mTraeRelacionesColectivo(1);	
+
+	 $Data['datos']= $this->actores_m->mFiltrosBusquedaActor(1);	;
 	
-			if($Data['rrr'] !=''){
-				$Data['datos']=	$Data['rrr'];
-				
-			}else{
-				$Data['datos']=	"No Hecho";
-			}
-				
-=======
-		
-		$datos['actoresAfiliados']=$this->actores_m->mTraeRelacionesColectivo(4);		
-		
-	
-		
-		
+		//  $this->load->view('actores/lista_v', $datos, true);
 			
-			foreach ($datos['actoresAfiliados'] as $valor)
-			
-				$Data['datos'][$valor['actorId']]=$this->actores_m->mTraeCasosRelacionadosActor($valor['actorId']);
-		
-		
->>>>>>> b8e307dbacd6d0cef1708ef42ca331420727f32d
-			
-    		//$Data['datos']= system('pwd');
-    		
-		
-			$this->load->view('pruebasAle',$Data);
+		 $this->load->view('pruebasAle',$Data);
 	}
 	
 	public function cAgregarCatalogoTipoDeDireccion(){

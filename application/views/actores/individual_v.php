@@ -86,7 +86,6 @@
 	</fieldset>
 	<!--Termina información del contacto-->
 	<fieldset>
-<pre><?print_r($datosActor)?></pre>
     <div id="pestania" data-collapse>
         <h2 class="open">Dirección(es) </h2>
         <div>
@@ -104,21 +103,26 @@
                 </thead>
                 <tbody>
                 	<tr>
-                		<?php if (isset($direccionActor)) {
-                			foreach ($variable as $key => $value) {?>
-                			<?php }?>
-                		<?php }?>
-                        <td><?=(isset($datosActor['direccionActor']['tipoDireccionId'])) ? $datosActor['direccionActor']['tipoDireccionId'] : ''; ?></td>
-                        <td><?=(isset($datosActor['direccionActor']['direccion'])) ? $datosActor['direccionActor']['direccion'] : ''; ?></td>
-                        <td><?=(isset($datosActor['actores']['codigoPostal'])) ? $datosActor['actores']['codigoPostal'] : ''; ?></td>
-                        <td><?=(isset($datosActor['direccionActor']['paisesCatalogo_paisId'])) ? $catalogos['paisesCatalogo'][$datosActor['direccionActor']['paisesCatalogo_paisId']]['nombre'] : ''; ?></td>
-                        <td><?=(isset($datosActor['direccionActor']['estadosCatalogo_estadoId'])) ? $catalogos['estadosCatalogo'][$datosActor['direccionActor']['estadosCatalogo_estadoId']]['nombre'] : ''; ?></td>
-                        <td><?=(isset($datosActor['direccionActor']['municipiosCatalogo_municipioId'])) ? $catalogos['municipiosCatalogo'][$datosActor['direccionActor']['municipiosCatalogo_municipioId']]['nombre'] : ''; ?></td>                        
-                        <td><input type="button" class="tiny button"  value="Editar" /></td>
+                		<?php if (isset($datosActor['direccionActor'])) {
+                			foreach ($datosActor['direccionActor'] as $key => $direccion) {?>
+		                        <td><?=(isset($direccion['tipoDireccionId'])) ? $catalogos['tipoDireccion'][$direccion['tipoDireccionId']]['descripcion'] : ''; ?></td>
+		                        <td><?=(isset($direccion['direccion'])) ? $direccion['direccion'] : ''; ?></td>
+		                        <td><?=(isset($direccion['codigoPostal'])) ? $direccion['codigoPostal'] : ''; ?></td>
+		                        <td><?=(isset($direccion['paisesCatalogo_paisId'])) ? $catalogos['paisesCatalogo'][$direccion['paisesCatalogo_paisId']]['nombre'] : ''; ?></td>
+		                        <td><?=(isset($direccion['estadosCatalogo_estadoId'])) ? $catalogos['estadosCatalogo'][$direccion['estadosCatalogo_estadoId']]['nombre'] : ''; ?></td>
+		                        <td><?=(isset($direccion['municipiosCatalogo_municipioId'])) ? $catalogos['municipiosCatalogo'][$direccion['municipiosCatalogo_municipioId']]['nombre'] : ''; ?></td>                        
+		                        <td><input type="button" class="tiny button"  value="Editar" onclick="nuevaDireccion('<?=$datosActor['actores']['actorId']?>','<?=$direccion['direccionId']?>')"/>
+		                        	<form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarDireccion/<?=$direccion['direccionId']."/".$datosActor['actores']['actorId']."/".$datosActor['actores']['tipoActorId']; ?>" >
+				                     <input type="submit" value="Elminar" class="tiny button" />
+		                        </td>
+	            			<?php }?>
+	            		<?php }?>
                     </tr>
                 </tbody>
             </table>
-		<input type="button" class="small button"  value="Agregar dirección" onclick="nuevaDireccion()">
+	        <?php if (isset($datosActor)) {?>
+				<input type="button" class="small button"  value="Agregar dirección" onclick="nuevaDireccion('<?=$datosActor['actores']['actorId']?>',0)">
+	        <?php } ?>
         </div>
     </div>
 	</fieldset><!--Termina datos dirección-->
@@ -247,7 +251,11 @@
                                 <td><?=$nombreRelacionado?></td>
                                 <td><?=$relacion['fechaInicial']; ?></td>
                                 <td><?=$relacion['fechaTermino']; ?></td>
-                                <td><input type="button" class="tiny button"  value="Editar" onclick="nueva_relacion_a_Col('<?=$idActor ?>',1, '<?=$relacion['relacionActoresId']; ?>')" /></td>
+                                <td><input type="button" class="tiny button"  value="Editar" onclick="nueva_relacion_a_Col('<?=$idActor ?>',1, '<?=$relacion['relacionActoresId']; ?>')" />
+				                    <form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarRelacionActor/<?=$relacion['relacionActoresId']."/".$relacion['actorRelacionadoId']; ?>" >
+				                        <input type="submit" value="Elminar" class="tiny button" />
+				                    </form>
+                                </td>
                             </tr><?php
                         }
                         }

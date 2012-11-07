@@ -93,6 +93,21 @@ class casosNucleo_c extends CI_Controller {
 		$this->load->view('actores/formularioNuevaDireccion',$DatosGenerales);
 	}
 
+	public function direccion($id){
+	
+		$this->load->helper(array('html', 'url'));	
+
+		$datos['is_active'] = 'actores';
+		
+		$datos['head'] = $this->load->view('general/head_v', $datos, true);
+		
+		$datos['catalogos'] = traer_catalogos();
+		
+		$datos['actorId'] = $id;
+		
+		$this->load->view('actores/formularioNuevaDireccion', $datos);
+	}
+
 	    function mostrar_caso($casoId = 0){
         
      

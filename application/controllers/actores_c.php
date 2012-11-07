@@ -50,8 +50,8 @@ class Actores_c extends CI_Controller {
         
     }
     
-    function mostrar_actor($actorId = 0, $tipoActorId = 0){
-      
+    function mostrar_actor($actorId = 0, $tipoActorId = 0, $cadena = 0, $tipoFiltro = 0){
+        
         $datos['actorId'] = $actorId;
         
 		$datos['EstoyEnActor']=1;
@@ -96,9 +96,24 @@ class Actores_c extends CI_Controller {
         }
         
         if($tipoActorId > 0){
-            
-            $datos['listado'] = $this->actores_m->listado_actores_m($tipoActorId);
-            
+        	
+			 if ($cadena !=0 && ($tipoFiltro == 0)){
+		   	
+				$data['listado']  = $this->actores_m->mBuscarActoresNombre($cadena);
+			   
+			}elseif($cadena == 0 && ($tipoFiltro != 0)){
+				
+				$data['listado']  = $this->actores_m->mFiltrosBusquedaActor($tipoFiltro);	
+					
+			}elseif($cadena !=0 && ($tipoFiltro != 0)){
+				
+				$data['listado']  = $this->actores_m->mBusquedaActorFiltroNombre($tipoFiltro, $cadena);
+				
+			}else{
+            	$datos['listado'] = $this->actores_m->listado_actores_m($tipoActorId);
+			}
+				
+			
         }
 		
 		if(!empty($datos['casosRelacionados'])){
@@ -135,8 +150,8 @@ class Actores_c extends CI_Controller {
             $datos['datosActor'] = $this->actores_m->traer_datos_actor_m($actorId, $tipoActorId);
 
             $datos['citaActor'] = $this->actores_m->mTraerCitasActor($actorId);
-			
-			$datos['casosRelacionados'] = $this->casosRelacionados($actorId);
+			if($tipoActorId == 3)
+				$datos['casosRelacionados'] = $this->casosRelacionados($actorId);
             
         }
         
@@ -426,7 +441,7 @@ class Actores_c extends CI_Controller {
 		echo $mensaje;
 				
    }
-    
+	
     function editar_actor($actorId, $tipoActorId){
         
         $datos['actorId'] = $actorId;
@@ -510,10 +525,12 @@ class Actores_c extends CI_Controller {
             }
 
         }
+		if(!isset($datos['actores']['foto'])){
+			$foto = $this->cargarFoto();
 		
-		$foto = $this->cargarFoto();
+			$datos['actores']['foto'] = $foto;
+		}
 		
-		$datos['actores']['foto'] = $foto;
 		
         $this->actores_m->mActualizaDatosActor($datos['actores']['actorId'], $datos);
         
@@ -852,7 +869,7 @@ class Actores_c extends CI_Controller {
 		return $mensaje;
 	}
 
-	public function agregarDireccion(){
+	public function agregarDireccion($actorId){
 		
 		
 		 foreach($_POST as $campo => $valor){ 
@@ -868,17 +885,21 @@ class Actores_c extends CI_Controller {
             	$datos[$nombre_tabla][$nombre_campo] = $valor; 
 
         } 
-
-        $mensaje = $this->actores_m->mAgregarDireccionActor($datos);
-        
+		
+		$datos['direccionActor']['actores_actorId'] = $actorId;
+		
+        $mensaje = $this->actores_m->mAgregarDireccionActor($datos['direccionActor']);
+		
+       // redirect(base_url().'index.php/actores_c/mostrar_actor/'.$actorId.'/'.$tipoActor);
+		
 		return $mensaje;
 	}
 
-	public function eliminarDireccion($direccionId,$actorId){
+	public function eliminarDireccion($direccionId,$actorId,$tipoActor){
 		
 		$mensaje = $this->actores_m->mEliminarDireccionActor($direccionId);	
 		
-		redirect(base_url().'index.php/actores_c/mostrar_actor/'.$actorId.'/'.$_POST['actores_tipoActorId']);
+		redirect(base_url().'index.php/actores_c/mostrar_actor/'.$actorId.'/'.$tipoActor);
 		
 		return $mensaje;
 		
@@ -953,15 +974,29 @@ class Actores_c extends CI_Controller {
 		$this->load->view('casos/SeleccionrActor', $datos);
 	}
 	
-	public function direccion($id){
+	public function direccion($idActor, $direccionId = 0){
 		
 		$datos['is_active'] = 'actores';
 		
 		$datos['head'] = $this->load->view('general/head_v', $datos, true);
+
+        $datos['catalogos'] = $this->traer_catalogos();
 		
-		$datos['catalogos'] = traer_catalogos();
+		$datos['actorId'] = $idActor;
 		
-		$datos['actorId'] = $id;
+		if($direccionId != 0){
+			
+			$datos['listaTodosActores'] = $this->actores_m-> mListaTodosActores();
+			
+			$datos['datos'] = $this->actores_m->traer_datos_actor_m($idActor, $datos['listaTodosActores'][$idActor]['tipoActorId']);
+
+			if(isset($datos['datos']['direccionActor'][$direccionId])){
+				
+				$datos['datosActor'] = $datos['datos']['direccionActor'][$direccionId];
+				
+			}
+			
+		}
 		
 		$this->load->view('actores/formularioNuevaDireccion', $datos);
 	}
