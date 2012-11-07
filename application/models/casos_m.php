@@ -649,9 +649,12 @@ class Casos_m extends CI_Model {
      	
 	    return $derechoAfectadoCasoId;
 	}/* Fin de mAgregarDerechosAfectados */
-
+	
+	
+	/* Este modelo elimina un derecho afectado antes borrando actos, victimas, perpetradores asociados a un acto, si existen */
 	public function mEliminaDerechoAfectadoCaso($derechoAfectadoCasoId)
 	{
+		/* Trae los actos asociados asociados a un derecho afectado */
 		$this->db->select('actoId');
 		$this->db->from('actos');
 		$this->db->where('derechoAfectado_derechoAfectadoCasoId',$derechoAfectadoCasoId);
@@ -660,7 +663,9 @@ class Casos_m extends CI_Model {
 		if($consultaActos->num_rows() > 0){
 			/* Pasa la consulta a un cadena */
 			foreach ($consultaActos->result_array() as $row){
-				$datos['actos'][$row['actoId']] = $row;
+				//$datos['actos'][$row['actoId']] = $row;
+				
+				/* Trae las victimas asociadas a un acto */
 				
 				$this->db->select('victimaId');
 				$this->db->from('victimas');
@@ -670,8 +675,9 @@ class Casos_m extends CI_Model {
 				if($consultaVictimas->num_rows() > 0){
 					/* Pasa la consulta a un cadena */
 					foreach ($consultaVictimas->result_array() as $row2){
-						$datos['victmas'][$row2['victimaId']] = $row2;
+						//$datos['victmas'][$row2['victimaId']] = $row2;
 						
+						/* Trae los perpetradores asociados a una victima */
 						$this->db->select('perpetradorVictimaId');
 						$this->db->from('perpetradores');
 						$this->db->where('victimas_victimaId',$row2['victimaId']);
@@ -680,37 +686,54 @@ class Casos_m extends CI_Model {
 						if($consultaPerpetradores->num_rows() > 0){
 							/* Pasa la consulta a un cadena */
 							foreach ($consultaPerpetradores->result_array() as $row3){
-								$datos['perpetradores'][$row3['perpetradorVictimaId']] = $row3;
-								
-								$this->db->where('direccionId', $direccionId);
-								if($this->db->delete('direccionActor')){
-									/* Regresa la cadena al controlador*/
-									return ($mensaje = 'Hecho');
-									
-								}else{
-									
-									$mensaje['error'] = $this->db->_error_message();
-									/* Regresa la cadena al controlador*/
-						        	return $mensaje;
-									
-								}  
+								//$datos['perpetradores'][$row3['perpetradorVictimaId']] = $row3;
+								/* Elimina la relacion de un perpetrador con un acto */
+								$this->mEliminaActosPerpetrador($row3['perpetradorVictimaId']);
+								 
 							}/* fin foreach consultaPerpetradores*/
 							
-						}/*fin de if consultaPerpetradores */	
-								
+						}/*fin de if consultaPerpetradores */
+							
+						 /* Elimina un perpetrador asiciado a una victima */
+						$this->mEliminaPerpetradorVictima($row2['victimaId']);		
 					}
 				}/* fin de if consultaVictimas */
+				
+				/* Elimina una victima asociada a un acto */
+				$this->mEliminaVictimaActo($row['actoId']);
 						
 			}/* fin foreach consultaActos */
 			
-			
+			/* Elimina un acto asociado a un derecho Afectado */
+			$this->mEliminaActoDerechoAfectado($derechoAfectadoCasoId);
+			/* Elimina un derecho afectado asociado a un caso */
+			$this->mEliminaDerechoAfectadoCaso($derechoAfectadoCasoId);
 			
 			/* Regresa la cadena al controlador*/
-			return $datos;
+			return ($mensaje = 'Hecho');
+			
 		}else{
+			/* Si no hay derecho afectado que borrar regresa un cero*/
 			return ($mensaje = '0');
 		}
 	}/*fin de mEliminaDerechoAfectadoCaso */	
+	
+	public function mEliminaActosPerpetrador($perpetradorVictimaId){
+		
+		$this->db->where('perpetradores_perpetradorVitimaId', $perpetradorVictimaId);
+		
+		if($this->db->delete('actosPerpetrador')){
+			
+			/* Regresa la cadena al controlador*/
+			return ($mensaje = 'Hecho');
+			
+		}else{
+			
+			$mensaje['error'] = $this->db->_error_message();
+			/* Regresa la cadena al controlador*/
+        	return $mensaje;
+		}
+	}/* fin de mEliminaActosPerpetrador*/
 	
 	
 	/* Este modelo edita un DerechoAfectado
