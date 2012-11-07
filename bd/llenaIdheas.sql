@@ -9,13 +9,11 @@ INSERT INTO `idheasIkari`.`actores`
 
 `tipoActorId`,
 
-`foto`,
-
-`codigoPostal`)
+`foto`)
 
 VALUES
 
-('Jan','Perez',1,'','1515'),('Jon','Perez',2,'','15150'),('Jorge','Perez',3,'','15150');
+('Jan','Perez',1,'','1515'),('Jon','Perez',2,''),('Jorge','Perez',3,'');
 
 
 INSERT INTO `idheasIkari`.`estadoCivil`
@@ -104,11 +102,12 @@ INSERT INTO `idheasIkari`.`direccionActor`
 
 `estadosCatalogo_estadoId`,
 
-`municipiosCatalogo_municipioId`)
+`municipiosCatalogo_municipioId`,
+`codigoPostal`)
 
 VALUES
 
-(1,'allá muy lejos',1,1,1,1,1),(2,'Muy cerca de allá',1,1,1,1,1);
+(1,'allá muy lejos',1,1,1,1,1,'09860'),(2,'Muy cerca de allá',1,1,1,1,1,'09870');
 
 
 #InfoContacto*****************************************************
