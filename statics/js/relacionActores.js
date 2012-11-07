@@ -12,11 +12,12 @@ function personaRelacionadaColectivo(idPersona){
 };
 
 function tipoRelacion(tipoRelacion,notas,nombre){
-	$('#tipoRelTexto').html(nombre); 
-	$('#tipoRelNotas').html(notas); 
+	$('#tipoRelTexto').html("Tipo de relación<br/>"+nombre); 
+	$('#tipoRelNotas').html("Notas<br/>"+notas); 
     $('.cambiarColorRelacion').css('background-color', '#efefef');
     $('#'+tipoRelacion).css('background-color', '#ddd');
-	$('#tipoRelacionId').attr('value', tipoRelacion);
+	$('#tipoRelacionId').attr('value', tipoRelacion); 
+	$('#relacionActual').html(" "); 
 };
 
 function desplegar(nombre){
