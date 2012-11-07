@@ -38,7 +38,7 @@ class Casos_c extends CI_Controller {
         
     }
     
-    function mostrar_caso($casoId = 0){
+    function mostrar_caso($casoId = 0, $cadena ='0'){
         
      
         $datos['casoId'] = $casoId;
@@ -64,9 +64,18 @@ class Casos_c extends CI_Controller {
         /*
          * se selecciona el tipo de actor y se trae la vista segun el tipo de actor
          */
+           if($cadena != '0'){
+           		echo 'cadenba';
+           		$datos['listado'] = $this->casos_m->mBuscarCasosNombre($cadena);
+				$datos['listado']['mensaje']='ok';
+			   	print_r($datos['listado']);
+           }else{
+           		$datos['listado'] = $this->casos_m->mListaCasos();
+				print_r($datos['listado']);
+           }         
                     
             
-            $datos['listado'] = $this->casos_m->mListaCasos();
+            
             
         
 
@@ -236,7 +245,7 @@ class Casos_c extends CI_Controller {
 			
 			$datos="";
 		 		if($data == 0){
-					echo "No existen actores con ese filtro";
+					echo "No existen casos con ese filtro";
 				}else{
 					
 					foreach ($data as $individual) {

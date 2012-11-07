@@ -36,6 +36,7 @@ function returnCasos(){
 
 function searchCaso(){
 	
+		
 		var nombre = $('#'+active+'_nombre').val();
 	
 		var url = base+'index.php/casos_c/buscarCasos';
@@ -85,7 +86,13 @@ function cargarActor(actor,tipo){
 
 function cargarCaso(casoId){
 	
-   document.location.href = base+'index.php/casos_c/mostrar_caso/'+casoId;
+	var nombre = $('#'+active+'_nombre').val();	
+	
+	if(nombre == ''){
+		nombre = '0';
+	}
+	
+    document.location.href = base+'index.php/casos_c/mostrar_caso/'+casoId+nombre;
 
 }
 function desplegarActores(nombre, filtro, tipoActor){
