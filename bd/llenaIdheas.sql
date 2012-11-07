@@ -27,10 +27,6 @@ VALUES
 ('estadocivil1','notas'),('estadocivil2','notas'),('estadocivil3','notas');
 
 
-
-
-
-
 #InfogeneralActor++++++++++++++++++++++++++++++++++++++++++
 
 
