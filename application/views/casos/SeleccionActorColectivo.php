@@ -45,7 +45,7 @@
 			    	<?php if (isset($actoresColectivos)) {
 			    	foreach ($actoresColectivos as $individual) {?>
 
-					    <div class="twelve columns lista" onclick="Seleccionar('<?= $individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto'] ?>')"> 
+					    <div class="twelve columns lista" id="<?= $individual['actorId']?>" onclick="Seleccionar('<?= $individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto'] ?>')"> 
 					    		<img class="three columns imagenFoto" src="<?=base_url().$individual['foto'] ?> " />
 					    		<b class="nine columns"> <?php print_r($individual['nombre']." ".$individual['apellidosSiglas']) ?></b>
 						</div >

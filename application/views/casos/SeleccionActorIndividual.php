@@ -41,7 +41,7 @@
 			<div class="twelve columns seleccionarActorScorll" id="ventana1Filtro">
 			    	<?php foreach ($actoresIndividuales as $individual) {?>
 
-					    <div class="twelve columns lista" onclick="Seleccionar('<?= $individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto'] ?>')"> 
+					    <div class="twelve columns lista" id="<?= $individual['actorId']?>"onclick="Seleccionar('<?= $individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto'] ?>')"> 
 					    		<img class="three columns imagenFoto" src="<?=base_url().$individual['foto'] ?> " />
 					    		<b class="nine columns"> <?php print_r($individual['nombre']." ".$individual['apellidosSiglas']) ?></b>
 						</div >
@@ -50,7 +50,7 @@
 
 			    	<?php foreach ($actoresTransmigrantes as $individual) {?>
 
-					    <div class="twelve columns lista" onclick="Seleccionar('<?= $individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto'] ?>')"> 
+					    <div class="twelve columns lista" id="<?= $individual['actorId']?>" onclick="Seleccionar('<?= $individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto'] ?>')"> 
 					    		<img class="three columns imagenFoto" src="<?=base_url().$individual['foto'] ?> " />
 					    		<b class="nine columns"> <?php print_r($individual['nombre']." ".$individual['apellidosSiglas']) ?></b>
 						</div >

@@ -16,7 +16,9 @@ function seleccionarActor(){
 
 function Seleccionar(title){  
     var n=title.split("*");
-    var nameSeleccionado= window.opener.document.getElementById('nameSeleccionado').value
+    $('.lista').css('background-color','#fff')
+    $('#'+n[0]).css('background-color','#ccc');
+    var nameSeleccionado= window.opener.document.getElementById('nameSeleccionado').value;
     window.opener.document.getElementById(nameSeleccionado).value = n[0];
     window.opener.document.getElementById('vistaActorRelacionado').innerHTML = ('<img class="three columns"  src="'+base+n[2]+'" /><b><h4>'+n[1]+'</h4></b>');
 }    
