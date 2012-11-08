@@ -314,7 +314,6 @@
                 $this->db->from('infoGralActor');
                 $this->db->where('actores_actorId',$actorId);
                 $consulta = $this->db->get();
-                    echo "ñakefosiaebfoisdbfonsdfoisndalksadnflksda";
                 if ($consulta->num_rows() > 0){				
                 /* Pasa la consulta a un cadena */
                 foreach ($consulta->result_array() as $row) {
@@ -913,11 +912,7 @@
 							}
 							
 							/* Regresa la cadena al controlador*/
-							if(isset($datosActor)){
-								return $datosActor;
-							}else{
-								return 0;
-							}
+							return $datosActor;
 							
 						}else{
 							return $mensaje =0;
