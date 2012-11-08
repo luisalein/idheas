@@ -21,7 +21,7 @@
 			<img class="cursor" src="<?=base_url(); ?>statics/media/img/system/clear.png" id="clearButton" onclick="returnActores()">
 		</div>
     	<div style="float: right; padding: 0px 15px 0px 0px;">
-         	<img class="cursor" src="<?=base_url(); ?>statics/media/img/system/search.png"  id="searchButton" onclick="filtroRadio()">
+         	<img class="cursor" src="<?=base_url(); ?>statics/media/img/system/search.png"  id="searchButton" onclick="filtroRadio(5)">
         </div>
         
   
@@ -62,6 +62,7 @@
 							    	<input type="radio" name="filtroR" value="0" onclick="filtroRadio(0)">Sin filtro</input>
 							    <? endif;?>
 								<input type="hidden" name="<?=$is_actor_type; ?>" id="tipoActor" ></input>
+								<input type="hidden" name="0" id="tipoVentana" />
 							</div>
 						</form>
 				</div>	

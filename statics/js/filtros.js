@@ -113,8 +113,8 @@ function desplegarActores(nombre, filtro, tipoActor){
 	        type: 'POST',
 	                
 	        success: function(data){ 
-	               
-	          $('#listaActorIndiv').html(data);  
+	        	
+	        	$('#listaActorIndiv').html(data);  
 	            
 	        },
 	        
@@ -138,8 +138,14 @@ function filtroRadio(filtro){
 	
 	$('#numeroRegistros').html('');
 	
-	var nombre = $('#'+active+'_nombre').val();
-					
+	if(filtro==5){
+		
+		var filtro = getRadioButtonSelectedValue(document.frmR.filtroR);
+		
+	}
+	
+	
+	var ventana = $('#tipoVentana').attr('name');				
 			
 	var tipoActor = $('#tipoActor').attr('name');		
 			
@@ -153,9 +159,65 @@ function filtroRadio(filtro){
 				
 	}
 	
-	desplegarActores(nombre, filtro, tipoActor);
+	if(ventana == 0){
+		
+		var nombre = $('#'+active+'_nombre').val();
+		
+		desplegarActores(nombre, filtro, tipoActor);
+	}else{
+		
+		var nombre = $('#actores_nombre').val();
+		//alert(ventana+filtro+tipoActor+nombre);
+		desplegarActoresVentana(nombre, filtro, tipoActor,ventana);
+	}
+		
+	
+	
 }
-
+function desplegarActoresVentana(nombre, filtro, tipoActor,ventana){
+	
+	if(nombre != '' || filtro != 0){
+		
+		var url = base+'index.php/actores_c/filtrarActorVentana';
+	
+		var data = 'cadena='+nombre+'&tipoFiltro='+filtro+'&tipoActor='+tipoActor+'&ventana='+ventana;
+		
+			$.ajax({
+	    
+	        url: url,
+	    
+	        data: data,
+	        
+	        type: 'POST',
+	                
+	        success: function(data){ 
+	        	if(ventana == 1){
+	        		$('#ventana1Filtro').html(data);  
+	        	}
+	        	if(ventana == 2){
+	        		$('#ventana2Filtro').html(data);  
+	        	}
+	        	if(ventana == 3){
+	        		$('#ventana3Filtro').html(data);  
+	        	}
+	        	
+	            
+	        },
+	        
+	        error: function(){
+	        
+	           alert("no se pudo");
+	        }
+	    
+	    });
+		
+	}else{
+		
+		document.location.href = base+'index.php/actores_c/mostrar_actor/0/1';
+		
+	}
+	
+}
 
 function getRadioButtonSelectedValue(ctrl)
 {
