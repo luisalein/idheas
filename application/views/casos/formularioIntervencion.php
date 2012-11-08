@@ -8,8 +8,6 @@
 <body>
 		
 	<!-----------------Comienza la parte de Intervención---------------------------->
-<pre><?php print_r($intervenciones)?></pre>
-<pre><?php print_r($intervenciones['fecha'])?></pre>
 	<form action='<?=base_url(); ?>index.php/casosVentanas_c/guardarDatosVentanas/4' method="post" accept-charset="utf-8">
 
 		<div id="pestania" data-collapse>
