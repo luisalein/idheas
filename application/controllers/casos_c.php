@@ -65,13 +65,10 @@ class Casos_c extends CI_Controller {
          * se selecciona el tipo de actor y se trae la vista segun el tipo de actor
          */
            if($cadena != '0'){
-           		echo 'cadenba';
            		$datos['listado'] = $this->casos_m->mBuscarCasosNombre($cadena);
-				$datos['listado']['mensaje']='ok';
-			   	print_r($datos['listado']);
+				//$datos['listado']['mensaje']='ok';/ 	print_r($datos['listado']);
            }else{
            		$datos['listado'] = $this->casos_m->mListaCasos();
-				print_r($datos['listado']);
            }         
                     
             
@@ -239,7 +236,7 @@ class Casos_c extends CI_Controller {
 	public function buscarCasos(){
 		
 		$cadena = $this->input->post('cadena');
-		
+		$total = 0;
 		if(!empty($cadena)){
 			$data = $this->casos_m->mBuscarCasosNombre($cadena);
 			
@@ -252,9 +249,18 @@ class Casos_c extends CI_Controller {
 						
 						$datos = $datos. '<div class="twelve columns" id="caja'.$individual['casoId'].
 						'" onclick="cargarCaso('.$individual['casoId'].')" style="cursor: pointer;">'.$individual['nombre'].'</div><hr />';
+						
+						$total = $total +1;
 					}
 				}
-		
+			
+    	
+		    	if ($total==1) {
+		    		$datos = $datos .'<div id="numeroRegistros">'.$total.' registro encontrado</div>';
+				} else {
+				    $datos = $datos .'<div id="numeroRegistros">'.$total.' registros encontrados</div>';
+				} 
+		    
 			print_r($datos);			
 			
 		}else{

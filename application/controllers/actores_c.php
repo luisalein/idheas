@@ -99,19 +99,19 @@ class Actores_c extends CI_Controller {
         	
 			 if ($cadena != '0' && ($tipoFiltro == 0)){
 		   		
-				$datos['listado']  = $this->actores_m->mBuscarActoresNombre($cadena);
+				$datos['listado']  = $this->actores_m->mBuscarActoresNombre($cadena,$tipoActorId);
 				 
 				$datos['cadena'] = $cadena; 
 			   
 			}elseif($cadena == '0' && ($tipoFiltro != 0)){
 				
-				$datos['listado']   = $this->actores_m->mFiltrosBusquedaActor($tipoFiltro);	
+				$datos['listado']   = $this->actores_m->mFiltrosBusquedaActor($tipoFiltro,$tipoActorId);	
 				
 				$datos['tipoFiltro'] = $tipoFiltro;
 					
 			}elseif($cadena != '0' && ($tipoFiltro != 0)){
 				
-				$datos['listado']  = $this->actores_m->mBusquedaActorFiltroNombre($tipoFiltro, $cadena);
+				$datos['listado']  = $this->actores_m->mBusquedaActorFiltroNombre($tipoFiltro, $cadena,$tipoActorId);
 				
 				$datos['cadena'] = $cadena; 
 				
@@ -822,6 +822,8 @@ class Actores_c extends CI_Controller {
 	}
 
 	public function filtrarActor(){
+			
+		$total = 0;
 		
 		$cadena = "";
 		
@@ -861,9 +863,16 @@ class Actores_c extends CI_Controller {
 		                    <img class="five columns" src="'.base_url().$individual['foto'].'" />
 		                    <p style="color:#0080FF;">'.$individual['nombre'].' '.$individual['apellidosSiglas'].'</p>
 			             </div><hr />';	
-						
+						 
+						$total = $total +1;
 					}
 				}
+		
+			if ($total==1) {
+		    		$datos = $datos .'<div id="numeroRegistros">'.$total.' registro encontrado</div>';
+				} else {
+				    $datos = $datos .'<div id="numeroRegistros">'.$total.' registros encontrados</div>';
+				} 
 		
 			print_r($datos);
 		

@@ -356,9 +356,7 @@ class Casos_m extends CI_Model {
                 }
 		
                 /* Regresa la cadena al controlador */
-                
-                $listaCasos['mensaje'] = 'ok' ;
-		
+              
                 return $listaCasos;
 		
             }else{

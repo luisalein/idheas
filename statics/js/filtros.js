@@ -36,6 +36,7 @@ function returnCasos(){
 
 function searchCaso(){
 	
+		$('#numeroRegistros').html('');
 		
 		var nombre = $('#'+active+'_nombre').val();
 	
@@ -86,13 +87,13 @@ function cargarActor(actor,tipo){
 
 function cargarCaso(casoId){
 	
-	var nombre = $('#'+active+'_nombre').val();	
+	var nombre = $('#'+active+'_nombre').val();
 	
 	if(nombre == ''){
 		nombre = '0';
 	}
 	
-    document.location.href = base+'index.php/casos_c/mostrar_caso/'+casoId+nombre;
+    document.location.href = base+'index.php/casos_c/mostrar_caso/'+casoId+'/'+nombre;
 
 }
 function desplegarActores(nombre, filtro, tipoActor){
@@ -134,6 +135,8 @@ function desplegarActores(nombre, filtro, tipoActor){
 }
 
 function filtroRadio(filtro){
+	
+	$('#numeroRegistros').html('');
 	
 	var nombre = $('#'+active+'_nombre').val();
 					
