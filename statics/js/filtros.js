@@ -139,11 +139,9 @@ function filtroRadio(filtro){
 	$('#numeroRegistros').html('');
 	
 	if(filtro==5){
-		
 		var filtro = getRadioButtonSelectedValue(document.frmR.filtroR);
 		
 	}
-	
 	
 	var ventana = $('#tipoVentana').attr('name');				
 			
@@ -158,7 +156,6 @@ function filtroRadio(filtro){
 		filtro=0;
 				
 	}
-	
 	if(ventana == 0){
 		
 		var nombre = $('#'+active+'_nombre').val();
@@ -167,7 +164,6 @@ function filtroRadio(filtro){
 	}else{
 		
 		var nombre = $('#actores_nombre').val();
-		//alert(ventana+filtro+tipoActor+nombre);
 		desplegarActoresVentana(nombre, filtro, tipoActor,ventana);
 	}
 		

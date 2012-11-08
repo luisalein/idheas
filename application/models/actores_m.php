@@ -912,7 +912,11 @@
 							}
 							
 							/* Regresa la cadena al controlador*/
-							return $datosActor;
+							if(isset($datosActor)){
+								return $datosActor;
+							}else{
+								return 0;
+							}
 							
 						}else{
 							return $mensaje =0;

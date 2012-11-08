@@ -30,6 +30,7 @@
 							<input type="radio" name="filtroR" onclick="filtroRadio(2)" value="2" id=""/>Perpetrador
 							<input type="radio" name="filtroR" onclick="filtroRadio(3)" value="3" id=""/>Receptor
 							<input type="radio" name="filtroR" onclick="filtroRadio(4)" value="4" id=""/>Interventor
+							<input type="radio" name="filtroR" onclick="filtroRadio(8)" value="8" id=""/>Sin filtro
 							<input type="hidden" name="2" id="tipoActor" />
 							<input type="hidden" name="2" id="tipoVentana" />
 						</div>	
