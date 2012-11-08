@@ -373,8 +373,8 @@ class Actores_c extends CI_Controller {
 
 
         if ($idRelacionActor!=0) {
-        	//print_r($datos['datosActor']['relacionActores'][$idRelacionActor]);
-            $datos['relaciones']=$datos['datosActor']['relacionActores'][$idRelacionActor];
+        	if(isset($datos['datosActor']['relacionActores'][$idRelacionActor]))
+				 $datos['relaciones']=$datos['datosActor']['relacionActores'][$idRelacionActor];
         } 
         
         if ($ventana==0) {
