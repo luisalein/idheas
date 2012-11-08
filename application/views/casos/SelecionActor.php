@@ -15,27 +15,35 @@
 		  <li class="active" id="indivdualTab">
 
 		  	<div class="twelve columns">
-		        <input id="nombre" type="text"  name="nombre"  placeholder="Buscar por nombre o apellido" class="four columns" />
-		        <input type="button" class="tiny button" value="buscar">
-
+		  		<div class="ten columns">
+		  			<input id="actores_nombre" type="text"  name="actores_nombre"  placeholder="Buscar por nombre o apellido" />
+		  		</div>
+		  		<div style="float: left; padding: 0px 15px 0px 0px;">
+		  			<img class="cursor" src="<?=base_url(); ?>statics/media/img/system/search.png"  id="searchButton" onclick="filtroRadio(5)">
+    			</div>
 				<div id="pestania" data-collapse >
-					<h2 class="open">Filtros</h2><!--título de la sub-pestaña-->  
+					<h2 class="open">Filtros</h2><!--título de la sub-pestaña--> 
+					<form name="frmR"> 
 						<div>
-							<input type="radio" name="filtro" onclick="filtroActor('',1)" value="1" id=""/>victima
-							<input type="radio" name="filtro" onclick="filtroActor('',2)" value="2" id=""/>Perpetrador
-							<input type="radio" name="filtro" onclick="filtroActor('',3)" value="3" id=""/>Receptor
-							<input type="radio" name="filtro" onclick="filtroActor('',4)" value="4" id=""/>Interventor
-						</div>		  	
+							<input type="radio" name="filtroR" onclick="filtroRadio(1)" value="1" id=""/>victima
+							<input type="radio" name="filtroR" onclick="filtroRadio(2)" value="2" id=""/>Perpetrador
+							<input type="radio" name="filtroR" onclick="filtroRadio(3)" value="3" id=""/>Receptor
+							<input type="radio" name="filtroR" onclick="filtroRadio(4)" value="4" id=""/>Interventor
+							<input type="radio" name="filtroR" onclick="filtroRadio(8)" value="8" id=""/>Sin filtro
+							<input type="hidden" name="3" id="tipoActor" />
+							<input type="hidden" name="3" id="tipoVentana" />
+						</div>	
+					</form>		  	
 				</div>	
 
 			</div>
 
 
 			<br />
-			<div class="twelve columns seleccionarActorScorll">
+			<div class="twelve columns seleccionarActorScorll" id="ventana3Filtro">
 			    	<?php foreach ($actoresIndividuales as $individual) {?>
 
-					    <div class="twelve columns lista" onclick="Seleccionar('<?= $individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto'] ?>')"> 
+					    <div class="twelve columns lista" id="<?= $individual['actorId']?>" onclick="Seleccionar('<?= $individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto'] ?>')"> 
 					    		<img class="three columns imagenFoto" src="<?=base_url().$individual['foto'] ?> " />
 					    		<b class="nine columns"> <?php print_r($individual['nombre']." ".$individual['apellidosSiglas']) ?></b>
 						</div >
