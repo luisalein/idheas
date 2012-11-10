@@ -339,9 +339,11 @@ class Casos_c extends CI_Controller {
 		
 	}
 	
-	public function eliminarVictima($idActo,$idVictima){
+	public function eliminarVictima($idVictima){
 		
+		$mensaje = $this->casos_m->mEliminaVictimaActo($idVictima);
 		
+		return $mensaje;
 	}
     
 }
