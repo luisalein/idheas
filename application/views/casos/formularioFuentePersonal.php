@@ -62,6 +62,9 @@
 							</div>
 					</div>
 			</fieldset>
+			
+			<input class="medium button" type="submit" value="Guardar"/>
+			<input class="medium button" value="Cancelar" onclick="cerrarVentana()" />
 		</form>
 	</body>
 </html>

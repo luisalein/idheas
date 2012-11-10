@@ -25,7 +25,8 @@
 			<label for="comentFichas">Observaciones</label>
 			<textarea id="fichas_Comentarios" style="width: 400px; height: 200px" name="fichas_Comentarios" wrap="hard"  > </textarea>
 			
-			<input type="subbmit" />
+			<input class="medium button" type="submit" value="Guardar"/>
+			<input class="medium button" value="Cancelar" onclick="cerrarVentana()" />
 		</form>
 	</body>
 </html>

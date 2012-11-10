@@ -1,4 +1,3 @@
-<pre><?php print_r($datosCaso['fuenteInfoPersonal']) ?></pre>
 <div id="pestania" data-collapse>
 	<h2>Información adicional</h2><!--título de la sub-pestaña-->  
 	<div>

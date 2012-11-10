@@ -246,7 +246,8 @@
 				  
 			</fieldset>
 			
-			<input class="medium button" type="submit" />
+			<input class="medium button" type="submit" value="Guardar"/>
+			<input class="medium button" value="Cancelar" onclick="cerrarVentana()" />
 		</div>
 	</div><!--fin acordeon información general-->
 </div>
