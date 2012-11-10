@@ -271,7 +271,7 @@ class Casos_c extends CI_Controller {
 	}
 	
 	
-	public function mostrarVictimas($idActo){
+	public function mostrarVictimas($idActo,$idVictima = 0, $ventana = 0){
 			
 		$datos['catalogos'] = $this->traer_catalogos();
 		
@@ -279,7 +279,15 @@ class Casos_c extends CI_Controller {
 		
 		$datos['head'] = $this->load->view('general/head_v', $datos, true);
 		
-		$this->load->view('casos/formularioVictima_v', $datos);
+		$datos['idVictima'] = $idVictima;
+		
+		$datos['idActo'] = $idActo;
+		if($ventana == 0){
+			$this->load->view('casos/formularioVictima_v', $datos);
+		}
+		if($ventana == 1){
+			$this->load->view('casos/formularioEditarVictima_v', $datos);
+		}
 		
 	}
 	
@@ -331,9 +339,11 @@ class Casos_c extends CI_Controller {
 		
 	}
 	
-	public function eliminarVictima($idActo,$idVictima){
+	public function eliminarVictima($idVictima){
 		
+		$mensaje = $this->casos_m->mEliminaVictimaActo($idVictima);
 		
+		return $mensaje;
 	}
     
 }

@@ -6,38 +6,38 @@ function ventanaDetalleLugar(casoId, indice){
 	};
 
 function ventanaFicha(casoId, indice){
-	  var windowSizeArray = [ "width=650,height=700,scrollbars=yes" ];
+	  var windowSizeArray = [ "width=770,height=700,scrollbars=yes" ];
 	window.open(base+'index.php/casosVentanas_c/seguimientoCaso/'+casoId+'/'+indice+'/', 'Seguimiento del caso', windowSizeArray);
 	};
 
 
 function ventanaDerAfectados(casoId, indice){
-	  var windowSizeArray = [ "width=650,height=700,scrollbars=yes" ];
+	  var windowSizeArray = [ "width=770,height=700,scrollbars=yes" ];
 	window.open(base+'index.php/casosVentanas_c/derechosAfectados/'+casoId+'/'+indice+'/', 'Derechos Afectados/'+casoId, windowSizeArray);
 	};
 
 
 
 function ventanaInterevenciones(casoId, indice){
-	  var windowSizeArray = [ "width=650,height=700,scrollbars=yes" ];
+	  var windowSizeArray = [ "width=770,height=700,scrollbars=yes" ];
 	window.open(base+'index.php/casosVentanas_c/intervenciones/'+casoId+'/'+indice+'/', 'Intervenciones', windowSizeArray);
 	};
 
 
 function ventanaFuenteDoc(casoId, indice){
-	  var windowSizeArray = [ "width=650,height=700,scrollbars=yes" ];
+	  var windowSizeArray = [ "width=770,height=700,scrollbars=yes" ];
 	window.open(base+'index.php/casosVentanas_c/fuentesDeInformacion/'+casoId+'/'+indice+'/', 'Fuente documental', windowSizeArray);
 	};
 
 
 function ventanaFuentePersonal(casoId, indice){
-	  var windowSizeArray = [ "width=650,height=700,scrollbars=yes" ];
+	  var windowSizeArray = [ "width=770,height=700,scrollbars=yes" ];
 	window.open(base+'index.php/casosVentanas_c/fuentesDeInformacion/'+casoId+'/'+indice+'/', 'Fuente Personal', windowSizeArray);
 	};
 
 
 function ventanaRelacionCasos(casoId, indice){
-	  var windowSizeArray = [ "width=650,height=700,scrollbars=yes" ];
+	  var windowSizeArray = [ "width=770,height=700,scrollbars=yes" ];
 	window.open(base+'index.php/casosVentanas_c/relacionCasos/'+casoId+'/'+indice+'/', 'Relacion casos', windowSizeArray);
 	};
 /******************************************/
