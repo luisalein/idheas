@@ -269,5 +269,79 @@ class Casos_c extends CI_Controller {
 	    
 		
 	}
+	
+	
+	public function mostrarVictimas($idActo,$idVictima = 0, $ventana = 0){
+			
+		$datos['catalogos'] = $this->traer_catalogos();
+		
+		$datos['victimas'] = $this->casos_m->mTraerVictimasActo($idActo);
+		
+		$datos['head'] = $this->load->view('general/head_v', $datos, true);
+		
+		$datos['idVictima'] = $idVictima;
+		
+		$datos['idActo'] = $idActo;
+		if($ventana == 0){
+			$this->load->view('casos/formularioVictima_v', $datos);
+		}
+		if($ventana == 1){
+			$this->load->view('casos/formularioEditarVictima_v', $datos);
+		}
+		
+	}
+	
+	public function guardarVictima($idActo){
+		
+		foreach($_POST as $campo => $valor){ 
+			
+            $pos = strpos($campo, '_');
+			
+            $nombre_tabla = substr($campo, 0, $pos);
+	
+            $nombre_campo = substr($campo, ++$pos);
+			
+			if(!empty($valor))
+			
+            	$datos[$nombre_tabla][$nombre_campo] = $valor; 
+
+        } 
+		
+		$datos['victimas']['actos_actoId'] = $idActo;
+		
+		$this->casos_m->mAgregarVictimaActo($datos['victimas']);
+		
+		redirect(base_url().'index.php/casos_c/mostrarVictimas'.$idActo);
+				
+	}
+
+	public function editarVictima($idActo, $idVictima){
+		
+		foreach($_POST as $campo => $valor){ 
+			
+            $pos = strpos($campo, '_');
+			
+            $nombre_tabla = substr($campo, 0, $pos);
+	
+            $nombre_campo = substr($campo, ++$pos);
+			
+			if(!empty($valor))
+			
+            	$datos[$nombre_tabla][$nombre_campo] = $valor; 
+
+        } 
+		
+		$datos['victimas']['actos_actoId'] = $idActo;
+		
+		$this->casos_m->mActualizaDatosVictima($datos['victimas'],$idVictima);
+		
+		redirect(base_url().'index.php/casos_c/mostrarVictimas'.$idActo);
+		
+	}
+	
+	public function eliminarVictima($idActo,$idVictima){
+		
+		
+	}
     
 }

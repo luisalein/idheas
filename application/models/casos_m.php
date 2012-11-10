@@ -860,7 +860,7 @@ class Casos_m extends CI_Model {
 	  * @param
 	  * $actoId [INT]
 	  * */
-	 public function mEliminaVictimaActo($actoId){
+	 public function mEliminaVictimasActo($actoId){
 	 	$this->db->where('actos_actoId', $actoId);
 		
 		if($this->db->delete('victimas')){
@@ -913,7 +913,7 @@ class Casos_m extends CI_Model {
 	  * @param
 	  * $victimaId [INT]
 	  * */
-	 public function mEliminaPerpetradorVictima($victimaId){
+	 public function mEliminaPerpetradoresVictima($victimaId){
 	 	$this->db->where('victimas_victimaId', $victimaId);
 		
 		if($this->db->delete('perpetradores')){
