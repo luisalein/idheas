@@ -172,7 +172,7 @@
 		                                    <td><?=$relacion['fechaInicial']; ?></td>
 		                                    <td><?=$relacion['fechaTermino']; ?></td>
 		                                    <td><input type="button" class="tiny button"  value="Editar" onclick="nueva_relacion_a_a('<?=$idActor ?>', 1 , '<?=$relacion['relacionActoresId']; ?>')" />
-							                    <form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarRelacionActor/<?=$relacion['relacionActoresId']."/".$relacion['actorRelacionadoId']; ?>" >
+							                    <form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarRelacionActor/<?=$relacion['relacionActoresId']."/".$relacion['actorRelacionadoId'].$datosActor['actores']['actorId'].'/'.$datosActor['actores']['tipoActorId']; ?>" >
 							                        <input type="submit" value="Elminar" class="tiny button" />
 							                    </form>
 		                                    </td>

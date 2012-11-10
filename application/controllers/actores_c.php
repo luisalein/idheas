@@ -1241,11 +1241,11 @@ class Actores_c extends CI_Controller {
 		
 	}
     
-	public function eliminarRelacionActor($relacionActoresId, $actorId){
+	public function eliminarRelacionActor($relacionActoresId, $actorRelacionadoId,$actorId,$tipoActorId){
 		
 		$mensaje = $this->actores_m->mEliminaRelacionActores($relacionActoresId);
 		
-		redirect(base_url().'index.php/actores_c/mostrar_actor/'.$actorId.'/'.$_POST['actores_tipoActorId']);
+		redirect(base_url().'index.php/actores_c/mostrar_actor/'.$actorId.'/'.$tipoActorId);
 		
 		return $mensaje;
 	}
