@@ -1,4 +1,4 @@
-<!-------------------Comienza la parte de detalles del lugar------------------------------------>
+<!-------------------Comienza la parte de Derechos afectado------------------------------------>
 <html>
 
 	<head>
@@ -7,7 +7,6 @@
 	
 <body>
 <form action='<?=base_url(); ?>index.php/casosVentanas_c/guardarDatosVentanas/3' method="post" accept-charset="utf-8">
-	
 <!-------------------------Comienza la parte de Acto---------------------------->
 <div id="formularioCasoActo">
 	<div id="pestania" data-collapse>
