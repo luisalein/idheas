@@ -23,18 +23,7 @@ class PruebasAle_c extends CI_Controller
 			  						'actoViolatorioNivel'		=> ''
 			  						);
 		
-		$cadena = 'Ale';
-		$tipoFiltro = 0;
-		 if ($cadena != 0 && $tipoFiltro == 0){
-		   		echo 'Aqui';
-				$data['listado']  = $this->actores_m->listado_actores_m(1);;
-				
-				
-			   
-			}else{
-				echo "aqui2";
-			}
-	$Data['datos']= $data['listado'];
+	$Data['datos']= $this->casos_m->mTraerDatosCaso(2);
 	
 		//  $this->load->view('actores/lista_v', $datos, true);
 			
