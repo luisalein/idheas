@@ -220,7 +220,8 @@
 		</div>
 		</div>
 		
-		<input class="medium button" type="submit" />
+			<input class="medium button" type="submit" value="Guardar"/>
+			<input class="medium button" value="Cancelar" onclick="cerrarVentana()" />
 		<!-------------------Termina la parte de fuentes de información personal------------------------------------->
 		</form>
 	

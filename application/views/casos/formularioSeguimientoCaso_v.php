@@ -19,7 +19,7 @@
 						<div class="six columns">
 							<p>
 								<label for="clave">Clave</label>
-								<input type="text" id="fichas_fichaId" name="fichas_fichaId" value='<?=(isset($ficha['fichaId'])) ? $ficha['fichaId'] : " " ;?>' required />
+								<input type="text" readonly="readonly" value='<?=(isset($ficha['fichaId'])) ? $ficha['fichaId'] : "Por asignar" ;?>' />
 							</p>
 						</div>
 						<div class="six columns">
@@ -70,8 +70,9 @@
 
 			
 			<div class="twelve columns">
+					<?php echo br(2);?>	
 						<label for="comentFichas">Comentarios</label>
-						<textarea id="fichas_Comentarios" style="width: 400px; height: 200px" name="fichas_Comentarios" wrap="hard"  value=""><?=(isset($ficha['comentarios'])) ? $ficha['comentarios'] : " " ; ?> </textarea>
+						<textarea id="fichas_Comentarios" style="width: 690px; height: 200px" name="fichas_Comentarios" wrap="hard"  value=""><?=(isset($ficha['comentarios'])) ? $ficha['comentarios'] : " " ; ?> </textarea>
 			
 			</div>	
 			
@@ -94,7 +95,8 @@
 		</div>
 	
 		</div>
-			<input class="medium button" type="submit" />
+			<input class="medium button" type="submit" value="Guardar"  />
+			<input class="medium button" value="Cancelar" onclick="cerrarVentana()" />
 	 </div>
 </form>
 	<!-------------------Termina la parte de seguimiento del caso-------------------------------------->

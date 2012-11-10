@@ -5,18 +5,17 @@
 	</head>
 		
 	<body>
-		<div class="three columns">
-			<span class"five columns"> <b>Foto</b> </span>
-			<span class"seven columns">	<b>Nombre</b> </span>
-			
-			<div class="twelve columns">
-				<?php if (isset($victimas)) {
-					foreach ($variable as $key => $value) { ?>
-						<img class="five columns" style="width:100px !important; height:70px !important;" src="<?=base_url().$actor['foto']; ?>" />
-					<?php }
-				} ?>
-			</div>
-		</div>
-		<div class="nine columns"></div>
+		<fieldset>
+			<legend>Información general</legend>
+				Perpetrador
+					<input type="button" class="small button" onclick="seleccionarActorIndividual()" value="Agregar actor">
+					<input type="button" class="small button" value="Eliminar actor">
+
+			<span id="">Tipo perpetrador</span>
+			<span id="">Notas</span>
+
+			<div>Catalogos de perpetradores</div>
+
+		</fieldset>
 	</body>	
 </html>
