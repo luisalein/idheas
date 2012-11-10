@@ -17,6 +17,7 @@
 	       <input type="hidden" value="<?=$casoId; ?>" name="lugares_casos_casoId" id="lugares_casos_casoId" />
 	       <input type="hidden" <?=(isset($lugar['lugarId']) ? 'value="'.$lugar['lugarId'].'"'.' '.'name="lugares_lugarId"' : ''); ?>  id="lugares_lugarId" />
 
+	       <div class="twelve columns">
 			<div class="four columns">
 				<label for="pais">País</label>
 
@@ -63,9 +64,13 @@
 				</select>
 			</div>
 
-			<br />
-			
-			<input class="medium button" type="submit" value="Guardar"/>
+			</div>
+			<div>
+
+			<?php echo br(4);?>		
+			<input class="small button" type="submit" value="Guardar"/>
+			<input class="small button" value="Cancelar" onclick="cerrarVentana()" />
+			</div>
 		</div>
 </div>
 </body>
