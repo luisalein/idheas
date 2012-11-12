@@ -1302,6 +1302,19 @@ class Casos_m extends CI_Model {
 		
 		return $datos;
 	}/* fin de mTraerVictimasActo */
+	
+	public function mTraerActoDerechoAfectado($derechoAfectadoN1Id, $nivelDerechoAfectado){
+		$this->db->select('actosN1Catalogo_actoId');
+		$this->db->from('actosN1Catalogo_has_derechosAfectadosN1Catalogo');
+		$this->db->where('derechosAfectadosN1Catalogo_derechoAfectadoN1Id', $derechoAfectadoN1Id);
+		$consultaDerechoAfectadoN1 = $this->db->get();
+		
+		if($consultaDerechoAfectadoN1->num_rows() > 0){
+			foreach ($consultaDerechoAfectadoN1->result_array() as $derechos) {
+				print_r($derechos);
+			}
+		}
+	}
 	 
 }
 
