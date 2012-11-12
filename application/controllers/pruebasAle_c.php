@@ -13,18 +13,15 @@ class PruebasAle_c extends CI_Controller
 	
 	function index() 
 	{	
-		$datos = array (
-			  						'nombre' 					=> '',
-			  						'desdeFecha' 				=> '1987-05-01',
-			  						'hastaFecha' 				=> '1987-10-01',
-			  						'derechoAfectadoId' 		=> '',
-			  						'derechoAfectadoNivel' 		=> '',
-			  						'actoViolatorioId' 			=> '',
-			  						'actoViolatorioNivel'		=> ''
-			  						);
 		
-	$Data['datos']= $this->casos_m->mTraerDatosCaso(2);
-	
+		$datos = array ('derechoAfectado' => array (
+ 									'fechaInicial' => '1879-12-01',
+ 									'noVictimas' => '11'
+	 								));
+									
+									
+	$Data['datos']= $this->casos_m->mTraerDatosCaso(1);
+	$this->casos_m->mAgregarDerechosAfectados($datos);
 		//  $this->load->view('actores/lista_v', $datos, true);
 			
 	 $this->load->view('pruebasAle',$Data);
