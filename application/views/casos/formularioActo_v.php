@@ -81,7 +81,7 @@
                         <label for="Acto">Notas Acto</label>
                         <div id="notasActoId"></div>
 				         <br /><br />
-							<div  id="listaActorIndiv" class="cajaDerchosActos">	
+							<div  id="listaActos" class="cajaDerchosActos">	
 				                        <ul style="text-decoration:none;">
 											<?php foreach($actos['actosN1Catalogo'] as $acto):?> 
 												<li  id="pestaniaCasos" >
@@ -245,7 +245,10 @@
 					</div>
 				  
 			</fieldset>
-			
+			<br/>
+			<input class="medium button" type="button" value="Agregar víctima" onclick="listaVictimas()"/>
+			<br/>
+			<br/>
 			<input class="medium button" type="submit" value="Guardar"/>
 			<input class="medium button" value="Cancelar" onclick="cerrarVentana()" />
 		</div>

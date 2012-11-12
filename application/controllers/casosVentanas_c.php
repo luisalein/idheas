@@ -360,9 +360,21 @@ class CasosVentanas_c extends CI_Controller {
 		$nivel = $this->input->post("nivel");	
 		
 		$antecesor = $this->input->post("antecesor");	
+		
+		$datos="";
+		
+		foreach($actos as $acto){
+			if(isset($acto['actoId'])){
+				$datos= $datos. '<li class="pestaniaCasos" >
+					<div  onclick="nombrarActo('.$acto['descripcion'].','.$acto['actoId'].','.$acto['notas'].','.$nivel.')">
+						.'.$acto['descripcion'].'
+					</div></li>';
+			}
+		}
+			
+		print_r($datos);
+		
 	}
 }
-
-
     
 ?>
