@@ -13,39 +13,12 @@ class PruebasJulio_c extends CI_Controller
 	
 	function index() 
 	{	
-		$datos = array (
-			  						'nombre' 					=> '',
-			  						'desdeFecha' 				=> '1987-05-01',
-			  						'hastaFecha' 				=> '1987-10-01',
-			  						'derechoAfectadoId' 		=> '',
-			  						'derechoAfectadoNivel' 		=> '',
-			  						'actoViolatorioId' 			=> '',
-			  						'actoViolatorioNivel'		=> ''
-			  			);
-									
-		$datos2 = array (
-							'tabla' => 'actores',
-							'campo'	=> 'actorId',
-							'valor' => 1
-						);
-						
-		$datos3 = array ( 'datosViejos'=> array ( 'usr' => 'brass3a3', 'pass' => '1234'), 'datosNuevos' => array('pass' => '123')
-							
-		);
-		$datos4 = array(
-                  
-				  'actoViolatorioId' => 1,
-				  'actoViolatorioNivel' => 1,
-				  'casos_casoId' => 1,
-				  'derechoAfectado_derechoAfectadoCasoId' => 1
-				  );
 				   
-				   
-				   
-			echo 'hola';  						
-			$Data['datos']=$this->casos_m->mEliminaDerechoAfectadoCaso(1);
-			//
-			echo 'hola2';
+			echo 'Antes de entrar a la funcion....';
+			  						
+			$Data['datos']=$this->casos_m->mTraerVictimasActo(1);
+			
+			echo 'Entro a la funcion.....';
 			
 			$this->load->view('pruebasJulio', $Data);
 	}

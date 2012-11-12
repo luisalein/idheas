@@ -1256,6 +1256,53 @@ class Casos_m extends CI_Model {
 			
 		} 
 	 }/* Fin de mEliminaFuenteInfoPersonal */
+	 
+	 
+	 /* Este modelo trae las victimas de un acto y los perpetradores de cada acto 
+	  * @param:
+	  * $actoId [INT]
+	  * */
+	public function mTraerVictimasActo($actoId){
+		$this->db->select('actorId,victimaId');
+		$this->db->from('victimas');
+		$this->db->where('actos_actoId', $actoId);
+		$consultaVictimas = $this->db->get();
+		
+		if($consultaVictimas->num_rows() > 0){
+			
+			foreach ($consultaVictimas->result_array() as $victimas) {
+				
+				$this->db->select('actorId,nombre,apellidosSiglas,foto');
+				$this->db->from('actores');
+				$this->db->where('actorId', $victimas['actorId']);
+				$consultaActores = $this->db->get();
+				
+				if($consultaActores->num_rows() > 0){
+			
+					foreach ($consultaActores->result_array() as $datosActores) {
+						$datos['victimas'][$datosActores['actorId']] = $datosActores;
+						$datos['victimas'][$datosActores['actorId']]['victimaId'] = $victimas['victimaId'];
+						
+						$this->db->select('*');
+						$this->db->from('perpetradores');
+						$this->db->where('victimas_victimaId', $victimas['victimaId']);
+						$consultaPerpetradores = $this->db->get();
+						
+						if($consultaPerpetradores->num_rows() > 0){
+			
+							foreach ($consultaPerpetradores->result_array() as $datosPerpetradores) {
+								$datos['victimas'][$datosActores['actorId']]['perpetradores'][$datosPerpetradores['perpetradorVictimaId']]=$datosPerpetradores;
+							}	
+						}/* fin if $consultaPerpetradores */		
+					}
+				}/* fin if consultaActores*/		
+				
+			}/*fin for each consultaVictimas */
+		}
+		
+		return $datos;
+	}/* fin de mTraerVictimasActo */
+	 
 }
 
 ?>
