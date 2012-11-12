@@ -51,6 +51,8 @@ class Agregar_catalogos_c extends CI_Controller {
 		$this->cAgregarCatalogoGradoInvolucramientoN1();
 		
 		$this->cAgregarCatalogoGradoInvolucramientoN2();
+		
+		$this->cAgregarCatalogoActosDerechoAfectado();
         
     }
     
@@ -362,6 +364,26 @@ class Agregar_catalogos_c extends CI_Controller {
         
     }
     
+	 public function cAgregarCatalogoActosDerechoAfectado(){
+        
+        $catalogoActosDA = explode('&', read_file('statics/catalogos/catalogosDeUnSoloNivel/catalogoActosDA.csv'));
+        
+        foreach($catalogoActosDA as $actoDA){
+                
+            $datosGrupo = explode('¬', $actoDA);
+                
+            $actosDA['actosN1Catalogo_has_derechosAfactadosN1Catalogo'][trim($datosGrupo[0])] = array('actosN1Catalogo_actoId' => trim($datosGrupo[0]), 'derechosAfactadosN1Catalogo_derechoAfectadoN1Id' => trim($datosGrupo[1]));
+
+        }
+        
+        $this->agregar_catalogos_m->mAgregarCatalogos($actosDA);
+        
+        echo 'Catalogos de actos derecho afectado insertados exitosamente.<br />';
+        
+    }
+	
+	
+	
     public function cAgregarCatalogoDeNacionalidades(){
         
         $catalogoOcupaciones = explode('&', read_file('statics/catalogos/catalogosDeUnSoloNivel/nacionalidadesCatalogo.csv'));

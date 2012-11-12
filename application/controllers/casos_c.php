@@ -199,10 +199,6 @@ class Casos_c extends CI_Controller {
             $datos['is_active'] = 'casos';
 
             $datos['head'] = $this->load->view('general/head_v', $datos, true);
-                
-            //$datos['lista'] = $this->load->view('casos/listaCasos_v', $datos, true);
-        
-            //$datos['content'] = $this->load->view('casos/principalCasos_v', $datos, true);
 
             $datos['body'] = $this->load->view('general/body_v', $datos, true);
 
