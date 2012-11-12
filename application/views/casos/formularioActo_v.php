@@ -13,13 +13,13 @@
 		<h2 class="open" >Acto</h2><!--título de la sub-pestaña---->  
 		<div>	
 			<fieldset>
-
 				  <legend>Información general</legend>
-                  <input type="hidden" value="<?=$casoId; ?>" name="lugares_casos_casoId" id="lugares_casos_casoId" />
-                  <input type="hidden" value="" name="derechoAfectadoId" id="derechoAfectado" />
-                  <input type="hidden" value="" name="derechoAfectadoNivel" id="derechoAfectadoNivel" />
-                  <input type="hidden" value="" name="actoViolatorioId" id="actoViolatorioId" />
-                  <input type="hidden" value="" name="actoViolatorioNivel" id="actoViolatorioNivel" />
+				<input type="hidden" name="editar" id="editar" value="<?= (isset($derechoAfectado)) ? '1' : '0' ; ?>"/>
+                <input type="hidden" value="<?=$casoId; ?>" name="lugares_casos_casoId" id="lugares_casos_casoId" />
+                <input type="hidden" value="" name="derechoAfectadoId" id="derechoAfectado" />
+                <input type="hidden" value="" name="derechoAfectadoNivel" id="derechoAfectadoNivel" />
+                <input type="hidden" value="" name="actoViolatorioId" id="actoViolatorioId" />
+                <input type="hidden" value="" name="actoViolatorioNivel" id="actoViolatorioNivel" />
                         <label for="derecho">Derecho afectado</label>
                         <div id="textoDerechoAfectado"></div>
                         <label for="derecho">Notas</label>
