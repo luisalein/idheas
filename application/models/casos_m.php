@@ -1263,7 +1263,7 @@ class Casos_m extends CI_Model {
 	  * $actoId [INT]
 	  * */
 	public function mTraerVictimasActo($actoId){
-		$this->db->select('actorId,victimaId');
+		$this->db->select('actorId,victimaId,estatusVictimaId,comentarios');
 		$this->db->from('victimas');
 		$this->db->where('actos_actoId', $actoId);
 		$consultaVictimas = $this->db->get();
