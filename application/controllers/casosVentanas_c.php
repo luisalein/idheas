@@ -78,7 +78,7 @@ class CasosVentanas_c extends CI_Controller {
         
     }
 
-    function derechosAfectados($casoId, $i){
+    function derechosAfectados($casoId,$i){
 
         $datos['head'] = $this->load->view('general/head_v', "", true);
 
@@ -229,8 +229,11 @@ class CasosVentanas_c extends CI_Controller {
 			
 			case(3): 
 				if($_POST['editar'] == 1){
-					$datos31['actos'] = $datos['actos'];
-					$mensaje = $this->general_m->casos_m->mActualizaDatosActo($datos31);
+					if(isset($datos['actos'])){
+						$datos31['actos'] = $datos['actos'];
+						$mensaje = $this->general_m->casos_m->mActualizaDatosActo($datos31);
+					}
+					
 					$datos32['derechoAfectado'] =  $datos['derechoAfectado'];
 					$mensaje = $mansaje . $this->general_m->casos_m->mActualizaDatosDerechoAfectado($datos32);
 				}else{
@@ -352,6 +355,12 @@ class CasosVentanas_c extends CI_Controller {
 		return $mensaje;
 	}
 	
+	public function traerActos(){
+		
+		$nivel = $this->input->post("nivel");	
+		
+		$antecesor = $this->input->post("antecesor");	
+	}
 }
 
 

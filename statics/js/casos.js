@@ -189,7 +189,7 @@ function ventanaRelacionCasos(casoId, indice){
 
 /*//Funciones colapsibles//*/
 /*************************************************************/
-function  nombrederechoAfectado(descripcion, valor, notas){
+function  nombrederechoAfectado(antecesor,descripcion, valor, notas){
 	var algo="#"+valor+"DAN1";
 	$('#textoDerechoAfectado').html(descripcion);
 	$('#notasDerechoAfectado').html(notas); 
@@ -197,9 +197,11 @@ function  nombrederechoAfectado(descripcion, valor, notas){
 	$('#derechoAfectado').attr('value', valor); 
 	$('#derechoAfectadoNivel').attr('value', 1); 
 	$(algo).toggleClass("Escondido");
-	};
+	
+	traerActos(1,valor,antecesor);
+};
 
-function nombrederechoAfectadosub1(descripcion2, valor, notas){
+function nombrederechoAfectadosub1(antecesor,descripcion2, valor, notas){
 	var nombre="#"+valor+"DAN2";
 	$('#notasDerechoAfectado').html(notas); 
 	$('#textoDerechoAfectado').html(descripcion2); 
@@ -207,10 +209,11 @@ function nombrederechoAfectadosub1(descripcion2, valor, notas){
 	$('#derechoAfectado').attr('value', valor);
 	$('#derechoAfectadoNivel').attr('value', 2); 
 	$(nombre).toggleClass("Escondido");
-	};
+	traerActos(2,valor,antecesor);
+};
 	
 
-function nombrederechoAfectadosub2(descripcion3, valor, notas){
+function nombrederechoAfectadosub2(antecesor,descripcion3, valor, notas){
 	var nombre="#"+valor+"DAN3";
 	$('#notasDerechoAfectado').html(notas); 
 	$('#textoDerechoAfectado').html(descripcion3); 
@@ -218,17 +221,48 @@ function nombrederechoAfectadosub2(descripcion3, valor, notas){
 	$('#derechoAfectado').attr('value', valor);
 	$('#derechoAfectadoNivel').attr('value', 3); 
 	$(nombre).toggleClass("Escondido");
-	};
+	traerActos(3,valor,antecesor);
+};
 
 
-function nombrederechoAfectadosub3(descripcion4, valor, notas){
+function nombrederechoAfectadosub3(antecesor,descripcion4, valor, notas){
 	$('#notasDerechoAfectado').html(notas); 
 	$('#textoDerechoAfectado').html(descripcion4); 
 	$('#textoDerechoAfectado').attr('name', ' ');
 	$('#derechoAfectado').attr('value', valor);
 	$('#derechoAfectadoNivel').attr('value', 4); 
-	};
+	traerActos(4,valor,antecesor);
+};
 
+function traerActos(nivel,valor,antecesor){
+	
+	alert("nivel "+nivel+'id: '+valor+"antecesor: "+antecesor);
+	
+	var url = base+'index.php/casosVentanas_c/traerActos';
+	
+	var data = 'antecesor='+antecesor+'&nivel='+nivel;
+		
+	$.ajax({
+	    
+	        url: url,
+	    
+	        data: data,
+	        
+	        type: 'POST',
+	                
+	        success: function(data){ 
+	               
+	          $('#listaActorIndiv').html(data);  
+	            
+	        },
+	        
+	        error: function(){
+	        
+	           alert("no se pudo traer actos");
+	        }
+	    
+	    });
+}
 
 /*//Funciones colapsibles derechos afectados//*/
 /*************************************************************/
