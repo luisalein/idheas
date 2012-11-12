@@ -187,22 +187,22 @@ class Casos_c extends CI_Controller {
         
         $datos['casoId'] = $casoId;
         
-        $datos['datosCaso'] = $this->actores_m->mTraerDatosCaso($casoId);
-
+        $datos['datosCaso'] = $this->casos_m->mTraerDatosCaso($casoId);
         
         if($casoId > 0){
             
+			
             $datos['action'] = base_url().'index.php/actores_c/editarCasoBd';
             
-			$datos['form'] = $this->load->view('casos/formularioInfoGral_v', $datos, true);
+			$datos['content'] = $this->load->view('casos/formularioInfoGral_v', $datos, true);
                
             $datos['is_active'] = 'casos';
 
             $datos['head'] = $this->load->view('general/head_v', $datos, true);
                 
-            $datos['lista'] = $this->load->view('casos/listaCasos_v', $datos, true);
+            //$datos['lista'] = $this->load->view('casos/listaCasos_v', $datos, true);
         
-            $datos['content'] = $this->load->view('casos/principalCasos_v', $datos, true);
+            //$datos['content'] = $this->load->view('casos/principalCasos_v', $datos, true);
 
             $datos['body'] = $this->load->view('general/body_v', $datos, true);
 
@@ -286,7 +286,9 @@ class Casos_c extends CI_Controller {
 		
 	}
 	
-	
+	/**
+	 * Carga la vista para editar o para guardar una nueva victima
+	 */
 	public function mostrarVictimas($idActo,$idVictima = 0, $ventana = 0){
 			
 		$datos['catalogos'] = $this->traer_catalogos();
@@ -362,15 +364,22 @@ class Casos_c extends CI_Controller {
 		redirect(base_url().'index.php/casos_c/mostrarVictimas/'.$idActo.'/'.$idVictima);
 		
 	}
-	
-	public function eliminarVictima($idVictima){
+	/**
+	 * Elimina la victima del id dado y redirecciona al caso dado
+	 * */
+	public function eliminarVictima($idActo,$idVictima){
 		
 		$mensaje = $this->casos_m->mEliminaVictimaActo($idVictima);
+		
+		redirect(base_url().'index.php/casos_c/mostrarVictimas/'.$idActo);
 		
 		return $mensaje;
 	}
 	
-	
+	/**
+	 * carga la vista de un perpetrador para editarlo o crear uno nuevo dependiendo de si el perpetrador es distinto de cero
+	 * se cargara para editar si es cero se cargara para agregar.
+	 * */
 	public function mostrarPerpetrador($idActo,$idVictima,$idPerpetrador){
 		
 		$datos['catalogos'] = $this-> traer_catalogos();
@@ -392,7 +401,9 @@ class Casos_c extends CI_Controller {
 		$this->load->view('casos/formularioPerpetrador_v', $datos);
 			
 	}
-	
+	/**
+	 * Agrega un perpatrador a la victima y redirecciona a la victima
+	 * */
 	public function agregarPerpetrador($idActo,$idVictima){
 			
 		foreach($_POST as $campo => $valor){ 
@@ -416,7 +427,9 @@ class Casos_c extends CI_Controller {
 		redirect(base_url().'index.php/casos_c/mostrarVictimas/'.$idActo.'/'.$idVictima);
 		
 	}
-	
+	/**
+	 * Edita el perpetrador y redirecciona a la victima del perpetrador que se edito.
+	 * */
 	public function editarPerpetrador($idActo,$idVictima,$idPerpetrador){
 		
 		foreach($_POST as $campo => $valor){ 
@@ -437,8 +450,25 @@ class Casos_c extends CI_Controller {
 		
 		redirect(base_url().'index.php/casos_c/mostrarVictimas/'.$idActo.'/'.$idVictima);
 	}
-	public function eliminarPerpetrador($perpetradorId){
+	/**
+	 * Elimina un perpetrador de una victima y redirecciona a la página de la victima
+	 * */
+	public function eliminarPerpetrador($idVictima,$perpetradorId){
 		
+		$mensaje = $this->casos_m->mEliminaPerpetradorVictima($perpetradorVictimaId);
+		
+		redirect(base_url().'index.php/casos_c/mostrarVictimas/'.$idActo.'/'.$idVictima);
+		
+		return $mensaje;
+	}
+	
+	public function eliminarActo($idCaso,$actoId){
+		
+		$mensaje = $this->casos_m->mEliminaActoDerechoAfectado($actoId);
+		
+		redirect(base_url().'index.php/casos_c/mostrar_caso/'.$idCaso);
+		
+		return $mensaje;
 	}
     
 }
