@@ -6,7 +6,6 @@
 		
 	<body>
 		<pre><?= print_r($catalogos['estatusVictimaCatalogo'])?></pre>
-		<pre><?= print_r($victimas)?></pre>
 		<div class="twelve columns">
 			<div class="four columns"> 	<!--Lista de victimas-->
 				<div class="panel">
