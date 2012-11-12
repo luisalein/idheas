@@ -252,7 +252,7 @@ function traerActos(nivel,valor,antecesor){
 	                
 	        success: function(data){ 
 	               
-	          $('#listaActorIndiv').html(data);  
+	        //  $('#listaActos').html(data);  
 	            
 	        },
 	        
@@ -266,6 +266,20 @@ function traerActos(nivel,valor,antecesor){
 
 /*//Funciones colapsibles derechos afectados//*/
 /*************************************************************/
+function  nombrarActo(descripcion, valor,notas, nivel){
+	var activar="#"+valor+"act"+nivel;
+	$('#textoDerechoAfectadoN2').html(descripcion); 
+	$('#notasActoId').html(notas); 
+	$('#textoDerechoAfectadoN2').attr('name', ' ');
+	$('#actoViolatorioId').attr('value', valor); 
+	$('#actoViolatorioNivel').attr('value', nivel); 
+	if(nivel != 4){
+		$(activar).toggleClass("Escondido");
+	}
+	
+};
+
+
 function  nombreacto(descripcion, valor,notas){
 	var algo="#"+valor+"act1";
 	$('#textoDerechoAfectadoN2').html(descripcion); 
@@ -274,7 +288,7 @@ function  nombreacto(descripcion, valor,notas){
 	$('#actoViolatorioId').attr('value', valor); 
 	$('#actoViolatorioNivel').attr('value', 1); 
 	$(algo).toggleClass("Escondido");
-	};
+};
 
 function nombreactosub1(descripcion1, valor,notas){
 	var nombre="#"+valor+"act2";
@@ -284,7 +298,7 @@ function nombreactosub1(descripcion1, valor,notas){
 	$('#actoViolatorioId').attr('value', valor);
 	$('#actoViolatorioNivel').attr('value', 2); 
 	$(nombre).toggleClass("Escondido");
-	};
+};
 	
 
 function nombreactosub2(descripcion3, valor,notas){
@@ -295,15 +309,15 @@ function nombreactosub2(descripcion3, valor,notas){
 	$('#actoViolatorioId').attr('value', valor);
 	$('#actoViolatorioNivel').attr('value', 3); 
 	$(nombre).toggleClass("Escondido");
-	};
-
+};
+listaVictimas
 
 function nombreactosub3(descripcion4, valor,notas){
 	$('#textoDerechoAfectadoN2').html(descripcion4); 
 	$('#notasActoId').html(notas); 
 	$('#textoDerechoAfectadoN2').attr('name', ' ');
 	$('#actoViolatorioId').attr('value', valor);
-	};
+};
 
 
 
@@ -315,7 +329,7 @@ function nombreactosub3(descripcion4, valor,notas){
 
 	$(function() {
 		$( "#fechaAproxAct" ).datepicker({ dateFormat: "yy-mm-dd"});
-		 });
+		 });listaVictimas
     
 /***Script para cambiar el año y el mes****/
 	$(function() {
@@ -335,7 +349,7 @@ function nombreactosub3(descripcion4, valor,notas){
 		 });
     
 
-	$(function() {
+	$(function() {listaVictimas
 		$( "#fechaAproxAct2" ).datepicker({ dateFormat: "yy-mm-dd"});
 		 });
     
@@ -393,7 +407,7 @@ function nombreactosub3(descripcion4, valor,notas){
 			$('#fechaExactaVAct').attr('name', ' ');
 			$('#fechaAproxVAct').attr('name', ' ');
 			$('#fechaSinDiaVAct').attr('name', '');
-			$('#fechaSinDiaSinMesVAct').attr('name', 'nucleCaso_fechaInicio');
+			$('#fechaSinDiaSinMesVAct').attr('name', 'nucleCaso_fechaInicio');listaVictimas
 		  }
 	  
 	  }
@@ -411,7 +425,7 @@ function nombreactosub3(descripcion4, valor,notas){
 			$("#fechaSinDiaSinMesVAct2").hide();
 			$("#fechaExactaVAct2").show("slow");
 		  }
-		  else if (a=="2"){
+		  else if (a=="2"){listaVictimas
 			$("#fechaSinDiaSinMesVAct2").hide();
 			$("#fechaSinDiaVAct2").hide();
 			$("#fechaExactaVAct2").hide();
@@ -494,7 +508,7 @@ function nombreactosub3(descripcion4, valor,notas){
      
   function fechaInicialCasos(a){
 		  if(a=="1"){
-			$('#fechaAprox').attr('name', ' ');
+			$('#fechaAprox').attr('name', ' ');listaVictimas
 			$('#fechaSinDia').attr('name', ' ');
 			$('#fechaSinDiaSinMes').attr('name', ' ');
 			$('#fechaExacta').attr('name', 'casos_fechaInicial');
@@ -583,4 +597,10 @@ function nombreactosub3(descripcion4, valor,notas){
 	  }
     
   /********************************/
+ 
+ function listaVictimas(){
+ 	
+ 	var windowSizeArray = [ "width=770,height=700,scrollbars=yes" ];
+	window.open(base+'index.php/casosVentanas_c/mostrarActores', 'Relacion casos', windowSizeArray);
+ }
 

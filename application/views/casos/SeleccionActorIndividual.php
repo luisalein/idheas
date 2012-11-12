@@ -24,7 +24,7 @@
 					<h2 class="open">Filtros</h2><!--título de la sub-pestaña--> 
 					<form name="frmR"> 
 						<div>
-							<input type="radio" name="filtroR" onclick="filtroRadio(1)" value="1" id=""/>victima
+							<input type="radio" name="filtroR" onclick="filtroRadio(1)" value="1" id=""/>Víctima
 							<input type="radio" name="filtroR" onclick="filtroRadio(2)" value="2" id=""/>Perpetrador
 							<input type="radio" name="filtroR" onclick="filtroRadio(3)" value="3" id=""/>Receptor
 							<input type="radio" name="filtroR" onclick="filtroRadio(4)" value="4" id=""/>Interventor
