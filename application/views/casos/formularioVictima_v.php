@@ -5,6 +5,7 @@
 	</head>
 		
 	<body>
+		<pre><?= print_r($catalogos)?></pre>
 		<div class="twelve columns">
 			<div class="four columns"> 	<!--Lista de victimas-->
 				<div class="panel">
@@ -27,9 +28,9 @@
 				<div class="twelve columns">
 				<fieldset>
 					<legend>Información general</legend>
-						<label>Victima</label>
+						<label>Victima</label><br/>
 						<img class="three columns"src="<?= base_url().$victimas['victimas'][$idVictima]['foto'] ?>"/>
-						<div class="nine columns"> <?= $victimas['victimas'][$idVictima]['nombre'] ?></div> 
+						<div class="nine columns"> <?= $victimas['victimas'][$idVictima]['nombre']." ".$victimas['victimas'][$idVictima]['apellidosSiglas'] ?></div> 
 				</fieldset>
 				</div>
 			</div><!--Termina información general de la victima-->
