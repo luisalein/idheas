@@ -1307,35 +1307,41 @@ class Casos_m extends CI_Model {
 		
 	}/* fin de mTraerVictimasActo */
 	
-	public function mTraerActoDerechoAfectado($derechoAfectadoN1Id, $nivelDerechoAfectado){
+	public function mTraerActoDerechoAfectado($derechoAfectadoN1Id){
 		$this->db->select('actosN1Catalogo_actoId');
 		$this->db->from('actosN1Catalogo_has_derechosAfactadosN1Catalogo');
 		$this->db->where('derechosAfactadosN1Catalogo_derechoAfectadoN1Id', $derechoAfectadoN1Id);
-		$consultaActoN1 = $this->db->get();
+		$consultaActos = $this->db->get();
 		
-		if($consultaActoN1->num_rows() > 0){
-			foreach ($consultaActoN1->result_array() as $actos) {
-				for ($i=1; $i < $nivelDerechoAfectado ; $i++) {
-					if ($i == 1) {
+		if($consultaActos->num_rows() > 0){
+			foreach ($consultaActos->result_array() as $actos) {
+				$this->db->select('*');
+				$this->db->from('actosN1Catalogo');
+				$this->db->where('actoId', $actos['actosN1Catalogo_actoId']);
+				$consultaActosN1 = $this->db->get();
+				
+				if($consultaActosN1->num_rows() > 0){
+					foreach ($consultaActosN1->result_array() as $actosN1) {
+						$datos['actosN1'][$actosN1['actoId']]= $actosN1;
+						//echo '<pre>';
+						//print_r($datos);
+						
 						$this->db->select('*');
-						$this->db->from('actosN'.$i.'Catalogo');
-						$this->db->where('actoId', $i);
-						$consultaActos = $this->db->get();
+						$this->db->from('actosN2Catalogo');
+						$this->db->where('actosN1Catalogo_actoId', $actosN1['actoId']);
+						$consultaActosN2 = $this->db->get();
 						
-						if($consultaActos->num_rows() > 0){
-							foreach ($consultaActos->result_array() as $actosNivel) {
-								$datos[$actosNivel['actoId']] =$actosNivel;
-								print_r($datos);
+						if($consultaActosN2->num_rows() > 0){
+							foreach ($consultaActosN2->result_array() as $actosN2) {
+								$datos['actosN2'][$actosN2['actoN2Id']]= $actosN2;
+								
 							}
-						}	
+						}
 						
-					} else {
-						
-					}
-					
-				}
+					}/*fin foreach $consultaActosN1*/
+				}/*fin if consultaActoN1*/		
 			}
-			//return $datos;
+			return $datos;
 		}
 	}
 	 

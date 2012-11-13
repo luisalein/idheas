@@ -15,7 +15,6 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`actores` (
   `apellidosSiglas` VARCHAR(60) NULL ,
   `tipoActorId` INT NULL ,
   `foto` VARCHAR(100) NULL ,
-  `codigoPostal` VARCHAR(15) NULL ,
   `estadoActivo` TINYINT(1) NULL DEFAULT 1 ,
   PRIMARY KEY (`actorId`) )
 ENGINE = InnoDB
@@ -370,9 +369,9 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`nucleoCaso` (
   `fechaTermino` DATE NULL ,
   `noPersonasAfectadas` INT NULL ,
   `casos_casoId` INT NOT NULL ,
-  `municipiosCatalogo_municipioId` INT NULL ,
-  `estadosCatalogo_estadoId` INT NULL ,
-  `paisesCatalogo_paisId` INT NULL ,
+  `municipiosCatalogo_municipioId` INT NOT NULL ,
+  `estadosCatalogo_estadoId` INT NOT NULL ,
+  `paisesCatalogo_paisId` INT NOT NULL ,
   INDEX `fk_nucleoCaso_casos1_idx` (`casos_casoId` ASC) ,
   INDEX `fk_nucleoCaso_municipiosCatalogo1_idx` (`municipiosCatalogo_municipioId` ASC) ,
   INDEX `fk_nucleoCaso_estadosCatalogo1_idx` (`estadosCatalogo_estadoId` ASC) ,
@@ -658,8 +657,8 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`perpetradores` (
   `perpetradorVictimaId` INT NOT NULL AUTO_INCREMENT ,
   `perpetradorId` INT NULL ,
-  `tipoPerpetradorId` INT NULL ,
-  `tipoPerpetradorNivel` INT NULL ,
+  `tipoPerpetradorId` INT NOT NULL ,
+  `tipoPerpetradorNivel` INT NOT NULL ,
   `tipoLugarId` INT NULL ,
   `gradoInvolucramientoid` INT NULL ,
   `nivelInvolugramientoId` INT NULL ,
@@ -688,13 +687,13 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`actosPerpetrador` (
   `actosPerpetradorId` INT NOT NULL AUTO_INCREMENT ,
   `actorId` INT NOT NULL ,
   `ubicacion` VARCHAR(3000) NULL ,
-  `tipoLugarId` INT NULL ,
-  `nivelTipoLugarId` INT NULL ,
-  `actoId` INT NULL ,
-  `actoNId` INT NULL ,
-  `paisesCatalogo_paisId` INT NOT NULL ,
-  `estadosCatalogo_estadoId` INT NOT NULL ,
-  `municipiosCatalogo_municipioId` INT NOT NULL ,
+  `tipoLugarId` INT NOT NULL ,
+  `nivelTipoLugarId` INT NOT NULL ,
+  `actoId` INT NOT NULL ,
+  `actoNId` INT NOT NULL ,
+  `paisesCatalogo_paisId` INT NULL ,
+  `estadosCatalogo_estadoId` INT NULL ,
+  `municipiosCatalogo_municipioId` INT NULL ,
   `perpetradores_perpetradorVitimaId` INT NOT NULL ,
   INDEX `fk_actosPerpetrador_paisesCatalogo1_idx` (`paisesCatalogo_paisId` ASC) ,
   INDEX `fk_actosPerpetrador_estadosCatalogo1_idx` (`estadosCatalogo_estadoId` ASC) ,
@@ -966,6 +965,7 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`direccionActor` (
   `paisesCatalogo_paisId` INT NULL ,
   `estadosCatalogo_estadoId` INT NULL ,
   `municipiosCatalogo_municipioId` INT NULL ,
+  `codigoPostal` VARCHAR(15) NULL ,
   PRIMARY KEY (`direccionId`) ,
   INDEX `fk_direccionActor_actores1_idx` (`actores_actorId` ASC) ,
   INDEX `fk_direccionActor_paisesCatalogo1_idx` (`paisesCatalogo_paisId` ASC) ,
@@ -1298,7 +1298,7 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`usuarios` (
   PRIMARY KEY (`usuarioId`) )
 ENGINE = InnoDB;
 
-INSERT INTO usuarios (nombre, pass) VALUE ('admin','idheas');
+INSERT INTO usuarios(nombre,pass) VALUES('admin','idheas');
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
