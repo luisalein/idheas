@@ -1263,8 +1263,7 @@ class Casos_m extends CI_Model {
 	  * $actoId [INT]
 	  * */
 	public function mTraerVictimasActo($actoId){
-		
-		$this->db->select('victimaId,actorId,estatusVictimaId,comentarios');
+		$this->db->select('actorId,victimaId,estatusVictimaId,comentarios');
 		$this->db->from('victimas');
 		$this->db->where('actos_actoId', $actoId);
 		$consultaVictimas = $this->db->get();
@@ -1283,6 +1282,8 @@ class Casos_m extends CI_Model {
 					foreach ($consultaActores->result_array() as $datosActores) {
 						$datos['victimas'][$datosActores['actorId']] = $datosActores;
 						$datos['victimas'][$datosActores['actorId']]['victimaId'] = $victimas['victimaId'];
+						$datos['victimas'][$datosActores['actorId']]['estatusVictimaId'] = $victimas['estatusVictimaId'];
+						$datos['victimas'][$datosActores['actorId']]['comentarios'] = $victimas['comentarios'];
 						
 						$this->db->select('*');
 						$this->db->from('perpetradores');
@@ -1299,10 +1300,50 @@ class Casos_m extends CI_Model {
 				}/* fin if consultaActores*/		
 				
 			}/*fin for each consultaVictimas */
+			
+			return $datos;
 		}
 		
-		return $datos;
+		
 	}/* fin de mTraerVictimasActo */
+	
+	public function mTraerActoDerechoAfectado($derechoAfectadoN1Id){
+		$this->db->select('actosN1Catalogo_actoId');
+		$this->db->from('actosN1Catalogo_has_derechosAfactadosN1Catalogo');
+		$this->db->where('derechosAfactadosN1Catalogo_derechoAfectadoN1Id', $derechoAfectadoN1Id);
+		$consultaActos = $this->db->get();
+		
+		if($consultaActos->num_rows() > 0){
+			foreach ($consultaActos->result_array() as $actos) {
+				$this->db->select('*');
+				$this->db->from('actosN1Catalogo');
+				$this->db->where('actoId', $actos['actosN1Catalogo_actoId']);
+				$consultaActosN1 = $this->db->get();
+				
+				if($consultaActosN1->num_rows() > 0){
+					foreach ($consultaActosN1->result_array() as $actosN1) {
+						$datos['actosN1'][$actosN1['actoId']]= $actosN1;
+						//echo '<pre>';
+						//print_r($datos);
+						
+						$this->db->select('*');
+						$this->db->from('actosN2Catalogo');
+						$this->db->where('actosN1Catalogo_actoId', $actosN1['actoId']);
+						$consultaActosN2 = $this->db->get();
+						
+						if($consultaActosN2->num_rows() > 0){
+							foreach ($consultaActosN2->result_array() as $actosN2) {
+								$datos['actosN2'][$actosN2['actoN2Id']]= $actosN2;
+								
+							}
+						}
+						
+					}/*fin foreach $consultaActosN1*/
+				}/*fin if consultaActoN1*/		
+			}
+			return $datos;
+		}
+	}
 	 
 }
 
