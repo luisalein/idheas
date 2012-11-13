@@ -17,3 +17,9 @@
 	width: 25px;
     height: 25px;
 }
+
+.victimaSeleccionada{
+  background-color: #efefef;
+  border:5px solid #ddd;
+  height: 80px;
+}

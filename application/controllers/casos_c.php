@@ -48,6 +48,8 @@ class Casos_c extends CI_Controller {
 
 		$datos['gradoInvolucramientoN2Catalogo'] = $this->general_m->obtener_todo('gradoInvolucramientoN2Catalogo', 'gradoInvolucramientoN2Id', 'descripcion');
 
+        $datos['estatusVictimaCatalogo'] = $this->general_m->obtener_todo('estatusVictimaCatalogo', 'estatusVictimaId', 'descripcion');
+		
         $datos['listaTodosActores'] = $this->actores_m-> mListaTodosActores();
         
         return $datos;
