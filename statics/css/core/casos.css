@@ -23,3 +23,15 @@
   border:5px solid #ddd;
   height: 80px;
 }
+
+.espacio{
+  min-height: 100px;
+}
+
+.espacioSuperior{
+  margin-top: 10px;
+}
+
+.espacioInferior{
+  margin-bottom: 10px;
+}

@@ -34,35 +34,6 @@
         <?php echo br(3);?>
         
         <fieldset> <!--Dirección-->
-              <legend>Dirección</legend>
-            <div class="six columns">
-             
-                <label><b>Ubicación:   </b> </label> 
-                <span id="direccion"><?=(isset($datosActor['direccionActor']['direccion'])) ? $datosActor['direccionActor']['direccion'] : ''; ?></span>
-             
-                <label><b>País:  </b> </label> 
-                <span id="paisesCatalogo_paisId"><?=(isset($datosActor['direccionActor']['paisesCatalogo_paisId'])) ?  $catalogos['paisesCatalogo'][$datosActor['direccionActor']['paisesCatalogo_paisId']]['nombre'] : ''; ?></span>
-             
-                <label><b>Estado:  </b> </label> 
-                <span id="estadosCatalogo_estadoId"><?=(isset($datosActor['direccionActor']['estadosCatalogo_estadoId'])) ? $catalogos['estadosCatalogo'][$datosActor['direccionActor']['estadosCatalogo_estadoId']]['nombre'] : ''; ?></span>
-             
-            </div> 
-            
-            
-            <div class="six columns">
-                
-                <label><b>Municipio: </b> </label>
-                <span id="municipiosCatalogo_municipioId"><?=(isset($datosActor['direccionActor']['municipiosCatalogo_municipioId'])) ? $catalogos['municipiosCatalogo'][$datosActor['direccionActor']['municipiosCatalogo_municipioId']]['nombre'] : ''; ?></span>
-             
-                <label><b>Código postal:  </b> </label>
-                <span id="actores_codigoPostal"><?=(isset($datosActor['actores']['codigoPostal'])) ? $datosActor['actores']['codigoPostal'] : ''; ?></span>
-
-            </div>
-        </fieldset> <!--Termina información general-->
-        <br/><br/><br/>
-        
-        
-        <fieldset> <!--Dirección-->
               <legend>Información de contacto</legend>
             <div class="six columns">
              
@@ -89,11 +60,36 @@
         </fieldset> <!--Termina información general-->
 
 
+        <br/><br/><br/>
 
+        <fieldset> <!--Dirección-->
+              <legend>Dirección</legend>
+            <div class="six columns">
+             
+                <label><b>Ubicación:   </b> </label> 
+                <span id="direccion"><?=(isset($datosActor['direccionActor']['direccion'])) ? $datosActor['direccionActor']['direccion'] : ''; ?></span>
+             
+                <label><b>País:  </b> </label> 
+                <span id="paisesCatalogo_paisId"><?=(isset($datosActor['direccionActor']['paisesCatalogo_paisId'])) ?  $catalogos['paisesCatalogo'][$datosActor['direccionActor']['paisesCatalogo_paisId']]['nombre'] : ''; ?></span>
+             
+                <label><b>Estado:  </b> </label> 
+                <span id="estadosCatalogo_estadoId"><?=(isset($datosActor['direccionActor']['estadosCatalogo_estadoId'])) ? $catalogos['estadosCatalogo'][$datosActor['direccionActor']['estadosCatalogo_estadoId']]['nombre'] : ''; ?></span>
+             
+            </div> 
+            
+            
+            <div class="six columns">
+                
+                <label><b>Municipio: </b> </label>
+                <span id="municipiosCatalogo_municipioId"><?=(isset($datosActor['direccionActor']['municipiosCatalogo_municipioId'])) ? $catalogos['municipiosCatalogo'][$datosActor['direccionActor']['municipiosCatalogo_municipioId']]['nombre'] : ''; ?></span>
+             
+                <label><b>Código postal:  </b> </label>
+                <span id="actores_codigoPostal"><?=(isset($datosActor['actores']['codigoPostal'])) ? $datosActor['actores']['codigoPostal'] : ''; ?></span>
 
+            </div>
+        </fieldset> <!--Termina información general-->
 
-
-
+        <br/><br/><br/>
 
 
 
@@ -110,10 +106,10 @@
     } ?>
 
 <div id="pestania" data-collapse>
-        <h2 class="open">Actores individuales o transmigrantes</h2> <!--Comienza relacion con otros actores-->
+        <h2 class="flecha">Actores individuales o transmigrantes</h2> <!--Comienza relacion con otros actores-->
         <div>
         <div id="subPestanias" data-collapse>   
-            <h2>Relacion con otros actores </h2>
+            <h2 class="flecha">Relacion con otros actores </h2>
             <div>
             <table>
                 <thead>
@@ -157,7 +153,7 @@
 </div>
         <!--Comienza citado como persona relacionada-->
         <div id="pestania"  data-collapse>
-            <h2>Citado como persona relacionada</h2>
+            <h2 class="flecha">Citado como persona relacionada</h2>
             <div>
             <table>
                 <thead>
@@ -188,7 +184,7 @@
         <!--Termina citado como persona relacionada-->
         <!--Comienza actores colectivos---->
         <div id="pestania" data-collapse>
-            <h2>Actores colectivos </h2>
+            <h2 class="flecha">Actores colectivos </h2>
             <div>
             <table>
                 <thead>
