@@ -30,10 +30,31 @@
 				<fieldset>
 					<legend>Información general</legend>
 						<label>Victima</label><br/>
-						<img class="three columns"src="<?= base_url().$victimas['victimas'][$idVictima]['foto'] ?>"/>
-						<div class="nine columns"> <?= $victimas['victimas'][$idVictima]['nombre']." ".$victimas['victimas'][$idVictima]['apellidosSiglas'] ?></div> 
+						<div class="twelve columns">
+							<img class="three columns"src="<?= base_url().$victimas['victimas'][$idVictima]['foto'] ?>"/>
+							<div class="nine columns"> <?= $victimas['victimas'][$idVictima]['nombre']." ".$victimas['victimas'][$idVictima]['apellidosSiglas'] ?></div> 
+						</div>
+						<div class="twelve columns"> 
+							<br /><label>Estado</label>	<br />
+							<?=print_r($catalogos['estatusVictimaCatalogo'][$victimas['victimas'][$idVictima]['estatusVictimaId']]['descripcion'])?><br />
+						</div>
 
-						<div> <?=$catalogos['estatusVictimaCatalogo'][$victimas['victimas'][$idVictima]['nombre']]?></div>
+						<div class="twelve columns">
+							<br /><label>Comentarios sobre víctimas y perpetradores</label>	<br />
+							<div class="panel espacio">
+								<?= $victimas['victimas'][$idVictima]['comentarios']?>
+							</div>
+						</div>
+
+						<div class="twelve columns espacio">
+							<br/><label>Perpetradores</label> <br/>
+
+							<div class="two columns push-ten" >
+								<input class="small button" value="nuevo" type="button">
+							</div>
+
+						</div>
+
 				</fieldset>
 				</div>
 			</div><!--Termina información general de la victima-->
