@@ -24,9 +24,9 @@ class Agregar_catalogos_c extends CI_Controller {
         
         $this->cAgregarCatalogosTipoPerpetrador();
         
-        $this->cAgregarDerechosCatalogos();
+       // $this->cAgregarDerechosCatalogos();
         
-        $this->cAgregarActosCatalogos();
+        //$this->cAgregarActosCatalogos();
         
         $this->cAgregarCatalogoEstatusDeLaVictima();
         
@@ -52,7 +52,7 @@ class Agregar_catalogos_c extends CI_Controller {
 		
 		$this->cAgregarCatalogoGradoInvolucramientoN2();
 		
-		$this->cAgregarCatalogoActosDerechoAfectado();
+		//$this->cAgregarCatalogoActosDerechoAfectado();
         
     }
     

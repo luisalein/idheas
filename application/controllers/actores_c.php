@@ -370,7 +370,8 @@ class Actores_c extends CI_Controller {
         $datos['relacionActoresColectivo'] =$this->catalogos_m->mTraerDatosCatalogoNombre('relacionActoresCatalogo');
 
         $datos['head'] = $this->load->view('general/head_v', $datos, true);
-
+  
+       
 
         if ($idRelacionActor!=0) {
         	if(isset($datos['datosActor']['relacionActores'][$idRelacionActor]))
@@ -412,6 +413,9 @@ class Actores_c extends CI_Controller {
         
         $respuesta = $this->actores_m->relaciona_actores_m($datos);
         
+		 echo "<script languaje='javascript' type='text/javascript'>
+			 window.opener.location.reload();
+		     window.close();</script>";
         
     }
     
@@ -425,6 +429,10 @@ class Actores_c extends CI_Controller {
 		
         $mensaje = $this->actores_m->mActualizaDatosRelacionActor($datos['relacionActoresId'], $datos);
         
+		echo "<script languaje='javascript' type='text/javascript'>
+			 window.opener.location.reload();
+		     window.close();</script>";
+		
 		return $mensaje;	
     }
     
@@ -1194,10 +1202,16 @@ class Actores_c extends CI_Controller {
             	$datos[$nombre_tabla][$nombre_campo] = $valor; 
 
         } 
+	
+		
 		
 		$datos['direccionActor']['actores_actorId'] = $actorId;
 		
         $mensaje = $this->actores_m->mAgregarDireccionActor($datos['direccionActor']);
+		
+		echo "<script languaje='javascript' type='text/javascript'>
+			 window.opener.location.reload();
+		     window.close();</script>";
 		
      	return $mensaje;
 	}
@@ -1232,8 +1246,11 @@ class Actores_c extends CI_Controller {
 		$datos['direccionActor']['actores_actorId'] = $actorId;
 		
         $mensaje = $this->actores_m->mActualizaDatosDireccion($datos['direccionActor'],$direccionId);
-
-
+		
+		echo "<script languaje='javascript' type='text/javascript'>
+			 window.opener.location.reload();
+		     window.close();</script>";
+		
 		//redirect(base_url().'index.php/actores_c/mostrar_actor/'.$actorId.'/'.$_POST['actores_tipoActorId']);
 		
 		return $mensaje;
