@@ -593,13 +593,13 @@
 		/* Este modelo actualiza los datos de un actor */
 		public function mActualizaDatosActor($actorId,$datosActor)
 		{
-			print_r($datosActor);
+		
 			$this->db->where('actorId', $actorId);
 			if($this->db->update('actores',$datosActor['actores'])){
 				
 				foreach($datosActor as $key => $value){
 					if($key != 'actores'){
-	                    //print_r($datosActor[$key]);
+	                   // print_r($datosActor[$key]);
 						$this->db->where('actores_actorId', $actorId);
 						$this->db->update($key, $datosActor[$key]);
 					}

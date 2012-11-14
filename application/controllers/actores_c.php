@@ -541,10 +541,9 @@ class Actores_c extends CI_Controller {
 			$datos['actores']['foto'] = $foto;
 		}
 		
-		
         $this->actores_m->mActualizaDatosActor($datos['actores']['actorId'], $datos);
         
-        redirect(base_url().'index.php/actores_c/mostrar_actor/'.$datos['actores']['actorId'].'/'.$_POST['actores_tipoActorId']);
+       redirect(base_url().'index.php/actores_c/mostrar_actor/'.$datos['actores']['actorId'].'/'.$_POST['actores_tipoActorId']);
         
     }
 

@@ -43,9 +43,9 @@ foreach($catalogos['tipoActorColectivo'] as $key => $item): ?> <!--muestra los e
 <option onclick="notasCatalogos('<?=$item['descripcion']; ?>','notasTipoActorColectivo')" value="<?=$item['tipoActorColectivoId']; ?>"><?=$item['descripcion']; ?></option>
 <?php endforeach; } ?>
 </select>
-<input id="BotonmasinfoGralActores_tipoActorColectivoId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />	
 </span>
-<span id="TextoEspecial_infoGralActores_tipoActorColectivoId" class="Escondido twelve columns"></span>
+<!--<input id="BotonmasinfoGralActores_tipoActorColectivoId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />   
+<span id="TextoEspecial_infoGralActores_tipoActorColectivoId" class="Escondido twelve columns"></span>-->
 
 </div> <!--cierra six columns-->
 
