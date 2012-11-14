@@ -172,7 +172,7 @@ foreach($catalogos['tipoActorColectivo'] as $key => $item): ?> <!--muestra los e
 
     <p>
     <label for="codigoPos">Código Postal</label>
-    <input type="text"  name="actores_codigoPostal"  <?=(isset($datosActor['actores']['codigoPostal']) ? 'value="'.$datosActor['actores']['codigoPostal'].'"' : ''); ?>  size="30"  />
+    <input type="number"  name="actores_codigoPostal" pattern="pattern="[0-9]{5}" <?=(isset($datosActor['actores']['codigoPostal']) ? 'value="'.$datosActor['actores']['codigoPostal'].'"' : ''); ?>  size="30"  />
     </p>
 
     </div> <!--six columns -->
