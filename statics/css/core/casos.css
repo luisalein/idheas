@@ -27,3 +27,11 @@
 .espacio{
   min-height: 100px;
 }
+
+.espacioSuperior{
+  margin-top: 10px;
+}
+
+.espacioInferior{
+  margin-bottom: 10px;
+}

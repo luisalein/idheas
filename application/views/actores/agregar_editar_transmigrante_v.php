@@ -24,25 +24,17 @@
 <legend>Información general</legend>
 <div class="six columns">
 
-<p>
-<label for="nombre">Nombre</label>
-<input autofocus type="text" id="actores_nombre" name="actores_nombre"  <?=(isset($datosActor['actores']['nombre']) ? 'value="'.$datosActor['actores']['nombre'].'"' : ''); ?> required />
-</p>
+    <label for="nombre">Nombre</label>
+    <input autofocus type="text" id="actores_nombre" name="actores_nombre"  <?=(isset($datosActor['actores']['nombre']) ? 'value="'.$datosActor['actores']['nombre'].'"' : ''); ?> required />
 
-<p>
-<label for="apellidos">Apellidos</label>
-        <input type="text" id="actores_apellidosSiglas" name="actores_apellidosSiglas" <?=(isset($datosActor['actores']['nombre']) ? 'value="'.$datosActor['actores']['apellidosSiglas'].'"' : ''); ?> required />
+    <label for="apellidos">Apellidos</label>
+            <input type="text" id="actores_apellidosSiglas" name="actores_apellidosSiglas" <?=(isset($datosActor['actores']['nombre']) ? 'value="'.$datosActor['actores']['apellidosSiglas'].'"' : ''); ?> required />
 
-</p>
-
-<p>
-<label for="alias">Alias</label>
-        <input type="text" id="alias_alias" name="alias_alias" <?=(isset($datosActor['alias']['alias']) ? 'value="'.$datosActor['alias']['alias'].'"' : ''); ?> />
-
-</p>
-
+    <label for="alias">Alias</label>
+            <input type="text" id="alias_alias" name="alias_alias" <?=(isset($datosActor['alias']['alias']) ? 'value="'.$datosActor['alias']['alias'].'"' : ''); ?> />
 
 </div>
+
 <div class="six columns">
 
 <div class="seven columns">
@@ -93,7 +85,6 @@
 
 
 <label for="nacionalidadID">Nacionalidad</label>
-<span class="twelve columns" id="infoGralActor_nacionalidadIdSelect">
     <select id="infoGralActor_nacionalidadIdSelect" name="infoGralActor_nacionalidadId">
         <option></option>
         <?php if(isset($datosActor['infoGralActor']['nacionalidadId'])){
@@ -107,7 +98,6 @@
                     } ?>
     </select>
 
-</span>
 
 <!--<input id="BotonmasinfoGralActor_nacionalidadId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />   
 <span id="TextoEspecial_infoGralActor_nacionalidadId" class="Escondido twelve columns">
@@ -293,7 +283,7 @@
 </fieldset>	<!--Termina lugar de origen-->									
 </div>
 
-<div class="twelve columns">
+<div class="twelve columns espacioSuperior">
 </div>
     <div class="six columns">
 
@@ -435,17 +425,18 @@
     <legend>Comentarios</legend>
     <div class="twelve columns">
         <textarea  placeholder="Escribir algun comentario"  rows="10" cols="100" name="infoMigratoria_comentarios" id="infoMigratoria_comentarios" wrap="hard" >
-            <?= (isset($datosActor['infoMigratoria']['comentarios'])) ? print_r($datosActor['infoMigratoria']['comentarios']) : "" ;?>
+            <?= (isset($datosActor['infoMigratoria']['comentarios'])) ? $datosActor['infoMigratoria']['comentarios'] : "" ;?>
         </textarea>
     </div>
 </fieldset>
-<div class="row">
-<div  class="six columns offset-by-six" >
-
-<input class="medium button" type="submit" value="Guardar" />
-<input class="medium button" type="reset" value="Cancelar" onclick="pagInicial()" />
-</div>
-</div>
+    <div class="row espacioInferior espacioSuperior">
+        <div class="nine columns">
+            <input class="medium button" type="submit" value="Guardar" />
+        </div>
+        <div  class="three columns" >
+            <input class="medium button" type="reset" value="Cancelar" onclick="pagInicial()" />
+        </div>
+    </div>
 </div>
 
 </div>
