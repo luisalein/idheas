@@ -1302,15 +1302,26 @@ class Casos_m extends CI_Model {
 			}/*fin for each consultaVictimas */
 			
 			return $datos;
+		}else{
+			$mensaje['error'] = $this->db->_error_message();
+			/* Regresa la cadena al controlador*/
+        	return $mensaje;
 		}
 		
 		
 	}/* fin de mTraerVictimasActo */
 	
-	public function mTraerActoDerechoAfectado($derechoAfectadoN1Id){
+	/* Este modelo Trae los actos relacionados a un derecho afectado por niveles
+	 * @param
+	 * 
+	 * $datosArrray [array]
+	 * */
+	public function mTraerActoDerechoAfectado($datosArray){
+		
+		/*Trae los datos del nivel 1 para el derecho afectadoId nivel1*/
 		$this->db->select('actosN1Catalogo_actoId');
 		$this->db->from('actosN1Catalogo_has_derechosAfactadosN1Catalogo');
-		$this->db->where('derechosAfactadosN1Catalogo_derechoAfectadoN1Id', $derechoAfectadoN1Id);
+		$this->db->where('derechosAfactadosN1Catalogo_derechoAfectadoN1Id', $datosArray['1']);
 		$consultaActos = $this->db->get();
 		
 		if($consultaActos->num_rows() > 0){
@@ -1323,25 +1334,58 @@ class Casos_m extends CI_Model {
 				if($consultaActosN1->num_rows() > 0){
 					foreach ($consultaActosN1->result_array() as $actosN1) {
 						$datos['actosN1'][$actosN1['actoId']]= $actosN1;
-						//echo '<pre>';
-						//print_r($datos);
-						
+						/*Trae los datos del nivel 2 para el derecho afectadoId nivel2*/
 						$this->db->select('*');
 						$this->db->from('actosN2Catalogo');
 						$this->db->where('actosN1Catalogo_actoId', $actosN1['actoId']);
+						$this->db->where('derechosAfectadosN2Catalogo_derechoAfectadoN2Id', $datosAray['2']);
+						
 						$consultaActosN2 = $this->db->get();
 						
 						if($consultaActosN2->num_rows() > 0){
 							foreach ($consultaActosN2->result_array() as $actosN2) {
 								$datos['actosN2'][$actosN2['actoN2Id']]= $actosN2;
+								/*Trae los datos del nivel 3 para el derecho afectadoId nivel3 */
+								$this->db->select('*');
+								$this->db->from('actosN3Catalogo');
+								$this->db->where('actosN3Catalogo_actoId', $actosN2['actoN2Id']);
+								$this->db->where('derechosAfectadosN3Catalogo_derechoAfectadoN3Id', $datosAray['3']);
 								
-							}
-						}
-						
+								$consultaActosN3 = $this->db->get();
+								
+								if($consultaActosN3->num_rows() > 0){
+									foreach ($consultaActosN3->result_array() as $actosN3) {
+										$datos['actosN3'][$actosN3['actoN3Id']]= $actosN3;
+										/*Trae los datos del nivel 4 para el derecho afectadoId nivel4 */
+										$this->db->select('*');
+										$this->db->from('actosN4Catalogo');
+										$this->db->where('actosN4Catalogo_actoId', $actosN3['actoN3Id']);
+										$this->db->where('derechosAfectadosN4Catalogo_derechoAfectadoN4Id', $datosAray['4']);
+										
+										$consultaActosN4 = $this->db->get();
+										
+										if($consultaActosN4->num_rows() > 0){
+											foreach ($consultaActosN4->result_array() as $actosN4) {
+												
+												$datos['actosN4'][$actosN4['actoN4Id']]= $actosN4;
+												
+											}/* fin foreach consultaActosN4 */
+										}/* fin if consultaActosN4*/		
+									}/*fin foreach consultaActosN3 */
+								}/* fin if consultaActosN3 */	
+							}/*fon foreach consultaActosN2*/
+						}/* fin if consultaActosN2 */
 					}/*fin foreach $consultaActosN1*/
 				}/*fin if consultaActoN1*/		
 			}
+
 			return $datos;
+			
+		}else{
+			
+			$mensaje['error'] = $this->db->_error_message();
+			/* Regresa la cadena al controlador*/
+        	return $mensaje;
 		}
 	}
 	 
