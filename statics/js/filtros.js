@@ -22,7 +22,13 @@ $(document).ready(function() {
 				
     });
     
-    
+    $('#formPais').onChange(function() {
+		
+		var r = formPais.select.options[formPais.select.selectedIndex].value;
+	
+		alert(r);
+				
+    });
     
 });
 
@@ -232,7 +238,9 @@ function eliminarActor(id,tipoActor){
 	$.ajax({
     
         url: url,
-    
+    var idCaso =  $('#eliminarCaso').attr('name');
+		
+		eliminarCaso(idCaso);
         data: data,
         
         type: 'POST',
@@ -255,7 +263,9 @@ function eliminarActor(id,tipoActor){
 
 function eliminarCaso(idCaso){
 	
-	var url = base+'index.php/casos_c/eliminarCaso';
+	var url = base+'index.php/cvar idCaso =  $('#eliminarCaso').attr('name');
+		
+		eliminarCaso(idCaso);asos_c/eliminarCaso';
 	
 	var data = 'idCaso='+idCaso;
 	
@@ -283,4 +293,8 @@ function eliminarCaso(idCaso){
 }
 
 
-
+function filtroPais(){
+	
+	
+	
+}

@@ -168,16 +168,20 @@
                 <legend>Datos de Nacimiento</legend>
                 <div class="six columns"><!----Primer mitad de datos de Nacimiento ---->
                 <label for="pais">País</label>
-                <select id="datosDeNacimiento_paisesCatalogo_paisId" name="datosDeNacimiento_paisesCatalogo_paisId">						
-                    <option></option>
-                    <?php if(isset($datosActor['datosDeNacimiento']['paisesCatalogo_paisId'])){
-                        foreach($catalogos['paisesCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
-                    <option  value="<?=$item['paisId']?>" <?=($datosActor['datosDeNacimiento']['paisesCatalogo_paisId'] == $item['paisId']) ? 'selected="selected"' : '' ; ?> ><?=$item['nombre']?></option>
-                    <?php endforeach; } else { ?>
-                        <?php foreach($catalogos['paisesCatalogo'] as $pais):?> <!--muestra los estados civiles-->
-                        <option value="<?=$pais['paisId']; ?>"><?=$pais['nombre']; ?></option>
-                    <?php endforeach; } ?>
-                </select>
+                <form name="formPais" id="formPais">
+                	<select id="datosDeNacimiento_paisesCatalogo_paisId" name="datosDeNacimiento_paisesCatalogo_paisId">						
+	                    <option></option>
+	                    <?php if(isset($datosActor['datosDeNacimiento']['paisesCatalogo_paisId'])){
+	                        foreach($catalogos['paisesCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
+	                    <option  value="<?=$item['paisId']?>" <?=($datosActor['datosDeNacimiento']['paisesCatalogo_paisId'] == $item['paisId']) ? 'selected="selected"' : '' ; ?> ><?=$item['nombre']?></option>
+	                    <?php endforeach; } else { ?>
+	                        <?php foreach($catalogos['paisesCatalogo'] as $pais):?> <!--muestra los estados civiles-->
+	                        <option value="<?=$pais['paisId']; ?>"><?=$pais['nombre']; ?></option>
+	                    <?php endforeach; } ?>
+	                </select>
+                	
+                </form>
+                
 
                 <label for="estado">Estado</label>
                 <select id="datosDeNacimiento_estadosCatalogo_estadoId" name="datosDeNacimiento_estadosCatalogo_estadoId">						
@@ -227,7 +231,6 @@
                 </div>  <!--Segunda mitad de nformación de contacto---->
             </fieldset><!--Termina información del contacto-->
 
-
-                <input class="tiny button" type="submit" value="Guardar" />
+			<input class="tiny button" type="submit" value="Guardar" />
     </div>
 </form>

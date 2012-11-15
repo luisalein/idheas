@@ -299,6 +299,8 @@ class Actores_c extends CI_Controller {
 		
 		$datos['alias'] = array();
 		
+		$datos['infoContacto'] = array();
+		
 		$datos['infoGralActores'] = array();
 		
 		$datos['actores']['foto'] = $foto;
