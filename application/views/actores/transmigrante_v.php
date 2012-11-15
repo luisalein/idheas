@@ -106,46 +106,59 @@
 			</fieldset>	<!--Termina lugar de origen-->
 		</div>							
 	
-		<div class="six columns">
-	            <h6>País de tránsito: </h6>
-	                <div id="paisTransitoId"><?=(isset($datosActor['infoMigratoria']['paisTransitoId'])) ? $catalogos['paisesCatalogo'][$datosActor['infoMigratoria']['paisTransitoId']]['nombre'] : ''; ?></div>
+		<div clas="twelve columns">
+			<div class="six columns">
+		            <h6>País de tránsito: </h6>
+		                <div id="paisTransitoId"><?=(isset($datosActor['infoMigratoria']['paisTransitoId'])) ? $catalogos['paisesCatalogo'][$datosActor['infoMigratoria']['paisTransitoId']]['nombre'] : ''; ?></div>
+		
+		            <h6>Intentos de cruce por el país de tránsito: </h6>
+		                <div id="infoMigratoria_IntCrucesTransitoV" ><?=(isset($datosActor['infoMigratoria']['intCruceTransito'])) ? $datosActor['infoMigratoria']['intCruceTransito'] : ''; ?></div>
 	
-	            <h6>Intentos de cruce por el país de tránsito: </h6>
-	                <div id="infoMigratoria_IntCrucesTransitoV" ><?=(isset($datosActor['infoMigratoria']['intCruceTransito'])) ? $datosActor['infoMigratoria']['intCruceTransito'] : ''; ?></div>
+			        <h6>Expulsiones del país de tránsito: </h6>
+		            <div id="expCruceTransito"> <?=(isset($datosActor['infoMigratoria']['expCruceTransito'])) ? $datosActor['infoMigratoria']['expCruceTransito'] : ''; ?></div>
 	
-	            <h6>Expulsiones del país de destino: </h6>
+					<h6>Realiza el viaje:</h6>
+						<div id="realizaViaje" ><?=(isset($datosActor['infoMigratoria']['realizaViaje'])) ? $datosActor['infoMigratoria']['realizaViaje'] : ''; ?></div>
+			
+					<h6>Tipo de estancia:</h6>
+			            <label id="Estancia"><?php if(isset($datosActor['infoMigratoria']['tipoEstanciaId'])){
+			                    if ($datosActor['infoMigratoria']['tipoEstanciaId'] == 1 ) {
+			                        print_r('Temporal');
+			                    } else {
+			                        print_r('Permanente');
+			                    }
+			                }  ?></label>
+			</div>
+
+			<div class="six columns">
+		                                                        
+		            <h6>País destino: </h6>
+		                <div id="paisDestinoId"><?=(isset($datosActor['infoMigratoria']['paisDestinoId'])) ? $catalogos['paisesCatalogo'][$datosActor['infoMigratoria']['paisDestinoId']]['nombre'] : ''; ?></div>
+		
+		        <h6>Intentos de cruce al país destino: </h6>
+		            <div id="intCrucesDest" ><?=(isset($datosActor['infoMigratoria']['intCruceDestino'])) ? $datosActor['infoMigratoria']['intCruceDestino'] : ''; ?></div>
+		
+		        <h6>Expulsiones del país de destino: </h6>
 	                <div id="expCruceDestino"><?=(isset($datosActor['infoMigratoria']['expCruceDestino'])) ? $datosActor['infoMigratoria']['expCruceDestino'] : ''; ?></div>
 	
-	            <h6>Comentarios:</h6>
-	              <div id="comentarios" ><?=(isset($datosActor['infoMigratoria']['comentarios'])) ? $datosActor['infoMigratoria']['comentarios'] : ''; ?></div>
+				<h6>Motivo del viaje: </h6>
+					<div id="motivoViaje"><?=(isset($datosActor['infoMigratoria']['motivoViaje'])) ? $datosActor['infoMigratoria']['motivoViaje'] : ''; ?></div>
+		
+		
+		
+			</div>
 		</div>
-		<div class="six columns">
-	                                                        
-	            <h6>País destino: </h6>
-	                <div id="paisDestinoId"><?=(isset($datosActor['infoMigratoria']['paisDestinoId'])) ? $catalogos['paisesCatalogo'][$datosActor['infoMigratoria']['paisDestinoId']]['nombre'] : ''; ?></div>
-	
-	        <h6>Intentos de cruce al país destino: </h6>
-	            <div id="intCrucesDest" ><?=(isset($datosActor['infoMigratoria']['intCruceDestino'])) ? $datosActor['infoMigratoria']['intCruceDestino'] : ''; ?></div>
-	
-	        <h6>Expulsiones del país de tránsito: </h6>
-	            <div id="expCruceTransito"> <?=(isset($datosActor['infoMigratoria']['expCruceTransito'])) ? $datosActor['infoMigratoria']['expCruceTransito'] : ''; ?></div>
-	
-			<h6>Motivo del viaje: </h6>
-				<div id="motivoViaje"><?=(isset($datosActor['infoMigratoria']['motivoViaje'])) ? $datosActor['infoMigratoria']['motivoViaje'] : ''; ?></div>
-	
-			<h6>Tipo de estancia:</h6>
-	            <label id="Estancia"><?php if(isset($datosActor['infoMigratoria']['tipoEstanciaId'])){
-	                    if ($datosActor['infoMigratoria']['tipoEstanciaId'] == 1 ) {
-	                        print_r('Temporal');
-	                    } else {
-	                        print_r('Permanente');
-	                    }
-	                }  ?></label>
-	
-			<h6>Realiza el viaje:</h6>
-				<div id="realizaViaje" ><?=(isset($datosActor['infoMigratoria']['realizaViaje'])) ? $datosActor['infoMigratoria']['realizaViaje'] : ''; ?></div>
-	
-		</div>
+
+		<div class="twelve columns espacioInferior">
+			<fieldset>
+		            <legend>Comentarios:</legend>
+		            <div class="twelve columns">
+			            <div class="panel">
+			            	<div id="comentarios" ><?=(isset($datosActor['infoMigratoria']['comentarios'])) ? $datosActor['infoMigratoria']['comentarios'] : ''; ?></div>
+			            </div>
+		            </div>
+		    </fieldset>
+	    </div>
 		
 	</fieldset><!--Termina datos de nacimiento-->
 	<fieldset>
