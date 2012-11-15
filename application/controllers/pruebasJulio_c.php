@@ -16,7 +16,7 @@ class PruebasJulio_c extends CI_Controller
 				   
 			$datos = array(
 				'actores' => array('nombre' => 'Carlos', 'apellidosSiglas' => 'Santiago', 'tipoActorId' => '1','foto'=>''),
-				'datosDeNacimiento' => array('fechaNacimiento' => '', 'paisesCatalogo_paisId' => '', 'estadosCatalogo_estadoId' => '', 'municipiosCatalogo_municipioId' => '' )
+				'datosDeNacimiento' => array()
 			);
 			   
 				   
