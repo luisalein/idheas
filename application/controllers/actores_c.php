@@ -1287,8 +1287,26 @@ class Actores_c extends CI_Controller {
 		
 		$datos['actoresTransmigrantes'] = $this->actores_m->listado_actores_m(2);
 		
-		$this->load->view('casos/SeleccionActorIndividual', $datos);
+		$datos['pestana'] = 'individual';
+		
+		$this->load->view('casos/SeleccionActorIndividualTrans', $datos);
 	}
+	
+	public function cargarTransmigrante()
+	{
+		$datos['is_active'] = 'actores';
+		
+		$datos['head'] = $this->load->view('general/head_v', $datos, true);
+		
+		$datos['actoresIndividuales'] = $this->actores_m->listado_actores_m(1);
+		
+		$datos['actoresTransmigrantes'] = $this->actores_m->listado_actores_m(2);
+		
+		$datos['pestana'] = 'trans';
+		
+		$this->load->view('casos/actorTransmigrante_v', $datos);
+	}
+    
 	
 	public function seleccionarActores(){
 		
