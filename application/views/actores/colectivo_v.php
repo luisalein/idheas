@@ -13,17 +13,16 @@
              
                 <label><b>Nombre:  </b> </label>
                 <span id="nombre"><?=(isset($datosActor['actores']['nombre'])) ? $datosActor['actores']['nombre'] : ''; ?></span>
-             
-                <label><b>Siglas: </b> </label> 
-                <span id="apellidosSiglas"><?=(isset($datosActor['actores']['apellidosSiglas'])) ? $datosActor['actores']['apellidosSiglas'] : ''; ?></span>
-             
-             
-            </div> 
-            
-            <div class="six columns">
                 
                 <label><b>Tipo de actor colectivo:  </b> </label> 
                 <span id="tipoActorColectivoId"><?=(isset($datosActor['infoGralActores']['tipoActorColectivoId'])&&($datosActor['infoGralActores']['tipoActorColectivoId']>0)) ? $catalogos['tipoActorColectivo'][$datosActor['infoGralActores']['tipoActorColectivoId']]['descripcion'] : ''; ?></span>
+                          
+            </div> 
+            
+            <div class="six columns">
+             
+                <label><b>Siglas: </b> </label> 
+                <span id="apellidosSiglas"><?=(isset($datosActor['actores']['apellidosSiglas'])) ? $datosActor['actores']['apellidosSiglas'] : ''; ?></span>
              
                 <label><b>Actividad: </b> </label> 
                 <span id="actividad"><?=(isset($datosActor['infoGralActores']['actividad'])) ? $datosActor['infoGralActores']['actividad'] : ''; ?></span>
