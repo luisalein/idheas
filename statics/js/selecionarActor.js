@@ -29,9 +29,15 @@ function cerrarVentana(){
 
 function cerrarVentanaCancelar(){
     var datosIniciales= window.opener.document.getElementById('ValoresBotonCancelar').value;
+    if (datosIniciales!= "") {
     var informacion=datosIniciales.split("*");
     var nameSeleccionado= window.opener.document.getElementById('nameSeleccionado').value
     window.opener.document.getElementById(nameSeleccionado).value = informacion[0];
     window.opener.document.getElementById('vistaActorRelacionado').innerHTML = ('<img class="three columns"  src="'+base+informacion[2]+'" /><b><h4>'+informacion[1]+'</h4></b>');
+    } else{
+    var nameSeleccionado= window.opener.document.getElementById('nameSeleccionado').value
+    window.opener.document.getElementById(nameSeleccionado).value='';
+    window.opener.document.getElementById('vistaActorRelacionado').innerHTML = ('');
+    };
   window.close();
 };
