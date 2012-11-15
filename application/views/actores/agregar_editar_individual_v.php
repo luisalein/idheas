@@ -1,4 +1,5 @@
 <form action="<?=$action; ?>" method="post" enctype="multipart/form-data" id="menuForm" name="menuForm">
+    <input type="hidden" id="tipoActorAE"  name="1"/>
     <div class="three columns">
                 <?php if(isset($datosActor['actores']['foto'])){ ?>    
 
@@ -166,34 +167,20 @@
 
             <fieldset><!----Datos de Nacimiento ---->
                 <legend>Datos de Nacimiento</legend>
-                <div class="six columns"><!----Primer mitad de datos de Nacimiento ---->
-                <label for="pais">País</label>
-                <select id="datosDeNacimiento_paisesCatalogo_paisId" name="datosDeNacimiento_paisesCatalogo_paisId" onchange="changeTest(1)">						
-                    <option></option>
-                    <?php if(isset($datosActor['datosDeNacimiento']['paisesCatalogo_paisId'])){
-                        foreach($catalogos['paisesCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
-                    <option  value="<?=$item['paisId']?>" <?=($datosActor['datosDeNacimiento']['paisesCatalogo_paisId'] == $item['paisId']) ? 'selected="selected"' : '' ; ?> > <?=$item['nombre']?></option>
-                    <?php endforeach; } else { ?>
-                        <?php foreach($catalogos['paisesCatalogo'] as $pais):?> <!--muestra los estados civiles-->
-                        <option value="<?=$pais['paisId']; ?>"><?=$pais['nombre']; ?></option>
-                    <?php endforeach; } ?>
-                </select>
-
-                <label for="estado">Estado</label>
-                <select id="datosDeNacimiento_estadosCatalogo_estadoId" name="datosDeNacimiento_estadosCatalogo_estadoId"  onchange="changeTest(2)">						
-	               
-                </select>
-
-                </div><!----Termina primer mitad de datos de Nacimiento ---->
-                <div class="six columns"><!----Segunda mitad de datos de Nacimiento ---->
-                <label for="municipio">Municipio</label>
-                <select id="datosDeNacimiento_municipiosCatalogo_municipioId" name="datosDeNacimiento_municipiosCatalogo_municipioId">						
-                   
-                </select>
-                
-                <label for="fechaNacimiento">Fecha de nacimiento</label>
-                <input type="text" id="fechaDeNacimientoIndividual" name="datosDeNacimiento_fechaNacimiento" <?=(isset($datosActor['datosDeNacimiento']['fechaNacimiento']) ? 'value="'.$datosActor['datosDeNacimiento']['fechaNacimiento'].'"' : ''); ?> placeholder="AAAA-MM-DD" />
-                </div>  <!----Termina segunda mitad de datos de Nacimiento ---->
+               
+                	<div class="twelve columns">
+					   
+					        <legend>Lugar de origen</legend>
+					
+					        <!--Llamada a los filtros-->
+							<?=$filtroPais;?>								
+				    
+	                	 <div class="six columns">
+			                <label for="fechaNacimiento">Fecha de nacimiento</label>
+			                <input type="text" id="fechaDeNacimientoIndividual" name="datosDeNacimiento_fechaNacimiento" <?=(isset($datosActor['datosDeNacimiento']['fechaNacimiento']) ? 'value="'.$datosActor['datosDeNacimiento']['fechaNacimiento'].'"' : ''); ?> placeholder="AAAA-MM-DD" />
+	               		
+	               		</div>
+               		</div>
             </fieldset><!--Termina datos de nacimiento-->
 
             <fieldset><!--Información de contacto-->

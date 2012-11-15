@@ -1,7 +1,7 @@
-<form action="<?=$action; ?>" method="post" enctype="multipart/form-data">
+<form action="<?=$action; ?>" method="post" enctype="multipart/form-data" id="menuForm" name="menuForm">
+    <input type="hidden" id="tipoActorAE"  name="2"/>
     <div class="three columns">
-                <?php if(isset($datosActor)){ ?>    
-
+                <?php if(isset($datosActor)){ ?> 
                 <input type="hidden" value="<?=$actorId; ?>" name="actores_actorId" />
                     <img class="twelve columns" src="<?=base_url().$datosActor['actores']['foto']; ?>" />
                 <?php }?>
@@ -218,67 +218,8 @@
     <fieldset>		
         <legend>Lugar de origen</legend>
 
-        <div class="four columns">		
-
-        <label for="pais">País</label>
-        <div class="twelve columns" id="datosDeNacimiento_paisesCatalogo_paisIdSelect">
-            <select id="datosDeNacimiento_paisesCatalogo_paisId" name="datosDeNacimiento_paisesCatalogo_paisId">
-            <option></option>
-            <?php if(isset($datosActor['datosDeNacimiento']['paisesCatalogo_paisId'])){
-            foreach($catalogos['paisesCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
-            <option  value="<?=$item['paisId']?>" <?=($datosActor['datosDeNacimiento']['paisesCatalogo_paisId'] == $item['paisId']) ? 'selected="selected"' : '' ; ?> > <?=$item['nombre']?></option>
-            <?php endforeach; } else { ?>
-            <?php foreach($catalogos['paisesCatalogo'] as $pais):?> <!--muestra los estados civiles-->
-                <option value="<?=$pais['paisId']; ?>"><?=$pais['nombre']; ?></option>
-            <?php endforeach; } ?>
-            </select>
-        </div>
-        <!--<input id="BotonmasdatosDeNacimiento_paisesCatalogo_paisId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />    
-        <span id="TextoEspecial_datosDeNacimiento_paisesCatalogo_paisId" class="Escondido twelve columns">
-        </span>-->
-
-        </div>
-
-        <div class="four columns">
-            <label for="estado">Estado</label>
-            <div id="datosDeNacimiento_estadosCatalogo_estadoIdSelect" class="twelve columns" >
-                <select name="datosDeNacimiento_estadosCatalogo_estadoId">
-                <option></option>
-                <?php if(isset($datosActor['datosDeNacimiento']['estadosCatalogo_estadoId'])){
-                foreach($catalogos['estadosCatalogo'] as $item): ?> <!--muestra los estados civiles-->
-                <option  value="<?=$item['estadoId']?>" <?=($datosActor['datosDeNacimiento']['estadosCatalogo_estadoId'] == $item['estadoId']) ? 'selected="selected"' : '' ; ?> > <?=$item['nombre']?></option>
-                <?php endforeach; } else { ?>
-                <?php foreach($catalogos['estadosCatalogo'] as $estado):?><!--muestra los estados civiles-->
-                <option value="<?=$estado['estadoId']; ?>"><?=$estado['nombre']; ?></option>
-                <?php endforeach; } ?>
-                </select>
-            </div>
-            <!--<input id="BotonmasdatosDeNacimiento_paisesCatalogo_paisId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />    
-            <span id="TextoEspecial_datosDeNacimiento_paisesCatalogo_paisId" class="Escondido twelve columns">
-            </span>-->
-        </div>
-
-        <div class="four columns">
-            <div id="datosDeNacimiento_municipiosCatalogo_municipioIdSelect" class="twelve columns">
-                <label for="municipio">Municipio</label>
-                <select id="datosDeNacimiento_municipiosCatalogo_municipioId" name="datosDeNacimiento_municipiosCatalogo_municipioId">
-                <option></option>
-                    <?php if(isset($datosActor['datosDeNacimiento']['municipiosCatalogo_municipioId'])){ ?>
-                        <?php foreach($catalogos['municipiosCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
-                                <option value="<?=$item['municipioId']; ?>" <?=($datosActor['datosDeNacimiento']['municipiosCatalogo_municipioId'] == $item['municipioId']) ? 'selected="selected"' : '' ; ?>><?=$item['nombre']; ?></option>
-                        <?php endforeach; ?>
-                    <?php } else { ?>
-                        <?php foreach($catalogos['municipiosCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
-                            <option value="<?=$item['municipioId']; ?>"><?=$item['nombre']; ?></option>
-                        <?php endforeach; ?>
-                    <?php } ?>
-                </select>
-            </div>
-            <!--<input id="BotonmasdatosDeNacimiento_municipiosCatalogo_municipioId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />   
-            <span id="TextoEspecial_datosDeNacimiento_municipiosCatalogo_municipioId" class="Escondido twelve columns">
-            </span>-->
-        </div>
-
+        <!--Llamada a los filtros-->
+		<?=$filtroPais;?>
     </fieldset>	<!--Termina lugar de origen-->									
     </div>
 
