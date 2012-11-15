@@ -283,12 +283,15 @@ function eliminarCaso(idCaso){
 }
 
 
-function changeTest () { 
+function changeTest (tipo) { 
 	
-	var Index = document.menuForm.datosDeNacimiento_paisesCatalogo_paisId.options[document.menuForm.datosDeNacimiento_paisesCatalogo_paisId.selectedIndex].value; 
-	
-	var tipo = $('#tipoFiltroPais').attr('name');	
-		
+	if(tipo == 1){
+		var Index = document.menuForm.datosDeNacimiento_paisesCatalogo_paisId.options[document.menuForm.datosDeNacimiento_paisesCatalogo_paisId.selectedIndex].value; 
+	}
+	if(tipo == 2){
+		var Index = document.menuForm.datosDeNacimiento_estadosCatalogo_estadoId.options[document.menuForm.datosDeNacimiento_estadosCatalogo_estadoId.selectedIndex].value; 
+
+	}
 	//$("#notasUltimaOcupacion").html(Index+tipo);
 
 	var url = base+'index.php/actores_c/filtroPaisEstado';
@@ -304,8 +307,13 @@ function changeTest () {
         type: 'POST',
                 
         success: function(data){
-        	
-             alert(data);    
+        	 
+             if(tipo == 1){
+             	$("#datosDeNacimiento_estadosCatalogo_estadoId").html(data);
+             }  
+             if(tipo == 2){
+				$("#datosDeNacimiento_municipiosCatalogo_municipioId").html(data);
+             }
             
         },
         

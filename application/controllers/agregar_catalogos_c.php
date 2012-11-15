@@ -14,22 +14,18 @@ class Agregar_catalogos_c extends CI_Controller {
     
     public function index(){
                 
-        /*$this->cAgregarCatalogoDeOcupaciones();
+        $this->cAgregarCatalogoDeOcupaciones();
         
         $this->cAgregarCatalogoGruposIndigenas();
         
         $this->cAgregarCatalogosLugares();
         
         $this->cAgregarCatalogosTipoDeIntervencion();
-        
+       
         $this->cAgregarCatalogosTipoPerpetrador();
-        
-       // $this->cAgregarDerechosCatalogos();
-        
-        //$this->cAgregarActosCatalogos();
-        
+       
         $this->cAgregarCatalogoEstatusDeLaVictima();
-        
+       
         $this->cAgregarCatalogoEstatusDelPerpetrador();
         
         $this->cAgregarCatalogoNivelDeConfiabilidad();
@@ -50,11 +46,9 @@ class Agregar_catalogos_c extends CI_Controller {
 		
 		$this->cAgregarCatalogoGradoInvolucramientoN1();
 		
-		$this->cAgregarCatalogoGradoInvolucramientoN2();*/
+		$this->cAgregarCatalogoGradoInvolucramientoN2();
 		
 		$this->cAgregarCatalogoMotivoViaje();
-		
-		//$this->cAgregarCatalogoActosDerechoAfectado();
         
     }
     
@@ -302,13 +296,12 @@ class Agregar_catalogos_c extends CI_Controller {
             $tipoDePerpetrador[$n] = explode('&', read_file('statics/catalogos/catalogotipodeperpetrador/TipodePerpetrador_nivel'.$n.'.csv'));
             
         }
-        
         foreach($tipoDePerpetrador[1] as $nivelDePerpetrador){
                 
                     $datosNivel = explode('¬', $nivelDePerpetrador);
                 
                     $tiposDePerpetradorNiveles['tipoPerpetradorN1Catalogo'][trim($datosNivel[0])] = array('tipoPerpetradorN1Id' => trim($datosNivel[0]), 'descripcion' => trim($datosNivel[1]), 'notas' => trim($datosNivel[2]));
-                cAgregarCatalogoMotivoViaje();
+               
         }
         
         foreach($tipoDePerpetrador[2] as $nivelDePerpetrador){

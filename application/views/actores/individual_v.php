@@ -36,7 +36,10 @@
 	        <label id="edad"><?=(isset($datosActor['infoGralActor']['edad'])) ? $datosActor['infoGralActor']['edad'].' años' : ''; ?></label>
 	    </div>
 	</fieldset>
-	<!--Termina información general-->
+	<!--Termina información general-->    
+
+    <?php echo br(2);?>
+
 	<fieldset>
 	        <legend>Detalles</legend>
 	    <div class="six columns">
@@ -55,6 +58,9 @@
 	    </div>
 	</fieldset>
 	<!--Termina Detalles-->
+
+    <?php echo br(2);?>
+
 	<fieldset>
 	    <legend>Datos de Nacimiento</legend>
 	    <div class="six columns">
@@ -71,6 +77,9 @@
 	    </div>
 	</fieldset>
 	<!--Termina datos de nacimiento-->
+
+    <?php echo br(2);?>
+
 	<fieldset>
 	    <legend>Información de contacto</legend>
 	    <div class="six columns">
@@ -85,6 +94,8 @@
 	    </div>
 	</fieldset>
 	<!--Termina información del contacto-->
+    
+    <?php echo br(2);?>
 
 	<?php if (isset($datosActor['direccionActor'])) { ?>
 		<fieldset>

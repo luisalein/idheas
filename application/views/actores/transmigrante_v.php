@@ -51,6 +51,8 @@
 		</div> 
 	</fieldset>	<!--Termina información general-->
 	
+        <?php echo br(2);?>
+
 	<fieldset> <!--Detalles-->
 		<legend>Detalles:   </legend>
 		<div class="six columns">
@@ -80,6 +82,8 @@
 		</div>	
 	</fieldset><!--Termina Detalles-->
 	
+	    <?php echo br(2);?>
+
 	<fieldset>	
 		  <legend>Información Migratoria</legend>
 	
@@ -141,7 +145,7 @@
 	                <div id="expCruceDestino"><?=(isset($datosActor['infoMigratoria']['expCruceDestino'])) ? $datosActor['infoMigratoria']['expCruceDestino'] : ''; ?></div>
 	
 				<h6>Motivo del viaje: </h6>
-					<div id="motivoViaje"><?=(isset($datosActor['infoMigratoria']['motivoViaje'])) ? $datosActor['infoMigratoria']['motivoViaje'] : ''; ?></div>
+					<div id="motivoViaje"><?=(isset($datosActor['infoMigratoria']['motivoViajeId'])) ? $catalogos['motivoViaje'][$datosActor['infoMigratoria']['motivoViajeId']]['descripcion'] : ''; ?></div>
 		
 		
 		
@@ -161,6 +165,8 @@
 		
 	</fieldset><!--Termina datos de nacimiento-->
     
+    <?php echo br(2);?>
+
     <?php if (isset($datosActor['direccionActor'])) {?>
 		<fieldset>
 		    <div id="pestania" data-collapse>
@@ -205,7 +211,7 @@
 	        $idActor=0;
 	        $clase="Escondido";
 	    } ?>
-	    
+
 	        <!--Comienza relacion con otros actores-->
 	
 	<div id="pestania" data-collapse>
