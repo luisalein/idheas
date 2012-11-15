@@ -14,15 +14,16 @@ class PruebasJulio_c extends CI_Controller
 	function index() 
 	{	
 				   
-			$datos = array(
-				'actores' => array('nombre' => 'Carlos', 'apellidosSiglas' => 'Santiago', 'tipoActorId' => '1','foto'=>''),
-				'datosDeNacimiento' => array()
-			);
+			$datos = array (
+							'tabla' => 'estadosCatalogo',
+							'campo'	=> 'paises_paisId',
+							'valor' => 51
+						);
 			   
 				   
 			echo 'Antes de entrar a la funcion....';
 			  						
-			$Data['datos']=$this->actores_m->agregar_actor_m($datos);
+			$Data['datos']=$this->general_m->mTraerDatosTabla($datos);
 			
 			echo 'Entro a la funcion.....';
 			

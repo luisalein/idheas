@@ -82,10 +82,13 @@
 			
 			$consulta = $this->db->get();
 			
+			$i =0;
+			
 			if($consulta->num_rows() > 0){
 				
 				foreach ($consulta->result_array() as $row) {
-					$datosTabla = $row; 
+					$i++;
+					$datosTabla[$i] = $row; 
 				}
 				return $datosTabla;	
 			
