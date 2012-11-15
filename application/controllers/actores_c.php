@@ -216,6 +216,8 @@ class Actores_c extends CI_Controller {
     function agregar_actor($tipoActorId = 0){
         
         $datos['catalogos'] = $this->traer_catalogos();
+		
+		$datos['filtroPais'] = $this->load->view('actores/filtroPaisEstadoMunicipio_v', $datos, true);
         
         if($tipoActorId > 0){
             

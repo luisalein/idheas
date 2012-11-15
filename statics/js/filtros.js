@@ -324,3 +324,48 @@ function changeTest (tipo) {
     
     });
 } 
+
+
+function changeTest2 (tipo) { 
+	
+		
+	if(tipo == 1){
+		var Index = document.menuForm.datosDeNacimiento_paisesCatalogo_paisId2.options[document.menuForm.datosDeNacimiento_paisesCatalogo_paisId2.selectedIndex].value; 
+	}
+	if(tipo == 2){
+		var Index = document.menuForm.datosDeNacimiento_estadosCatalogo_estadoId2.options[document.menuForm.datosDeNacimiento_estadosCatalogo_estadoId2.selectedIndex].value; 
+
+	}
+	
+	//$("#notasUltimaOcupacion").html(Index+tipo);
+
+	var url = base+'index.php/actores_c/filtroPaisEstado';
+	
+	var data = 'tipo='+tipo+'&id='+Index;
+	
+	$.ajax({
+    
+        url: url,
+    
+        data: data,
+        
+        type: 'POST',
+                
+        success: function(data){
+        	 
+             if(tipo == 1){
+             	$("#datosDeNacimiento_estadosCatalogo_estadoId").html(data);
+             }  
+             if(tipo == 2){
+				$("#datosDeNacimiento_municipiosCatalogo_municipioId2").html(data);
+             }
+            
+        },
+        
+        error: function(){
+        
+           alert("no se pudo");
+        }
+    
+    });
+} 
