@@ -71,9 +71,8 @@
 		</div>
 	
 		<div class="six columns">
-		  
 			<h6>Nivel de Escolaridad:   </h6>
-			<label id="escolaridadId"><?=(isset($datosActor['infoGralActor']['escolaridadId'])) ? $datosActor['infoGralActor']['escolaridadId'] : ''; ?></label>	
+			<label id="escolaridadId"><?=(isset($datosActor['infoGralActor']['escolaridadId'])) ? $catalogos['nivelEscolaridad'][$datosActor['infoGralActor']['escolaridadId']]['descripcion'] : ''; ?></label>	
 			
 			<h6>Última Ocupación:   </h6>
 	        <label id="ocupacionesCatalogo_ultimaOcupacionId"><?=(isset($datosActor['infoGralActor']['ocupacionesCatalogo_ultimaOcupacionId'])) ? $catalogos['ocupacionesCatalogo'][$datosActor['infoGralActor']['ocupacionesCatalogo_ultimaOcupacionId']]['descripcion'] : ''; ?></label>
@@ -161,48 +160,40 @@
 	    </div>
 		
 	</fieldset><!--Termina datos de nacimiento-->
-	<fieldset>
-	    <div id="pestania" data-collapse>
-	        <h2 class="open">Dirección(es) </h2>
-	        <div>
-	            <table>
-	                <thead>
-	                    <tr>
-	                        <th>Tipo de dirección</th>
-	                        <th>Ubicación</th>
-	                        <th>Código Postal</th>
-	                        <th>País</th>
-	                        <th>Estado</th>
-	                        <th>Municipio</th>
-	                        <th>Acciones</th>
-	                    </tr>
-	                </thead>
-	                <tbody>
-                		<?php if (isset($datosActor['direccionActor'])) {
-                			foreach ($datosActor['direccionActor'] as $key => $direccion) {?>
-	                			<tr>
-			                        <td><?=(isset($direccion['tipoDireccionId'])) ? $catalogos['tipoDireccion'][$direccion['tipoDireccionId']]['descripcion'] : ''; ?></td>
-			                        <td><?=(isset($direccion['direccion'])) ? $direccion['direccion'] : ''; ?></td>
-			                        <td><?=(isset($direccion['codigoPostal'])) ? $direccion['codigoPostal'] : ''; ?></td>
-			                        <td><?=(isset($direccion['paisesCatalogo_paisId'])) ? $catalogos['paisesCatalogo'][$direccion['paisesCatalogo_paisId']]['nombre'] : ''; ?></td>
-			                        <td><?=(isset($direccion['estadosCatalogo_estadoId'])) ? $catalogos['estadosCatalogo'][$direccion['estadosCatalogo_estadoId']]['nombre'] : ''; ?></td>
-			                        <td><?=(isset($direccion['municipiosCatalogo_municipioId'])) ? $catalogos['municipiosCatalogo'][$direccion['municipiosCatalogo_municipioId']]['nombre'] : ''; ?></td>                        
-			                        <td><input type="button" class="tiny button"  value="Editar" onclick="nuevaDireccion()"/>
-			                        	<form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarDireccion/<?=$direccion['direccionId']."/".$datosActor['actores']['actorId']."/".$datosActor['actores']['tipoActorId']; ?>" >
-					                     <input type="submit" value="Elminar" class="tiny button" />
-					                 </form>
-			                        </td>
-	                    		</tr>
-	            			<?php }?>
-	            		<?php }?>
-	                </tbody>
-	            </table>
-		        <?php if (isset($datosActor)) {?>
-					<input type="button" class="small button"  value="Agregar dirección" onclick="nuevaDireccion()">
-		        <?php } ?>
-	        </div>
-	    </div>
-	</fieldset>
+    
+    <?php if (isset($datosActor['direccionActor'])) {?>
+		<fieldset>
+		    <div id="pestania" data-collapse>
+		        <h2 class="open">Dirección(es) </h2>
+		        <div>
+		            <table>
+		                <thead>
+		                    <tr>
+		                        <th>Tipo de dirección</th>
+		                        <th>Ubicación</th>
+		                        <th>Código Postal</th>
+		                        <th>País</th>
+		                        <th>Estado</th>
+		                        <th>Municipio</th>
+		                    </tr>
+		                </thead>
+		                <tbody>
+	                			<?php foreach ($datosActor['direccionActor'] as $key => $direccion) {?>
+		                			<tr>
+				                        <td><?=(isset($direccion['tipoDireccionId'])) ? $catalogos['tipoDireccion'][$direccion['tipoDireccionId']]['descripcion'] : ''; ?></td>
+				                        <td><?=(isset($direccion['direccion'])) ? $direccion['direccion'] : ''; ?></td>
+				                        <td><?=(isset($direccion['codigoPostal'])) ? $direccion['codigoPostal'] : ''; ?></td>
+				                        <td><?=(isset($direccion['paisesCatalogo_paisId'])) ? $catalogos['paisesCatalogo'][$direccion['paisesCatalogo_paisId']]['nombre'] : ''; ?></td>
+				                        <td><?=(isset($direccion['estadosCatalogo_estadoId'])) ? $catalogos['estadosCatalogo'][$direccion['estadosCatalogo_estadoId']]['nombre'] : ''; ?></td>
+				                        <td><?=(isset($direccion['municipiosCatalogo_municipioId'])) ? $catalogos['municipiosCatalogo'][$direccion['municipiosCatalogo_municipioId']]['nombre'] : ''; ?></td>                        
+		                    		</tr>
+		            			<?php }?>
+		                </tbody>
+		            </table>
+		        </div>
+		    </div>
+		</fieldset>
+	<?php }?>
 	
 	<fieldset>
 	    <legend>Relacion entre actores </legend>
@@ -214,7 +205,7 @@
 	        $idActor=0;
 	        $clase="Escondido";
 	    } ?>
-	        <h4>Actores individuales o transmigrantes</h4>
+	    
 	        <!--Comienza relacion con otros actores-->
 	
 	<div id="pestania" data-collapse>
