@@ -172,7 +172,7 @@
                     <option></option>
                     <?php if(isset($datosActor['datosDeNacimiento']['paisesCatalogo_paisId'])){
                         foreach($catalogos['paisesCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
-                    <option  value="<?=$item['paisId']?>" <?=($datosActor['datosDeNacimiento']['paisesCatalogo_paisId'] == $item['paisId']) ? 'selected="selected"' : '' ; ?> > <?=$item['nombre']?></option>
+                    <option  value="<?=$item['paisId']?>" <?=($datosActor['datosDeNacimiento']['paisesCatalogo_paisId'] == $item['paisId']) ? 'selected="selected"' : '' ; ?> ><?=$item['nombre']?></option>
                     <?php endforeach; } else { ?>
                         <?php foreach($catalogos['paisesCatalogo'] as $pais):?> <!--muestra los estados civiles-->
                         <option value="<?=$pais['paisId']; ?>"><?=$pais['nombre']; ?></option>
@@ -183,12 +183,13 @@
                 <select id="datosDeNacimiento_estadosCatalogo_estadoId" name="datosDeNacimiento_estadosCatalogo_estadoId">						
                 <option></option>
                 <?php if(isset($datosActor['datosDeNacimiento']['estadosCatalogo_estadoId'])){
-                foreach($catalogos['estadosCatalogo'] as $item): ?> <!--muestra los estados civiles-->
-                <option  value="<?=$item['estadoId']?>" <?=($datosActor['datosDeNacimiento']['estadosCatalogo_estadoId'] == $item['estadoId']) ? 'selected="selected"' : '' ; ?> > <?=$item['nombre']?></option>
-                <?php endforeach; } else { ?>
-                <?php foreach($catalogos['estadosCatalogo'] as $estado):?><!--muestra los estados civiles-->
-                <option value="<?=$estado['estadoId']; ?>"><?=$estado['nombre']; ?></option>
-                <?php endforeach; } ?>
+	                foreach($catalogos['estadosCatalogo'] as $item): ?> <!--muestra los estados civiles-->
+		                <option  value="<?=$item['estadoId']?>" <?=($datosActor['datosDeNacimiento']['estadosCatalogo_estadoId'] == $item['estadoId']) ? 'selected="selected"' : '' ; ?> > <?=$item['nombre']?></option>
+		                <?php endforeach; } 
+		                	else { ?>
+				                <?php foreach($catalogos['estadosCatalogo'] as $estado):?><!--muestra los estados civiles-->
+				               		 <option value="<?=$estado['estadoId']; ?>"><?=$estado['nombre']; ?></option>
+	                <?php endforeach; } ?>
                 </select>
 
                 </div><!----Termina primer mitad de datos de Nacimiento ---->
