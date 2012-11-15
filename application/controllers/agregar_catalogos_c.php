@@ -364,6 +364,24 @@ class Agregar_catalogos_c extends CI_Controller {
         echo 'Catalogos de grupos indigenas insertados exitosamente.<br />';
         
     }
+	
+	public function cAgregarCatalogoMotivoViaje(){
+        
+        $catalogoGruposIndigenas = explode('&', read_file('statics/catalogos/catalogosDeUnSoloNivel/catalogoMotivoDeViaje.csv'));
+        
+        foreach($catalogoGruposIndigenas as $grupoIndigena){
+                
+            $datosGrupo = explode('¬', $grupoIndigena);
+                
+            $gruposIndigenas['gruposIndigenas'][trim($datosGrupo[0])] = array('grupoIndigenaId' => trim($datosGrupo[0]), 'paisId' => trim($datosGrupo[2]), 'descripcion' => trim($datosGrupo[1]), 'notas' => trim($datosGrupo[3]));
+
+        }
+        
+        $this->agregar_catalogos_m->mAgregarCatalogos($gruposIndigenas);
+        
+        echo 'Catalogos de grupos indigenas insertados exitosamente.<br />';
+        
+    }
     
 	 public function cAgregarCatalogoActosDerechoAfectado(){
         

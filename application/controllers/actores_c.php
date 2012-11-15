@@ -574,25 +574,29 @@ class Actores_c extends CI_Controller {
 	/*
 	 * Recibe el tipo 1 => pais ó 2=>estado y obtiene sus estados o municipios respectivamente
 	 * */
-	public function filtroPaisEstado($tipo, $id){
+	public function filtroPaisEstado(){
 		
+		$tipo = $this->input->post("tipo");	
+		
+		$id = $this->input->post("id");	
+				
 		if($tipo == 1){
 			
 			$datosTabla = array('tabla' => 'estadosCatalogo' , 'campo' => 'paises_paisId', 'valor' => $id);
 			
-			$datos['catalogos']['estadosCatalogos'] = $this->general_m->mTraerDatosTabla($datosTabla);
+			$datos['estadosCatalogos'] = $this->general_m->mTraerDatosTabla($datosTabla);
 		
 		}elseif ($tipo == 2) {
 			
 			$datosTabla = array('tabla' => 'municipiosCatalogo' , 'campo' => 'estados_estadoId', 'valor' => $id);
 			
-			$datos['catalogos']['municipiosCatalogos'] = $this->general_m->mTraerDatosTabla($datosTabla);
+			$datos['municipiosCatalogos'] = $this->general_m->mTraerDatosTabla($datosTabla);
 			
 		}else{
 			echo "no se encuentra el tipo de filtro";
 		}
 		
-		return $datos;
+		print_r($datos);
 	}
 
 

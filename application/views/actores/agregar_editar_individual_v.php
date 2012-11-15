@@ -168,6 +168,7 @@
                 <legend>Datos de Nacimiento</legend>
                 <div class="six columns"><!----Primer mitad de datos de Nacimiento ---->
                 <label for="pais">País</label>
+                <input type="hidden" id="tipoFiltroPais" name="1"/>
                 <select id="datosDeNacimiento_paisesCatalogo_paisId" name="datosDeNacimiento_paisesCatalogo_paisId" onchange="changeTest()">						
                     <option></option>
                     <?php if(isset($datosActor['datosDeNacimiento']['paisesCatalogo_paisId'])){
