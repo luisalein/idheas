@@ -44,6 +44,8 @@ class Actores_c extends CI_Controller {
         
         $datos['tipoDireccion'] = $this->general_m->obtener_todo('tipoDireccionCatalogo', 'tipoDireccionId', 'descripcion');
 
+		$datos['motivoViaje'] = $this->general_m->obtener_todo('motivoViajeCatalogo', 'motivoViajeId', 'descripcion');
+		
         $datos['listaTodosActores'] = $this->actores_m-> mListaTodosActores();
 
         return $datos;
