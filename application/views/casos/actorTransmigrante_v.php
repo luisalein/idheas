@@ -41,7 +41,7 @@
 	
 	
 				<br />
-				<div class="twelve columns seleccionarActorScorll" id="ventana1Filtro">				    	
+				<div class="twelve columns seleccionarActorScorll" id="ventana4Filtro">				    	
 					<?php if(isset($actoresTransmigrantes)):?>
 				    	<?php foreach ($actoresTransmigrantes as $individual) {?>
 	
