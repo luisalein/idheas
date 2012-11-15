@@ -295,15 +295,16 @@ class Actores_c extends CI_Controller {
 		
 		$foto = $this->cargarFoto();
 		
-		$datos['datosDeNacimiento'] = array();
-		
-		$datos['infoGralActor'] = array();
-		
-		$datos['alias'] = array();
-		
-		$datos['infoContacto'] = array();
-		
-		$datos['infoGralActores'] = array();
+		if(!isset($datos['datosDeNacimiento']))
+			$datos['datosDeNacimiento'] = array();
+		if(!isset($datos['infoGralActor']))
+			$datos['infoGralActor'] = array();
+		if(!isset($datos['infoGralActor']))
+			$datos['infoGralActor'] = array();
+		if(!isset($datos['infoContacto']))
+			$datos['infoContacto'] = array();
+		if(!isset($datos['infoGralActores']))
+			$datos['infoGralActores'] = array();
 		
 		$datos['actores']['foto'] = $foto;
 		
@@ -589,10 +590,13 @@ class Actores_c extends CI_Controller {
 			$datos['estadosCatalogos'] = $this->general_m->mTraerDatosTabla($datosTabla);
 			
 			$data="<option></option>";
-			
-			foreach($datos['estadosCatalogos']  as $estado){
+			if(!empty($datos['estadosCatalogos'] ))
+			{
+				foreach($datos['estadosCatalogos']  as $estado){
 	                $data = $data.'<option value="'.$estado['estadoId'].'">'.$estado['nombre'].'</option>';
-	         }
+	         	}
+			}
+			
 		
 		}elseif ($tipo == 2) {
 			
@@ -602,9 +606,12 @@ class Actores_c extends CI_Controller {
 			
 			$data="<option></option>";
 			
-			foreach($datos['municipiosCatalogos']   as $municipio){
-	                $data = $data.'<option value="'.$municipio['estadoId'].'">'.$municipio['nombre'].'</option>';
-	         }
+			if(!empty($datos['municipiosCatalogos'])){
+				foreach($datos['municipiosCatalogos']   as $municipio){
+	                $data = $data.'<option value="'.$municipio['municipioId'].'">'.$municipio['nombre'].'</option>';
+	        	 }
+			
+			}
 			
 		}else{
 			echo "no se encuentra el tipo de filtro";

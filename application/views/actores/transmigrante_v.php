@@ -141,7 +141,7 @@
 	                <div id="expCruceDestino"><?=(isset($datosActor['infoMigratoria']['expCruceDestino'])) ? $datosActor['infoMigratoria']['expCruceDestino'] : ''; ?></div>
 	
 				<h6>Motivo del viaje: </h6>
-					<div id="motivoViaje"><?=(isset($datosActor['infoMigratoria']['motivoViaje'])) ? $datosActor['infoMigratoria']['motivoViaje'] : ''; ?></div>
+					<div id="motivoViaje"><?=(isset($datosActor['infoMigratoria']['motivoViajeId'])) ? $catalogos['motivoViaje'][$datosActor['infoMigratoria']['motivoViajeId']]['descripcion'] : ''; ?></div>
 		
 		
 		
@@ -205,7 +205,7 @@
 	        $idActor=0;
 	        $clase="Escondido";
 	    } ?>
-	    
+
 	        <!--Comienza relacion con otros actores-->
 	
 	<div id="pestania" data-collapse>

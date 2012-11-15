@@ -307,12 +307,12 @@ function changeTest (tipo) {
         type: 'POST',
                 
         success: function(data){
-        	
+        	 
              if(tipo == 1){
-             	$
+             	$("#datosDeNacimiento_estadosCatalogo_estadoId").html(data);
              }  
              if(tipo == 2){
-             	
+				$("#datosDeNacimiento_municipiosCatalogo_municipioId").html(data);
              }
             
         },

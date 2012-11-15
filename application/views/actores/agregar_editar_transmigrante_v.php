@@ -337,11 +337,17 @@
                 <?php endfor;
                 } ?>
             </select>
-            <pre><?= print_r($catalogos)?></pre>
             <label for="motivoViaje">Motivo del viaje</label>
-
-            <input name="infoMigratoria_motivoViaje" id="infoMigratoria_motivoViaje" type="text">
-            </span>
+                <select name="infoMigratoria_motivoViajeId" id="infoMigratoria_motivoViajeId">
+                <option></option>
+                <?php if(isset($datosActor['infoMigratoria']['motivoViajeId'])){
+                foreach($catalogos['motivoViaje'] as $key => $item): ?> <!--muestra los estados civiles-->
+                <option  value="<?=$item['motivoViajeId']?>" <?=($datosActor['infoMigratoria']['motivoViajeId'] == $item['motivoViajeId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
+                <?php endforeach; } else { ?>
+                <?php foreach($catalogos['motivoViaje'] as $item):?> <!--muestra los estados civiles-->
+                    <option value="<?=$item['motivoViajeId']; ?>"><?=$item['descripcion']; ?></option>
+                <?php endforeach; } ?>
+                </select>
             <!--<input id="BotonmasinfoMigratoria_motivoViaje" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" /> 
             <span id="TextoEspecial_infoMigratoria_motivoViaje" class="Escondido twelve columns">
             </span>-->
