@@ -957,21 +957,13 @@ class Actores_c extends CI_Controller {
 			   	
 						$data['individuales'] = $this->actores_m->mBuscarActoresNombre($cadena,1);
 						
-						$data['transmigrantes'] = $this->actores_m->mBuscarActoresNombre($cadena,2);
-						
-					   
 					}elseif((empty($cadena)) && ($tipoFiltro != 0)){
 						
 						$data['individuales'] = $this->actores_m->mFiltrosBusquedaActor($tipoFiltro,1);	
 						
-						$data['transmigrantes'] = $this->actores_m->mFiltrosBusquedaActor($tipoFiltro,2);	
-							
 					}elseif((!empty($cadena)) && ($tipoFiltro != 0)){
 						
 						$data['individuales'] = $this->actores_m->mBusquedaActorFiltroNombre($tipoFiltro, $cadena,1);
-						
-						$data['transmigrantes'] = $this->actores_m->mBusquedaActorFiltroNombre($tipoFiltro, $cadena,2);
-						
 						
 					}else{
 		            	echo "error";
@@ -988,15 +980,6 @@ class Actores_c extends CI_Controller {
 						    		<b class="nine columns">'.$individual['nombre']." ".$individual['apellidosSiglas'].'</b>
 							        </div >';
 							}
-						}
-						if(isset($data['transmigrantes']) && $data['transmigrantes'] !=0){
-							foreach ($data['transmigrantes'] as $individual) {
-	
-							    $datos =  $datos.'<div class="twelve columns lista" onclick="Seleccionar('.$individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto'].')"> 
-							    		<img class="three columns imagenFoto" src="'.base_url().$individual['foto'].'" />
-							    		<b class="nine columns">'.$individual['nombre']." ".$individual['apellidosSiglas'].'</b>
-								        </div >';
-						     }
 						}
 				    	
 					  }	
@@ -1109,6 +1092,43 @@ class Actores_c extends CI_Controller {
 	
 					print_r($datos);
 				break;	    
+				case(4): 
+	
+					if ((!empty($cadena)) && ($tipoFiltro == 0)){
+			   	
+						$data['transmigrantes'] = $this->actores_m->mBuscarActoresNombre($cadena,2);
+						
+					   
+					}elseif((empty($cadena)) && ($tipoFiltro != 0)){
+						
+						$data['transmigrantes'] = $this->actores_m->mFiltrosBusquedaActor($tipoFiltro,2);	
+							
+					}elseif((!empty($cadena)) && ($tipoFiltro != 0)){
+						
+						$data['transmigrantes'] = $this->actores_m->mBusquedaActorFiltroNombre($tipoFiltro, $cadena,2);
+						
+						
+					}else{
+		            	echo "error";
+					}
+	                $datos="";
+			 		if($data == 0){
+						echo "No existen actores con ese filtro";
+					}else{
+						
+						if(isset($data['transmigrantes']) && $data['transmigrantes'] !=0){
+							foreach ($data['transmigrantes'] as $individual) {
+	
+							    $datos =  $datos.'<div class="twelve columns lista" onclick="Seleccionar('.$individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto'].')"> 
+							    		<img class="three columns imagenFoto" src="'.base_url().$individual['foto'].'" />
+							    		<b class="nine columns">'.$individual['nombre']." ".$individual['apellidosSiglas'].'</b>
+								        </div >';
+						     }
+						}
+				    	
+					  }	
+	
+					print_r($datos);
 	        }
 		}
 		

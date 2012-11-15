@@ -32,7 +32,7 @@
 								<input type="radio" name="filtroR" onclick="filtroRadio(4)" value="4" id=""/>Interventor
 								<input type="radio" name="filtroR" onclick="filtroRadio(8)" value="8" id=""/>Sin filtro
 								<input type="hidden" name="1" id="tipoActor" />
-								<input type="hidden" name="1" id="tipoVentana" />
+								<input type="hidden" name="4" id="tipoVentana" />
 							</div>	
 						</form>		  	
 					</div>	
