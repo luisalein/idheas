@@ -1,4 +1,4 @@
-<form action="<?=$action; ?>" method="post" enctype="multipart/form-data">
+<form action="<?=$action; ?>" method="post" enctype="multipart/form-data" id="menuForm" name="menuForm">
     <div class="three columns">
                 <?php if(isset($datosActor['actores']['foto'])){ ?>    
 
@@ -168,32 +168,27 @@
                 <legend>Datos de Nacimiento</legend>
                 <div class="six columns"><!----Primer mitad de datos de Nacimiento ---->
                 <label for="pais">País</label>
-                <form name="formPais" id="formPais">
-                	<select id="datosDeNacimiento_paisesCatalogo_paisId" name="datosDeNacimiento_paisesCatalogo_paisId">						
-	                    <option></option>
-	                    <?php if(isset($datosActor['datosDeNacimiento']['paisesCatalogo_paisId'])){
-	                        foreach($catalogos['paisesCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
-	                    <option  value="<?=$item['paisId']?>" <?=($datosActor['datosDeNacimiento']['paisesCatalogo_paisId'] == $item['paisId']) ? 'selected="selected"' : '' ; ?> ><?=$item['nombre']?></option>
-	                    <?php endforeach; } else { ?>
-	                        <?php foreach($catalogos['paisesCatalogo'] as $pais):?> <!--muestra los estados civiles-->
-	                        <option value="<?=$pais['paisId']; ?>"><?=$pais['nombre']; ?></option>
-	                    <?php endforeach; } ?>
-	                </select>
-                	
-                </form>
-                
+                <select id="datosDeNacimiento_paisesCatalogo_paisId" name="datosDeNacimiento_paisesCatalogo_paisId" onchange="changeTest()">						
+                    <option></option>
+                    <?php if(isset($datosActor['datosDeNacimiento']['paisesCatalogo_paisId'])){
+                        foreach($catalogos['paisesCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
+                    <option  value="<?=$item['paisId']?>" <?=($datosActor['datosDeNacimiento']['paisesCatalogo_paisId'] == $item['paisId']) ? 'selected="selected"' : '' ; ?> > <?=$item['nombre']?></option>
+                    <?php endforeach; } else { ?>
+                        <?php foreach($catalogos['paisesCatalogo'] as $pais):?> <!--muestra los estados civiles-->
+                        <option value="<?=$pais['paisId']; ?>"><?=$pais['nombre']; ?></option>
+                    <?php endforeach; } ?>
+                </select>
 
                 <label for="estado">Estado</label>
                 <select id="datosDeNacimiento_estadosCatalogo_estadoId" name="datosDeNacimiento_estadosCatalogo_estadoId">						
                 <option></option>
                 <?php if(isset($datosActor['datosDeNacimiento']['estadosCatalogo_estadoId'])){
-	                foreach($catalogos['estadosCatalogo'] as $item): ?> <!--muestra los estados civiles-->
-		                <option  value="<?=$item['estadoId']?>" <?=($datosActor['datosDeNacimiento']['estadosCatalogo_estadoId'] == $item['estadoId']) ? 'selected="selected"' : '' ; ?> > <?=$item['nombre']?></option>
-		                <?php endforeach; } 
-		                	else { ?>
-				                <?php foreach($catalogos['estadosCatalogo'] as $estado):?><!--muestra los estados civiles-->
-				               		 <option value="<?=$estado['estadoId']; ?>"><?=$estado['nombre']; ?></option>
-	                <?php endforeach; } ?>
+                foreach($catalogos['estadosCatalogo'] as $item): ?> <!--muestra los estados civiles-->
+                <option  value="<?=$item['estadoId']?>" <?=($datosActor['datosDeNacimiento']['estadosCatalogo_estadoId'] == $item['estadoId']) ? 'selected="selected"' : '' ; ?> > <?=$item['nombre']?></option>
+                <?php endforeach; } else { ?>
+                <?php foreach($catalogos['estadosCatalogo'] as $estado):?><!--muestra los estados civiles-->
+                <option value="<?=$estado['estadoId']; ?>"><?=$estado['nombre']; ?></option>
+                <?php endforeach; } ?>
                 </select>
 
                 </div><!----Termina primer mitad de datos de Nacimiento ---->
@@ -231,6 +226,7 @@
                 </div>  <!--Segunda mitad de nformación de contacto---->
             </fieldset><!--Termina información del contacto-->
 
-			<input class="tiny button" type="submit" value="Guardar" />
+
+                <input class="tiny button" type="submit" value="Guardar" />
     </div>
 </form>
