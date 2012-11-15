@@ -14,7 +14,7 @@ class Agregar_catalogos_c extends CI_Controller {
     
     public function index(){
                 
-        $this->cAgregarCatalogoDeOcupaciones();
+        /*$this->cAgregarCatalogoDeOcupaciones();
         
         $this->cAgregarCatalogoGruposIndigenas();
         
@@ -50,7 +50,9 @@ class Agregar_catalogos_c extends CI_Controller {
 		
 		$this->cAgregarCatalogoGradoInvolucramientoN1();
 		
-		$this->cAgregarCatalogoGradoInvolucramientoN2();
+		$this->cAgregarCatalogoGradoInvolucramientoN2();*/
+		
+		$this->cAgregarCatalogoMotivoViaje();
 		
 		//$this->cAgregarCatalogoActosDerechoAfectado();
         
@@ -306,7 +308,7 @@ class Agregar_catalogos_c extends CI_Controller {
                     $datosNivel = explode('¬', $nivelDePerpetrador);
                 
                     $tiposDePerpetradorNiveles['tipoPerpetradorN1Catalogo'][trim($datosNivel[0])] = array('tipoPerpetradorN1Id' => trim($datosNivel[0]), 'descripcion' => trim($datosNivel[1]), 'notas' => trim($datosNivel[2]));
-                
+                cAgregarCatalogoMotivoViaje();
         }
         
         foreach($tipoDePerpetrador[2] as $nivelDePerpetrador){
@@ -367,19 +369,18 @@ class Agregar_catalogos_c extends CI_Controller {
 	
 	public function cAgregarCatalogoMotivoViaje(){
         
-        $catalogoGruposIndigenas = explode('&', read_file('statics/catalogos/catalogosDeUnSoloNivel/catalogoMotivoDeViaje.csv'));
-        
-        foreach($catalogoGruposIndigenas as $grupoIndigena){
-                
-            $datosGrupo = explode('¬', $grupoIndigena);
-                
-            $gruposIndigenas['gruposIndigenas'][trim($datosGrupo[0])] = array('grupoIndigenaId' => trim($datosGrupo[0]), 'paisId' => trim($datosGrupo[2]), 'descripcion' => trim($datosGrupo[1]), 'notas' => trim($datosGrupo[3]));
-
+        $catalogoGruposIndigenas = explode('&', read_file('statics/catalogos/catalogosDeUnSoloNivel/catalogoMotivoDelViaje.csv'));
+      
+        foreach($catalogoGruposIndigenas as $motivoViaje){
+             
+           $datosGrupo = explode('¬', $motivoViaje);    
+           $motivosViaje['motivoViajeCatalogo'][trim($datosGrupo[0])] = array('motivoViajeId' => trim($datosGrupo[0]), 'descripcion' => trim($datosGrupo[1]));
+			
         }
         
-        $this->agregar_catalogos_m->mAgregarCatalogos($gruposIndigenas);
+        $this->agregar_catalogos_m->mAgregarCatalogos($motivosViaje);
         
-        echo 'Catalogos de grupos indigenas insertados exitosamente.<br />';
+        echo 'Catalogos de motivos Viaje insertados exitosamente.<br />';
         
     }
     
