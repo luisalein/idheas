@@ -29,18 +29,16 @@
         <input autofocus type="text" id="actores_nombre" name="actores_nombre"  <?=(isset($datosActor['actores']['nombre']) ? 'value="'.$datosActor['actores']['nombre'].'"' : ''); ?> required />
 </p>
 					
-<label for="tipoActor">Notas Tipo de actor colectivo</label>
-<div id="notasTipoActorColectivo"></div>
 <label for="tipoActor">Tipo de actor colectivo</label>
 <span id="infoGralActores_tipoActorColectivoIdSelect">
 <select name="infoGralActores_tipoActorColectivoId" id="infoGralActores_tipoActorColectivoId">
 <option></option>
 <?php if(isset($datosActor['infoGralActores']['tipoActorColectivoId'])){
 foreach($catalogos['tipoActorColectivo'] as $key => $item): ?> <!--muestra los estados civiles-->
-<option onclick="notasCatalogos('<?=$item['descripcion']; ?>','notasTipoActorColectivo')" value="<?=$item['tipoActorColectivoId']?>" <?=($datosActor['infoGralActores']['tipoActorColectivoId'] == $item['tipoActorColectivoId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
+<option onclick="notasCatalogos('<?=$item['notas']; ?>','notasTipoActorColectivo')" value="<?=$item['tipoActorColectivoId']?>" <?=($datosActor['infoGralActores']['tipoActorColectivoId'] == $item['tipoActorColectivoId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
 <?php endforeach; } else { ?>
 <?php foreach($catalogos['tipoActorColectivo'] as $key => $item):?> <!--muestra los estados civiles-->
-<option onclick="notasCatalogos('<?=$item['descripcion']; ?>','notasTipoActorColectivo')" value="<?=$item['tipoActorColectivoId']; ?>"><?=$item['descripcion']; ?></option>
+<option onclick="notasCatalogos('<?=$item['notas']; ?>','notasTipoActorColectivo')" value="<?=$item['tipoActorColectivoId']; ?>"><?=$item['descripcion']; ?></option>
 <?php endforeach; } ?>
 </select>
 </span>
