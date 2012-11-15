@@ -285,8 +285,34 @@ function eliminarCaso(idCaso){
 
 function changeTest () { 
 	
-	var index = document.menuForm.datosDeNacimiento_paisesCatalogo_paisId.options[document.menuForm.datosDeNacimiento_paisesCatalogo_paisId.selectedIndex].value; 
+	var Index = document.menuForm.datosDeNacimiento_paisesCatalogo_paisId.options[document.menuForm.datosDeNacimiento_paisesCatalogo_paisId.selectedIndex].value; 
+	
+	var tipo = $('#tipoFiltroPais').attr('name');	
 		
-	$("#notasUltimaOcupacion").html(Index);
+	//$("#notasUltimaOcupacion").html(Index+tipo);
 
+	var url = base+'index.php/actores_c/filtroPaisEstado';
+	
+	var data = 'tipo='+tipo+'&id='+Index;
+	
+	$.ajax({
+    
+        url: url,
+    
+        data: data,
+        
+        type: 'POST',
+                
+        success: function(data){
+        	
+             alert(data);    
+            
+        },
+        
+        error: function(){
+        
+           alert("no se pudo");
+        }
+    
+    });
 } 

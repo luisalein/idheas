@@ -19,9 +19,9 @@ class PruebasAle_c extends CI_Controller
  									'noVictimas' => '11'
 	 								));
 									
-									
-	$Data['datos']= $this->casos_m->mTraerDatosCaso(1);
-	$this->casos_m->mAgregarDerechosAfectados($datos);
+	$datosTabla = array('tabla' => 'estadosCatalogo' , 'campo' => 'paises_paisId', 'valor' => 51);
+			
+	$Data['datos']= $this->general_m->mTraerDatosTabla($datosTabla);
 		//  $this->load->view('actores/lista_v', $datos, true);
 			
 	 $this->load->view('pruebasAle',$Data);
