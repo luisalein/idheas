@@ -491,7 +491,13 @@ class Actores_c extends CI_Controller {
                     break;
 
                     case(2): 
-
+						//si esta relacionado con un caso y si si envior relacionadoCaso
+						$relaciones = $this->actores_m->mTraeCasosRelacionadosActor($actorId);
+						
+						if($relaciones != '0'){
+							$datos['relacionadoCaso'] = 1;
+						}
+						
                         $datos['form'] = $this->load->view('actores/agregar_editar_transmigrante_v', $datos, true);
 
                     break;
