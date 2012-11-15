@@ -241,7 +241,7 @@ function eliminarActor(id,tipoActor){
         	
              alert(data);    
               
-             document.location.href = base+'index.php/actores_c/mostrar_actor/0/1';
+             document.location.href = base+'index.php/actores_c/mostrar_actor/0/'+tipoActor;
         },
         
         error: function(){
@@ -285,56 +285,23 @@ function eliminarCaso(idCaso){
 
 function changeTest (tipo) { 
 	
-	if(tipo == 1){
-		var Index = document.menuForm.datosDeNacimiento_paisesCatalogo_paisId.options[document.menuForm.datosDeNacimiento_paisesCatalogo_paisId.selectedIndex].value; 
-	}
-	if(tipo == 2){
-		var Index = document.menuForm.datosDeNacimiento_estadosCatalogo_estadoId.options[document.menuForm.datosDeNacimiento_estadosCatalogo_estadoId.selectedIndex].value; 
-
-	}
-	//$("#notasUltimaOcupacion").html(Index+tipo);
-
-	var url = base+'index.php/actores_c/filtroPaisEstado';
+	var actor = $('#tipoActorAE').attr('name');
+	if(actor == 1 || actor == 2){
+		if(tipo == 1){
+			var Index = document.menuForm.datosDeNacimiento_paisesCatalogo_paisId.options[document.menuForm.datosDeNacimiento_paisesCatalogo_paisId.selectedIndex].value; 
+		}
+		if(tipo == 2){
+			var Index = document.menuForm.datosDeNacimiento_estadosCatalogo_estadoId.options[document.menuForm.datosDeNacimiento_estadosCatalogo_estadoId.selectedIndex].value; 
 	
-	var data = 'tipo='+tipo+'&id='+Index;
+		}
+	}else{
+		if(tipo == 1){
+			var Index = document.menuForm.direccionActor_paisesCatalogo_paisId.options[document.menuForm.direccionActor_paisesCatalogo_paisId.selectedIndex].value; 
+		}
+		if(tipo == 2){
+			var Index = document.menuForm.direccionActor_estadosCatalogo_estadoId.options[document.menuForm.direccionActor_estadosCatalogo_estadoId.selectedIndex].value; 
 	
-	$.ajax({
-    
-        url: url,
-    
-        data: data,
-        
-        type: 'POST',
-                
-        success: function(data){
-        	 
-             if(tipo == 1){
-             	$("#datosDeNacimiento_estadosCatalogo_estadoId").html(data);
-             }  
-             if(tipo == 2){
-				$("#datosDeNacimiento_municipiosCatalogo_municipioId").html(data);
-             }
-            
-        },
-        
-        error: function(){
-        
-           alert("no se pudo");
-        }
-    
-    });
-} 
-
-
-function changeTest2 (tipo) { 
-	
-		
-	if(tipo == 1){
-		var Index = document.menuForm.datosDeNacimiento_paisesCatalogo_paisId2.options[document.menuForm.datosDeNacimiento_paisesCatalogo_paisId2.selectedIndex].value; 
-	}
-	if(tipo == 2){
-		var Index = document.menuForm.datosDeNacimiento_estadosCatalogo_estadoId2.options[document.menuForm.datosDeNacimiento_estadosCatalogo_estadoId2.selectedIndex].value; 
-
+		}
 	}
 	
 	//$("#notasUltimaOcupacion").html(Index+tipo);
@@ -352,13 +319,25 @@ function changeTest2 (tipo) {
         type: 'POST',
                 
         success: function(data){
-        	 
-             if(tipo == 1){
-             	$("#datosDeNacimiento_estadosCatalogo_estadoId").html(data);
-             }  
-             if(tipo == 2){
-				$("#datosDeNacimiento_municipiosCatalogo_municipioId2").html(data);
-             }
+        	
+        	if(actor == 1 || actor == 2){
+        		if(tipo == 1){
+	             	$("#datosDeNacimiento_estadosCatalogo_estadoId").html(data);
+	             }  
+	             if(tipo == 2){
+					$("#datosDeNacimiento_municipiosCatalogo_municipioId").html(data);
+	             }
+        	}else{
+        		
+        		if(tipo == 1){
+	             	$("#direccionActor_estadosCatalogo_estadoId").html(data);
+	             }  
+	             if(tipo == 2){
+					$("#direccionActor_municipiosCatalogo_municipioId").html(data);
+	             }
+        		
+        	}
+             
             
         },
         
@@ -369,3 +348,4 @@ function changeTest2 (tipo) {
     
     });
 } 
+

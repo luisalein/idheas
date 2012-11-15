@@ -1,7 +1,7 @@
 <form action="<?=$action; ?>" method="post" enctype="multipart/form-data" id="menuForm" name="menuForm">
+    <input type="hidden" id="tipoActorAE"  name="2"/>
     <div class="three columns">
-                <?php if(isset($datosActor)){ ?>    
-
+                <?php if(isset($datosActor)){ ?> 
                 <input type="hidden" value="<?=$actorId; ?>" name="actores_actorId" />
                     <img class="twelve columns" src="<?=base_url().$datosActor['actores']['foto']; ?>" />
                 <?php }?>

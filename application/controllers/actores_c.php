@@ -217,8 +217,6 @@ class Actores_c extends CI_Controller {
         
         $datos['catalogos'] = $this->traer_catalogos();
 		
-		$datos['filtroPais'] = $this->load->view('actores/filtroPaisEstadoMunicipio_v', $datos, true);
-        
         if($tipoActorId > 0){
             
             $datos['action'] = base_url().'index.php/actores_c/agregar_actor_bd';
@@ -226,19 +224,22 @@ class Actores_c extends CI_Controller {
                 switch ($tipoActorId){
 
                     case(1):
-
+						$datos['tipo'] = '1';
+						$datos['filtroPais'] = $this->load->view('actores/filtroPaisEstadoMunicipio_v', $datos, true);
                         $datos['form'] = $this->load->view('actores/agregar_editar_individual_v', $datos, true);
 
                     break;
 
                     case(2): 
-
+						$datos['tipo'] = '2';
+						$datos['filtroPais'] = $this->load->view('actores/filtroPaisEstadoMunicipio_v', $datos, true);
                         $datos['form'] = $this->load->view('actores/agregar_editar_transmigrante_v', $datos, true);
 
                     break;
 
                     case(3): 
-
+						$datos['tipo'] = '3';
+						$datos['filtroPais'] = $this->load->view('actores/filtroPaisEstadoMunicipio_v', $datos, true);
                         $datos['form'] = $this->load->view('actores/agregar_editar_colectivo_v', $datos, true);
 
                     break;
@@ -294,17 +295,27 @@ class Actores_c extends CI_Controller {
             	$datos[$nombre_tabla][$nombre_campo] = $valor; 
 
         } 
-		
+		print_r($datos);
 		$foto = $this->cargarFoto();
 		
 		if(!isset($datos['datosDeNacimiento']))
 			$datos['datosDeNacimiento'] = array();
+			
 		if(!isset($datos['infoGralActor']))
 			$datos['infoGralActor'] = array();
+		
+		if(!isset($datos['direccionActor']))
+			$datos['direccionActor'] = array();
+		
 		if(!isset($datos['infoGralActor']))
 			$datos['infoGralActor'] = array();
+		
 		if(!isset($datos['infoContacto']))
 			$datos['infoContacto'] = array();
+		
+		if((!isset($datos['infoMigratoria'])) && $datos['actores']['tipoActorId'] == '2')
+			$datos['infoMigratoria'] = array();
+		
 		if(!isset($datos['infoGralActores']))
 			$datos['infoGralActores'] = array();
 		
@@ -483,6 +494,8 @@ class Actores_c extends CI_Controller {
         
         $datos['catalogos'] = $this->traer_catalogos();
         
+        
+        
         if($tipoActorId > 0){
             
             $datos['action'] = base_url().'index.php/actores_c/editar_actor_bd';
@@ -490,12 +503,15 @@ class Actores_c extends CI_Controller {
                 switch ($tipoActorId){
 
                     case(1):
-
+						$datos['tipo'] = '1';
+						$datos['filtroPais'] = $this->load->view('actores/filtroPaisEstadoMunicipio_v', $datos, true);
                         $datos['form'] = $this->load->view('actores/agregar_editar_individual_v', $datos, true);
 
                     break;
 
                     case(2): 
+						$datos['tipo'] = '2';
+						$datos['filtroPais'] = $this->load->view('actores/filtroPaisEstadoMunicipio_v', $datos, true);
 						//si esta relacionado con un caso y si si envior relacionadoCaso
 						$relaciones = $this->actores_m->mTraeCasosRelacionadosActor($actorId);
 						
@@ -508,7 +524,8 @@ class Actores_c extends CI_Controller {
                     break;
 
                     case(3): 
-
+						$datos['tipo'] = '3';
+						$datos['filtroPais'] = $this->load->view('actores/filtroPaisEstadoMunicipio_v', $datos, true);
                         $datos['form'] = $this->load->view('actores/agregar_editar_colectivo_v', $datos, true);
 
                     break;
@@ -564,6 +581,7 @@ class Actores_c extends CI_Controller {
             }
 
         }
+		
 		if(!isset($datos['actores']['foto'])){
 			$foto = $this->cargarFoto();
 		
@@ -572,7 +590,7 @@ class Actores_c extends CI_Controller {
 		
         $this->actores_m->mActualizaDatosActor($datos['actores']['actorId'], $datos);
         
-       redirect(base_url().'index.php/actores_c/mostrar_actor/'.$datos['actores']['actorId'].'/'.$_POST['actores_tipoActorId']);
+      	redirect(base_url().'index.php/actores_c/mostrar_actor/'.$datos['actores']['actorId'].'/'.$_POST['actores_tipoActorId']);
         
     }
 
