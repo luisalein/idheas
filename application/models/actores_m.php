@@ -27,8 +27,7 @@
         function agregar_actor_m($datos){
             
 		
-            print_r($datos);
-			
+           
             $this->db->insert('actores', $datos['actores']);
             
             $obtener_id = $this->db->select_max('actorId')->from('actores')->get();
@@ -43,6 +42,7 @@
                 
             }
             
+			
             foreach($datos as $tabla => $campo){
                 
                 if($tabla != 'actores' && $tabla != ''){
@@ -54,7 +54,7 @@
                 }
                 
             }
-            
+
             return $actorId;
                     
         }

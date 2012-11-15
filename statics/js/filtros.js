@@ -283,4 +283,10 @@ function eliminarCaso(idCaso){
 }
 
 
+function changeTest () { 
+	
+	var index = document.menuForm.datosDeNacimiento_paisesCatalogo_paisId.options[document.menuForm.datosDeNacimiento_paisesCatalogo_paisId.selectedIndex].value; 
+		
+	$("#notasUltimaOcupacion").html(Index);
 
+} 

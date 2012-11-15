@@ -1,4 +1,4 @@
-<form action="<?=$action; ?>" method="post" enctype="multipart/form-data">
+<form action="<?=$action; ?>" method="post" enctype="multipart/form-data" id="menuForm" name="menuForm">
     <div class="three columns">
                 <?php if(isset($datosActor['actores']['foto'])){ ?>    
 
@@ -168,7 +168,7 @@
                 <legend>Datos de Nacimiento</legend>
                 <div class="six columns"><!----Primer mitad de datos de Nacimiento ---->
                 <label for="pais">País</label>
-                <select id="datosDeNacimiento_paisesCatalogo_paisId" name="datosDeNacimiento_paisesCatalogo_paisId">						
+                <select id="datosDeNacimiento_paisesCatalogo_paisId" name="datosDeNacimiento_paisesCatalogo_paisId" onchange="changeTest()">						
                     <option></option>
                     <?php if(isset($datosActor['datosDeNacimiento']['paisesCatalogo_paisId'])){
                         foreach($catalogos['paisesCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
