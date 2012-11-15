@@ -123,7 +123,6 @@
                 <option  value="<?=$item['grupoIndigenaId']; ?>"><?=$item['descripcion']; ?></option>
                 <?php endforeach; } ?>
                 </select>
-                <input id="BotonmasinfoGralActor_gruposIndigenas_grupoIndigenaId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />
                 </div><!----Termina primer mitad de detalles---->
                 <div class="six columns"><!----Segunda mitad de detalles---->
 
@@ -141,8 +140,6 @@
                     <?php endforeach;}?>    
                 </select>
 
-                <input id="BotonmasinfoGralActor_escolaridadId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />	
-
                 <label for="UltimaOcupacion">Última Ocupación</label>
                 <select id="infoGralActor_ocupacionesCatalogo_ultimaOcupacionId" name="infoGralActor_ocupacionesCatalogo_ultimaOcupacionId">						
                     <option></option>
@@ -159,8 +156,6 @@
                                 <?php } ?>
                     <?php endforeach; } ?>
                 </select>
-
-                <input id="BotonmasinfoGralActor_OcupacionesCatalogo_UltimaOcupacionId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />	
                 
                 <label for="UltimaOcupacion">Notas Última Ocupación</label>
                 <div id="notasUltimaOcupacion"></div>
@@ -184,7 +179,6 @@
                     <?php endforeach; } ?>
                 </select>
 
-                <input id="BotonmasdatosDeNacimiento_paisesCatalogo_paisId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />	
                 <label for="estado">Estado</label>
                 <select id="datosDeNacimiento_estadosCatalogo_estadoId" name="datosDeNacimiento_estadosCatalogo_estadoId">						
                 <option></option>
@@ -196,7 +190,7 @@
                 <option value="<?=$estado['estadoId']; ?>"><?=$estado['nombre']; ?></option>
                 <?php endforeach; } ?>
                 </select>
-                <input id="BotonmasinfoGralActor_OcupacionesCatalogo_UltimaOcupacionId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />	
+
                 </div><!----Termina primer mitad de datos de Nacimiento ---->
                 <div class="six columns"><!----Segunda mitad de datos de Nacimiento ---->
                 <label for="municipio">Municipio</label>
@@ -212,7 +206,7 @@
                         <?php endforeach; ?>
                     <?php } ?>
                 </select>
-                <input id="BotonmasdatosDeNacimiento_municipiosCatalogo_municipioId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />	
+                
                 <label for="fechaNacimiento">Fecha de nacimiento</label>
                 <input type="text" id="fechaDeNacimientoIndividual" name="datosDeNacimiento_fechaNacimiento" <?=(isset($datosActor['datosDeNacimiento']['fechaNacimiento']) ? 'value="'.$datosActor['datosDeNacimiento']['fechaNacimiento'].'"' : ''); ?> placeholder="AAAA-MM-DD" />
                 </div>  <!----Termina segunda mitad de datos de Nacimiento ---->

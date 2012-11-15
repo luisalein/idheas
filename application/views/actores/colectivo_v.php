@@ -1,4 +1,3 @@
-<pre><?= print_r($datosActor)?></pre>
 <div class="two columns">
 	<?php if(isset($datosActor['actores'])){?>
     <img src="<?=base_url().$datosActor['actores']['foto']; ?>" />
