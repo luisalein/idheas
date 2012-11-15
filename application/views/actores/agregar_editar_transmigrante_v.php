@@ -337,7 +337,7 @@
                 <?php endfor;
                 } ?>
             </select>
-
+            <pre><?= print_r($catalogos)?></pre>
             <label for="motivoViaje">Motivo del viaje</label>
 
             <input name="infoMigratoria_motivoViaje" id="infoMigratoria_motivoViaje" type="text">
@@ -382,7 +382,7 @@
                 </select>
 
             <label for="expulpaisdest">Expulsiones del país de destino</label>
-            <div id="infoMigratoria_expCruceDestinoSelect" class="twelve columns">
+            <div id="infoMigratoria_expCruceDestinoSelect">
                 <select name="infoMigratoria_expCruceDestino" id="infoMigratoria_expCruceDestino">                      
                 <option></option>
                 <?php if(isset($datosActor['infoMigratoria']['expCruceDestino'])){
