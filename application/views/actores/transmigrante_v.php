@@ -51,6 +51,8 @@
 		</div> 
 	</fieldset>	<!--Termina información general-->
 	
+        <?php echo br(2);?>
+
 	<fieldset> <!--Detalles-->
 		<legend>Detalles:   </legend>
 		<div class="six columns">
@@ -80,6 +82,8 @@
 		</div>	
 	</fieldset><!--Termina Detalles-->
 	
+	    <?php echo br(2);?>
+
 	<fieldset>	
 		  <legend>Información Migratoria</legend>
 	
@@ -161,6 +165,8 @@
 		
 	</fieldset><!--Termina datos de nacimiento-->
     
+    <?php echo br(2);?>
+
     <?php if (isset($datosActor['direccionActor'])) {?>
 		<fieldset>
 		    <div id="pestania" data-collapse>
