@@ -168,8 +168,7 @@
                 <legend>Datos de Nacimiento</legend>
                 <div class="six columns"><!----Primer mitad de datos de Nacimiento ---->
                 <label for="pais">País</label>
-                <input type="hidden" id="tipoFiltroPais" name="1"/>
-                <select id="datosDeNacimiento_paisesCatalogo_paisId" name="datosDeNacimiento_paisesCatalogo_paisId" onchange="changeTest()">						
+                <select id="datosDeNacimiento_paisesCatalogo_paisId" name="datosDeNacimiento_paisesCatalogo_paisId" onchange="changeTest(1)">						
                     <option></option>
                     <?php if(isset($datosActor['datosDeNacimiento']['paisesCatalogo_paisId'])){
                         foreach($catalogos['paisesCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
@@ -181,31 +180,15 @@
                 </select>
 
                 <label for="estado">Estado</label>
-                <select id="datosDeNacimiento_estadosCatalogo_estadoId" name="datosDeNacimiento_estadosCatalogo_estadoId">						
-                <option></option>
-                <?php if(isset($datosActor['datosDeNacimiento']['estadosCatalogo_estadoId'])){
-                foreach($catalogos['estadosCatalogo'] as $item): ?> <!--muestra los estados civiles-->
-                <option  value="<?=$item['estadoId']?>" <?=($datosActor['datosDeNacimiento']['estadosCatalogo_estadoId'] == $item['estadoId']) ? 'selected="selected"' : '' ; ?> > <?=$item['nombre']?></option>
-                <?php endforeach; } else { ?>
-                <?php foreach($catalogos['estadosCatalogo'] as $estado):?><!--muestra los estados civiles-->
-                <option value="<?=$estado['estadoId']; ?>"><?=$estado['nombre']; ?></option>
-                <?php endforeach; } ?>
+                <select id="datosDeNacimiento_estadosCatalogo_estadoId" name="datosDeNacimiento_estadosCatalogo_estadoId"  onchange="changeTest(2)">						
+	               
                 </select>
 
                 </div><!----Termina primer mitad de datos de Nacimiento ---->
                 <div class="six columns"><!----Segunda mitad de datos de Nacimiento ---->
                 <label for="municipio">Municipio</label>
                 <select id="datosDeNacimiento_municipiosCatalogo_municipioId" name="datosDeNacimiento_municipiosCatalogo_municipioId">						
-                    <option></option>
-                    <?php if(isset($datosActor['datosDeNacimiento']['municipiosCatalogo_municipioId'])){ ?>
-                        <?php foreach($catalogos['municipiosCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
-                                <option value="<?=$item['municipioId']; ?>" <?=($datosActor['datosDeNacimiento']['municipiosCatalogo_municipioId'] == $item['municipioId']) ? 'selected="selected"' : '' ; ?>><?=$item['nombre']; ?></option>
-                        <?php endforeach; ?>
-                    <?php } else { ?>
-                        <?php foreach($catalogos['municipiosCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
-                            <option value="<?=$item['municipioId']; ?>"><?=$item['nombre']; ?></option>
-                        <?php endforeach; ?>
-                    <?php } ?>
+                   
                 </select>
                 
                 <label for="fechaNacimiento">Fecha de nacimiento</label>

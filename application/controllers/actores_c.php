@@ -587,6 +587,12 @@ class Actores_c extends CI_Controller {
 			$datosTabla = array('tabla' => 'estadosCatalogo' , 'campo' => 'paises_paisId', 'valor' => $id);
 			
 			$datos['estadosCatalogos'] = $this->general_m->mTraerDatosTabla($datosTabla);
+			
+			$data="<option></option>";
+			
+			foreach($datos['estadosCatalogos']  as $estado){
+	                $data = $data.'<option value="'.$estado['estadoId'].'">'.$estado['nombre'].'</option>';
+	         }
 		
 		}elseif ($tipo == 2) {
 			
@@ -594,11 +600,17 @@ class Actores_c extends CI_Controller {
 			
 			$datos['municipiosCatalogos'] = $this->general_m->mTraerDatosTabla($datosTabla);
 			
+			$data="<option></option>";
+			
+			foreach($datos['municipiosCatalogos']   as $municipio){
+	                $data = $data.'<option value="'.$municipio['estadoId'].'">'.$municipio['nombre'].'</option>';
+	         }
+			
 		}else{
 			echo "no se encuentra el tipo de filtro";
 		}
 		
-		print_r($datos);
+		print_r($data);
 	}
 
 

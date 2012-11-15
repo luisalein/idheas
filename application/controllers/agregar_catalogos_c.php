@@ -14,7 +14,7 @@ class Agregar_catalogos_c extends CI_Controller {
     
     public function index(){
                 
-        /*$this->cAgregarCatalogoDeOcupaciones();
+        $this->cAgregarCatalogoDeOcupaciones();
         
         $this->cAgregarCatalogoGruposIndigenas();
         
@@ -50,7 +50,7 @@ class Agregar_catalogos_c extends CI_Controller {
 		
 		$this->cAgregarCatalogoGradoInvolucramientoN1();
 		
-		$this->cAgregarCatalogoGradoInvolucramientoN2();*/
+		$this->cAgregarCatalogoGradoInvolucramientoN2();
 		
 		$this->cAgregarCatalogoMotivoViaje();
 		
