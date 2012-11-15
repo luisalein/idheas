@@ -293,6 +293,16 @@ class Actores_c extends CI_Controller {
 		
 		$foto = $this->cargarFoto();
 		
+		$datos['datosDeNacimiento'] = array();
+		
+		$datos['infoGralActor'] = array();
+		
+		$datos['infoMirgratoria'] = array();
+		
+		$datos['alias'] = array();
+		
+		$datos['infoGralActores'] = array();
+		
 		$datos['actores']['foto'] = $foto;
 		
         $datos['agregado'] = $this->actores_m->agregar_actor_m($datos);
@@ -481,7 +491,13 @@ class Actores_c extends CI_Controller {
                     break;
 
                     case(2): 
-
+						//si esta relacionado con un caso y si si envior relacionadoCaso
+						$relaciones = $this->actores_m->mTraeCasosRelacionadosActor($actorId);
+						
+						if($relaciones != '0'){
+							$datos['relacionadoCaso'] = 1;
+						}
+						
                         $datos['form'] = $this->load->view('actores/agregar_editar_transmigrante_v', $datos, true);
 
                     break;
@@ -851,8 +867,6 @@ class Actores_c extends CI_Controller {
 					case(1):
 						 $data['individuales'] = $this->actores_m->listado_actores_m(1);
 		
-						 $data['transmigrantes'] = $this->actores_m->listado_actores_m(2);
-						 
 						 $datos="";
 						 		if($data == 0){
 									echo "No existen actores con ese filtro";
@@ -866,16 +880,6 @@ class Actores_c extends CI_Controller {
 										        </div >';
 										}
 									}
-									if(isset($data['transmigrantes']) && $data['transmigrantes'] !=0){
-										foreach ($data['transmigrantes'] as $individual) {
-				
-										    $datos =  $datos.'<div class="twelve columns lista" onclick="Seleccionar('.$individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto'].')"> 
-										    		<img class="three columns imagenFoto" src="'.base_url().$individual['foto'].'" />
-										    		<b class="nine columns">'.$individual['nombre']." ".$individual['apellidosSiglas'].'</b>
-											        </div >';
-									     }
-									}
-							    	
 								  }	
 				
 								print_r($datos);
@@ -945,8 +949,32 @@ class Actores_c extends CI_Controller {
 		
 						print_r($datos);
 					break;
+					
+					case(4):
+						
+						 $data['transmigrantes'] = $this->actores_m->listado_actores_m(2);
+						 
+						 $datos="";
+						 		if($data == 0){
+									echo "No existen actores con ese filtro";
+								}else{
+									
+									if(isset($data['transmigrantes']) && $data['transmigrantes'] !=0){
+										foreach ($data['transmigrantes'] as $individual) {
+				
+										    $datos =  $datos.'<div class="twelve columns lista" onclick="Seleccionar('.$individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto'].')"> 
+										    		<img class="three columns imagenFoto" src="'.base_url().$individual['foto'].'" />
+										    		<b class="nine columns">'.$individual['nombre']." ".$individual['apellidosSiglas'].'</b>
+											        </div >';
+									     }
+									}
+							    	
+								  }	
+				
+								print_r($datos);
+					break;
 			  	}
-			 
+			 	
 			
 		}else{
 			switch ($ventana){
@@ -957,21 +985,13 @@ class Actores_c extends CI_Controller {
 			   	
 						$data['individuales'] = $this->actores_m->mBuscarActoresNombre($cadena,1);
 						
-						$data['transmigrantes'] = $this->actores_m->mBuscarActoresNombre($cadena,2);
-						
-					   
 					}elseif((empty($cadena)) && ($tipoFiltro != 0)){
 						
 						$data['individuales'] = $this->actores_m->mFiltrosBusquedaActor($tipoFiltro,1);	
 						
-						$data['transmigrantes'] = $this->actores_m->mFiltrosBusquedaActor($tipoFiltro,2);	
-							
 					}elseif((!empty($cadena)) && ($tipoFiltro != 0)){
 						
 						$data['individuales'] = $this->actores_m->mBusquedaActorFiltroNombre($tipoFiltro, $cadena,1);
-						
-						$data['transmigrantes'] = $this->actores_m->mBusquedaActorFiltroNombre($tipoFiltro, $cadena,2);
-						
 						
 					}else{
 		            	echo "error";
@@ -988,15 +1008,6 @@ class Actores_c extends CI_Controller {
 						    		<b class="nine columns">'.$individual['nombre']." ".$individual['apellidosSiglas'].'</b>
 							        </div >';
 							}
-						}
-						if(isset($data['transmigrantes']) && $data['transmigrantes'] !=0){
-							foreach ($data['transmigrantes'] as $individual) {
-	
-							    $datos =  $datos.'<div class="twelve columns lista" onclick="Seleccionar('.$individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto'].')"> 
-							    		<img class="three columns imagenFoto" src="'.base_url().$individual['foto'].'" />
-							    		<b class="nine columns">'.$individual['nombre']." ".$individual['apellidosSiglas'].'</b>
-								        </div >';
-						     }
 						}
 				    	
 					  }	
@@ -1109,6 +1120,43 @@ class Actores_c extends CI_Controller {
 	
 					print_r($datos);
 				break;	    
+				case(4): 
+	
+					if ((!empty($cadena)) && ($tipoFiltro == 0)){
+			   	
+						$data['transmigrantes'] = $this->actores_m->mBuscarActoresNombre($cadena,2);
+						
+					   
+					}elseif((empty($cadena)) && ($tipoFiltro != 0)){
+						
+						$data['transmigrantes'] = $this->actores_m->mFiltrosBusquedaActor($tipoFiltro,2);	
+							
+					}elseif((!empty($cadena)) && ($tipoFiltro != 0)){
+						
+						$data['transmigrantes'] = $this->actores_m->mBusquedaActorFiltroNombre($tipoFiltro, $cadena,2);
+						
+						
+					}else{
+		            	echo "error";
+					}
+	                $datos="";
+			 		if($data == 0){
+						echo "No existen actores con ese filtro";
+					}else{
+						
+						if(isset($data['transmigrantes']) && $data['transmigrantes'] !=0){
+							foreach ($data['transmigrantes'] as $individual) {
+	
+							    $datos =  $datos.'<div class="twelve columns lista" onclick="Seleccionar('.$individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto'].')"> 
+							    		<img class="three columns imagenFoto" src="'.base_url().$individual['foto'].'" />
+							    		<b class="nine columns">'.$individual['nombre']." ".$individual['apellidosSiglas'].'</b>
+								        </div >';
+						     }
+						}
+				    	
+					  }	
+	
+					print_r($datos);
 	        }
 		}
 		
@@ -1287,8 +1335,26 @@ class Actores_c extends CI_Controller {
 		
 		$datos['actoresTransmigrantes'] = $this->actores_m->listado_actores_m(2);
 		
-		$this->load->view('casos/SeleccionActorIndividual', $datos);
+		$datos['pestana'] = 'individual';
+		
+		$this->load->view('casos/SeleccionActorIndividualTrans', $datos);
 	}
+	
+	public function cargarTransmigrante()
+	{
+		$datos['is_active'] = 'actores';
+		
+		$datos['head'] = $this->load->view('general/head_v', $datos, true);
+		
+		$datos['actoresIndividuales'] = $this->actores_m->listado_actores_m(1);
+		
+		$datos['actoresTransmigrantes'] = $this->actores_m->listado_actores_m(2);
+		
+		$datos['pestana'] = 'trans';
+		
+		$this->load->view('casos/actorTransmigrante_v', $datos);
+	}
+    
 	
 	public function seleccionarActores(){
 		

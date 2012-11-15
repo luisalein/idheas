@@ -196,7 +196,9 @@ function desplegarActoresVentana(nombre, filtro, tipoActor,ventana){
 	        	if(ventana == 3){
 	        		$('#ventana3Filtro').html(data);  
 	        	}
-	        	
+	        	if(ventana == 4){
+	        		$('#ventana4Filtro').html(data);  
+	        	}
 	            
 	        },
 	        
