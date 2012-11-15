@@ -54,8 +54,7 @@
                 }
                 
             }
-            echo '<pre>';
-            print_r($datos);
+
             return $actorId;
                     
         }
