@@ -347,8 +347,8 @@
             </span>-->
 
             <label for="realizaViaje">Realiza el viaje</label>
-            <input type="radio" name="infoMigratoria_realizaViaje" checked="checked" value="Solo" /> No acompañado
-            <input type="radio" name="infoMigratoria_realizaViaje" value="Acompanado" /> Acompañado
+            <input type="radio" name="infoMigratoria_realizaViaje" checked="checked" value="No acompañado" /> No acompañado
+            <input type="radio" name="infoMigratoria_realizaViaje" value="Acompañado" /> Acompañado
         </div>
 
         <div class="six columns">
@@ -404,11 +404,11 @@
         <select name="infoMigratoria_tipoEstanciaId" id="infoMigratoria_tipoEstanciaId">
             <option></option>
             <?php if(isset($datosActor['infoMigratoria']['tipoEstanciaId'])){ ?>
-                <option value="1" <?=($datosActor['infoMigratoria']['tipoEstanciaId'] == 1) ? 'selected="selected"' : '' ; ?>>Estancia Corta</option>
-                <option value="2" <?=($datosActor['infoMigratoria']['tipoEstanciaId'] == 2) ? 'selected="selected"' : '' ; ?>>Estancia Larga</option>
+                <option value="1" <?=($datosActor['infoMigratoria']['tipoEstanciaId'] == 1) ? 'selected="selected"' : '' ; ?>>Corta estancia</option>
+                <option value="2" <?=($datosActor['infoMigratoria']['tipoEstanciaId'] == 2) ? 'selected="selected"' : '' ; ?>>Larga estancia </option>
             <?php } else { ?>
-                <option value="1" >Estancia Corta</option>
-                <option value="2" >Estancia Larga</option>
+                <option value="1" >Corta estancia</option>
+                <option value="2" >Larga estancia</option>
              <?php } ?>
         </select>
         <!--<input id="BotonmasinfoMigratoria_tipoEstanciaId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />	
@@ -427,15 +427,7 @@
             </textarea>
         </div>
     </fieldset>
-        <div class="row espacioInferior espacioSuperior">
-            <div class="nine columns">
-                <input class="medium button" type="submit" value="Guardar" />
-            </div>
-            <div  class="three columns" >
-                <input class="medium button" type="reset" value="Cancelar" onclick="pagInicial()" />
-            </div>
-        </div>
-    </div>
+
 
     <?php if (isset($relacionadoCaso)) {?>
         <div>
@@ -457,30 +449,41 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <?php if (isset($datosActor['direccionActor'])) {
-                                        foreach ($datosActor['direccionActor'] as $key => $direccion) {?>
+                                <?php if (isset($datosActor['direccionActor'])) {
+                                    foreach ($datosActor['direccionActor'] as $key => $direccion) {?>
+                                    <tr>
                                             <td><?=(isset($direccion['tipoDireccionId'])) ? $catalogos['tipoDireccion'][$direccion['tipoDireccionId']]['descripcion'] : ''; ?></td>
                                             <td><?=(isset($direccion['direccion'])) ? $direccion['direccion'] : ''; ?></td>
                                             <td><?=(isset($direccion['codigoPostal'])) ? $direccion['codigoPostal'] : ''; ?></td>
                                             <td><?=(isset($direccion['paisesCatalogo_paisId'])) ? $catalogos['paisesCatalogo'][$direccion['paisesCatalogo_paisId']]['nombre'] : ''; ?></td>
                                             <td><?=(isset($direccion['estadosCatalogo_estadoId'])) ? $catalogos['estadosCatalogo'][$direccion['estadosCatalogo_estadoId']]['nombre'] : ''; ?></td>
                                             <td><?=(isset($direccion['municipiosCatalogo_municipioId'])) ? $catalogos['municipiosCatalogo'][$direccion['municipiosCatalogo_municipioId']]['nombre'] : ''; ?></td>                        
-                                            <td><input type="button" class="tiny button"  value="Editar" onclick="nuevaDireccion()"/>
-                                                <form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarDireccion/<?=$direccion['direccionId']."/".$datosActor['actores']['actorId']."/".$datosActor['actores']['tipoActorId']; ?>" >
-                                                 <input type="submit" value="Elminar" class="tiny button" />
+                                            <td><input type="button" class="tiny button"  value="Editar" onclick="nuevaDireccion('<?=$actorId?>','<?=$direccion['direccionId']?>')"/>
+                                                <input type="button" value="Elminar" class="tiny button" onclick="eliminarDireccionActor('<?=$direccion['direccionId']?>','<?=$actorId?>','2')"/>
                                             </td>
-                                        <?php }?>
+                                    </tr>
                                     <?php }?>
-                                </tr>
+                                <?php }?>
                             </tbody>
                         </table>
-                            <input type="button" class="small button"  value="Agregar dirección" onclick="nuevaDireccion()">
+                            <input type="button" class="small button"  value="Agregar dirección" onclick="nuevaDireccion('<?=$actorId?>','0')">
                     </div>
                 </div>
             </fieldset>
         </div>
     <?php } ?>
+
+
+        <div class="row espacioInferior espacioSuperior">
+            <div class="nine columns">
+                <input class="medium button" type="submit" value="Guardar" />
+            </div>
+            <div  class="three columns" >
+                <input class="medium button" type="reset" value="Cancelar" onclick="pagInicial()" />
+            </div>
+        </div>
+    </div>
+
     
     </div>
 

@@ -1,9 +1,7 @@
-
-$(document).ready(function() {
-	
-}); 
-
-
+$(function() {
+	$( "#fechaDeNacimientoIndividual" ).datepicker({ dateFormat: "yy-mm-dd",
+	changeYear: true });
+	 });
 
 function nueva_relacion_a_a(actorId,ventana,actorRelacionado){
     var windowSizeArray = [ "width=770,height=535,scrollbars=yes" ];
@@ -20,15 +18,30 @@ function nuevaDireccion(actorId,indice){
 }
 
 
-$(function() {
-	$( "#fechaDeNacimientoIndividual" ).datepicker({ dateFormat: "yy-mm-dd",
-	changeYear: true });
-	 });
-$('#myDropdown').ddslick({
-    onSelected: function(selectedData){
-        //callback function: do something with selectedData;
-    }  
-    
-  
-});
+function eliminarDireccionActor(direccionId,actorId,tipoActor){
 
+    var url = base+'index.php/actores_c/eliminarDireccion/'+direccionId+'/'+actorId+'/'+tipoActor ;
+    
+    var data = 'actorId='+actorId+'&tipoActor='+tipoActor;
+
+    $.ajax({
+    
+        url: url,
+    
+        data: data,
+        
+        type: 'POST',
+                
+        success: function(data){
+            
+              
+        },
+        
+        error: function(){
+        
+           alert("no se pudo eliminar dirección");
+        }
+    
+    });
+    
+}

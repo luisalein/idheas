@@ -123,9 +123,9 @@
 					<h6>Tipo de estancia:</h6>
 			            <label id="Estancia"><?php if(isset($datosActor['infoMigratoria']['tipoEstanciaId'])){
 			                    if ($datosActor['infoMigratoria']['tipoEstanciaId'] == 1 ) {
-			                        print_r('Temporal');
+			                        print_r('Corta estancia');
 			                    } else {
-			                        print_r('Permanente');
+			                        print_r('Larga estancia');
 			                    }
 			                }  ?></label>
 			</div>
@@ -178,9 +178,9 @@
 	                    </tr>
 	                </thead>
 	                <tbody>
-	                	<tr>
-	                		<?php if (isset($datosActor['direccionActor'])) {
-	                			foreach ($datosActor['direccionActor'] as $key => $direccion) {?>
+                		<?php if (isset($datosActor['direccionActor'])) {
+                			foreach ($datosActor['direccionActor'] as $key => $direccion) {?>
+	                			<tr>
 			                        <td><?=(isset($direccion['tipoDireccionId'])) ? $catalogos['tipoDireccion'][$direccion['tipoDireccionId']]['descripcion'] : ''; ?></td>
 			                        <td><?=(isset($direccion['direccion'])) ? $direccion['direccion'] : ''; ?></td>
 			                        <td><?=(isset($direccion['codigoPostal'])) ? $direccion['codigoPostal'] : ''; ?></td>
@@ -190,10 +190,11 @@
 			                        <td><input type="button" class="tiny button"  value="Editar" onclick="nuevaDireccion()"/>
 			                        	<form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarDireccion/<?=$direccion['direccionId']."/".$datosActor['actores']['actorId']."/".$datosActor['actores']['tipoActorId']; ?>" >
 					                     <input type="submit" value="Elminar" class="tiny button" />
+					                 </form>
 			                        </td>
-		            			<?php }?>
-		            		<?php }?>
-	                    </tr>
+	                    		</tr>
+	            			<?php }?>
+	            		<?php }?>
 	                </tbody>
 	            </table>
 		        <?php if (isset($datosActor)) {?>
