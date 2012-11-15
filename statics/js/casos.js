@@ -252,7 +252,7 @@ function traerActos(nivel,valor,antecesor){
 	                
 	        success: function(data){ 
 	               
-	        //  $('#listaActos').html(data);  
+	          $('#listaActos').html(data);  
 	            
 	        },
 	        
@@ -273,7 +273,7 @@ function  nombrarActo(descripcion, valor,notas, nivel){
 	$('#textoDerechoAfectadoN2').attr('name', ' ');
 	$('#actoViolatorioId').attr('value', valor); 
 	$('#actoViolatorioNivel').attr('value', nivel); 
-	if(nivel != 4){
+	if(nivel <= 3){
 		$(activar).toggleClass("Escondido");
 	}
 	

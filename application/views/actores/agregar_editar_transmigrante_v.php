@@ -1,4 +1,3 @@
-<pre><?= print_r($datosActor['infoMigratoria']['comentarios'])?></pre>
 <form action="<?=$action; ?>" method="post" enctype="multipart/form-data">
 <div class="three columns">
             <?php if(isset($datosActor)){ ?>    
@@ -325,25 +324,20 @@
         <!--<input id="BotonmasinfoMigratoria_intCruceTransito" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />    
         <span id="TextoEspecial_infoMigratoria_intCruceTransito" class="Escondido twelve columns">
         </span>-->
-
-        <label for="expulpaisdest">Expulsiones del país de destino</label>
-        <div id="infoMigratoria_expCruceDestinoSelect" class="twelve columns">
-            <select name="infoMigratoria_expCruceDestino" id="infoMigratoria_expCruceDestino">						
-            <option></option>
-            <?php if(isset($datosActor['infoMigratoria']['expCruceDestino'])){
+        <label for="expulpaistrans">Expulsiones del país de tránsito</label>
+        <select name="infoMigratoria_expCruceTransito">                     
+            <option > </option>
+            <?php if(isset($datosActor['infoMigratoria']['expCruceTransito'])){
             for($intentos = 0; $intentos <= 100; $intentos++):?> <!--muestra todas las edades de 1 a 100-->
-            <option value="<?=$intentos; ?>" <?=($datosActor['infoMigratoria']['expCruceDestino'] == $intentos) ? 'selected="selected"' : '' ; ?>> <?=$intentos; ?></option>
+            <option value="<?=$intentos; ?>" <?=($datosActor['infoMigratoria']['expCruceTransito'] == $intentos) ? 'selected="selected"' : '' ; ?>> <?=$intentos; ?></option>
             <?php endfor;
             } else {
             for($intentos = 0; $intentos <= 100; $intentos++):?> <!--muestra todas las edades de 1 a 100-->
             <option value="<?=$intentos; ?>"> <?=$intentos; ?></option>
             <?php endfor;
             } ?>
-            </select>
-        </div>
-        <!--<input id="BotonmasinfoMigratoria_expCruceDestino" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" /> 
-        <span id="TextoEspecial_infoMigratoria_expCruceDestino" class="Escondido twelve columns">
-        </span>-->
+        </select>
+
         <label for="motivoViaje">Motivo del viaje</label>
 
         <input name="infoMigratoria_motivoViaje" id="infoMigratoria_motivoViaje" type="text">
@@ -387,20 +381,24 @@
                 } ?>
             </select>
 
-        <label for="expulpaistrans">Expulsiones del país de tránsito</label>
-        <select name="infoMigratoria_expCruceTransito">                     
-            <option > </option>
-            <?php if(isset($datosActor['infoMigratoria']['expCruceTransito'])){
+        <label for="expulpaisdest">Expulsiones del país de destino</label>
+        <div id="infoMigratoria_expCruceDestinoSelect" class="twelve columns">
+            <select name="infoMigratoria_expCruceDestino" id="infoMigratoria_expCruceDestino">                      
+            <option></option>
+            <?php if(isset($datosActor['infoMigratoria']['expCruceDestino'])){
             for($intentos = 0; $intentos <= 100; $intentos++):?> <!--muestra todas las edades de 1 a 100-->
-            <option value="<?=$intentos; ?>" <?=($datosActor['infoMigratoria']['expCruceTransito'] == $intentos) ? 'selected="selected"' : '' ; ?>> <?=$intentos; ?></option>
+            <option value="<?=$intentos; ?>" <?=($datosActor['infoMigratoria']['expCruceDestino'] == $intentos) ? 'selected="selected"' : '' ; ?>> <?=$intentos; ?></option>
             <?php endfor;
             } else {
             for($intentos = 0; $intentos <= 100; $intentos++):?> <!--muestra todas las edades de 1 a 100-->
             <option value="<?=$intentos; ?>"> <?=$intentos; ?></option>
             <?php endfor;
             } ?>
-        </select>
-
+            </select>
+        </div>
+        <!--<input id="BotonmasinfoMigratoria_expCruceDestino" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" /> 
+        <span id="TextoEspecial_infoMigratoria_expCruceDestino" class="Escondido twelve columns">
+        </span>-->
 
     <label for="tipoEstancia">Tipo de estancia</label>
     <select name="infoMigratoria_tipoEstanciaId" id="infoMigratoria_tipoEstanciaId">

@@ -24,9 +24,9 @@ class Agregar_catalogos_c extends CI_Controller {
         
         $this->cAgregarCatalogosTipoPerpetrador();
         
-        $this->cAgregarDerechosCatalogos();
+       // $this->cAgregarDerechosCatalogos();
         
-        $this->cAgregarActosCatalogos();
+        //$this->cAgregarActosCatalogos();
         
         $this->cAgregarCatalogoEstatusDeLaVictima();
         
@@ -52,7 +52,7 @@ class Agregar_catalogos_c extends CI_Controller {
 		
 		$this->cAgregarCatalogoGradoInvolucramientoN2();
 		
-		$this->cAgregarCatalogoActosDerechoAfectado();
+		//$this->cAgregarCatalogoActosDerechoAfectado();
         
     }
     
@@ -166,7 +166,8 @@ class Agregar_catalogos_c extends CI_Controller {
             
             $obtener_datos = explode('¬', $derechoN2);
                 
-              $derechos['actosN2Catalogo'][trim($obtener_datos[0])] = array('actoN2Id' => trim($obtener_datos[0]), 'descripcion' => trim($obtener_datos[1]), 'actosN1Catalogo_actoId' => trim($obtener_datos[2]), 'notas' => trim($obtener_datos[3]));
+              $derechos['actosN2Catalogo'][trim($obtener_datos[0])] = array('actoN2Id' => trim($obtener_datos[0]), 'descripcion' => trim($obtener_datos[1]), 
+              'actosN1Catalogo_actoId' => trim($obtener_datos[2]), 'notas' => trim($obtener_datos[3]));
 
         }
         

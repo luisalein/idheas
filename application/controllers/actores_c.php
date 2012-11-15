@@ -370,7 +370,8 @@ class Actores_c extends CI_Controller {
         $datos['relacionActoresColectivo'] =$this->catalogos_m->mTraerDatosCatalogoNombre('relacionActoresCatalogo');
 
         $datos['head'] = $this->load->view('general/head_v', $datos, true);
-
+  
+       
 
         if ($idRelacionActor!=0) {
         	if(isset($datos['datosActor']['relacionActores'][$idRelacionActor]))
@@ -412,6 +413,9 @@ class Actores_c extends CI_Controller {
         
         $respuesta = $this->actores_m->relaciona_actores_m($datos);
         
+		 echo "<script languaje='javascript' type='text/javascript'>
+			 window.opener.location.reload();
+		     window.close();</script>";
         
     }
     
@@ -425,6 +429,10 @@ class Actores_c extends CI_Controller {
 		
         $mensaje = $this->actores_m->mActualizaDatosRelacionActor($datos['relacionActoresId'], $datos);
         
+		echo "<script languaje='javascript' type='text/javascript'>
+			 window.opener.location.reload();
+		     window.close();</script>";
+		
 		return $mensaje;	
     }
     
@@ -541,10 +549,9 @@ class Actores_c extends CI_Controller {
 			$datos['actores']['foto'] = $foto;
 		}
 		
-		
         $this->actores_m->mActualizaDatosActor($datos['actores']['actorId'], $datos);
         
-        redirect(base_url().'index.php/actores_c/mostrar_actor/'.$datos['actores']['actorId'].'/'.$_POST['actores_tipoActorId']);
+       redirect(base_url().'index.php/actores_c/mostrar_actor/'.$datos['actores']['actorId'].'/'.$_POST['actores_tipoActorId']);
         
     }
 
@@ -950,21 +957,13 @@ class Actores_c extends CI_Controller {
 			   	
 						$data['individuales'] = $this->actores_m->mBuscarActoresNombre($cadena,1);
 						
-						$data['transmigrantes'] = $this->actores_m->mBuscarActoresNombre($cadena,2);
-						
-					   
 					}elseif((empty($cadena)) && ($tipoFiltro != 0)){
 						
 						$data['individuales'] = $this->actores_m->mFiltrosBusquedaActor($tipoFiltro,1);	
 						
-						$data['transmigrantes'] = $this->actores_m->mFiltrosBusquedaActor($tipoFiltro,2);	
-							
 					}elseif((!empty($cadena)) && ($tipoFiltro != 0)){
 						
 						$data['individuales'] = $this->actores_m->mBusquedaActorFiltroNombre($tipoFiltro, $cadena,1);
-						
-						$data['transmigrantes'] = $this->actores_m->mBusquedaActorFiltroNombre($tipoFiltro, $cadena,2);
-						
 						
 					}else{
 		            	echo "error";
@@ -981,15 +980,6 @@ class Actores_c extends CI_Controller {
 						    		<b class="nine columns">'.$individual['nombre']." ".$individual['apellidosSiglas'].'</b>
 							        </div >';
 							}
-						}
-						if(isset($data['transmigrantes']) && $data['transmigrantes'] !=0){
-							foreach ($data['transmigrantes'] as $individual) {
-	
-							    $datos =  $datos.'<div class="twelve columns lista" onclick="Seleccionar('.$individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto'].')"> 
-							    		<img class="three columns imagenFoto" src="'.base_url().$individual['foto'].'" />
-							    		<b class="nine columns">'.$individual['nombre']." ".$individual['apellidosSiglas'].'</b>
-								        </div >';
-						     }
 						}
 				    	
 					  }	
@@ -1102,6 +1092,43 @@ class Actores_c extends CI_Controller {
 	
 					print_r($datos);
 				break;	    
+				case(4): 
+	
+					if ((!empty($cadena)) && ($tipoFiltro == 0)){
+			   	
+						$data['transmigrantes'] = $this->actores_m->mBuscarActoresNombre($cadena,2);
+						
+					   
+					}elseif((empty($cadena)) && ($tipoFiltro != 0)){
+						
+						$data['transmigrantes'] = $this->actores_m->mFiltrosBusquedaActor($tipoFiltro,2);	
+							
+					}elseif((!empty($cadena)) && ($tipoFiltro != 0)){
+						
+						$data['transmigrantes'] = $this->actores_m->mBusquedaActorFiltroNombre($tipoFiltro, $cadena,2);
+						
+						
+					}else{
+		            	echo "error";
+					}
+	                $datos="";
+			 		if($data == 0){
+						echo "No existen actores con ese filtro";
+					}else{
+						
+						if(isset($data['transmigrantes']) && $data['transmigrantes'] !=0){
+							foreach ($data['transmigrantes'] as $individual) {
+	
+							    $datos =  $datos.'<div class="twelve columns lista" onclick="Seleccionar('.$individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto'].')"> 
+							    		<img class="three columns imagenFoto" src="'.base_url().$individual['foto'].'" />
+							    		<b class="nine columns">'.$individual['nombre']." ".$individual['apellidosSiglas'].'</b>
+								        </div >';
+						     }
+						}
+				    	
+					  }	
+	
+					print_r($datos);
 	        }
 		}
 		
@@ -1194,10 +1221,16 @@ class Actores_c extends CI_Controller {
             	$datos[$nombre_tabla][$nombre_campo] = $valor; 
 
         } 
+	
+		
 		
 		$datos['direccionActor']['actores_actorId'] = $actorId;
 		
         $mensaje = $this->actores_m->mAgregarDireccionActor($datos['direccionActor']);
+		
+		echo "<script languaje='javascript' type='text/javascript'>
+			 window.opener.location.reload();
+		     window.close();</script>";
 		
      	return $mensaje;
 	}
@@ -1232,8 +1265,11 @@ class Actores_c extends CI_Controller {
 		$datos['direccionActor']['actores_actorId'] = $actorId;
 		
         $mensaje = $this->actores_m->mActualizaDatosDireccion($datos['direccionActor'],$direccionId);
-
-
+		
+		echo "<script languaje='javascript' type='text/javascript'>
+			 window.opener.location.reload();
+		     window.close();</script>";
+		
 		//redirect(base_url().'index.php/actores_c/mostrar_actor/'.$actorId.'/'.$_POST['actores_tipoActorId']);
 		
 		return $mensaje;
@@ -1271,8 +1307,26 @@ class Actores_c extends CI_Controller {
 		
 		$datos['actoresTransmigrantes'] = $this->actores_m->listado_actores_m(2);
 		
-		$this->load->view('casos/SeleccionActorIndividual', $datos);
+		$datos['pestana'] = 'individual';
+		
+		$this->load->view('casos/SeleccionActorIndividualTrans', $datos);
 	}
+	
+	public function cargarTransmigrante()
+	{
+		$datos['is_active'] = 'actores';
+		
+		$datos['head'] = $this->load->view('general/head_v', $datos, true);
+		
+		$datos['actoresIndividuales'] = $this->actores_m->listado_actores_m(1);
+		
+		$datos['actoresTransmigrantes'] = $this->actores_m->listado_actores_m(2);
+		
+		$datos['pestana'] = 'trans';
+		
+		$this->load->view('casos/actorTransmigrante_v', $datos);
+	}
+    
 	
 	public function seleccionarActores(){
 		

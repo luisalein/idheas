@@ -72,7 +72,8 @@
                 </select>
                 <input id="BotonmasdireccionActor_municipiosCatalogo_municipioId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />	
             </fieldset><!--Termina datos dirección-->
-            <input type="submit" class="small button" value="guardar">
+           	
+            <input type="submit" class="small button"  value="guardar">
     </form>
 </body>
 </html>
