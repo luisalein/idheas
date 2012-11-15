@@ -1267,7 +1267,7 @@ class Actores_c extends CI_Controller {
 		
 		$mensaje = $this->actores_m->mEliminarDireccionActor($direccionId);	
 		
-		redirect(base_url().'index.php/actores_c/mostrar_actor/'.$actorId.'/'.$tipoActor);
+		redirect(base_url().'index.php/actores_c/editar_actor/'.$actorId.'/'.$tipoActor);
 		
 		return $mensaje;
 		
