@@ -24,7 +24,6 @@
                 <?php endforeach;
                 } ?>
                 </select>
-                <input id="BotonmasdireccionActor_tipoDireccionId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />	
                 <label for="direccionActor_direccion">Ubicación</label>
                 <input type="text" id="direccionActor_direccion" name="direccionActor_direccion"  <?=(isset($datosActor['direccion']) ? 'value="'.$datosActor['direccion'].'"' : ''); ?> />
                 <label for="direccionActor_codigoPostal">Código Postal</label>
@@ -44,7 +43,6 @@
                     <?php endforeach; } ?>
                 </select>
 
-                <input id="BotonmasdireccionActor_paisesCatalogo_paisId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />
                 <label for="estadodir">Estado</label>
 
                 <select id="direccionActor_estadosCatalogo_estadoId" name="direccionActor_estadosCatalogo_estadoId">						
@@ -57,7 +55,6 @@
                 <option value="<?=$item['estadoId']; ?>"><?=$item['nombre']; ?></option>
                 <?php endforeach; } ?>
                 </select>	
-                <input id="BotonmasdireccionActor_paisesCatalogo_paisId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />
 
                 <label for="municipiodir">Municipio</label>
                 <select id="direccionActor_municipiosCatalogo_municipioId" name="direccionActor_municipiosCatalogo_municipioId">						
@@ -70,7 +67,6 @@
                         <option value="<?=$item['municipioId']; ?>"><?=$item['nombre']; ?></option>
                     <?php endforeach; } ?>
                 </select>
-                <input id="BotonmasdireccionActor_municipiosCatalogo_municipioId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />	
             </fieldset><!--Termina datos dirección-->
            	
             <input type="submit" class="small button"  value="guardar">
