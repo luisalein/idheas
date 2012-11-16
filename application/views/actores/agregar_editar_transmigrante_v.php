@@ -296,8 +296,8 @@
             </span>-->
 
             <label for="realizaViaje">Realiza el viaje</label>
-            <input type="radio" name="infoMigratoria_realizaViaje" checked="checked" value="No acompañado" /> No acompañado
-            <input type="radio" name="infoMigratoria_realizaViaje" value="Acompañado" /> Acompañado
+            <input type="radio" name="infoMigratoria_realizaViaje" value="No acompanado" /> No acompañado
+            <input type="radio" name="infoMigratoria_realizaViaje" value="Acompanado" /> Acompañado
         </div>
 
         <div class="six columns">
