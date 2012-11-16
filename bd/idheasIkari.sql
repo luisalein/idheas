@@ -145,6 +145,7 @@ ENGINE = InnoDB;
 -- Table `idheasIkari`.`datosDeNacimiento`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`datosDeNacimiento` (
+  `datosDeNacimientoId` INT NOT NULL AUTO_INCREMENT ,
   `fechaNacimiento` DATE NULL ,
   `actores_actorId` INT NULL ,
   `paisesCatalogo_paisId` INT NULL ,
@@ -154,6 +155,7 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`datosDeNacimiento` (
   INDEX `fk_datosDeNacimiento_paisesCatalogo1_idx` (`paisesCatalogo_paisId` ASC) ,
   INDEX `fk_datosDeNacimiento_estadosCatalogo1_idx` (`estadosCatalogo_estadoId` ASC) ,
   INDEX `fk_datosDeNacimiento_municipiosCatalogo1_idx` (`municipiosCatalogo_municipioId` ASC) ,
+  PRIMARY KEY (`datosDeNacimientoId`) ,
   CONSTRAINT `fk_datosDeNacimiento_actores1`
     FOREIGN KEY (`actores_actorId` )
     REFERENCES `idheasIkari`.`actores` (`actorId` )
@@ -466,9 +468,9 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`infoMigratoria` (
   `intCruceTransito` INT NULL ,
   `expCruceDestino` INT NULL ,
   `expCruceTransito` INT NULL ,
-  `motivoViaje` VARCHAR(40) NULL ,
+  `motivoViajeId` INT NULL ,
   `tipoEstanciaId` INT NULL ,
-  `realizaViaje` ENUM('Solo','Acompanado') NULL ,
+  `realizaViaje` ENUM('No acompanado','Acompanado') NULL ,
   `comentarios` VARCHAR(3000) NULL ,
   PRIMARY KEY (`actores_actorId`) ,
   CONSTRAINT `fk_infoMigratoria_actores1`
@@ -746,6 +748,35 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `idheasIkari`.`derechosAfectadosN1Catalogo`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `idheasIkari`.`derechosAfectadosN1Catalogo` (
+  `derechoAfectadoN1Id` INT NOT NULL AUTO_INCREMENT ,
+  `descripcion` VARCHAR(100) NULL ,
+  `notas` VARCHAR(3000) NULL ,
+  PRIMARY KEY (`derechoAfectadoN1Id`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `idheasIkari`.`derechosAfectadosN2Catalogo`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `idheasIkari`.`derechosAfectadosN2Catalogo` (
+  `derechoAfectadoN2Id` INT NOT NULL AUTO_INCREMENT ,
+  `descripcion` VARCHAR(100) NULL ,
+  `notas` VARCHAR(3000) NULL ,
+  `derechosAfectadosN1Catalogo_derechoAfectadoN1Id` INT NOT NULL ,
+  PRIMARY KEY (`derechoAfectadoN2Id`) ,
+  INDEX `fk_derechosAfectadosN2Catalogo_derechosAfectadosN1Catalogo1_idx` (`derechosAfectadosN1Catalogo_derechoAfectadoN1Id` ASC) ,
+  CONSTRAINT `fk_derechosAfectadosN2Catalogo_derechosAfectadosN1Catalogo1`
+    FOREIGN KEY (`derechosAfectadosN1Catalogo_derechoAfectadoN1Id` )
+    REFERENCES `idheasIkari`.`derechosAfectadosN1Catalogo` (`derechoAfectadoN1Id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `idheasIkari`.`actosN2Catalogo`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`actosN2Catalogo` (
@@ -753,11 +784,36 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`actosN2Catalogo` (
   `descripcion` VARCHAR(100) NULL ,
   `notas` VARCHAR(3000) NULL ,
   `actosN1Catalogo_actoId` INT NOT NULL ,
+  `derechosAfectadosN2Catalogo_derechoAfectadoN2Id` INT NOT NULL ,
   PRIMARY KEY (`actoN2Id`) ,
   INDEX `fk_actosN2Catalogo_actosN1Catalogo1_idx` (`actosN1Catalogo_actoId` ASC) ,
+  INDEX `fk_actosN2Catalogo_derechosAfectadosN2Catalogo1` (`derechosAfectadosN2Catalogo_derechoAfectadoN2Id` ASC) ,
   CONSTRAINT `fk_actosN2Catalogo_actosN1Catalogo1`
     FOREIGN KEY (`actosN1Catalogo_actoId` )
     REFERENCES `idheasIkari`.`actosN1Catalogo` (`actoId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_actosN2Catalogo_derechosAfectadosN2Catalogo1`
+    FOREIGN KEY (`derechosAfectadosN2Catalogo_derechoAfectadoN2Id` )
+    REFERENCES `idheasIkari`.`derechosAfectadosN2Catalogo` (`derechoAfectadoN2Id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `idheasIkari`.`derechosAfectadosN3Catalogo`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `idheasIkari`.`derechosAfectadosN3Catalogo` (
+  `derechoAfectadoN3Id` INT NOT NULL AUTO_INCREMENT ,
+  `descripcion` VARCHAR(100) NULL ,
+  `notas` VARCHAR(3000) NULL ,
+  `derechosAfectadosN2Catalogo_derechoAfectadoN2Id` INT NOT NULL ,
+  PRIMARY KEY (`derechoAfectadoN3Id`) ,
+  INDEX `fk_derechosAfectadosN3Catalogo_derechosAfectadosN2Catalogo1_idx` (`derechosAfectadosN2Catalogo_derechoAfectadoN2Id` ASC) ,
+  CONSTRAINT `fk_derechosAfectadosN3Catalogo_derechosAfectadosN2Catalogo1`
+    FOREIGN KEY (`derechosAfectadosN2Catalogo_derechoAfectadoN2Id` )
+    REFERENCES `idheasIkari`.`derechosAfectadosN2Catalogo` (`derechoAfectadoN2Id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -771,11 +827,36 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`actosN3Catalogo` (
   `descripcion` VARCHAR(100) NULL ,
   `notas` VARCHAR(3000) NULL ,
   `actosN2Catalogo_actoN2Id` INT NOT NULL ,
+  `derechosAfectadosN3Catalogo_derechoAfectadoN3Id` INT NOT NULL ,
   PRIMARY KEY (`actoN3Id`) ,
   INDEX `fk_actosN3Catalogo_actosN2Catalogo1_idx` (`actosN2Catalogo_actoN2Id` ASC) ,
+  INDEX `fk_actosN3Catalogo_derechosAfectadosN3Catalogo1` (`derechosAfectadosN3Catalogo_derechoAfectadoN3Id` ASC) ,
   CONSTRAINT `fk_actosN3Catalogo_actosN2Catalogo1`
     FOREIGN KEY (`actosN2Catalogo_actoN2Id` )
     REFERENCES `idheasIkari`.`actosN2Catalogo` (`actoN2Id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_actosN3Catalogo_derechosAfectadosN3Catalogo1`
+    FOREIGN KEY (`derechosAfectadosN3Catalogo_derechoAfectadoN3Id` )
+    REFERENCES `idheasIkari`.`derechosAfectadosN3Catalogo` (`derechoAfectadoN3Id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `idheasIkari`.`derechosAfectadosN4Catalogo`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `idheasIkari`.`derechosAfectadosN4Catalogo` (
+  `derechoAfectadoN4Id` INT NOT NULL AUTO_INCREMENT ,
+  `descripcion` VARCHAR(100) NULL ,
+  `notas` VARCHAR(3000) NULL ,
+  `derechosAfectadosN3Catalogo_derechoAfectadoN3Id` INT NOT NULL ,
+  PRIMARY KEY (`derechoAfectadoN4Id`) ,
+  INDEX `fk_derechosAfectadosN4Catalogo_derechosAfectadosN3Catalogo1_idx` (`derechosAfectadosN3Catalogo_derechoAfectadoN3Id` ASC) ,
+  CONSTRAINT `fk_derechosAfectadosN4Catalogo_derechosAfectadosN3Catalogo1`
+    FOREIGN KEY (`derechosAfectadosN3Catalogo_derechoAfectadoN3Id` )
+    REFERENCES `idheasIkari`.`derechosAfectadosN3Catalogo` (`derechoAfectadoN3Id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -789,11 +870,18 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`actosN4Catalogo` (
   `descripcion` VARCHAR(100) NULL ,
   `notas` VARCHAR(3000) NULL ,
   `actosN3Catalogo_actoN3Id` INT NOT NULL ,
+  `derechosAfectadosN4Catalogo_derechoAfectadoN4Id` INT NOT NULL ,
   PRIMARY KEY (`actoN4Id`) ,
   INDEX `fk_actosN4Catalogo_actosN3Catalogo1_idx` (`actosN3Catalogo_actoN3Id` ASC) ,
+  INDEX `fk_actosN4Catalogo_derechosAfectadosN4Catalogo1` (`derechosAfectadosN4Catalogo_derechoAfectadoN4Id` ASC) ,
   CONSTRAINT `fk_actosN4Catalogo_actosN3Catalogo1`
     FOREIGN KEY (`actosN3Catalogo_actoN3Id` )
     REFERENCES `idheasIkari`.`actosN3Catalogo` (`actoN3Id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_actosN4Catalogo_derechosAfectadosN4Catalogo1`
+    FOREIGN KEY (`derechosAfectadosN4Catalogo_derechoAfectadoN4Id` )
+    REFERENCES `idheasIkari`.`derechosAfectadosN4Catalogo` (`derechoAfectadoN4Id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -1006,71 +1094,6 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`actorReportado` (
   CONSTRAINT `fk_actorReportado_intervenciones1`
     FOREIGN KEY (`intervenciones_intervencionId` )
     REFERENCES `idheasIkari`.`intervenciones` (`intervencionId` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `idheasIkari`.`derechosAfectadosN1Catalogo`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `idheasIkari`.`derechosAfectadosN1Catalogo` (
-  `derechoAfectadoN1Id` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion` VARCHAR(100) NULL ,
-  `notas` VARCHAR(3000) NULL ,
-  PRIMARY KEY (`derechoAfectadoN1Id`) )
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `idheasIkari`.`derechosAfectadosN2Catalogo`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `idheasIkari`.`derechosAfectadosN2Catalogo` (
-  `derechoAfectadoN2Id` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion` VARCHAR(100) NULL ,
-  `notas` VARCHAR(3000) NULL ,
-  `derechosAfectadosN1Catalogo_derechoAfectadoN1Id` INT NOT NULL ,
-  PRIMARY KEY (`derechoAfectadoN2Id`) ,
-  INDEX `fk_derechosAfectadosN2Catalogo_derechosAfectadosN1Catalogo1_idx` (`derechosAfectadosN1Catalogo_derechoAfectadoN1Id` ASC) ,
-  CONSTRAINT `fk_derechosAfectadosN2Catalogo_derechosAfectadosN1Catalogo1`
-    FOREIGN KEY (`derechosAfectadosN1Catalogo_derechoAfectadoN1Id` )
-    REFERENCES `idheasIkari`.`derechosAfectadosN1Catalogo` (`derechoAfectadoN1Id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `idheasIkari`.`derechosAfectadosN3Catalogo`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `idheasIkari`.`derechosAfectadosN3Catalogo` (
-  `derechoAfectadoN3Id` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion` VARCHAR(100) NULL ,
-  `notas` VARCHAR(3000) NULL ,
-  `derechosAfectadosN2Catalogo_derechoAfectadoN2Id` INT NOT NULL ,
-  PRIMARY KEY (`derechoAfectadoN3Id`) ,
-  INDEX `fk_derechosAfectadosN3Catalogo_derechosAfectadosN2Catalogo1_idx` (`derechosAfectadosN2Catalogo_derechoAfectadoN2Id` ASC) ,
-  CONSTRAINT `fk_derechosAfectadosN3Catalogo_derechosAfectadosN2Catalogo1`
-    FOREIGN KEY (`derechosAfectadosN2Catalogo_derechoAfectadoN2Id` )
-    REFERENCES `idheasIkari`.`derechosAfectadosN2Catalogo` (`derechoAfectadoN2Id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `idheasIkari`.`derechosAfectadosN4Catalogo`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `idheasIkari`.`derechosAfectadosN4Catalogo` (
-  `derechoAfectadoN4Id` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion` VARCHAR(100) NULL ,
-  `notas` VARCHAR(3000) NULL ,
-  `derechosAfectadosN3Catalogo_derechoAfectadoN3Id` INT NOT NULL ,
-  PRIMARY KEY (`derechoAfectadoN4Id`) ,
-  INDEX `fk_derechosAfectadosN4Catalogo_derechosAfectadosN3Catalogo1_idx` (`derechosAfectadosN3Catalogo_derechoAfectadoN3Id` ASC) ,
-  CONSTRAINT `fk_derechosAfectadosN4Catalogo_derechosAfectadosN3Catalogo1`
-    FOREIGN KEY (`derechosAfectadosN3Catalogo_derechoAfectadoN3Id` )
-    REFERENCES `idheasIkari`.`derechosAfectadosN3Catalogo` (`derechoAfectadoN3Id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -1298,7 +1321,18 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`usuarios` (
   PRIMARY KEY (`usuarioId`) )
 ENGINE = InnoDB;
 
-INSERT INTO usuarios(nombre,pass) VALUES('admin','idheas');
+
+-- -----------------------------------------------------
+-- Table `idheasIkari`.`motivoViajeCatalogo`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `idheasIkari`.`motivoViajeCatalogo` (
+  `motivoViajeId` INT NOT NULL AUTO_INCREMENT ,
+  `descripcion` VARCHAR(100) NOT NULL ,
+  `notas` VARCHAR(3000) NULL ,
+  PRIMARY KEY (`motivoViajeId`) )
+ENGINE = InnoDB;
+
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
