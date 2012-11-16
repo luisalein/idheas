@@ -24,10 +24,11 @@
                 <?php endforeach;
                 } ?>
                 </select>
+
                 <label for="direccionActor_direccion">Ubicación</label>
                 <input type="text" id="direccionActor_direccion" name="direccionActor_direccion"  <?=(isset($datosActor['direccion']) ? 'value="'.$datosActor['direccion'].'"' : ''); ?> />
                 <label for="direccionActor_codigoPostal">Código Postal</label>
-                <input type="text" id="direccionActor_codigoPostal" name="direccionActor_codigoPostal"  <?=(isset($datosActor['codigoPostal']) ? 'value="'.$datosActor['codigoPostal'].'"' : ''); ?> />
+                <input type="number" id="direccionActor_codigoPostal" pattern="[0-9]{5}" name="direccionActor_codigoPostal"  <?=(isset($datosActor['codigoPostal']) ? 'value="'.$datosActor['codigoPostal'].'"' : ''); ?> />
                 </div>
                 <div class="six columns">
                                                                    

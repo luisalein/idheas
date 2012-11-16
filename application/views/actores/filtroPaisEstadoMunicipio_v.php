@@ -1,7 +1,7 @@
  <div class="six columns">		
 
 	        <label for="pais">País</label>
-	        <div class="twelve columns" id="datosDeNacimiento_paisesCatalogo_paisIdSelect">
+	        <div id="datosDeNacimiento_paisesCatalogo_paisIdSelect">
 	        	<?php if($tipo == 1 || $tipo == 2):?>
 		            <select id="datosDeNacimiento_paisesCatalogo_paisId" name="datosDeNacimiento_paisesCatalogo_paisId" onchange="changeTest(1)">						
 		                    <option></option>
@@ -35,13 +35,13 @@
         <div class="six columns">
             <label for="estado">Estado</label>
             <?php if($tipo == 1 || $tipo == 2):?>
-	            <div id="datosDeNacimiento_estadosCatalogo_estadoIdSelect" class="twelve columns" >
+	            <div id="datosDeNacimiento_estadosCatalogo_estadoIdSelect"  >
 	                <select id="datosDeNacimiento_estadosCatalogo_estadoId" name="datosDeNacimiento_estadosCatalogo_estadoId"  onchange="changeTest(2)">						
 		               
 	                </select>
 	            </div>
             <?php else:?>
-            	<div id="datosDeNacimiento_estadosCatalogo_estadoIdSelect" class="twelve columns" >
+            	<div id="datosDeNacimiento_estadosCatalogo_estadoIdSelect" >
 	                <select id="direccionActor_estadosCatalogo_estadoId" name="direccionActor_estadosCatalogo_estadoId"  onchange="changeTest(2)">						
 		               
 	                </select>
@@ -53,7 +53,7 @@
         </div>
 
         <div class="six columns">
-            <div id="datosDeNacimiento_municipiosCatalogo_municipioIdSelect" class="twelve columns">
+            <div id="datosDeNacimiento_municipiosCatalogo_municipioIdSelect" >
                 <label for="municipio">Municipio</label>
                 <?php if($tipo == 1 || $tipo == 2):?>
 	               <select id="datosDeNacimiento_municipiosCatalogo_municipioId" name="datosDeNacimiento_municipiosCatalogo_municipioId">						
