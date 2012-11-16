@@ -1,5 +1,6 @@
 <form action="<?=$action; ?>" method="post" enctype="multipart/form-data" id="menuForm" name="menuForm">
     <input type="hidden" id="tipoActorAE"  name="2"/>
+
     <div class="three columns">
                 <?php if(isset($datosActor)){ ?> 
                 <input type="hidden" value="<?=$actorId; ?>" name="actores_actorId" />
@@ -8,7 +9,8 @@
 
 
                  <label>Foto </label>
-                    <input name="archivo" type="file" size="10" />  
+                    <input name="archivo" type="file" size="10" accept="image/*" />  
+                <input type="hidden" <?= (isset($datosActor['actores']['foto'])) ? 'value="'.$datosActor['actores']['foto'].'"' : "" ;?> name="actores_foto" />
     </div>
 
     <div class="nine columns">
@@ -294,8 +296,8 @@
             </span>-->
 
             <label for="realizaViaje">Realiza el viaje</label>
-            <input type="radio" name="infoMigratoria_realizaViaje" checked="checked" value="No acompañado" /> No acompañado
-            <input type="radio" name="infoMigratoria_realizaViaje" value="Acompañado" /> Acompañado
+            <input type="radio" name="infoMigratoria_realizaViaje" value="No acompanado" /> No acompañado
+            <input type="radio" name="infoMigratoria_realizaViaje" value="Acompanado" /> Acompañado
         </div>
 
         <div class="six columns">

@@ -121,7 +121,15 @@
 		            <div id="expCruceTransito"> <?=(isset($datosActor['infoMigratoria']['expCruceTransito'])) ? $datosActor['infoMigratoria']['expCruceTransito'] : ''; ?></div>
 	
 					<h6>Realiza el viaje:</h6>
-						<div id="realizaViaje" ><?=(isset($datosActor['infoMigratoria']['realizaViaje'])) ? $datosActor['infoMigratoria']['realizaViaje'] : ''; ?></div>
+						<div id="realizaViaje" >
+							<?php if (isset($datosActor['infoMigratoria']['realizaViaje'])) {
+								if ($datosActor['infoMigratoria']['realizaViaje']=="Acompanado") {?>
+									Acompañado
+								<?php } else {?>
+									No acompañado
+								<?php }
+							}?>
+						</div>
 			
 					<h6>Tipo de estancia:</h6>
 			            <label id="Estancia"><?php if(isset($datosActor['infoMigratoria']['tipoEstanciaId'])){

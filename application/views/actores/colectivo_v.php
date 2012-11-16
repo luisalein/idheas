@@ -25,7 +25,7 @@
                 <span id="apellidosSiglas"><?=(isset($datosActor['actores']['apellidosSiglas'])) ? $datosActor['actores']['apellidosSiglas'] : ''; ?></span>
              
                 <label><b>Actividad: </b> </label> 
-                <span id="actividad"><?=(isset($datosActor['infoGralActores']['actividad'])) ? $datosActor['infoGralActores']['actividad'] : ''; ?></span>
+                <span id="actividad"><?=(isset($datosActor['infoGralActores']['actividad'])) ? $catalogos['ocupacionesCatalogo'][$datosActor['infoGralActores']['actividad']]['descripcion'] : ''; ?></span>
             
             </div>
         </fieldset> <!--Termina información general-->
