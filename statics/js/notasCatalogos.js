@@ -1,6 +1,5 @@
-function notasCatalogos(notas, identificador){
+function notasCatalogos(notas){
 	if(notas!=""){
 		alert(notas);
 	}
-	$("#"+identificador).html(notas); 
 }

@@ -1,5 +1,4 @@
  <div class="six columns">		
-
 	        <label for="pais">País</label>
 	        <div id="datosDeNacimiento_paisesCatalogo_paisIdSelect">
 	        	<?php if($tipo == 1 || $tipo == 2):?>
@@ -14,16 +13,19 @@
 		                    <?php endforeach; } ?>
 		             </select>
 		         <?php else:?>
-		         	<select id="direccionActor_paisesCatalogo_paisId" name="direccionActor_paisesCatalogo_paisId" onchange="changeTest(1)">						
-		                    <option></option>
-		                    <?php if(isset($datosActor['datosDeNacimiento']['paisesCatalogo_paisId'])){
-		                        foreach($catalogos['paisesCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
-		                    <option  value="<?=$item['paisId']?>" <?=($datosActor['datosDeNacimiento']['paisesCatalogo_paisId'] == $item['paisId']) ? 'selected="selected"' : '' ; ?> > <?=$item['nombre']?></option>
-		                    <?php endforeach; } else { ?>
-		                        <?php foreach($catalogos['paisesCatalogo'] as $pais):?> <!--muestra los estados civiles-->
-		                        <option value="<?=$pais['paisId']; ?>"><?=$pais['nombre']; ?></option>
-		                    <?php endforeach; } ?>
-		             </select>
+			         	<select id="direccionActor_paisesCatalogo_paisId" name="direccionActor_paisesCatalogo_paisId" onchange="changeTest(1)">						
+			                    <option></option>
+			                    <?php if(isset($datosActor['direccionActor'])){
+							        foreach ($datosActor['direccionActor'] as $direccion) {
+			                        	foreach($catalogos['paisesCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
+			                    			<option  value="<?=$item['paisId']?>" <?=($direccion['paisesCatalogo_paisId'] == $item['paisId']) ? 'selected="selected"' : '' ; ?> > <?=$item['nombre']?></option>
+			                    		<?php endforeach; 
+			                    	  }
+			                      } else { ?>
+			                        <?php foreach($catalogos['paisesCatalogo'] as $pais):?> <!--muestra los estados civiles-->
+			                        <option value="<?=$pais['paisId']; ?>"><?=$pais['nombre']; ?></option>
+			                    <?php endforeach; } ?>
+			             </select>
 	             <?php endif;?>
 	        </div>
 	        <!--<input id="BotonmasdatosDeNacimiento_paisesCatalogo_paisId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />    

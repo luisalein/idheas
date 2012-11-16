@@ -11,7 +11,8 @@
 
 
             <label>Foto </label>
-                <input name="archivo" type="file" size="10" />  
+                <input name="archivo" type="file" size="10" accept="image/*" />  
+                <input type="hidden" <?= (isset($datosActor['actores']['foto'])) ? 'value="'.$datosActor['actores']['foto'].'"' : "" ;?> name="actores_foto" />
 </div>
 
 
@@ -130,7 +131,7 @@ foreach($catalogos['tipoActorColectivo'] as $key => $item): ?> <!--muestra los e
         <span id="TextoEspecial_2direccionActor_municipiosCatalogo_municipioId" class="Escondido twelve columns"></span>-->
 	        <div class="six columns"> 
 		        <label for="codigoPos">Código Postal</label>
-		        <input type="number"  name="direccionActor_codigoPostal" pattern="[0-9]{5}" <?=(isset($direccion['codigoPostal']) ? 'value="'.$direccion['codigoPostal'].'"' : ''); ?>  size="30"  />
+		        <input type="number"  name="direccionActor_codigoPostal" pattern="[0-9]+" <?=(isset($direccion['codigoPostal']) ? 'value="'.$direccion['codigoPostal'].'"' : ''); ?>  size="30"  />
 			</div>
         </div> 
 
@@ -150,7 +151,7 @@ foreach($catalogos['tipoActorColectivo'] as $key => $item): ?> <!--muestra los e
 		        <span id="TextoEspecial_2direccionActor_municipiosCatalogo_municipioId" class="Escondido twelve columns"></span>-->
 			        <div class="six columns"> 
 				        <label for="codigoPos">Código Postal</label>
-				        <input type="number"  name="direccionActor_codigoPostal" pattern="[0-9]{5}" <?=(isset($direccion['codigoPostal']) ? 'value="'.$direccion['codigoPostal'].'"' : ''); ?>  size="30"  />
+				        <input type="number"  name="direccionActor_codigoPostal" pattern="[0-9]+" <?=(isset($direccion['codigoPostal']) ? 'value="'.$direccion['codigoPostal'].'"' : ''); ?>  size="30"  />
 					</div>
 		        </div> 
             </fieldset><!--Termina dirección-->

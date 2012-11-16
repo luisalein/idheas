@@ -9,7 +9,7 @@
 
 
                 <label>Foto </label>
-                <input name="archivo" type="file" size="10" />
+                <input name="archivo" type="file" size="10" accept="image/*"/>
                 <input type="hidden" <?= (isset($datosActor['actores']['foto'])) ? 'value="'.$datosActor['actores']['foto'].'"' : "" ;?> name="actores_foto" />
                
     </div>
@@ -88,43 +88,50 @@
             <fieldset>
                 <legend>Detalles</legend>
                 <div class="six columns"><!----Primer mitad de detalles---->
-                <div class="six columns">
-                <label for="hijos">Hijos</label>
-                <select id="infoGralActor_hijos" name="infoGralActor_hijos">
-                <option></option>
-                <?php if(isset($datosActor['infoGralActor']['hijos'])){
-                for($edad = 0; $edad <= 100; $edad++):?> <!--muestra todas las edades de 1 a 100-->
-                <option value="<?=$edad?>" <?=($datosActor['infoGralActor']['hijos'] == $edad) ? 'selected="selected"' : '' ; ?>> <?=$edad; ?></option>
-                <?php endfor;
-                } else {
-                for($edad = 0; $edad <= 100; $edad++):?><!--muestra todas las edades de 1 a 100-->
-                <option value="<?=$edad?>"><?=$edad?></option>
-                <?php endfor;
-                } ?>
-                </select>
-                </div>
-                <div class="six columns">
-                <label for="genero">¿Habla español?</label>
-                <?php if(isset($datosActor['inofGralActor']['espaniol'])){ ?>
-                    <input type="radio" id="infoGralActor_espaniol" name="infoGralActor_espaniol" <?=($datosActor['infoGralActor']['espaniol'] == 'Si') ? 'checked="checked"' : ''; ?> value="Si" />Si
-                    <input type="radio" id="infoGralActor_espaniol" name="infoGralActor_espaniol" <?=($datosActor['infoGralActor']['espaniol'] == 'No') ? 'checked="checked"' : ''; ?> value="No" />No
-                <?php } else { ?>
-                    <input type="radio" id="infoGralActor_espaniol" name="infoGralActor_espaniol" checked="checked" value="Si" />Si
-                    <input type="radio" id="infoGralActor_espaniol" name="infoGralActor_espaniol" value="No" />No
-                <?php } ?>
-                </div>
-                <label for="grupoIndigena">Grupo Indígena</label>
-                <select id="infoGralActor_gruposIndigenas_grupoIndigenaId" name="infoGralActor_gruposIndigenas_grupoIndigenaId">
-                <option></option>
-                <?php if(isset($datosActor['infoGralActor']['gruposIndigenas_grupoIndigenaId'])){
-                foreach($catalogos['gruposIndigenasCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
-                <option  value="<?=$item['grupoIndigenaId']?>" <?=($datosActor['infoGralActor']['gruposIndigenas_grupoIndigenaId'] == $item['grupoIndigenaId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
-                <?php endforeach; } else { ?>
-                <?php foreach($catalogos['gruposIndigenasCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
-                <option  value="<?=$item['grupoIndigenaId']; ?>"><?=$item['descripcion']; ?></option>
-                <?php endforeach; } ?>
-                </select>
+
+                    <div class="twelve columns">
+
+                        <div class="six columns">
+                            <label for="hijos">Hijos</label>
+                            <select id="infoGralActor_hijos" name="infoGralActor_hijos">
+                                <option></option>
+                                <?php if(isset($datosActor['infoGralActor']['hijos'])){
+                                for($edad = 0; $edad <= 100; $edad++):?> <!--muestra todas las edades de 1 a 100-->
+                                <option value="<?=$edad?>" <?=($datosActor['infoGralActor']['hijos'] == $edad) ? 'selected="selected"' : '' ; ?>> <?=$edad; ?></option>
+                                <?php endfor;
+                                } else {
+                                for($edad = 0; $edad <= 100; $edad++):?><!--muestra todas las edades de 1 a 100-->
+                                <option value="<?=$edad?>"><?=$edad?></option>
+                                <?php endfor;
+                                } ?>
+                            </select>
+                        </div>
+                        <div class="six columns">
+                            <label for="genero">¿Habla español?</label>
+                            <?php if(isset($datosActor['inofGralActor']['espaniol'])){ ?>
+                                <input type="radio" id="infoGralActor_espaniol" name="infoGralActor_espaniol" <?=($datosActor['infoGralActor']['espaniol'] == 'Si') ? 'checked="checked"' : ''; ?> value="Si" />Si
+                                <input type="radio" id="infoGralActor_espaniol" name="infoGralActor_espaniol" <?=($datosActor['infoGralActor']['espaniol'] == 'No') ? 'checked="checked"' : ''; ?> value="No" />No
+                            <?php } else { ?>
+                                <input type="radio" id="infoGralActor_espaniol" name="infoGralActor_espaniol" checked="checked" value="Si" />Si
+                                <input type="radio" id="infoGralActor_espaniol" name="infoGralActor_espaniol" value="No" />No
+                            <?php } ?>
+                        </div>
+                    </div>
+
+                        <label for="grupoIndigena">Grupo Indígena</label>
+                        <select id="infoGralActor_gruposIndigenas_grupoIndigenaId" name="infoGralActor_gruposIndigenas_grupoIndigenaId">
+                            <option></option>
+                            <?php if(isset($datosActor['infoGralActor']['gruposIndigenas_grupoIndigenaId'])){
+                            foreach($catalogos['gruposIndigenasCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
+                            <option  value="<?=$item['grupoIndigenaId']?>" <?=($datosActor['infoGralActor']['gruposIndigenas_grupoIndigenaId'] == $item['grupoIndigenaId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
+                            <?php endforeach; } else { ?>
+                            <?php foreach($catalogos['gruposIndigenasCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
+                            <option  onclick="notasCatalogos('<?=$item['notas']; ?>')" value="<?=$item['grupoIndigenaId']; ?>"><?=$item['descripcion']; ?></option>
+                            <?php endforeach; } ?>
+                        </select>
+
                 </div><!----Termina primer mitad de detalles---->
+
                 <div class="six columns"><!----Segunda mitad de detalles---->
 
 
@@ -158,8 +165,6 @@
                     <?php endforeach; } ?>
                 </select>
                 
-                <label for="UltimaOcupacion">Notas Última Ocupación</label>
-                <div id="notasUltimaOcupacion"></div>
                 </div>	<!----Termina segunda mitad de detalles---->
 
             </fieldset><!--Termina Detalles-->
@@ -238,67 +243,73 @@
                     </div>
                 </fieldset>
             <?php } else{?>
+
              <fieldset>
                 <legend>Dirección</legend>
+
                 <div class="six columns">
-                <label for="direccionActor_tipoDireccionId">Tipo de dirección</label>
-                <select  id="direccionActor_tipoDireccionId" name="direccionActor_tipoDireccionId">         
-                <option></option>
-                <?php if(isset($datosActor['tipoDireccionId'])){
-                foreach($catalogos['tipoDireccion'] as $item):?> <!--muestra todas las edades de 1 a 100-->
-                <option value="<?=$item['tipoDireccionId']; ?>" <?=($datosActor['tipoDireccionId'] == $item['tipoDireccionId']) ? 'selected="selected"' : '' ; ?>> <?=$item['descripcion']; ?></option>
-                <?php endforeach;
-                } else {
-                foreach($catalogos['tipoDireccion'] as $item):?> <!--muestra todas las edades de 1 a 100-->
-                <option value="<?=$item['tipoDireccionId']; ?>"> <?=$item['descripcion']; ?></option>
-                <?php endforeach;
-                } ?>
-                </select>
-                <label for="direccionActor_direccion">Ubicación</label>
-                <input type="text" id="direccionActor_direccion" name="direccionActor_direccion"  <?=(isset($datosActor['direccion']) ? 'value="'.$datosActor['direccion'].'"' : ''); ?> />
-                <label for="direccionActor_codigoPostal">Código Postal</label>
-                <input type="text" id="direccionActor_codigoPostal" name="direccionActor_codigoPostal"  <?=(isset($datosActor['codigoPostal']) ? 'value="'.$datosActor['codigoPostal'].'"' : ''); ?> />
+                    <label for="direccionActor_tipoDireccionId">Tipo de dirección</label>
+                    <select  id="direccionActor_tipoDireccionId" name="direccionActor_tipoDireccionId">         
+                        <option></option>
+                        <?php if(isset($datosActor['tipoDireccionId'])){
+                            foreach($catalogos['tipoDireccion'] as $item):?> <!--muestra todas las edades de 1 a 100-->
+                                <option value="<?=$item['tipoDireccionId']; ?>" <?=($datosActor['tipoDireccionId'] == $item['tipoDireccionId']) ? 'selected="selected"' : '' ; ?>> <?=$item['descripcion']; ?></option>
+                            <?php endforeach;
+                        } else {
+                            foreach($catalogos['tipoDireccion'] as $item):?> <!--muestra todas las edades de 1 a 100-->
+                                <option value="<?=$item['tipoDireccionId']; ?>"> <?=$item['descripcion']; ?></option>
+                            <?php endforeach;
+                        } ?>
+                    </select>
+
+                    <label for="direccionActor_direccion">Ubicación</label>
+                        <input type="text" id="direccionActor_direccion" name="direccionActor_direccion"  <?=(isset($datosActor['direccion']) ? 'value="'.$datosActor['direccion'].'"' : ''); ?> />
+                    
+                    <label for="direccionActor_codigoPostal">Código Postal</label>
+                        <input type="number" pattern="[0-9]+" id="direccionActor_codigoPostal" name="direccionActor_codigoPostal"  <?=(isset($datosActor['codigoPostal']) ? 'value="'.$datosActor['codigoPostal'].'"' : ''); ?> />
                 </div>
+
                 <div class="six columns">
                                                                    
-                <label for="paisdir">País</label>
-                <select id="direccionActor_paisesCatalogo_paisId" name="direccionActor_paisesCatalogo_paisId">                      
-                    <option></option>
-                    <?php if(isset($datosActor['paisesCatalogo_paisId'])){
-                        foreach($catalogos['paisesCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
-                        <option  value="<?=$item['paisId']?>" <?=($datosActor['paisesCatalogo_paisId'] == $item['paisId']) ? 'selected="selected"' : '' ; ?> > <?=$item['nombre']?></option>
-                    <?php endforeach; } else { ?>
-                        <?php foreach($catalogos['paisesCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
-                        <option value="<?=$item['paisId']; ?>"><?=$item['nombre']; ?></option>
-                    <?php endforeach; } ?>
-                </select>
-
-                <label for="estadodir">Estado</label>
-
-                <select id="direccionActor_estadosCatalogo_estadoId" name="direccionActor_estadosCatalogo_estadoId">                        
-                <option></option>
-                <?php if(isset($datosActor['estadosCatalogo_estadoId'])){
-                foreach($catalogos['estadosCatalogo'] as $item): ?> <!--muestra los estados civiles-->
-                <option  value="<?=$item['estadoId']?>" <?=($datosActor['estadosCatalogo_estadoId'] == $item['estadoId']) ? 'selected="selected"' : '' ; ?> > <?=$item['nombre']?></option>
-                <?php endforeach; } else { ?>
-                <?php foreach($catalogos['estadosCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
-                <option value="<?=$item['estadoId']; ?>"><?=$item['nombre']; ?></option>
-                <?php endforeach; } ?>
-                </select>   
-
-                <label for="municipiodir">Municipio</label>
-                <select id="direccionActor_municipiosCatalogo_municipioId" name="direccionActor_municipiosCatalogo_municipioId">                        
-                    <?php if(isset($datosActor['municipiosCatalogo_municipioId'])){
-                    foreach($catalogos['municipiosCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
-                        <option  value="<?=$item['municipioId']?>" <?=($datosActor['municipiosCatalogo_municipioId'] == $item['municipioId']) ? 'selected="selected"' : '' ; ?> > <?=$item['nombre']?></option>
-                        <?php endforeach; } else { ?>
+                    <label for="paisdir">País</label>
+                    <select id="direccionActor_paisesCatalogo_paisId" name="direccionActor_paisesCatalogo_paisId">                      
                         <option></option>
-                    <?php foreach($catalogos['municipiosCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
-                        <option value="<?=$item['municipioId']; ?>"><?=$item['nombre']; ?></option>
-                    <?php endforeach; } ?>
-                </select>
-            </fieldset><!--Termina datos dirección-->
-            <?php }?>
+                        <?php if(isset($datosActor['paisesCatalogo_paisId'])){
+                            foreach($catalogos['paisesCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
+                            <option  value="<?=$item['paisId']?>" <?=($datosActor['paisesCatalogo_paisId'] == $item['paisId']) ? 'selected="selected"' : '' ; ?> > <?=$item['nombre']?></option>
+                        <?php endforeach; } else { ?>
+                            <?php foreach($catalogos['paisesCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
+                            <option value="<?=$item['paisId']; ?>"><?=$item['nombre']; ?></option>
+                        <?php endforeach; } ?>
+                    </select>
+
+                    <label for="estadodir">Estado</label>
+
+                    <select id="direccionActor_estadosCatalogo_estadoId" name="direccionActor_estadosCatalogo_estadoId">                        
+                        <option></option>
+                        <?php if(isset($datosActor['estadosCatalogo_estadoId'])){
+                        foreach($catalogos['estadosCatalogo'] as $item): ?> <!--muestra los estados civiles-->
+                        <option  value="<?=$item['estadoId']?>" <?=($datosActor['estadosCatalogo_estadoId'] == $item['estadoId']) ? 'selected="selected"' : '' ; ?> > <?=$item['nombre']?></option>
+                        <?php endforeach; } else { ?>
+                        <?php foreach($catalogos['estadosCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
+                        <option value="<?=$item['estadoId']; ?>"><?=$item['nombre']; ?></option>
+                        <?php endforeach; 
+                    } ?>
+                    </select>   
+
+                    <label for="municipiodir">Municipio</label>
+                    <select id="direccionActor_municipiosCatalogo_municipioId" name="direccionActor_municipiosCatalogo_municipioId">                        
+                        <option></option>
+                        <?php if(isset($datosActor['municipiosCatalogo_municipioId'])){
+                                foreach($catalogos['municipiosCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
+                                <option  value="<?=$item['municipioId']?>" <?=($datosActor['municipiosCatalogo_municipioId'] == $item['municipioId']) ? 'selected="selected"' : '' ; ?> > <?=$item['nombre']?></option>
+                            <?php endforeach; } else { ?>
+                                <?php foreach($catalogos['municipiosCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
+                                    <option value="<?=$item['municipioId']; ?>"><?=$item['nombre']; ?></option>
+                                <?php endforeach; } ?>
+                    </select>
+                </fieldset><!--Termina datos dirección-->
+                <?php }?>
         </div>
 
         
