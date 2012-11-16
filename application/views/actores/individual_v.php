@@ -188,41 +188,42 @@
 			            <input type="button" class="tiny button <?=$clase?>"  value="Nuevo" onclick="nueva_relacion_a_a(<?=$idActor ?>,0,0)" />
 	                </div>
 	            </div>
-	
+	            
+	            <!--Comienza citado como persona relacionada-->
+			    <div id="subPestanias" data-collapse>
+			        <h2 class="flecha">Citado como persona relacionada</h2>
+			        <div>
+			            <table>
+			            <thead>
+			                <tr>
+			                    <th>Persona</th>
+			                    <th>Tipo de relación</th>
+			                    <th>Persona Relacionada</th>
+			                    <th>Fecha de incio</th>
+			                    <th>Fecha de témino</th>
+			                </tr>
+			            </thead>
+			            <tbody>
+			                <?php if(isset($citaActor['citas'])){
+			                    foreach($citaActor['citas'] as $citas){ ?>
+			                        <tr>
+			                            <td><?=$datosActor['actores']['nombre'].' '.$datosActor['actores']['apellidosSiglas']; ?></td>
+			                            <td><?=$catalogos['relacionActoresCatalogo'][$citas['datosCitas']['tipoRelacionId']]['nombre']; ?></td>
+			                            <td><?=$catalogos['listaTodosActores'][$citas['datosCitas']['actores_actorId']]['nombre']." ".$catalogos['listaTodosActores'][$citas['datosCitas']['actores_actorId']]['apellidosSiglas']?></td>
+			                            <td><?=$citas['datosCitas']['fechaInicial']; ?></td>
+			                            <td><?=$citas['datosCitas']['fechaTermino']; ?></td>
+			                        </tr><?php
+			                    }
+			                } ?>
+			                </tbody>
+			            </table>
+			        </div>
+			    </div>
+			    <!--Termina citado como persona relacionada-->
 	        </div>
 	</div>
 
-    <!--Comienza citado como persona relacionada-->
-    <div id="pestania" data-collapse>
-        <h2 class="flecha">Citado como persona relacionada</h2>
-        <div>
-            <table>
-            <thead>
-                <tr>
-                    <th>Persona</th>
-                    <th>Tipo de relación</th>
-                    <th>Persona Relacionada</th>
-                    <th>Fecha de incio</th>
-                    <th>Fecha de témino</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if(isset($citaActor['citas'])){
-                    foreach($citaActor['citas'] as $citas){ ?>
-                        <tr>
-                            <td><?=$datosActor['actores']['nombre'].' '.$datosActor['actores']['apellidosSiglas']; ?></td>
-                            <td><?=$catalogos['relacionActoresCatalogo'][$citas['datosCitas']['tipoRelacionId']]['nombre']; ?></td>
-                            <td><?=$catalogos['listaTodosActores'][$citas['datosCitas']['actores_actorId']]['nombre']." ".$catalogos['listaTodosActores'][$citas['datosCitas']['actores_actorId']]['apellidosSiglas']?></td>
-                            <td><?=$citas['datosCitas']['fechaInicial']; ?></td>
-                            <td><?=$citas['datosCitas']['fechaTermino']; ?></td>
-                        </tr><?php
-                    }
-                } ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <!--Termina citado como persona relacionada-->
+    
     <!--Comienza actores colectivos---->
     <div id="pestania" data-collapse>
         <h2 class="flecha">Actores colectivos </h2>

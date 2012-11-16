@@ -258,10 +258,8 @@
 		            <input type="button" class="tiny button <?=$clase?>"  value="Nuevo" onclick="nueva_relacion_a_a(<?=$idActor ?>,0,1)" />
 			        </div>
 			    </div>
-		    </div>
-	</div>
-	        <!--Comienza citado como persona relacionada-->
-	        <div id="pestania" data-collapse>
+			    <!--Comienza citado como persona relacionada-->
+	        <div id="subPestanias" data-collapse>
 	            <h2 class="flecha">Citado como persona relacionada</h2>
 	            <div>
 	            <table>
@@ -291,6 +289,9 @@
 	            </div>
 	        </div>
 	        <!--Termina citado como persona relacionada-->
+		    </div>
+	</div>
+	        
 	        <!--Comienza actores colectivos---->
 	        <div id="pestania" data-collapse>
 	            <h2 class="flecha">Actores colectivos </h2>
