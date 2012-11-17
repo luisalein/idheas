@@ -93,6 +93,34 @@ class casosNucleo_c extends CI_Controller {
 		$this->load->view('actores/formularioNuevaDireccion',$DatosGenerales);
 	}
 
+	public function mostrarVictimas($idActo,$idVictima = 0, $ventana = 0){
+			
+		$datos['catalogos'] = $this->traer_catalogos();
+		
+		$datos['victimas'] = $this->casos_m->mTraerVictimasActo($idActo);
+		
+		$datos['head'] = $this->load->view('general/head_v', $datos, true);
+		
+		$datos['idVictima'] = $idVictima;
+		
+		$datos['idActo'] = $idActo;
+		
+		if($ventana == 0){
+			if($idVictima == 0){
+				$datos['action'] = base_url().'index.php/casos_c/guardarVictima/'.$idVictima;
+			}
+			
+			$this->load->view('casos/formularioVictima_v', $datos);
+		}
+		if($ventana == 1){
+			if($idVictima != 0){
+				$datos['action'] = base_url().'index.php/casos_c/editarVictima/'.$idActo.'/'.$idVictima;
+			}
+			$this->load->view('casos/formularioEditarVictima_v', $datos);
+		}
+		
+	}
+	
 	public function direccion($id){
 	
 		$this->load->helper(array('html', 'url'));	

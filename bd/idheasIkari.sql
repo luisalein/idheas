@@ -367,17 +367,19 @@ ENGINE = InnoDB;
 -- Table `idheasIkari`.`nucleoCaso`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`nucleoCaso` (
+  `nucleoCasoId` INT NOT NULL AUTO_INCREMENT ,
   `fechaInicio` DATE NULL ,
   `fechaTermino` DATE NULL ,
   `noPersonasAfectadas` INT NULL ,
   `casos_casoId` INT NOT NULL ,
-  `municipiosCatalogo_municipioId` INT NOT NULL ,
-  `estadosCatalogo_estadoId` INT NOT NULL ,
-  `paisesCatalogo_paisId` INT NOT NULL ,
+  `municipiosCatalogo_municipioId` INT NULL ,
+  `estadosCatalogo_estadoId` INT NULL ,
+  `paisesCatalogo_paisId` INT NULL ,
   INDEX `fk_nucleoCaso_casos1_idx` (`casos_casoId` ASC) ,
   INDEX `fk_nucleoCaso_municipiosCatalogo1_idx` (`municipiosCatalogo_municipioId` ASC) ,
   INDEX `fk_nucleoCaso_estadosCatalogo1_idx` (`estadosCatalogo_estadoId` ASC) ,
   INDEX `fk_nucleoCaso_paisesCatalogo1_idx` (`paisesCatalogo_paisId` ASC) ,
+  PRIMARY KEY (`nucleoCasoId`) ,
   CONSTRAINT `fk_nucleoCaso_casos1`
     FOREIGN KEY (`casos_casoId` )
     REFERENCES `idheasIkari`.`casos` (`casoId` )
@@ -407,9 +409,9 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`lugares` (
   `lugarId` INT NOT NULL AUTO_INCREMENT ,
   `casos_casoId` INT NOT NULL ,
-  `paisesCatalogo_paisId` INT NOT NULL ,
-  `estadosCatalogo_estadoId` INT NOT NULL ,
-  `municipiosCatalogo_municipioId` INT NOT NULL ,
+  `paisesCatalogo_paisId` INT NULL ,
+  `estadosCatalogo_estadoId` INT NULL ,
+  `municipiosCatalogo_municipioId` INT NULL ,
   INDEX `fk_lugares_casos1_idx` (`casos_casoId` ASC) ,
   INDEX `fk_lugares_paisesCatalogo1_idx` (`paisesCatalogo_paisId` ASC) ,
   INDEX `fk_lugares_estadosCatalogo1_idx` (`estadosCatalogo_estadoId` ASC) ,

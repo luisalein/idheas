@@ -125,13 +125,13 @@ class Casos_c extends CI_Controller {
          * se selecciona el tipo de actor y se trae la vista segun el tipo de actor
          */
                     
-        //$datos['listado'] = $this->casos_m->mListaCasos();
+        $datos['listado'] = $this->casos_m->mListaCasos();
         
-        //$datos['lista'] = $this->load->view('actores/lista_v', $datos, true);
+        $datos['lista'] = $this->load->view('actores/lista_v', $datos, true);
         
-        $datos['content'] = $this->load->view('casos/formularioInfoGral_v', $datos, true);
+        $datos['form'] = $this->load->view('casos/formularioInfoGral_v', $datos, true);
         
-        //$datos['content'] = $this->load->view('actores/principal_v', $datos, true);
+        $datos['content'] = $this->load->view('actores/principal_v', $datos, true);
         
         $datos['body'] = $this->load->view('general/body_v', $datos, true);
             
@@ -192,17 +192,23 @@ class Casos_c extends CI_Controller {
         $datos['datosCaso'] = $this->casos_m->mTraerDatosCaso($casoId);
         
         if($casoId > 0){
-            
+                                
+
+            $datos['head'] = $this->load->view('general/head_v', $datos, true);
 			
             $datos['action'] = base_url().'index.php/actores_c/editarCasoBd';
             
-			$datos['content'] = $this->load->view('casos/formularioInfoGral_v', $datos, true);
-               
             $datos['is_active'] = 'casos';
 
-            $datos['head'] = $this->load->view('general/head_v', $datos, true);
+	        $datos['listado'] = $this->casos_m->mListaCasos();
+	        
+	        $datos['lista'] = $this->load->view('actores/lista_v', $datos, true);
 
-            $datos['body'] = $this->load->view('general/body_v', $datos, true);
+	        $datos['form'] = $this->load->view('casos/formularioInfoGral_v', $datos, true);
+
+	        $datos['content'] = $this->load->view('actores/principal_v', $datos, true);
+	        
+	        $datos['body'] = $this->load->view('general/body_v', $datos, true);
 
             $this->load->view('general/principal_v', $datos);
             

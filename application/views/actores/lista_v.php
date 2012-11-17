@@ -98,22 +98,26 @@
 	               
             	<?php endforeach;
             } else{
-                foreach($listado as $index => $caso): ?>
-                <?php if(isset($caso['casoId'])): ?>
-	                <?php $total=$total+1;?>
-	                 <?php if(isset($casoId) && $casoId == $caso['casoId']): ?>
-			                <div class="twelve columns" id="caja<?=$caso['casoId']; ?>" onclick="cargarCaso(<?=$caso['casoId']; ?>)" style="cursor: pointer;background:#ccc;">
-			                   <?=$caso['nombre']; ?>
-			                </div>
-			                <hr />
-	                 <?php else:?>
-	                 		 <div class="twelve columns" id="caja<?=$caso['casoId']; ?>" onclick="cargarCaso(<?=$caso['casoId']; ?>)" style="cursor: pointer;">
-			                   <?=$caso['nombre']; ?>
-			                </div>
-			                <hr />
-	                 <?php endif?>
-	               <?php endif?>   
-            <?php endforeach;
+            	if ($listado!="Aún no tienes casos en la base de datos") {
+	                foreach($listado as $index => $caso): ?>
+	                <?php if(isset($caso['casoId'])): ?>
+		                <?php $total=$total+1;?>
+		                 <?php if(isset($casoId) && $casoId == $caso['casoId']): ?>
+				                <div class="twelve columns" id="caja<?=$caso['casoId']; ?>" onclick="cargarCaso(<?=$caso['casoId']; ?>)" style="cursor: pointer;background:#ccc;">
+				                   <?=$caso['nombre']; ?>
+				                </div>
+				                <hr />
+		                 <?php else:?>
+		                 		 <div class="twelve columns" id="caja<?=$caso['casoId']; ?>" onclick="cargarCaso(<?=$caso['casoId']; ?>)" style="cursor: pointer;">
+				                   <?=$caso['nombre']; ?>
+				                </div>
+				                <hr />
+		                 <?php endif?>
+		               <?php endif?>   
+	            	<?php endforeach;
+            	}else{
+            		echo($listado);
+            	}
             }
         } ?>
     </div><!--Termina lista de los actores-->

@@ -8,7 +8,7 @@
 <body>
 <form method="post"  action='<?=base_url(); ?>index.php/casosVentanas_c/guardarDatosVentanas/2' accept-charset="utf-8">
 
-
+<input type="hidden" value="<?= (isset($casoId)) ? "1" : "0" ;?>" name="editar" id="editar"> 
 <input type="hidden" value="<?=$casoId; ?>" name="fichas_casos_casoId" id="fichas_casos_casoId" />
 
 	<div id="formularioDetallerLugar">
@@ -17,17 +17,13 @@
 				<div>
 					<div class="twelve columns">
 						<div class="six columns">
-							<p>
 								<label for="clave">Clave</label>
 								<input type="text" readonly="readonly" value='<?=(isset($ficha['fichaId'])) ? $ficha['fichaId'] : "Por asignar" ;?>' />
-							</p>
 						</div>
+
 						<div class="six columns">
-							<p>
 								<label for="claveTitulo">Título</label>
 								<input type="text" id="fichas_titulo" name="fichas_titulo" value="<?=(isset($ficha['titulo'])) ? $ficha['titulo'] : " " ;?>" size="60"  />
-
-							</p>
 						</div>
 					</div>
 
