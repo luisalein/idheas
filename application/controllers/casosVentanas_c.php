@@ -56,6 +56,10 @@ class CasosVentanas_c extends CI_Controller {
 		
 			$datos['lugar']=$datos['datosCaso']['lugares'][$i];
 
+		$datos['tipo'] = 4;
+		
+		$datos['filtroPais']=$this->load->view('actores/filtroPaisEstadoMunicipio_v', $datos);
+		
         $this->load->view('casos/formulariodetalleLugar_v', $datos);
         
     }

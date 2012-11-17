@@ -20,10 +20,13 @@
 
 .victimaSeleccionada{
   background-color: #efefef;
-  border:5px solid #ddd;
+  border:5px solid #eee;
   height: 80px;
 }
 
+.victimaNoSeleccionada{
+  height: 80px;
+}
 .espacio{
   min-height: 100px;
 }

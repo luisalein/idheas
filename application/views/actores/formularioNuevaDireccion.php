@@ -7,8 +7,9 @@
 	</head>
 	
 <body>
-	<form action='<?= (isset($datosActor)) ? (base_url().'index.php/actores_c/actualizaDireccion'.'/'.$datosActor['direccionId'].'/'.$actorId) : (base_url().'index.php/actores_c/agregarDireccion'.'/'.$actorId) ;?>' method="post" accept-charset="utf-8">
+	<form action='<?= (isset($datosActor)) ? (base_url().'index.php/actores_c/actualizaDireccion'.'/'.$datosActor['direccionId'].'/'.$actorId) : (base_url().'index.php/actores_c/agregarDireccion'.'/'.$actorId) ;?>' id="menuForm" name="menuForm" method="post" accept-charset="utf-8">
             <fieldset>
+            	<input type="hidden" id="tipoActorAE"  name="3"/>
                 <legend>Dirección</legend>
                 <div class="six columns">
                 <label for="direccionActor_tipoDireccionId">Tipo de dirección</label>
@@ -30,44 +31,10 @@
                 <label for="direccionActor_codigoPostal">Código Postal</label>
                 <input type="number" id="direccionActor_codigoPostal" pattern="[0-9]+" name="direccionActor_codigoPostal"  <?=(isset($datosActor['codigoPostal']) ? 'value="'.$datosActor['codigoPostal'].'"' : ''); ?> />
                 </div>
+                
                 <div class="six columns">
-                                                                   
-                <label for="paisdir">País</label>
-                <select id="direccionActor_paisesCatalogo_paisId" name="direccionActor_paisesCatalogo_paisId">						
-                    <option></option>
-                    <?php if(isset($datosActor['paisesCatalogo_paisId'])){
-                        foreach($catalogos['paisesCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
-                        <option  value="<?=$item['paisId']?>" <?=($datosActor['paisesCatalogo_paisId'] == $item['paisId']) ? 'selected="selected"' : '' ; ?> > <?=$item['nombre']?></option>
-                    <?php endforeach; } else { ?>
-                        <?php foreach($catalogos['paisesCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
-                        <option value="<?=$item['paisId']; ?>"><?=$item['nombre']; ?></option>
-                    <?php endforeach; } ?>
-                </select>
-
-                <label for="estadodir">Estado</label>
-
-                <select id="direccionActor_estadosCatalogo_estadoId" name="direccionActor_estadosCatalogo_estadoId">						
-                <option></option>
-                <?php if(isset($datosActor['estadosCatalogo_estadoId'])){
-                foreach($catalogos['estadosCatalogo'] as $item): ?> <!--muestra los estados civiles-->
-                <option  value="<?=$item['estadoId']?>" <?=($datosActor['estadosCatalogo_estadoId'] == $item['estadoId']) ? 'selected="selected"' : '' ; ?> > <?=$item['nombre']?></option>
-                <?php endforeach; } else { ?>
-                <?php foreach($catalogos['estadosCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
-                <option value="<?=$item['estadoId']; ?>"><?=$item['nombre']; ?></option>
-                <?php endforeach; } ?>
-                </select>	
-
-                <label for="municipiodir">Municipio</label>
-                <select id="direccionActor_municipiosCatalogo_municipioId" name="direccionActor_municipiosCatalogo_municipioId">						
-                    <?php if(isset($datosActor['municipiosCatalogo_municipioId'])){
-                    foreach($catalogos['municipiosCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
-                        <option  value="<?=$item['municipioId']?>" <?=($datosActor['municipiosCatalogo_municipioId'] == $item['municipioId']) ? 'selected="selected"' : '' ; ?> > <?=$item['nombre']?></option>
-                        <?php endforeach; } else { ?>
-                        <option></option>
-                    <?php foreach($catalogos['municipiosCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
-                        <option value="<?=$item['municipioId']; ?>"><?=$item['nombre']; ?></option>
-                    <?php endforeach; } ?>
-                </select>
+                    <?= $filtroDireccion?>                                               
+                </div>
             </fieldset><!--Termina datos dirección-->
            	
             <input type="submit" class="small button"  value="guardar">

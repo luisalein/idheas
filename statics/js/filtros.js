@@ -286,6 +286,7 @@ function eliminarCaso(idCaso){
 function changeTest (tipo) { 
 	
 	var actor = $('#tipoActorAE').attr('name');
+	
 	if(actor == 1 || actor == 2){
 		if(tipo == 1){
 			var Index = document.menuForm.datosDeNacimiento_paisesCatalogo_paisId.options[document.menuForm.datosDeNacimiento_paisesCatalogo_paisId.selectedIndex].value; 
@@ -294,16 +295,27 @@ function changeTest (tipo) {
 			var Index = document.menuForm.datosDeNacimiento_estadosCatalogo_estadoId.options[document.menuForm.datosDeNacimiento_estadosCatalogo_estadoId.selectedIndex].value; 
 	
 		}
-	}else{
-		if(tipo == 1){
-			var Index = document.menuForm.direccionActor_paisesCatalogo_paisId.options[document.menuForm.direccionActor_paisesCatalogo_paisId.selectedIndex].value; 
-		}
-		if(tipo == 2){
-			var Index = document.menuForm.direccionActor_estadosCatalogo_estadoId.options[document.menuForm.direccionActor_estadosCatalogo_estadoId.selectedIndex].value; 
-	
-		}
 	}
-	
+	if(actor == 3){
+		
+			if(tipo == 1){
+				var Index = document.menuForm.direccionActor_paisesCatalogo_paisId.options[document.menuForm.direccionActor_paisesCatalogo_paisId.selectedIndex].value; 
+			}
+			if(tipo == 2){
+				var Index = document.menuForm.direccionActor_estadosCatalogo_estadoId.options[document.menuForm.direccionActor_estadosCatalogo_estadoId.selectedIndex].value; 
+		
+			}
+	}
+	if(actor == 4){
+		
+			if(tipo == 1){
+				var Index = document.menuForm.lugares_paisesCatalogo_paisId.options[document.menuForm.lugares_paisesCatalogo_paisId.selectedIndex].value; 
+			}
+			if(tipo == 2){
+				var Index = document.menuForm.lugares_estadosCatalogo_estadoId.options[document.menuForm.lugares_estadosCatalogo_estadoId.selectedIndex].value; 
+		
+			}
+	}
 	//$("#notasUltimaOcupacion").html(Index+tipo);
 
 	var url = base+'index.php/actores_c/filtroPaisEstado';
@@ -327,7 +339,8 @@ function changeTest (tipo) {
 	             if(tipo == 2){
 					$("#datosDeNacimiento_municipiosCatalogo_municipioId").html(data);
 	             }
-        	}else{
+        	}
+        	if(actor == 3){
         		
         		if(tipo == 1){
 	             	$("#direccionActor_estadosCatalogo_estadoId").html(data);
@@ -337,7 +350,16 @@ function changeTest (tipo) {
 	             }
         		
         	}
-             
+             if(actor == 4){
+        		
+        		if(tipo == 1){
+	             	$("#lugares_estadosCatalogo_estadoId").html(data);
+	             }  
+	             if(tipo == 2){
+					$("#lugares_municipiosCatalogo_municipioId").html(data);
+	             }
+        		
+        	}
             
         },
         

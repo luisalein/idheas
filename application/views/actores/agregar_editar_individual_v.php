@@ -268,50 +268,15 @@
                     <label for="direccionActor_codigoPostal">Código Postal</label>
                         <input type="number" pattern="[0-9]+" id="direccionActor_codigoPostal" name="direccionActor_codigoPostal"  <?=(isset($datosActor['codigoPostal']) ? 'value="'.$datosActor['codigoPostal'].'"' : ''); ?> />
                 </div>
-
+				<input type="hidden" id="filtrodir" name="3"/>
                 <div class="six columns">
-                                                                   
-                    <label for="paisdir">País</label>
-                    <select id="direccionActor_paisesCatalogo_paisId" name="direccionActor_paisesCatalogo_paisId">                      
-                        <option></option>
-                        <?php if(isset($datosActor['paisesCatalogo_paisId'])){
-                            foreach($catalogos['paisesCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
-                            <option  value="<?=$item['paisId']?>" <?=($datosActor['paisesCatalogo_paisId'] == $item['paisId']) ? 'selected="selected"' : '' ; ?> > <?=$item['nombre']?></option>
-                        <?php endforeach; } else { ?>
-                            <?php foreach($catalogos['paisesCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
-                            <option value="<?=$item['paisId']; ?>"><?=$item['nombre']; ?></option>
-                        <?php endforeach; } ?>
-                    </select>
-
-                    <label for="estadodir">Estado</label>
-
-                    <select id="direccionActor_estadosCatalogo_estadoId" name="direccionActor_estadosCatalogo_estadoId">                        
-                        <option></option>
-                        <?php if(isset($datosActor['estadosCatalogo_estadoId'])){
-                        foreach($catalogos['estadosCatalogo'] as $item): ?> <!--muestra los estados civiles-->
-                        <option  value="<?=$item['estadoId']?>" <?=($datosActor['estadosCatalogo_estadoId'] == $item['estadoId']) ? 'selected="selected"' : '' ; ?> > <?=$item['nombre']?></option>
-                        <?php endforeach; } else { ?>
-                        <?php foreach($catalogos['estadosCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
-                        <option value="<?=$item['estadoId']; ?>"><?=$item['nombre']; ?></option>
-                        <?php endforeach; 
-                    } ?>
-                    </select>   
-
-                    <label for="municipiodir">Municipio</label>
-                    <select id="direccionActor_municipiosCatalogo_municipioId" name="direccionActor_municipiosCatalogo_municipioId">                        
-                        <option></option>
-                        <?php if(isset($datosActor['municipiosCatalogo_municipioId'])){
-                                foreach($catalogos['municipiosCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
-                                <option  value="<?=$item['municipioId']?>" <?=($datosActor['municipiosCatalogo_municipioId'] == $item['municipioId']) ? 'selected="selected"' : '' ; ?> > <?=$item['nombre']?></option>
-                            <?php endforeach; } else { ?>
-                                <?php foreach($catalogos['municipiosCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
-                                    <option value="<?=$item['municipioId']; ?>"><?=$item['nombre']; ?></option>
-                                <?php endforeach; } ?>
-                    </select>
+                       <?=$filtroDireccion;?>                                            
+                   
+                  
                 </fieldset><!--Termina datos dirección-->
                 <?php }?>
-        </div>
-
+       		 </div>
+		</div>
         
         <div class="row espacioInferior espacioSuperior">
             <div class="nine columns">
