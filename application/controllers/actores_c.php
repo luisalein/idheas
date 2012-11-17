@@ -226,6 +226,7 @@ class Actores_c extends CI_Controller {
                     case(1):
 						$datos['tipo'] = '1';
 						$datos['filtroPais'] = $this->load->view('actores/filtroPaisEstadoMunicipio_v', $datos, true);
+						$datos['filtroDireccion'] = $this->load->view('actores/filtroDireccion', $datos, true);
                         $datos['form'] = $this->load->view('actores/agregar_editar_individual_v', $datos, true);
 
                     break;
@@ -505,6 +506,7 @@ class Actores_c extends CI_Controller {
                     case(1):
 						$datos['tipo'] = '1';
 						$datos['filtroPais'] = $this->load->view('actores/filtroPaisEstadoMunicipio_v', $datos, true);
+						$datos['filtroDireccion'] = $this->load->view('actores/filtroDireccion', $datos, true);
                         $datos['form'] = $this->load->view('actores/agregar_editar_individual_v', $datos, true);
 
                     break;
@@ -582,6 +584,7 @@ class Actores_c extends CI_Controller {
 
         }
 		
+		
 		if(!isset($datos['actores']['foto'])){
 			$foto = $this->cargarFoto();
 		
@@ -590,7 +593,7 @@ class Actores_c extends CI_Controller {
 		
         $this->actores_m->mActualizaDatosActor($datos['actores']['actorId'], $datos);
         
-      	redirect(base_url().'index.php/actores_c/mostrar_actor/'.$datos['actores']['actorId'].'/'.$_POST['actores_tipoActorId']);
+       redirect(base_url().'index.php/actores_c/mostrar_actor/'.$datos['actores']['actorId'].'/'.$_POST['actores_tipoActorId']);
         
     }
 
@@ -1435,7 +1438,8 @@ class Actores_c extends CI_Controller {
 			}
 			
 		}
-		
+		$datos['tipo'] = '3';
+		$datos['filtroDireccion'] = $this->load->view('actores/filtroPaisEstadoMunicipio_v', $datos, true);
 		$this->load->view('actores/formularioNuevaDireccion', $datos);
 	}
 }

@@ -6,7 +6,7 @@
 
 	<body>
 	<form action="<?=$action?>" method="post" accept-charset="utf-8">
-			
+			<input type="hidden" id="tipoActorAE"  name="3"/>
 			<input type="hidden"  name="actores_actorId" value='<?=$actorId;?>' />	
 
 			<input type="hidden"  id="tipoRelacionIndividualColectivoId" name="tipoRelacionIndividualColectivoId" value="2"/>
