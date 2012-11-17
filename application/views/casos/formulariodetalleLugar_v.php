@@ -12,13 +12,33 @@
 	</head>
 	
 <body>
-<form action='<?=base_url(); ?>index.php/casosVentanas_c/guardarDatosVentanas/1' method="post" accept-charset="utf-8">
-			<input type="hidden" id="tipoActorAE"  name="4"/>
+<form action='<?=base_url(); ?>index.php/casosVentanas_c/guardarDatosVentanas/1' method="post" accept-charset="utf-8"  id="menuForm" name="menuForm" >
+		   <input type="hidden" id="tipoActorAE"  name="4"/>
 	       <input type="hidden" value="<?=$casoId; ?>" name="lugares_casos_casoId" id="lugares_casos_casoId" />
 	       <input type="hidden" <?=(isset($lugar['lugarId']) ? 'value="'.$lugar['lugarId'].'"'.' '.'name="lugares_lugarId"' : ''); ?>  id="lugares_lugarId" />
-
+		   <input type="hidden" id='editar' name="editar" value="0" />
 	       <div class="twelve columns">
-				<?=$filtroPais;?>
+	       		<div class="six columns">		
+		        	<label for="pais">País</label>
+		       		<select id="lugares_paisesCatalogo_paisId" name="lugares_paisesCatalogo_paisId" onchange="changeTest(1)">						
+				         <option></option>
+				          <?php foreach($catalogos['paisesCatalogo'] as $pais):?> <!--muestra los estados civiles-->
+				                        <option value="<?=$pais['paisId']; ?>"><?=$pais['nombre']; ?></option>
+				          <?php endforeach; ?>
+				     </select>
+				 </div>    
+				 <div class="six columns">
+				 	<label for="estado">Estado</label>
+				     <select id="lugares_estadosCatalogo_estadoId" name="lugares_estadosCatalogo_estadoId"  onchange="changeTest(2)">						
+			               
+		             </select>
+	             </div> 
+	             <div class="six columns">
+	             	<label for="municipio">Municipio</label>
+		             <select id="lugares_municipiosCatalogo_municipioId" name="lugares_municipiosCatalogo_municipioId">						
+		                   
+		             </select>
+		         </div>    
 			</div>
 			<div>
 

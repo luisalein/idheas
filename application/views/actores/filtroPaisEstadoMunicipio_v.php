@@ -28,14 +28,6 @@
 			                    <?php endforeach; } ?>
 			             </select>
 	             <?php endif;?>
-	             <?php if($tipo == 4):?>
-			         	<select id="lugares_paisesCatalogo_paisId" name="lugares_paisesCatalogo_paisId" onchange="changeTest(1)">						
-			                    <option></option>
-			                    <?php foreach($catalogos['paisesCatalogo'] as $pais):?> <!--muestra los estados civiles-->
-			                        <option value="<?=$pais['paisId']; ?>"><?=$pais['nombre']; ?></option>
-			                    <?php endforeach; ?>
-			             </select>
-	             <?php endif;?>
 	        </div>
 	        <!--<input id="BotonmasdatosDeNacimiento_paisesCatalogo_paisId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />    
 	        <span id="TextoEspecial_datosDeNacimiento_paisesCatalogo_paisId" class="Escondido twelve columns">
@@ -59,13 +51,6 @@
 	                </select>
 	            </div>
             <?php endif;?>
-            <?php if($tipo==4):?>
-            	<div id="datosDeNacimiento_estadosCatalogo_estadoIdSelect" >
-	                <select id="lugares_estadosCatalogo_estadoId" name="lugares_estadosCatalogo_estadoId"  onchange="changeTest(2)">						
-		               
-	                </select>
-	            </div>
-            <?php endif;?>
             <!--<input id="BotonmasdatosDeNacimiento_paisesCatalogo_paisId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />    
             <span id="TextoEspecial_datosDeNacimiento_paisesCatalogo_paisId" class="Escondido twelve columns">
             </span>-->
@@ -81,11 +66,6 @@
 	             <?php endif;?>
 		         <?php if($tipo==3):?>
 	             	<select id="direccionActor_municipiosCatalogo_municipioId" name="direccionActor_municipiosCatalogo_municipioId">						
-	                   
-	                </select>
-                 <?php endif;?>
-                  <?php if($tipo==4):?>
-	             	<select id="lugares_municipiosCatalogo_municipioId" name="lugares_municipiosCatalogo_municipioId">						
 	                   
 	                </select>
                  <?php endif;?>
