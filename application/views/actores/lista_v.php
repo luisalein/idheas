@@ -26,7 +26,7 @@
         
   
     <div id="pestania" data-collapse>					
-				<h2>Filtros</h2><!--título de la pestaña-->  
+				<h2 class="flecha">Filtros</h2><!--título de la pestaña-->  
 				<div>
 					
 					<form name="frmR">
