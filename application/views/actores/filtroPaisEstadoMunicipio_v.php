@@ -57,7 +57,7 @@
         </div>
 
         <div class="six columns">
-            <div id="datosDeNacimiento_municipiosCatalogo_municipioIdSelect" >
+            
                 <label for="municipio">Municipio</label>
                 <?php if($tipo == 1 || $tipo == 2):?>
 	               <select id="datosDeNacimiento_municipiosCatalogo_municipioId" name="datosDeNacimiento_municipiosCatalogo_municipioId">						
@@ -69,7 +69,6 @@
 	                   
 	                </select>
                  <?php endif;?>
-            </div>
             <!--<input id="BotonmasdatosDeNacimiento_municipiosCatalogo_municipioId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />   
             <span id="TextoEspecial_datosDeNacimiento_municipiosCatalogo_municipioId" class="Escondido twelve columns">
             </span>-->

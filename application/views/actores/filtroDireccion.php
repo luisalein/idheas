@@ -23,21 +23,14 @@
 
         <div class="ten columns">
             <label for="estado">Estado</label>
-            	<select id="direccionActor_estadosCatalogo_estadoId" name="direccionActor_estadosCatalogo_estadoId"  onchange="changeTest2(2)">						
+            <select id="direccionActor_estadosCatalogo_estadoId" name="direccionActor_estadosCatalogo_estadoId"  onchange="changeTest2(2)">						
 		               
-	            </select>
-            <!--<input id="BotonmasdatosDeNacimiento_paisesCatalogo_paisId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />    
-            <span id="TextoEspecial_datosDeNacimiento_paisesCatalogo_paisId" class="Escondido twelve columns">
-            </span>-->
+	        </select>
         </div>
-
+		<br>
         <div class="ten columns">
-            
-                <label for="municipio">Municipio</label>
-	             	<select id="direccionActor_municipiosCatalogo_municipioId" name="direccionActor_municipiosCatalogo_municipioId">						
-	                   
-	                </select>
-            <!--<input id="BotonmasdatosDeNacimiento_municipiosCatalogo_municipioId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />   
-            <span id="TextoEspecial_datosDeNacimiento_municipiosCatalogo_municipioId" class="Escondido twelve columns">
-            </span>-->
+            <label for="municipio">Municipio</label>
+	        <select id="direccionActor_municipiosCatalogo_municipioId" name="direccionActor_municipiosCatalogo_municipioId">
+	        	
+	        </select>
         </div>
