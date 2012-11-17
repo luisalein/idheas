@@ -12,7 +12,8 @@
 		                        <option value="<?=$pais['paisId']; ?>"><?=$pais['nombre']; ?></option>
 		                    <?php endforeach; } ?>
 		             </select>
-		         <?php else:?>
+		         <?php endif;?>
+		         <?php if($tipo==3 ):?>
 			         	<select id="direccionActor_paisesCatalogo_paisId" name="direccionActor_paisesCatalogo_paisId" onchange="changeTest(1)">						
 			                    <option></option>
 			                    <?php if(isset($datosActor['direccionActor'])){
@@ -25,6 +26,14 @@
 			                        <?php foreach($catalogos['paisesCatalogo'] as $pais):?> <!--muestra los estados civiles-->
 			                        <option value="<?=$pais['paisId']; ?>"><?=$pais['nombre']; ?></option>
 			                    <?php endforeach; } ?>
+			             </select>
+	             <?php endif;?>
+	             <?php if($tipo == 4):?>
+			         	<select id="lugares_paisesCatalogo_paisId" name="lugares_paisesCatalogo_paisId" onchange="changeTest(1)">						
+			                    <option></option>
+			                    <?php foreach($catalogos['paisesCatalogo'] as $pais):?> <!--muestra los estados civiles-->
+			                        <option value="<?=$pais['paisId']; ?>"><?=$pais['nombre']; ?></option>
+			                    <?php endforeach; ?>
 			             </select>
 	             <?php endif;?>
 	        </div>
@@ -42,9 +51,17 @@
 		               
 	                </select>
 	            </div>
-            <?php else:?>
+            <?php endif;?>
+		    <?php if($tipo==3):?>
             	<div id="datosDeNacimiento_estadosCatalogo_estadoIdSelect" >
 	                <select id="direccionActor_estadosCatalogo_estadoId" name="direccionActor_estadosCatalogo_estadoId"  onchange="changeTest(2)">						
+		               
+	                </select>
+	            </div>
+            <?php endif;?>
+            <?php if($tipo==4):?>
+            	<div id="datosDeNacimiento_estadosCatalogo_estadoIdSelect" >
+	                <select id="lugares_estadosCatalogo_estadoId" name="lugares_estadosCatalogo_estadoId"  onchange="changeTest(2)">						
 		               
 	                </select>
 	            </div>
@@ -61,8 +78,14 @@
 	               <select id="datosDeNacimiento_municipiosCatalogo_municipioId" name="datosDeNacimiento_municipiosCatalogo_municipioId">						
 	                   
 	                </select>
-	             <?php else:?>
+	             <?php endif;?>
+		         <?php if($tipo==3):?>
 	             	<select id="direccionActor_municipiosCatalogo_municipioId" name="direccionActor_municipiosCatalogo_municipioId">						
+	                   
+	                </select>
+                 <?php endif;?>
+                  <?php if($tipo==4):?>
+	             	<select id="lugares_municipiosCatalogo_municipioId" name="lugares_municipiosCatalogo_municipioId">						
 	                   
 	                </select>
                  <?php endif;?>
