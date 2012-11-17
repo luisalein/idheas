@@ -24,16 +24,21 @@
                         <input type="submit" value="Editar Actor" class="tiny button" />
                     </form>
                 <?php } } ?>
-            <?php } else { ?>
+            <?php } 
+            else { ?>
                 <form method="post" action="<?=base_url(); ?>index.php/casos_c/agregar_caso">
                     <input type="submit" value="Agregar Caso" class="tiny button" />
                 </form>
-               <form>
-               	 <input type="button" value="Eliminar Caso" class="tiny button"  name="<?=$casoId; ?>" id="eliminarCaso"/>	
-               </form>
-               <form>
-					<input type="submit" class="tiny button" value="Editar Caso" />
-               </form>
+                <?php if (isset($casoId)) {
+                    if ($casoId>0) {?>
+                       <form method="post" action="<?=base_url(); ?>index.php/casos_c/editarCaso/<?=$casoId; ?>">
+                       	 <input type="button" value="Eliminar Caso" class="tiny button"  name="<?=$casoId; ?>" id="eliminarCaso"/>	
+                       </form>
+                       <form method="post" action="<?=base_url(); ?>index.php/casos_c/editarCaso/<?=$casoId; ?>">
+        					<input type="submit" class="tiny button" value="Editar Caso" />
+                       </form>
+                     <?php }
+                }?>
             <?php } ?>
             <?=(isset($lista)) ? $lista : '' ;?> <!---Se llama a listaActores-->
         </div>

@@ -9,11 +9,11 @@
 				
 				<p>
 					<label for="nombre">Nombre: </label>
-					<input type="text"  name="casos_nombre" required />
+					<input type="text"  name="casos_nombre"  value="<?= (isset($datosCaso['casos']['nombre'])) ? $datosCaso['casos']['nombre'] : "" ;?>" required />
 				</p>
 				<p>
 					<label for="personas">Personas afectadas:</label>
-					<input type="number"  name="casos_personasAfectadas"  />
+					<input type="number" pattern="[0-9]+" name="casos_personasAfectadas" value="<?= (isset($datosCaso['casos']['personasAfectadas'])) ? $datosCaso['casos']['personasAfectadas'] : "" ;?>" />
 				</p>
 						
 			</div>
@@ -22,7 +22,7 @@
 				<label for="edad">Fecha inicial</label>
 					<select onclick="fechaInicialCasos(value)" name="casos_fechaInicial">
 								<option></option>
-								<option  value="1" checked="checked" >fecha exacta</option>
+								<option  value="1" <?= (isset($datosCaso['casos']['fechaInicial'])) ? 'checked="checked"' : "" ;?> >fecha exacta</option>
 								<option  value="2">fecha aproximada</option>
 								<option  value="3">Se desconce el día</option>
 								<option  value="4">Se desconce el día y el mes</option>
@@ -31,8 +31,8 @@
 				
 				<div class="six columns">
 					<br />
-					<p class="Escondido" id="fechaExactaV">
-						<input type="text" id="fechaExacta"   placeholder="AAAA-MM-DD" />
+					<p <?= (isset($datosCaso['casos']['fechaInicial'])) ? '' : 'class="Escondido"' ;?> id="fechaExactaV">
+						<input type="text" id="fechaExacta"  value="<?= (isset($datosCaso['casos']['nombre'])) ? $datosCaso['casos']['fechaInicial'] : "" ;?>" placeholder="AAAA-MM-DD" />
 
 					</p>
 
@@ -57,15 +57,15 @@
 				<div class="six columns">
 					<select onclick="fechaTerminalCasos(value)" name="casos_fechaTermino" >
 								<option></option>
-								<option  value="1" checked="checked" >fecha exacta</option>
+								<option  value="1" <?= (isset($datosCaso['casos']['fechaTermino'])) ? 'checked="checked"' : "" ;?>>fecha exacta</option>
 								<option  value="2">fecha aproximada</option>
 								<option  value="3">Se desconce el día</option>
 								<option  value="4">Se desconce el día y el mes</option>
 					</select>
 				</div>
 				<div class="six columns">
-					<p class="Escondido" id="fechaExactaV2">
-						<input type="text" id="fechaExacta2" placeholder="AAAA-MM-DD" />
+					<p <?= (isset($datosCaso['casos']['fechaTermino'])) ? '' : 'class="Escondido"' ;?> id="fechaExactaV2">
+						<input type="text" id="fechaExacta2" value="<?= (isset($datosCaso['casos']['nombre'])) ? $datosCaso['casos']['fechaTermino'] : "" ;?>" placeholder="AAAA-MM-DD" />
 
 					</p>
 
@@ -91,14 +91,14 @@
 		  	<div id="subPestanias" data-collapse>
 				<h2 class="twelve columns">Descripción</h2>
 					<div class="twelve columns">
-						<textarea placeholder="Descripción"  rows="15" cols="100" id="infoCaso_descripcion"  wrap="hard"  name="infoCaso_descripcion"></textarea>
+						<textarea placeholder="Descripción"  rows="15" cols="100" id="infoCaso_descripcion"  wrap="hard"  name="infoCaso_descripcion"><?= (isset($datosCaso['casos']['descripcion'])) ? $datosCaso['casos']['descripcion'] : "" ;?></textarea>
 				   </div>	  
 			</div><!--fin acordeon descripción-->
 		  	
 		  	<div id="subPestanias" data-collapse>
 		  		<h2 class="twelve columns">Resumen</h2>
 					<div class="twelve columns">
-						<textarea placeholder="Resumen"  rows="20" cols="100" id="infoCaso_resumen"  wrap="hard"  name="infoCaso_resumen"></textarea>
+						<textarea placeholder="Resumen"  rows="20" cols="100" id="infoCaso_resumen"  wrap="hard"  name="infoCaso_resumen"><?= (isset($datosCaso['casos']['resumen'])) ? $datosCaso['casos']['resumen'] : "" ;?></textarea>
 				   </div>	  
 
 		  	</div><!--fin acordeon observaciones-->
@@ -106,7 +106,7 @@
 		  	<div id="subPestanias" data-collapse onchange="editarOpciones()" >
 		  		<h2 class="twelve columns">Obsevaciones</h2>
 				<div class="twelve columns">
-						<textarea placeholder="Observaciones"  rows="20" cols="100" id="infoCaso_observaciones" wrap="hard"  name="infoCaso_observaciones"></textarea>
+						<textarea placeholder="Observaciones"  rows="20" cols="100" id="infoCaso_observaciones" wrap="hard"  name="infoCaso_observaciones"><?= (isset($datosCaso['casos']['observaciones'])) ? $datosCaso['casos']['observaciones'] : "" ;?></textarea>
 				</div>	
 		  	</div><!--fin acordeon observaciones-->
 
@@ -114,6 +114,15 @@
 		</div><!--fin acordeon información general-->
 	</div>
 
-	<input class="small button" type="submit" onclick="mandarTexto()"/>
+	
+    <div class="row espacioInferior espacioSuperior">
+        <div class="nine columns">
+            <input class="medium button" type="submit" value="Guardar" />
+        </div>
+        <div  class="three columns" >
+            <input class="medium button" type="reset" value="Cancelar" onclick="pagInicial()" />
+        </div>
+    </div>
+
 </form>
 <!-------------------Termina primer pestaña------------------------------------->
