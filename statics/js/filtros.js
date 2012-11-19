@@ -336,28 +336,46 @@ function changeTest (tipo) {
         	
         	if(actor == 1 || actor == 2){
         		if(tipo == 1){
-	             	$("#datosDeNacimiento_estadosCatalogo_estadoId").html(data);
+        			var select=document.getElementById('datosDeNacimiento_estadosCatalogo_estadoId');
+  					select.removeAttribute('disabled');
+        			
+	             	$("#datosDeNacimiento_estadosCatalogo_estadoId").html(data);	             
 	             }  
 	             if(tipo == 2){
-					$("#datosDeNacimiento_municipiosCatalogo_municipioId").html(data);
+	             	var select=document.getElementById('datosDeNacimiento_municipiosCatalogo_municipioId');
+  					select.removeAttribute('disabled');
+  					
+					$("#datosDeNacimiento_municipiosCatalogo_municipioId").html(data);					
 	             }
         	}
         	if(actor == 3){
         		
         		if(tipo == 1){
-	             	$("#direccionActor_estadosCatalogo_estadoId").html(data);
+        			var select=document.getElementById('direccionActor_estadosCatalogo_estadoId');
+  					select.removeAttribute('disabled');
+  					
+        			$("#direccionActor_estadosCatalogo_estadoId").addClass('desbloquea'); 
 	             }  
 	             if(tipo == 2){
-					$("#direccionActor_municipiosCatalogo_municipioId").html(data);
+	             	var select=document.getElementById('direccionActor_municipiosCatalogo_municipioId');
+  					select.removeAttribute('disabled');
+  					
+	             	$("#direccionActor_municipiosCatalogo_municipioId").addClass('desbloquea'); 
 	             }
         		
         	}
         	if(actor == 4){
         		
         		if(tipo == 1){
+        			var select=document.getElementById('lugares_estadosCatalogo_estadoId');
+  					select.removeAttribute('disabled');
+  					
 	             	$("#lugares_estadosCatalogo_estadoId").html(data);
 	             }  
 	             if(tipo == 2){
+	             	var select=document.getElementById('lugares_municipiosCatalogo_municipioId');
+  					select.removeAttribute('disabled');
+  					
 					$("#lugares_municipiosCatalogo_municipioId").html(data);
 	             }
         		
@@ -402,9 +420,15 @@ function changeTest2 (tipo) {
                 
         success: function(data){
         		if(tipo == 1){
+        			var select=document.getElementById('direccionActor_estadosCatalogo_estadoId');
+  					select.removeAttribute('disabled');
+  					
 	             	$("#direccionActor_estadosCatalogo_estadoId").html(data);
 	             }  
 	             if(tipo == 2){
+	             	var select=document.getElementById('direccionActor_municipiosCatalogo_municipioId');
+  					select.removeAttribute('disabled');
+  					
 					$("#direccionActor_municipiosCatalogo_municipioId").html(data);
 	             }
              

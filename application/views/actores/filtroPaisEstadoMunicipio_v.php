@@ -39,14 +39,14 @@
             <label for="estado">Estado</label>
             <?php if($tipo == 1 || $tipo == 2):?>
 	            <div id="datosDeNacimiento_estadosCatalogo_estadoIdSelect"  >
-	                <select id="datosDeNacimiento_estadosCatalogo_estadoId" name="datosDeNacimiento_estadosCatalogo_estadoId"  onchange="changeTest(2)">						
+	                <select id="datosDeNacimiento_estadosCatalogo_estadoId" disabled="disabled" name="datosDeNacimiento_estadosCatalogo_estadoId"  onchange="changeTest(2)">						
 		               
 	                </select>
 	            </div>
             <?php endif;?>
 		    <?php if($tipo==3):?>
             	<div id="datosDeNacimiento_estadosCatalogo_estadoIdSelect" >
-	                <select id="direccionActor_estadosCatalogo_estadoId" name="direccionActor_estadosCatalogo_estadoId"  onchange="changeTest(2)">						
+	                <select id="direccionActor_estadosCatalogo_estadoId"  disabled="disabled" name="direccionActor_estadosCatalogo_estadoId"  onchange="changeTest(2)">						
 		               
 	                </select>
 	            </div>
@@ -60,12 +60,12 @@
             
                 <label for="municipio">Municipio</label>
                 <?php if($tipo == 1 || $tipo == 2):?>
-	               <select id="datosDeNacimiento_municipiosCatalogo_municipioId" name="datosDeNacimiento_municipiosCatalogo_municipioId">						
+	               <select id="datosDeNacimiento_municipiosCatalogo_municipioId" disabled="disabled"  name="datosDeNacimiento_municipiosCatalogo_municipioId">						
 	                   
 	                </select>
 	             <?php endif;?>
 		         <?php if($tipo==3):?>
-	             	<select id="direccionActor_municipiosCatalogo_municipioId" name="direccionActor_municipiosCatalogo_municipioId">						
+	             	<select id="direccionActor_municipiosCatalogo_municipioId" disabled="disabled" name="direccionActor_municipiosCatalogo_municipioId">						
 	                   
 	                </select>
                  <?php endif;?>

@@ -20,17 +20,17 @@
 	        </span>-->
 
         </div>
-
+ disabled="disabled" 
         <div class="ten columns">
             <label for="estado">Estado</label>
-            <select id="direccionActor_estadosCatalogo_estadoId" name="direccionActor_estadosCatalogo_estadoId"  onchange="changeTest2(2)">						
+            <select id="direccionActor_estadosCatalogo_estadoId"  disabled="disabled"  name="direccionActor_estadosCatalogo_estadoId"  onchange="changeTest2(2)">						
 		               
 	        </select>
         </div>
 		<br>
         <div class="ten columns">
             <label for="municipio">Municipio</label>
-	        <select id="direccionActor_municipiosCatalogo_municipioId" name="direccionActor_municipiosCatalogo_municipioId">
+	        <select id="direccionActor_municipiosCatalogo_municipioId"  disabled="disabled"  name="direccionActor_municipiosCatalogo_municipioId">
 	        	
 	        </select>
         </div>
