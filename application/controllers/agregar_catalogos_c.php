@@ -171,7 +171,7 @@ class Agregar_catalogos_c extends CI_Controller {
 
         }
         
-       /* $derechosN3 = read_file('statics/catalogos/catalogoviolaciones/CatalogoViolaciones_nivel3.csv');
+        $derechosN3 = read_file('statics/catalogos/catalogoviolaciones/CatalogoViolaciones_nivel3.csv');
         
         $derechosN3 = explode('&', $derechosN3);
         
@@ -198,7 +198,7 @@ class Agregar_catalogos_c extends CI_Controller {
               'actosN3Catalogo_actoN3Id' => trim($obtener_datos[2]), 
               'notas' => trim($obtener_datos[3]),'derechosAfectadosN4Catalogo_derechoAfectadoN4Id' => trim($obtener_datos[4]));
 
-        }*/
+        }
         
         $this->agregar_catalogos_m->mAgregarDerechosCatalogos($derechos);
         
