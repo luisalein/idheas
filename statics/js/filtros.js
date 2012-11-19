@@ -286,7 +286,7 @@ function eliminarCaso(idCaso){
 function changeTest (tipo) { 
 	
 	var actor = $('#tipoActorAE').attr('name');
-	
+
 	if(actor == 1 || actor == 2){
 		if(tipo == 1){
 			var Index = document.menuForm.datosDeNacimiento_paisesCatalogo_paisId.options[document.menuForm.datosDeNacimiento_paisesCatalogo_paisId.selectedIndex].value; 
@@ -308,14 +308,16 @@ function changeTest (tipo) {
 	}
 	if(actor == 4){
 		
-			if(tipo == 1){
+		if(tipo == 1){
 				var Index = document.menuForm.lugares_paisesCatalogo_paisId.options[document.menuForm.lugares_paisesCatalogo_paisId.selectedIndex].value; 
+				
 			}
 			if(tipo == 2){
 				var Index = document.menuForm.lugares_estadosCatalogo_estadoId.options[document.menuForm.lugares_estadosCatalogo_estadoId.selectedIndex].value; 
 		
 			}
 	}
+	
 	//$("#notasUltimaOcupacion").html(Index+tipo);
 
 	var url = base+'index.php/actores_c/filtroPaisEstado';
@@ -334,33 +336,102 @@ function changeTest (tipo) {
         	
         	if(actor == 1 || actor == 2){
         		if(tipo == 1){
-	             	$("#datosDeNacimiento_estadosCatalogo_estadoId").html(data);
+        			var select=document.getElementById('datosDeNacimiento_estadosCatalogo_estadoId');
+  					select.removeAttribute('disabled');
+        			
+	             	$("#datosDeNacimiento_estadosCatalogo_estadoId").html(data);	             
 	             }  
 	             if(tipo == 2){
-					$("#datosDeNacimiento_municipiosCatalogo_municipioId").html(data);
+	             	var select=document.getElementById('datosDeNacimiento_municipiosCatalogo_municipioId');
+  					select.removeAttribute('disabled');
+  					
+					$("#datosDeNacimiento_municipiosCatalogo_municipioId").html(data);					
 	             }
         	}
         	if(actor == 3){
         		
         		if(tipo == 1){
-	             	$("#direccionActor_estadosCatalogo_estadoId").html(data);
+        			var select=document.getElementById('direccionActor_estadosCatalogo_estadoId');
+  					select.removeAttribute('disabled');
+  					
+        			$("#direccionActor_estadosCatalogo_estadoId").addClass('desbloquea'); 
 	             }  
 	             if(tipo == 2){
-					$("#direccionActor_municipiosCatalogo_municipioId").html(data);
+	             	var select=document.getElementById('direccionActor_municipiosCatalogo_municipioId');
+  					select.removeAttribute('disabled');
+  					
+	             	$("#direccionActor_municipiosCatalogo_municipioId").addClass('desbloquea'); 
 	             }
         		
         	}
-             if(actor == 4){
+        	if(actor == 4){
         		
         		if(tipo == 1){
+        			var select=document.getElementById('lugares_estadosCatalogo_estadoId');
+  					select.removeAttribute('disabled');
+  					
 	             	$("#lugares_estadosCatalogo_estadoId").html(data);
 	             }  
 	             if(tipo == 2){
+	             	var select=document.getElementById('lugares_municipiosCatalogo_municipioId');
+  					select.removeAttribute('disabled');
+  					
 					$("#lugares_municipiosCatalogo_municipioId").html(data);
 	             }
         		
         	}
+             
             
+        },
+        
+        error: function(){
+        
+           alert("no se pudo");
+        }
+    
+    });
+} 
+
+function changeTest2 (tipo) { 
+	
+	
+		if(tipo == 1){
+			var Index = document.menuForm.direccionActor_paisesCatalogo_paisId.options[document.menuForm.direccionActor_paisesCatalogo_paisId.selectedIndex].value; 
+		}
+		if(tipo == 2){
+			var Index = document.menuForm.direccionActor_estadosCatalogo_estadoId.options[document.menuForm.direccionActor_estadosCatalogo_estadoId.selectedIndex].value; 
+	
+		}
+	
+	
+	//$("#notasUltimaOcupacion").html(Index+tipo);
+
+	var url = base+'index.php/actores_c/filtroPaisEstado';
+	
+	var data = 'tipo='+tipo+'&id='+Index;
+	
+	$.ajax({
+    
+        url: url,
+    
+        data: data,
+        
+        type: 'POST',
+                
+        success: function(data){
+        		if(tipo == 1){
+        			var select=document.getElementById('direccionActor_estadosCatalogo_estadoId');
+  					select.removeAttribute('disabled');
+  					
+	             	$("#direccionActor_estadosCatalogo_estadoId").html(data);
+	             }  
+	             if(tipo == 2){
+	             	var select=document.getElementById('direccionActor_municipiosCatalogo_municipioId');
+  					select.removeAttribute('disabled');
+  					
+					$("#direccionActor_municipiosCatalogo_municipioId").html(data);
+	             }
+             
         },
         
         error: function(){

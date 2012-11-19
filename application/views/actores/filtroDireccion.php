@@ -1,7 +1,7 @@
  <div class="ten columns">		
 	        <label for="pais">País</label>
 	       
-			         	<select id="direccionActor_paisesCatalogo_paisId" name="direccionActor_paisesCatalogo_paisId" onchange="changeTest(1)">						
+			         	<select id="direccionActor_paisesCatalogo_paisId" name="direccionActor_paisesCatalogo_paisId" onchange="changeTest2(1)">						
 			                    <option></option>
 			                    <?php if(isset($datosActor['direccionActor'])){
 							        foreach ($datosActor['direccionActor'] as $direccion) {
@@ -20,24 +20,17 @@
 	        </span>-->
 
         </div>
-
+ disabled="disabled" 
         <div class="ten columns">
             <label for="estado">Estado</label>
-            	<select id="direccionActor_estadosCatalogo_estadoId" name="direccionActor_estadosCatalogo_estadoId"  onchange="changeTest(2)">						
+            <select id="direccionActor_estadosCatalogo_estadoId"  disabled="disabled"  name="direccionActor_estadosCatalogo_estadoId"  onchange="changeTest2(2)">						
 		               
-	            </select>
-            <!--<input id="BotonmasdatosDeNacimiento_paisesCatalogo_paisId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />    
-            <span id="TextoEspecial_datosDeNacimiento_paisesCatalogo_paisId" class="Escondido twelve columns">
-            </span>-->
+	        </select>
         </div>
-
+		<br>
         <div class="ten columns">
-            
-                <label for="municipio">Municipio</label>
-	             	<select id="direccionActor_municipiosCatalogo_municipioId" name="direccionActor_municipiosCatalogo_municipioId">						
-	                   
-	                </select>
-            <!--<input id="BotonmasdatosDeNacimiento_municipiosCatalogo_municipioId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />   
-            <span id="TextoEspecial_datosDeNacimiento_municipiosCatalogo_municipioId" class="Escondido twelve columns">
-            </span>-->
+            <label for="municipio">Municipio</label>
+	        <select id="direccionActor_municipiosCatalogo_municipioId"  disabled="disabled"  name="direccionActor_municipiosCatalogo_municipioId">
+	        	
+	        </select>
         </div>
