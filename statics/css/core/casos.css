@@ -1,6 +1,6 @@
-.desbloquea {
-   -webkit-user-select: none;
-   -Moz-user-select: none;
+.foto{
+	width:100px !important;
+	height: 100px !important;	
 }
 
 .cajaDerchosActos{
