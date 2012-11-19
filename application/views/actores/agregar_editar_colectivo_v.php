@@ -12,7 +12,8 @@
 
             <label>Foto </label>
                 <input name="archivo" type="file" size="10" accept="image/*" />  
-                <input type="hidden" <?= (isset($datosActor['actores']['foto'])) ? 'value="'.$datosActor['actores']['foto'].'"' : "" ;?> name="actores_foto" />
+                <input type="hidden" <?= (isset($datosActor['actores']['foto'])) ? 'value="'.$datosActor['actores']['foto'].'"' : "" ;?>  name="actores_foto" />
+              
 </div>
 
 

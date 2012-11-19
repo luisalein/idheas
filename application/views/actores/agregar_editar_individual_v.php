@@ -91,33 +91,29 @@
 
                     <div class="twelve columns">
 
-                        <div class="six columns">
-                            <label for="hijos">Hijos</label>
-                            <select id="infoGralActor_hijos" name="infoGralActor_hijos">
-                                <option></option>
-                                <?php if(isset($datosActor['infoGralActor']['hijos'])){
-                                for($edad = 0; $edad <= 100; $edad++):?> <!--muestra todas las edades de 1 a 100-->
-                                <option value="<?=$edad?>" <?=($datosActor['infoGralActor']['hijos'] == $edad) ? 'selected="selected"' : '' ; ?>> <?=$edad; ?></option>
-                                <?php endfor;
-                                } else {
-                                for($edad = 0; $edad <= 100; $edad++):?><!--muestra todas las edades de 1 a 100-->
-                                <option value="<?=$edad?>"><?=$edad?></option>
-                                <?php endfor;
-                                } ?>
-                            </select>
-                        </div>
-                        <div class="six columns">
-                            <label for="genero">¿Habla español?</label>
-                            <?php if(isset($datosActor['inofGralActor']['espaniol'])){ ?>
-                                <input type="radio" id="infoGralActor_espaniol" name="infoGralActor_espaniol" <?=($datosActor['infoGralActor']['espaniol'] == 'Si') ? 'checked="checked"' : ''; ?> value="Si" />Si
-                                <input type="radio" id="infoGralActor_espaniol" name="infoGralActor_espaniol" <?=($datosActor['infoGralActor']['espaniol'] == 'No') ? 'checked="checked"' : ''; ?> value="No" />No
-                            <?php } else { ?>
-                                <input type="radio" id="infoGralActor_espaniol" name="infoGralActor_espaniol" checked="checked" value="Si" />Si
-                                <input type="radio" id="infoGralActor_espaniol" name="infoGralActor_espaniol" value="No" />No
-                            <?php } ?>
-                        </div>
-                    </div>
+                        <label for="hijos">Hijos</label>
+                        <select id="infoGralActor_hijos" name="infoGralActor_hijos">
+                            <option></option>
+                            <?php if(isset($datosActor['infoGralActor']['hijos'])){
+                            for($edad = 0; $edad <= 100; $edad++):?> <!--muestra todas las edades de 1 a 100-->
+                            <option value="<?=$edad?>" <?=($datosActor['infoGralActor']['hijos'] == $edad) ? 'selected="selected"' : '' ; ?>> <?=$edad; ?></option>
+                            <?php endfor;
+                            } else {
+                            for($edad = 0; $edad <= 100; $edad++):?><!--muestra todas las edades de 1 a 100-->
+                            <option value="<?=$edad?>"><?=$edad?></option>
+                            <?php endfor;
+                            } ?>
+                        </select>
 
+                        <label for="genero">¿Habla español?</label>
+                        <?php if(isset($datosActor['inofGralActor']['espaniol'])){ ?>
+                            <input type="radio" id="infoGralActor_espaniol" name="infoGralActor_espaniol" <?=($datosActor['infoGralActor']['espaniol'] == 'Si') ? 'checked="checked"' : ''; ?> value="Si" />Si
+                            <input type="radio" id="infoGralActor_espaniol" name="infoGralActor_espaniol" <?=($datosActor['infoGralActor']['espaniol'] == 'No') ? 'checked="checked"' : ''; ?> value="No" />No
+                        <?php } else { ?>
+                            <input type="radio" id="infoGralActor_espaniol" name="infoGralActor_espaniol" checked="checked" value="Si" />Si
+                            <input type="radio" id="infoGralActor_espaniol" name="infoGralActor_espaniol" value="No" />No
+                        <?php } ?>
+                        
                         <label for="grupoIndigena">Grupo Indígena</label>
                         <select id="infoGralActor_gruposIndigenas_grupoIndigenaId" name="infoGralActor_gruposIndigenas_grupoIndigenaId">
                             <option></option>
@@ -129,7 +125,7 @@
                             <option  onclick="notasCatalogos('<?=$item['notas']; ?>')" value="<?=$item['grupoIndigenaId']; ?>"><?=$item['descripcion']; ?></option>
                             <?php endforeach; } ?>
                         </select>
-
+                    </div>
                 </div><!----Termina primer mitad de detalles---->
 
                 <div class="six columns"><!----Segunda mitad de detalles---->
