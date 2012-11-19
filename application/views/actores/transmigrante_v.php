@@ -2,8 +2,10 @@
 	<?php if(isset($datosActor['actores'])){?>
     <img src="<?=base_url().$datosActor['actores']['foto']; ?>" class="foto"/>
     <br />
-    <?=$datosActor['actores']['nombre'].' '.$datosActor['actores']['apellidosSiglas']; ?>
-    <?php }?>
+    <div class="twelve columns">
+	    <?=$datosActor['actores']['nombre'].' '.$datosActor['actores']['apellidosSiglas']; ?>
+	    <?php }?>
+    </div>
 </div>
 
 <div class="ten columns">	
@@ -341,7 +343,7 @@
 		                </tbody>
 		            </table>
 		
-		            <input type="button" class="tiny button <?=$clase?>"  value="Nuevo" onclick="nueva_relacion_a_a(<?=$idActor ?>,0,1)" />
+		            <input type="button" class="tiny button <?=$clase?>"  value="Nuevo" onclick="nueva_relacion_a_a(<?=$idActor ?>,0,0)" />
 			        </div>
 			    </div>
 			    <!--Comienza citado como persona relacionada-->

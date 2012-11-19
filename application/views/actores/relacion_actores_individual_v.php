@@ -29,6 +29,7 @@
 			<?php 
 			if($catalogos['listaTodosActores'][$actorId]['tipoActorId']<3){ ?>
 				<select id="relacionActores" name="tipoRelacionId">
+					<option></option>
 					<?php 
 						if (isset($relaciones['tipoRelacionId'])) {?>
 							<?php foreach($catalogos['relacionActoresCatalogo'] as $index => $item):?> 
