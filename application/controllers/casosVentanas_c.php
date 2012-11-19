@@ -55,10 +55,6 @@ class CasosVentanas_c extends CI_Controller {
 		if(!empty($datos['datosCaso']['lugares'][$i]))
 		
 			$datos['lugar']=$datos['datosCaso']['lugares'][$i];
-
-		$datos['tipo'] = 4;
-		
-		$datos['filtroPais']=$this->load->view('actores/filtroPaisEstadoMunicipio_v', $datos);
 		
         $this->load->view('casos/formulariodetalleLugar_v', $datos);
         
@@ -219,6 +215,9 @@ class CasosVentanas_c extends CI_Controller {
 					$datos1['lugares'] = $datos['lugares'];
             		$mensaje = $this->general_m->llenar_tabla_m($datos1);	
 				}
+				echo "<script languaje='javascript' type='text/javascript'>
+				 window.opener.location.reload();
+			     window.close();</script>";
             break;
         
             case(2):
@@ -229,6 +228,9 @@ class CasosVentanas_c extends CI_Controller {
 					$datos2['fichas']=$datos['fichas'];
 	            	$mensaje = $this->general_m->general_m->llenar_tabla_m($datos2); 
 				}
+				echo "<script languaje='javascript' type='text/javascript'>
+				 window.opener.location.reload();
+			     window.close();</script>";
             break;
 			
 			case(3): 
@@ -245,6 +247,9 @@ class CasosVentanas_c extends CI_Controller {
 					$datos3['derechoAfectado'] =  $datos['derechoAfectado'];
 					$mensaje = $this->general_m->casos_m->mAgregarDerechosAfectados($datos3);
 				}
+				echo "<script languaje='javascript' type='text/javascript'>
+				 window.opener.location.reload();
+			     window.close();</script>";
             break;
 			
 			case(4):  
@@ -258,6 +263,9 @@ class CasosVentanas_c extends CI_Controller {
 					$datos4['intervenidos'] =  $datos['intervenidos'];
 					$mensaje = $this->general_m->casos_m->mAgregarIntervenciones($datos4);
 				}
+				echo "<script languaje='javascript' type='text/javascript'>
+				 window.opener.location.reload();
+			     window.close();</script>";
             break;
 			
 			case(5): 
@@ -268,6 +276,9 @@ class CasosVentanas_c extends CI_Controller {
 					$datos5['fuenteInfoPersonal'] = $datos['fuenteInfoPersonal'];
 					$mensaje = $this->general_m->llenar_tabla_m($datos5);
 				}
+				echo "<script languaje='javascript' type='text/javascript'>
+				 window.opener.location.reload();
+			     window.close();</script>";
             break;
 			
 			case(6):
@@ -278,6 +289,9 @@ class CasosVentanas_c extends CI_Controller {
 					$datos6['tipoFuenteDocumental'] = $datos['tipoFuenteDocumental'];
 					$mensaje = $this->general_m->llenar_tabla_m($datos6);
 				}
+				echo "<script languaje='javascript' type='text/javascript'>
+				 window.opener.location.reload();
+			     window.close();</script>";
             break;
         
             case(7):
@@ -288,6 +302,9 @@ class CasosVentanas_c extends CI_Controller {
 	            	$datos7['relacionCasos'] = $datos['relacionCasos'];
 	            	$mensaje = $this->general_m->llenar_tabla_m($datos7);
 				}
+				echo "<script languaje='javascript' type='text/javascript'>
+				 window.opener.location.reload();
+			     window.close();</script>";
             break;
             
         }
