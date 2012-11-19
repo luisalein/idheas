@@ -1,15 +1,19 @@
  <div class="six columns">		
 	        <label for="pais">País</label>
 	        <div id="datosDeNacimiento_paisesCatalogo_paisIdSelect">
+	        	 <?php if(isset($datosActor['datosDeNacimiento']['paisesCatalogo_paisId'])):?>
+		                    	<?=$datosActor['datosDeNacimiento']['paisesCatalogo_paisId']?>
+		                    <?php endif;?>
 	        	<?php if($tipo == 1 || $tipo == 2):?>
 		            <select id="datosDeNacimiento_paisesCatalogo_paisId" name="datosDeNacimiento_paisesCatalogo_paisId" onchange="changeTest(1)">						
 		                    <option></option>
+		                   
 		                    <?php if(isset($datosActor['datosDeNacimiento']['paisesCatalogo_paisId'])){
 		                        foreach($catalogos['paisesCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
-		                    <option  value="<?=$item['paisId']?>" <?=($datosActor['datosDeNacimiento']['paisesCatalogo_paisId'] == $item['paisId']) ? 'selected="selected"' : '' ; ?> > <?=$item['nombre']?></option>
+		                    <option  value="<?=$item['paisId']?>" <?=($datosActor['datosDeNacimiento']['paisesCatalogo_paisId'] == $item['paisId']) ? 'selected="selected"' : '' ; ?> > <?=$item['nombre']?>sdsd</option>
 		                    <?php endforeach; } else { ?>
 		                        <?php foreach($catalogos['paisesCatalogo'] as $pais):?> <!--muestra los estados civiles-->
-		                        <option value="<?=$pais['paisId']; ?>"><?=$pais['nombre']; ?></option>
+		                        <option value="<?=$pais['paisId']; ?>"><?=$pais['nombre']; ?>aaaa</option>
 		                    <?php endforeach; } ?>
 		             </select>
 		         <?php endif;?>
