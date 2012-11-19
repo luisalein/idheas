@@ -167,11 +167,11 @@ class Agregar_catalogos_c extends CI_Controller {
             $obtener_datos = explode('¬', $derechoN2);
                 
               $derechos['actosN2Catalogo'][trim($obtener_datos[0])] = array('actoN2Id' => trim($obtener_datos[0]), 'descripcion' => trim($obtener_datos[1]), 
-              'actosN1Catalogo_actoId' => trim($obtener_datos[2]), 'notas' => trim($obtener_datos[3]));
+              'actosN1Catalogo_actoId' => trim($obtener_datos[2]), 'notas' => trim($obtener_datos[3]),'derechosAfectadosN2Catalogo_derechoAfectadoN2Id' => trim($obtener_datos[4]));
 
         }
         
-        $derechosN3 = read_file('statics/catalogos/catalogoviolaciones/CatalogoViolaciones_nivel3.csv');
+       /* $derechosN3 = read_file('statics/catalogos/catalogoviolaciones/CatalogoViolaciones_nivel3.csv');
         
         $derechosN3 = explode('&', $derechosN3);
         
@@ -179,7 +179,9 @@ class Agregar_catalogos_c extends CI_Controller {
             
             $obtener_datos = explode('¬', $derechoN3);
                 
-              $derechos['actosN3Catalogo'][trim($obtener_datos[0])] = array('actoN3Id' => trim($obtener_datos[0]), 'descripcion' => trim($obtener_datos[1]), 'actosN2Catalogo_actoN2Id' => trim($obtener_datos[2]), 'notas' => trim($obtener_datos[3]));
+              $derechos['actosN3Catalogo'][trim($obtener_datos[0])] = array('actoN3Id' => trim($obtener_datos[0]), 
+              'descripcion' => trim($obtener_datos[1]), 'actosN2Catalogo_actoN2Id' => trim($obtener_datos[2]), 
+              'notas' => trim($obtener_datos[3]),'derechosAfectadosN3Catalogo_derechoAfectadoN3Id' => trim($obtener_datos[4]));
 
         }
         
@@ -191,9 +193,12 @@ class Agregar_catalogos_c extends CI_Controller {
             
             $obtener_datos = explode('¬', $derechoN4);
                 
-              $derechos['actosN4Catalogo'][trim($obtener_datos[0])] = array('actoN4Id' => trim($obtener_datos[0]), 'descripcion' => trim($obtener_datos[1]), 'actosN3Catalogo_actoN3Id' => trim($obtener_datos[2]), 'notas' => trim($obtener_datos[3]));
+              $derechos['actosN4Catalogo'][trim($obtener_datos[0])] = array('actoN4Id' => trim($obtener_datos[0]), 
+              'descripcion' => trim($obtener_datos[1]), 
+              'actosN3Catalogo_actoN3Id' => trim($obtener_datos[2]), 
+              'notas' => trim($obtener_datos[3]),'derechosAfectadosN4Catalogo_derechoAfectadoN4Id' => trim($obtener_datos[4]));
 
-        }
+        }*/
         
         $this->agregar_catalogos_m->mAgregarDerechosCatalogos($derechos);
         
