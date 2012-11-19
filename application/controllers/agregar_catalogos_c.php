@@ -13,7 +13,7 @@ class Agregar_catalogos_c extends CI_Controller {
     }
     
     public function index(){
-                
+                    
         $this->cAgregarCatalogoDeOcupaciones();
         
         $this->cAgregarCatalogoGruposIndigenas();
@@ -23,6 +23,10 @@ class Agregar_catalogos_c extends CI_Controller {
         $this->cAgregarCatalogosTipoDeIntervencion();
        
         $this->cAgregarCatalogosTipoPerpetrador();
+		
+		$this->cAgregarDerechosCatalogos();
+		
+		$this->cAgregarActosCatalogos();
        
         $this->cAgregarCatalogoEstatusDeLaVictima();
        
