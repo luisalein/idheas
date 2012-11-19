@@ -1,5 +1,6 @@
+<input type="hidden" id="tipoActorAE"  name="3"/>
 <form action="<?=$action; ?>" method="post" enctype="multipart/form-data" id="menuForm" name="menuForm">
-	<input type="hidden" id="tipoActorAE"  name="3"/>
+	
 <div class="three columns">
             <?php if(isset($datosActor)){ ?>    
 

@@ -2,7 +2,7 @@
 	        <label for="pais">País</label>
 	       
 			         	<select id="direccionActor_paisesCatalogo_paisId" name="direccionActor_paisesCatalogo_paisId" onchange="changeTest2(1)">						
-			                    <option></option>
+			                    <option></option>dsd
 			                    <?php if(isset($datosActor['direccionActor'])){
 							        foreach ($datosActor['direccionActor'] as $direccion) {
 			                        	foreach($catalogos['paisesCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
