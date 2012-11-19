@@ -185,8 +185,6 @@
     <span id="TextoEspecial_infoGralActor_escolaridadId" class="Escondido twelve columns">
     </span>-->
 
-    <label for="UltimaOcupacion">Notas Última Ocupación</label>
-    <div id="notasUltimaOcupacion"></div>
     <label for="UltimaOcupacion">Última Ocupación</label>
     <select id="infoGralActor_ocupacionesCatalogo_ultimaOcupacionId" name="infoGralActor_ocupacionesCatalogo_ultimaOcupacionId">                        
         <option></option>
@@ -377,9 +375,75 @@
         </div>
     </fieldset>
 
-
+    <!--Estos campos solo apareceran cuando el actor este relacionado con un caso-->
     <?php if (isset($relacionadoCaso)) {?>
         <div>
+
+
+            <!--Inicia datos de nacimiento-->
+            <fieldset>
+                <legend>Datos de nacimiento</legend>
+                            
+                            <!--Llamada a los filtros-->
+                            <?=$filtroPais;?>                               
+                    
+                         <div class="six columns">
+                            <label for="fechaNacimiento">Fecha de nacimiento</label>
+                            <input type="text" id="fechaDeNacimientoIndividual" name="datosDeNacimiento_fechaNacimiento" <?=(isset($datosActor['datosDeNacimiento']['fechaNacimiento']) ? 'value="'.$datosActor['datosDeNacimiento']['fechaNacimiento'].'"' : ''); ?> placeholder="AAAA-MM-DD" />
+                        
+                        </div>
+            </fieldset>
+            <!--Termina datos de nacimiento-->
+
+            <!--Inicia Idientificación-->
+            <fieldset>
+                <legend>Identificación</legend>
+                <div class="six columns">
+                    <label>Tipo de Identificación</label>
+                        <select name="infoMigratoria_tipoIdentificacionId" id="infoMigratoria_tipoIdentificacionId" >
+                            <?php if (isset($datosActor['infoMigratoria']['tipoIdentificacionId'] )) { ?>
+
+                                <option <?=($datosActor['infoMigratoria']['tipoIdentificacionId']==1) ? "selected=selected" : "" ;?> value="1">Credencial para votar</option>
+                                <option <?=($datosActor['infoMigratoria']['tipoIdentificacionId']==2) ? "selected=selected" : "" ;?> value="2">Licencia de conducir</option>
+                                <option <?=($datosActor['infoMigratoria']['tipoIdentificacionId']==3) ? "selected=selected" : "" ;?> value="3">Otro</option>
+                                <option <?=($datosActor['infoMigratoria']['tipoIdentificacionId']==4) ? "selected=selected" : "" ;?> value="4">Pasaporte</option>
+                                <option <?=($datosActor['infoMigratoria']['tipoIdentificacionId']==5) ? "selected=selected" : "" ;?> value="5">Visa</option>
+                            <?php } else{ ?>
+                                <option value="1">Credencial para votar</option>
+                                <option value="2">Licencia de conducir</option>
+                                <option value="3">Otro</option>
+                                <option value="4">Pasaporte</option>
+                                <option value="5">Visa</option>
+                            <?php }?>
+                        </select>
+                </div>
+                <div class="six columns">
+                    <label>No. de Identificación</label>
+                    <input type="text" name="infoMigratoria_numIdentificacion" id="infoMigratoria_numIdentificacion" value="<?= (isset($datosActor['infoMigratoria']['numIdentificacion'])) ? $datosActor['infoMigratoria']['numIdentificacion'] : " " ;?>">
+                </div>
+
+            </fieldset>
+            <!--Termina Identificación-->
+
+            <!--Inicial Información del contacto-->
+
+            <fieldset>
+                <legend>Información de contacto</legend>
+                <div class="six columns"> <!--Primer mitad de información de contacto-->
+                <label for="telefono">Teléfono</label>
+                <input type="text" id="infoContacto_telefono" pattern="[0-9]+" name="infoContacto_telefono"  <?=(isset($datosActor['infoContacto']['telefono']) ? 'value="'.$datosActor['infoContacto']['telefono'].'"' : ''); ?>  />
+                <label for="infoContacto_telefonoMovil">Teléfono móvil</label>
+                <input type="text" id="infoContacto_telefonoMovil" name="infoContacto_telefonoMovil" <?=(isset($datosActor['infoContacto']['telefonoMovil']) ? 'value="'.$datosActor['infoContacto']['telefonoMovil'].'"' : ''); ?> />
+                </div><!--Termina primer mitad de la nformación de contacto--->
+                <div class="six columns"><!--Segunda mitad de nformación de contacto---->
+                <label for="infoContacto_correoE">Correo electrónico</label>
+                <input type="email" id="infoContacto_correoE" name="infoContacto_correoE"  <?=(isset($datosActor['infoContacto']['correoE']) ? 'value="'.$datosActor['infoContacto']['correoE'].'"' : ''); ?> />
+                </div>  <!--Segunda mitad de nformación de contacto---->
+            </fieldset>
+
+            <!--Terminal Información del contacto-->
+
+
             <fieldset><!--Dirección-->
             <legend>Dirección</legend>
                 <div id="pestania" data-collapse>
@@ -418,10 +482,12 @@
                             <input type="button" class="small button"  value="Agregar dirección" onclick="nuevaDireccion('<?=$actorId?>','0')">
                     </div>
                 </div>
-            </fieldset>
+            </fieldset> <!--Termina direcciones-->
+
+
         </div>
     <?php } ?>
-
+    <!--Terminan los campos que solo apareceran cuando el actor este relacionado con un caso-->
 
         <div class="row espacioInferior espacioSuperior">
             <div class="nine columns">

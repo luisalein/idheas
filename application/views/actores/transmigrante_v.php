@@ -93,17 +93,17 @@
 	
 				<div class="four columns">		
 					<h6 >País: </h6>
-					<div id="paisesCatalogo_paisId"><?=(isset($datosActor['datosDeNacimiento']['paisesCatalogo_paisId'])) ? $catalogos['paisesCatalogo'][$datosActor['datosDeNacimiento']['paisesCatalogo_paisId']]['nombre'] : ''; ?></div>
+					<div id="paisesCatalogo_paisId"><?=(isset($datosActor['infoMigratoria']['lugarOrigenpaisId'])) ? $catalogos['paisesCatalogo'][$datosActor['infoMigratoria']['lugarOrigenpaisId']]['nombre'] : ''; ?></div>
 				</div>
 				
 				<div class="four columns">
 					<h6>Estado: </h6>
-					<div id="estadosCatalogo_estadoId"><?=(isset($datosActor['datosDeNacimiento']['estadosCatalogo_estadoId'])) ? $catalogos['estadosCatalogo'][$datosActor['datosDeNacimiento']['estadosCatalogo_estadoId']]['nombre'] : ''; ?></div>
+					<div id="estadosCatalogo_estadoId"><?=(isset($datosActor['infoMigratoria']['lugarOrigenestadoId'])) ? $catalogos['estadosCatalogo'][$datosActor['infoMigratoria']['lugarOrigenestadoId']]['nombre'] : ''; ?></div>
 				</div>
 				
 				<div class="four columns">							
 					<h6>Municipio: </h6>
-					<div id="municipiosCatalogos_municipiosId" ><?=(isset($datosActor['datosDeNacimiento']['municipiosCatalogo_municipioId'])) ? $catalogos['municipiosCatalogo'][$datosActor['datosDeNacimiento']['municipiosCatalogo_municipioId']]['nombre'] : ''; ?></div>
+					<div id="municipiosCatalogos_municipiosId" ><?=(isset($datosActor['infoMigratoria']['lugarOrigenmunicipioId'])) ? $catalogos['municipiosCatalogo'][$datosActor['infoMigratoria']['lugarOrigenmunicipioId']]['nombre'] : ''; ?></div>
 				</div>
 	
 			</fieldset>	<!--Termina lugar de origen-->
@@ -173,41 +173,119 @@
 		
 	</fieldset><!--Termina datos de nacimiento-->
     
-    <?php echo br(2);?>
 
-    <?php if (isset($datosActor['direccionActor'])) {?>
+    <!--Estos datos solo deben aparecer cuando una actor este relacionado a un caso-->
+
+	<?php if (isset($relacionadoCaso)) {?>
+    		<?php echo br(2);?>
+
 		<fieldset>
-		    <div id="pestania" data-collapse>
-		        <h2 class="open">Dirección(es) </h2>
-		        <div>
-		            <table>
-		                <thead>
-		                    <tr>
-		                        <th>Tipo de dirección</th>
-		                        <th>Ubicación</th>
-		                        <th>Código Postal</th>
-		                        <th>País</th>
-		                        <th>Estado</th>
-		                        <th>Municipio</th>
-		                    </tr>
-		                </thead>
-		                <tbody>
-	                			<?php foreach ($datosActor['direccionActor'] as $key => $direccion) {?>
-		                			<tr>
-				                        <td><?=(isset($direccion['tipoDireccionId'])) ? $catalogos['tipoDireccion'][$direccion['tipoDireccionId']]['descripcion'] : ''; ?></td>
-				                        <td><?=(isset($direccion['direccion'])) ? $direccion['direccion'] : ''; ?></td>
-				                        <td><?=(isset($direccion['codigoPostal'])) ? $direccion['codigoPostal'] : ''; ?></td>
-				                        <td><?=(isset($direccion['paisesCatalogo_paisId'])) ? $catalogos['paisesCatalogo'][$direccion['paisesCatalogo_paisId']]['nombre'] : ''; ?></td>
-				                        <td><?=(isset($direccion['estadosCatalogo_estadoId'])) ? $catalogos['estadosCatalogo'][$direccion['estadosCatalogo_estadoId']]['nombre'] : ''; ?></td>
-				                        <td><?=(isset($direccion['municipiosCatalogo_municipioId'])) ? $catalogos['municipiosCatalogo'][$direccion['municipiosCatalogo_municipioId']]['nombre'] : ''; ?></td>                        
-		                    		</tr>
-		            			<?php }?>
-		                </tbody>
-		            </table>
-		        </div>
+		    <legend>Datos de Nacimiento</legend>
+		    <div class="six columns">
+		        <h6>Pais</h6>
+		        <label id="paisesCatalogo_paisId"><?=(isset($datosActor['datosDeNacimiento']['paisesCatalogo_paisId'])) ? $catalogos['paisesCatalogo'][$datosActor['datosDeNacimiento']['paisesCatalogo_paisId']]['nombre'] : ''; ?></label>
+		        <h6>Estado</h6>
+		        <label id="estadosCatalogo_estadoId"><?=(isset($datosActor['datosDeNacimiento']['estadosCatalogo_estadoId'])) ? $catalogos['estadosCatalogo'][$datosActor['datosDeNacimiento']['estadosCatalogo_estadoId']]['nombre'] : ''; ?></label>
+		        <h6>Municipio</h6>
+		        <label id="municipiosCatalogo_municipioId"><?=(isset($datosActor['datosDeNacimiento']['municipiosCatalogo_municipioId'])) ? $catalogos['municipiosCatalogo'][$datosActor['datosDeNacimiento']['municipiosCatalogo_municipioId']]['nombre'] : ''; ?></label>
+		    </div>
+		    <div class="six columns">
+		        <h6>Fecha de nacimiento</h6>
+		        <label id="fechaNacimiento"><?=(isset($datosActor['datosDeNacimiento']['fechaNacimiento'])) ? $datosActor['datosDeNacimiento']['fechaNacimiento'] : ''; ?></label>
 		    </div>
 		</fieldset>
-	<?php }?>
+		<!--Termina datos de nacimiento-->
+
+	    <?php echo br(2);?>
+
+	    <fieldset>
+	    	<legend>Identificación</legend>
+	    		<div class="six columns">
+		    		<h6>Tipo de indetificación</h6>
+		    		<div><?php if (isset($datosActor['infoMigratoria']['tipoIdentificacionId'])) {
+		    			switch ($datosActor['infoMigratoria']['tipoIdentificacionId']) {
+			    			case '1':
+			    				echo "Credencial para votar";
+			    				break;
+
+			    			case '2':
+			    				echo "Licencia de conducir";
+			    				break;
+			    			case '3':
+			    				echo "Otro";
+			    				break;
+			    			case '4':
+			    				echo "Pasaporte";
+			    				break;
+			    			case '5':
+			    				echo "visa";
+			    				break;
+			    		}
+		    		}?></div>
+				</div>
+				<div class="six columns">
+					<h6>No. de Indetificación</h6>
+						<div><?= (isset($datosActor['infoMigratoria']['numIdentificacion'])) ? $datosActor['infoMigratoria']['numIdentificacion'] : " " ;?></div>
+				</div>
+	    </fieldset>	
+
+
+	    <?php echo br(2);?>
+
+	    <!--Inicia informacion del contacto-->
+	    <fieldset>
+		    <legend>Información de contacto</legend>
+		    <div class="six columns">
+		        <h6>Teléfono</h6>
+		        <label id="telefono"><?=(isset($datosActor['infoContacto']['telefono'])) ? $datosActor['infoContacto']['telefono'] : ''; ?></label>
+		        <h6>Teléfono móvil</h6>
+		        <label id="telefonoMovil"><?=(isset($datosActor['infoContacto']['telefonoMovil'])) ? $datosActor['infoContacto']['telefonoMovil'] : ''; ?></label>
+		    </div>
+		    <div class="six columns">
+		        <h6>Correo electrónico</h6>
+		        <label id="correoE"><?=(isset($datosActor['infoContacto']['correoE'])) ? $datosActor['infoContacto']['correoE'] : ''; ?></label>
+		    </div>
+		</fieldset>
+		<!--Termina información del contacto-->
+
+	    <?php echo br(2);?>
+
+			<fieldset>
+			    <div id="pestania" data-collapse>
+			        <h2 class="open">Dirección(es) </h2>
+			        <div>
+			            <table>
+			                <thead>
+			                    <tr>
+			                        <th>Tipo de dirección</th>
+			                        <th>Ubicación</th>
+			                        <th>Código Postal</th>
+			                        <th>País</th>
+			                        <th>Estado</th>
+			                        <th>Municipio</th>
+			                    </tr>
+			                </thead>
+			                <tbody>
+	    						<?php if (isset($datosActor['direccionActor'])) {?>
+		                			<?php foreach ($datosActor['direccionActor'] as $key => $direccion) {?>
+			                			<tr>
+					                        <td><?=(isset($direccion['tipoDireccionId'])) ? $catalogos['tipoDireccion'][$direccion['tipoDireccionId']]['descripcion'] : ''; ?></td>
+					                        <td><?=(isset($direccion['direccion'])) ? $direccion['direccion'] : ''; ?></td>
+					                        <td><?=(isset($direccion['codigoPostal'])) ? $direccion['codigoPostal'] : ''; ?></td>
+					                        <td><?=(isset($direccion['paisesCatalogo_paisId'])) ? $catalogos['paisesCatalogo'][$direccion['paisesCatalogo_paisId']]['nombre'] : ''; ?></td>
+					                        <td><?=(isset($direccion['estadosCatalogo_estadoId'])) ? $catalogos['estadosCatalogo'][$direccion['estadosCatalogo_estadoId']]['nombre'] : ''; ?></td>
+					                        <td><?=(isset($direccion['municipiosCatalogo_municipioId'])) ? $catalogos['municipiosCatalogo'][$direccion['municipiosCatalogo_municipioId']]['nombre'] : ''; ?></td>                        
+			                    		</tr>
+			            			<?php }?>
+								<?php }?>
+			                </tbody>
+			            </table>
+			        </div>
+			    </div>
+			</fieldset>
+
+    <?php } 
+    	echo br(2);?>
 	
 	<fieldset>
 	    <legend>Relacion entre actores </legend>
