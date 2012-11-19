@@ -20,7 +20,6 @@
 	        </span>-->
 
         </div>
- disabled="disabled" 
         <div class="ten columns">
             <label for="estado">Estado</label>
             <select id="direccionActor_estadosCatalogo_estadoId"  disabled="disabled"  name="direccionActor_estadosCatalogo_estadoId"  onchange="changeTest2(2)">						
