@@ -1,6 +1,6 @@
 <div class="two columns">
 	<?php if(isset($datosActor['actores'])){?>
-    <img src="<?=base_url().$datosActor['actores']['foto']; ?>" />
+    <img src="<?=base_url().$datosActor['actores']['foto']; ?>" class="foto"/>
     <br />
     <?=$datosActor['actores']['nombre'].' '.$datosActor['actores']['apellidosSiglas']; ?>
     <?php }?>
