@@ -97,7 +97,6 @@
     
     <?php echo br(2);?>
 
-	<?php if (isset($datosActor['direccionActor'])) { ?>
 		<fieldset>
 	    <div id="pestania" data-collapse>
 	        <h2 class="open">Dirección(es) </h2>
@@ -114,6 +113,7 @@
 	                    </tr>
 	                </thead>
 	                <tbody>
+						<?php if (isset($datosActor['direccionActor'])) { ?>
 	            			<?php foreach ($datosActor['direccionActor'] as $key => $direccion) {?>
 	                			<tr>
 			                        <td><?=(isset($direccion['tipoDireccionId'])) ? $catalogos['tipoDireccion'][$direccion['tipoDireccionId']]['descripcion'] : ''; ?></td>
@@ -124,12 +124,14 @@
 			                        <td><?=(isset($direccion['municipiosCatalogo_municipioId'])) ? $catalogos['municipiosCatalogo'][$direccion['municipiosCatalogo_municipioId']]['nombre'] : ''; ?></td>
 	                    		</tr>
 	            			<?php }?>
+						<?php }?>
 	                </tbody>
 	            </table>
 	        </div>
 	    </div>
 		</fieldset><!--Termina datos dirección-->
-	<?php }?>
+
+    <?php echo br(2);?>
 
 	<fieldset>
 	    <legend>Relacion entre actores </legend>

@@ -188,7 +188,7 @@
                 <legend>Información de contacto</legend>
                 <div class="six columns"> <!--Primer mitad de información de contacto-->
                 <label for="telefono">Teléfono</label>
-                <input type="text" id="infoContacto_telefono" name="infoContacto_telefono"  <?=(isset($datosActor['infoContacto']['telefono']) ? 'value="'.$datosActor['infoContacto']['telefono'].'"' : ''); ?>  />
+                <input type="text" id="infoContacto_telefono" pattern="[0-9]+" name="infoContacto_telefono"  <?=(isset($datosActor['infoContacto']['telefono']) ? 'value="'.$datosActor['infoContacto']['telefono'].'"' : ''); ?>  />
                 <label for="infoContacto_telefonoMovil">Teléfono móvil</label>
                 <input type="text" id="infoContacto_telefonoMovil" name="infoContacto_telefonoMovil" <?=(isset($datosActor['infoContacto']['telefonoMovil']) ? 'value="'.$datosActor['infoContacto']['telefonoMovil'].'"' : ''); ?> />
                 </div><!--Termina primer mitad de la nformación de contacto--->
