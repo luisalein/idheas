@@ -91,8 +91,9 @@ class Actores_c extends CI_Controller {
             	$relaciones = $this->actores_m->mTraeCasosRelacionadosActor($actorId);
 						
 						if($relaciones != '0'){
-							$datos['relacionadoCaso'] = 1;
+								$datos['relacionadoCaso'] = 1;
 						}
+						
             	$datos['form'] = $this->load->view('actores/transmigrante_v', $datos, true);
                 
             break;
