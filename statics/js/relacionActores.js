@@ -17,7 +17,6 @@ function tipoRelacion(tipoRelacion,notas,nombre){
     $('.cambiarColorRelacion').css('background-color', '#efefef');
     $('#'+tipoRelacion).css('background-color', '#ddd');
 	$('#tipoRelacionId').attr('value', tipoRelacion); 
-	$('#relacionActual').html(" "); 
 };
 
 function desplegar(nombre){
