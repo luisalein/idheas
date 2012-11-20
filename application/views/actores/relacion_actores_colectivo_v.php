@@ -106,7 +106,7 @@
 	<div id="vistaActorRelacionado">
 	<?php if (isset($relaciones['actorRelacionadoId'])) {?> 
 	<?php if ($relaciones['actorRelacionadoId']!=0) {?> 
-		<img class="four columns"  src="<?php print_r(base_url().$catalogos['listaTodosActores'][$relaciones['actorRelacionadoId']]['foto']) ?>" / >
+		<img class="four columns foto"  src="<?php print_r(base_url().$catalogos['listaTodosActores'][$relaciones['actorRelacionadoId']]['foto']) ?>" / >
 		<h4><b><?php print_r($catalogos['listaTodosActores'][$relaciones['actorRelacionadoId']]['nombre']." ".$catalogos['listaTodosActores'][$relaciones['actorRelacionadoId']]['apellidosSiglas']) ?></h4></b>
 	<?php }}?>
 	</div>

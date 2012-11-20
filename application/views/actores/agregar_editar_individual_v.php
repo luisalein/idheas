@@ -221,8 +221,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                       <?php if (isset($datosActor['direccionActor']['tipoDireccionId'])) {
-                                        foreach ($datosActor['direccionActor'] as $key => $direccion) {?>
+                                       <?php if (isset($datosActor['direccionActor'])) {
+                                        foreach ($datosActor['direccionActor'] as $key => $direccion) {
+                                            if (isset($direccion['tipoDireccionId'])) {
+                                                ?>
                                         <tr>
                                                 <td><?=(isset($direccion['tipoDireccionId'])) ? $catalogos['tipoDireccion'][$direccion['tipoDireccionId']]['descripcion'] : ''; ?></td>
                                                 <td><?=(isset($direccion['direccion'])) ? $direccion['direccion'] : ''; ?></td>
@@ -235,6 +237,7 @@
                                                 </td>
                                         </tr>
                                         <?php }
+                                    }
                                     }?>
                                 </tbody>
                             </table>
