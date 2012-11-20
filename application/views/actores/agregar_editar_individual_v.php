@@ -30,7 +30,7 @@
                         <label for="actores_apellidosSiglas">Apellidos</label>
                         <input type="text" id="actores_apellidosSiglas" name="actores_apellidosSiglas" <?=(isset($datosActor['actores']['nombre']) ? 'value="'.$datosActor['actores']['apellidosSiglas'].'"' : ''); ?> required />
                         <label for="alias_alias">Alias</label>
-                        <input type="text" id="alias_alias" name="alias_alias" <?=(isset($datosActor['alias']['alias']) ? 'value="'.$datosActor['alias']['alias'].'"' : ''); ?> />
+                        <input type="text" id="alias_alias" name="alias_alias" value="<?=(isset($datosActor['alias']['alias']) ? $datosActor['alias']['alias'] : ''); ?>" />
                     </div>
                     <!----Termina primer mitad de información general---->
                     <!----Segunda mitad de información general---->
