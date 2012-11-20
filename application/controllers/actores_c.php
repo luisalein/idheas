@@ -610,6 +610,9 @@ class Actores_c extends CI_Controller {
 		$tipo = $this->input->post("tipo");	
 		
 		$id = $this->input->post("id");	
+		
+		$actorId = $this->input->post("actorId");	
+		
 				
 		if($tipo == 1){
 			
@@ -1441,11 +1444,10 @@ class Actores_c extends CI_Controller {
 			if(isset($datos['datos']['direccionActor'][$direccionId])){
 				
 				$datos['datosActor'] = $datos['datos']['direccionActor'][$direccionId];
-				
+				$datos['datosActor']['direccionActor'][1]=$datos['datosActor'];
 			}
 			
 		}
-		$datos['datosActor']['datosDeNacimiento']=$datos['datosActor'];
 		$datos['tipo'] = '3';
 		$datos['filtroDireccion'] = $this->load->view('actores/filtroPaisEstadoMunicipio_v', $datos, true);
 		$this->load->view('actores/formularioNuevaDireccion', $datos);
