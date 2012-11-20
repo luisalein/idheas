@@ -60,21 +60,11 @@ class CasosVentanas_c extends CI_Controller {
         
     }
 
-    function seguimientoCaso($casoId, $i){
+    function notas(){
 
         $datos['head'] = $this->load->view('general/head_v', "", true);
 
-        $datos['casoId']= $casoId;
-
-        $datos['catalogos']= $this->traer_catalogos();
-		
-		$datos['datosCaso'] = $this->casos_m->mTraerDatosCaso($casoId);
-		
-		if(!empty($datos['datosCaso']['fichas'][$i]))
-		
-			$datos['ficha']=$datos['datosCaso']['fichas'][$i];
-
-        $this->load->view('casos/formularioSeguimientoCaso_v', $datos);
+        $this->load->view('actores/notasCatalogos_', $datos);
         
     }
 
