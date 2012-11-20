@@ -28,24 +28,20 @@
 		             </select>
 		         <?php endif;?> 	
 		         <?php if($tipo==3 ):?>
-		         	<?php if(isset($datosActor['direccionActor'])):?>
-		         		<?php foreach ($datosActor['direccionActor'] as $direccion):?>
-			         		<select id="direccionActor_paisesCatalogo_paisId" name="direccionActor_paisesCatalogo_paisId" onchange="changeTest(1)">						
+			         	<select id="direccionActor_paisesCatalogo_paisId" name="direccionActor_paisesCatalogo_paisId" onchange="changeTest(1)">						
 			                    <option></option>
-			                    
-			                        	<?foreach($catalogos['paisesCatalogo'] as $key => $item): ?>
+			                    <?php if(isset($datosActor['direccionActor'])){
+			                        	foreach($catalogos['paisesCatalogo'] as $key => $item): ?>
 			                        	<!--muestra los estados civiles-->
-			                    			<option  value="<?=$item['paisId']?>" <?php if($direccion['paisesCatalogo_paisId'] == $item['paisId']) echo 'selected="selected"'; else echo '' ; ?> > 
+			                    			<option  value="<?=$item['paisId']?>" <?php if($datosActor['direccionActor']['paisesCatalogo_paisId'] == $item['paisId']) echo 'selected="selected"'; else echo '' ; ?> > 
 			                    				<?=$item['nombre']?>
 			                    			</option>
-			                    		<?php endforeach;?> 
-			                  </select>  		
-							<?php endforeach;?>			
-			         <?php else: ?>
-			         	<select id="direccionActor_paisesCatalogo_paisId" name="direccionActor_paisesCatalogo_paisId" onchange="changeTest(1)">	
-			               <?php foreach($catalogos['paisesCatalogo'] as $pais):?> <!--muestra los estados civiles-->
+			                    		<?php endforeach; 
+			                      } else { ?>
+			                        <?php foreach($catalogos['paisesCatalogo'] as $pais):?> <!--muestra los estados civiles-->
 			                        	<option value="<?=$pais['paisId']; ?>"><?=$pais['nombre']; ?></option>
-			               <?php endforeach;?>
+			                    	<?php endforeach; 
+								  } ?>
 			             </select>
 	             <?php endif;?>
 	        <!--<input id="BotonmasdatosDeNacimiento_paisesCatalogo_paisId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />    
