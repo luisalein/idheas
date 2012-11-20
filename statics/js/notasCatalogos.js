@@ -1,7 +1,12 @@
-function notasCatalogos(notas,escribeNotas){
+function notasCatalogos(notas,escribeNotas,id){
 	if(notas!=""){
-		 boton='<input type="button" value="i" onclick="botonNotas("'+notas+'")" class="tiny button"/>';
-		$('#'+escribeNotas).html(boton); 
+		 if(id==""){
+		 	$('#'+escribeNotas).html(notas); 
+		 } else{
+		 	notas="botonNotas('"+notas+"')";
+		 	$('#notas'+escribeNotas).html('<input type="button" value="i" class="tiny button" onclick="'+notas+'" />');
+
+		 }
 	}
 }
 

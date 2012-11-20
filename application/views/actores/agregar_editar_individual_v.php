@@ -146,21 +146,21 @@
                 </select>
 
                 <label for="UltimaOcupacion">Última Ocupación</label>
-                <select id="infoGralActor_ocupacionesCatalogo_ultimaOcupacionId" name="infoGralActor_ocupacionesCatalogo_ultimaOcupacionId">						
+                <select id="infoGralActor_ocupacionesCatalogo_ultimaOcupacionId" name="infoGralActor_ocupacionesCatalogo_ultimaOcupacionId" >						
                     <option></option>
                     <?php if(isset($datosActor['infoGralActor']['ocupacionesCatalogo_ultimaOcupacionId'])){
                         foreach($catalogos['ocupacionesCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
                             <?php if($item['tipoActorId'] == 1){ ?>
-                                    <option onclick="notasCatalogos('<?=$item['notas']; ?>','notasUltimaOcupacion')" value="<?=$item['ocupacionId']?>" <?=($datosActor['infoGralActor']['ocupacionesCatalogo_ultimaOcupacionId'] == $item['ocupacionId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
+                                    <option onclick="notasCatalogos('<?=$item['notas']; ?>','infoGralActor_ocupacionesCatalogo_ultimaOcupacionId','1')" value="<?=$item['ocupacionId']?>" <?=($datosActor['infoGralActor']['ocupacionesCatalogo_ultimaOcupacionId'] == $item['ocupacionId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
                                  <?php } ?>
                         <?php endforeach; } 
                         else { ?>
                             <?php foreach($catalogos['ocupacionesCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
                                 <?php if($item['tipoActorId'] == 1){ ?>
-                                    <option onclick="notasCatalogos('<?=$item['notas']; ?>','notasUltimaOcupacion')" value="<?=$item['ocupacionId']; ?>"><?=$item['descripcion']; ?></option>
+                                    <option onclick="notasCatalogos('<?=$item['notas']; ?>','infoGralActor_ocupacionesCatalogo_ultimaOcupacionId','1')" value="<?=$item['ocupacionId']; ?>"><?=$item['descripcion']; ?></option>
                                 <?php } ?>
                     <?php endforeach; } ?>
-                </select>
+                </select><span id="notasinfoGralActor_ocupacionesCatalogo_ultimaOcupacionId"></span>
                 
                 </div>	<!----Termina segunda mitad de detalles---->
 

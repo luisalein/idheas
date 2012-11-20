@@ -10,7 +10,7 @@
 
 	<input type="hidden"  id="tipoRelacionIndividualColectivoId" name="tipoRelacionIndividualColectivoId" value="1"/>
 
-	<input type="hidden"  id="relacionActores_tipoRelacionInd" name="relacionActoresId" <?= (isset($relaciones['relacionActoresId'])) ? 'value="'.$relaciones['relacionActoresId'].'"' : '' ;?> />
+	<input type="hidden"  id="tipoRelacionId" name="tipoRelacionId" <?= (isset($relaciones['relacionActoresId'])) ? 'value="'.$relaciones['relacionActoresId'].'"' : '' ;?> />
 
 	<input type="hidden"  id="nameSeleccionado"  value="actorRelacionadoId"><!--Este campo me da el name al que hay modificar el value al agregar acto(SIRVE PARA AGREGAR ACTOR)-->
 
@@ -28,7 +28,7 @@
 		<label for="TipoRel">Tipo de relación</label>
 			<?php 
 			if($catalogos['listaTodosActores'][$actorId]['tipoActorId']<3){ ?>
-				<select id="relacionActores" name="tipoRelacionId">
+				<select id="tipoRelacionId" name="tipoRelacionId">
 					<option></option>
 					<?php 
 						if (isset($relaciones['tipoRelacionId'])) {?>
