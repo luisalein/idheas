@@ -66,7 +66,7 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`infoGralActor` (
   `hijos` INT NULL ,
   `escolaridadId` INT NULL ,
   `espaniol` ENUM('Si','No') NULL ,
-  `actores_actorId` INT NULL ,
+  `actores_actorId` INT NOT NULL ,
   `estadoCivil_estadoCivilId` INT NULL ,
   `ocupacionesCatalogo_ultimaOcupacionId` INT NULL ,
   `gruposIndigenas_grupoIndigenaId` INT NULL ,
@@ -147,7 +147,7 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`datosDeNacimiento` (
   `datosDeNacimientoId` INT NOT NULL AUTO_INCREMENT ,
   `fechaNacimiento` DATE NULL ,
-  `actores_actorId` INT NULL ,
+  `actores_actorId` INT NOT NULL ,
   `paisesCatalogo_paisId` INT NULL ,
   `estadosCatalogo_estadoId` INT NULL ,
   `municipiosCatalogo_municipioId` INT NULL ,
@@ -474,6 +474,11 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`infoMigratoria` (
   `tipoEstanciaId` INT NULL ,
   `realizaViaje` ENUM('No acompanado','Acompanado') NULL ,
   `comentarios` VARCHAR(3000) NULL ,
+  `tipoIdentificacionId` INT NULL ,
+  `numIdentificacion` VARCHAR(100) NULL ,
+  `lugarOrigenPaisId` INT NULL ,
+  `lugarOrigenEstadoId` INT NULL ,
+  `lugarOrigenMunicipioId` INT NULL ,
   PRIMARY KEY (`actores_actorId`) ,
   CONSTRAINT `fk_infoMigratoria_actores1`
     FOREIGN KEY (`actores_actorId` )
@@ -786,18 +791,18 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`actosN2Catalogo` (
   `descripcion` VARCHAR(100) NULL ,
   `notas` VARCHAR(3000) NULL ,
   `actosN1Catalogo_actoId` INT NOT NULL ,
-  `derechosAfectadosN2Catalogo_derechoAfectadoN2Id` INT NOT NULL ,
+  `derechosAfectadosN2Catalogo_derechoAfectadoN2Id` INT NULL ,
   PRIMARY KEY (`actoN2Id`) ,
-  INDEX `fk_actosN2Catalogo_actosN1Catalogo1_idx` (`actosN1Catalogo_actoId` ASC) ,
   INDEX `fk_actosN2Catalogo_derechosAfectadosN2Catalogo1` (`derechosAfectadosN2Catalogo_derechoAfectadoN2Id` ASC) ,
-  CONSTRAINT `fk_actosN2Catalogo_actosN1Catalogo1`
-    FOREIGN KEY (`actosN1Catalogo_actoId` )
-    REFERENCES `idheasIkari`.`actosN1Catalogo` (`actoId` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+  INDEX `fk_actosN2Catalogo_actosN1Catalogo1` (`actosN1Catalogo_actoId` ASC) ,
   CONSTRAINT `fk_actosN2Catalogo_derechosAfectadosN2Catalogo1`
     FOREIGN KEY (`derechosAfectadosN2Catalogo_derechoAfectadoN2Id` )
     REFERENCES `idheasIkari`.`derechosAfectadosN2Catalogo` (`derechoAfectadoN2Id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_actosN2Catalogo_actosN1Catalogo1`
+    FOREIGN KEY (`actosN1Catalogo_actoId` )
+    REFERENCES `idheasIkari`.`actosN1Catalogo` (`actoId` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -829,7 +834,7 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`actosN3Catalogo` (
   `descripcion` VARCHAR(100) NULL ,
   `notas` VARCHAR(3000) NULL ,
   `actosN2Catalogo_actoN2Id` INT NOT NULL ,
-  `derechosAfectadosN3Catalogo_derechoAfectadoN3Id` INT NOT NULL ,
+  `derechosAfectadosN3Catalogo_derechoAfectadoN3Id` INT NULL ,
   PRIMARY KEY (`actoN3Id`) ,
   INDEX `fk_actosN3Catalogo_actosN2Catalogo1_idx` (`actosN2Catalogo_actoN2Id` ASC) ,
   INDEX `fk_actosN3Catalogo_derechosAfectadosN3Catalogo1` (`derechosAfectadosN3Catalogo_derechoAfectadoN3Id` ASC) ,
@@ -872,7 +877,7 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`actosN4Catalogo` (
   `descripcion` VARCHAR(100) NULL ,
   `notas` VARCHAR(3000) NULL ,
   `actosN3Catalogo_actoN3Id` INT NOT NULL ,
-  `derechosAfectadosN4Catalogo_derechoAfectadoN4Id` INT NOT NULL ,
+  `derechosAfectadosN4Catalogo_derechoAfectadoN4Id` INT NULL ,
   PRIMARY KEY (`actoN4Id`) ,
   INDEX `fk_actosN4Catalogo_actosN3Catalogo1_idx` (`actosN3Catalogo_actoN3Id` ASC) ,
   INDEX `fk_actosN4Catalogo_derechosAfectadosN4Catalogo1` (`derechosAfectadosN4Catalogo_derechoAfectadoN4Id` ASC) ,
@@ -1051,7 +1056,7 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`direccionActor` (
   `direccionId` INT NOT NULL AUTO_INCREMENT ,
   `direccion` VARCHAR(200) NULL ,
   `tipoDireccionId` INT NULL ,
-  `actores_actorId` INT NULL ,
+  `actores_actorId` INT NOT NULL ,
   `paisesCatalogo_paisId` INT NULL ,
   `estadosCatalogo_estadoId` INT NULL ,
   `municipiosCatalogo_municipioId` INT NULL ,
