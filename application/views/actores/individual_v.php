@@ -113,7 +113,7 @@
 	                    </tr>
 	                </thead>
 	                <tbody>
-						<?php if (isset($datosActor['direccionActor'])) { ?>
+						<?php if (isset($datosActor['direccionActor']['tipoDireccionId'])) { ?>
 	            			<?php foreach ($datosActor['direccionActor'] as $key => $direccion) {?>
 	                			<tr>
 			                        <td><?=(isset($direccion['tipoDireccionId'])) ? $catalogos['tipoDireccion'][$direccion['tipoDireccionId']]['descripcion'] : ''; ?></td>
