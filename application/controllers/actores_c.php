@@ -1449,6 +1449,7 @@ class Actores_c extends CI_Controller {
 			
 		}
 		$datos['tipo'] = '3';
+		$datos['direccionExtra'] = '1';
 		$datos['filtroDireccion'] = $this->load->view('actores/filtroPaisEstadoMunicipio_v', $datos, true);
 		$this->load->view('actores/formularioNuevaDireccion', $datos);
 	}
