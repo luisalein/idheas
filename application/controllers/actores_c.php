@@ -1444,7 +1444,7 @@ class Actores_c extends CI_Controller {
 			if(isset($datos['datos']['direccionActor'][$direccionId])){
 				
 				$datos['datosActor'] = $datos['datos']['direccionActor'][$direccionId];
-				$datos['datosActor']['direccionActor'][1]=$datos['datosActor'];
+				$datos['datosActor']['direccionActor']=$datos['datosActor'];
 			}
 			
 		}

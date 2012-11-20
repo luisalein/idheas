@@ -1,10 +1,8 @@
  <div class="six columns">		
 	        <label for="pais">País</label>
-	        <div id="datosDeNacimiento_paisesCatalogo_paisIdSelect">
-	        
-	        	<input type="hidden" id="actorId"  name="<?=$actorId?>"/>
+	        	<input type="hidden" id="actorId"  name="<?php isset($actorId) ? $actorId:''?>"/>
 	        	 <input type="hidden" id="tipoActorAE"  name="<?=$tipo?>"/>
-	        	<?php if($tipo == 1 || $tipo == 2):?>
+	        	<?php if($tipo == 1):?>
 		            <select id="datosDeNacimiento_paisesCatalogo_paisId" name="datosDeNacimiento_paisesCatalogo_paisId" onchange="changeTest(1)">						
 		                    <option></option>
 		                    <?php if(isset($datosActor['datosDeNacimiento']['paisesCatalogo_paisId'])){
@@ -16,25 +14,40 @@
 		                    <?php endforeach; } ?>
 		             </select>
 		         <?php endif;?>
+		         <?php if($tipo == 2):?> 
+		         	
+		         	<select id="infoMigratoria_lugarOrigenPaisId" name="infoMigratoria_lugarOrigenPaisId" onchange="changeTest(1)">						
+		                    <option></option>
+		                    <?php if(isset($datosActor['infoMigratoria']['lugarOrigenPaisId'])){?>
+		                       <? foreach($catalogos['paisesCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
+			                    <option  value="<?=$item['paisId']?>" <?=($datosActor['infoMigratoria']['lugarOrigenPaisId'] == $item['paisId']) ? 'selected="selected"' : '' ; ?> > <?=$item['nombre']?></option>
+			                    <?php endforeach; } else { ?>
+		                        <?php foreach($catalogos['paisesCatalogo'] as $pais):?> <!--muestra los estados civiles-->
+		                        <option value="<?=$pais['paisId']; ?>"><?=$pais['nombre']; ?></option>
+		                    <?php endforeach; } ?>
+		             </select>
+		         <?php endif;?> 	
 		         <?php if($tipo==3 ):?>
-			         	<select id="direccionActor_paisesCatalogo_paisId" name="direccionActor_paisesCatalogo_paisId" onchange="changeTest(1)">						
+		         	<?php if(isset($datosActor['direccionActor'])):?>
+		         		<?php foreach ($datosActor['direccionActor'] as $direccion):?>
+			         		<select id="direccionActor_paisesCatalogo_paisId" name="direccionActor_paisesCatalogo_paisId" onchange="changeTest(1)">						
 			                    <option></option>
-			                    <?php if(isset($datosActor['direccionActor'])){
-							        foreach ($datosActor['direccionActor'] as $direccion) {
-			                        	foreach($catalogos['paisesCatalogo'] as $key => $item): ?>
+			                    
+			                        	<?foreach($catalogos['paisesCatalogo'] as $key => $item): ?>
 			                        	<!--muestra los estados civiles-->
 			                    			<option  value="<?=$item['paisId']?>" <?php if($direccion['paisesCatalogo_paisId'] == $item['paisId']) echo 'selected="selected"'; else echo '' ; ?> > 
 			                    				<?=$item['nombre']?>
 			                    			</option>
-			                    		<?php endforeach; 
-			                    	  }
-			                      } else { ?>
-			                        <?php foreach($catalogos['paisesCatalogo'] as $pais):?> <!--muestra los estados civiles-->
-			                        <option value="<?=$pais['paisId']; ?>"><?=$pais['nombre']; ?></option>
-			                    <?php endforeach; } ?>
+			                    		<?php endforeach;?> 
+			                  </select>  		
+							<?php endforeach;?>			
+			         <?php else: ?>
+			         	<select id="direccionActor_paisesCatalogo_paisId" name="direccionActor_paisesCatalogo_paisId" onchange="changeTest(1)">	
+			               <?php foreach($catalogos['paisesCatalogo'] as $pais):?> <!--muestra los estados civiles-->
+			                        	<option value="<?=$pais['paisId']; ?>"><?=$pais['nombre']; ?></option>
+			               <?php endforeach;?>
 			             </select>
 	             <?php endif;?>
-	        </div>
 	        <!--<input id="BotonmasdatosDeNacimiento_paisesCatalogo_paisId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />    
 	        <span id="TextoEspecial_datosDeNacimiento_paisesCatalogo_paisId" class="Escondido twelve columns">
 	        </span>-->
@@ -43,19 +56,62 @@
 
         <div class="six columns">
             <label for="estado">Estado</label>
-            <?php if($tipo == 1 || $tipo == 2):?>
-	            <div id="datosDeNacimiento_estadosCatalogo_estadoIdSelect"  >
-	                <select id="datosDeNacimiento_estadosCatalogo_estadoId"  name="datosDeNacimiento_estadosCatalogo_estadoId"  onchange="changeTest(2)">						
-		                 
-	                </select>
-	            </div>
+            <?php if($tipo == 1):?>
+	            	<?php if(isset($datosActor['datosDeNacimiento']['estadosCatalogo_estadoId'])):?>
+		                <select id="datosDeNacimiento_estadosCatalogo_estadoId"    name="datosDeNacimiento_estadosCatalogo_estadoId"  onchange="changeTest(2)">						
+			                 	
+			                        <? foreach($catalogos['estadosCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
+				                        <?php if($datosActor['datosDeNacimiento']['paisesCatalogo_paisId'] == $item['paises_paisId']):?>
+				                    		<option  value="<?=$item['estadoId']?>" <?=($datosActor['datosDeNacimiento']['estadosCatalogo_estadoId'] == $item['estadoId']) ? 'selected="selected"' : '' ; ?> > 
+				                    			 <?=$item['nombre']?>
+				                    		</option>
+				                    	<?php endif;?>
+			                    	<?php endforeach;?> 
+								
+		                </select>
+	                <?php else:?>
+	                	<select id="datosDeNacimiento_estadosCatalogo_estadoId"  disabled="disabled"  name="datosDeNacimiento_estadosCatalogo_estadoId"  onchange="changeTest(2)">						
+			                 	
+		                </select>
+	                <?php endif;?>
             <?php endif;?>
+            <?php if($tipo == 2):?>
+            	<?php if(isset($datosActor['infoMigratoria']['lugarOrigenEstadoId'])):?>
+		                <select id="infoMigratoria_lugarOrigenEstadoId"    name="infoMigratoria_lugarOrigenEstadoId"  onchange="changeTest(2)">						
+			                 	
+			                        <? foreach($catalogos['estadosCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
+				                        <?php if($datosActor['infoMigratoria']['lugarOrigenPaisId'] == $item['paises_paisId']):?>
+				                    		<option  value="<?=$item['estadoId']?>" <?=($datosActor['infoMigratoria']['lugarOrigenEstadoId'] == $item['estadoId']) ? 'selected="selected"' : '' ; ?> > 
+				                    			 <?=$item['nombre']?>
+				                    		</option>
+				                    	<?php endif;?>
+			                    	<?php endforeach;?> 
+								
+		                </select>
+	                <?php else:?>
+	                	<select id="infoMigratoria_lugarOrigenEstadoId"  disabled="disabled"  name="infoMigratoria_lugarOrigenEstadoId"  onchange="changeTest(2)">						
+			                 	
+		                </select>
+	                <?php endif;?>
+            <?php endif;?> 
 		    <?php if($tipo==3):?>
-            	<div id="datosDeNacimiento_estadosCatalogo_estadoIdSelect" >
-	                <select id="direccionActor_estadosCatalogo_estadoId"  disabled="disabled" name="direccionActor_estadosCatalogo_estadoId"  onchange="changeTest(2)">						
-		               
+		    	<?php if(isset($datosActor['direccionActor'])):?>
+		    		<?php foreach ($datosActor['direccionActor'] as $direccion):?>
+		                <select id="direccionActor_estadosCatalogo_estadoId"  name="direccionActor_estadosCatalogo_estadoId"  onchange="changeTest(2)">
+			                       <?php foreach($catalogos['estadosCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
+			                        <?php if($direccion['paisesCatalogo_paisId'] == $item['paises_paisId']):?>
+			                    		<option  value="<?=$item['estadoId']?>" <?=($direccion['estadosCatalogo_estadoId'] == $item['estadoId']) ? 'selected="selected"' : '' ; ?> > 
+			                    			 <?=$item['nombre']?>
+			                    		</option>
+			                    	<?php endif;?>
+			                    <?php endforeach;?>
+		                </select>
+	                <?php endforeach;?>
+	            <?php else:?>  
+	            	<select id="direccionActor_estadosCatalogo_estadoId" disabled="disabled" name="direccionActor_estadosCatalogo_estadoId"  onchange="changeTest(2)">
+		                     
 	                </select>
-	            </div>
+	            <?php endif;?> 
             <?php endif;?>
             <!--<input id="BotonmasdatosDeNacimiento_paisesCatalogo_paisId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />    
             <span id="TextoEspecial_datosDeNacimiento_paisesCatalogo_paisId" class="Escondido twelve columns">
@@ -65,15 +121,61 @@
         <div class="six columns">
             
                 <label for="municipio">Municipio</label>
-                <?php if($tipo == 1 || $tipo == 2):?>
-	               <select id="datosDeNacimiento_municipiosCatalogo_municipioId" disabled="disabled"  name="datosDeNacimiento_municipiosCatalogo_municipioId">						
-	                   
-	                </select>
+                <?php if($tipo == 1):?>
+                	<?php if(isset($datosActor['datosDeNacimiento']['municipiosCatalogo_municipioId'])):?>
+		               <select id="datosDeNacimiento_municipiosCatalogo_municipioId"  name="datosDeNacimiento_municipiosCatalogo_municipioId">						
+		                   
+			                        <?php foreach($catalogos['municipiosCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
+			                        <?php if($datosActor['datosDeNacimiento']['estadosCatalogo_estadoId'] == $item['estados_estadoId']):?>
+			                    		<option  value="<?=$item['municipioId']?>" <?=($datosActor['datosDeNacimiento']['municipiosCatalogo_municipioId'] == $item['municipioId']) ? 'selected="selected"' : '' ; ?> > 
+			                    			 <?=$item['nombre']?>
+			                    		</option>
+			                    	<?php endif;?>
+			                    <?php endforeach;?>
+		                </select>
+		             <?php else:?> 
+		             	 <select id="datosDeNacimiento_municipiosCatalogo_municipioId" disabled="disabled" name="datosDeNacimiento_municipiosCatalogo_municipioId">						
+		                   
+		                </select>
+		             <?php endif;?>      
+	             <?php endif;?>
+	             <?php if($tipo==2):?>
+	            	 <?php if(isset($datosActor['infoMigratoria']['lugarOrigenMunicipioId'])):?>
+		               <select id="infoMigratoria_lugarOrigenMunicipioId"  name="infoMigratoria_lugarOrigenMunicipioId">						
+		                   
+			                        <?php foreach($catalogos['municipiosCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
+			                        <?php if($datosActor['infoMigratoria']['lugarOrigenEstadoId'] == $item['estados_estadoId']):?>
+			                    		<option  value="<?=$item['municipioId']?>" <?=($datosActor['infoMigratoria']['lugarOrigenMunicipioId'] == $item['municipioId']) ? 'selected="selected"' : '' ; ?> > 
+			                    			 <?=$item['nombre']?>
+			                    		</option>
+			                    	<?php endif;?>
+			                    <?php endforeach;?>
+		                </select>
+		             <?php else:?> 
+		             	 <select id="infoMigratoria_lugarOrigenMunicipioId" disabled="disabled" name="infoMigratoria_lugarOrigenMunicipioId">						
+		                   
+		                </select>
+		             <?php endif;?> 
 	             <?php endif;?>
 		         <?php if($tipo==3):?>
-	             	<select id="direccionActor_municipiosCatalogo_municipioId" disabled="disabled" name="direccionActor_municipiosCatalogo_municipioId">						
-	                   
-	                </select>
+		         	<?php if(isset($datosActor['direccionActor'])):?>
+			         	<?php foreach ($datosActor['direccionActor'] as $direccion):?>
+				             	<select id="direccionActor_municipiosCatalogo_municipioId" name="direccionActor_municipiosCatalogo_municipioId">
+					                    <?php foreach($catalogos['municipiosCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
+					                        <?php if($direccion['estadosCatalogo_estadoId'] == $item['estados_estadoId']):?>
+					                    		<option  value="<?=$item['municipioId']?>" <?=($direccion['municipiosCatalogo_municipioId'] == $item['municipioId']) ? 'selected="selected"' : '' ; ?> > 
+					                    			 <?=$item['nombre']?>
+					                    		</option>
+					                    	<?php endif;?>
+					                    <?php endforeach;?>
+				                </select>
+			             <?php endforeach;?>   
+		                 <?php else:?> 
+		                 	<select id="direccionActor_municipiosCatalogo_municipioId" disabled="disabled" name="direccionActor_municipiosCatalogo_municipioId">
+		                 		
+			                </select>
+		                 <?php endif;?> 
+						
                  <?php endif;?>
             <!--<input id="BotonmasdatosDeNacimiento_municipiosCatalogo_municipioId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />   
             <span id="TextoEspecial_datosDeNacimiento_municipiosCatalogo_municipioId" class="Escondido twelve columns">

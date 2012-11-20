@@ -1,6 +1,5 @@
  <div class="ten columns">		
 	        <label for="pais">País</label>
-	       
 			         	<select id="direccionActor_paisesCatalogo_paisId" name="direccionActor_paisesCatalogo_paisId" onchange="changeTest2(1)">						
 			                    <option></option>
 			                    <?php if(isset($datosActor['direccionActor'])){
