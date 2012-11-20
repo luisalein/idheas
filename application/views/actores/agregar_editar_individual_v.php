@@ -11,7 +11,7 @@
 
                 <label>Foto </label>
                 <input name="archivo" type="file" size="10" accept="image/*"/>
-                <input type="hidden" <?= (isset($datosActor['actores']['foto'])) ? 'value="'.$datosActor['actores']['foto'].'"' : "" ;?> name="actores_foto" />
+                <input type="hidden" class="foto" <?= (isset($datosActor['actores']['foto'])) ? 'value="'.$datosActor['actores']['foto'].'"' : 'value=""' ;?> name="actores_foto" />
                
     </div>
 
@@ -30,7 +30,7 @@
                         <label for="actores_apellidosSiglas">Apellidos</label>
                         <input type="text" id="actores_apellidosSiglas" name="actores_apellidosSiglas" <?=(isset($datosActor['actores']['nombre']) ? 'value="'.$datosActor['actores']['apellidosSiglas'].'"' : ''); ?> required />
                         <label for="alias_alias">Alias</label>
-                        <input type="text" id="alias_alias" name="alias_alias" <?=(isset($datosActor['alias']['alias']) ? 'value="'.$datosActor['alias']['alias'].'"' : ''); ?> />
+                        <input type="text" id="alias_alias" name="alias_alias" value="<?=(isset($datosActor['alias']['alias']) ? $datosActor['alias']['alias'] : ''); ?>" />
                     </div>
                     <!----Termina primer mitad de información general---->
                     <!----Segunda mitad de información general---->
@@ -120,7 +120,7 @@
                             <option></option>
                             <?php if(isset($datosActor['infoGralActor']['gruposIndigenas_grupoIndigenaId'])){
                             foreach($catalogos['gruposIndigenasCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
-                            <option  value="<?=$item['grupoIndigenaId']?>" <?=($datosActor['infoGralActor']['gruposIndigenas_grupoIndigenaId'] == $item['grupoIndigenaId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
+                            <option value="<?=$item['grupoIndigenaId']?>" onclick="notasCatalogos('<?=$item['notas']; ?>','infoGralActor_gruposIndigenas_grupoIndigenaId','1')" <?=($datosActor['infoGralActor']['gruposIndigenas_grupoIndigenaId'] == $item['grupoIndigenaId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
                             <?php endforeach; } else { ?>
                             <?php foreach($catalogos['gruposIndigenasCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
                             <option  onclick="notasCatalogos('<?=$item['notas']; ?>','infoGralActor_gruposIndigenas_grupoIndigenaId','1')" value="<?=$item['grupoIndigenaId']; ?>"><?=$item['descripcion']; ?></option>
