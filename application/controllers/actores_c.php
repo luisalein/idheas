@@ -502,8 +502,6 @@ class Actores_c extends CI_Controller {
         
         $datos['catalogos'] = $this->traer_catalogos();
         
-        
-        
         if($tipoActorId > 0){
             
             $datos['action'] = base_url().'index.php/actores_c/editar_actor_bd';
@@ -612,6 +610,9 @@ class Actores_c extends CI_Controller {
 		$tipo = $this->input->post("tipo");	
 		
 		$id = $this->input->post("id");	
+		
+		$actorId = $this->input->post("actorId");	
+		
 				
 		if($tipo == 1){
 			
@@ -782,8 +783,8 @@ class Actores_c extends CI_Controller {
 				$datos['casosAfiliados'][$valor['actorId']]=$this->actores_m->mTraeCasosRelacionadosActor($valor['actorId']);
 		
 		
-			
-			foreach ($datos['casosAfiliados'] as $valor){
+			if(isset($datos['casosAfiliados'])){
+				foreach ($datos['casosAfiliados'] as $valor){
 				
 				if(isset($datos['casosAfiliados'][$valor[1]['casos_casoId']])){
 					
@@ -885,6 +886,8 @@ class Actores_c extends CI_Controller {
 				
 			
 			}
+			}
+			
 			
 		}
 		
@@ -1441,7 +1444,7 @@ class Actores_c extends CI_Controller {
 			if(isset($datos['datos']['direccionActor'][$direccionId])){
 				
 				$datos['datosActor'] = $datos['datos']['direccionActor'][$direccionId];
-				
+				$datos['datosActor']['direccionActor'][1]=$datos['datosActor'];
 			}
 			
 		}

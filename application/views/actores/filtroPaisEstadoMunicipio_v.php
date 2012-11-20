@@ -1,6 +1,9 @@
  <div class="six columns">		
 	        <label for="pais">País</label>
 	        <div id="datosDeNacimiento_paisesCatalogo_paisIdSelect">
+	        
+	        	<input type="hidden" id="actorId"  name="<?=$actorId?>"/>
+	        	 <input type="hidden" id="tipoActorAE"  name="<?=$tipo?>"/>
 	        	<?php if($tipo == 1 || $tipo == 2):?>
 		            <select id="datosDeNacimiento_paisesCatalogo_paisId" name="datosDeNacimiento_paisesCatalogo_paisId" onchange="changeTest(1)">						
 		                    <option></option>
@@ -18,8 +21,11 @@
 			                    <option></option>
 			                    <?php if(isset($datosActor['direccionActor'])){
 							        foreach ($datosActor['direccionActor'] as $direccion) {
-			                        	foreach($catalogos['paisesCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
-			                    			<option  value="<?=$item['paisId']?>" <?=($direccion['paisesCatalogo_paisId'] == $item['paisId']) ? 'selected="selected"' : '' ; ?> > <?=$item['nombre']?></option>
+			                        	foreach($catalogos['paisesCatalogo'] as $key => $item): ?>
+			                        	<!--muestra los estados civiles-->
+			                    			<option  value="<?=$item['paisId']?>" <?php if($direccion['paisesCatalogo_paisId'] == $item['paisId']) echo 'selected="selected"'; else echo '' ; ?> > 
+			                    				<?=$item['nombre']?>
+			                    			</option>
 			                    		<?php endforeach; 
 			                    	  }
 			                      } else { ?>
@@ -39,8 +45,8 @@
             <label for="estado">Estado</label>
             <?php if($tipo == 1 || $tipo == 2):?>
 	            <div id="datosDeNacimiento_estadosCatalogo_estadoIdSelect"  >
-	                <select id="datosDeNacimiento_estadosCatalogo_estadoId" disabled="disabled" name="datosDeNacimiento_estadosCatalogo_estadoId"  onchange="changeTest(2)">						
-		               
+	                <select id="datosDeNacimiento_estadosCatalogo_estadoId"  name="datosDeNacimiento_estadosCatalogo_estadoId"  onchange="changeTest(2)">						
+		                 
 	                </select>
 	            </div>
             <?php endif;?>

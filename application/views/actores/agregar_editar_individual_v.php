@@ -17,7 +17,7 @@
 
     <div class="nine columns">
             <?php if(isset($actorId)){ ?>
-                <input type="hidden" value="<?=$actorId; ?>" name="actores_actorId" />
+                <input type="hidden" value="<?=$actorId; ?>" id="actores_actorId" name="actores_actorId" />
             <?php } ?>
             <input type="hidden" value="1" name="actores_tipoActorId" />
 
