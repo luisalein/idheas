@@ -114,7 +114,8 @@
 	                </thead>
 	                <tbody>
 						<?php if (isset($datosActor['direccionActor'])) { ?>
-	            			<?php foreach ($datosActor['direccionActor'] as $key => $direccion) {?>
+	            			<?php foreach ($datosActor['direccionActor'] as $key => $direccion) {
+                                    if (isset($direccion['tipoDireccionId'])) {?>
 	                			<tr>
 			                        <td><?=(isset($direccion['tipoDireccionId'])) ? $catalogos['tipoDireccion'][$direccion['tipoDireccionId']]['descripcion'] : ''; ?></td>
 			                        <td><?=(isset($direccion['direccion'])) ? $direccion['direccion'] : ''; ?></td>
@@ -123,7 +124,8 @@
 			                        <td><?=(isset($direccion['estadosCatalogo_estadoId'])) ? $catalogos['estadosCatalogo'][$direccion['estadosCatalogo_estadoId']]['nombre'] : ''; ?></td>
 			                        <td><?=(isset($direccion['municipiosCatalogo_municipioId'])) ? $catalogos['municipiosCatalogo'][$direccion['municipiosCatalogo_municipioId']]['nombre'] : ''; ?></td>
 	                    		</tr>
-	            			<?php }?>
+		            				<?php }
+		            		}?>
 						<?php }?>
 	                </tbody>
 	            </table>

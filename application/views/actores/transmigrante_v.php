@@ -92,20 +92,19 @@
 		<div class="twelve columns">
 			<fieldset>		
 				<legend>Lugar de origen</legend>
-	
 				<div class="four columns">		
 					<h6 >País: </h6>
-					<div id="paisesCatalogo_paisId"><?=(isset($datosActor['infoMigratoria']['lugarOrigenpaisId'])) ? $catalogos['paisesCatalogo'][$datosActor['infoMigratoria']['lugarOrigenpaisId']]['nombre'] : ''; ?></div>
+					<div id="paisesCatalogo_paisId"><?=(isset($datosActor['infoMigratoria']['lugarOrigenPaisId'])) ? $catalogos['paisesCatalogo'][$datosActor['infoMigratoria']['lugarOrigenPaisId']]['nombre'] : ''; ?></div>
 				</div>
 				
 				<div class="four columns">
 					<h6>Estado: </h6>
-					<div id="estadosCatalogo_estadoId"><?=(isset($datosActor['infoMigratoria']['lugarOrigenestadoId'])) ? $catalogos['estadosCatalogo'][$datosActor['infoMigratoria']['lugarOrigenestadoId']]['nombre'] : ''; ?></div>
+					<div id="estadosCatalogo_estadoId"><?=(isset($datosActor['infoMigratoria']['lugarOrigenEstadoId'])) ? $catalogos['estadosCatalogo'][$datosActor['infoMigratoria']['lugarOrigenEstadoId']]['nombre'] : ''; ?></div>
 				</div>
 				
 				<div class="four columns">							
 					<h6>Municipio: </h6>
-					<div id="municipiosCatalogos_municipiosId" ><?=(isset($datosActor['infoMigratoria']['lugarOrigenmunicipioId'])) ? $catalogos['municipiosCatalogo'][$datosActor['infoMigratoria']['lugarOrigenmunicipioId']]['nombre'] : ''; ?></div>
+					<div id="municipiosCatalogos_municipiosId" ><?=(isset($datosActor['infoMigratoria']['lugarOrigenMunicipioId'])) ? $catalogos['municipiosCatalogo'][$datosActor['infoMigratoria']['lugarOrigenMunicipioId']]['nombre'] : ''; ?></div>
 				</div>
 	
 			</fieldset>	<!--Termina lugar de origen-->
@@ -269,7 +268,8 @@
 			                </thead>
 			                <tbody>
 	    						<?php if (isset($datosActor['direccionActor'])) {?>
-		                			<?php foreach ($datosActor['direccionActor'] as $key => $direccion) {?>
+		                			<?php foreach ($datosActor['direccionActor'] as $key => $direccion) {
+                                            if (isset($direccion['tipoDireccionId'])) {?>
 			                			<tr>
 					                        <td><?=(isset($direccion['tipoDireccionId'])) ? $catalogos['tipoDireccion'][$direccion['tipoDireccionId']]['descripcion'] : ''; ?></td>
 					                        <td><?=(isset($direccion['direccion'])) ? $direccion['direccion'] : ''; ?></td>
@@ -278,7 +278,8 @@
 					                        <td><?=(isset($direccion['estadosCatalogo_estadoId'])) ? $catalogos['estadosCatalogo'][$direccion['estadosCatalogo_estadoId']]['nombre'] : ''; ?></td>
 					                        <td><?=(isset($direccion['municipiosCatalogo_municipioId'])) ? $catalogos['municipiosCatalogo'][$direccion['municipiosCatalogo_municipioId']]['nombre'] : ''; ?></td>                        
 			                    		</tr>
-			            			<?php }?>
+			            				<?php }
+			            				}?>
 								<?php }?>
 			                </tbody>
 			            </table>

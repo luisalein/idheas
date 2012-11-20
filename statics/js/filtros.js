@@ -289,12 +289,21 @@ function changeTest (tipo) {
 	
 	var actorId = $('#actorId').attr('name');
 	
-	if(actor == 1 || actor == 2){
+	if(actor == 1){
 		if(tipo == 1){
 			var Index = document.menuForm.datosDeNacimiento_paisesCatalogo_paisId.options[document.menuForm.datosDeNacimiento_paisesCatalogo_paisId.selectedIndex].value; 
 		}
 		if(tipo == 2){
 			var Index = document.menuForm.datosDeNacimiento_estadosCatalogo_estadoId.options[document.menuForm.datosDeNacimiento_estadosCatalogo_estadoId.selectedIndex].value; 
+	
+		}
+	}
+	if(actor == 2){
+		if(tipo == 1){
+			var Index = document.menuForm.infoMigratoria_lugarOrigenPaisId.options[document.menuForm.infoMigratoria_lugarOrigenPaisId.selectedIndex].value; 
+		}
+		if(tipo == 2){
+			var Index = document.menuForm.infoMigratoria_lugarOrigenEstadoId.options[document.menuForm.infoMigratoria_lugarOrigenEstadoId.selectedIndex].value; 
 	
 		}
 	}
@@ -337,7 +346,7 @@ function changeTest (tipo) {
                 
         success: function(data){
         	
-        	if(actor == 1 || actor == 2){
+        	if(actor == 1){
         		if(tipo == 1){
         			var select=document.getElementById('datosDeNacimiento_estadosCatalogo_estadoId');
   					select.removeAttribute('disabled');
@@ -351,6 +360,22 @@ function changeTest (tipo) {
 					$("#datosDeNacimiento_municipiosCatalogo_municipioId").html(data);					
 	             }
         	}
+        	if(actor == 2){
+        		if(tipo == 1){
+        			var select=document.getElementById('infoMigratoria_lugarOrigenEstadoId');
+  					select.removeAttribute('disabled');
+  					
+        			$("#infoMigratoria_lugarOrigenEstadoId").html(data);
+	             }  
+	             if(tipo == 2){
+	             	var select=document.getElementById('infoMigratoria_lugarOrigenMunicipioId');
+  					select.removeAttribute('disabled');
+  					
+	             	$("#infoMigratoria_lugarOrigenMunicipioId").html(data);
+	             }
+        		
+        	}
+        	
         	if(actor == 3){
         		if(tipo == 1){
         			var select=document.getElementById('direccionActor_estadosCatalogo_estadoId');

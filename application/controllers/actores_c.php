@@ -223,7 +223,7 @@ class Actores_c extends CI_Controller {
     function agregar_actor($tipoActorId = 0){
         
         $datos['catalogos'] = $this->traer_catalogos();
-		
+		 $datos['head'] = $this->load->view('general/head_v', $datos, true);
         if($tipoActorId > 0){
             
             $datos['action'] = base_url().'index.php/actores_c/agregar_actor_bd';
@@ -270,7 +270,7 @@ class Actores_c extends CI_Controller {
         
                 $datos['is_actor_type'] = $tipoActorId;
 
-                $datos['head'] = $this->load->view('general/head_v', $datos, true);
+               
                 
                 $datos['lista'] = $this->load->view('actores/lista_v', $datos, true);
         
@@ -1444,11 +1444,12 @@ class Actores_c extends CI_Controller {
 			if(isset($datos['datos']['direccionActor'][$direccionId])){
 				
 				$datos['datosActor'] = $datos['datos']['direccionActor'][$direccionId];
-				$datos['datosActor']['direccionActor'][1]=$datos['datosActor'];
+				$datos['datosActor']['direccionActor']=$datos['datosActor'];
 			}
 			
 		}
 		$datos['tipo'] = '3';
+		$datos['direccionExtra'] = '1';
 		$datos['filtroDireccion'] = $this->load->view('actores/filtroPaisEstadoMunicipio_v', $datos, true);
 		$this->load->view('actores/formularioNuevaDireccion', $datos);
 	}
