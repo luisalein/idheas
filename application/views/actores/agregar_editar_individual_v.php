@@ -120,7 +120,7 @@
                             <option></option>
                             <?php if(isset($datosActor['infoGralActor']['gruposIndigenas_grupoIndigenaId'])){
                             foreach($catalogos['gruposIndigenasCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
-                            <option  value="<?=$item['grupoIndigenaId']?>" <?=($datosActor['infoGralActor']['gruposIndigenas_grupoIndigenaId'] == $item['grupoIndigenaId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
+                            <option value="<?=$item['grupoIndigenaId']?>" onclick="notasCatalogos('<?=$item['notas']; ?>','infoGralActor_gruposIndigenas_grupoIndigenaId','1')" <?=($datosActor['infoGralActor']['gruposIndigenas_grupoIndigenaId'] == $item['grupoIndigenaId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
                             <?php endforeach; } else { ?>
                             <?php foreach($catalogos['gruposIndigenasCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
                             <option  onclick="notasCatalogos('<?=$item['notas']; ?>','infoGralActor_gruposIndigenas_grupoIndigenaId','1')" value="<?=$item['grupoIndigenaId']; ?>"><?=$item['descripcion']; ?></option>
