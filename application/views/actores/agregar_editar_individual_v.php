@@ -221,7 +221,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                       <?php foreach ($datosActor['direccionActor'] as $key => $direccion) {?>
+                                       <?php if (isset($datosActor['direccionActor'])) {
+                                        foreach ($datosActor['direccionActor'] as $key => $direccion) {
+                                            if (isset($direccion['tipoDireccionId'])) {
+                                                ?>
                                         <tr>
                                                 <td><?=(isset($direccion['tipoDireccionId'])) ? $catalogos['tipoDireccion'][$direccion['tipoDireccionId']]['descripcion'] : ''; ?></td>
                                                 <td><?=(isset($direccion['direccion'])) ? $direccion['direccion'] : ''; ?></td>
@@ -233,7 +236,9 @@
                                                     <input type="button" value="Elminar" class="tiny button" onclick="eliminarDireccionActor('<?=$direccion['direccionId']?>','<?=$actorId?>','2')"/>
                                                 </td>
                                         </tr>
-                                        <?php }?>
+                                        <?php }
+                                    }
+                                    }?>
                                 </tbody>
                             </table>
                                 <input type="button" class="small button"  value="Agregar dirección" onclick="nuevaDireccion('<?=$actorId?>','0')">
