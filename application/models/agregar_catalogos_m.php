@@ -23,7 +23,7 @@ class Agregar_catalogos_m extends CI_Model {
     public function mAgregarDerechosCatalogos($derechos){
         
         foreach ($derechos as $derecho => $valor){
-            
+        	
             $this->db->insert_batch($derecho, $valor);
             
         }
