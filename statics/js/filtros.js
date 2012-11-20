@@ -286,7 +286,9 @@ function eliminarCaso(idCaso){
 function changeTest (tipo) { 
 	
 	var actor = $('#tipoActorAE').attr('name');
-
+	
+	var actorId = $('#actorId').attr('name');
+	
 	if(actor == 1 || actor == 2){
 		if(tipo == 1){
 			var Index = document.menuForm.datosDeNacimiento_paisesCatalogo_paisId.options[document.menuForm.datosDeNacimiento_paisesCatalogo_paisId.selectedIndex].value; 
@@ -300,6 +302,7 @@ function changeTest (tipo) {
 		
 			if(tipo == 1){
 				var Index = document.menuForm.direccionActor_paisesCatalogo_paisId.options[document.menuForm.direccionActor_paisesCatalogo_paisId.selectedIndex].value; 
+				
 			}
 			if(tipo == 2){
 				var Index = document.menuForm.direccionActor_estadosCatalogo_estadoId.options[document.menuForm.direccionActor_estadosCatalogo_estadoId.selectedIndex].value; 
@@ -322,7 +325,7 @@ function changeTest (tipo) {
 
 	var url = base+'index.php/actores_c/filtroPaisEstado';
 	
-	var data = 'tipo='+tipo+'&id='+Index;
+	var data = 'tipo='+tipo+'&id='+Index+'&actorId='+actorId;
 	
 	$.ajax({
     
@@ -349,18 +352,17 @@ function changeTest (tipo) {
 	             }
         	}
         	if(actor == 3){
-        		
         		if(tipo == 1){
         			var select=document.getElementById('direccionActor_estadosCatalogo_estadoId');
   					select.removeAttribute('disabled');
   					
-        			$("#direccionActor_estadosCatalogo_estadoId").addClass('desbloquea'); 
+        			$("#direccionActor_estadosCatalogo_estadoId").html(data);
 	             }  
 	             if(tipo == 2){
 	             	var select=document.getElementById('direccionActor_municipiosCatalogo_municipioId');
   					select.removeAttribute('disabled');
   					
-	             	$("#direccionActor_municipiosCatalogo_municipioId").addClass('desbloquea'); 
+	             	$("#direccionActor_municipiosCatalogo_municipioId").html(data);
 	             }
         		
         	}
