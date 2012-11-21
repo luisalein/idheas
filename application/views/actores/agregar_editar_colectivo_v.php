@@ -162,12 +162,12 @@ foreach($catalogos['tipoActorColectivo'] as $key => $item): ?> <!--muestra los e
     <div class="row espacioInferior espacioSuperior">
         <div class="nine columns">
             <input class="medium button" type="submit" value="Guardar" />
-        </div>
+        </div>      
+</form>
         <div  class="three columns" >
-            <input class="medium button" type="reset" value="Cancelar" onclick="pagInicial()" />
+                <a href="<?=base_url(); ?>index.php/actores_c/mostrar_actor/<?= (isset($actorId)) ? $actorId : "0" ;?>/3" class="medium button">Cancelar</a>
         </div>
     </div>
 
 </div>
 </div>
-</form>
