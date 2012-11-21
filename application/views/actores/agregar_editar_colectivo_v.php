@@ -55,7 +55,7 @@ foreach($catalogos['tipoActorColectivo'] as $key => $item): ?> <!--muestra los e
 
     <p>
     <label for="siglas">Siglas:</label>
-            <input type="text" id="actores_apellidosSiglas" name="actores_apellidosSiglas" <?=(isset($datosActor['actores']['nombre']) ? 'value="'.$datosActor['actores']['apellidosSiglas'].'"' : 'value=""'); ?> required />
+            <input type="text" id="actores_apellidosSiglas" name="actores_apellidosSiglas" <?=(isset($datosActor['actores']['nombre']) ? 'value="'.$datosActor['actores']['apellidosSiglas'].'"' : 'value=""'); ?> />
     </p>
 
     <label for="actividad">Actividad</label>

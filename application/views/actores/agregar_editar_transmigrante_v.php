@@ -30,7 +30,7 @@
         <input autofocus type="text" id="actores_nombre" name="actores_nombre"  <?=(isset($datosActor['actores']['nombre']) ? 'value="'.$datosActor['actores']['nombre'].'"' : 'value=""'); ?> required />
 
         <label for="apellidos">Apellidos</label>
-                <input type="text" id="actores_apellidosSiglas" name="actores_apellidosSiglas" <?=(isset($datosActor['actores']['nombre']) ? 'value="'.$datosActor['actores']['apellidosSiglas'].'"' : 'value=""'); ?> required />
+                <input type="text" id="actores_apellidosSiglas" name="actores_apellidosSiglas" <?=(isset($datosActor['actores']['nombre']) ? 'value="'.$datosActor['actores']['apellidosSiglas'].'"' : 'value=""'); ?> />
 
         <label for="alias">Alias</label>
                 <input type="text" id="alias_alias" name="alias_alias" <?=(isset($datosActor['alias']['alias']) ? 'value="'.$datosActor['alias']['alias'].'"' : 'value=""'); ?> />
@@ -42,7 +42,7 @@
     <div class="seven columns">
         <label for="genero">Género</label>
         <?php if(isset($datosActor['infoGralActor']['generoId'])) { ?>
-                    <input type="radio" id="infoGralActor_generoid" name="infoGralActor_generoId" <?php if($datosActor['infoGralActor']['generoId'] == 1){ echo 'checked="checked"'; }?> value="1" />Hombre
+                    <input type="radio" id="infoGralActor_generoid" name="infoGralActor_generoId" <?php if($datosActor['infoGralActor']['generoId'] == 1){ echo 'checked="checked"'; }?> checked="checked" value="1" />Hombre
                     <input type="radio" id="infoGralActor_generoid" name="infoGralActor_generoId" <?php if($datosActor['infoGralActor']['generoId'] == 2){ echo 'checked="checked"'; }?> value="2" />Mujer
                 <?php } else { ?>
                     <input type="radio" id="infoGralActor_generoid" name="infoGralActor_generoId"  checked="checked" value="1" />Hombre

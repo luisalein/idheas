@@ -28,7 +28,7 @@
                         <label for="actores_nombre">Nombre</label>
                         <input autofocus type="text" id="actores_nombre" name="actores_nombre"  <?=(isset($datosActor['actores']['nombre']) ? 'value="'.$datosActor['actores']['nombre'].'"' : 'value=""'); ?> required />
                         <label for="actores_apellidosSiglas">Apellidos</label>
-                        <input type="text" id="actores_apellidosSiglas" name="actores_apellidosSiglas" <?=(isset($datosActor['actores']['nombre']) ? 'value="'.$datosActor['actores']['apellidosSiglas'].'"' : 'value=""'); ?> required />
+                        <input type="text" id="actores_apellidosSiglas" name="actores_apellidosSiglas" <?=(isset($datosActor['actores']['nombre']) ? 'value="'.$datosActor['actores']['apellidosSiglas'].'"' : 'value=""'); ?>  />
                         <label for="alias_alias">Alias</label>
                         <input type="text" id="alias_alias" name="alias_alias" value="<?=(isset($datosActor['alias']['alias']) ? $datosActor['alias']['alias'] : ''); ?>" />
                     </div>
@@ -37,7 +37,7 @@
                     <div class="six columns">
                         <label for="infoGralActor_generoId" >Género</label>
                         <?php if(isset($datosActor['infoGralActor']['generoId'])) { ?>
-                            <input type="radio" id="infoGralActor_generoid" name="infoGralActor_generoId" <?php if($datosActor['infoGralActor']['generoId'] == 1){ echo 'checked="checked"'; }?> value="1" />Hombre
+                            <input type="radio" id="infoGralActor_generoid" name="infoGralActor_generoId" <?php if($datosActor['infoGralActor']['generoId'] == 1){ echo 'checked="checked"'; }?> checked="checked" value="1" />Hombre
                             <input type="radio" id="infoGralActor_generoid" name="infoGralActor_generoId" <?php if($datosActor['infoGralActor']['generoId'] == 2){ echo 'checked="checked"'; }?> value="2" />Mujer
                         <?php } else { ?>
                             <input type="radio" id="infoGralActor_generoid" name="infoGralActor_generoId"  value="1" />Hombre
