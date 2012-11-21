@@ -14,45 +14,45 @@ class Agregar_catalogos_c extends CI_Controller {
     
     public function index(){
                     
-        $this->cAgregarCatalogoDeOcupaciones();
-        
-        $this->cAgregarCatalogoGruposIndigenas();
-        
-        $this->cAgregarCatalogosLugares();
-        
-        $this->cAgregarCatalogosTipoDeIntervencion();
-       
-        $this->cAgregarCatalogosTipoPerpetrador();
+        // $this->cAgregarCatalogoDeOcupaciones();
+//         
+        // $this->cAgregarCatalogoGruposIndigenas();
+//         
+        // $this->cAgregarCatalogosLugares();
+//         
+        // $this->cAgregarCatalogosTipoDeIntervencion();
+//        
+        // $this->cAgregarCatalogosTipoPerpetrador();
 		
 		$this->cAgregarDerechosCatalogos();
 		
 		$this->cAgregarActosCatalogos();
        
-        $this->cAgregarCatalogoEstatusDeLaVictima();
-       
-        $this->cAgregarCatalogoEstatusDelPerpetrador();
-        
-        $this->cAgregarCatalogoNivelDeConfiabilidad();
-        
-        $this->cAgregarCatalogoTipoDeFuente();
-        
-        $this->cAgregarCatalogoTipoDeActorColectivo();
-        
-        $this->cAgregarEstadoCivilCatalogo();
-        
-        $this->cAgregarCatalogoRelacionEntreActores();
-        
-        $this->cAgregarCatalogoDeNacionalidades();
-        
-        $this->cAgregarCatalogoNivelEscolaridad();
-        
-        $this->cAgregarCatalogoTipoDeDireccion();
-		
-		$this->cAgregarCatalogoGradoInvolucramientoN1();
-		
-		$this->cAgregarCatalogoGradoInvolucramientoN2();
-		
-		$this->cAgregarCatalogoMotivoViaje();
+        // $this->cAgregarCatalogoEstatusDeLaVictima();
+//        
+        // $this->cAgregarCatalogoEstatusDelPerpetrador();
+//         
+        // $this->cAgregarCatalogoNivelDeConfiabilidad();
+//         
+        // $this->cAgregarCatalogoTipoDeFuente();
+//         
+        // $this->cAgregarCatalogoTipoDeActorColectivo();
+//         
+        // $this->cAgregarEstadoCivilCatalogo();
+//         
+        // $this->cAgregarCatalogoRelacionEntreActores();
+//         
+        // $this->cAgregarCatalogoDeNacionalidades();
+//         
+        // $this->cAgregarCatalogoNivelEscolaridad();
+//         
+        // $this->cAgregarCatalogoTipoDeDireccion();
+// 		
+		// $this->cAgregarCatalogoGradoInvolucramientoN1();
+// 		
+		// $this->cAgregarCatalogoGradoInvolucramientoN2();
+// 		
+		// $this->cAgregarCatalogoMotivoViaje();
         
     }
     
@@ -166,56 +166,16 @@ class Agregar_catalogos_c extends CI_Controller {
             
             $obtener_datos = explode('¬', $derechoN2);
                 
-              $derechos['actosN2Catalogo'][trim($obtener_datos[0])] = array('actoN2Id' => trim($obtener_datos[0]), 'descripcion' => trim($obtener_datos[1]), 
-              'actosN1Catalogo_actoId' => trim($obtener_datos[2]), 'notas' => trim($obtener_datos[3]),'derechosAfectadosN2Catalogo_derechoAfectadoN2Id' => trim($obtener_datos[4]));
+              $derechos['actosN2Catalogo'][trim($obtener_datos[0])] = array('actoN2Id' => trim($obtener_datos[0]), 
+              'descripcion' => trim($obtener_datos[1]), 
+              'actosN1Catalogo_actoId' => trim($obtener_datos[2]), 
+              'notas' => trim($obtener_datos[3]),
+              'derechosAfectadosN2Catalogo_derechoAfectadoN2Id' => trim($obtener_datos[4]));
 
         }
 		
         
-        /*$derechosN3 = read_file('statics/catalogos/catalogoviolaciones/CatalogoViolaciones_nivel3.csv');
-        
-        $derechosN3 = explode('&', $derechosN3);
-        
-        foreach($derechosN3 as $derechoN3){
-            
-            $obtener_datos = explode('¬', $derechoN3);
-			
-            if(trim($obtener_datos[4]) != NULL){
-                	
-					$derechos['actosN3Catalogo'][trim($obtener_datos[0])] = array('actoN3Id' => trim($obtener_datos[0]), 
-              'descripcion' => trim($obtener_datos[1]), 'actosN2Catalogo_actoN2Id' => trim($obtener_datos[2]), 
-              'notas' => trim($obtener_datos[3]),'derechosAfectadosN3Catalogo_derechoAfectadoN3Id' => trim($obtener_datos[4]));
-					
-            }else{
-                	
-					$derechos['actosN3Catalogo'][trim($obtener_datos[0])] = array('actoN3Id' => trim($obtener_datos[0]), 
-              'descripcion' => trim($obtener_datos[1]), 'actosN2Catalogo_actoN2Id' => trim($obtener_datos[2]), 
-              'notas' => trim($obtener_datos[3]));
-            }
-              	
-        }
-		echo '<pre>';
-		//print_r($derechos);
-
-        
-        $derechosN4 = read_file('statics/catalogos/catalogoviolaciones/CatalogoViolaciones_nivel3.csv');
-        
-        $derechosN4 = explode('&', $derechosN4);
-        
-        foreach($derechosN4 as $derechoN4){
-            
-            $obtener_datos = explode('¬', $derechoN4);
-                if(trim($obtener_datos[4]) == ''){
-                	trim($obtener_datos[4]) = NULL;
-                }
-              $derechos['actosN4Catalogo'][trim($obtener_datos[0])] = array('actoN4Id' => trim($obtener_datos[0]), 
-              'descripcion' => trim($obtener_datos[1]), 
-              'actosN3Catalogo_actoN3Id' => trim($obtener_datos[2]), 
-              'notas' => trim($obtener_datos[3]),'derechosAfectadosN4Catalogo_derechoAfectadoN4Id' => trim($obtener_datos[4]));
-
-        }
-        */
-        $this->agregar_catalogos_m->mAgregarDerechosCatalogos($derechos);
+       $this->agregar_catalogos_m->mAgregarDerechosCatalogos($derechos);
         
         echo 'Cataologos de actos violatorios ingresados correctamente<br />';
         
