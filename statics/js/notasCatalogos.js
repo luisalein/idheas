@@ -1,6 +1,6 @@
 function notasCatalogos(notas,escribeNotas,id){
 	if(notas!=""){
-		 if(id==""){
+		 if(id=="1"){
 		 	$('#'+escribeNotas).html(notas); 
 		 } 
 		 else{

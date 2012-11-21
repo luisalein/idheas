@@ -303,8 +303,11 @@ class Actores_c extends CI_Controller {
             	$datos[$nombre_tabla][$nombre_campo] = $valor; 
 
         } 
-		print_r($datos);
+		//print_r($datos);
 		$foto = $this->cargarFoto();
+
+		if(!isset($datos['alias']))
+			$datos['alias'] = array();
 		
 		if(!isset($datos['datosDeNacimiento']))
 			$datos['datosDeNacimiento'] = array();
@@ -590,11 +593,16 @@ class Actores_c extends CI_Controller {
         }
 		
 		
-		if(!isset($datos['actores']['foto'])){
-			$foto = $this->cargarFoto();
+		if(isset($datos['actores']['foto'])){
+			$fotoAntes = $datos['actores']['foto'];
+		}	
+
+		$foto = $this->cargarFoto();
 		
-			$datos['actores']['foto'] = $foto;
-		}
+		if(empty($foto))
+			$datos['actores']['foto'] = $fotoAntes;
+		else
+			$datos['actores']['foto'] = $foto ;
 		
         $this->actores_m->mActualizaDatosActor($datos['actores']['actorId'], $datos);
         

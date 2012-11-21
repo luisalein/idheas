@@ -4,12 +4,13 @@
     <?=$head; ?>
 </head>
 <body>
-
 	<form action="<?php print_r($action)?>" method="post" accept-charset="utf-8">
 	<input type="hidden" name="actores_actorId" value="<?=$actorId;?>" />	
 
-	<input type="hidden"  id="tipoRelacionIndividualColectivoId" name="tipoRelacionIndividualColectivoId" value="1"/>
+	<input type="hidden"  id="tipoRelacionIndividualColectivoId" name="tipoRelacionIndividualColectivoId" value="<?= ($listaTodosActores[$actorId]['tipoActorId'] < 3) ? "1" : "2" ;?>"/>
 
+	<input type="hidden"  id="relacionActoresId" name="relacionActoresId" <?= (isset($relaciones['relacionActoresId'])) ? 'value="'.$relaciones['relacionActoresId'].'"' : '' ;?> />
+	
 	<input type="hidden"  id="tipoRelacionId" name="tipoRelacionId" <?= (isset($relaciones['relacionActoresId'])) ? 'value="'.$relaciones['relacionActoresId'].'"' : '' ;?> />
 
 	<input type="hidden"  id="nameSeleccionado"  value="actorRelacionadoId"><!--Este campo me da el name al que hay modificar el value al agregar acto(SIRVE PARA AGREGAR ACTOR)-->
@@ -34,20 +35,23 @@
 						if (isset($relaciones['tipoRelacionId'])) {?>
 							<?php foreach($catalogos['relacionActoresCatalogo'] as $index => $item):?> 
 								<?php if ($item['tipoDeRelacionId']==1){?>
-									<option <?= ($item['tipoRelacionId']==$relaciones['tipoRelacionId']) ? 'selected="selected"' : "" ;?> onclick="notasCatalogos('<?php print_r($item['notas']);?>','notasTipoDeRelacion')" value="<?= $item['tipoRelacionId']; ?>"><?php print_r($item['nombre']); ?> </option>
+									<option <?= ($item['tipoRelacionId']==$relaciones['tipoRelacionId']) ? 'selected="selected"' : "" ;?> onclick="notasCatalogos('<?php print_r($item['notas']);?>','notasTipoDeRelacion','1')" value="<?= $item['tipoRelacionId']; ?>"><?php print_r($item['nombre']); ?> </option>
 								<?php }?>	
 							<?php endforeach;?><!--Termina lista de los actores-->
 							<?php } 
 						else{?>
 							<?php foreach($catalogos['relacionActoresCatalogo'] as $index => $item):?> 
 								<?php if ($item['tipoDeRelacionId']==1){?>
-									<option onclick="notasCatalogos('<?php print_r($item['notas']);?>','notasTipoDeRelacion')" value="<?php print_r($item['tipoRelacionId']); ?>"><?php print_r($item['nombre']); ?> </option>
+									<option onclick="notasCatalogos('<?php print_r($item['notas']);?>','notasTipoDeRelacion','1')" value="<?php print_r($item['tipoRelacionId']); ?>"><?php print_r($item['nombre']); ?> </option>
 								<?php }?>	
 							<?php endforeach;}?><!--Termina lista de los actores-->
 				</select>
 			<?php }
 
 			else{ ?>	
+
+			<input type="hidden"  id="tipoRelacionId" name="tipoRelacionId" <?= (isset($relaciones['tipoRelacionId'])) ? 'value="'.$relaciones['tipoRelacionId'].'"' : '' ;?> />
+
 			<div class="caja">
 					<ol>
 						<li  onclick="desplegar('relacionEmpleo')" > Relaciones de empleo</li>

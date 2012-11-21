@@ -55,7 +55,7 @@ foreach($catalogos['tipoActorColectivo'] as $key => $item): ?> <!--muestra los e
 
     <p>
     <label for="siglas">Siglas:</label>
-            <input type="text" id="actores_apellidosSiglas" name="actores_apellidosSiglas" <?=(isset($datosActor['actores']['nombre']) ? 'value="'.$datosActor['actores']['apellidosSiglas'].'"' : ''); ?> required />
+            <input type="text" id="actores_apellidosSiglas" name="actores_apellidosSiglas" <?=(isset($datosActor['actores']['nombre']) ? 'value="'.$datosActor['actores']['apellidosSiglas'].'"' : 'value=""'); ?> required />
     </p>
 
     <label for="actividad">Actividad</label>
@@ -91,12 +91,12 @@ foreach($catalogos['tipoActorColectivo'] as $key => $item): ?> <!--muestra los e
 <div class="six columns">
 <p>
 <label for="telefono">Teléfono</label>
-<input type="text" id="infoContacto_telefono" name="infoContacto_telefono" <?=(isset($datosActor['infoContacto']['telefono']) ? 'value="'.$datosActor['infoContacto']['telefono'].'"' : ''); ?>  size="30"  />
+<input type="text" id="infoContacto_telefono" name="infoContacto_telefono" <?=(isset($datosActor['infoContacto']['telefono']) ? 'value="'.$datosActor['infoContacto']['telefono'].'"' : 'value=""'); ?>  size="30"  />
 </p>
 
 <p>
 <label for="fax">Fax</label>
-<input type="text" id="infoContacto_fax" name="infoContacto_fax"  <?=(isset($datosActor['infoContacto']['fax']) ? 'value="'.$datosActor['infoContacto']['fax'].'"' : ''); ?>  size="30" />
+<input type="text" id="infoContacto_fax" name="infoContacto_fax"  <?=(isset($datosActor['infoContacto']['fax']) ? 'value="'.$datosActor['infoContacto']['fax'].'"' : 'value=""'); ?>  size="30" />
 </p>
 
 </div> <!-- six columns -->
@@ -105,12 +105,12 @@ foreach($catalogos['tipoActorColectivo'] as $key => $item): ?> <!--muestra los e
 
 <p>
 <label for="correo">Correo electrónico</label>
-<input type="email" id="infoContacto_correoE" name="infoContacto_correoE"  <?=(isset($datosActor['infoContacto']['correoE']) ? 'value="'.$datosActor['infoContacto']['correoE'].'"' : ''); ?>  size="30"  />
+<input type="email" id="infoContacto_correoE" name="infoContacto_correoE"  <?=(isset($datosActor['infoContacto']['correoE']) ? 'value="'.$datosActor['infoContacto']['correoE'].'"' : 'value=""'); ?>  size="30"  />
 </p> 
 
 <p>
 <label for="paginaPersonal">Página web</label>
-<input type="text" id="infoGralActores_paginaWeb" name="infoGralActores_paginaWeb"  <?=(isset($datosActor['infoGralActores']['paginaWeb']) ? 'value="'.$datosActor['infoGralActores']['paginaWeb'].'"' : ''); ?>  size="30" />
+<input type="text" id="infoGralActores_paginaWeb" name="infoGralActores_paginaWeb"  <?=(isset($datosActor['infoGralActores']['paginaWeb']) ? 'value="'.$datosActor['infoGralActores']['paginaWeb'].'"' : 'value=""'); ?>  size="30" />
 </p>
 
 </div> <!--six columns-->
@@ -133,7 +133,7 @@ foreach($catalogos['tipoActorColectivo'] as $key => $item): ?> <!--muestra los e
         <span id="TextoEspecial_2direccionActor_municipiosCatalogo_municipioId" class="Escondido twelve columns"></span>-->
 	        <div class="six columns"> 
 		        <label for="codigoPos">Código Postal</label>
-		        <input type="number"  name="direccionActor_codigoPostal" pattern="[0-9]+" <?=(isset($direccion['codigoPostal']) ? 'value="'.$direccion['codigoPostal'].'"' : ''); ?>  size="30"  />
+		        <input type="number"  name="direccionActor_codigoPostal" pattern="[0-9]+" <?=(isset($direccion['codigoPostal']) ? 'value="'.$direccion['codigoPostal'].'"' : 'value=""'); ?>  size="30"  />
 			</div>
         </div> 
 
@@ -153,7 +153,7 @@ foreach($catalogos['tipoActorColectivo'] as $key => $item): ?> <!--muestra los e
 		        <span id="TextoEspecial_2direccionActor_municipiosCatalogo_municipioId" class="Escondido twelve columns"></span>-->
 			        <div class="six columns"> 
 				        <label for="codigoPos">Código Postal</label>
-				        <input type="number"  name="direccionActor_codigoPostal" pattern="[0-9]+" <?=(isset($direccion['codigoPostal']) ? 'value="'.$direccion['codigoPostal'].'"' : ''); ?>  size="30"  />
+				        <input type="number"  name="direccionActor_codigoPostal" pattern="[0-9]+" <?=(isset($direccion['codigoPostal']) ? 'value="'.$direccion['codigoPostal'].'"' : 'value=""'); ?>  size="30"  />
 					</div>
 		        </div> 
             </fieldset><!--Termina dirección-->
@@ -162,12 +162,12 @@ foreach($catalogos['tipoActorColectivo'] as $key => $item): ?> <!--muestra los e
     <div class="row espacioInferior espacioSuperior">
         <div class="nine columns">
             <input class="medium button" type="submit" value="Guardar" />
-        </div>
+        </div>      
+</form>
         <div  class="three columns" >
-            <input class="medium button" type="reset" value="Cancelar" onclick="pagInicial()" />
+                <a href="<?=base_url(); ?>index.php/actores_c/mostrar_actor/<?= (isset($actorId)) ? $actorId : "0" ;?>/3" class="medium button">Cancelar</a>
         </div>
     </div>
 
 </div>
 </div>
-</form>

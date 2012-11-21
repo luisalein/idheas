@@ -19,8 +19,9 @@ function tipoRelacion(tipoRelacion,notas,nombre){
 	$('#tipoRelacionId').attr('value', tipoRelacion); 
 };
 
-function desplegar(nombre){
+function desplegar(nombre,lista){
 	$("#"+nombre).toggleClass("Escondido");
+	$("#"+lista).toggleClass("ExpanderFlecha");
 
 }
 
