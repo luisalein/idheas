@@ -497,7 +497,7 @@
                 <input class="medium button" type="submit" value="Guardar" />
             </div>
             <div  class="three columns" >
-                <input class="medium button" type="reset" value="Cancelar" onclick="pagInicial()" />
+                <a href="<?=base_url(); ?>index.php/actores_c/mostrar_actor/<?= (isset($actorId)) ? $actorId : "0" ;?>/2" class="medium button">Cancelar</a>
             </div>
         </div>
     </div>

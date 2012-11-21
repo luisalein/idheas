@@ -283,6 +283,7 @@
 		</div>
         
         <div class="row espacioInferior espacioSuperior">
+
                 <input class="medium button" type="submit" value="Guardar" style="margin-left: 340px;" />
                 <input class="medium button" type="reset" value="Cancelar" onclick="pagInicial()" style="margin-left: 40px;"/>
         </div>
