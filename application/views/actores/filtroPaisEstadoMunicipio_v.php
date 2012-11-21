@@ -211,8 +211,10 @@
 			                </select>
 		                 <?php endif;?> 
 		         	 <?php else:?>	
+		         	 	
 			    		<?php if(isset($datosActor['direccionActor'])):?>
 			    			<?php foreach ($datosActor['direccionActor'] as $direccion) :?>
+			    				
 								 <select id="direccionActor_municipiosCatalogo_municipioId" name="direccionActor_municipiosCatalogo_municipioId">
 				                    <?php foreach($catalogos['municipiosCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
 				                        <?php if($direccion['estadosCatalogo_estadoId'] == $item['estados_estadoId']):?>
@@ -224,7 +226,7 @@
 			                	</select>
 							<?endforeach;?>
 			    		<?php else:?>  
-			            	<select id="direccionActor_estadosCatalogo_estadoId" disabled="disabled" name="direccionActor_estadosCatalogo_estadoId"  onchange="changeTest(2)">
+			            	<select id="direccionActor_municipiosCatalogo_municipioId" disabled="disabled" name="direccionActor_municipiosCatalogo_municipioId">
 				                     
 			                </select>
 			            <?php endif;?>  	

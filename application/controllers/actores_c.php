@@ -1329,7 +1329,6 @@ class Actores_c extends CI_Controller {
         $mensaje = $this->actores_m->mAgregarDireccionActor($datos['direccionActor']);
 		
 		echo "<script languaje='javascript' type='text/javascript'>
-			 window.opener.location.reload();
 		     window.close();</script>";
 		
      	return $mensaje;
@@ -1367,7 +1366,6 @@ class Actores_c extends CI_Controller {
         $mensaje = $this->actores_m->mActualizaDatosDireccion($datos['direccionActor'],$direccionId);
 		
 		echo "<script languaje='javascript' type='text/javascript'>
-			 window.opener.location.reload();
 		     window.close();</script>";
 		
 		//redirect(base_url().'index.php/actores_c/mostrar_actor/'.$actorId.'/'.$_POST['actores_tipoActorId']);
@@ -1466,6 +1464,114 @@ class Actores_c extends CI_Controller {
 		$datos['direccionExtra'] = '1';
 		$datos['filtroDireccion'] = $this->load->view('actores/filtroPaisEstadoMunicipio_v', $datos, true);
 		$this->load->view('actores/formularioNuevaDireccion', $datos);
+	}
+	
+	public function traerDirecciones(){
+		
+		$idActor = $this->input->post('idActor');
+		
+		$catalogos = $this->traer_catalogos();
+		
+		$datos['listaTodosActores'] = $this->actores_m-> mListaTodosActores();
+			
+		$datos['datos'] = $this->actores_m->traer_datos_actor_m($idActor, $datos['listaTodosActores'][$idActor]['tipoActorId']);
+				
+		$data="";
+		//echo "<pre>";
+		//print_r($datos['datos']['direccionActor']);
+		
+		$datos['head'] = $this->load->view('general/head_v', $datos, true);
+		
+		if (isset($datos['datos']['direccionActor'])){
+			$data=$data.$datos['head']." <input type='hidden' id='idActor' name='".$idActor."'/><fieldset><!--Dirección-->
+	                <legend>Dirección</legend>
+	                	   <div id='pestania' data-collapse>
+	                	   	<div>
+	                            <table>
+	                                <thead>
+	                                    <tr>
+	                                        <th>Tipo de dirección</th>
+	                                        <th>Ubicación</th>
+	                                        <th>Código Postal</th>
+	                                        <th>País</th>
+	                                        <th>Estado</th>
+	                                        <th>Municipio</th>
+	                                        <th>Acciones</th>
+	                                    </tr>
+	                                </thead>
+	                                <tbody>
+	                	   ";
+	      	foreach ($datos['datos']['direccionActor'] as $key => $direccion) {
+	      		//echo "<pre>";	
+	      		//print_r($direccion['paisesCatalogo_paisId']);
+	      		if(isset($direccion['paisesCatalogo_paisId'])){
+	      			if(isset($direccion['estadosCatalogo_estadoId'])) {
+					$estado = $catalogos['estadosCatalogo'][$direccion['estadosCatalogo_estadoId']]['nombre']; 
+					}
+					else{
+						$estado = '';
+					}
+		      				
+					if(isset($direccion['paisesCatalogo_paisId'])){
+						$pais=$catalogos['paisesCatalogo'][$direccion['paisesCatalogo_paisId']]['nombre'];
+						
+					}
+						
+					else{
+						$pais='';
+					}
+		      		
+		      		if(isset($direccion['codigoPostal'])){
+						$codigoPostal = $direccion['codigoPostal']; 
+					}					
+					else{
+						$codigoPostal='';
+					}			
+					if(isset($direccion['tipoDireccionId'])) {
+						$tipoDireccion=$catalogos['tipoDireccion'][$direccion['tipoDireccionId']]['descripcion'];
+					}
+					else{
+						$tipoDireccion = '';
+					}
+												
+					if(isset($direccion['direccion'])){
+						$campoDireccion= $direccion['direccion'];
+					}
+					else{
+						$campoDireccion='';	
+					}
+								
+					if(isset($direccion['municipiosCatalogo_municipioId'])) { 
+						$municipio=$catalogos['municipiosCatalogo'][$direccion['municipiosCatalogo_municipioId']]['nombre'] ;
+					}else{
+						$municipio ='';
+					}
+				
+						
+										
+					$data = $data. '<tr>
+						<td>'.$tipoDireccion.'</td>
+						<td>'.$campoDireccion.'</td>
+						<td>'.$codigoPostal.'</td>
+						<td>'.$pais.'</td>
+						<td>'.$estado.'</td>
+						<td>'.$municipio.'</td>
+					';
+						$data = $data .' <td><input type="button" class="tiny button"  value="Editar" onclick="nuevaDireccion('.$idActor.','.$direccion['direccionId'].')"/>
+		                                 <input type="button" value="Elminar" class="tiny button" onclick="eliminarDireccionActor('.$direccion['direccionId'].','.$idActor.',2)"/>
+		                             </td></tr>';
+					
+	      		}
+	      		
+	      	}
+					$data = $data. '</tbody>
+	                            </table>
+	                                <input type="button" class="small button"  value="Agregar dirección" onclick="nuevaDireccion('.$idActor.',0)">
+	                  </div></div></fieldset>
+	                  ';
+		}
+		
+		echo $data;
 	}
 }
 

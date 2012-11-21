@@ -5,11 +5,17 @@
     <?=$head; ?>
 
 	</head>
-	
+	<script>
+		
+		window.onunload = function(){
+		   window.opener.clearDiv();
+		}
+	</script>
 <body>
+	<input type="hidden" id="tipoActorAE"  name="3"/>
 	<form action='<?= (isset($datosActor)) ? (base_url().'index.php/actores_c/actualizaDireccion'.'/'.$datosActor['direccionId'].'/'.$actorId) : (base_url().'index.php/actores_c/agregarDireccion'.'/'.$actorId) ;?>' id="menuForm" name="menuForm" method="post" accept-charset="utf-8">
             <fieldset>
-            	<input type="hidden" id="tipoActorAE"  name="3"/>
+            	
                 <legend>Dirección</legend>
                 <div class="six columns">
                 <label for="direccionActor_tipoDireccionId">Tipo de dirección</label>
