@@ -217,6 +217,8 @@ class CasosVentanas_c extends CI_Controller {
 					
 					$data = array('nombreRegistro'=>$nombreArchivo,'ruta'=>$ruta,'fichas_fichaId'=>$datos['fichas']['fichaId']);
 					
+					$this->casos_m->mAgregarRegistroFicha($data);
+					
 	            	$this->general_m->casos_m->mActualizaDatosFicha($datos['fichas'],$datos['fichas']['fichaId']); 
 					
 				}else{

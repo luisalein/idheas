@@ -74,7 +74,8 @@ class Casos_c extends CI_Controller {
             $datos['datosCaso'] = $this->casos_m->mTraerDatosCaso($casoId);
             
         }
-        
+//echo "<pre>";
+       // print_r($datos['datosCaso']);
         $datos['is_active'] = 'casos';
         
         $datos['head'] = $this->load->view('general/head_v', $datos, true);

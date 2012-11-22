@@ -106,6 +106,7 @@
 			                <th>Id</th>
 			                <th>Título</th>
 			                <th>Fecha de recibo</th>
+			                <th>Registros</th>
 			                <th>Acción(es)</th>
 			              </tr>
 			            </thead>
@@ -116,6 +117,16 @@
 			                <td> <span id="infoCaso_fichaId"><?=(isset($seguimiento['fichaId'])) ? $seguimiento['fichaId'] : ''; ?></span> </td>
 			                <td> <span id="infoCaso_titulo"><?=(isset($seguimiento['titulo'])) ? $seguimiento['titulo'] : ''; ?></span> </td>
 			                <td> <span id="infoCaso_titulo"><?=(isset($seguimiento['fecha'])) ? $seguimiento['fecha'] : ''; ?></span></td>
+			                <td>
+			                	<ul>
+			                		<?php foreach($seguimiento['registros'] as $registro):?>
+			                			<li><input type="button" onclick="eliminarRegistro(<?=$seguimiento['fichaId']?>,<?=$registro['registroId']?>)" /><a href="<?=base_url().$registro['ruta']?>"><?=$registro['nombreRegistro']?></a></li>
+			                		<?php endforeach;?>
+			                	</ul>
+			                </td>
+			                
+			                
+			                
 			                <td><input type="button" class="tiny button"  value="Editar" onclick="ventanaFicha('<?=$casoId; ?>', '<?=$key; ?>')" />
 			                	<input type="button" class="tiny button"  value="Eliminar" onclick="eliminarFicha( <?=$seguimiento['fichaId']?>,<?=$casoId; ?>)" /></td>
 			              </tr><?php }} ?>
