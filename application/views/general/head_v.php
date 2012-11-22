@@ -19,6 +19,7 @@
 <script src="<?=base_url(); ?>statics/js/paisEstadoMunicipio.js" ></script>
 <script src="<?=base_url(); ?>statics/js/selecionarActor.js" ></script>
 <script src="<?=base_url(); ?>statics/js/filtros.js" ></script>
+<script src="<?=base_url(); ?>statics/js/eliminarVentanas.js" ></script>
 <script>var base = "<?=base_url(); ?>"</script> 
 <script>var active ="<?=$is_active; ?>"</script>
 		

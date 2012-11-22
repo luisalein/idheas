@@ -45,13 +45,13 @@
 			              <?php foreach ($datosCaso['lugares'] as $index => $lugar) {
 			              	?><tr><?php
 			              	$indice = ($lugar['paisesCatalogo_paisId']) ?>
-			              	<td><?php print_r($catalogos['paisesCatalogo'][$indice]['nombre']); ?></td>
+			              	<td><?php if(isset($catalogos['paisesCatalogo'][$indice]['nombre'])) print_r($catalogos['paisesCatalogo'][$indice]['nombre']); ?></td>
 			              	<?php $indice = ($lugar['estadosCatalogo_estadoId']) ?>
-			              	<td><?php print_r($catalogos['estadosCatalogo'][$indice]['nombre']); ?></td>
+			              	<td><?php if(isset($catalogos['estadosCatalogo'][$indice]['nombre']))print_r($catalogos['estadosCatalogo'][$indice]['nombre']); ?></td>
 			              	<?php $indice = ($lugar['municipiosCatalogo_municipioId']) ?>
-			              	<td><?php print_r($catalogos['municipiosCatalogo'][$indice]['nombre']); ?></td>
+			              	<td><?php if(isset($catalogos['municipiosCatalogo'][$indice]['nombre']))print_r($catalogos['municipiosCatalogo'][$indice]['nombre']); ?></td>
 			                <td><input type="button" class="tiny button"  value="Editar" onclick="ventanaDetalleLugar('<?=$casoId; ?>', '<?=$index?>')" />
-			                	<input type="button" class="tiny button"  value="Eliminar" onclick="" /></td>
+			                	<input type="button" class="tiny button"  value="Eliminar" onclick="eliminarLugar(<?=$lugar['lugarId']; ?>,<?=$casoId; ?>)" /></td>
 			              </tr><?php } ?><?php } ?>
 			            </tbody>
 			          </table>
