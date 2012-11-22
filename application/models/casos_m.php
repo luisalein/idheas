@@ -1052,25 +1052,33 @@ class Casos_m extends CI_Model {
 	
 	public function mAgregarIntervenciones($datos){
 		
-		$this->db->insert('intervenciones', $datos['intervencion']);
-        $obtener_id = $this->db->select_max('intervencionId')->from('intervenciones')->get();
-		
-		if($obtener_id->num_rows() > 0){
-	        foreach ($obtener_id->result_array() as $row) {
-	            $intervencionId = $row['intervencionId'];
-	        }
-	    }/* Fin de obtener_id */
-	    
-	    foreach($datos as $tabla => $campo){
-                
-            if($tabla != 'intervencion' && (!empty($tabla))){
-                
-                $datos[$tabla]['intervenciones_intervencionId'] = $intervencionId;
-                $this->db->insert($tabla, $datos[$tabla]);
-            }
-     	}/* Fin foreach tabla */
-     	
-	    return $intervencionId;
+		if($this->db->insert('intervenciones', $datos['intervencion'])){
+			$obtener_id = $this->db->select_max('intervencionId')->from('intervenciones')->get();
+			
+			if($obtener_id->num_rows() > 0){
+		        foreach ($obtener_id->result_array() as $row) {
+		            $intervencionId = $row['intervencionId'];
+		        }
+		    }/* Fin de obtener_id */
+		    
+		    foreach($datos as $tabla => $campo){
+	                
+	            if($tabla != 'intervencion' && (!empty($tabla))){
+	                
+	                $datos[$tabla]['intervenciones_intervencionId'] = $intervencionId;
+	                $this->db->insert($tabla, $datos[$tabla]);
+	            }
+	     	}/* Fin foreach tabla */
+	     	
+		    return $intervencionId;
+		}else{
+			
+			$mensaje['error'] = $this->db->_error_message();
+			/* Regresa la cadena al controlador*/
+        	return $mensaje;
+			
+		}
+        
 		
 	}/* fin de mAgregarIntervenciones */
 	
