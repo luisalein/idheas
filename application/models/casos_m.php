@@ -1451,6 +1451,22 @@ class Casos_m extends CI_Model {
 			
 		}
 	}
+	
+	public function mEliminarRegistro($registroId){
+		$this->db->where('registroId', $registroId);
+		
+		if($this->db->delete('registro')){
+		
+			/* Regresa la cadena al controlador*/
+			return ($mensaje = 'Hecho');
+			
+		}else{
+			
+			$mensaje['error'] = $this->db->_error_message();
+			/* Regresa la cadena al controlador*/
+        	return $mensaje;
+		}
+	}
 	 
 }
 
