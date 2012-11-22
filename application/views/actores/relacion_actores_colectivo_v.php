@@ -189,16 +189,11 @@
 			</div> <!---termina opciones de fechaTermino-->
 			
 			<br /><br />
-			<div  id="pestania" data-collapse>
-				<h2 class="open">Comentarios</h2>
 
-				<div class="twelve columns">
-
+			<fieldset>
+				<legend>Comentarios</legend>
 					<textarea rows="10" cols="100"  id="TextoRelActoresColectivo" style="width: 400px; height: 200px" wrap="hard"  name="comentarios"><?=(isset($relaciones) ? $relaciones['comentarios'] : ''); ?></textarea>
-			   </div>	  
-
-			</div>
-			
+			</fieldset>
 			
 		<input class="medium button" type="submit" value="Guardar" />
 		<input class="medium button" type="button" value="Cancelar"  onclick="cerrarVentana()"/>

@@ -11,8 +11,6 @@
 
 	<input type="hidden"  id="relacionActoresId" name="relacionActoresId" <?= (isset($relaciones['relacionActoresId'])) ? 'value="'.$relaciones['relacionActoresId'].'"' : '' ;?> />
 	
-	<input type="hidden"  id="tipoRelacionId" name="tipoRelacionId" <?= (isset($relaciones['relacionActoresId'])) ? 'value="'.$relaciones['relacionActoresId'].'"' : '' ;?> />
-
 	<input type="hidden"  id="nameSeleccionado"  value="actorRelacionadoId"><!--Este campo me da el name al que hay modificar el value al agregar acto(SIRVE PARA AGREGAR ACTOR)-->
 
 	<input type="hidden"  id="ValoresBotonCancelar"   value="<?= (isset($relaciones['actorRelacionadoId'])&&($relaciones['actorRelacionadoId']!=0)) ? $relaciones['actorRelacionadoId']."*".$catalogos['listaTodosActores'][$relaciones['actorRelacionadoId']]['nombre']." ".$catalogos['listaTodosActores'][$relaciones['actorRelacionadoId']]['apellidosSiglas']."*".$catalogos['listaTodosActores'][$relaciones['actorRelacionadoId']]['foto'] : "" ;  ?>"><!--Este campo da los valores en caso de que se cancele la ventana agregar actor-->
@@ -50,11 +48,11 @@
 
 			else{ ?>	
 
-			<input type="hidden"  id="tipoRelacionId" name="tipoRelacionId" <?= (isset($relaciones['tipoRelacionId'])) ? 'value="'.$relaciones['tipoRelacionId'].'"' : '' ;?> />
+			<input type="hidden"  id="tipoRelacionId" name="tipoRelacionId" <?= (isset($relaciones['tipoRelacionId'])) ? 'value="'.$relaciones['tipoRelacionId'].'"' : 'value=""' ;?> />
 
 			<div class="caja">
 					<ol>
-						<li  onclick="desplegar('relacionEmpleo')" > Relaciones de empleo</li>
+						<li class="ExpanderFlecha flecha" id="listaEmpleo" onclick="desplegar('relacionEmpleo','listaEmpleo')" > Relaciones de empleo</li>
 							<li>
 								<ul id="relacionEmpleo" class="Escondido">
 								<?php foreach($relacionActoresColectivo['relacionActoresCatalogo'] as  $item):?> 
@@ -64,7 +62,7 @@
 								<?php endforeach;?>
 								</ul>
 							</li>
-						<li  onclick="desplegar('relacionAfiliacion')" > Relaciones de afiliación</li>
+						<li class="ExpanderFlecha flecha" id="listaAfiliacion" onclick="desplegar('relacionAfiliacion','listaAfiliacion')"  > Relaciones de afiliación</li>
 							<li>
 								<ul id="relacionAfiliacion" class="Escondido" >
 								<?php foreach($relacionActoresColectivo['relacionActoresCatalogo'] as  $item):?> 
@@ -168,13 +166,10 @@
 	</div> <!---termina opciones de fechaTermino-->
 
 	<br /><br />
-	<div  id="pestania" data-collapse>
-		<h2 class="open">Comentarios</h2>
-		<div class="twelve columns">
+	<fieldset>
+		<legend>Comentarios</legend>
 			<textarea placeholder="Agregar un comentario" rows="10"   cols="100" id="TextoRelActoresIndividual" value="" style="width: 400px; height: 200px" wrap="hard"  name="comentarios"> <?=(isset($relaciones['comentarios']) ? $relaciones['comentarios'] : ''); ?></textarea>
-		</div>	  
-
-	</div>	
+	</fieldset>
 	<input class="medium button" type="submit" value="Guardar" />
 	<input class="medium button" type="button" value="Cancelar"  onclick="cerrarVentana()"/>
 

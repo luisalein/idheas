@@ -195,7 +195,7 @@
 	            
 	            <!--Comienza citado como persona relacionada individual-->
 			    <div id="subPestanias" data-collapse>
-			        <h2>Citado como persona relacionada</h2>
+			        <h2>Citado como actor</h2>
 			        <div>
 			            <table>
 			            <thead>
@@ -212,9 +212,9 @@
 			                    foreach($citaActor['citas'] as $citas){ 
 			                    	if ($citas['datosCitas']['tipoRelacionIndividualColectivoId']==1) {?>
 				                        <tr>
-				                            <td><?=$datosActor['actores']['nombre'].' '.$datosActor['actores']['apellidosSiglas']; ?></td>
-				                            <td><?=$catalogos['relacionActoresCatalogo'][$citas['datosCitas']['tipoRelacionId']]['nombre']; ?></td>
 				                            <td><?=$catalogos['listaTodosActores'][$citas['datosCitas']['actores_actorId']]['nombre']." ".$catalogos['listaTodosActores'][$citas['datosCitas']['actores_actorId']]['apellidosSiglas']?></td>
+				                            <td><?=$catalogos['relacionActoresCatalogo'][$citas['datosCitas']['tipoRelacionId']]['nombre']; ?></td>
+				                            <td><?=$datosActor['actores']['nombre'].' '.$datosActor['actores']['apellidosSiglas']; ?></td>
 				                            <td><?=$citas['datosCitas']['fechaInicial']; ?></td>
 				                            <td><?=$citas['datosCitas']['fechaTermino']; ?></td>
 				                        </tr><?php
@@ -283,7 +283,7 @@
 
             <!--Comienza citado como persona relacionada colectivo-->
 		    <div id="subPestanias" data-collapse>
-		        <h2>Citado como persona relacionada</h2>
+		        <h2>Citado como actor</h2>
 		        <div>
 		            <table>
 		            <thead>
@@ -300,9 +300,9 @@
 		                    foreach($citaActor['citas'] as $citas){ 
 		                    	if ($citas['datosCitas']['tipoRelacionIndividualColectivoId']==2) {?>
 			                        <tr>
-			                            <td><?=$datosActor['actores']['nombre'].' '.$datosActor['actores']['apellidosSiglas']; ?></td>
-			                            <td><?=$catalogos['relacionActoresCatalogo'][$citas['datosCitas']['tipoRelacionId']]['Nivel2']; ?></td>
 			                            <td><?=$catalogos['listaTodosActores'][$citas['datosCitas']['actores_actorId']]['nombre']." ".$catalogos['listaTodosActores'][$citas['datosCitas']['actores_actorId']]['apellidosSiglas']?></td>
+			                            <td><?=$catalogos['relacionActoresCatalogo'][$citas['datosCitas']['tipoRelacionId']]['Nivel2']; ?></td>
+			                            <td><?=$datosActor['actores']['nombre'].' '.$datosActor['actores']['apellidosSiglas']; ?></td>
 			                            <td><?=$citas['datosCitas']['fechaInicial']; ?></td>
 			                            <td><?=$citas['datosCitas']['fechaTermino']; ?></td>
 			                        </tr><?php

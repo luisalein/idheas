@@ -1,3 +1,4 @@
+<<div class="twelve columns">
 <input type="hidden" id="tipoActorAE"  name="2"/>
 <form action="<?=$action; ?>" method="post" enctype="multipart/form-data" id="menuForm" name="menuForm">
     
@@ -225,150 +226,172 @@
     </fieldset>	<!--Termina lugar de origen-->									
     </div>
 
-    <div class="twelve columns espacioSuperior">
-    </div>
-        <div class="six columns">
 
-            <label for="paistrans">País de tránsito</label>
-            <div id="infoMigratoria_paisTransitoIdSelect" class="twelve columns">
-                <select name="infoMigratoria_paisTransitoId" id="infoMigratoria_paisTransitoId">
-                <option></option>
-                <?php if(isset($datosActor['infoMigratoria']['paisTransitoId'])){
-                foreach($catalogos['paisesCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
-                <option  value="<?=$item['paisId']?>" <?=($datosActor['infoMigratoria']['paisTransitoId'] == $item['paisId']) ? 'selected="selected"' : '' ; ?> > <?=$item['nombre']?></option>
-                <?php endforeach; } else { ?>
-                <?php foreach($catalogos['paisesCatalogo'] as $pais):?> <!--muestra los estados civiles-->
-                    <option value="<?=$pais['paisId']; ?>"><?=$pais['nombre']; ?></option>
-                <?php endforeach; } ?>
-                </select>
+            <div class="twelve columns espacioSuperior">
+                <div class="six columns">
+                    <label for="paistrans">País de tránsito</label>
+                    <div id="infoMigratoria_paisTransitoIdSelect" class="twelve columns">
+                        <select name="infoMigratoria_paisTransitoId" id="infoMigratoria_paisTransitoId">
+                        <option></optIon>
+                        <?php if(isset($datosActor['infoMigratoria']['paisTransitoId'])){
+                        foreach($catalogos['paisesCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
+                        <option  value="<?=$item['paisId']?>" <?=($datosActor['infoMigratoria']['paisTransitoId'] == $item['paisId']) ? 'selected="selected"' : '' ; ?> > <?=$item['nombre']?></option>
+                        <?php endforeach; } else { ?>
+                        <?php foreach($catalogos['paisesCatalogo'] as $pais):?> <!--muestra los estados civiles-->
+                            <option value="<?=$pais['paisId']; ?>"><?=$pais['nombre']; ?></option>
+                        <?php endforeach; } ?>
+                        </select>
+                        <!--<input id="BotonmasinfoMigratoria_paisTransitoId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />  
+                        <span id="TextoEspecial_infoMigratoria_paisTransitoId" class="Escondido twelve columns">
+                        </span>-->
+                    </div>
                 </div>
-            <!--<input id="BotonmasinfoMigratoria_paisTransitoId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />  
-            <span id="TextoEspecial_infoMigratoria_paisTransitoId" class="Escondido twelve columns">
-            </span>-->
 
+                <div class="six columns">
+                  <label for="paisdest">País destino</label>
+                    <select name="infoMigratoria_paisDestinoId" id="infoMigratoria_paisDestinoId">
+                    <option></option>
+                    <?php if(isset($datosActor['infoMigratoria']['paisDestinoId'])){
+                    foreach($catalogos['paisesCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
+                    <option  value="<?=$item['paisId']?>" <?=($datosActor['infoMigratoria']['paisDestinoId'] == $item['paisId']) ? 'selected="selected"' : '' ; ?> > <?=$item['nombre']?></option>
+                    <?php endforeach; } else { ?>
+                    <?php foreach($catalogos['paisesCatalogo'] as $pais):?> <!--muestra los estados civiles-->
+                        <option value="<?=$pais['paisId']; ?>"><?=$pais['nombre']; ?></option>
+                    <?php endforeach; } ?>
+                    </select>
+                    <!--<input id="BotonmasinfoMigratoria_paisDestinoId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />   
+                    <span id="TextoEspecial_infoMigratoria_paisDestinoId" class="Escondido twelve columns"> </span>-->
+                </div>
+
+            </div>
             <!---motivo dl viaje -- -->
 
 
-            <label for="intcrucepaistran">Intentos de cruce por el país de tránsito</label>
-            <div id="infoMigratoria_intCruceTransitoSelect" class="twelve columns">
-                <select name="infoMigratoria_intCruceTransito" id="infoMigratoria_intCruceTransito" >                       
-                <option></option>
-                <?php if(isset($datosActor['infoMigratoria']['intCruceTransito'])){
-                for($intentos = 0; $intentos <= 100; $intentos++):?> <!--muestra todas las edades de 1 a 100-->
-                <option value="<?=$intentos; ?>" <?=($datosActor['infoMigratoria']['intCruceTransito'] == $intentos) ? 'selected="selected"' : '' ; ?>> <?=$intentos; ?></option>
-                <?php endfor;
-                } else {
-                for($intentos = 0; $intentos <= 100; $intentos++):?> <!--muestra todas las edades de 1 a 100-->
-                <option value="<?=$intentos; ?>"> <?=$intentos; ?></option>
-                <?php endfor;
-                } ?>
-                </select>
+            <div class="twelve columns">
+
+                <div class="six columns">
+                    <label for="intcrucepaistran">Intentos de cruce por el país de tránsito</label>
+                    <div id="infoMigratoria_intCruceTransitoSelect" class="twelve columns">
+                        <select name="infoMigratoria_intCruceTransito" id="infoMigratoria_intCruceTransito" >
+                        <option></option>
+                        <?php if(isset($datosActor['infoMigratoria']['intCruceTransito'])){
+                        for($intentos = 0; $intentos <= 100; $intentos++):?> <!--muestra todas las edades de 1 a 100-->
+                        <option value="<?=$intentos; ?>" <?=($datosActor['infoMigratoria']['intCruceTransito'] == $intentos) ? 'selected="selected"' : '' ; ?>> <?=$intentos; ?></option>
+                        <?php endfor;
+                        } else {
+                        for($intentos = 0; $intentos <= 100; $intentos++):?> <!--muestra todas las edades de 1 a 100-->
+                        <option value="<?=$intentos; ?>"> <?=$intentos; ?></option>
+                        <?php endfor;
+                        } ?>
+                        </select>
+                    </div>
+                    <!--<input id="BotonmasinfoMigratoria_intCruceTransito" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />    
+                    <span id="TextoEspecial_infoMigratoria_intCruceTransito" class="Escondido twelve columns">
+                    </span>-->
+                </div>
+                <div class="six columns">
+                    <label for="intcrucespaisdets">Intentos de cruce al país destino</label>
+                        <select name="infoMigratoria_intCruceDestino" id="infoMigratoria_intCruceDestino" >
+                            <option></option>
+                            <?php if(isset($datosActor['infoMigratoria']['intCruceDestino'])){
+                            for($intentos = 0; $intentos <= 100; $intentos++):?> <!--muestra todas las edades de 1 a 100-->
+                            <option value="<?=$intentos; ?>" <?=($datosActor['infoMigratoria']['intCruceDestino'] == $intentos) ? 'selected="selected"' : '' ; ?>> <?=$intentos; ?></option>
+                            <?php endfor;
+                            } else {
+                            for($intentos = 0; $intentos <= 100; $intentos++):?> <!--muestra todas las edades de 1 a 100-->
+                            <option value="<?=$intentos; ?>"> <?=$intentos; ?></option>
+                            <?php endfor;
+                            } ?>
+                        </select>
+                </div>
+
             </div>
-            <!--<input id="BotonmasinfoMigratoria_intCruceTransito" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />    
-            <span id="TextoEspecial_infoMigratoria_intCruceTransito" class="Escondido twelve columns">
-            </span>-->
-            <label for="expulpaistrans">Expulsiones del país de tránsito</label>
-            <select name="infoMigratoria_expCruceTransito">                     
-                <option > </option>
-                <?php if(isset($datosActor['infoMigratoria']['expCruceTransito'])){
-                for($intentos = 0; $intentos <= 100; $intentos++):?> <!--muestra todas las edades de 1 a 100-->
-                <option value="<?=$intentos; ?>" <?=($datosActor['infoMigratoria']['expCruceTransito'] == $intentos) ? 'selected="selected"' : '' ; ?>> <?=$intentos; ?></option>
-                <?php endfor;
-                } else {
-                for($intentos = 0; $intentos <= 100; $intentos++):?> <!--muestra todas las edades de 1 a 100-->
-                <option value="<?=$intentos; ?>"> <?=$intentos; ?></option>
-                <?php endfor;
-                } ?>
-            </select>
-            <label for="motivoViaje">Motivo del viaje</label>
-                <select name="infoMigratoria_motivoViajeId" id="infoMigratoria_motivoViajeId">
-                <option></option>
-                <?php if(isset($datosActor['infoMigratoria']['motivoViajeId'])){
-                foreach($catalogos['motivoViaje'] as $key => $item): ?> <!--muestra los estados civiles-->
-                <option  value="<?=$item['motivoViajeId']?>" <?=($datosActor['infoMigratoria']['motivoViajeId'] == $item['motivoViajeId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
-                <?php endforeach; } else { ?>
-                <?php foreach($catalogos['motivoViaje'] as $item):?> <!--muestra los estados civiles-->
-                    <option value="<?=$item['motivoViajeId']; ?>"><?=$item['descripcion']; ?></option>
-                <?php endforeach; } ?>
-                </select>
-            <!--<input id="BotonmasinfoMigratoria_motivoViaje" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" /> 
-            <span id="TextoEspecial_infoMigratoria_motivoViaje" class="Escondido twelve columns">
-            </span>-->
 
-            <label for="realizaViaje">Realiza el viaje</label>
-            <input type="radio" name="infoMigratoria_realizaViaje" value="No acompanado" /> No acompañado
-            <input type="radio" name="infoMigratoria_realizaViaje" value="Acompanado" /> Acompañado
-        </div>
-
-        <div class="six columns">
-
-            <label for="paisdest">País destino</label>
-                <select name="infoMigratoria_paisDestinoId" id="infoMigratoria_paisDestinoId">
-                <option></option>
-                <?php if(isset($datosActor['infoMigratoria']['paisDestinoId'])){
-                foreach($catalogos['paisesCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
-                <option  value="<?=$item['paisId']?>" <?=($datosActor['infoMigratoria']['paisDestinoId'] == $item['paisId']) ? 'selected="selected"' : '' ; ?> > <?=$item['nombre']?></option>
-                <?php endforeach; } else { ?>
-                <?php foreach($catalogos['paisesCatalogo'] as $pais):?> <!--muestra los estados civiles-->
-                    <option value="<?=$pais['paisId']; ?>"><?=$pais['nombre']; ?></option>
-                <?php endforeach; } ?>
-                </select>
-            <!--<input id="BotonmasinfoMigratoria_paisDestinoId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />   
-            <span id="TextoEspecial_infoMigratoria_paisDestinoId" class="Escondido twelve columns">	</span>-->
-
-
-            <label for="intcrucespaisdets">Intentos de cruce al país destino</label>
-                <select name="infoMigratoria_intCruceDestino" id="infoMigratoria_intCruceDestino" >
-                    <?php if(isset($datosActor['infoMigratoria']['intCruceDestino'])){
-                    for($intentos = 0; $intentos <= 100; $intentos++):?> <!--muestra todas las edades de 1 a 100-->
-                    <option value="<?=$intentos; ?>" <?=($datosActor['infoMigratoria']['intCruceDestino'] == $intentos) ? 'selected="selected"' : '' ; ?>> <?=$intentos; ?></option>
-                    <?php endfor;
-                    } else {
-                    for($intentos = 0; $intentos <= 100; $intentos++):?> <!--muestra todas las edades de 1 a 100-->
-                    <option value="<?=$intentos; ?>"> <?=$intentos; ?></option>
-                    <?php endfor;
-                    } ?>
-                </select>
-
-            <label for="expulpaisdest">Expulsiones del país de destino</label>
-            <div id="infoMigratoria_expCruceDestinoSelect">
-                <select name="infoMigratoria_expCruceDestino" id="infoMigratoria_expCruceDestino">                      
-                <option></option>
-                <?php if(isset($datosActor['infoMigratoria']['expCruceDestino'])){
-                for($intentos = 0; $intentos <= 100; $intentos++):?> <!--muestra todas las edades de 1 a 100-->
-                <option value="<?=$intentos; ?>" <?=($datosActor['infoMigratoria']['expCruceDestino'] == $intentos) ? 'selected="selected"' : '' ; ?>> <?=$intentos; ?></option>
-                <?php endfor;
-                } else {
-                for($intentos = 0; $intentos <= 100; $intentos++):?> <!--muestra todas las edades de 1 a 100-->
-                <option value="<?=$intentos; ?>"> <?=$intentos; ?></option>
-                <?php endfor;
-                } ?>
-                </select>
+            <div class="twelve columns"> 
+                <div class="six columns"> 
+                    <label for="expulpaistrans">Expulsiones del país de tránsito</label>
+                        <select name="infoMigratoria_expCruceTransito">                     
+                            <option > </option>
+                            <?php if(isset($datosActor['infoMigratoria']['expCruceTransito'])){
+                            for($intentos = 0; $intentos <= 100; $intentos++):?> <!--muestra todas las edades de 1 a 100-->
+                            <option value="<?=$intentos; ?>" <?=($datosActor['infoMigratoria']['expCruceTransito'] == $intentos) ? 'selected="selected"' : '' ; ?>> <?=$intentos; ?></option>
+                            <?php endfor;
+                            } else {
+                            for($intentos = 0; $intentos <= 100; $intentos++):?> <!--muestra todas las edades de 1 a 100-->
+                            <option value="<?=$intentos; ?>"> <?=$intentos; ?></option>
+                            <?php endfor;
+                            } ?>
+                        </select>
+                </div>
+                <div class="six columns"> 
+                 <label for="expulpaisdest">Expulsiones del país de destino</label>
+                    <div id="infoMigratoria_expCruceDestinoSelect">
+                        <select name="infoMigratoria_expCruceDestino" id="infoMigratoria_expCruceDestino">                      
+                        <option></option>
+                        <?php if(isset($datosActor['infoMigratoria']['expCruceDestino'])){
+                        for($intentos = 0; $intentos <= 100; $intentos++):?> <!--muestra todas las edades de 1 a 100-->
+                        <option value="<?=$intentos; ?>" <?=($datosActor['infoMigratoria']['expCruceDestino'] == $intentos) ? 'selected="selected"' : '' ; ?>> <?=$intentos; ?></option>
+                        <?php endfor;
+                        } else {
+                        for($intentos = 0; $intentos <= 100; $intentos++):?> <!--muestra todas las edades de 1 a 100-->
+                        <option value="<?=$intentos; ?>"> <?=$intentos; ?></option>
+                        <?php endfor;
+                        } ?>
+                        </select>
+                    </div>
+                    <!--<input id="BotonmasinfoMigratoria_expCruceDestino" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" /> 
+                    <span id="TextoEspecial_infoMigratoria_expCruceDestino" class="Escondido twelve columns">
+                    </span>-->
+                </div>
             </div>
-            <!--<input id="BotonmasinfoMigratoria_expCruceDestino" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" /> 
-            <span id="TextoEspecial_infoMigratoria_expCruceDestino" class="Escondido twelve columns">
-            </span>-->
+            
 
-        <label for="tipoEstancia">Tipo de estancia</label>
-        <select name="infoMigratoria_tipoEstanciaId" id="infoMigratoria_tipoEstanciaId">
-            <option></option>
-            <?php if(isset($datosActor['infoMigratoria']['tipoEstanciaId'])){ ?>
-                <option value="1" <?=($datosActor['infoMigratoria']['tipoEstanciaId'] == 1) ? 'selected="selected"' : '' ; ?>>Corta estancia</option>
-                <option value="2" <?=($datosActor['infoMigratoria']['tipoEstanciaId'] == 2) ? 'selected="selected"' : '' ; ?>>Larga estancia </option>
-            <?php } else { ?>
-                <option value="1" >Corta estancia</option>
-                <option value="2" >Larga estancia</option>
-             <?php } ?>
-        </select>
-        <!--<input id="BotonmasinfoMigratoria_tipoEstanciaId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />	
-        <span id="TextoEspecial_infoMigratoria_tipoEstanciaId" class="Escondido twelve columns">
-        </span>-->
+            <div class="twelve columns"> 
+                <div class="six columns"> 
+                    <label for="motivoViaje">Motivo del viaje</label>
+                        <select name="infoMigratoria_motivoViajeId" id="infoMigratoria_motivoViajeId">
+                        <option></option>
+                        <?php if(isset($datosActor['infoMigratoria']['motivoViajeId'])){
+                        foreach($catalogos['motivoViaje'] as $key => $item): ?> <!--muestra los estados civiles-->
+                        <option  value="<?=$item['motivoViajeId']?>" <?=($datosActor['infoMigratoria']['motivoViajeId'] == $item['motivoViajeId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
+                        <?php endforeach; } else { ?>
+                        <?php foreach($catalogos['motivoViaje'] as $item):?> <!--muestra los estados civiles-->
+                            <option value="<?=$item['motivoViajeId']; ?>"><?=$item['descripcion']; ?></option>
+                        <?php endforeach; } ?>
+                        </select>
+                    <!--<input id="BotonmasinfoMigratoria_motivoViaje" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" /> 
+                    <span id="TextoEspecial_infoMigratoria_motivoViaje" class="Escondido twelve columns">
+                    </span>-->
+                </div>
+                <div class="six columns">
+                    <label for="tipoEstancia">Tipo de estancia</label>
+                    <select name="infoMigratoria_tipoEstanciaId" id="infoMigratoria_tipoEstanciaId">
+                        <option></option>
+                        <?php if(isset($datosActor['infoMigratoria']['tipoEstanciaId'])){ ?>
+                            <option value="1" <?=($datosActor['infoMigratoria']['tipoEstanciaId'] == 1) ? 'selected="selected"' : '' ; ?>>Corta estancia</option>
+                            <option value="2" <?=($datosActor['infoMigratoria']['tipoEstanciaId'] == 2) ? 'selected="selected"' : '' ; ?>>Larga estancia </option>
+                        <?php } else { ?>
+                            <option value="1" >Corta estancia</option>
+                            <option value="2" >Larga estancia</option>
+                         <?php } ?>
+                    </select>
+                    <!--<input id="BotonmasinfoMigratoria_tipoEstanciaId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />  
+                    <span id="TextoEspecial_infoMigratoria_tipoEstanciaId" class="Escondido twelve columns">
+                    </span>-->
+                </div>
+            </div>
 
-        </div>
+                <div class="twelve columns"> 
+                    <div class="six columns"> 
+                        <label for="realizaViaje">Realiza el viaje</label>
+                        <input type="radio" name="infoMigratoria_realizaViaje" value="No acompanado" /> No acompañado
+                        <input type="radio" name="infoMigratoria_realizaViaje" value="Acompanado" /> Acompañado
+                    </div>
+                </div>
 
     </fieldset><!--Termina datos de nacimiento-->
 
-    <fieldset>
+    <fieldset class="espacioSuperior">
         <legend>Comentarios</legend>
         <div class="twelve columns">
             <textarea  placeholder="Escribir algun comentario"  rows="10" cols="100" name="infoMigratoria_comentarios" id="infoMigratoria_comentarios" wrap="hard" >
@@ -507,3 +530,194 @@
 
 
 </form> 
+
+<div class="twelve columns">
+<div class="three columns"></div>
+<div class="nine columns">
+        <fieldset>
+        <legend>Relacion entre actores </legend>
+    
+        <?php if (isset($datosActor['actores']['actorId'])) {
+            $idActor=$datosActor['actores']['actorId'];
+            $clase="";
+        }else{
+            $idActor=0;
+            $clase="Escondido";
+        } ?>
+
+            <!--Comienza relacion con otros actores-->
+    
+    <div id="pestania" data-collapse>
+            <h2>Actores individuales o transmigrantes</h2> <!--Comienza relacion con otros actores-->
+            <div>
+                <div id="subPestanias" data-collapse>   
+                    <h2>Relacion con otros actores </h2>
+                    <div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Persona</th>
+                                <th>Tipo de relación</th>
+                                <th>Persona Relacionada</th>
+                                <th>Fecha de incio</th>
+                                <th>Fecha de témino</th>
+                                <th>Acción(es)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if(isset($datosActor['relacionActores'])){
+                                foreach($datosActor['relacionActores'] as $relacion){
+                                if ($relacion['tipoRelacionIndividualColectivoId']==1) {
+                                    ?><tr>
+                                        <td><?=$datosActor['actores']['nombre'].' '.$datosActor['actores']['apellidosSiglas']; ?></td>
+                                        <td><?=$catalogos['relacionActoresCatalogo'][$relacion['tipoRelacionId']]['nombre']; ?></td>
+                                        <?php if ($relacion['actorRelacionadoId']>0) {
+                                           $nombreRelacionado=$catalogos['listaTodosActores'][$relacion['actorRelacionadoId']]['nombre'].' '.$catalogos['listaTodosActores'][$relacion['actorRelacionadoId']]['apellidosSiglas']; 
+                                        }
+                                        else{
+                                           $nombreRelacionado="No hay actor relacionado";
+                                        }?>
+                                        <td><?=$nombreRelacionado?></td>
+                                        <td><?=$relacion['fechaInicial']; ?></td>
+                                        <td><?=$relacion['fechaTermino']; ?></td>
+                                        <td><input type="button" class="tiny button"  value="Editar" onclick="nueva_relacion_a_a('<?=$idActor ?>' , 1 , '<?=$relacion['relacionActoresId']; ?>')" /></td>
+                                    </tr>
+                                <?php }
+                                }
+                            } ?>
+                        </tbody>
+                    </table>
+        
+                    <input type="button" class="tiny button <?=$clase?>"  value="Nuevo" onclick="nueva_relacion_a_a(<?=$idActor ?>,0,0)" />
+                    </div>
+                </div>
+                <!--Comienza citado como persona relacionada-->
+            <div id="subPestanias" data-collapse>
+                <h2>Citado como actor</h2>
+                <div>
+                    <table>
+                    <thead>
+                        <tr>
+                            <th>Persona</th>
+                            <th>Tipo de relación</th>
+                            <th>Persona Relacionada</th>
+                            <th>Fecha de incio</th>
+                            <th>Fecha de témino</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if(isset($citaActor['citas'])){
+                            foreach($citaActor['citas'] as $citas){ 
+                                if ($citas['datosCitas']['tipoRelacionIndividualColectivoId']==1) {?>
+                                    <tr>
+                                        <td><?=$datosActor['actores']['nombre'].' '.$datosActor['actores']['apellidosSiglas']; ?></td>
+                                        <td><?=$catalogos['relacionActoresCatalogo'][$citas['datosCitas']['tipoRelacionId']]['Nivel2']; ?></td>
+                                        <td><?=$catalogos['listaTodosActores'][$citas['datosCitas']['actores_actorId']]['nombre']." ".$catalogos['listaTodosActores'][$citas['datosCitas']['actores_actorId']]['apellidosSiglas']?></td>
+                                        <td><?=$citas['datosCitas']['fechaInicial']; ?></td>
+                                        <td><?=$citas['datosCitas']['fechaTermino']; ?></td>
+                                    </tr><?php
+                                }
+                            }
+                        } ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--Termina citado como persona relacionada-->
+            </div>
+    </div>
+            
+    
+    <!--Comienza actores colectivos---->
+    <div id="pestania" data-collapse>
+        <h2>Actores colectivos </h2>
+        <div>
+
+            <div id="subPestanias" data-collapse >
+                <h2>Relacion con otros actores </h2>
+                <div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Persona</th>
+                                <th>Tipo de relación</th>
+                                <th>Actor colectivo relacionado </th>
+                                <th>Fecha de incio</th>
+                                <th>Fecha de témino</th>
+                                <th>Acción(es)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if(isset($datosActor['relacionActores'])){
+                                foreach($datosActor['relacionActores'] as $relacion){
+                                if ($relacion['tipoRelacionIndividualColectivoId']==2) {
+                                    ?><tr>
+                                        <td><?=$datosActor['actores']['nombre'].' '.$datosActor['actores']['apellidosSiglas']; ?></td>
+                                        <td><?=$catalogos['relacionActoresCatalogo'][$relacion['tipoRelacionId']]['Nivel2']; ?></td>
+                                        <?php if ($relacion['actorRelacionadoId']>0) {
+                                           $nombreRelacionado=$catalogos['listaTodosActores'][$relacion['actorRelacionadoId']]['nombre'].' '.$catalogos['listaTodosActores'][$relacion['actorRelacionadoId']]['apellidosSiglas']; 
+                                        }
+                                        else{
+                                           $nombreRelacionado="No hay actor relacionado";
+                                        }?>
+                                        <td><?=$nombreRelacionado?></td>
+                                        <td><?=$relacion['fechaInicial']; ?></td>
+                                        <td><?=$relacion['fechaTermino']; ?></td>
+                                        <td><input type="button" class="tiny button"  value="Editar" onclick="nueva_relacion_a_Col('<?=$idActor ?>',1, '<?=$relacion['relacionActoresId']; ?>')" />
+                                            <form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarRelacionActor/<?=$relacion['relacionActoresId']."/".$relacion['actorRelacionadoId']; ?>" >
+                                                <input type="submit" value="Elminar" class="tiny button" />
+                                            </form>
+                                        </td>
+                                    </tr><?php
+                                }
+                                }
+                            } ?>
+                        </tbody>
+                    </table>
+                    <input type="button" class="tiny button <?=$clase?>"  value="Nuevo" onclick="nueva_relacion_a_Col(<?=$idActor; ?>,0,0)" />
+                </div>
+            </div>
+
+            <!--Comienza citado como persona relacionada colectivo-->
+            <div id="subPestanias" data-collapse>
+                <h2>Citado como actor</h2>
+                <div>
+                    <table>
+                    <thead>
+                        <tr>
+                            <th>Persona</th>
+                            <th>Tipo de relación</th>
+                            <th>Persona Relacionada</th>
+                            <th>Fecha de incio</th>
+                            <th>Fecha de témino</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if(isset($citaActor['citas'])){
+                            foreach($citaActor['citas'] as $citas){ 
+                                if ($citas['datosCitas']['tipoRelacionIndividualColectivoId']==2) {?>
+                                    <tr>
+                                        <td><?=$catalogos['listaTodosActores'][$citas['datosCitas']['actores_actorId']]['nombre']." ".$catalogos['listaTodosActores'][$citas['datosCitas']['actores_actorId']]['apellidosSiglas']?></td>
+                                        <td><?=$catalogos['relacionActoresCatalogo'][$citas['datosCitas']['tipoRelacionId']]['Nivel2']; ?></td>
+                                        <td><?=$datosActor['actores']['nombre'].' '.$datosActor['actores']['apellidosSiglas']; ?></td>
+                                        <td><?=$citas['datosCitas']['fechaInicial']; ?></td>
+                                        <td><?=$citas['datosCitas']['fechaTermino']; ?></td>
+                                    </tr><?php
+                                }
+                            }
+                        } ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--Termina citado como persona relacionada colectivo-->
+
+        </div>
+    </div>
+        <!--Termina actores colectivos-->
+    </fieldset>
+
+</div>
+</div>
+</div>
