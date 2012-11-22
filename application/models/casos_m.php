@@ -339,9 +339,11 @@ class Casos_m extends CI_Model {
 	/* Ese modelo lista los casos */
 	 public function mListaCasos(){
 	 	
-             $this->db->select();
+             $this->db->select('*');
 		
              $this->db->from('casos');
+			 
+			 $this->db->where('estadoActivo', 1);
 		
              $casos = $this->db->get();
 		
@@ -412,9 +414,9 @@ class Casos_m extends CI_Model {
 		if($consulta->num_rows() > 0){
 			$this->db->where('casoId', $casoId);
 			$this->db->update('casos',$estado);
-			
+			$mensaje = $casoId.$estado;
 			/* Regresa la cadena al controlador*/
-			return ($mensaje = 'Hecho');
+			return ($mensaje = $mensaje .'Hecho');
 		}else{
 			return '0';
 			
@@ -1050,25 +1052,33 @@ class Casos_m extends CI_Model {
 	
 	public function mAgregarIntervenciones($datos){
 		
-		$this->db->insert('intervenciones', $datos['intervencion']);
-        $obtener_id = $this->db->select_max('intervencionId')->from('intervenciones')->get();
-		
-		if($obtener_id->num_rows() > 0){
-	        foreach ($obtener_id->result_array() as $row) {
-	            $intervencionId = $row['intervencionId'];
-	        }
-	    }/* Fin de obtener_id */
-	    
-	    foreach($datos as $tabla => $campo){
-                
-            if($tabla != 'intervencion' && (!empty($tabla))){
-                
-                $datos[$tabla]['intervenciones_intervencionId'] = $intervencionId;
-                $this->db->insert($tabla, $datos[$tabla]);
-            }
-     	}/* Fin foreach tabla */
-     	
-	    return $intervencionId;
+		if($this->db->insert('intervenciones', $datos['intervencion'])){
+			$obtener_id = $this->db->select_max('intervencionId')->from('intervenciones')->get();
+			
+			if($obtener_id->num_rows() > 0){
+		        foreach ($obtener_id->result_array() as $row) {
+		            $intervencionId = $row['intervencionId'];
+		        }
+		    }/* Fin de obtener_id */
+		    
+		    foreach($datos as $tabla => $campo){
+	                
+	            if($tabla != 'intervencion' && (!empty($tabla))){
+	                
+	                $datos[$tabla]['intervenciones_intervencionId'] = $intervencionId;
+	                $this->db->insert($tabla, $datos[$tabla]);
+	            }
+	     	}/* Fin foreach tabla */
+	     	
+		    return $intervencionId;
+		}else{
+			
+			$mensaje['error'] = $this->db->_error_message();
+			/* Regresa la cadena al controlador*/
+        	return $mensaje;
+			
+		}
+        
 		
 	}/* fin de mAgregarIntervenciones */
 	
@@ -1092,6 +1102,34 @@ class Casos_m extends CI_Model {
         	return $mensaje;
 		}
 	 }/* Fin de mActualizaDatosintervencion */
+	 
+	 /* Este modelo agrega un intervenido a una intervencion 
+	  * @param:
+	  * 
+	  * $datosIntervenido = array (
+	  * 				relacionId => 1,
+	  * 				tipoRelacionId => 1,
+	  * 				comentarios => '',
+	  * 				observacines => '',
+	  * 				intervenciones_intervencionId => 1
+	  * );
+	  * 
+	  * */
+	 public function mAgregarIntervenidoIntervenciones($datosIntervenido){
+	 	
+		 /* inserta el array registro en la tabla de registros de la BD */
+		if($this->db->insert('intervenidos', $datosIntervenido)){
+			
+			return 'Hecho';
+			
+		}else{
+			
+			$mensaje['error'] = $this->db->_error_message();
+			/* Regresa la cadena al controlador*/
+        	return $mensaje;
+			
+		}
+	 }
 	 
 	 /* Este modelo edita una intervencion
 	 *@ $datos = array(
@@ -1380,6 +1418,47 @@ class Casos_m extends CI_Model {
 			}
 
 			return $datos;
+			
+		}else{
+			
+			$mensaje['error'] = $this->db->_error_message();
+			/* Regresa la cadena al controlador*/
+        	return $mensaje;
+		}
+	}
+	
+	/*Este modelo agrega un registro a a una ficha
+	 * @param:
+	 * $datosResgistro = array (
+	 * 							nombreRegistro => 'nombre',
+	 * 							ruta => '/ruta',
+	 * 							fichas_fichaId => 1
+	 * );
+	 * 
+	 * */
+	public function mAgregarRegistroFicha($datosRegistro){
+		
+		/* inserta el array registro en la tabla de registros de la BD */
+		if($this->db->insert('registro', $datosRegistro)){
+			
+			return 'Hecho';
+			
+		}else{
+			
+			$mensaje['error'] = $this->db->_error_message();
+			/* Regresa la cadena al controlador*/
+        	return $mensaje;
+			
+		}
+	}
+	
+	public function mEliminarRegistro($registroId){
+		$this->db->where('registroId', $registroId);
+		
+		if($this->db->delete('registro')){
+		
+			/* Regresa la cadena al controlador*/
+			return ($mensaje = 'Hecho');
 			
 		}else{
 			
