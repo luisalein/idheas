@@ -1390,6 +1390,23 @@ class Casos_m extends CI_Model {
         	return $mensaje;
 		}
 	}
+	
+	/*Este modelo agrega un registro a a una ficha*/
+	public function mAgregarRegitroFicha($datosRegistro){
+		
+		/* inserta el array registro en la tabla de registros de la BD */
+		if($this->db->insert('registro', $datosRegistro)){
+			
+			return 'Hecho';
+			
+		}else{
+			
+			$mensaje['error'] = $this->db->_error_message();
+			/* Regresa la cadena al controlador*/
+        	return $mensaje;
+			
+		}
+	}
 	 
 }
 
