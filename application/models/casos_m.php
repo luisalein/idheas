@@ -1103,6 +1103,34 @@ class Casos_m extends CI_Model {
 		}
 	 }/* Fin de mActualizaDatosintervencion */
 	 
+	 /* Este modelo agrega un intervenido a una intervencion 
+	  * @param:
+	  * 
+	  * $datosIntervenido = array (
+	  * 				relacionId => 1,
+	  * 				tipoRelacionId => 1,
+	  * 				comentarios => '',
+	  * 				observacines => '',
+	  * 				intervenciones_intervencionId => 1
+	  * );
+	  * 
+	  * */
+	 public function mAgregarIntervenidoIntervenciones($datosIntervenido){
+	 	
+		 /* inserta el array registro en la tabla de registros de la BD */
+		if($this->db->insert('intervenidos', $datosIntervenido)){
+			
+			return 'Hecho';
+			
+		}else{
+			
+			$mensaje['error'] = $this->db->_error_message();
+			/* Regresa la cadena al controlador*/
+        	return $mensaje;
+			
+		}
+	 }
+	 
 	 /* Este modelo edita una intervencion
 	 *@ $datos = array(
                   
@@ -1421,6 +1449,22 @@ class Casos_m extends CI_Model {
 			/* Regresa la cadena al controlador*/
         	return $mensaje;
 			
+		}
+	}
+	
+	public function mEliminarRegistro($registroId){
+		$this->db->where('registroId', $registroId);
+		
+		if($this->db->delete('registro')){
+		
+			/* Regresa la cadena al controlador*/
+			return ($mensaje = 'Hecho');
+			
+		}else{
+			
+			$mensaje['error'] = $this->db->_error_message();
+			/* Regresa la cadena al controlador*/
+        	return $mensaje;
 		}
 	}
 	 
