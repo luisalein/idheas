@@ -1434,9 +1434,11 @@ class Actores_c extends CI_Controller {
 		
 		$datos['todosActores'] =  $this->actores_m->mListaTodosActores();
 		
-		$this->load->view('casos/SeleccionrActor', $datos);
+		$this->load->view('casos/SeleccionActor', $datos);
 	}
-	
+	/*
+	 * carga los datos de la direccion de un actor individual para poder ser visto en la edicion del actor
+	 * */
 	public function direccion($idActor, $direccionId = 0){
 		
 		$datos['is_active'] = 'actores';
@@ -1465,7 +1467,11 @@ class Actores_c extends CI_Controller {
 		$datos['filtroDireccion'] = $this->load->view('actores/filtroPaisEstadoMunicipio_v', $datos, true);
 		$this->load->view('actores/formularioNuevaDireccion', $datos);
 	}
-	
+	/*
+	 * Actualiza la seccion de direcciones en editar actor individual
+	 * Es llamada desde la funcion java script clearDiv. que lanza la ventan popup de editar
+	 *  y agregar direccion
+	 * */
 	public function traerDirecciones(){
 		
 		$idActor = $this->input->post('idActor');

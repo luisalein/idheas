@@ -31,7 +31,7 @@
                 </form>
                 <?php if (isset($casoId)) {
                     if ($casoId>0) {?>
-                       <form method="post" action="<?=base_url(); ?>index.php/casos_c/editarCaso/<?=$casoId; ?>">
+                       <form method="post" >
                        	 <input type="button" value="Eliminar Caso" class="tiny button"  name="<?=$casoId; ?>" id="eliminarCaso"/>	
                        </form>
                        <form method="post" action="<?=base_url(); ?>index.php/casos_c/editarCaso/<?=$casoId; ?>">

@@ -3,6 +3,7 @@
 		<div id="pestania" data-collapse>
 		<h2 class="open twelve columns">Información general</h2><!--título de la sub-pestaña--->  
 		<div>
+			<input type="hidden" name="casos_casoId" value="<?= (isset($datosCaso['casos']['casoId'])) ? $datosCaso['casos']['casoId'] : "" ;?>"/>
 			<!--Comienzan datos-->
 			<div class="twelve columns">
 			<div class="six columns">
