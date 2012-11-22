@@ -1391,7 +1391,15 @@ class Casos_m extends CI_Model {
 		}
 	}
 	
-	/*Este modelo agrega un registro a a una ficha*/
+	/*Este modelo agrega un registro a a una ficha
+	 * @param:
+	 * $datosResgistro = array (
+	 * 							nombreRegistro => 'nombre',
+	 * 							ruta => '/ruta',
+	 * 							fichas_fichaId => 1
+	 * );
+	 * 
+	 * */
 	public function mAgregarRegitroFicha($datosRegistro){
 		
 		/* inserta el array registro en la tabla de registros de la BD */
