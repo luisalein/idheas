@@ -117,7 +117,7 @@
 			                <td> <span id="infoCaso_titulo"><?=(isset($seguimiento['titulo'])) ? $seguimiento['titulo'] : ''; ?></span> </td>
 			                <td> <span id="infoCaso_titulo"><?=(isset($seguimiento['fecha'])) ? $seguimiento['fecha'] : ''; ?></span></td>
 			                <td><input type="button" class="tiny button"  value="Editar" onclick="ventanaFicha('<?=$casoId; ?>', '<?=$key; ?>')" />
-			                	<input type="button" class="tiny button"  value="Eliminar" onclick="" /></td>
+			                	<input type="button" class="tiny button"  value="Eliminar" onclick="eliminarFicha( <?=$seguimiento['fichaId']?>,<?=$casoId; ?>)" /></td>
 			              </tr><?php }} ?>
 			            </tbody>
 			          </table>
