@@ -1400,7 +1400,7 @@ class Casos_m extends CI_Model {
 	 * );
 	 * 
 	 * */
-	public function mAgregarRegitroFicha($datosRegistro){
+	public function mAgregarRegistroFicha($datosRegistro){
 		
 		/* inserta el array registro en la tabla de registros de la BD */
 		if($this->db->insert('registro', $datosRegistro)){
