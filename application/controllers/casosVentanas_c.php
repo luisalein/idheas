@@ -195,7 +195,6 @@ class CasosVentanas_c extends CI_Controller {
             	$datos[$nombre_tabla][$nombre_campo] = $valor; 
 
         } 
-					
 		switch ($id){
             
             case(1): 
@@ -210,11 +209,16 @@ class CasosVentanas_c extends CI_Controller {
 				
             break;
         
-            case(2):
-            	print_r($datos['fichas']);
-				if($_POST['editar'] == 1){
-					$datos2['fichas']=$datos['fichas'];
-	            	$mensaje = $this->general_m->casos_m->mActualizaDatosFicha($datos2); 
+            case(2):if($_POST['editar'] == 1){
+            	
+            		$ruta = $this->cargarPDF();
+					
+					$nombreArchivo = $_FILES["pdf"]['name'];
+					
+					$data = array('nombreRegistro'=>$nombreArchivo,'ruta'=>$ruta,'fichas_fichaId'=>$datos['fichas']['fichaId']);
+					
+	            	$this->general_m->casos_m->mActualizaDatosFicha($datos['fichas'],$datos['fichas']['fichaId']); 
+					
 				}else{
 					$datos2['fichas']=$datos['fichas'];
 	            	$mensaje = $this->general_m->general_m->llenar_tabla_m($datos2); 
@@ -225,8 +229,7 @@ class CasosVentanas_c extends CI_Controller {
 			case(3): 
 				if($_POST['editar'] == 1){
 					if(isset($datos['actos'])){
-						$datos31['actos'] = $datos['actos'];
-						$mensaje = $this->casos_m->mActualizaDatosActo($datos31);
+						$mensaje = $this->casos_m->mActualizaDatosActo($datos['actos'],$datos['actos']['actoId']);
 					}
 					
 					$datos32['derechoAfectado'] =  $datos['derechoAfectado'];
@@ -240,12 +243,11 @@ class CasosVentanas_c extends CI_Controller {
 			
 			case(4):  
 				if($_POST['editar'] == 1){
-					$datos41['intervenciones'] = $datos['intervenciones'];
-					$mensaje =  $this->casos_m->mActualizaDatosIntervencion($datos41);
-					$datos42['intervenidos'] =  $datos['intervenidos'];
-					$mensaje = $mensaje . $this->casos_m->mActualizaDatosIntervenido($datos42);
+					$mensaje =  $this->casos_m->mActualizaDatosIntervencion($datos['intervenciones'],$datos['intervenciones']['intervencioNId']);
+
+					$mensaje = $mensaje . $this->casos_m->mActualizaDatosIntervenido($datos['intervenidos'],$datos['intervenidos']['intervenidoId']);
 				}else{
-					$datos4['intervenciones'] = $datos['intervenciones'];
+					$datos4['intervencion'] = $datos['intervenciones'];
 					$datos4['intervenidos'] =  $datos['intervenidos'];
 					$mensaje = $this->casos_m->mAgregarIntervenciones($datos4);
 				}
@@ -254,8 +256,7 @@ class CasosVentanas_c extends CI_Controller {
 			
 			case(5): 
 				if($_POST['editar'] == 1){
-					$datos5['fuenteInfoPersonal'] = $datos['fuenteInfoPersonal'];
-					$mensaje = $this->casos_m->mActualizaDatosFuenteInfoPersonal($datos5);
+					$mensaje = $this->casos_m->mActualizaDatosFuenteInfoPersonal($datos['fuenteInfoPersonal'],$datos['fuenteInfoPersonal']['fuenteInfoPersonalId']);
 				}else{
 					$datos5['fuenteInfoPersonal'] = $datos['fuenteInfoPersonal'];
 					$mensaje = $this->general_m->llenar_tabla_m($datos5);
@@ -265,8 +266,7 @@ class CasosVentanas_c extends CI_Controller {
 			
 			case(6):
 				if($_POST['editar'] == 1){
-					$datos6['tipoFuenteDocumental'] = $datos['tipoFuenteDocumental'];
-					$mensaje = $this->casos_m->mActualizaDatosTipoFuenteDocumental($datos6);
+					$mensaje = $this->casos_m->mActualizaDatosTipoFuenteDocumental($datos['tipoFuenteDocumental'],$datos['tipoFuenteDocumental']['tipoFuenteDocumentalId']);
 				}else{ 
 					$datos6['tipoFuenteDocumental'] = $datos['tipoFuenteDocumental'];
 					$mensaje = $this->general_m->llenar_tabla_m($datos6);
@@ -276,8 +276,7 @@ class CasosVentanas_c extends CI_Controller {
         
             case(7):
 				if($_POST['editar'] == 1){
-					$datos7['relacionCasos'] = $datos['relacionCasos'];
-	            	$mensaje = $this->casos_m->mActualizaDatosRelacionCaso($datos7);
+	            	$mensaje = $this->casos_m->mActualizaDatosRelacionCaso($datos['relacionCasos']['relacionId'],$datos['relacionCasos']);
 				}else{ 
 	            	$datos7['relacionCasos'] = $datos['relacionCasos'];
 	            	$mensaje = $this->general_m->llenar_tabla_m($datos7);
@@ -395,6 +394,56 @@ class CasosVentanas_c extends CI_Controller {
 		print_r($datos);
 		
 	}
+	
+	public function cargarPDF(){
+		
+		$status = "aca";
+	   
+			// obtenemos los datos del archivo
+			$tamano = $_FILES["pdf"]['size'];
+			$tipo = $_FILES["pdf"]['type'];
+			$archivo = $_FILES["pdf"]['name'];
+			$prefijo = substr(md5(uniqid(rand())),0,6);
+	
+			
+			if($tipo == "application/pdf"){			
+				if ($archivo != "") {
+				    // guardamos el archivo a la carpeta files
+				    
+				    //para MAC y Linux
+				    $urlBase = system('pwd');
+					
+				    //Para windows
+					//$urlBase = system('chdir');
+					
+				    $destino = $urlBase.'/statics/fichas/'.$prefijo.'_'.$archivo;
+				  					
+				    if (move_uploaded_file($_FILES['pdf']['tmp_name'],$destino)) {
+				    	
+						$status = "Archivo subido: <b>".$archivo."</b>";
+						
+						return '/statics/fichas/'.$prefijo.'_'.$archivo;
+						
+				    } else {
+				    	
+						$status = $destino;
+						
+				    }
+				} else {
+					
+				    $status = $archivo;
+					
+				}
+				
+			}else{
+					
+				$status = $tipo;
+				
+			}
+	    
+		return $status;
+	}
+	
 }
     
 ?>
