@@ -339,9 +339,11 @@ class Casos_m extends CI_Model {
 	/* Ese modelo lista los casos */
 	 public function mListaCasos(){
 	 	
-             $this->db->select();
+             $this->db->select('*');
 		
              $this->db->from('casos');
+			 
+			 $this->db->where('estadoActivo', 1);
 		
              $casos = $this->db->get();
 		
