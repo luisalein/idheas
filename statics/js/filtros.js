@@ -294,41 +294,43 @@ function changeTest (tipo) {
 	if(actor == 1){
 		if(tipo == 1){
 			var Index = document.menuForm.datosDeNacimiento_paisesCatalogo_paisId.options[document.menuForm.datosDeNacimiento_paisesCatalogo_paisId.selectedIndex].value; 
+			document.getElementById('datosDeNacimiento_municipiosCatalogo_municipioId').options.length = 0;
 		}
 		if(tipo == 2){
 			var Index = document.menuForm.datosDeNacimiento_estadosCatalogo_estadoId.options[document.menuForm.datosDeNacimiento_estadosCatalogo_estadoId.selectedIndex].value; 
-	
+			document.getElementById('datosDeNacimiento_municipiosCatalogo_municipioId').options.length = 0;
 		}
 	}
 	if(actor == 2){
 		if(tipo == 1){
 			var Index = document.menuForm.infoMigratoria_lugarOrigenPaisId.options[document.menuForm.infoMigratoria_lugarOrigenPaisId.selectedIndex].value; 
+			document.getElementById('infoMigratoria_lugarOrigenMunicipioId').options.length = 0;
 		}
 		if(tipo == 2){
 			var Index = document.menuForm.infoMigratoria_lugarOrigenEstadoId.options[document.menuForm.infoMigratoria_lugarOrigenEstadoId.selectedIndex].value; 
-	
+			document.getElementById('infoMigratoria_lugarOrigenMunicipioId').options.length = 0;
 		}
 	}
 	if(actor == 3){
 		
 			if(tipo == 1){
 				var Index = document.menuForm.direccionActor_paisesCatalogo_paisId.options[document.menuForm.direccionActor_paisesCatalogo_paisId.selectedIndex].value; 
-				
+				document.getElementById('direccionActor_municipiosCatalogo_municipioId').options.length = 0;
 			}
 			if(tipo == 2){
 				var Index = document.menuForm.direccionActor_estadosCatalogo_estadoId.options[document.menuForm.direccionActor_estadosCatalogo_estadoId.selectedIndex].value; 
-		
+				document.getElementById('direccionActor_municipiosCatalogo_municipioId').options.length = 0;
 			}
 	}
 	if(actor == 4){
 		
 		if(tipo == 1){
 				var Index = document.menuForm.lugares_paisesCatalogo_paisId.options[document.menuForm.lugares_paisesCatalogo_paisId.selectedIndex].value; 
-				
+				document.getElementById('lugares_municipiosCatalogo_municipioId').options.length = 0;
 			}
 			if(tipo == 2){
 				var Index = document.menuForm.lugares_estadosCatalogo_estadoId.options[document.menuForm.lugares_estadosCatalogo_estadoId.selectedIndex].value; 
-		
+				document.getElementById('lugares_municipiosCatalogo_municipioId').options.length = 0;
 			}
 	}
 	
