@@ -124,7 +124,7 @@ class CasosVentanas_c extends CI_Controller {
 		$datos['actoresIndividuales'] =  $this->actores_m->listado_actores_m(1);
 		
 		$datos['actoresTrans'] = $this->actores_m->listado_actores_m(2);
-		
+				
 		$datos['actIndividualesTrns'] = array_merge($datos['actoresIndividuales'],$datos['actoresTrans']);
 
 		$datos['actoresRelacionados'] = $this->actores_m->mTraeRelacionesColectivo($actorId);
@@ -211,6 +211,7 @@ class CasosVentanas_c extends CI_Controller {
             break;
         
             case(2):
+            	print_r($datos['fichas']);
 				if($_POST['editar'] == 1){
 					$datos2['fichas']=$datos['fichas'];
 	            	$mensaje = $this->general_m->general_m->mActualizaDatosFicha($datos2); 

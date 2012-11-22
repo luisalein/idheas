@@ -196,7 +196,7 @@ class Casos_c extends CI_Controller {
 
             $datos['head'] = $this->load->view('general/head_v', $datos, true);
 			
-            $datos['action'] = base_url().'index.php/actores_c/editarCasoBd';
+            $datos['action'] = base_url().'index.php/casos_c/editarCasoBd';
             
             $datos['is_active'] = 'casos';
 
@@ -211,6 +211,8 @@ class Casos_c extends CI_Controller {
 	        $datos['body'] = $this->load->view('general/body_v', $datos, true);
 
             $this->load->view('general/principal_v', $datos);
+            
+            
             
         } else {
             
@@ -237,10 +239,11 @@ class Casos_c extends CI_Controller {
             }
 
         }
+		$datos['tablas']=$datos;
+		
+        $this->casos_m->mActualizaDatosCaso($datos['casos']['casoId'], $datos);
         
-        $this->actores_m->mActualizaDatosCaso($datos['casos']['casoId'], $datos);
-        
-        redirect(base_url().'index.php/casos_c/mostrar_caso/'.$datos['casos']['casoId']);
+       redirect(base_url().'index.php/casos_c/mostrar_caso/'.$datos['casos']['casoId']);
         
     }
 	

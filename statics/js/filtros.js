@@ -170,6 +170,8 @@ function filtroRadio(filtro){
 	
 	
 }
+
+
 function desplegarActoresVentana(nombre, filtro, tipoActor,ventana){
 	
 	if(nombre != '' || filtro != 0){
@@ -469,3 +471,34 @@ function changeTest2 (tipo) {
     });
 } 
 
+
+function clearDiv(){
+	
+	var idActor = $('#idActor').attr('name');
+	
+	var url = base+'index.php/actores_c/traerDirecciones';
+	
+	var data = 'idActor='+idActor;
+	
+	$.ajax({
+    
+        url: url,
+    
+        data: data,
+        
+        type: 'POST',
+                
+        success: function(data){
+        		
+        		document.getElementById('direccionActorIndividual').innerHTML = data;
+        },
+        
+        error: function(){
+        
+           alert("no se pudo");
+        }
+    
+    });
+	
+	 // document.getElementById('direccionActorIndividual').innerHTML = "<fieldset><legend>Dirección</legend>";
+}

@@ -414,9 +414,9 @@ class Casos_m extends CI_Model {
 		if($consulta->num_rows() > 0){
 			$this->db->where('casoId', $casoId);
 			$this->db->update('casos',$estado);
-			
+			$mensaje = $casoId.$estado;
 			/* Regresa la cadena al controlador*/
-			return ($mensaje = 'Hecho');
+			return ($mensaje = $mensaje .'Hecho');
 		}else{
 			return '0';
 			

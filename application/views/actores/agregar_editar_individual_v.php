@@ -200,94 +200,92 @@
                 </div>  <!--Segunda mitad de nformación de contacto---->
             </fieldset><!--Termina información del contacto-->
             
-            <div>
-
-            <?php if (isset($datosActor['direccionActor'])) {?>
-                <fieldset><!--Dirección-->
-                <legend>Dirección</legend>
-                    <div id="pestania" data-collapse>
-                        <h2 class="open">Dirección(es) </h2>
-                        <div>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Tipo de dirección</th>
-                                        <th>Ubicación</th>
-                                        <th>Código Postal</th>
-                                        <th>País</th>
-                                        <th>Estado</th>
-                                        <th>Municipio</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                       <?php if (isset($datosActor['direccionActor'])) {
-                                        foreach ($datosActor['direccionActor'] as $key => $direccion) {
-                                            if (isset($direccion['tipoDireccionId'])) {
-                                                ?>
-                                        <tr>
-                                                <td><?=(isset($direccion['tipoDireccionId'])) ? $catalogos['tipoDireccion'][$direccion['tipoDireccionId']]['descripcion'] : ''; ?></td>
-                                                <td><?=(isset($direccion['direccion'])) ? $direccion['direccion'] : ''; ?></td>
-                                                <td><?=(isset($direccion['codigoPostal'])) ? $direccion['codigoPostal'] : ''; ?></td>
-                                                <td><?=(isset($direccion['paisesCatalogo_paisId'])) ? $catalogos['paisesCatalogo'][$direccion['paisesCatalogo_paisId']]['nombre'] : ''; ?></td>
-                                                <td><?=(isset($direccion['estadosCatalogo_estadoId'])) ? $catalogos['estadosCatalogo'][$direccion['estadosCatalogo_estadoId']]['nombre'] : ''; ?></td>
-                                                <td><?=(isset($direccion['municipiosCatalogo_municipioId'])) ? $catalogos['municipiosCatalogo'][$direccion['municipiosCatalogo_municipioId']]['nombre'] : ''; ?></td>                        
-                                                <td><input type="button" class="tiny button"  value="Editar" onclick="nuevaDireccion('<?=$actorId?>','<?=$direccion['direccionId']?>')"/>
-                                                    <input type="button" value="Elminar" class="tiny button" onclick="eliminarDireccionActor('<?=$direccion['direccionId']?>','<?=$actorId?>','2')"/>
-                                                </td>
-                                        </tr>
-                                        <?php }
-                                    }
-                                    }?>
-                                </tbody>
-                            </table>
-                                <input type="button" class="small button"  value="Agregar dirección" onclick="nuevaDireccion('<?=$actorId?>','0')">
-                        </div>
-                    </div>
-                </fieldset>
-            <?php } else{?>
-
-             <fieldset>
-                <legend>Dirección</legend>
-
-                <div class="six columns">
-                    <label for="direccionActor_tipoDireccionId">Tipo de dirección</label>
-                    <select  id="direccionActor_tipoDireccionId" name="direccionActor_tipoDireccionId">         
-                        <option></option>
-                        <?php if(isset($datosActor['tipoDireccionId'])){
-                            foreach($catalogos['tipoDireccion'] as $item):?> <!--muestra todas las edades de 1 a 100-->
-                                <option value="<?=$item['tipoDireccionId']; ?>" <?=($datosActor['tipoDireccionId'] == $item['tipoDireccionId']) ? 'selected="selected"' : '' ; ?>> <?=$item['descripcion']; ?></option>
-                            <?php endforeach;
-                        } else {
-                            foreach($catalogos['tipoDireccion'] as $item):?> <!--muestra todas las edades de 1 a 100-->
-                                <option value="<?=$item['tipoDireccionId']; ?>"> <?=$item['descripcion']; ?></option>
-                            <?php endforeach;
-                        } ?>
-                    </select>
-
-                    <label for="direccionActor_direccion">Ubicación</label>
-                        <input type="text" id="direccionActor_direccion" name="direccionActor_direccion"  <?=(isset($datosActor['direccion']) ? 'value="'.$datosActor['direccion'].'"' : 'value=""'); ?> />
-                    
-                    <label for="direccionActor_codigoPostal">Código Postal</label>
-                        <input type="number" pattern="[0-9]+" id="direccionActor_codigoPostal" name="direccionActor_codigoPostal"  <?=(isset($datosActor['codigoPostal']) ? 'value="'.$datosActor['codigoPostal'].'"' : 'value=""'); ?> />
-                </div>
-				<input type="hidden" id="filtrodir" name="3"/>
-                <div class="six columns">
-                       <?=$filtroDireccion;?>                                            
-                   
-                  
-                </fieldset><!--Termina datos dirección-->
-                <?php }?>
-       		 </div>
+            <div id="direccionActorIndividual">
+				
+   				 <input type="hidden" id="idActor" name="<?if(isset($actorId))echo $actorId?>"/>
+	            <?php if (isset($datosActor['direccionActor'])) {?>
+	                <fieldset><!--Dirección-->
+	                <legend>Dirección</legend>
+	                    <div id="pestania" data-collapse>
+	                       
+	                        <div>
+	                            <table>
+	                                <thead>
+	                                    <tr>
+	                                        <th>Tipo de dirección</th>
+	                                        <th>Ubicación</th>
+	                                        <th>Código Postal</th>
+	                                        <th>País</th>
+	                                        <th>Estado</th>
+	                                        <th>Municipio</th>
+	                                        <th>Acciones</th>
+	                                    </tr>
+	                                </thead>
+	                                <tbody>
+	                                       <?php if (isset($datosActor['direccionActor'])) {
+	                                        foreach ($datosActor['direccionActor'] as $key => $direccion) {
+	                                            if (isset($direccion['tipoDireccionId'])) {
+	                                                ?>
+	                                        <tr>
+	                                                <td><?=(isset($direccion['tipoDireccionId'])) ? $catalogos['tipoDireccion'][$direccion['tipoDireccionId']]['descripcion'] : ''; ?></td>
+	                                                <td><?=(isset($direccion['direccion'])) ? $direccion['direccion'] : ''; ?></td>
+	                                                <td><?=(isset($direccion['codigoPostal'])) ? $direccion['codigoPostal'] : ''; ?></td>
+	                                                <td><?=(isset($direccion['paisesCatalogo_paisId'])) ? $catalogos['paisesCatalogo'][$direccion['paisesCatalogo_paisId']]['nombre'] : ''; ?></td>
+	                                                <td><?=(isset($direccion['estadosCatalogo_estadoId'])) ? $catalogos['estadosCatalogo'][$direccion['estadosCatalogo_estadoId']]['nombre'] : ''; ?></td>
+	                                                <td><?=(isset($direccion['municipiosCatalogo_municipioId'])) ? $catalogos['municipiosCatalogo'][$direccion['municipiosCatalogo_municipioId']]['nombre'] : ''; ?></td>                        
+	                                                <td><input type="button" class="tiny button"  value="Editar" onclick="nuevaDireccion('<?=$actorId?>','<?=$direccion['direccionId']?>')"/>
+	                                                    <input type="button" value="Elminar" class="tiny button" onclick="eliminarDireccionActor('<?=$direccion['direccionId']?>','<?=$actorId?>','2')"/>
+	                                                </td>
+	                                        </tr>
+	                                        <?php }
+	                                    }
+	                                    }?>
+	                                </tbody>
+	                            </table>
+	                                <input type="button" class="small button"  value="Agregar dirección" onclick="nuevaDireccion('<?=$actorId?>','0')">
+	                        </div>
+	                    </div>
+	                </fieldset>
+	            <?php } else{?>
+	
+	             <fieldset>
+	                <legend>Dirección</legend>
+	
+	                <div class="six columns">
+	                    <label for="direccionActor_tipoDireccionId">Tipo de dirección</label>
+	                    <select  id="direccionActor_tipoDireccionId" name="direccionActor_tipoDireccionId">         
+	                        <option></option>
+	                        <?php if(isset($datosActor['tipoDireccionId'])){
+	                            foreach($catalogos['tipoDireccion'] as $item):?> <!--muestra todas las edades de 1 a 100-->
+	                                <option value="<?=$item['tipoDireccionId']; ?>" <?=($datosActor['tipoDireccionId'] == $item['tipoDireccionId']) ? 'selected="selected"' : '' ; ?>> <?=$item['descripcion']; ?></option>
+	                            <?php endforeach;
+	                        } else {
+	                            foreach($catalogos['tipoDireccion'] as $item):?> <!--muestra todas las edades de 1 a 100-->
+	                                <option value="<?=$item['tipoDireccionId']; ?>"> <?=$item['descripcion']; ?></option>
+	                            <?php endforeach;
+	                        } ?>
+	                    </select>
+	
+	                    <label for="direccionActor_direccion">Ubicación</label>
+	                        <input type="text" id="direccionActor_direccion" name="direccionActor_direccion"  <?=(isset($datosActor['direccion']) ? 'value="'.$datosActor['direccion'].'"' : 'value=""'); ?> />
+	                    
+	                    <label for="direccionActor_codigoPostal">Código Postal</label>
+	                        <input type="number" pattern="[0-9]+" id="direccionActor_codigoPostal" name="direccionActor_codigoPostal"  <?=(isset($datosActor['codigoPostal']) ? 'value="'.$datosActor['codigoPostal'].'"' : 'value=""'); ?> />
+	                </div>
+					<input type="hidden" id="filtrodir" name="3"/>
+	                <div class="six columns">
+	                       <?=$filtroDireccion;?>                                            
+	                   
+	                  
+	                </fieldset><!--Termina datos dirección-->
+	                <?php }?>
+	       		 </div>
 		</div>
         
         <div class="row espacioInferior espacioSuperior">
-            <div class="nine columns">
-                <input class="medium button" type="submit" value="Guardar" />
-            </div>
-            <div  class="three columns" >
-                <a href="<?=base_url(); ?>index.php/actores_c/mostrar_actor/<?= (isset($actorId)) ? $actorId : "0" ;?>/1" class="medium button">Cancelar</a>
-            </div>
+
+                <input class="medium button" type="submit" value="Guardar" style="margin-left: 340px;" />
+                <input class="medium button" type="reset" value="Cancelar" onclick="pagInicial()" style="margin-left: 40px;"/>
         </div>
     </div>
 </form>
