@@ -7,13 +7,16 @@
             <input type="hidden" value="<?=$actorId; ?>" name="actores_actorId" />
             <input type="hidden" value="<?=$actorId; ?>" name="direccionActor_actores_actorId" />
             <input type="hidden" value="<?=$actorId; ?>" name="infoGralActores_actores_actorId" />
+            <div id="espacioFoto">
                 <img class="twelve columns" src="<?=base_url().$datosActor['actores']['foto']; ?>" />
+            </div>
             <?php }?>
 
 
             <label>Foto </label>
                 <input name="archivo" type="file" size="10" accept="image/*" />  
                 <input type="hidden" <?= (isset($datosActor['actores']['foto'])) ? 'value="'.$datosActor['actores']['foto'].'"' : "" ;?>  name="actores_foto" />
+                <input type="button" class="small button" value="Eliminar Foto" onclick="eliminarFoto()">
               
 </div>
 
@@ -218,7 +221,18 @@
                                 <td><?=$nombreRelacionado?></td>
                                 <td><?=$relacion['fechaInicial']; ?></td>
                                 <td><?=$relacion['fechaTermino']; ?></td>
-                                <td><input type="button" class="tiny button"  value="Editar" onclick="nueva_relacion_a_a('<?=$idActor ?>' , '1' , '<?=$relacion['relacionActoresId']; ?>')" /></td>
+                                <td>
+                                    <div class="twelve columns">
+                                        <div class="six columns">
+                                        <input type="button" class="tiny button"  value="Editar" onclick="nueva_relacion_a_a('<?=$idActor ?>' , '1' , '<?=$relacion['relacionActoresId']; ?>')" />
+                                        </div>
+                                        <div class="six columns">                                                           
+                                        <form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarRelacionActor/<?=$relacion['relacionActoresId']."/".$relacion['actorRelacionadoId']; ?>/<?= $actorId?>/3" >
+                                            <input type="submit" value="Elminar" class="tiny button" />
+                                        </form>
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
                         <?php }
                         }
@@ -303,10 +317,17 @@
                                         <td><?=$nombreRelacionado?></td>
                                         <td><?=$relacion['fechaInicial']; ?></td>
                                         <td><?=$relacion['fechaTermino']; ?></td>
-                                        <td><input type="button" class="tiny button"  value="Editar" onclick="nueva_relacion_a_Col('<?=$idActor ?>','1', '<?=$relacion['relacionActoresId']; ?>')" />
-                                            <form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarRelacionActor/<?=$relacion['relacionActoresId']."/".$relacion['actorRelacionadoId']; ?>" >
-                                                <input type="submit" value="Elminar" class="tiny button" />
-                                            </form>
+                                        <td>
+                                            <div class="twelve columns">
+                                                <div class="six columns">
+                                                <input type="button" class="tiny button"  value="Editar" onclick="nueva_relacion_a_Col('<?=$idActor ?>','1', '<?=$relacion['relacionActoresId']; ?>')" />
+                                                </div>
+                                                <div class="six columns">
+                                                <form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarRelacionActor/<?=$relacion['relacionActoresId']."/".$relacion['actorRelacionadoId']; ?>/<?= $actorId?>/3" >
+                                                    <input type="submit" value="Elminar" class="tiny button" />
+                                                </form>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr><?php
                                 }

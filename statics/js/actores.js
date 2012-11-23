@@ -17,6 +17,12 @@ function nuevaDireccion(actorId,indice){
     window.open(base+'index.php/actores_c/direccion/'+actorId+'/'+indice, 'Nueva direccion', windowSizeArray);
 }
 
+function eliminarFoto(){
+    document.getElementById('espacioFoto').innerHTML = ('');
+    document.getElementById('actores_foto').value="foto";
+
+}
+
 
 function eliminarDireccionActor(direccionId,actorId,tipoActor){
 

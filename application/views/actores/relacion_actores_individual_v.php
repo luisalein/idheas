@@ -79,6 +79,7 @@
 	</div>
 
 	<br /><br />
+	<div class="twelve columns">
 	<label for="PerRelacionada">Persona Relacionada</label><br />
 	<div id="vistaActorRelacionado"  >
 	<?php if (isset($relaciones['actorRelacionadoId'])) {?> 
@@ -90,7 +91,7 @@
 		<input type="button" class="small button" onclick="seleccionarActorIndividual()" value="Agregar actor">
 		<input type="button" class="small button" value="Eliminar actor">
 	<br/>
-
+	</div>
 	<div class="twelve columns">
 
 		<div class="six columns" >
