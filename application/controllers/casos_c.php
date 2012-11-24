@@ -303,8 +303,6 @@ class Casos_c extends CI_Controller {
 		
 		$datos['victimas'] = $this->casos_m->mTraerVictimasActo($idActo);
 		
-		print_r($datos['victimas']);
-		
 		$datos['head'] = $this->load->view('general/head_v', $datos, true);
 		
 		$datos['idVictima'] = $idVictima;
