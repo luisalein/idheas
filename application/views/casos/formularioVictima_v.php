@@ -9,23 +9,25 @@
 			<div class="four columns"> 	<!--Lista de victimas-->
 
 				<div class="twelve columns espacioSuperior">
-					<div class="four columns">
+					<?php if ($idVictima>0) {?>
+						<div class="twelve columns">
+							<div class="five columns">
+								<form action="<?= base_url(); ?>index.php/casos_c/eliminarVictima/<?=$idActo; ?>/<?=$victimas['victimas'][$idVictima]['victimaId']; ?>">
+									<input class="small button" value="Eliminar víctima" type="submit"></div>
+								</form>
+							</div>
+							<div class="five columns">
+								<form action="http://localhost/idheas/index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/<?=$idVictima; ?>/1" method="post">
+									<input class="small button" value="Editar víctima" type="submit">
+								</form>
+							</div>
+						</div>
+					<?php }?>
+					<div class="twelve columns">
 						<form action="<?= base_url(); ?>index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/0/1" method="post">
 							<input class="small button" value="Nueva víctima" type="submit">
 						</form>
 					</div>
-					<?php if ($idVictima>0) {?>
-						<div class="five columns">
-							<form action="<?= base_url(); ?>index.php/casos_c/eliminarVictima/<?=$idActo; ?>/<?=$victimas['victimas'][$idVictima]['victimaId']; ?>">
-							<input class="small button" value="Eliminar víctima" type="submit"></div>
-							</form>
-						<div class="three columns">
-							<form action="http://localhost/idheas/index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/<?=$idVictima; ?>/1" method="post">
-								<input class="small button" value="Editar víctima" type="submit">
-							</form>
-						</div>
-					<?php }?>
-				</div>
 				
 <!-- 						<pre><?= print_r($victimas['victimas'][$idVictima]['victimaId'])?></pre>
 						<pre><?= print_r($victimas)?></pre>
@@ -53,7 +55,7 @@
 					<legend>Información general</legend>
 						<label>Victima</label><br/>
 						<div class="twelve columns">
-							<img class="three columns" style="width:90px !important; height:70px !important;" src="<?= ($idVictima>0) ? base_url().$victimas['victimas'][$idVictima]['foto'] : " " ; ?>"/>
+							<img class="three columns" style="width:100px !important; height:80px !important;" src="<?= ($idVictima>0) ? base_url().$victimas['victimas'][$idVictima]['foto'] : " " ; ?>"/>
 							<div class="nine columns"> <?= ($idVictima>0) ? $victimas['victimas'][$idVictima]['nombre']." ".$victimas['victimas'][$idVictima]['apellidosSiglas'] : " " ; ?></div> 
 						</div>
 						<div class="twelve columns"> 

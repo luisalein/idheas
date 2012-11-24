@@ -22,7 +22,6 @@
 						</div>
 					</div>
 					
-
 				<div class="twelve columns panel">
 					<div class="four columns"> <b>Foto</b> </div>
 					<div class="eight columns">	<b>Nombre</b> </div>
@@ -31,7 +30,7 @@
 				<div class="twelve columns lineasLista" >
 					<?php if ($victimas!=0) {
 						foreach ($victimas['victimas'] as $victima) { ?>
-							 <a href="<?=base_url(); ?>index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/<?=$victima['victimaId']; ?>/0">
+							 <a href="<?=base_url(); ?>index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/<?=$victima['actorId']; ?>/0">
 							 	<div class="<?= $idVictima==($victima['actorId']) ? "victimaSeleccionada" : "victimaNoSeleccionada" ;?>">
 									<img class="four columns" style="width:90px !important; height:70px !important;" src="<?=base_url().$victima["foto"]; ?>" />
 									<span class="eight columns"><?= $victima['nombre']." ".$victima['apellidosSiglas']?></span>
@@ -63,14 +62,14 @@
 
 					                <input type="hidden" value="<?=$idVictima; ?>" name="victimas_victimaId" />
 
-					                <img class="three columns" style="width:90px !important; height:70px !important;" src="<?= (isset($victimas['victimas'][$idVictima]['foto'])) ? base_url().$victimas['victimas'][$idVictima]['foto'] : " " ; ?>" />
+					                <img class="three columns" style="width:120px !important; height:90px !important;" src="<?= (isset($victimas['victimas'][$idVictima]['foto'])) ? base_url().$victimas['victimas'][$idVictima]['foto'] : " " ; ?>" />
 									<div class="nine columns"><h5><?=(isset($victimas['victimas'][$idVictima]['nombre'])) ? $victimas['victimas'][$idVictima]['nombre']." "	 : " " ; ?><?= (isset($victimas['victimas'][$idVictima]['apellidosSiglas'])) ? $victimas['victimas'][$idVictima]['apellidosSiglas'] : "" ;?></h5></div> 
 					                <?php }?>
 
 								</div>
 
 								<input type="button" class="small button" onclick="seleccionarActorIndividual()" value="Agregar actor">
-								<input type="button" class="small button" value="Eliminar actor">
+								<input type="button" class="small button" value="Eliminar actor" onclick="eliminaActor()">
 
 							</div>
 							<div class="twelve columns"> 
@@ -91,21 +90,24 @@
 
 							<div class="twelve columns">
 								<br /><label>Comentarios sobre víctimas y perpetradores</label>	<br />
-									 <textarea  placeholder="Escribir algun comentario"  rows="10" cols="100" name="victimas_comentarios" id="victimas_comentarios"  wrap="hard" >
-									<?= (isset($victimas['victimas'][$idVictima]['comentarios'])) ? $victimas['victimas'][$idVictima]['comentarios'] : "" ; ?>
-						            </textarea>
+									 <textarea  placeholder="Escribir algun comentario"  rows="10" cols="100" name="victimas_comentarios" id="victimas_comentarios"  wrap="hard" ><?= (isset($victimas['victimas'][$idVictima]['comentarios'])) ? $victimas['victimas'][$idVictima]['comentarios'] : "" ; ?></textarea>
 							</div>
 
 							<div class="twelve columns espacio">
 								<br/><label>Perpetradores</label> <br/>
 								<div class="two columns push-ten" >
-									<input class="small button" value="nuevo perpetrador" type="button">
+									<input class="small button" value="nuevo perpetrador" onclick="ventanaPerpetradores()" type="button">
 								</div>
 
 							</div>
 
 					</fieldset>
-					<input type="submit" value="Guardar" class="small button"/>
+					<div class="eight columns">
+						<input type="submit" value="Guardar" class="small button"/>
+					</div>
+					<div class="four columns">
+						<a href="<?=base_url(); ?>index.php/casos_c/mostrarVictimas/<?=$idActo;  ;?>/" class="small button">Cancelar</a>
+					</div>
 				</form>	
 				</div>
 			</div><!--Termina información general de la victima-->

@@ -41,3 +41,9 @@ function cerrarVentanaCancelar(){
     };
   window.close();
 };
+
+function eliminaActor(){
+    var nameSeleccionado= document.getElementById('nameSeleccionado').value;
+    document.getElementById(nameSeleccionado).value =0;
+    document.getElementById('vistaActorRelacionado').innerHTML=(" ");
+};
