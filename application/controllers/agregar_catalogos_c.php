@@ -14,45 +14,45 @@ class Agregar_catalogos_c extends CI_Controller {
     
     public function index(){
                     
-        // $this->cAgregarCatalogoDeOcupaciones();
-//         
-        // $this->cAgregarCatalogoGruposIndigenas();
-//         
-        // $this->cAgregarCatalogosLugares();
-//         
-        // $this->cAgregarCatalogosTipoDeIntervencion();
-//        
-        // $this->cAgregarCatalogosTipoPerpetrador();
+        $this->cAgregarCatalogoDeOcupaciones();
+        
+        $this->cAgregarCatalogoGruposIndigenas();
+        
+        $this->cAgregarCatalogosLugares();
+        
+        $this->cAgregarCatalogosTipoDeIntervencion();
+       
+        $this->cAgregarCatalogosTipoPerpetrador();
 		
 		$this->cAgregarDerechosCatalogos();
 		
 		$this->cAgregarActosCatalogos();
        
-        // $this->cAgregarCatalogoEstatusDeLaVictima();
-//        
-        // $this->cAgregarCatalogoEstatusDelPerpetrador();
-//         
-        // $this->cAgregarCatalogoNivelDeConfiabilidad();
-//         
-        // $this->cAgregarCatalogoTipoDeFuente();
-//         
-        // $this->cAgregarCatalogoTipoDeActorColectivo();
-//         
-        // $this->cAgregarEstadoCivilCatalogo();
-//         
-        // $this->cAgregarCatalogoRelacionEntreActores();
-//         
-        // $this->cAgregarCatalogoDeNacionalidades();
-//         
-        // $this->cAgregarCatalogoNivelEscolaridad();
-//         
-        // $this->cAgregarCatalogoTipoDeDireccion();
-// 		
-		// $this->cAgregarCatalogoGradoInvolucramientoN1();
-// 		
-		// $this->cAgregarCatalogoGradoInvolucramientoN2();
-// 		
-		// $this->cAgregarCatalogoMotivoViaje();
+        $this->cAgregarCatalogoEstatusDeLaVictima();
+       
+        $this->cAgregarCatalogoEstatusDelPerpetrador();
+        
+        $this->cAgregarCatalogoNivelDeConfiabilidad();
+        
+        $this->cAgregarCatalogoTipoDeFuente();
+        
+        $this->cAgregarCatalogoTipoDeActorColectivo();
+        
+        $this->cAgregarEstadoCivilCatalogo();
+        
+        $this->cAgregarCatalogoRelacionEntreActores();
+        
+        $this->cAgregarCatalogoDeNacionalidades();
+        
+        $this->cAgregarCatalogoNivelEscolaridad();
+        
+        $this->cAgregarCatalogoTipoDeDireccion();
+		
+		$this->cAgregarCatalogoGradoInvolucramientoN1();
+		
+		$this->cAgregarCatalogoGradoInvolucramientoN2();
+		
+		$this->cAgregarCatalogoMotivoViaje();
         
     }
     

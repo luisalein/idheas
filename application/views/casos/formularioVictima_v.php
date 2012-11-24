@@ -29,7 +29,7 @@
 				</div>
 
 				<div class="twelve columns lineasLista" >
-					<?php if (isset($victimas)) {
+					<?php if ($victimas!="0") {
 						foreach ($victimas['victimas'] as $victima) { ?>
 							 <a href="<?=base_url(); ?>index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/<?=$victima['actorId']; ?>/0">
 							 	<div class="<?= $idVictima==($victima['victimaId']) ? "victimaSeleccionada" : "victimaNoSeleccionada" ;?>">

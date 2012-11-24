@@ -232,6 +232,7 @@ class Casos_m extends CI_Model {
 			}/* Fin foreach de derechoAfectado*/
 			
 			foreach ($datos['actos'] as $row) {
+				//print_r($row);
 				$this->db->select('*');
 				$this->db->from('victimas');
 				$this->db->where('actos_actoId', $row['actoId']);
@@ -241,12 +242,12 @@ class Casos_m extends CI_Model {
 					/* Pasa la consulta a un cadena */
 					foreach ($consulta->result_array() as $row2) {
 						$datos['actos'][$row['actoId']]['victimas'][$row2['victimaId']] = $row2;
-						
-						//print_r($datos['actos']['victimas']);
+
 						foreach ($datos['actos'] as $row3) {
+							
 							$this->db->select('*');
 							$this->db->from('perpetradores');
-							$this->db->where('victimas_victimaId', $row3['victimas'][$row['actoId']]['victimaId']);
+							$this->db->where('victimas_victimaId', $row3['victimas'][$row2['victimaId']]['victimaId']);
 							$consulta = $this->db->get();
 							
 							if ($consulta->num_rows() > 0){				
@@ -453,9 +454,14 @@ class Casos_m extends CI_Model {
 	 * */
 	
 	public function mEliminaFicha($fichaId){
-			
-		$this->db->where('fichaId', $fichaId);
 		
+		/*Eliminamos los registros asociados a una ficha */	
+		$this->db->where('fichas_fichaId', $fichaId);	
+		$this->db->delete('registro');
+			
+		/*Elimina la ficha asociada al $fichaId*/
+		$this->db->where('fichaId', $fichaId);
+	
 		if($this->db->delete('fichas')){
 		
 			/* Regresa la cadena al controlador*/
@@ -466,7 +472,7 @@ class Casos_m extends CI_Model {
 			$mensaje['error'] = $this->db->_error_message();
 			/* Regresa la cadena al controlador*/
         	return $mensaje;
-		}
+		}	
 		
 	}/*Fin de mEliminaFichas*/
 	
@@ -1453,6 +1459,7 @@ class Casos_m extends CI_Model {
 	}
 	
 	public function mEliminarRegistro($registroId){
+		
 		$this->db->where('registroId', $registroId);
 		
 		if($this->db->delete('registro')){
