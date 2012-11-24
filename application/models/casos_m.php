@@ -232,6 +232,7 @@ class Casos_m extends CI_Model {
 			}/* Fin foreach de derechoAfectado*/
 			
 			foreach ($datos['actos'] as $row) {
+				//print_r($row);
 				$this->db->select('*');
 				$this->db->from('victimas');
 				$this->db->where('actos_actoId', $row['actoId']);
@@ -241,9 +242,10 @@ class Casos_m extends CI_Model {
 					/* Pasa la consulta a un cadena */
 					foreach ($consulta->result_array() as $row2) {
 						$datos['actos'][$row['actoId']]['victimas'][$row2['victimaId']] = $row2;
-						
+						print_r($datos['actos']);
 						//print_r($datos['actos']['victimas']);
 						foreach ($datos['actos'] as $row3) {
+							echo"<pre>"; print_r($row3['victimas']); echo"</pre>";
 							$this->db->select('*');
 							$this->db->from('perpetradores');
 							$this->db->where('victimas_victimaId', $row3['victimas'][$row['actoId']]['victimaId']);
