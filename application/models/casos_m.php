@@ -245,10 +245,10 @@ class Casos_m extends CI_Model {
 						print_r($datos['actos']);
 						//print_r($datos['actos']['victimas']);
 						foreach ($datos['actos'] as $row3) {
-							echo"<pre>"; print_r($row3['victimas']); echo"</pre>";
+							
 							$this->db->select('*');
 							$this->db->from('perpetradores');
-							$this->db->where('victimas_victimaId', $row3['victimas'][$row['actoId']]['victimaId']);
+							$this->db->where('victimas_victimaId', $row3['victimas'][$row2['victimaId']]['victimaId']);
 							$consulta = $this->db->get();
 							
 							if ($consulta->num_rows() > 0){				
