@@ -54,6 +54,7 @@ class Agregar_catalogos_c extends CI_Controller {
 		
 		$this->cAgregarCatalogoMotivoViaje();
         
+		$this->cAgregarCatalogoActosDerechoAfectado();
     }
     
     /*
