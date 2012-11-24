@@ -388,13 +388,19 @@ class CasosVentanas_c extends CI_Controller {
 	
 	public function traerActos(){
 		
-		$nivel = $this->input->post("nivel");	
+		$id1 = $this->input->post("id1");	
 		
-		$antecesor = $this->input->post("antecesor");	
+		$id2 = $this->input->post("id2");
+		
+		$id3 = $this->input->post("id3");
+		
+		$id4 = $this->input->post("id4");	
+		
+		//$data = array('id'=>$id,'antecesor'=>$antecesor,'nivel'=>$nivel);
 		
 		$datos="";
 		
-		foreach($actos as $acto){
+		/*foreach($actos as $acto){
 			if(isset($acto['actoId'])){
 				$datos= $datos. '<li class="pestaniaCasos" >
 					<div  onclick="nombrarActo('.$acto['descripcion'].','.$acto['actoId'].','.$acto['notas'].','.$nivel.')">
@@ -403,7 +409,9 @@ class CasosVentanas_c extends CI_Controller {
 			}
 		}
 			
-		print_r($datos);
+		print_r($datos);*/
+		
+		echo $id1 .$id2 .$id3.$id4  ;
 		
 	}
 	
