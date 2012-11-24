@@ -13,17 +13,17 @@ class PruebasJulio_c extends CI_Controller
 	
 	function index() 
 	{	
-				   
 			$datos = array (
-							'tabla' => 'estadosCatalogo',
-							'campo'	=> 'paises_paisId',
-							'valor' => 51
-						);
-			   
-				   
+						1 => 1,
+						2 => 5,
+						3 => 8,
+						4 => 2
+						
+			);
+							   
 			echo 'Antes de entrar a la funcion....';
 			  						
-			$Data['datos']=$this->casos_m->mEliminaFicha(1);
+			$Data['datos']=$this->casos_m->mTraerActoDerechoAfectado($datos);
 			
 			echo 'Entro a la funcion.....';
 			
