@@ -41,9 +41,9 @@ function ventanaRelacionCasos(casoId, indice){
 	window.open(base+'index.php/casosVentanas_c/relacionCasos/'+casoId+'/'+indice+'/', 'Relacion casos', windowSizeArray);
 	};
 
-function ventanaVictimas(casoId, victimaId,ventana){
-	  var windowSizeArray = [ "width=770,height=700,scrollbars=yes" ];
-	window.open(base+'index.php/casos_c/formularioVictima_v/'+casoId+'/'+victimaId+'/'+ventana, 'Ventana victimas', windowSizeArray);
+function ventanaVictimas(casoId){
+	  var windowSizeArray = [ "width=900,height=700,scrollbars=yes" ];
+	window.open(base+'index.php/casos_c/mostrarVictimas/'+casoId+'/0/0', 'Ventana victimas', windowSizeArray);
 	};
 /******************************************/
 
@@ -248,11 +248,11 @@ function traerActos(id1,id2,id3,id4){
 	if(id1 != 'undefined')
 		var data = 'id1='+id1;
 	if(id2 != 'undefined')
-		var data = 'id1='+id1+'id2='+id2;
+		var data = 'id1='+id1+'&id2='+id2;
 	if(id3 != 'undefined')
-		var data = 'id1='+id1+'id2='+id2+'id3='+id3;
+		var data = 'id1='+id1+'&id2='+id2+'&id3='+id3;
 	if(id4 != 'undefined')
-		var data = 'id1='+id1+'id2='+id2+'id3='+id3+'id4='+id4;			
+		var data = 'id1='+id1+'&id2='+id2+'&id3='+id3+'&id4='+id4;			
 		
 	$.ajax({
 	    

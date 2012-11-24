@@ -12,24 +12,22 @@
         <!---Contenido de la pestaña Actor individual-->
         <div class="three columns lineasLista">
             <?php if(isset($is_actor_type)){ ?>
-                <div class="six columns">
+                <div class="<?= ($actorId>0) ? 'six columns' : 'twelve columns espacioSuperior' ;?>">
                 <form method="post" action="<?=base_url(); ?>index.php/actores_c/agregar_actor/<?=$is_actor_type; ?>">
-                <input type="submit" value="Agregar Actor" class="tiny button"/>
+                    <center><input type="submit" value="Agregar Actor" class="tiny button"/></center>
                 </form>
                 </div>
+                
                 <?php if(isset($actorId)){
                     if ( $actorId > 0) {
                      ?>
                         <div class="six columns">
-                            <form method="post" action="<?=base_url(); ?>index.php/actores_c/editar_actor/<?=$actorId; ?>/<?=$is_actor_type; ?>" >
-                                <input type="submit" value="Editar Actor" class="tiny button" />
-                            </form>
+                                <center><input type="button" value="Eliminar Actor" class="tiny button" name="<?=$actorId; ?>&<?=$is_actor_type; ?>" id="eliminarActor"/></center>
                         </div>
-                        <div class="twelve columns espacioSuperior">
-                            <div class="three columns"></div>
-                            <div class="six columns">
-                                <input type="button" value="Eliminar Actor" class="tiny button" name="<?=$actorId; ?>&<?=$is_actor_type; ?>" id="eliminarActor"/>
-                            </div>
+                        <div class="twelve columns">
+                            <form method="post" action="<?=base_url(); ?>index.php/actores_c/editar_actor/<?=$actorId; ?>/<?=$is_actor_type; ?>" >
+                                <center><input type="submit" value="Editar Actor" class="tiny button" /></center>
+                            </form>
                         </div>
                 <?php } } ?>
             <?php } 
