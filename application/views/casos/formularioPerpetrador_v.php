@@ -14,7 +14,8 @@
 
 			<fieldset>
 				<legend>Información general</legend>
-
+					<pre><?= print_r($perpetrador)?></pre>
+					<pre><?= print_r($victimas)?></pre>
 				<label>Perpetrador</label>
 
 			</fieldset>
