@@ -25,32 +25,37 @@
                                 <input type="submit" value="Editar Actor" class="tiny button" />
                             </form>
                         </div>
-                        <div class="three columns"></div>
-                        <div class="six columns">
-                            <input type="button" value="Eliminar Actor" class="tiny button" name="<?=$actorId; ?>&<?=$is_actor_type; ?>" id="eliminarActor"/>
+                        <div class="twelve columns espacioSuperior">
+                            <div class="three columns"></div>
+                            <div class="six columns">
+                                <input type="button" value="Eliminar Actor" class="tiny button" name="<?=$actorId; ?>&<?=$is_actor_type; ?>" id="eliminarActor"/>
+                            </div>
                         </div>
                 <?php } } ?>
             <?php } 
             else { ?>
-            <div clas="six columns">
-                <form method="post" action="<?=base_url(); ?>index.php/casos_c/agregar_caso">
-                    <input type="submit" value="Agregar Caso" class="tiny button" />
-                </form>
-            </div>
                 <?php if (isset($casoId)) {
                     if ($casoId>0) {?>
-                    <div clas="six columns">
-                       <form method="post" action="<?=base_url(); ?>index.php/casos_c/editarCaso/<?=$casoId; ?>">
-                            <input type="submit" class="tiny button" value="Editar Caso" />
-                       </form>
-                    <div><div class="three columns"></div>
-                    <div clas="six columns">
-                       <form method="post" >
-                       	 <input type="button" value="Eliminar Caso" class="tiny button"  name="<?=$casoId; ?>" id="eliminarCaso"/>	
-                       </form>
-                   </div>
+                        <div class="six columns">
+                           <form method="post" action="<?=base_url(); ?>index.php/casos_c/editarCaso/<?=$casoId; ?>">
+                                <input type="submit" class="tiny button" value="Editar Caso" />
+                           </form>
+                        </div>
+                        <div class="six columns">
+                           <form method="post" >
+                           	 <input type="button" value="Eliminar Caso" class="tiny button"  name="<?=$casoId; ?>" id="eliminarCaso"/>	
+                           </form>
+                       </div>
                      <?php }
                 }?>
+            <div class="twelve columns">
+                <div class="three columns"></div>
+                <div clas="six columns">
+                    <form method="post" action="<?=base_url(); ?>index.php/casos_c/agregar_caso">
+                        <input type="submit" value="Agregar Caso" class="tiny button" />
+                    </form>
+                </div>
+            </div>
             <?php } ?>
             <?=(isset($lista)) ? $lista : '' ;?> <!---Se llama a listaActores-->
         </div>

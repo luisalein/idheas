@@ -177,7 +177,7 @@
                                 <td>
                                     <div class="twelve columns">
                                         <div class="six columns">
-                                        <input type="button" class="tiny button"  value="Editar" onclick="nueva_relacion_a_a('<?=$idActor ?>' , 1 , '<?=$relacion['relacionActoresId']; ?>')" /></td>
+                                        <input type="button" class="tiny button"  value="Editar" onclick="nueva_relacion_a_a('<?=$idActor ?>' , 1 , '<?=$relacion['relacionActoresId']; ?>')" />
                                         </div>
                                         <div class="six columns">
                                             <form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarRelacionActor/<?=$relacion['relacionActoresId']."/".$relacion['actorRelacionadoId']; ?>" >
@@ -185,6 +185,7 @@
                                             </form>
                                         </div>
                                     </div>
+                                </td>
                             </tr>
                         <?php }
                         }
@@ -259,7 +260,7 @@
                                 if ($relacion['tipoRelacionIndividualColectivoId']==3) {
                                     ?><tr>
                                         <td><?=$datosActor['actores']['nombre'].' '.$datosActor['actores']['apellidosSiglas']; ?></td>
-                                        <td><?=$catalogos['relacionActoresCatalogo'][$relacion['tipoRelacionId']]['Nivel2']; ?></td>
+                                        <td><?=$catalogos['relacionActoresCatalogo'][$relacion['tipoRelacionId']]['nombre']; ?></td>
                                         <?php if ($relacion['actorRelacionadoId']>0) {
                                            $nombreRelacionado=$catalogos['listaTodosActores'][$relacion['actorRelacionadoId']]['nombre'].' '.$catalogos['listaTodosActores'][$relacion['actorRelacionadoId']]['apellidosSiglas']; 
                                         }
@@ -311,7 +312,7 @@
                                 if ($citas['datosCitas']['tipoRelacionIndividualColectivoId']==3) {?>
                                     <tr>
                                         <td><?=$catalogos['listaTodosActores'][$citas['datosCitas']['actores_actorId']]['nombre']." ".$catalogos['listaTodosActores'][$citas['datosCitas']['actores_actorId']]['apellidosSiglas']?></td>
-                                        <td><?=$catalogos['relacionActoresCatalogo'][$citas['datosCitas']['tipoRelacionId']]['Nivel2']; ?></td>
+                                        <td><?=$catalogos['relacionActoresCatalogo'][$citas['datosCitas']['tipoRelacionId']]['nombre']; ?></td>
                                         <td><?=$datosActor['actores']['nombre'].' '.$datosActor['actores']['apellidosSiglas']; ?></td>
                                         <td><?=$citas['datosCitas']['fechaInicial']; ?></td>
                                         <td><?=$citas['datosCitas']['fechaTermino']; ?></td>

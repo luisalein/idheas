@@ -29,7 +29,7 @@
 				</div>
 
 				<div class="twelve columns lineasLista" >
-					<?php if (isset($victimas)) {
+					<?php if (empty($victimas)) {
 						foreach ($victimas['victimas'] as $victima) { ?>
 							 <a href="<?=base_url(); ?>index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/<?=$victima['victimaId']; ?>/0">
 							 	<div class="<?= $idVictima==($victima['victimaId']) ? "victimaSeleccionada" : "victimaNoSeleccionada" ;?>">
@@ -41,69 +41,72 @@
 					} ?>
 				</div>
 			</div>	<!--Termina lista de victimas-->
+
 <!-- --------Comienza Formulario --------- -->
 			<div class="eight columns"><!--Información general de la victima-->
 				<div class="twelve columns">
-				<fieldset>
-					<legend>Información general</legend>
-						<label>Victima</label><br/>
-						<div class="twelve columns">
+				<form action="<?= ($idVictima>0) ? (base_url().'index.php/casos_c/editarVictima/'.$idActo.'/'.$victimas['victimas'][$idVictima]['victimaId']) : (base_url().'index.php/casos_c/guardarVictima/'.$idActo) ;?>" method="post" id="CasoForm" name="CasoForm"> 
+					<fieldset>
+						<legend>Información general</legend>
+							<label>Victima</label><br/>
+							<div class="twelve columns">
 
-								<input type="hidden"  id="nameSeleccionado"  value="victimas_actorId"><!--Este campo me da el name al que hay modificar el value al agregar acto(SIRVE PARA AGREGAR ACTOR)-->
+									<input type="hidden"  id="nameSeleccionado"  value="victimas_actorId"><!--Este campo me da el name al que hay modificar el value al agregar acto(SIRVE PARA AGREGAR ACTOR)-->
 
-								<input type="hidden"  id="ValoresBotonCancelar" value="<?= (isset($victimas['victimas'][$idVictima]['actorId'])&&($victimas['victimas'][$idVictima]['actorId']!=0)) ? $victimas['victimas'][$idVictima]['actorId']."*".$victimas['victimas'][$idVictima]['nombre']." ".$victimas['victimas'][$idVictima]['apellidosSiglas']."*".$victimas['victimas'][$idVictima]['foto'] : "" ;  ?>"><!--Este campo da los valores en caso de que se cancele la ventana agregar actor-->
+									<input type="hidden"  id="ValoresBotonCancelar" value="<?= (isset($victimas['victimas'][$idVictima]['actorId'])&&($victimas['victimas'][$idVictima]['actorId']!=0)) ? $victimas['victimas'][$idVictima]['actorId']."*".$victimas['victimas'][$idVictima]['nombre']." ".$victimas['victimas'][$idVictima]['apellidosSiglas']."*".$victimas['victimas'][$idVictima]['foto'] : "" ;  ?>"><!--Este campo da los valores en caso de que se cancele la ventana agregar actor-->
 
-								<input type="hidden" name="victimas_actorId" id="victimas_actorId" value="<?= (isset($victimas['victimas'][$idVictima]['actorId'])) ? $victimas['victimas'][$idVictima]['actorId'] : " " ;?>" >
+									<input type="hidden" name="victimas_actorId" id="victimas_actorId" value="<?= (isset($victimas['victimas'][$idVictima]['actorId'])) ? $victimas['victimas'][$idVictima]['actorId'] : " " ;?>" >
 
-							
-							<div id="vistaActorRelacionado"  >
+								<div id="vistaActorRelacionado"  >
 
-				                <?php if(isset($victimas['victimas'][$idVictima])){ ?>    
+					                <?php if(isset($victimas['victimas'][$idVictima])){ ?>    
 
-				                <input type="hidden" value="<?=$idVictima; ?>" name="victimas_victimaId" />
+					                <input type="hidden" value="<?=$idVictima; ?>" name="victimas_victimaId" />
 
-				                <img class="three columns" src="<?=base_url().$victimas['victimas'][$idVictima]['foto']; ?>" />
-								<div class="nine columns"><h5><?= $victimas['victimas'][$idVictima]['nombre']." ".$victimas['victimas'][$idVictima]['apellidosSiglas'] ?></h5></div> 
-				                <?php }?>
+					                <img class="three columns" style="width:90px !important; height:70px !important;" src="<?=base_url().$victimas['victimas'][$idVictima]['foto']; ?>" />
+									<div class="nine columns"><h5><?= $victimas['victimas'][$idVictima]['nombre']." ".$victimas['victimas'][$idVictima]['apellidosSiglas'] ?></h5></div> 
+					                <?php }?>
+
+								</div>
+
+								<input type="button" class="small button" onclick="seleccionarActorIndividual()" value="Agregar actor">
+								<input type="button" class="small button" value="Eliminar actor">
+
+							</div>
+							<div class="twelve columns"> 
+								<br /><label>Estado</label>	<br />
+								<select name="victimas_estatusVictimaId" id="victimas_estatusVictimaId">
+									<option></option>
+									<?php if (isset($victimas['victimas'][$idVictima]['estatusVictimaId']) ){
+										foreach ($catalogos['estatusVictimaCatalogo'] as $estatus) { ?>
+										<option value="<?= $estatus['estatusVictimaId'];?>" onclick="notasCatalogos('<?= $estatus['notas']; ?>')" <?= ($victimas['victimas'][$idVictima]['estatusVictimaId']==$estatus['estatusVictimaId']) ? "selected=selected" : "" ;?> ><?= $estatus['descripcion'];?></option>
+									<?php }
+									}else{ 
+										foreach ($catalogos['estatusVictimaCatalogo'] as $estatus) { ?>
+										<option value="<?= $estatus['estatusVictimaId'];?>" onclick="notasCatalogos('<?= $estatus['notas']; ?>')" ><?= $estatus['descripcion'];?></option>
+										<?php } 
+									}?>
+								</select>
+							</div>
+
+							<div class="twelve columns">
+								<br /><label>Comentarios sobre víctimas y perpetradores</label>	<br />
+									 <textarea  placeholder="Escribir algun comentario"  rows="10" cols="100" name="victimas_comentarios" id="victimas_comentarios"  wrap="hard" >
+									<?= (isset($victimas['victimas'][$idVictima]['comentarios'])) ? $victimas['victimas'][$idVictima]['comentarios'] : "" ; ?>
+						            </textarea>
+							</div>
+
+							<div class="twelve columns espacio">
+								<br/><label>Perpetradores</label> <br/>
+								<div class="two columns push-ten" >
+									<input class="small button" value="nuevo perpetrador" type="button">
+								</div>
 
 							</div>
 
-							<input type="button" class="small button" onclick="seleccionarActorIndividual()" value="Agregar actor">
-							<input type="button" class="small button" value="Eliminar actor">
-
-						</div>
-						<div class="twelve columns"> 
-							<br /><label>Estado</label>	<br />
-							<select name="victimas_estatusVictimaId" id="victimas_estatusVictimaId">
-								<option></option>
-								<?php if (isset($victimas['victimas'][$idVictima]['estatusVictimaId']) ){
-									foreach ($catalogos['estatusVictimaCatalogo'] as $estatus) { ?>
-									<option value="<?= $estatus['estatusVictimaId'];?>" onclick="notasCatalogos('<?= $estatus['notas']; ?>')" <?= ($victimas['victimas'][$idVictima]['estatusVictimaId']==$estatus['estatusVictimaId']) ? "selected=selected" : "" ;?> ><?= $estatus['descripcion'];?></option>
-								<?php }
-								}else{ 
-									foreach ($catalogos['estatusVictimaCatalogo'] as $estatus) { ?>
-									<option value="<?= $estatus['estatusVictimaId'];?>" onclick="notasCatalogos('<?= $estatus['notas']; ?>')" ><?= $estatus['descripcion'];?></option>
-									<?php } 
-								}?>
-							</select>
-						</div>
-
-						<div class="twelve columns">
-							<br /><label>Comentarios sobre víctimas y perpetradores</label>	<br />
-								 <textarea  placeholder="Escribir algun comentario"  rows="10" cols="100" name="victmas_comentarios" id="victmas_comentarios" wrap="hard" >
-								<?= (isset($victimas['victimas'][$idVictima]['comentarios'])) ? $victimas['victimas'][$idVictima]['comentarios'] : "" ; ?>
-					            </textarea>
-						</div>
-
-						<div class="twelve columns espacio">
-							<br/><label>Perpetradores</label> <br/>
-							<div class="two columns push-ten" >
-								<input class="small button" value="nuevo perpetrador" type="button">
-							</div>
-
-						</div>
-
-				</fieldset>
+					</fieldset>
+					<input type="submit" value="Guardar" class="small button"/>
+				</form>	
 				</div>
 			</div><!--Termina información general de la victima-->
 

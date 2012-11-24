@@ -19,11 +19,6 @@
 
 	<div class="twelve columns">
 		<br/>
-		<label for="TipoRel">Notas tipo de relación</label>
-		<br />
-		<div id="notasTipoDeRelacion" class="twelve columns"></div>
-		<div id="tipoRelNotas" class="twelve columns"></div>
-		<br />
 		<label for="TipoRel">Tipo de relación</label>
 			<?php 
 			if($catalogos['listaTodosActores'][$actorId]['tipoActorId']<3){ ?>
@@ -75,6 +70,12 @@
 					</ol>
 			</div>
 			<?php }?>
+			
+		<br />
+		<label for="TipoRel">Notas tipo de relación</label>
+		<br />
+		<div id="notasTipoDeRelacion" class="twelve columns"></div>
+		<div id="tipoRelNotas" class="twelve columns"></div>
 	<br/><br/>
 	</div>
 

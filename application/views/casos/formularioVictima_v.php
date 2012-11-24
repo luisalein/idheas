@@ -31,9 +31,9 @@
 				<div class="twelve columns lineasLista" >
 					<?php if (isset($victimas)) {
 						foreach ($victimas['victimas'] as $victima) { ?>
-							 <a href="<?=base_url(); ?>index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/<?=$victima['victimaId']; ?>/0">
+							 <a href="<?=base_url(); ?>index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/<?=$victima['actorId']; ?>/0">
 							 	<div class="<?= $idVictima==($victima['victimaId']) ? "victimaSeleccionada" : "victimaNoSeleccionada" ;?>">
-									<img class="four columns" style="width:90px !important; height:70px !important;" src="<?=base_url().$victima["foto"]; ?>" />
+									<img class="four columns " style="width:90px !important; height:70px !important;" src="<?=base_url().$victima["foto"]; ?>" />
 									<span class="eight columns"><?= $victima['nombre']." ".$victima['apellidosSiglas']?></span>
 								</div>
 							</a>	
@@ -47,18 +47,18 @@
 					<legend>Información general</legend>
 						<label>Victima</label><br/>
 						<div class="twelve columns">
-							<img class="three columns"src="<?= base_url().$victimas['victimas'][$idVictima]['foto'] ?>"/>
-							<div class="nine columns"> <?= $victimas['victimas'][$idVictima]['nombre']." ".$victimas['victimas'][$idVictima]['apellidosSiglas'] ?></div> 
+							<img class="three columns"src="<?= ($idVictima>0) ? base_url().$victimas['victimas'][$idVictima]['foto'] : " " ; ?>"/>
+							<div class="nine columns"> <?= ($idVictima>0) ? $victimas['victimas'][$idVictima]['nombre']." ".$victimas['victimas'][$idVictima]['apellidosSiglas'] : " " ; ?></div> 
 						</div>
 						<div class="twelve columns"> 
 							<br /><label>Estado</label>	<br />
-							<?=print_r($catalogos['estatusVictimaCatalogo'][$victimas['victimas'][$idVictima]['estatusVictimaId']]['descripcion'])?><br />
+							<?= ($idVictima>0) ? $catalogos['estatusVictimaCatalogo'][$victimas['victimas'][$idVictima]['estatusVictimaId']]['descripcion'] : "" ;?><br />
 						</div>
 
 						<div class="twelve columns">
 							<br /><label>Comentarios sobre víctimas y perpetradores</label>	<br />
 							<div class="panel espacio">
-								<?= $victimas['victimas'][$idVictima]['comentarios']?>
+								<?= ($idVictima>0) ? $victimas['victimas'][$idVictima]['comentarios'] : "" ; ?>
 							</div>
 						</div>
 
