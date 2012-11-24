@@ -445,6 +445,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`fichas` (
   `fichaId` INT NOT NULL AUTO_INCREMENT ,
+  `clave` INT NULL ,
   `titulo` VARCHAR(100) NULL ,
   `fecha` DATE NULL ,
   `comentarios` VARCHAR(3000) NULL ,
@@ -834,7 +835,7 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`actosN3Catalogo` (
   `descripcion` VARCHAR(100) NULL ,
   `notas` VARCHAR(3000) NULL ,
   `actosN2Catalogo_actoN2Id` INT NOT NULL ,
-  `derechosAfectadosN3Catalogo_derechoAfectadoN3Id` INT NULL ,
+  `derechosAfectadosN3Catalogo_derechoAfectadoN3Id` INT NULL DEFAULT NULL ,
   PRIMARY KEY (`actoN3Id`) ,
   INDEX `fk_actosN3Catalogo_actosN2Catalogo1_idx` (`actosN2Catalogo_actoN2Id` ASC) ,
   INDEX `fk_actosN3Catalogo_derechosAfectadosN3Catalogo1` (`derechosAfectadosN3Catalogo_derechoAfectadoN3Id` ASC) ,
@@ -846,7 +847,7 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`actosN3Catalogo` (
   CONSTRAINT `fk_actosN3Catalogo_derechosAfectadosN3Catalogo1`
     FOREIGN KEY (`derechosAfectadosN3Catalogo_derechoAfectadoN3Id` )
     REFERENCES `idheasIkari`.`derechosAfectadosN3Catalogo` (`derechoAfectadoN3Id` )
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
