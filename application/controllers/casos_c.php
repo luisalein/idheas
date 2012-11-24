@@ -392,6 +392,8 @@ class Casos_c extends CI_Controller {
 		
 		$datos['catalogos'] = $this-> traer_catalogos();
 		
+		 $datos['head'] = $this->load->view('general/head_v', $datos, true);
+		
 		if($idPerpetrador != 0){
 			
 			$datos['action'] = base_url().'index.php/casos_c/editarPerpetrador/'.$idActo.'/'.$idVictima.'/'.$idPerpetrador;
