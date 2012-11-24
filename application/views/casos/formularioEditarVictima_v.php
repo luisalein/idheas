@@ -29,10 +29,10 @@
 				</div>
 
 				<div class="twelve columns lineasLista" >
-					<?php if (empty($victimas)) {
+					<?php if ($victimas!=0) {
 						foreach ($victimas['victimas'] as $victima) { ?>
 							 <a href="<?=base_url(); ?>index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/<?=$victima['victimaId']; ?>/0">
-							 	<div class="<?= $idVictima==($victima['victimaId']) ? "victimaSeleccionada" : "victimaNoSeleccionada" ;?>">
+							 	<div class="<?= $idVictima==($victima['actorId']) ? "victimaSeleccionada" : "victimaNoSeleccionada" ;?>">
 									<img class="four columns" style="width:90px !important; height:70px !important;" src="<?=base_url().$victima["foto"]; ?>" />
 									<span class="eight columns"><?= $victima['nombre']." ".$victima['apellidosSiglas']?></span>
 								</div>
@@ -63,8 +63,8 @@
 
 					                <input type="hidden" value="<?=$idVictima; ?>" name="victimas_victimaId" />
 
-					                <img class="three columns" style="width:90px !important; height:70px !important;" src="<?=base_url().$victimas['victimas'][$idVictima]['foto']; ?>" />
-									<div class="nine columns"><h5><?= $victimas['victimas'][$idVictima]['nombre']." ".$victimas['victimas'][$idVictima]['apellidosSiglas'] ?></h5></div> 
+					                <img class="three columns" style="width:90px !important; height:70px !important;" src="<?= (isset($victimas['victimas'][$idVictima]['foto'])) ? base_url().$victimas['victimas'][$idVictima]['foto'] : " " ; ?>" />
+									<div class="nine columns"><h5><?=(isset($victimas['victimas'][$idVictima]['nombre'])) ? $victimas['victimas'][$idVictima]['nombre']." "	 : " " ; ?><?= (isset($victimas['victimas'][$idVictima]['apellidosSiglas'])) ? $victimas['victimas'][$idVictima]['apellidosSiglas'] : "" ;?></h5></div> 
 					                <?php }?>
 
 								</div>
