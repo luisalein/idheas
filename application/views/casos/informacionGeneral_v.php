@@ -27,7 +27,7 @@
 	  	</div>
 	  	
 	  	<div id="subPestanias" data-collapse>
-	  		<h2 id="pestaniaLugares">Lugares</h2>
+	  		<h2>Lugares</h2>
 	  		<div>
 	  			<div>
 	  				<!------------------------------ Comienza tabla lugare-------------------------------------->
@@ -97,7 +97,7 @@
 	  	</div><!--fin acordeon observaciones-->
 	  	
 	  	<div id="subPestanias" data-collapse>
-	  		<h2 id="pestaniaSegumientoCaso" class="open">Seguimiento del caso</h2>
+	  		<h2>Seguimiento del caso</h2>
 	  		<div>
 	  			<div>
 	  				<table class="twelve columns">
