@@ -40,6 +40,11 @@ function ventanaRelacionCasos(casoId, indice){
 	  var windowSizeArray = [ "width=770,height=700,scrollbars=yes" ];
 	window.open(base+'index.php/casosVentanas_c/relacionCasos/'+casoId+'/'+indice+'/', 'Relacion casos', windowSizeArray);
 	};
+
+function ventanaVictimas(casoId, victimaId,ventana){
+	  var windowSizeArray = [ "width=770,height=700,scrollbars=yes" ];
+	window.open(base+'index.php/casos_c/formularioVictima_v/'+casoId+'/'+victimaId+'/'+ventana, 'Ventana victimas', windowSizeArray);
+	};
 /******************************************/
 
 

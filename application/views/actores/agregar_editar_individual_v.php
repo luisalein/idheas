@@ -3,15 +3,17 @@
 
     <div class="three columns">
                 <?php if(isset($datosActor['actores']['foto'])){ ?>    
-
-                <input type="hidden" value="<?=$actorId; ?>" name="actores_actorId" />
-                <img class="twelve columns" src="<?=base_url().$datosActor['actores']['foto']; ?>" />
+                    <div id="espacioFoto">
+                        <input type="hidden" value="<?=$actorId; ?>" name="actores_actorId" />
+                        <img class="twelve columns" src="<?=base_url().$datosActor['actores']['foto']; ?>" />
+                    </div>
                 <?php }?>
 
 
                 <label>Foto </label>
                 <input name="archivo" type="file" size="10" accept="image/*"/>
-                <input type="hidden" <?= (isset($datosActor['actores']['foto'])) ? 'value="'.$datosActor['actores']['foto'].'"' : 'value=""' ;?> name="actores_foto" />
+                <input type="hidden" <?= (isset($datosActor['actores']['foto'])) ? 'value="'.$datosActor['actores']['foto'].'"' : 'value=""' ;?> name="actores_foto" id="actores_foto" />
+                <input type="button" class="small button" value="Eliminar Foto" onclick="eliminarFoto()">
                
     </div>
 
@@ -120,10 +122,10 @@
                             <option></option>
                             <?php if(isset($datosActor['infoGralActor']['gruposIndigenas_grupoIndigenaId'])){
                             foreach($catalogos['gruposIndigenasCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
-                            <option value="<?=$item['grupoIndigenaId']?>" onclick="notasCatalogos('<?=$item['notas']; ?>','infoGralActor_gruposIndigenas_grupoIndigenaId','1')" <?=($datosActor['infoGralActor']['gruposIndigenas_grupoIndigenaId'] == $item['grupoIndigenaId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
+                            <option value="<?=$item['grupoIndigenaId']?>" onclick="notasCatalogos('<?=$item['notas']; ?>','infoGralActor_gruposIndigenas_grupoIndigenaId','2')" <?=($datosActor['infoGralActor']['gruposIndigenas_grupoIndigenaId'] == $item['grupoIndigenaId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
                             <?php endforeach; } else { ?>
                             <?php foreach($catalogos['gruposIndigenasCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
-                            <option  onclick="notasCatalogos('<?=$item['notas']; ?>','infoGralActor_gruposIndigenas_grupoIndigenaId','1')" value="<?=$item['grupoIndigenaId']; ?>"><?=$item['descripcion']; ?></option>
+                            <option  onclick="notasCatalogos('<?=$item['notas']; ?>','infoGralActor_gruposIndigenas_grupoIndigenaId','2')" value="<?=$item['grupoIndigenaId']; ?>"><?=$item['descripcion']; ?></option>
                             <?php endforeach; } ?>
                         </select>
                         <div id="notasinfoGralActor_gruposIndigenas_grupoIndigenaId"> </div>
@@ -152,13 +154,13 @@
                     <?php if(isset($datosActor['infoGralActor']['ocupacionesCatalogo_ultimaOcupacionId'])){
                         foreach($catalogos['ocupacionesCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
                             <?php if($item['tipoActorId'] == 1){ ?>
-                                    <option onclick="notasCatalogos('<?=$item['notas']; ?>','infoGralActor_ocupacionesCatalogo_ultimaOcupacionId','1')" value="<?=$item['ocupacionId']?>" <?=($datosActor['infoGralActor']['ocupacionesCatalogo_ultimaOcupacionId'] == $item['ocupacionId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
+                                    <option onclick="notasCatalogos('<?=$item['notas']; ?>','infoGralActor_ocupacionesCatalogo_ultimaOcupacionId','2')" value="<?=$item['ocupacionId']?>" <?=($datosActor['infoGralActor']['ocupacionesCatalogo_ultimaOcupacionId'] == $item['ocupacionId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
                                  <?php } ?>
                         <?php endforeach; } 
                         else { ?>
                             <?php foreach($catalogos['ocupacionesCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
                                 <?php if($item['tipoActorId'] == 1){ ?>
-                                    <option onclick="notasCatalogos('<?=$item['notas']; ?>','infoGralActor_ocupacionesCatalogo_ultimaOcupacionId','1')" value="<?=$item['ocupacionId']; ?>"><?=$item['descripcion']; ?></option>
+                                    <option onclick="notasCatalogos('<?=$item['notas']; ?>','infoGralActor_ocupacionesCatalogo_ultimaOcupacionId','2')" value="<?=$item['ocupacionId']; ?>"><?=$item['descripcion']; ?></option>
                                 <?php } ?>
                     <?php endforeach; } ?>
                 </select><span id="notasinfoGralActor_ocupacionesCatalogo_ultimaOcupacionId"></span>
@@ -285,7 +287,7 @@
         <div class="row espacioInferior espacioSuperior">
 
                 <input class="medium button" type="submit" value="Guardar" style="margin-left: 340px;" />
-                <input class="medium button" type="reset" value="Cancelar" onclick="pagInicial()" style="margin-left: 40px;"/>
+                <a href="<?=base_url(); ?>index.php/actores_c/mostrar_actor/<?= (isset($actorId)) ? $actorId : "0" ;?>/2" class="medium button">Cancelar</a>
         </div>
     </div>
 </form>
@@ -336,10 +338,17 @@
                                             <td><?=$nombreRelacionado?></td>
                                             <td><?=$relacion['fechaInicial']; ?></td>
                                             <td><?=$relacion['fechaTermino']; ?></td>
-                                            <td><input type="button" class="tiny button"  value="Editar" onclick="nueva_relacion_a_a('<?=$idActor ?>', 1 , '<?=$relacion['relacionActoresId']; ?>')" />
-                                                <form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarRelacionActor/<?=$relacion['relacionActoresId']."/".$relacion['actorRelacionadoId'].$datosActor['actores']['actorId'].'/'.$datosActor['actores']['tipoActorId']; ?>" >
-                                                    <input type="submit" value="Elminar" class="tiny button" />
-                                                </form>
+                                            <td>
+                                                <div class="twelve columns">
+                                                    <div class="six columns">
+                                                    <input type="button" class="tiny button"  value="Editar" onclick="nueva_relacion_a_a('<?=$idActor ?>', 1 , '<?=$relacion['relacionActoresId']; ?>')" />
+                                                    </div>
+                                                    <div class="six columns">
+                                                    <form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarRelacionActor/<?=$relacion['relacionActoresId']."/".$relacion['actorRelacionadoId'].$datosActor['actores']['actorId'].'/'.$datosActor['actores']['tipoActorId']; ?>" >
+                                                        <input type="submit" value="Elminar" class="tiny button" />
+                                                    </form>
+                                                    </div>
+                                                </div>
                                             </td>
                                         </tr>
                                     <?php }
@@ -424,10 +433,17 @@
                                         <td><?=$nombreRelacionado?></td>
                                         <td><?=$relacion['fechaInicial']; ?></td>
                                         <td><?=$relacion['fechaTermino']; ?></td>
-                                        <td><input type="button" class="tiny button"  value="Editar" onclick="nueva_relacion_a_Col('<?=$idActor ?>',1, '<?=$relacion['relacionActoresId']; ?>')" />
-                                            <form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarRelacionActor/<?=$relacion['relacionActoresId']."/".$relacion['actorRelacionadoId']; ?>" >
+                                        <td>
+                                            <div class="twelve columns">
+                                            <div class="six columns">
+                                            <input type="button" class="tiny button"  value="Editar" onclick="nueva_relacion_a_Col('<?=$idActor ?>',1, '<?=$relacion['relacionActoresId']; ?>')"/>
+                                            </div>
+                                            <div class="six columns">
+                                            <form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarRelacionActor/<?=$relacion['relacionActoresId']."/".$relacion['actorRelacionadoId']; ?>/<?= $actorId?>/1" />
                                                 <input type="submit" value="Elminar" class="tiny button" />
                                             </form>
+                                            </div>
+                                            </div>
                                         </td>
                                     </tr><?php
                                 }

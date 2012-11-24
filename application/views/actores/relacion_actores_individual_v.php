@@ -19,11 +19,6 @@
 
 	<div class="twelve columns">
 		<br/>
-		<label for="TipoRel">Notas tipo de relación</label>
-		<br />
-		<div id="notasTipoDeRelacion" class="twelve columns"></div>
-		<div id="tipoRelNotas" class="twelve columns"></div>
-		<br />
 		<label for="TipoRel">Tipo de relación</label>
 			<?php 
 			if($catalogos['listaTodosActores'][$actorId]['tipoActorId']<3){ ?>
@@ -75,10 +70,17 @@
 					</ol>
 			</div>
 			<?php }?>
+			
+		<br />
+		<label for="TipoRel">Notas tipo de relación</label>
+		<br />
+		<div id="notasTipoDeRelacion" class="twelve columns"></div>
+		<div id="tipoRelNotas" class="twelve columns"></div>
 	<br/><br/>
 	</div>
 
 	<br /><br />
+	<div class="twelve columns">
 	<label for="PerRelacionada">Persona Relacionada</label><br />
 	<div id="vistaActorRelacionado"  >
 	<?php if (isset($relaciones['actorRelacionadoId'])) {?> 
@@ -90,7 +92,7 @@
 		<input type="button" class="small button" onclick="seleccionarActorIndividual()" value="Agregar actor">
 		<input type="button" class="small button" value="Eliminar actor">
 	<br/>
-
+	</div>
 	<div class="twelve columns">
 
 		<div class="six columns" >

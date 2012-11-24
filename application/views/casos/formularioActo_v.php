@@ -246,7 +246,7 @@
 				  
 			</fieldset>
 			<br/>
-			<input class="medium button" type="button" value="Agregar víctima" onclick="listaVictimas()"/>
+			<input class="medium button" type="button" value="Agregar víctima" onclick="ventanaVictimas('<?=$casoId;?>',0,0)"/>
 			<br/>
 			<br/>
 			<input class="medium button" type="submit" value="Guardar"/>

@@ -2,7 +2,6 @@
 	<?php if(isset($datosActor['actores'])){?>
     <img src="<?=base_url().$datosActor['actores']['foto']; ?>" class="foto"/>
     <br />
-    <?=$datosActor['actores']['nombre'].' '.$datosActor['actores']['apellidosSiglas']; ?>
     <?php }?>
 </div>
 
@@ -178,10 +177,17 @@
 		                                    <td><?=$nombreRelacionado?></td>
 		                                    <td><?=$relacion['fechaInicial']; ?></td>
 		                                    <td><?=$relacion['fechaTermino']; ?></td>
-		                                    <td><input type="button" class="tiny button"  value="Editar" onclick="nueva_relacion_a_a('<?=$idActor ?>', 1 , '<?=$relacion['relacionActoresId']; ?>')" />
-							                    <form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarRelacionActor/<?=$relacion['relacionActoresId']."/".$relacion['actorRelacionadoId'].$datosActor['actores']['actorId'].'/'.$datosActor['actores']['tipoActorId']; ?>" >
-							                        <input type="submit" value="Elminar" class="tiny button" />
-							                    </form>
+		                                    <td>
+		                                    	<div class="twleve columns">
+			                                    	<div class="six columns">
+			                                    	<input type="button" class="tiny button"  value="Editar" onclick="nueva_relacion_a_a('<?=$idActor ?>', 1 , '<?=$relacion['relacionActoresId']; ?>')" />
+			                                    	</div>
+			                                    	<div class="six columns">
+								                    <form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarRelacionActor/<?=$relacion['relacionActoresId']."/".$relacion['actorRelacionadoId'].$datosActor['actores']['actorId'].'/'.$datosActor['actores']['tipoActorId']; ?>" >
+								                        <input type="submit" value="Elminar" class="tiny button" />
+								                    </form>
+								                	</div>
+							                	</div>
 		                                    </td>
 		                                </tr>
 		                            <?php }
@@ -266,10 +272,17 @@
 		                                <td><?=$nombreRelacionado?></td>
 		                                <td><?=$relacion['fechaInicial']; ?></td>
 		                                <td><?=$relacion['fechaTermino']; ?></td>
-		                                <td><input type="button" class="tiny button"  value="Editar" onclick="nueva_relacion_a_Col('<?=$idActor ?>',1, '<?=$relacion['relacionActoresId']; ?>')" />
-						                    <form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarRelacionActor/<?=$relacion['relacionActoresId']."/".$relacion['actorRelacionadoId']; ?>" >
-						                        <input type="submit" value="Elminar" class="tiny button" />
-						                    </form>
+		                                <td>
+		                                	<div class="twelve columns">
+			                                	<div class="six columns">
+			                                	<input type="button" class="tiny button"  value="Editar" onclick="nueva_relacion_a_Col('<?=$idActor ?>',1, '<?=$relacion['relacionActoresId']; ?>')" />
+			                                	</div>
+			                                	<div class="six columns">
+							                    <form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarRelacionActor/<?=$relacion['relacionActoresId']."/".$relacion['actorRelacionadoId']; ?>" >
+							                        <input type="submit" value="Elminar" class="tiny button" />
+							                    </form>
+							                    </div>
+						                	</div>
 		                                </td>
 		                            </tr><?php
 		                        }
