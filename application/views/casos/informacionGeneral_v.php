@@ -119,9 +119,13 @@
 			                <td> <span id="infoCaso_titulo"><?=(isset($seguimiento['fecha'])) ? $seguimiento['fecha'] : ''; ?></span></td>
 			                <td>
 			                	<ul>
-			                		<?php foreach($seguimiento['registros'] as $registro):?>
-			                			<li><input type="button" onclick="eliminarRegistro(<?=$seguimiento['fichaId']?>,<?=$registro['registroId']?>)" /><a href="<?=base_url().$registro['ruta']?>"><?=$registro['nombreRegistro']?></a></li>
-			                		<?php endforeach;?>
+			                		<?php if(isset($seguimiento['registros'])):?>
+				                		<?php foreach($seguimiento['registros'] as $registro):?>
+				                			<li><input type="button" class="tiny button"  value="x" style="margin-left: -35px; margin-bottom: 5px;" onclick="eliminarRegistro(<?=$registro['registroId']?>,<?=$casoId; ?>)" />
+				                				<a style="margin-left: 5px;" href="<?=base_url().$registro['ruta']?>"><?=$registro['nombreRegistro']?></a>
+				                			</li>
+				                		<?php endforeach;?>
+			                		<?php endif;?>
 			                	</ul>
 			                </td>
 			                
