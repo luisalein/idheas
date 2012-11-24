@@ -9,15 +9,19 @@
 			<div class="four columns"> 	<!--Lista de victimas-->
 
 					<div class="twelve columns espacioSuperior">
-						<div class="four columns">
+						<div class="six columns">
 							<form action="<?= base_url(); ?>index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/0/1" method="post">
-								<input class="small button" value="Nueva víctima" type="submit">
+								<center><input class="small button" value="Nueva víctima" type="submit"></center>
 							</form>
 						</div>
-						<div class="five columns"><input class="small button" value="Eliminar víctima" type="button"></div>
-						<div class="three columns">
+						<div class="six columns">
+							<form action="<?= base_url(); ?>index.php/casos_c/eliminarVictima/<?=$idActo; ?>/<?=$victimas['victimas'][$idVictima]['victimaId']; ?>">
+							<center><input class="small button" value="Eliminar víctima" type="submit"></center>
+							</form>
+						</div>
+						<div class="twelve columns">
 							<form action="http://localhost/idheas/index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/<?=$idVictima; ?>/1" method="post">
-								<input class="small button" value="Editar víctima" type="submit">
+								<center><input class="small button" value="Editar víctima" type="submit"></center>
 							</form>
 						</div>
 					</div>
@@ -41,7 +45,7 @@
 				</div>
 			</div>	<!--Termina lista de victimas-->
 
-<!-- --------Comienza Formulario --------- -->
+			<!-- --------Comienza Formulario --------- -->
 			<div class="eight columns"><!--Información general de la victima-->
 				<div class="twelve columns">
 				<form action="<?= ($idVictima>0) ? (base_url().'index.php/casos_c/editarVictima/'.$idActo.'/'.$victimas['victimas'][$idVictima]['victimaId']) : (base_url().'index.php/casos_c/guardarVictima/'.$idActo) ;?>" method="post" id="CasoForm" name="CasoForm"> 

@@ -27,7 +27,7 @@
 	  	</div>
 	  	
 	  	<div id="subPestanias" data-collapse>
-	  		<h2>Lugares</h2>
+	  		<h2 id="pestaniaLugares">Lugares</h2>
 	  		<div>
 	  			<div>
 	  				<!------------------------------ Comienza tabla lugare-------------------------------------->
@@ -97,7 +97,7 @@
 	  	</div><!--fin acordeon observaciones-->
 	  	
 	  	<div id="subPestanias" data-collapse>
-	  		<h2 class="open">Seguimiento del caso</h2>
+	  		<h2 id="pestaniaSegumientoCaso" class="open">Seguimiento del caso</h2>
 	  		<div>
 	  			<div>
 	  				<table class="twelve columns">
@@ -119,14 +119,15 @@
 			                <td> <span id="infoCaso_titulo"><?=(isset($seguimiento['fecha'])) ? $seguimiento['fecha'] : ''; ?></span></td>
 			                <td>
 			                	<ul>
-			                		<?php foreach($seguimiento['registros'] as $registro):?>
-			                			<li><input type="button" onclick="eliminarRegistro(<?=$seguimiento['fichaId']?>,<?=$registro['registroId']?>)" /><a href="<?=base_url().$registro['ruta']?>"><?=$registro['nombreRegistro']?></a></li>
-			                		<?php endforeach;?>
+			                		<?php if(isset($seguimiento['registros'])):?>
+				                		<?php foreach($seguimiento['registros'] as $registro):?>
+				                			<li><input type="button" class="tiny button"  value="x" style="margin-left: -35px; margin-bottom: 5px;" onclick="eliminarRegistro(<?=$registro['registroId']?>,<?=$casoId; ?>)" />
+				                				<a style="margin-left: 5px;" href="<?=base_url().$registro['ruta']?>"><?=$registro['nombreRegistro']?></a>
+				                			</li>
+				                		<?php endforeach;?>
+			                		<?php endif;?>
 			                	</ul>
 			                </td>
-			                
-			                
-			                
 			                <td><input type="button" class="tiny button"  value="Editar" onclick="ventanaFicha('<?=$casoId; ?>', '<?=$key; ?>')" />
 			                	<input type="button" class="tiny button"  value="Eliminar" onclick="eliminarFicha( <?=$seguimiento['fichaId']?>,<?=$casoId; ?>)" /></td>
 			              </tr><?php }} ?>

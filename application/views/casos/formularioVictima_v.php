@@ -10,24 +10,23 @@
 
 				<div class="twelve columns espacioSuperior">
 					<?php if ($idVictima>0) {?>
-						<div class="twelve columns">
-							<div class="five columns">
-								<form action="<?= base_url(); ?>index.php/casos_c/eliminarVictima/<?=$idActo; ?>/<?=$victimas['victimas'][$idVictima]['victimaId']; ?>">
-									<input class="small button" value="Eliminar víctima" type="submit"></div>
-								</form>
-							</div>
-							<div class="five columns">
-								<form action="http://localhost/idheas/index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/<?=$idVictima; ?>/1" method="post">
-									<input class="small button" value="Editar víctima" type="submit">
-								</form>
-							</div>
+						<div class="six columns">
+							<form action="<?= base_url(); ?>index.php/casos_c/eliminarVictima/<?=$idActo; ?>/<?=$victimas['victimas'][$idVictima]['victimaId']; ?>">
+							<center><input class="small button" value="Eliminar víctima" type="submit"></center>
+							</form>
+						</div>
+						<div class="six columns">
+							<form action="http://localhost/idheas/index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/<?=$idVictima; ?>/1" method="post">
+								<center><input class="small button" value="Editar víctima" type="submit"></center>
+							</form>
 						</div>
 					<?php }?>
-					<div class="twelve columns">
-						<form action="<?= base_url(); ?>index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/0/1" method="post">
-							<input class="small button" value="Nueva víctima" type="submit">
+					<div  class="twelve columns">
+						<form action="<?= base_url(); ?>index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/0/1" method="post" >
+							<center><input class="small button " value="Nueva víctima" type="submit"></center>
 						</form>
 					</div>
+				</div>
 				
 <!-- 						<pre><?= print_r($victimas['victimas'][$idVictima]['victimaId'])?></pre>
 						<pre><?= print_r($victimas)?></pre>

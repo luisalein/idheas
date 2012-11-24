@@ -73,12 +73,10 @@
 			
 			<?php if (isset($ficha['fichaId']) ) { ?>
 				
-			<div id="pestania" data-collapse >
-				<h2 class="open">Registros</h2><!--título de la sub-pestaña-->  
+			<div id="pestania">
+				<p style="margin-left: 15px;" >Agregar nuevo registro</p><!--título de la sub-pestaña-->  
 				<div>
-					   
-					    <input name="pdf" type="file" size="10" accept="appplication/pdf""/>
-                		         
+					<input style="margin-left: 15px;" name="pdf" type="file" size="10" accept="appplication/pdf""/>
 				</div>
 			</div>
 				

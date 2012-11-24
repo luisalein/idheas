@@ -199,8 +199,7 @@ class CasosVentanas_c extends CI_Controller {
             
             case(1): 
 				if($_POST['editar'] == 1){
-					
-            		$mensaje = $this->casos_m->mActualizaDatosLugar($datos['lugares'],$datos['lugares']['lugarId']);
+					$mensaje = $this->casos_m->mActualizaDatosLugar($datos['lugares'],$datos['lugares']['lugarId']);
 					
 				}else{
 					$datos1['lugares'] = $datos['lugares'];
@@ -287,11 +286,12 @@ class CasosVentanas_c extends CI_Controller {
             break;
             
         }
-
-			
 		echo "<script languaje='javascript' type='text/javascript'>
-				 window.opener.location.reload();
-			     window.close();</script>";
+			window.opener.location.reload();
+			window.close();
+		</script>";
+			
+		
 		return $mensaje;
 	}
 
@@ -307,6 +307,15 @@ class CasosVentanas_c extends CI_Controller {
 	public function eliminarFicha($fichaId,$idCaso){
 		
 		$mensaje = $this->casos_m->mEliminaFicha($fichaId);
+		
+		redirect(base_url().'index.php/casos_c/mostrar_caso/'.$idCaso);
+		
+		return $mensaje;
+	}
+	
+	public function eliminarRegistro($registroId,$idCaso){
+		
+		$mensaje = $this->casos_m->mEliminarRegistro($registroId);
 		
 		redirect(base_url().'index.php/casos_c/mostrar_caso/'.$idCaso);
 		

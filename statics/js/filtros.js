@@ -86,14 +86,7 @@ function cargarActor(actor,tipo){
 }
 
 function cargarCaso(casoId){
-	
-	var nombre = $('#'+active+'_nombre').val();
-	
-	if(nombre == ''){
-		nombre = '0';
-	}
-	
-    document.location.href = base+'index.php/casos_c/mostrar_caso/'+casoId+'/'+nombre;
+    document.location.href = base+'index.php/casos_c/mostrar_caso/'+casoId;
 
 }
 function desplegarActores(nombre, filtro, tipoActor){
