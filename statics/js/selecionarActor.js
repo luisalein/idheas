@@ -20,7 +20,7 @@ function Seleccionar(title){
     $('#'+n[0]).css('background-color','#ccc');
     var nameSeleccionado= window.opener.document.getElementById('nameSeleccionado').value;
     window.opener.document.getElementById(nameSeleccionado).value = n[0];
-    window.opener.document.getElementById('vistaActorRelacionado').innerHTML = ('<img class="three columns"  src="'+base+n[2]+'" /><b><h4>'+n[1]+'</h4></b>');
+    window.opener.document.getElementById('vistaActorRelacionado').innerHTML = ('<div class="three columns"><img style="width:120px !important; height:150px !important;" src="'+base+n[2]+'" /></div><b><h4>'+n[1]+'</h4></b>');
 }    
 
 function cerrarVentana(){
@@ -33,7 +33,7 @@ function cerrarVentanaCancelar(){
     var informacion=datosIniciales.split("*");
     var nameSeleccionado= window.opener.document.getElementById('nameSeleccionado').value
     window.opener.document.getElementById(nameSeleccionado).value = informacion[0];
-    window.opener.document.getElementById('vistaActorRelacionado').innerHTML = ('<img class="three columns"  src="'+base+informacion[2]+'" /><b><h4>'+informacion[1]+'</h4></b>');
+    window.opener.document.getElementById('vistaActorRelacionado').innerHTML = ('<div class="three columns"><img style="width:120px !important; height:150px !important;" src="'+base+informacion[2]+'" /></div><b><h4>'+informacion[1]+'</h4></b>');
     } else{
     var nameSeleccionado= window.opener.document.getElementById('nameSeleccionado').value
     window.opener.document.getElementById(nameSeleccionado).value='';
