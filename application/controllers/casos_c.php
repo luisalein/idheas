@@ -400,6 +400,8 @@ class Casos_c extends CI_Controller {
 			
 			$datos['victimas'] = $this->casos_m->mTraerVictimasActo($idActo);
 			
+			$datos['victimas']=$datos['victimas']['victimas'];
+			
 			if(isset($datos['victimas'][$idVictima]['perpetradores'][$idPerpetrador]))
 				$datos['perpetrador'] = $datos['victimas'][$idVictima]['perpetradores'][$idPerpetrador];
 		}else{
