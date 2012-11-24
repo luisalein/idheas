@@ -1341,7 +1341,7 @@ class Casos_m extends CI_Model {
 			
 			return $datos;
 		}else{
-			$mensaje['error'] = $this->db->_error_message();
+			$mensaje= '0';
 			/* Regresa la cadena al controlador*/
         	return $mensaje;
 		}
