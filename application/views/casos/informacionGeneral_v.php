@@ -27,7 +27,7 @@
 	  	</div>
 	  	
 	  	<div id="subPestanias" data-collapse>
-	  		<h2>Lugares</h2>
+	  		<h2 id="pestaniaLugares">Lugares</h2>
 	  		<div>
 	  			<div>
 	  				<!------------------------------ Comienza tabla lugare-------------------------------------->
@@ -97,7 +97,7 @@
 	  	</div><!--fin acordeon observaciones-->
 	  	
 	  	<div id="subPestanias" data-collapse>
-	  		<h2 class="open">Seguimiento del caso</h2>
+	  		<h2 id="pestaniaSegumientoCaso" class="open">Seguimiento del caso</h2>
 	  		<div>
 	  			<div>
 	  				<table class="twelve columns">
@@ -128,9 +128,6 @@
 			                		<?php endif;?>
 			                	</ul>
 			                </td>
-			                
-			                
-			                
 			                <td><input type="button" class="tiny button"  value="Editar" onclick="ventanaFicha('<?=$casoId; ?>', '<?=$key; ?>')" />
 			                	<input type="button" class="tiny button"  value="Eliminar" onclick="eliminarFicha( <?=$seguimiento['fichaId']?>,<?=$casoId; ?>)" /></td>
 			              </tr><?php }} ?>

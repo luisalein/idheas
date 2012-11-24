@@ -73,7 +73,7 @@
 			<div>
 
 			<?php echo br(4);?>		
-			<input type="button" class="small button" style="margin-left: 30px;" type="submit" value="Guardar"/>
+			<input class="small button" style="margin-left: 30px;" type="submit" value="Guardar"/>
 			<input type="button" class="small button" value="Cancelar" onclick="cerrarVentana()" />
 			</div>
 		</div>

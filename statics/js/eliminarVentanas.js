@@ -7,6 +7,5 @@ function eliminarFicha(fichaId,idCaso){
 }
 
 function eliminarRegistro(idRegistro,idCaso){
-	//alert(idRegistro);
 	document.location.href = base+'index.php/casosVentanas_c/eliminarRegistro/'+idRegistro+'/'+idCaso;
 }
