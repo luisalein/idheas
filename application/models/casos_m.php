@@ -1369,12 +1369,11 @@ class Casos_m extends CI_Model {
 	 * 
 	 * */
 	public function mTraerActoDerechoAfectado($datosArray){
-			
+					
 			$this->db->select('actosN1Catalogo_actoId');
 			$this->db->from('actosN1Catalogo_has_derechosAfactadosN1Catalogo');
 			$this->db->where('derechosAfactadosN1Catalogo_derechoAfectadoN1Id',$datosArray[1]);
 			$consultaActosN1 = $this->db->get();
-			
 			
 			if ($consultaActosN1->num_rows() > 0) {
 				foreach ($consultaActosN1->result_array() as $row) {
@@ -1386,7 +1385,7 @@ class Casos_m extends CI_Model {
 					
 					if ($consultaActoN1->num_rows() > 0) {
 						foreach ($consultaActoN1->result_array() as $row2) {
-							$datos['actosN1'] = $row2;
+							$datos['actosN1'][$row2['actoId']] = $row2;
 						}
 					}
 					
@@ -1402,7 +1401,7 @@ class Casos_m extends CI_Model {
 					
 					if ($consultaActoN2->num_rows() > 0) {
 						foreach ($consultaActoN2->result_array() as $row3) {
-							$datos['actosN2'] = $row3;
+							$datos['actosN2'][$row3['actoN2Id']] = $row3;
 						}
 					}
 				}
@@ -1416,7 +1415,7 @@ class Casos_m extends CI_Model {
 					
 					if ($consultaActoN3->num_rows() > 0) {
 						foreach ($consultaActoN3->result_array() as $row4) {
-							$datos['actosN3'] = $row4;
+							$datos['actosN3'][$row4['actoN3Id']] = $row4;
 						}
 					}
 				}
@@ -1430,7 +1429,7 @@ class Casos_m extends CI_Model {
 					
 					if ($consultaActoN4->num_rows() > 0) {
 						foreach ($consultaActoN4->result_array() as $row5) {
-							$datos['actosN4'] = $row5;
+							$datos['actosN4'][$row5['actoN4Id']] = $row5;
 						}
 					}
 				}
