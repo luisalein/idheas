@@ -416,7 +416,7 @@ class CasosVentanas_c extends CI_Controller {
 		
 		$lista='';
 		
-		//print_r($data['actosN1']);
+		print_r($data['actosN1']);
 		
 		if(isset($data['actosN1'])){
 			$lista = $lista.' <ul>';
@@ -424,6 +424,11 @@ class CasosVentanas_c extends CI_Controller {
 				$lista = $lista. '<li onclick="nombreacto('.$acto1['descripcion'].','.$acto1['actoId'].','.$acto1['notas'].')">'.
 						$acto1['descripcion'].'
 						<ul><li>';	
+						if(isset($data['actosN2'])){
+							foreach ($data['actosN2'] as $acto2) {
+								
+							}
+						}
 						$lista = $lista.'</li></ul>';
 					
 			     }
@@ -432,7 +437,7 @@ class CasosVentanas_c extends CI_Controller {
 		
 	
 		//print_r($data);
-		print_r($lista);
+		//print_r($lista);
 		
 		//echo $id1 .$id2 .$id3.$id4  ;
 		
