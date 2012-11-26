@@ -1405,6 +1405,17 @@ class Casos_m extends CI_Model {
 							$datos['actosN2'] = $row3;
 						}
 					}
+				}else{
+					$this->db->select('*');
+					$this->db->from('actosN2Catalogo');
+					$this->db->where('actosN1Catalogo_actoId',$row2['actoId']);
+					$consultaActoN2 = $this->db->get();
+					
+					if ($consultaActoN2->num_rows() > 0) {
+						foreach ($consultaActoN2->result_array() as $row3) {
+							$datos['actosN2'][$row3['actoN2Id']] = $row3;
+						}
+					}
 				}
 
 				if(isset($datosArray[3]) && isset($row3)){
@@ -1419,6 +1430,18 @@ class Casos_m extends CI_Model {
 							$datos['actosN3'] = $row4;
 						}
 					}
+				}else{
+					
+					$this->db->select('*');
+					$this->db->from('actosN3Catalogo');
+					$this->db->where('actosN2Catalogo_actoN2Id',$row3['actoN2Id']);
+					$consultaActoN3 = $this->db->get();
+					
+					if ($consultaActoN3->num_rows() > 0) {
+						foreach ($consultaActoN3->result_array() as $row4) {
+							$datos['actosN3'][$row4['actoN3Id']] = $row4;
+						}
+					}
 				}
 				
 				if(isset($datosArray[4]) && isset($row4)){
@@ -1431,6 +1454,17 @@ class Casos_m extends CI_Model {
 					if ($consultaActoN4->num_rows() > 0) {
 						foreach ($consultaActoN4->result_array() as $row5) {
 							$datos['actosN4'] = $row5;
+						}
+					}
+				}else{
+					$this->db->select('*');
+					$this->db->from('actosN4Catalogo');
+					$this->db->where('actosN3Catalogo_actoN3Id',$row4['actoN3Id']);
+					$consultaActoN4 = $this->db->get();
+					
+					if ($consultaActoN4->num_rows() > 0) {
+						foreach ($consultaActoN4->result_array() as $row5) {
+							$datos['actosN4'][$row5['actoN4Id']] = $row5;
 						}
 					}
 				}
