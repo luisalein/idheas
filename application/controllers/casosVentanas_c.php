@@ -416,7 +416,7 @@ class CasosVentanas_c extends CI_Controller {
 		
 		$lista='';
 		
-		print_r($data['actosN1']);
+		//print_r($data['actosN1']);
 		
 		if(isset($data['actosN1'])){
 			$lista = $lista.' <ul>';
@@ -437,7 +437,7 @@ class CasosVentanas_c extends CI_Controller {
 		
 	
 		//print_r($data);
-		//print_r($lista);
+		print_r($lista);
 		
 		//echo $id1 .$id2 .$id3.$id4  ;
 		
