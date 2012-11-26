@@ -46,7 +46,17 @@ function ventanaVictimas(casoId){
 	window.open(base+'index.php/casos_c/mostrarVictimas/'+casoId+'/0/0', 'Ventana victimas', windowSizeArray);
 	};
 /******************************************/
+////Fechas fuente adicional
 
+	$(function() {
+		$( "#fechaPubli" ).datepicker({ dateFormat: "yy-mm-dd",
+		changeYear: true });
+		 });
+		 
+	$(function() {
+		$( "#fechaAcceso" ).datepicker({ dateFormat: "yy-mm-dd",
+		changeYear: true });
+		 });
 
 ////Fechas para Seguimiento del caso
 	$(function() {
