@@ -1403,7 +1403,7 @@ class Casos_m extends CI_Model {
 					
 					if ($consultaActoN2->num_rows() > 0) {
 						foreach ($consultaActoN2->result_array() as $row3) {
-							$datos['actosN2'] = $row3;
+							$datos['actosN2'][$row2['actoId']] = $row3;
 						}
 					}
 				}else{

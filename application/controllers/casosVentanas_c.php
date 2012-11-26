@@ -426,7 +426,7 @@ class CasosVentanas_c extends CI_Controller {
 						<ul>';	
 						if(isset($data['actosN2'])){
 							foreach ($data['actosN2'] as $acto2) {
-								$lista = $lista. '<li onclick="nombreactosub1('.$acto2['descripcion'].','.$acto2['actoId'].','.$acto2['notas'].')">'.
+								$lista = $lista. '<li onclick="nombreactosub1('.$acto2['descripcion'].','.$acto2['actoN2Id'].','.$acto2['notas'].')">'.
 								$acto2['descripcion'];
 							}
 						}
