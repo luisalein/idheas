@@ -126,7 +126,8 @@ class CasosVentanas_c extends CI_Controller {
 		
 		$datos['actoresTrans'] = $this->actores_m->listado_actores_m(2);
 				
-		$datos['actIndividualesTrns'] = array_merge($datos['actoresIndividuales'],$datos['actoresTrans']);
+		if(isset($datos['actoresIndividuales']) && isset($datos['actoresTrans']))		
+			$datos['actIndividualesTrns'] = array_merge($datos['actoresIndividuales'],$datos['actoresTrans']);
 
 		$datos['actoresRelacionados'] = $this->actores_m->mTraeRelacionesColectivo($actorId);
 		
@@ -149,7 +150,8 @@ class CasosVentanas_c extends CI_Controller {
 		
 		$datos['actoresTrans'] = $this->actores_m->listado_actores_m(2);
 		
-		$datos['actIndividualesTrns'] = array_merge($datos['actoresIndividuales'],$datos['actoresTrans']);
+		if(isset($datos['actoresIndividuales']) && isset($datos['actoresTrans']))
+			$datos['actIndividualesTrns'] = array_merge($datos['actoresIndividuales'],$datos['actoresTrans']);
 
 		$datos['actoresRelacionados'] = $this->actores_m->mTraeRelacionesColectivo($actorId);
 		
@@ -396,9 +398,23 @@ class CasosVentanas_c extends CI_Controller {
 		
 		$id4 = $this->input->post("id4");	
 		
-		//$data = array('id'=>$id,'antecesor'=>$antecesor,'nivel'=>$nivel);
+		$datos=array();
 		
-		$datos="";
+		if($id1 !='undefined')
+			$datos = array(1=>$id1);
+		
+		if($id1 !='undefined' && $id2 !='undefined')
+			$datos = array(1=>$id1,2=>$id2);
+		
+		if($id1 !='undefined' && $id2 !='undefined' && $id3 !='undefined')
+			$datos = array(1=>$id1,2=>$id2,3=>$id3);
+		
+		if($id1 !='undefined' && $id2 !='undefined' && $id3 !='undefined' && $id4 !='undefined')
+			$datos = array(1=>$id1,2=>$id2,3=>$id3,4=>$id4);
+		
+		$data=$this->casos_m->mTraerActoDerechoAfectado($datos);
+		
+		
 		
 		/*foreach($actos as $acto){
 			if(isset($acto['actoId'])){

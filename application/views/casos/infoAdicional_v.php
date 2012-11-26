@@ -32,7 +32,7 @@
 									              </tr>
 							            </tbody>
 					          		</table>
-					          		<input type="button" class="tiny button <?=$clase?>" value="nuevo" onclick="" />
+					          		<input type="button" class="tiny button <?=$clase?>" value="nuevo" onclick="ventanaFuentePersonal(<?=$casoId; ?>, 0)" />
 					  			</div>
 					  		</div>
 					  	</div><!--fin acordeon Fuentes de información personal-->

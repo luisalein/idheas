@@ -32,7 +32,7 @@ function ventanaFuenteDoc(casoId, indice){
 
 function ventanaFuentePersonal(casoId, indice){
 	  var windowSizeArray = [ "width=770,height=700,scrollbars=yes" ];
-	window.open(base+'index.php/casosVentanas_c/fuentesDeInformacion/'+casoId+'/'+indice+'/', 'Fuente Personal', windowSizeArray);
+	window.open(base+'index.php/casosVentanas_c/fuentesDeInformacionPersonal/'+casoId+'/'+indice+'/', 'Fuente Personal', windowSizeArray);
 	};
 
 
