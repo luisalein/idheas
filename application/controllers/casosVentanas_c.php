@@ -414,22 +414,25 @@ class CasosVentanas_c extends CI_Controller {
 		
 		$data=$this->casos_m->mTraerActoDerechoAfectado($datos);
 		
+		$lista='';
 		
+		//print_r($data['actosN1']);
 		
-		/*foreach($actos as $acto){
-			if(isset($acto['actoId'])){
-				$datos= $datos. '<li class="pestaniaCasos" >
-					<div  onclick="nombrarActo('.$acto['descripcion'].','.$acto['actoId'].','.$acto['notas'].','.$nivel.')">
-						.'.$acto['descripcion'].'
-					</div></li>';
-			}
-		}
-			
-		 * 
-		*/
+		if(isset($data['actosN1'])){
+			$lista = $lista.' <ul>';
+			foreach ($data['actosN1'] as $acto1) {
+				$lista = $lista. '<li onclick="nombreacto('.$acto1['descripcion'].','.$acto1['actoId'].','.$acto1['notas'].')">'.
+						$acto1['descripcion'].'
+						<ul><li>';	
+						$lista = $lista.'</li></ul>';
+					
+			     }
+			     $lista = $lista.'</li></ul>';
+		    }
 		
-		echo "<pre>";
-		print_r($data);
+	
+		//print_r($data);
+		print_r($lista);
 		
 		//echo $id1 .$id2 .$id3.$id4  ;
 		
