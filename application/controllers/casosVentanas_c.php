@@ -425,9 +425,13 @@ class CasosVentanas_c extends CI_Controller {
 			}
 		}
 			
-		print_r($datos);*/
+		 * 
+		*/
 		
-		echo $id1 .$id2 .$id3.$id4  ;
+		echo "<pre>";
+		print_r($data);
+		
+		//echo $id1 .$id2 .$id3.$id4  ;
 		
 	}
 	
