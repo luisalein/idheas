@@ -249,8 +249,8 @@
 			<input class="medium button" type="button" value="Agregar víctima" onclick="ventanaVictimas('<?=$casoId;?>',0,0)"/>
 			<br/>
 			<br/>
-			<input class="medium button" type="submit" value="Guardar"/>
-			<input class="medium button" value="Cancelar" onclick="cerrarVentana()" />
+			<input class="medium button" type="submit" value="Guardar" style="padding: 10px 15px 11px 15px; "/>
+			<input class="medium button" type="button" value="Cancelar" onclick="cerrarVentana()" />
 		</div>
 	</div><!--fin acordeon información general-->
 </div>
