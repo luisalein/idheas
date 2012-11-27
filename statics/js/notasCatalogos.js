@@ -24,3 +24,19 @@ function botonNotas(notas){
 	OpenWindow.document.write('<center><input type="button" value="Cerrar" onclick="cerrarVentana()" /></center>')
 	OpenWindow.document.write("</body>")
 }
+
+/**función que despliega el catalogo de tipo de perpetrador**/
+function tipoPerpetrador(id, notas, descripcion, nivel,flechita,e){
+	$("#tipoPerpetrador").html(descripcion);
+	$("#notasPerpetrador").html(notas);
+	//$().html(id);//Aqui agrego el id del tipo de perpetrador
+	$('#'+nivel+id).toggleClass("Escondido");
+    $('#'+nivel+id).css('background-color', '#000');
+    $('.cambiarColorRelacion').css('background-color', '#efefef');
+
+	subnivel= $(e).attr('value');
+
+	    if (subnivel != "undefined"){
+			$(e).toggleClass("ExpanderFlecha");
+		};
+}

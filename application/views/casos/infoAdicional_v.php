@@ -34,7 +34,7 @@
 							              <?php }}?>
 					            </tbody>
 				          </table>
-				          <input type="button" class="tiny button <?=$clase?>"  value="Nuevo" onclick="ventanaFuenteDoc(<?=$casoId; ?>, 0)" />
+				          <input type="button" class="tiny button <?=$clase?>"  value="Nuevo" onclick="ventanaFuenteDoc(<?=$casoId; ?>, '0')" />
 		  				 </div>
 			  		</div>
 			  	</div><!--fin acordeon Fuente documental-->	  			
@@ -68,7 +68,7 @@
 								              </tr>
 						            </tbody>
 				          		</table>
-				          		<input type="button" class="tiny button <?=$clase?>" value="nuevo" onclick="" />
+				          		<input type="button" class="tiny button <?=$clase?>" value="nuevo" onclick="ventanaFuentePersonal(<?= $casoId; ?>,'0')" />
 				  			</div>
 				  		</div>
 				  	</div><!--fin acordeon Fuentes de información personal-->

@@ -290,7 +290,6 @@ function  nombrarActo(descripcion, valor,notas,nivel){
 	if(nivel<=3){
 		$(activar).toggle();
 	}
-	alert(descripcion);
 };
 
 
