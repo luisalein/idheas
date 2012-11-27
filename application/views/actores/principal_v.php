@@ -9,6 +9,9 @@
     <?php } ?>
     <ul class="tabs-content">
         <li class="active" id="simple1Tab">
+            <?php if (!isset($actorId)) {
+                $actorId=0;
+            }?>
         <!---Contenido de la pestaña Actor individual-->
         <div class="three columns lineasLista">
             <?php if(isset($is_actor_type)){ ?>
