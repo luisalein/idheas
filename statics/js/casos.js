@@ -280,16 +280,18 @@ function traerActos(id1,id2,id3,id4){
 
 /*//Funciones colapsibles derechos afectados//*/
 /*************************************************************/
-function  nombrarActo(descripcion, valor,notas,nivel){
+function  nombrarActo(descripcion, valor,notas,nivel,e){
 	var activar="#"+valor+"act"+nivel;
 	$('#textoDerechoAfectadoN2').html(descripcion); 
 	$('#notasActoId').html(notas); 
 	$('#textoDerechoAfectadoN2').attr('name', ' ');
 	$('#actoViolatorioId').attr('value', valor); 
 	$('#actoViolatorioNivel').attr('value', nivel); 
-	if(nivel<=3){
-		$(activar).toggle();
-	}
+	$(activar).toggleClass("Escondido");
+	subnivel= $(e).attr('value');
+	    if (subnivel == "subnivel"){
+				$(e).toggleClass('ExpanderFlecha');
+		};
 };
 
 
