@@ -15,8 +15,8 @@ class PruebasJulio_c extends CI_Controller
 	{	
 			$datos = array (
 						1 => 1,
-						2 => 2
-						
+						2 => 2,
+
 						
 			);
 							   
