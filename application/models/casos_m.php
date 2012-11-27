@@ -1388,88 +1388,139 @@ class Casos_m extends CI_Model {
 						foreach ($consultaActoN1->result_array() as $row2) {
 
 							$datos['actosN1'][$row2['actoId']] = $row2;
-						}
-					}
-					
-					
-				}
-				
-				if(isset($datosArray[2]) && isset($row2)){
-					$this->db->select('*');
-					$this->db->from('actosN2Catalogo');
-					$this->db->where('actosN1Catalogo_actoId',$row2['actoId']);
-					$this->db->where('derechosAfectadosN2Catalogo_derechoAfectadoN2Id',$datosArray[2]);
-					$consultaActoN2 = $this->db->get();
-					
-					if ($consultaActoN2->num_rows() > 0) {
-						foreach ($consultaActoN2->result_array() as $row3) {
-							$datos['actosN2'][$row2['actoId']] = $row3;
-						}
-					}
-				}else{
-					$this->db->select('*');
-					$this->db->from('actosN2Catalogo');
-					$this->db->where('actosN1Catalogo_actoId',$row2['actoId']);
-					$consultaActoN2 = $this->db->get();
-					
-					if ($consultaActoN2->num_rows() > 0) {
-						foreach ($consultaActoN2->result_array() as $row3) {
 							
-							$datos['actosN2'][$row3['actoN2Id']] = $row3;
+							if(isset($datosArray[2]) && isset($row2)){
+								$this->db->select('*');
+								$this->db->from('actosN2Catalogo');
+								$this->db->where('actosN1Catalogo_actoId',$row2['actoId']);
+								$this->db->where('derechosAfectadosN2Catalogo_derechoAfectadoN2Id',$datosArray[2]);
+								$consultaActoN2 = $this->db->get();
+								
+								if ($consultaActoN2->num_rows() > 0) {
+									foreach ($consultaActoN2->result_array() as $row3) {
+										$datos['actosN2'][$row2['actoId']] = $row3;
+										
+										if(isset($datosArray[3]) && isset($row3)){
+											$this->db->select('*');
+											$this->db->from('actosN3Catalogo');
+											$this->db->where('actosN2Catalogo_actoN2Id',$row3['actoN2Id']);
+											$this->db->where('derechosAfectadosN3Catalogo_derechoAfectadoN3Id',$datosArray[3]);
+											$consultaActoN3 = $this->db->get();
+											
+											if ($consultaActoN3->num_rows() > 0) {
+												foreach ($consultaActoN3->result_array() as $row4) {
+													$datos['actosN3'][$row4['actoN3Id']] = $row4;
+													
+													if(isset($datosArray[4]) && isset($row4)){
+														$this->db->select('*');
+														$this->db->from('actosN4Catalogo');
+														$this->db->where('actosN3Catalogo_actoN3Id',$row4['actoN3Id']);
+														$this->db->where('derechosAfectadosN4Catalogo_derechoAfectadoN4Id',$datosArray[4]);
+														$consultaActoN4 = $this->db->get();
+														
+														if ($consultaActoN4->num_rows() > 0) {
+															foreach ($consultaActoN4->result_array() as $row5) {
+																$datos['actosN4'][$row5['actoN4Id']] = $row5;
+															}
+														}
+													}else{
+														
+														$this->db->select('*');
+														$this->db->from('actosN4Catalogo');
+														$this->db->where('actosN3Catalogo_actoN3Id',$row4['actoN3Id']);
+														$consultaActoN4 = $this->db->get();
+														
+														if ($consultaActoN4->num_rows() > 0) {
+															
+															foreach ($consultaActoN4->result_array() as $row5) {
+																$datos['actosN4'][$row5['actoN4Id']] = $row5;
+															}/*fin foreach $consultaActoN4*/
+														}/*fin if $consultaActoN4*/
+													}/*fin else*/
+													
+												}/*fin foreach $consultaActoN3*/
+											}/* fin if $consultaActoN3*/
+										}else{
+											
+											$this->db->select('*');
+											$this->db->from('actosN3Catalogo');
+											$this->db->where('actosN2Catalogo_actoN2Id',$row3['actoN2Id']);
+											$consultaActoN3 = $this->db->get();
+											
+											if ($consultaActoN3->num_rows() > 0) {
+												foreach ($consultaActoN3->result_array() as $row4) {
+													$datos['actosN3'][$row4['actoN3Id']] = $row4;
+													
+													$this->db->select('*');
+													$this->db->from('actosN4Catalogo');
+													$this->db->where('actosN3Catalogo_actoN3Id',$row4['actoN3Id']);
+													$consultaActoN4 = $this->db->get();
+													
+													if ($consultaActoN4->num_rows() > 0) {
+														
+														foreach ($consultaActoN4->result_array() as $row5) {
+															$datos['actosN4'][$row5['actoN4Id']] = $row5;
+														}/*fin foreach $consultaActoN4*/
+														
+													}/*fin if $consultaActoN4*/
+													
+												}/*fin foreach $consultaActoN3*/
+											}/* fin if $consultaActoN3 */
+										}/*fin else $datosArray[3]*/
+									}/*fin foreach $consultaActoN2*/
+								}/*fin if $consultaActoN2 */
+							}else{
+								$this->db->select('*');
+								$this->db->from('actosN2Catalogo');
+								$this->db->where('actosN1Catalogo_actoId',$row2['actoId']);
+								$consultaActoN2 = $this->db->get();
+								
+								if ($consultaActoN2->num_rows() > 0) {
+									foreach ($consultaActoN2->result_array() as $row3) {
+										
+										$datos['actosN2'][$row3['actoN2Id']] = $row3;
+										
+										$this->db->select('*');
+										$this->db->from('actosN3Catalogo');
+										$this->db->where('actosN2Catalogo_actoN2Id',$row3['actoN2Id']);
+										$consultaActoN3 = $this->db->get();
+										
+										if ($consultaActoN3->num_rows() > 0) {
+											foreach ($consultaActoN3->result_array() as $row4) {
+												$datos['actosN3'][$row4['actoN3Id']] = $row4;
+												
+												$this->db->select('*');
+												$this->db->from('actosN4Catalogo');
+												$this->db->where('actosN3Catalogo_actoN3Id',$row4['actoN3Id']);
+												$consultaActoN4 = $this->db->get();
+												
+												if ($consultaActoN4->num_rows() > 0) {
+													
+													foreach ($consultaActoN4->result_array() as $row5) {
+														$datos['actosN4'][$row5['actoN4Id']] = $row5;
+													}/*fin foreach $consultaActoN4*/
+													
+												}/*fin if $consultaActoN4*/
+												
+											}/*fin foreach $consultaActoN3*/
+											
+										}/*fin if $consultaActoN3*/
+										
+									}/*fin foreach $consultaActoN2*/
+									
+								}/*fin if $consultaActoN2*/
+								
+							}/*fin else */
+		
+							
+							
 						}
 					}
-				}
-
-				if(isset($datosArray[3]) && isset($row3)){
-					$this->db->select('*');
-					$this->db->from('actosN3Catalogo');
-					$this->db->where('actosN2Catalogo_actoN2Id',$row3['actoN2Id']);
-					$this->db->where('derechosAfectadosN3Catalogo_derechoAfectadoN3Id',$datosArray[3]);
-					$consultaActoN3 = $this->db->get();
 					
-					if ($consultaActoN3->num_rows() > 0) {
-						foreach ($consultaActoN3->result_array() as $row4) {
-							$datos['actosN3'][$row4['actoN3Id']] = $row4;
-						}
-					}
-				}else{
 					
-					$this->db->select('*');
-					$this->db->from('actosN3Catalogo');
-					$this->db->where('actosN2Catalogo_actoN2Id',$row3['actoN2Id']);
-					$consultaActoN3 = $this->db->get();
-					
-					if ($consultaActoN3->num_rows() > 0) {
-						foreach ($consultaActoN3->result_array() as $row4) {
-							$datos['actosN3'][$row4['actoN3Id']] = $row4;
-						}
-					}
 				}
 				
-				if(isset($datosArray[4]) && isset($row4)){
-					$this->db->select('*');
-					$this->db->from('actosN4Catalogo');
-					$this->db->where('actosN3Catalogo_actoN3Id',$row4['actoN3Id']);
-					$this->db->where('derechosAfectadosN4Catalogo_derechoAfectadoN4Id',$datosArray[4]);
-					$consultaActoN4 = $this->db->get();
-					
-					if ($consultaActoN4->num_rows() > 0) {
-						foreach ($consultaActoN4->result_array() as $row5) {
-							$datos['actosN4'][$row5['actoN4Id']] = $row5;
-						}
-					}
-				}else{
-					$this->db->select('*');
-					$this->db->from('actosN4Catalogo');
-					$this->db->where('actosN3Catalogo_actoN3Id',$row4['actoN3Id']);
-					$consultaActoN4 = $this->db->get();
-					
-					if ($consultaActoN4->num_rows() > 0) {
-						foreach ($consultaActoN4->result_array() as $row5) {
-							$datos['actosN4'][$row5['actoN4Id']] = $row5;
-						}
-					}
-				}
+				
 				
 				return $datos;
 			}		
