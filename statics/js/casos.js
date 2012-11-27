@@ -1,7 +1,7 @@
 /******************Ventanas Nuevo*************************/
 
 
-function prueba111(r){
+function prueba(r){
 	alert(r);
 }
 function ventanaDetalleLugar(casoId, indice){
@@ -280,59 +280,18 @@ function traerActos(id1,id2,id3,id4){
 
 /*//Funciones colapsibles derechos afectados//*/
 /*************************************************************/
-function  nombrarActo(descripcion, valor,notas){
+function  nombrarActo(descripcion, valor,notas,nivel){
 	var activar="#"+valor+"act"+nivel;
 	$('#textoDerechoAfectadoN2').html(descripcion); 
 	$('#notasActoId').html(notas); 
 	$('#textoDerechoAfectadoN2').attr('name', ' ');
 	$('#actoViolatorioId').attr('value', valor); 
 	$('#actoViolatorioNivel').attr('value', nivel); 
-	if(nivel <= 3){
-		$(activar).toggleClass("Escondido");
+	if(nivel<=3){
+		$(activar).toggle();
 	}
-	
+	alert(descripcion);
 };
-
-
-function  nombreacto(descripcion, valor,notas){
-	
-	var algo="#"+valor+"act1";
-	$('#textoDerechoAfectadoN2').html(descripcion); 
-	$('#notasActoId').html(notas); 
-	$('#textoDerechoAfectadoN2').attr('name', ' ');
-	$('#actoViolatorioId').attr('value', valor); 
-	$('#actoViolatorioNivel').attr('value', 1); 
-	$(algo).toggleClass("Escondido");
-};
-
-function nombreactosub1(descripcion1, valor,notas){
-	var nombre="#"+valor+"act2";
-	$('#textoDerechoAfectadoN2').html(descripcion1); 
-	$('#notasActoId').html(notas); 
-	$('#textoDerechoAfectadoN2').attr('name', ' ');
-	$('#actoViolatorioId').attr('value', valor);
-	$('#actoViolatorioNivel').attr('value', 2); 
-	$(nombre).toggleClass("Escondido");
-};
-	
-
-function nombreactosub2(descripcion3, valor,notas){
-	var nombre="#"+valor+"act3";
-	$('#textoDerechoAfectadoN2').html(descripcion3); 
-	$('#notasActoId').html(notas); 
-	$('#textoDerechoAfectadoN2').attr('name', ' ');
-	$('#actoViolatorioId').attr('value', valor);
-	$('#actoViolatorioNivel').attr('value', 3); 
-	$(nombre).toggleClass("Escondido");
-};
-
-function nombreactosub3(descripcion4, valor,notas){
-	$('#textoDerechoAfectadoN2').html(descripcion4); 
-	$('#notasActoId').html(notas); 
-	$('#textoDerechoAfectadoN2').attr('name', ' ');
-	$('#actoViolatorioId').attr('value', valor);
-};
-
 
 
 	$(function() {

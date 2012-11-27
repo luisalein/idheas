@@ -237,7 +237,7 @@ class CasosVentanas_c extends CI_Controller {
 					}
 					
 					$datos32['derechoAfectado'] =  $datos['derechoAfectado'];
-					$mensaje = $mansaje . $this->casos_m->mActualizaDatosDerechoAfectado($datos32);
+					$mensaje = $mansaje . $this->casos_m->mActualizaDatosDerechoAfectado($datos['derechoAfectado']);
 				}else{
 					$datos3['actos'] = $datos['actos'];
 					$datos3['derechoAfectado'] =  $datos['derechoAfectado'];
@@ -417,28 +417,38 @@ class CasosVentanas_c extends CI_Controller {
 		$lista='';
 		
 		//print_r($data['actosN1']);
-		
-		if(isset($data['actosN1'])){
+			if(isset($data['actosN1'])){
 			$lista = $lista.' <ul>';
 			foreach ($data['actosN1'] as $acto1) {
-				$lista = $lista. '<li onclick="nombreacto('."'".$acto1['descripcion']."'".','."'".$acto1['actoId']."'".','."'".$acto1['notas']."'".')">'.
-						$acto1['descripcion'];	
+				$lista = $lista. '<li>'.
+						'<div onclick="nombrarActo('."'".$acto1['descripcion']."'".','."'".$acto1['actoId']."'".','."'".$acto1['notas']."'".','."'1'".')">'.
+							$acto1['descripcion'].
+						'</div>';	
 						if(isset($data['actosN2'])){
-							$lista = $lista. '<ul  class="Escondido" id="'.$acto1['actoId'].'act1" >';
+							$lista = $lista. '<ul class="Escondido" id="'.$acto1['actoId'].'act1" >';
 							foreach ($data['actosN2'] as $acto2) {
-								$lista = $lista. '<li onclick="nombreactosub1('."'".$acto2['descripcion']."'".','."'".$acto2['actoN2Id']."'".','."'".$acto2['notas']."'".')">'.
-								$acto2['descripcion'];	
+								$lista = $lista. '<li>'.
+								'<div  onclick="nombrarActo('."'".$acto2['descripcion']."'".','."'".$acto2['actoN2Id']."'".','."'".$acto2['notas']."'".','."'2'".')">'.
+									$acto2['descripcion'].
+								'</div>';	
 								if(isset($data['actosN3'])){
 									$lista = $lista. '<ul class="Escondido" id="'.$acto2['actoN2Id'].'act2" >';
 									foreach ($data['actosN3'] as $acto3) {
-										$lista = $lista. '<li onclick="nombreactosub2('."'".$acto3['descripcion']."'".','.$acto3['actoN3Id']."'".','.$acto3['notas']."'".')">'.
-										$acto3['descripcion'];											
+										$lista=$lista.'<li>'.
+										'<div onclick="nombrarActo('."'".$acto3['descripcion']."'".','."'".$acto3['actoN3Id']."'".','."'".$acto3['notas']."'".','."'3'".')">'.
+											$acto3['descripcion'].
+										'</div>';
+										
 										if(isset($data['actosN4'])){
-											$lista = $lista. '<ul  class="Escondido" id="'.$acto3['actoN3Id'].'act3" >';
-											foreach ($data['actosN4'] as $acto4) {
-												$lista = $lista. '<li onclick="nombreactosub3('."'".$acto4['descripcion']."'".','."'".$acto4['actoN4Id']."'".','."'".$acto4['notas']."'".')">'.
-												$acto4['descripcion'];
-											}$lista = $lista.'</li></ul>';
+											$lista = $lista.'<ul class="Escondido" id="'.$acto3['actoN3Id'].'act3">';
+											foreach($data['actosN4'] as $acto4){
+												if($acto4['actosN3Catalogo_actoN3Id']==$acto3['actoN3Id']){
+													$lista = $lista.'<li>'.
+													'<div onclick="nombrarActo('."'".$acto4['descripcion']."'".','."'".$acto4['actoN4Id']."'".','."'".$acto4['notas']."'".','."'4'".')">'.
+														$acto4['descripcion'].
+													'</div></li>';	
+												}
+											}$lista=$lista.'</ul>';
 										}
 									}$lista = $lista.'</li></ul>';
 								}
@@ -447,7 +457,6 @@ class CasosVentanas_c extends CI_Controller {
 			     }
 			     $lista = $lista.'</li></ul>';
 		    }
-		
 	
 		//print_r($data);
 		print_r($lista);
