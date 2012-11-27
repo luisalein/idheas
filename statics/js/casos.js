@@ -1,5 +1,9 @@
 /******************Ventanas Nuevo*************************/
 
+
+function prueba111(r){
+	alert(r);
+}
 function ventanaDetalleLugar(casoId, indice){
 	  var windowSizeArray = [ "width=800,height=200" ];
 		window.open(base+'index.php/casosVentanas_c/ventanaLugares/'+casoId+'/'+indice+'/', 'Detalles Lugar', windowSizeArray);
@@ -44,17 +48,7 @@ function ventanaVictimas(casoId){
 	window.open(base+'index.php/casos_c/mostrarVictimas/'+casoId+'/0/0', 'Ventana victimas', windowSizeArray);
 	};
 /******************************************/
-////Fechas fuente adicional
 
-	$(function() {
-		$( "#fechaPubli" ).datepicker({ dateFormat: "yy-mm-dd",
-		changeYear: true });
-		 });
-		 
-	$(function() {
-		$( "#fechaAcceso" ).datepicker({ dateFormat: "yy-mm-dd",
-		changeYear: true });
-		 });
 
 ////Fechas para Seguimiento del caso
 	$(function() {
@@ -301,6 +295,7 @@ function  nombrarActo(descripcion, valor,notas){
 
 
 function  nombreacto(descripcion, valor,notas){
+	
 	var algo="#"+valor+"act1";
 	$('#textoDerechoAfectadoN2').html(descripcion); 
 	$('#notasActoId').html(notas); 

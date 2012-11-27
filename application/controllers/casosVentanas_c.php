@@ -421,17 +421,29 @@ class CasosVentanas_c extends CI_Controller {
 		if(isset($data['actosN1'])){
 			$lista = $lista.' <ul>';
 			foreach ($data['actosN1'] as $acto1) {
-				$lista = $lista. '<li onclick="nombreacto('.$acto1['descripcion'].','.$acto1['actoId'].','.$acto1['notas'].')">'.
-						$acto1['descripcion'].'
-						<ul>';	
+				$lista = $lista. '<li onclick="nombreacto('."'".$acto1['descripcion']."'".','."'".$acto1['actoId']."'".','."'".$acto1['notas']."'".')">'.
+						$acto1['descripcion'];	
 						if(isset($data['actosN2'])){
+							$lista = $lista. '<ul  class="Escondido" id="'.$acto1['actoId'].'act1" >';
 							foreach ($data['actosN2'] as $acto2) {
-								$lista = $lista. '<li onclick="nombreactosub1('.$acto2['descripcion'].','.$acto2['actoN2Id'].','.$acto2['notas'].')">'.
-								$acto2['descripcion'];
-							}
+								$lista = $lista. '<li onclick="nombreactosub1('."'".$acto2['descripcion']."'".','."'".$acto2['actoN2Id']."'".','."'".$acto2['notas']."'".')">'.
+								$acto2['descripcion'];	
+								if(isset($data['actosN3'])){
+									$lista = $lista. '<ul class="Escondido" id="'.$acto2['actoN2Id'].'act2" >';
+									foreach ($data['actosN3'] as $acto3) {
+										$lista = $lista. '<li onclick="nombreactosub2('."'".$acto3['descripcion']."'".','.$acto3['actoN3Id']."'".','.$acto3['notas']."'".')">'.
+										$acto3['descripcion'];											
+										if(isset($data['actosN4'])){
+											$lista = $lista. '<ul  class="Escondido" id="'.$acto3['actoN3Id'].'act3" >';
+											foreach ($data['actosN4'] as $acto4) {
+												$lista = $lista. '<li onclick="nombreactosub3('."'".$acto4['descripcion']."'".','."'".$acto4['actoN4Id']."'".','."'".$acto4['notas']."'".')">'.
+												$acto4['descripcion'];
+											}$lista = $lista.'</li></ul>';
+										}
+									}$lista = $lista.'</li></ul>';
+								}
+							}$lista = $lista.'</li></ul>';
 						}
-						$lista = $lista.'</li></ul>';
-					
 			     }
 			     $lista = $lista.'</li></ul>';
 		    }
