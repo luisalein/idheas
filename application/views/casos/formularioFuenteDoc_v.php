@@ -12,7 +12,7 @@
 			<div>
 			
 				<fieldset>
-					  <legend>fuente documental</legend>
+					  <legend>Fuente documental</legend>
 						<div class="twelve columns">
 									<label for="nombreFuente">Nombre de la fuente</label>
 									<textarea id="infoAdicional_nombreFuente" style="width: 400px; height: 200px" name="tipoFuenteDocumental_nombre" wrap="hard"  > </textarea>
@@ -37,16 +37,17 @@
 												<?php endforeach;?>
 												</select>
 									</div>
-
+									
 									<label for="FechaPubli">Fecha de publicación</label>
-										<input type="text" id="infoAdicional_fechaPublicacion" name="tipoFuenteDocumental_fecha" value="" placeholder="AAAA-MM-DD" />
+					                <input type="text" id="fechaPubli" name="tipoFuenteDocumental_fecha" <?=(isset($datos) ? 'value="'.$datos.'"' : 'value=""'); ?> placeholder="AAAA-MM-DD" />
 									
 									<span>Notas</span>
 									
 									<label for="fuenteLiga">Liga</label>
 									<textarea id="infoAdicional_url" style="width: 400px; height: 200px" name="tipoFuenteDocumental_url" wrap="hard"  > </textarea>
-									<label for="FechaPubli">Fecha de acceso</label>
-										<input type="text" id="infoAdicional_fechaAcceso" name="tipoFuenteDocumental_fechaAcceso" value="" placeholder="AAAA-MM-DD" />
+									
+									<label for="FechaAcce">Fecha de acceso</label>
+									<input type="text" id="fechaAcceso" name="tipoFuenteDocumental_fechaAcceso" value="" placeholder="AAAA-MM-DD" />
 									
 								</p>
 								

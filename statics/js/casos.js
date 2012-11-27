@@ -1,5 +1,9 @@
 /******************Ventanas Nuevo*************************/
 
+
+function prueba111(r){
+	alert(r);
+}
 function ventanaDetalleLugar(casoId, indice){
 	  var windowSizeArray = [ "width=800,height=200" ];
 		window.open(base+'index.php/casosVentanas_c/ventanaLugares/'+casoId+'/'+indice+'/', 'Detalles Lugar', windowSizeArray);
@@ -16,8 +20,6 @@ function ventanaDerAfectados(casoId, indice){
 	window.open(base+'index.php/casosVentanas_c/derechosAfectados/'+casoId+'/'+indice+'/', 'Derechos Afectados/'+casoId, windowSizeArray);
 	};
 
-
-
 function ventanaInterevenciones(casoId, indice){
 	  var windowSizeArray = [ "width=770,height=700,scrollbars=yes" ];
 	window.open(base+'index.php/casosVentanas_c/intervenciones/'+casoId+'/'+indice+'/', 'Intervenciones', windowSizeArray);
@@ -32,7 +34,7 @@ function ventanaFuenteDoc(casoId, indice){
 
 function ventanaFuentePersonal(casoId, indice){
 	  var windowSizeArray = [ "width=770,height=700,scrollbars=yes" ];
-	window.open(base+'index.php/casosVentanas_c/fuentesDeInformacion/'+casoId+'/'+indice+'/', 'Fuente Personal', windowSizeArray);
+	window.open(base+'index.php/casosVentanas_c/fuentesDeInformacionPersonal/'+casoId+'/'+indice+'/', 'Fuente Personal', windowSizeArray);
 	};
 
 
@@ -248,11 +250,11 @@ function traerActos(id1,id2,id3,id4){
 	if(id1 != 'undefined')
 		var data = 'id1='+id1;
 	if(id2 != 'undefined')
-		var data = 'id1='+id1+'id2='+id2;
+		var data = 'id1='+id1+'&id2='+id2;
 	if(id3 != 'undefined')
-		var data = 'id1='+id1+'id2='+id2+'id3='+id3;
+		var data = 'id1='+id1+'&id2='+id2+'&id3='+id3;
 	if(id4 != 'undefined')
-		var data = 'id1='+id1+'id2='+id2+'id3='+id3+'id4='+id4;			
+		var data = 'id1='+id1+'&id2='+id2+'&id3='+id3+'&id4='+id4;			
 		
 	$.ajax({
 	    
@@ -278,7 +280,7 @@ function traerActos(id1,id2,id3,id4){
 
 /*//Funciones colapsibles derechos afectados//*/
 /*************************************************************/
-function  nombrarActo(descripcion, valor,notas, nivel){
+function  nombrarActo(descripcion, valor,notas){
 	var activar="#"+valor+"act"+nivel;
 	$('#textoDerechoAfectadoN2').html(descripcion); 
 	$('#notasActoId').html(notas); 
@@ -293,6 +295,7 @@ function  nombrarActo(descripcion, valor,notas, nivel){
 
 
 function  nombreacto(descripcion, valor,notas){
+	
 	var algo="#"+valor+"act1";
 	$('#textoDerechoAfectadoN2').html(descripcion); 
 	$('#notasActoId').html(notas); 

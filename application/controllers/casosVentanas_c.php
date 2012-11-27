@@ -126,7 +126,8 @@ class CasosVentanas_c extends CI_Controller {
 		
 		$datos['actoresTrans'] = $this->actores_m->listado_actores_m(2);
 				
-		$datos['actIndividualesTrns'] = array_merge($datos['actoresIndividuales'],$datos['actoresTrans']);
+		if(isset($datos['actoresIndividuales']) && isset($datos['actoresTrans']))		
+			$datos['actIndividualesTrns'] = array_merge($datos['actoresIndividuales'],$datos['actoresTrans']);
 
 		$datos['actoresRelacionados'] = $this->actores_m->mTraeRelacionesColectivo($actorId);
 		
@@ -149,7 +150,8 @@ class CasosVentanas_c extends CI_Controller {
 		
 		$datos['actoresTrans'] = $this->actores_m->listado_actores_m(2);
 		
-		$datos['actIndividualesTrns'] = array_merge($datos['actoresIndividuales'],$datos['actoresTrans']);
+		if(isset($datos['actoresIndividuales']) && isset($datos['actoresTrans']))
+			$datos['actIndividualesTrns'] = array_merge($datos['actoresIndividuales'],$datos['actoresTrans']);
 
 		$datos['actoresRelacionados'] = $this->actores_m->mTraeRelacionesColectivo($actorId);
 		
@@ -396,22 +398,61 @@ class CasosVentanas_c extends CI_Controller {
 		
 		$id4 = $this->input->post("id4");	
 		
-		//$data = array('id'=>$id,'antecesor'=>$antecesor,'nivel'=>$nivel);
+		$datos=array();
 		
-		$datos="";
+		if($id1 !='undefined')
+			$datos = array(1=>$id1);
 		
-		/*foreach($actos as $acto){
-			if(isset($acto['actoId'])){
-				$datos= $datos. '<li class="pestaniaCasos" >
-					<div  onclick="nombrarActo('.$acto['descripcion'].','.$acto['actoId'].','.$acto['notas'].','.$nivel.')">
-						.'.$acto['descripcion'].'
-					</div></li>';
-			}
-		}
-			
-		print_r($datos);*/
+		if($id1 !='undefined' && $id2 !='undefined')
+			$datos = array(1=>$id1,2=>$id2);
 		
-		echo $id1 .$id2 .$id3.$id4  ;
+		if($id1 !='undefined' && $id2 !='undefined' && $id3 !='undefined')
+			$datos = array(1=>$id1,2=>$id2,3=>$id3);
+		
+		if($id1 !='undefined' && $id2 !='undefined' && $id3 !='undefined' && $id4 !='undefined')
+			$datos = array(1=>$id1,2=>$id2,3=>$id3,4=>$id4);
+		
+		$data=$this->casos_m->mTraerActoDerechoAfectado($datos);
+		
+		$lista='';
+		
+		//print_r($data['actosN1']);
+		
+		if(isset($data['actosN1'])){
+			$lista = $lista.' <ul>';
+			foreach ($data['actosN1'] as $acto1) {
+				$lista = $lista. '<li onclick="nombreacto('."'".$acto1['descripcion']."'".','."'".$acto1['actoId']."'".','."'".$acto1['notas']."'".')">'.
+						$acto1['descripcion'];	
+						if(isset($data['actosN2'])){
+							$lista = $lista. '<ul  class="Escondido" id="'.$acto1['actoId'].'act1" >';
+							foreach ($data['actosN2'] as $acto2) {
+								$lista = $lista. '<li onclick="nombreactosub1('."'".$acto2['descripcion']."'".','."'".$acto2['actoN2Id']."'".','."'".$acto2['notas']."'".')">'.
+								$acto2['descripcion'];	
+								if(isset($data['actosN3'])){
+									$lista = $lista. '<ul class="Escondido" id="'.$acto2['actoN2Id'].'act2" >';
+									foreach ($data['actosN3'] as $acto3) {
+										$lista = $lista. '<li onclick="nombreactosub2('."'".$acto3['descripcion']."'".','.$acto3['actoN3Id']."'".','.$acto3['notas']."'".')">'.
+										$acto3['descripcion'];											
+										if(isset($data['actosN4'])){
+											$lista = $lista. '<ul  class="Escondido" id="'.$acto3['actoN3Id'].'act3" >';
+											foreach ($data['actosN4'] as $acto4) {
+												$lista = $lista. '<li onclick="nombreactosub3('."'".$acto4['descripcion']."'".','."'".$acto4['actoN4Id']."'".','."'".$acto4['notas']."'".')">'.
+												$acto4['descripcion'];
+											}$lista = $lista.'</li></ul>';
+										}
+									}$lista = $lista.'</li></ul>';
+								}
+							}$lista = $lista.'</li></ul>';
+						}
+			     }
+			     $lista = $lista.'</li></ul>';
+		    }
+		
+	
+		//print_r($data);
+		print_r($lista);
+		
+		//echo $id1 .$id2 .$id3.$id4  ;
 		
 	}
 	
