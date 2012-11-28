@@ -29,7 +29,6 @@
 						<?php if(isset($datosCaso['actos'])){?>	  	
 			              <?php foreach ($datosCaso['actos'] as $index2 => $acto) {
 			              	if ($acto['derechoAfectado_derechoAfectadoCasoId']== $derecho['derechoAfectadoCasoId']) { ?>
-			              	<td>
 			              		<?php foreach ($catalogos['actosN'.$acto['actoViolatorioNivel'].'Catalogo'] as $catalogo) {
 			              			if($acto['actoViolatorioNivel']==1){
 			              				if($catalogo['actoId']==$acto['actoViolatorioId']){
@@ -37,13 +36,11 @@
 										  }
 			              			}else{
 			              				if($catalogo['actoN'.$acto['actoViolatorioNivel'].'Id']==$acto['actoViolatorioId']){
-										  	echo $catalogo['descripcion'];
+										  	echo '<td>'.$catalogo['descripcion'].'</td>';
 										  }
 			              			}
 								  		
 							  	} ?>
-			              		
-			              	</td>
 			              	<?} }?>
 
 			              	<td><?php print_r($derecho['fechaInicial']); ?></td>

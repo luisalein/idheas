@@ -97,11 +97,6 @@
 	  					</div>	
                         <br /><br />
                         
-                        <?echo "<pre>"; print_r($derechoAfectado);?>
-                        	
-                        	
-                        	
-                        	
                         	
                         <label for="Acto">Acto</label>
                         <div id="textoDerechoAfectadoN2"></div>

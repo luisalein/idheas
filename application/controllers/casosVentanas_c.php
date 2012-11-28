@@ -140,11 +140,13 @@ class CasosVentanas_c extends CI_Controller {
         
     }
 
-	function fuentesDeInformacion($casoId,$actorId){
+	function fuentesDeInformacion($casoId,$i){
 		
 		$datos['head'] = $this->load->view('general/head_v', "", true);
 
         $datos['casoId'] = $casoId;
+		
+		$datos['id'] = $i;
 		
 		$datos['catalogos'] = $this->traer_catalogos();
 		
