@@ -50,6 +50,10 @@
   margin-bottom: 10px;
 }
 
+
+textarea {
+        resize: none;
+}
 /*Define el tamaño máximo para el tipo de perpetrador*/
 .CatalogoTipoPerpetrador{
   max-height: 300px;

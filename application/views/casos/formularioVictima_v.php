@@ -5,6 +5,7 @@
 	</head>
 		
 	<body>
+		<pre><?= print_r($victimas['victimas'][$idVictima]['perpetradores'])?></pre>
 		<div class="twelve columns">
 			<div class="four columns"> 	<!--Lista de victimas-->
 
@@ -71,6 +72,31 @@
 
 						<div class="twelve columns espacio">
 							<br/><label>Perpetradores</label> <br/>
+
+
+
+			            <table>
+			                <thead>
+			                    <tr>
+			                        <th>Perpetrador</th>
+			                        <th>Tipo perpetrador</th>
+			                        <th>Tipo lugar</th>
+			                        <th>Grado Involucramiento</th>
+			                    </tr>
+			                </thead>
+			                <tbody>
+								<?php if (isset($victimas['victimas'][$idVictima]['perpetradores'])) { ?>
+			            			<?php foreach ($victimas['victimas'][$idVictima]['perpetradores'] as $key => $perpetrador) { ?>
+			                			<tr>
+					                        <td><?=(isset($perpetrador['perpetradorId'])) ? $perpetrador['perpetradorId'] : ''; ?></td>
+					                        <td><?=(isset($perpetrador['tipoPerpetradorId'])&& isset($perpetrador['tipoPerpetradorNivel'])) ? $perpetrador['tipoPerpetradorNivel'] : ''; ?></td>
+					                        <td><?=(isset($perpetrador['tipoLugarId'])) ? $perpetrador['tipoLugarId'] : ''; ?></td>
+					                        <td><?=(isset($perpetrador['gradoInvolucramientoid'])&& isset($perpetrador['nivelInvolugramientoId'])) ? $perpetrador['nivelInvolugramientoId'] : ''; ?></td>
+			                    		</tr>
+				            		<?php } ?>
+								<?php } ?>
+			                </tbody>
+			            </table>
 
 						</div>
 
