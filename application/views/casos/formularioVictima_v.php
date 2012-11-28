@@ -5,7 +5,6 @@
 	</head>
 		
 	<body>
-		<pre><?= print_r($victimas['victimas'][$idVictima]['perpetradores'])?></pre>
 		<div class="twelve columns">
 			<div class="four columns"> 	<!--Lista de victimas-->
 
