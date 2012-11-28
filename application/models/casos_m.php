@@ -122,19 +122,6 @@ class Casos_m extends CI_Model {
 			}
 		}
 		
-		/* Trae todos los datos de nucleoCaso*/
-		$this->db->select('*');
-		$this->db->from('nucleoCaso');
-		$this->db->where('casos_casoId',$casoId);
-		$consulta = $this->db->get();
-					
-		if ($consulta->num_rows() > 0){				
-			/* Pasa la consulta a un cadena */
-			foreach ($consulta->result_array() as $row) {
-				$datos['nucleoCaso'] = $row;
-			}
-		}
-		
 		/* Trae todos los datos de relacionCasos*/
 		$this->db->select('*');
 		$this->db->from('relacionCasos');
@@ -683,23 +670,6 @@ class Casos_m extends CI_Model {
 					foreach ($consultaVictimas->result_array() as $row2){
 						//$datos['victmas'][$row2['victimaId']] = $row2;
 						
-						/* Trae los perpetradores asociados a una victima */
-						$this->db->select('perpetradorVictimaId');
-						$this->db->from('perpetradores');
-						$this->db->where('victimas_victimaId',$row2['victimaId']);
-						$consultaPerpetradores = $this->db->get();
-						
-						if($consultaPerpetradores->num_rows() > 0){
-							/* Pasa la consulta a un cadena */
-							foreach ($consultaPerpetradores->result_array() as $row3){
-								//$datos['perpetradores'][$row3['perpetradorVictimaId']] = $row3;
-								/* Elimina la relacion de un perpetrador con un acto */
-								$this->mEliminaActosPerpetrador($row3['perpetradorVictimaId']);
-								 
-							}/* fin foreach consultaPerpetradores*/
-							
-						}/*fin de if consultaPerpetradores */
-							
 						 /* Elimina un perpetrador asiciado a una victima */
 						$this->mEliminaPerpetradoresVictima($row2['victimaId']);		
 					}
