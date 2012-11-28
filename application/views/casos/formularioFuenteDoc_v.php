@@ -4,7 +4,8 @@
 	</head>
 	<body>
 	<pre>
-	<?=print_r($datosCaso) ?>
+	<?=print_r($datosCaso)?>
+	<!--<?=print_r($catalogos['nivelConfiabilidadCatalogo'])?>-->
 	</pre>
 <form action='<?=base_url(); ?>index.php/casosVentanas_c/guardarDatosVentanas/5' method="post" accept-charset="utf-8">
 	<!--<input type="hidden" id="editar"  name="editar" value="<?= (isset($datos)) ? "1" : "0" ;?>"/>-->
@@ -26,22 +27,37 @@
 
 							<div class="six columns">
 								<label for="tipoFuente">Tipo de la fuente</label>
-								<select id="tipoFuenteDocumentalCatalogo" name="tipoFuenteDocumental">						
-									<?php foreach($catalogos['tipoFuenteCatalogo'] as $key => $item):?> <!--muestra los tipo de fuente-->
-                                   		<option  value="<?=$item['tipoFuenteId']?>" > <?=$item['descripcion']?></option>
-                                	<?php endforeach; ?>
-								</select>
+								<select id="tipoFuenteDocumentalCatalogo" name="tipoFuenteDocumental">
+									<option></option>						
+									 <?php if(isset($datosCaso['tipoFuenteDocumental']['tipoFuenteCatalogo_tipoFuenteId'])){
+				                                foreach($catalogos['tipoFuenteCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
+				                                    <option onclick="notasCatalogos('<?=$item['notas']; ?>','tipoFuenteDocumentalCatalogo','2')" value="<?=$item['tipoFuenteId']?>" <?=($datosCaso['tipoFuenteDocumental']['tipoFuenteCatalogo_tipoFuenteId'] == $item['tipoFuenteId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
+				                                <?php endforeach;
+				                            } else { ?>
+				                                <?php foreach($catalogos['tipoFuenteCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
+				                                    <option onclick="notasCatalogos('<?=$item['notas']; ?>','tipoFuenteDocumentalCatalogo','2')"  value="<?=$item['tipoFuenteId']?>" ><?=$item['descripcion']?></option>
+				                                <?php endforeach; } 
+				                      ?>
+										</select>
+										<div id="notastipoFuenteDocumentalCatalogo"></div>
 							</div>
 							
 
 							<div class="six columns">
 										<label for="nivConfiabilidad">Nivel de confiabilidad</label>
-										<select id="tipoFuenteDocumental_nivelConfiabilidadCatalogo_nivelConfiabilidadId" name="infoAdicional_nivelConfiabilidadCatalogo_nivelConfiabilidadId">						
-										<?php foreach($catalogos['nivelConfiabilidadCatalogo'] as $key => $item):?> <!--muestra los niveles de confiabilidad-->
-                                   			<option  value="<?=$item['nivelConfiabilidadId']?>" > <?=$item['descripcion']?></option>
-                                		<?php endforeach; ?>
+										<select id="tipoFuenteDocumental_nivelConfiabilidadCatalogo_nivelConfiabilidadId" name="infoAdicional_nivelConfiabilidadCatalogo_nivelConfiabilidadId">
+											<option></option>						
+											<?php if(isset($datosCaso['tipoFuenteDocumental']['nivelConfiabilidadCatalogo_nivelConfiabilidadId'])){
+						                                foreach($catalogos['nivelConfiabilidadCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
+						                                    <option onclick="notasCatalogos('<?=$item['notas']; ?>','nivelConfiabilidadCatalogo','2')" value="<?=$item['nivelConfiabilidadId']?>" <?=($datosCaso['tipoFuenteDocumental']['nivelConfiabilidadCatalogo_nivelConfiabilidadId'] == $item['nivelConfiabilidadId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
+						                                <?php endforeach;
+						                            } else { ?>
+						                                <?php foreach($catalogos['nivelConfiabilidadCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
+						                                    <option onclick="notasCatalogos('<?=$item['notas']; ?>','nivelConfiabilidadCatalogo','2')" value="<?=$item['nivelConfiabilidadId']?>" > <?=$item['descripcion']?></option>
+						                                <?php endforeach; } 
+						                      ?>
 										</select>
-										
+										<div id="notasnivelConfiabilidadCatalogo"></div>
 							</div>
 							
 							

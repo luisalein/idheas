@@ -49,18 +49,24 @@
 									<li > 
 										<?php foreach($catalogos['tipoPerpetradorN2Catalogo'] as  $nivel2){?> 
 											<?php if ( $nivel2['tipoPerpetradorN1Catalogo_tipoPerpetradorN1Id'] == $nivel1['tipoPerpetradorN1Id'] ) { ?>
-												<div style="padding-left:15px;" value="subnivel" onclick="tipoPerpetrador('<?=$nivel2['tipoPerpetradorN2Id']?>','<?=$nivel2['notas']?>','<?=$nivel2['descripcion']?>','nivel2','basea<?=$nivel2['tipoPerpetradorN2Id']?>',this)" id="basea<?=$nivel2['tipoPerpetradorN2Id']?>" class="cambiarColorRelacion <?php foreach($catalogos['tipoPerpetradorN3Catalogo'] as  $nivel3){?> 
-																						<?php if ( $nivel3['tipoPerpetradorN2Catalogo_tipoPerpetradorN2Id'] == $nivel2['tipoPerpetradorN2Id'] ) { 
-																							echo 'ExpanderFlecha flecha value="subnivel"'; break;} }?>">
+												<div style="padding-left:15px;" onclick="tipoPerpetrador('<?=$nivel2['tipoPerpetradorN2Id']?>','<?=$nivel2['notas']?>','<?=$nivel2['descripcion']?>','nivel2','basea<?=$nivel2['tipoPerpetradorN2Id']?>',this)" id="basea<?=$nivel2['tipoPerpetradorN2Id']?>" 
+													class="cambiarColorRelacion <?php foreach($catalogos['tipoPerpetradorN3Catalogo'] as  $nivel3){
+																if ( $nivel3['tipoPerpetradorN2Catalogo_tipoPerpetradorN2Id'] == $nivel2['tipoPerpetradorN2Id'] ) { 
+																		echo'ExpanderFlecha flecha"';
+																		echo'value="subnivel'; 
+																		break;} }?>" >
 													<?=$nivel2['descripcion']?>
 												</div>	
 													<ul style="padding-left:15px;"  id='nivel2<?=$nivel2['tipoPerpetradorN2Id']?>' class="Escondido" >
 														<li > 
 															<?php foreach($catalogos['tipoPerpetradorN3Catalogo'] as  $nivel3){?> 
 																<?php if ( $nivel3['tipoPerpetradorN2Catalogo_tipoPerpetradorN2Id'] == $nivel2['tipoPerpetradorN2Id'] ) { ?>
-																	<div style="padding-left:15px;" onclick="tipoPerpetrador('<?=$nivel3['tipoPerpetradorN3Id']?>','<?=$nivel3['notas']?>','<?=$nivel3['descripcion']?>', 'nivel3','baseb<?=$nivel3['tipoPerpetradorN3Id']?>')" id="baseb<?=$nivel3['tipoPerpetradorN3Id']?>" class="cambiarColorRelacion <?php foreach($catalogos['tipoPerpetradorN4Catalogo'] as  $nivel4){?> 
-																										<?php if ( $nivel4['tipoPerpetradorN3Catalogo_tipoPerpetradorN3Id'] == $nivel3['tipoPerpetradorN3Id'] ) { 
-																											echo "ExpanderFlecha flecha ".$nivel4['tipoPerpetradorN3Catalogo_tipoPerpetradorN3Id'];break;}}?>">
+																	<div style="padding-left:15px;"  onclick="tipoPerpetrador('<?=$nivel3['tipoPerpetradorN3Id']?>','<?=$nivel3['notas']?>','<?=$nivel3['descripcion']?>', 'nivel3','baseb<?=$nivel3['tipoPerpetradorN3Id']?>',this)" id="baseb<?=$nivel3['tipoPerpetradorN3Id']?>" 
+																			class="cambiarColorRelacion <?php foreach($catalogos['tipoPerpetradorN4Catalogo'] as  $nivel4){
+																							if ( $nivel4['tipoPerpetradorN3Catalogo_tipoPerpetradorN3Id'] == $nivel3['tipoPerpetradorN3Id'] ) { 
+																								echo'ExpanderFlecha flecha"';
+																								echo'value="subnivel'; 
+																								;break; } } ?>" >
 																		<?=$nivel3['descripcion']?>
 																	</div>	
 																			<ul style="padding-left:15px;" id='nivel3<?=$nivel3['tipoPerpetradorN3Id']?>' class="Escondido">
