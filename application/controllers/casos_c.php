@@ -72,6 +72,8 @@ class Casos_c extends CI_Controller {
 		
 		$datos['actosN4Catalogo'] = $this->general_m->obtener_todo('actosN4Catalogo', 'actoN4Id', 'descripcion');
 		
+		$datos['tipoFuenteCatalogo'] = $this->general_m->obtener_todo('tipoFuenteCatalogo', 'tipoFuenteId', 'descripcion');
+		
         $datos['listaTodosActores'] = $this->actores_m-> mListaTodosActores();
         
         return $datos;
@@ -96,8 +98,6 @@ class Casos_c extends CI_Controller {
             $datos['datosCaso'] = $this->casos_m->mTraerDatosCaso($casoId);
             
         }
-//echo "<pre>";
-       // print_r($datos['datosCaso']);
         $datos['is_active'] = 'casos';
         
         $datos['head'] = $this->load->view('general/head_v', $datos, true);

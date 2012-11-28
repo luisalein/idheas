@@ -46,7 +46,7 @@
 			              	<td><?php print_r($derecho['fechaInicial']); ?></td>
 			              	<td><?php print_r($derecho['fechaTermino']); ?></td>
 			                <td><input type="button" class="tiny button"  value="Editar" onclick="ventanaDerAfectados('<?=$casoId; ?>', '<?=$index?>')" />
-			                <input type="button" class="tiny button"  value="Eliminar" onclick="" /></td>
+			                <input type="button" class="tiny button"  value="Eliminar" onclick="eliminarDerechoAfectado('<?= $derecho['derechoAfectadoCasoId']?>', '<?=$casoId; ?>')" /></td>
 			              </tr><?php } }?><?php } ?>
 			            </tbody>
 			          </table>
