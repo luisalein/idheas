@@ -16,7 +16,13 @@
 .bordeInferior{
        border-bottom:4px solid #ddd;
 }
-
+.listas{
+	list-style:none !important;
+}  
+.hand{
+	padding-left:15px;
+	cursor:pointer;
+}
 .cursor{
 	cursor:pointer;
 	width: 25px;

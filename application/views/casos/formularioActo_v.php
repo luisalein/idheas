@@ -6,7 +6,7 @@
 	</head>
 	
 <body>
-<form action='<?=base_url(); ?>index.php/casosVentanas_c/guardarDatosVentanas/3' method="post" accept-charset="utf-8">
+<form action='<?=base_url(); ?>index.php/casosVentanas_c/guardarDatosVentanas/3' method="post" accept-charset="utf-8" id="menuForm" name="menuForm">
 <!-------------------------Comienza la parte de Acto---------------------------->
 <div id="formularioCasoActo">
 	<div id="pestania" data-collapse>
@@ -16,10 +16,14 @@
 				  <legend>Información general</legend>
 				<input type="hidden" name="editar" id="editar" value="<?= (isset($derechoAfectado)) ? '1' : '0' ; ?>"/>
                 <input type="hidden" value="<?=$casoId; ?>" name="lugares_casos_casoId" id="lugares_casos_casoId" />
-                <input type="hidden" value="" name="derechoAfectadoId" id="derechoAfectado" />
-                <input type="hidden" value="" name="derechoAfectadoNivel" id="derechoAfectadoNivel" />
-                <input type="hidden" value="" name="actoViolatorioId" id="actoViolatorioId" />
-                <input type="hidden" value="" name="actoViolatorioNivel" id="actoViolatorioNivel" />
+                <input type="hidden" value="" name="derechoAfectado_derechoAfectadoId" id="derechoAfectado" />
+                <input type="hidden" value="" name="derechoAfectado_derechoAfectadoNivel" id="derechoAfectadoNivel" />
+                <input type="hidden" value="" name="actos_actoViolatorioId" id="actoViolatorioId" />
+                <input type="hidden" value="" name="actos_actoViolatorioNivel" id="actoViolatorioNivel" />
+                <input type="hidden" value="5" name="5" id="tipoActorAE" />
+                		<?print_r($acto);?>
+                		<?print_r($derechoAfectado)?>
+                		<?echo "<pre>";print_r($datosCaso)?>
                         <label for="derecho">Derecho afectado</label>
                         <div id="textoDerechoAfectado"></div>
                         <label for="derecho">Notas</label>
@@ -28,32 +32,51 @@
 				         <div  id="listaActorIndiv" class="cajaDerchosActos">
 	                        <ul>
 								<?php foreach($derechosAfectados['derechosAfectadosN1Catalogos'] as $derechoAfectado):?> 
-									<li  id="pestaniaCasos" >
-										<div onclick="nombrederechoAfectado('<?=$derechoAfectado['derechoAfectadoN1Id'];?>','<?=$derechoAfectado['descripcion'];?>','<?=$derechoAfectado['notas'];?>')" >
+									<li  class="listas" >
+										<div class="ExpanderFlecha flecha hand" value="subnivel" onclick="nombrederechoAfectado('<?=$derechoAfectado['derechoAfectadoN1Id'];?>','<?=$derechoAfectado['descripcion'];?>','<?=$derechoAfectado['notas'];?>',this)" >
 											<?php echo $derechoAfectado['descripcion'];?>
 										</div>
 										<ul class="Escondido" id="<?=$derechoAfectado['derechoAfectadoN1Id'];?>DAN1" >
 										
 										<?php foreach($derechosAfectados['derechosAfectadosN2Catalogos'] as $derechoAfectadoN2):?>
 											<?php if($derechoAfectadoN2['derechosAfectadosN1Catalogo_derechoAfectadoN1Id'] == $derechoAfectado['derechoAfectadoN1Id']):?>
-												<li class=" pestaniaCasos" >
-													<div  onclick="nombrederechoAfectadosub1('<?=$derechoAfectado['derechoAfectadoN1Id'];?>','<?=$derechoAfectadoN2['derechoAfectadoN2Id'];?>','<?=$derechoAfectadoN2['descripcion'];?>','<?=$derechoAfectadoN2['notas'];?>')">
+												<?php foreach($catalogos['derechosAfectadosN3Catalogo'] as $c1){
+														if($c1['derechosAfectadosN2Catalogo_derechoAfectadoN2Id']==$derechoAfectadoN2['derechoAfectadoN2Id']){
+															$sub = 'subnivel';
+															$expander = 'ExpanderFlecha flecha hand';
+														}
+													}?>
+												
+												<li  class="listas">
+													<div class="<?php if(isset($expander)) echo $expander;?>" value="<?php if(isset($sub)) echo $sub;?>" onclick="nombrederechoAfectadosub1('<?=$derechoAfectado['derechoAfectadoN1Id'];?>','<?=$derechoAfectadoN2['derechoAfectadoN2Id'];?>','<?=$derechoAfectadoN2['descripcion'];?>','<?=$derechoAfectadoN2['notas'];?>')">
 														<?php echo $derechoAfectadoN2['descripcion'];?>
 													</div>
+													<?php $expander='';
+														$sub = ''; ?>
+				
 													<ul class="Escondido"  id="<?=$derechoAfectadoN2['derechoAfectadoN2Id'];?>DAN2" >
 										
 														<?php foreach($derechosAfectados['derechosAfectadosN3Catalogos'] as $derechoAfectadoN3):?>
 															<?php if($derechoAfectadoN3['derechosAfectadosN2Catalogo_derechoAfectadoN2Id'] == $derechoAfectadoN2['derechoAfectadoN2Id']):?>
-																<li class=" pestaniaCasos" >
-																	<div  onclick="nombrederechoAfectadosub2('<?=$derechoAfectado['derechoAfectadoN1Id'];?>','<?=$derechoAfectadoN2['derechoAfectadoN2Id'];?>','<?=$derechoAfectadoN3['derechoAfectadoN3Id'];?>','<?=$derechoAfectadoN3['descripcion'];?>','<?=$derechoAfectadoN3['notas'];?>')">
+																
+																<?foreach($catalogos['derechosAfectadosN4Catalogo'] as $c2){
+																		if($c2['derechosAfectadosN3Catalogo_derechoAfectadoN3Id']==$derechoAfectadoN3['derechoAfectadoN3Id']){
+																			$sub = 'subnivel';
+																			$expander = 'ExpanderFlecha flecha hand';
+																		}
+																	}?>
+																
+																<li  class="listas">
+																	<div class="<?php if(isset($expander)) echo $expander;?>" value="<?php if(isset($sub)) echo $sub;?>" onclick="nombrederechoAfectadosub2('<?=$derechoAfectado['derechoAfectadoN1Id'];?>','<?=$derechoAfectadoN2['derechoAfectadoN2Id'];?>','<?=$derechoAfectadoN3['derechoAfectadoN3Id'];?>','<?=$derechoAfectadoN3['descripcion'];?>','<?=$derechoAfectadoN3['notas'];?>')">
 																		<?php echo $derechoAfectadoN3['descripcion'];?>
 																	</div>
-																	
+																	<?php $expander='';
+																		$sub = ''; ?>
 																		<ul class="Escondido" id="<?=$derechoAfectadoN3['derechoAfectadoN3Id'];?>DAN3" >
 															
 																			<?php foreach($derechosAfectados['derechosAfectadosN4Catalogos'] as $derechoAfectadoN4):?>
 																				<?php if($derechoAfectadoN4['derechosAfectadosN3Catalogo_derechoAfectadoN3Id'] == $derechoAfectadoN3['derechoAfectadoN3Id']):?>
-																					<li class=" pestaniaCasos" >
+																					<li  class="listas" >
 																						<div  onclick="nombrederechoAfectadosub3('<?=$derechoAfectado['derechoAfectadoN1Id'];?>','<?=$derechoAfectadoN2['derechoAfectadoN2Id'];?>','<?=$derechoAfectadoN3['derechoAfectadoN3Id'];?>','<?=$derechoAfectadoN4['derechoAfectadoN4Id'];?>','<?=$derechoAfectadoN4['descripcion'];?>','<?=$derechoAfectadoN4['notas'];?>')">
 																							<?php echo $derechoAfectadoN4['descripcion'];?>
 																						</div>
@@ -164,35 +187,11 @@
 							<label for="personas">Personas afectadas:</label>
 							<input type="number"  name="nucleoCaso_noPersonasAfectadas" placeholder="0" />
 
-							<label for="pais">País</label>
-							<select id="nucleoCaso_paisesCatalogo_paisId" name="nucleoCaso_paisesCatalogo_paisId">
-							<?php foreach($catalogos['paisesCatalogo'] as  $item):?> 
-									<option value="<?=$item['paisId']; ?>"><?=$item['nombre']; ?></option>
-							<?php endforeach;?>
-							</select>
 
 					</div>
 				  
 					<div class="six columns">
-
-							<label for="estado">Estado</label>
-							<select id="nucleoCaso_estadosCatalogo_estadoId" name="nucleoCaso_estadosCatalogo_estadoId">
-								<option></option>
-							<?php foreach($catalogos['estadosCatalogo'] as  $item):?> 
-									<option value="<?=$item['estadoId']; ?>"><?=$item['nombre']; ?></option>
-							<?php endforeach;?>
-							</select>
-					</div><!----Termina primer mitad de datos de Nacimiento ---->
-
-					<div class="six columns"><!----Segunda mitad de datos de Nacimiento ---->
-
-							<label for="municipio">Municipio</label>
-							<select id="nucleoCaso_municipiosCatalogo_municipioId" name="nucleoCaso_municipiosCatalogo_municipioId">
-								<option></option>
-							<?php foreach($catalogos['municipiosCatalogo'] as $item):?> 
-									<option value="<?=$item['municipioId']; ?>"><?=$item['nombre']; ?></option>
-							<?php endforeach;?>
-							</select>
+						<?=$filtroPais;?>
 					</div>
 				  
 			</fieldset>
