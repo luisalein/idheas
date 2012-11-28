@@ -1,3 +1,4 @@
+
 <div id="pestania" data-collapse>
 	<h2>Información adicional</h2><!--título de la sub-pestaña-->  
 	<div>
@@ -24,11 +25,11 @@
 					            		foreach ($datosCaso['tipoFuenteDocumental'] as $index => $fuenteDoc) { ?>
 							              <tr>
 							                <td><?= $fuenteDoc['nombre'] ?></td>
-							                <td><?= $fuenteDoc['tipoFuenteCatalogo_tipoFuenteId'] ?></td>
-							                <td><?= $fuenteDoc['actorReportado'] ?></td>
+							                <td><?= ($fuenteDoc['tipoFuenteCatalogo_tipoFuenteId']==$catalogos['tipoFuenteCatalogo'][$fuenteDoc['tipoFuenteCatalogo_tipoFuenteId']]) ? $catalogos['tipoFuenteCatalogo'][$fuenteDoc['tipoFuenteCatalogo_tipoFuenteId']]['descripcion']:$catalogos['tipoFuenteCatalogo'][$fuenteDoc['tipoFuenteCatalogo_tipoFuenteId']]['descripcion'] ?></td>
+							                <td><?= (isset($fuenteDoc['actorReportado']) ? $catalogos['listaTodosActores'][$fuenteDoc['actorReportado']]['nombre'].' '.$catalogos['listaTodosActores'][$fuenteDoc['actorReportado']]['apellidosSiglas'] : 'No hay actor reportado') ?> </td>
 							                <td><?= $fuenteDoc['fecha'] ?></td>
 							                <td><?= $fuenteDoc['fechaAcceso'] ?></td>
-							                <td><input type="button" class="tiny button"  value="Editar" onclick="ventanaFuenteDoc('<?= $casoId; ?>',<?= $fuenteDoc['actorReportado'] ?>,'<?= $index ?>')" />
+							                <td><input type="button" class="tiny button"  value="Editar" onclick="ventanaFuenteDoc('<?= $casoId; ?>','<?= $fuenteDoc['actorReportado'] ?>','<?= $index ?>')" />
 							                <input type="button" class="tiny button"  value="Eliminar" onclick="" /></td>
 							              </tr>
 							              <?php }}?>
