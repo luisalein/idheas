@@ -28,15 +28,28 @@ function botonNotas(notas){
 /**función que despliega el catalogo de tipo de perpetrador**/
 function tipoPerpetrador(id, notas, descripcion, nivel,flechita,e){
 	
+	numNivel=nivel.substr(5, 5);
 	$("#tipoPerpetrador").html(descripcion);
 	$("#notasPerpetrador").html(notas);
 	//$().html(id);//Aqui agrego el id del tipo de perpetrador
 	$('#'+nivel+id).toggleClass("Escondido");
-    $(e).css('background-color', '#000');
-    $('.cambiarColorRelacion').css('background-color', '#efefef');
+	$('.cambiarColorPerpetrador').css('background-color', '#efefef');
+    $(e).css('background-color', '#ddd');
+    document.getElementById('perpetradores_tipoPerpetradorId').value=id;
+    document.getElementById('perpetradores_tipoPerpetradorNivel').value=numNivel;
 
 	subnivel= $(e).attr('value');
 	    if (subnivel == "subnivel"){
 				$(e).toggleClass("ExpanderFlecha");
+    			$('.cambiarColorPerpetrador').css('background-color', '#efefef');
 		};
+		
+}
+/* Notas Grado de involucramiento */
+
+function involucramientoPerpetradores(notas, descripcion, id) {
+
+	$('#subNivelInvolucramiento'+id).toggleClass("Escondido");
+	$("#gradoDeInvolucramiento").html(descripcion);
+	$("#notasgradoDeInvolucramiento").html(notas);
 }
