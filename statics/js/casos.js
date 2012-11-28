@@ -47,6 +47,11 @@ function ventanaVictimas(casoId){
 	  var windowSizeArray = [ "width=900,height=700,scrollbars=yes" ];
 	window.open(base+'index.php/casos_c/mostrarVictimas/'+casoId+'/0/0', 'Ventana victimas', windowSizeArray);
 	};
+
+function ventanaPerpetradores(casoId,victimaId,perpetradorId){
+	  var windowSizeArray = [ "width=950,height=700,scrollbars=yes" ];
+	window.open(base+'index.php/casos_c/mostrarPerpetrador/'+casoId+'/'+victimaId+'/'+perpetradorId, 'Ventana victimas', windowSizeArray);
+	};
 /******************************************/
 
 

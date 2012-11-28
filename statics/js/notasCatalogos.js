@@ -47,9 +47,11 @@ function tipoPerpetrador(id, notas, descripcion, nivel,flechita,e){
 }
 /* Notas Grado de involucramiento */
 
-function involucramientoPerpetradores(notas, descripcion, id) {
+function involucramientoPerpetradores(notas, descripcion, id, nivel) {
 
 	$('#subNivelInvolucramiento'+id).toggleClass("Escondido");
 	$("#gradoDeInvolucramiento").html(descripcion);
 	$("#notasgradoDeInvolucramiento").html(notas);
+    document.getElementById('perpetradores_gradoInvolucramientoid').value=id;
+    document.getElementById('perpetradores_nivelInvolugramientoId').value=nivel;
 }

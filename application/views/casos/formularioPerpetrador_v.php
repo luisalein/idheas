@@ -16,6 +16,12 @@
 
 			<input type="hidden" name="perpetradores_tipoPerpetradorNivel" value="<?= (isset($perpetrador['tipoPerpetradorNivel'])) ? $perpetrador['tipoPerpetradorNivel'] : " " ;?>" id="perpetradores_tipoPerpetradorNivel" >
 
+			<input type="hidden" name="perpetradores_gradoInvolucramientoid" value="<?= (isset($perpetrador['gradoInvolucramientoid'])) ? $perpetrador['gradoInvolucramientoid'] : " " ;?>" id="perpetradores_gradoInvolucramientoid" >
+
+			<input type="hidden" name="perpetradores_nivelInvolugramientoId" value="<?= (isset($perpetrador['nivelInvolugramientoId'])) ? $perpetrador['nivelInvolugramientoId'] : " " ;?>" id="perpetradores_nivelInvolugramientoId" >
+			
+			<input type="hidden" name="perpetradores_tipoLugarId" value="<?= (isset($perpetrador['tipoLugarId'])) ? $perpetrador['tipoLugarId'] : " " ;?>" id="perpetradores_tipoLugarId" >
+
 			<fieldset>
 				<legend>Información general</legend>
 					<pre><?= print_r($perpetrador)?></pre>
@@ -38,10 +44,10 @@
 					<input type="button" class="small button" value="Eliminar actor" onclick="eliminaActor()">
 			</fieldset>
 
-			<label>Tipo de perpetrador</label>
-			<div id="tipoPerpetrador"></div>
 			<label>Notas</label>
 			<div id="notasPerpetrador"></div>
+			<label>Tipo de perpetrador</label>
+			<div id="tipoPerpetrador"></div>
 
 			<div class="caja CatalogoTipoPerpetrador">
 				<ol>
@@ -93,17 +99,43 @@
 				</ol>
 			</div>
 
+			<pre><?= print_r($catalogos['gradoInvolucramientoN1Catalogo'])?></pre>
 
-			<label>Grado de involucramiento</label>
-			<div id="gradoDeInvolucramiento"></div>
+			<div class="twelve columns">
+				<label>Status del perpetrador</label>
+					<select name="estatusPerpetradorCatalogo_estatusPerpetradorId">
+						<option></option>
+						<?php if (isset($perpetrador['estatusPerpetradorCatalogo_estatusPerpetradorId'])) {
+							foreach ($catalogos['estatusPerpetradorCatalogo'] as $estatusPerpetrador ) { ?>
+							<option <?=($estatusPerpetrador['estatusPerpetradorId']==$perpetrador['estatusPerpetradorCatalogo_estatusPerpetradorId']) ? 'selected=selected' : "" ;?> onclick="notasCatalogos('<?= $estatusPerpetrador['notas']?>','estatusPerpetradorCatalogo_estatusPerpetradorId','2')" value="<?= $estatusPerpetrador['estatusPerpetradorId']?>" ><?= $estatusPerpetrador['descripcion']?></option>
+						<?php }
+						} else {?>
+							<option onclick="notasCatalogos('<?= $estatusPerpetrador['notas']?>','estatusPerpetradorCatalogo_estatusPerpetradorId','2')" value="<?= $estatusPerpetrador['estatusPerpetradorId']?>" ><?= $estatusPerpetrador['descripcion']?></option>
+						<?php } ?>
+
+					</select>
+					<div id="notasestatusPerpetradorCatalogo_estatusPerpetradorId"> </div>
+			</div>
+
+			<label>Notas</label>
+			<div id="notastipoLugarId"></div>
+			<label>Lugar de Acto</label>
+			<div id="tipoLugarActo"></div>
+
+			<div class="caja CatalogoTipoPerpetrador">
+
+			</div>
+
 			<label>Notas</label>
 			<div id="notasgradoDeInvolucramiento"></div>
+			<label>Grado de involucramiento</label>
+			<div id="gradoDeInvolucramiento"></div>
 
 			<div class="caja CatalogoTipoPerpetrador">
 				<ul>
 					<?php foreach ($catalogos['gradoInvolucramientoN1Catalogo'] as $gradoN1) {?>
 					<li>
-						<div style="padding-left:15px;" onclick="involucramientoPerpetradores('<?= $gradoN1['notas'] ?>','<?= $gradoN1['descripcion'] ?>','<?= $gradoN1['gradoInvolucramientoN1Id']?>')"
+						<div style="padding-left:15px;" onclick="involucramientoPerpetradores('<?= $gradoN1['notas'] ?>','<?= $gradoN1['descripcion'] ?>','<?= $gradoN1['gradoInvolucramientoN1Id']?>','1')"
 								class="colorPerpetrador <?php foreach ($catalogos['gradoInvolucramientoN2Catalogo'] as $gradoN2) {
 									if ($gradoN2['gradoInvolucramientoN1Catalogo_gradoInvolucramientoN1Id']==$gradoN1['gradoInvolucramientoN1Id']) {
 												echo'ExpanderFlecha flecha"';
@@ -114,7 +146,7 @@
 						<div style="padding-left:15px;" id="subNivelInvolucramiento<?= $gradoN1['gradoInvolucramientoN1Id']?>" class="Escondido" >
 							<?php foreach ($catalogos['gradoInvolucramientoN2Catalogo'] as $gradoN2) {
 								if ($gradoN2['gradoInvolucramientoN1Catalogo_gradoInvolucramientoN1Id']==$gradoN1['gradoInvolucramientoN1Id']) {?>
-									<div onclick="involucramientoPerpetradores('<?= $gradoN2['notas'] ?>','<?= $gradoN2['descripcion'] ?>','<?= $gradoN2['gradoInvolucramientoN2Id']?>')" >
+									<div onclick="involucramientoPerpetradores('<?= $gradoN2['notas'] ?>','<?= $gradoN2['descripcion'] ?>','<?= $gradoN2['gradoInvolucramientoN2Id']?>','2')" >
 										<?= $gradoN2['descripcion'] ?>
 									</div>
 								<?php }
@@ -125,10 +157,10 @@
 				</ul>
 			</div>
 
-			<pre><?= print_r($catalogos['gradoInvolucramientoN1Catalogo'])?></pre>
-			<pre><?= print_r($catalogos['gradoInvolucramientoN2Catalogo'])?></pre>
 
 			<input type="submit" value="Guardar" class="tiny button">
+			<input type="button" value="Cancelar" onclick="ventanaVictimas('1')" class="tiny button">
+
 		</form>
 	</body>
 </html>	
