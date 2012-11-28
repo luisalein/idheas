@@ -104,7 +104,7 @@
 			              </tr>
 			            </tbody>
 	          		</table>
-				<input type="button" class="tiny button <?=$clase?>" value="nuevo" onclick="" />
+					<input type="button"  class="tiny button" value="Nuevo" onclick="" />
 				<br /><br />
 	  			</div>
 	  		</div>
