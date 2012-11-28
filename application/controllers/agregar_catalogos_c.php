@@ -55,6 +55,12 @@ class Agregar_catalogos_c extends CI_Controller {
 		$this->cAgregarCatalogoMotivoViaje();
         
 		$this->cAgregarCatalogoActosDerechoAfectado();
+		
+		$this->cAgregarCatalogoTipoLugarN1();
+		
+		$this->cAgregarCatalogoTipoLugarN2();
+		
+		$this->cAgregarCatalogoTipoLugarN3();
     }
     
     /*
@@ -590,6 +596,7 @@ class Agregar_catalogos_c extends CI_Controller {
         
         echo 'Catalogo de grado involucramiento N1 insertado exitosamente.<br />';
     }
+	
     public function cAgregarCatalogoGradoInvolucramientoN2(){
     	
 		$catalogo =explode('&',read_file('statics/catalogos/catalogogradodeinvolucramiento/GradodeInvolucramientoNivel2.csv'));
@@ -606,6 +613,52 @@ class Agregar_catalogos_c extends CI_Controller {
         echo 'Catalogo de grado involucramiento N2 insertado exitosamente.<br />';
     }
     
+	public function cAgregarCatalogoTipoLugarN1(){
+		
+		$catalogo =explode('&',read_file('statics/catalogos/catalogoTipoLugar/catalogoTipoLugarNivel1.csv'));
+
+		foreach($catalogo as $filaCatalogo){
+                
+            $datos = explode('¬', $filaCatalogo);
+			
+            $filas['tipoLugarN1Catalogo'][trim($datos[0])] = array('descripcion' => trim($datos[1]),'notas' => trim($datos[2]));
+        }
+		 $this->agregar_catalogos_m->mAgregarCatalogos($filas);
+        
+        echo 'Catalogo de tipo lugar N1 insertado exitosamente.<br />';
+	}
+	
+	public function cAgregarCatalogoTipoLugarN2(){
+		
+		$catalogo =explode('&',read_file('statics/catalogos/catalogoTipoLugar/catalogoTipoLugarNivel2.csv'));
+
+		foreach($catalogo as $filaCatalogo){
+                
+            $datos = explode('¬', $filaCatalogo);
+			
+            $filas['tipoLugarN2Catalogo'][trim($datos[0])] = array('descripcion' => trim($datos[1]),'notas' => trim($datos[2]),
+			'tipoLugarN1Catalogo_tipoLugarId' => trim($datos[3]));
+        }
+		 $this->agregar_catalogos_m->mAgregarCatalogos($filas);
+        
+        echo 'Catalogo de tipo lugar N2 insertado exitosamente.<br />';
+	}
+	
+	public function cAgregarCatalogoTipoLugarN3(){
+		
+		$catalogo =explode('&',read_file('statics/catalogos/catalogoTipoLugar/catalogoTipoLugarNivel3.csv'));
+
+		foreach($catalogo as $filaCatalogo){
+                
+            $datos = explode('¬', $filaCatalogo);
+			
+            $filas['tipoLugarN3Catalogo'][trim($datos[0])] = array('descripcion' => trim($datos[1]),'notas' => trim($datos[2]),
+			'tipoLugarN2Catalogo_tipoLugarN2Id' => trim($datos[3]));
+        }
+		 $this->agregar_catalogos_m->mAgregarCatalogos($filas);
+        
+        echo 'Catalogo de tipo lugar N3 insertado exitosamente.<br />';
+	}
 }
 
 /* End of file principal.php */

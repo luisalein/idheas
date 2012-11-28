@@ -16,18 +16,30 @@
 				  <legend>Información general</legend>
 				<input type="hidden" name="editar" id="editar" value="<?= (isset($derechoAfectado)) ? '1' : '0' ; ?>"/>
                 <input type="hidden" value="<?=$casoId; ?>" name="lugares_casos_casoId" id="lugares_casos_casoId" />
-                <input type="hidden" value="" name="derechoAfectado_derechoAfectadoId" id="derechoAfectado" />
-                <input type="hidden" value="" name="derechoAfectado_derechoAfectadoNivel" id="derechoAfectadoNivel" />
-                <input type="hidden" value="" name="actos_actoViolatorioId" id="actoViolatorioId" />
-                <input type="hidden" value="" name="actos_actoViolatorioNivel" id="actoViolatorioNivel" />
+                <input type="hidden" value="<?php if(isset($acto)) echo $acto['actoId']?>" name="actos_actoId" id="actos_actoId" />
+                <input type="hidden" value="<?php if(isset($derechoAfectado)) echo $derechoAfectado['derechoAfectadoCasoId']?>" name="derechoAfectado_derechoAfectadoCasoId" id="derechoAfectado_derechoAfectadoCasoId" />
                 <input type="hidden" value="5" name="5" id="tipoActorAE" />
-                		<?print_r($acto);?>
-                		<?print_r($derechoAfectado)?>
-                		<?echo "<pre>";print_r($datosCaso)?>
-                        <label for="derecho">Derecho afectado</label>
-                        <div id="textoDerechoAfectado"></div>
-                        <label for="derecho">Notas</label>
-                        <div id="notasDerechoAfectado"></div>
+                	<?php if(isset($derechoAfectado['derechoAfectadoNivel'])):?>
+                		<?php foreach($derechosAfectados['derechosAfectadosN'.$derechoAfectado['derechoAfectadoNivel'].'Catalogos'] as $derecho){
+                			if($derecho['derechoAfectadoN'.$derechoAfectado['derechoAfectadoNivel'].'Id']==$derechoAfectado['derechoAfectadoId']){
+                				 echo '<label for="derecho">Derecho afectado</label>
+			                        <div id="textoDerechoAfectado">'.$derecho['descripcion'].'</div>
+			                        <label for="derecho">Notas</label>
+			                        <div id="notasDerechoAfectado">'.$derecho['notas'].'</div>
+			                        <input type="hidden" value="'.$derechoAfectado['derechoAfectadoId'].'" name="derechoAfectado_derechoAfectadoId" id="derechoAfectado" />
+                					<input type="hidden" value="'.$derechoAfectado['derechoAfectadoNivel'].'" name="derechoAfectado_derechoAfectadoNivel" id="derechoAfectadoNivel" />
+                			    ';
+							}
+							
+                		} ?>
+                   <?php else:?>
+                   	<input type="hidden" value="" name="derechoAfectado_derechoAfectadoId" id="derechoAfectado" />
+               		 <input type="hidden" value="" name="derechoAfectado_derechoAfectadoNivel" id="derechoAfectadoNivel" />
+               		  <label for="derecho">Derecho afectado</label>
+			         <div id="textoDerechoAfectado"></div>
+			         <label for="derecho">Notas</label>
+			         <div id="notasDerechoAfectado"></div>
+                   <?php endif;?>
                         <br /><br />
 				         <div  id="listaActorIndiv" class="cajaDerchosActos">
 	                        <ul>
@@ -99,10 +111,42 @@
 							</ul>
 	  					</div>	
                         <br /><br />
-                        <label for="Acto">Acto</label>
-                        <div id="textoDerechoAfectadoN2"></div>
-                        <label for="Acto">Notas Acto</label>
-                        <div id="notasActoId"></div>
+                        <?php if(isset($acto['actoViolatorioNivel'])):?>
+                			<?php foreach($actos['actosN'.$acto['actoViolatorioNivel'].'Catalogo'] as $catalogo){
+                				if($acto['actoViolatorioNivel']==1){
+                					if($catalogo['actoId']==$acto['actoViolatorioId']){
+		                				 echo '<label for="Acto">Acto</label>
+					                        <div id="textoDerechoAfectadoN2">'.$catalogo['descripcion'].'</div>
+					                        <label for="Acto">Notas Acto</label>
+					                        <div id="notasActoId">'.$catalogo['notas'].'</div>
+					                        <input type="hidden" value="'.$acto['actoViolatorioId'].'" name="actos_actoViolatorioId" id="actos_actoViolatorioId" />
+		                					<input type="hidden" value="'.$acto['actoViolatorioNivel'].'" name="actos_actoViolatorioNivel" id="actoViolatorioNivel" />
+		                			    ';
+									}
+                				}else{
+                					if($catalogo['actoN'.$acto['actoViolatorioNivel'].'Id']==$acto['actoViolatorioId']){
+		                				 echo '<label for="Acto">Acto</label>
+					                        <div id="textoDerechoAfectadoN2">'.$catalogo['descripcion'].'</div>
+					                        <label for="Acto">Notas Acto</label>
+					                        <div id="notasActoId">'.$catalogo['notas'].'</div>
+					                        <input type="hidden" value="'.$acto['actoViolatorioId'].'" name="actos_actoViolatorioId" id="actos_actoViolatorioId" />
+		                					<input type="hidden" value="'.$acto['actoViolatorioNivel'].'" name="actos_actoViolatorioNivel" id="actoViolatorioNivel" />
+		                			    ';
+									}
+                				}
+	                			
+								
+	                		} ?>
+	                   <?php else:?>
+		               		 <input type="hidden" value="" name="actos_actoViolatorioId" id="actoViolatorioId" />
+		                    <input type="hidden" value="" name="actos_actoViolatorioNivel" id="actoViolatorioNivel" />
+		                   	<label for="Acto">Acto</label>
+	                        <div id="textoDerechoAfectadoN2"></div>
+	                        <label for="Acto">Notas Acto</label>
+	                        <div id="notasActoId"></div>
+	                   <?php endif;?>
+                        
+                        
 				         <br /><br />
 							<div  id="listaActos" class="cajaDerchosActos">	
 				                       
@@ -122,23 +166,23 @@
 				
 							<div class="six columns">
 								<br />
-								<p class="Escondido" id="fechaExactaVAct">
-									<input type="text" id="fechaExactaAct"   placeholder="AAAA-MM-DD" />
+								<p class="<?php if(isset($fInicial)) echo ''; else echo 'Escondido';?>" id="fechaExactaVAct">
+									<input type="text" id="fechaExactaAct" name="derechoAfectado_fechaInicial" value="<?php if(isset($fInicial)) echo $fInicial;?>" placeholder="AAAA-MM-DD" />
 
 								</p>
 
 								<p class="Escondido" id="fechaAproxVAct">
-									<input type="text" id="fechaAproxAct"   placeholder="AAAA-MM-DD" />
+									<input type="text" id="fechaAproxAct" name="derechoAfectado_fechaInicial"  placeholder="AAAA-MM-DD" />
 
 								</p>
 
 								<p class="Escondido" id="fechaSinDiaVAct">
-									<input type="text" id="fechaSinDiaAct"   placeholder="AAAA-MM-00" />
+									<input type="text" id="fechaSinDiaAct" name="derechoAfectado_fechaInicial"  placeholder="AAAA-MM-00" />
 
 								</p >
 
 								<p class="Escondido" id="fechaSinDiaSinMesVAct">
-									<input type="text" id="fechaSinDiaSinMesAct"  placeholder="AAAA-00-00" />
+									<input type="text" id="fechaSinDiaSinMesAct" name="derechoAfectado_fechaInicial"  placeholder="AAAA-00-00" />
 
 								</p>
 							</div>
@@ -154,8 +198,8 @@
 							</select>
 						</div>
 						<div class="six columns">
-							<p class="Escondido" id="fechaExactaVAct2">
-								<input type="text" id="fechaExactaAct2"   placeholder="AAAA-MM-DD" />
+							<p class="<?php if(isset($fTermino)) echo ''; else echo 'Escondido';?>" id="fechaExactaVAct2">
+								<input type="text" id="fechaExactaAct2" value="<?php if(isset($fTermino)) echo $fTermino;?>"  placeholder="AAAA-MM-DD" />
 
 							</p>
 
@@ -165,7 +209,7 @@
 							</p>
 
 							<p class="Escondido" id="fechaSinDiaVAct2">
-								<input type="text" id="fechaSinDiaAct2"   placeholder="AAAA-MM-00" />
+								<input type="text" id="fechaSinDiaAct2"  placeholder="AAAA-MM-00" />
 
 							</p >
 
@@ -185,7 +229,7 @@
 					<div class="six columns">
 
 							<label for="personas">Personas afectadas:</label>
-							<input type="number"  name="nucleoCaso_noPersonasAfectadas" placeholder="0" />
+							<input type="number"  name="derechoAfectado_noVictimas" placeholder="0" value="<?php if(isset($victimas)) echo $victimas;?>"/>
 
 
 					</div>

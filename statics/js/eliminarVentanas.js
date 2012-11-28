@@ -9,3 +9,7 @@ function eliminarFicha(fichaId,idCaso){
 function eliminarRegistro(idRegistro,idCaso){
 	document.location.href = base+'index.php/casosVentanas_c/eliminarRegistro/'+idRegistro+'/'+idCaso;
 }
+
+function eliminarDerechoAfectado(derechoId, idCaso){
+	document.location.href = base+'index.php/casosVentanas_c/eliminarDerechoAfectado/'+derechoId+'/'+idCaso;
+}

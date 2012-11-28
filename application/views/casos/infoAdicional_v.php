@@ -21,20 +21,20 @@
 					            </thead>
 					            <tbody>
 					            	<?php if(isset($datosCaso['tipoFuenteDocumental'])){
-					            		foreach ($datosCaso['tipoFuenteDocumental'] as $fuenteDoc) { ?>
+					            		foreach ($datosCaso['tipoFuenteDocumental'] as $index => $fuenteDoc) { ?>
 							              <tr>
 							                <td><?= $fuenteDoc['nombre'] ?></td>
 							                <td><?= $fuenteDoc['tipoFuenteCatalogo_tipoFuenteId'] ?></td>
-							                <td>No aparece actor reportado</td>
+							                <td><?= $fuenteDoc['actorReportado'] ?></td>
 							                <td><?= $fuenteDoc['fecha'] ?></td>
 							                <td><?= $fuenteDoc['fechaAcceso'] ?></td>
-							                <td><input type="button" class="tiny button"  value="Editar" onclick="ventanaFuenteDoc(<?=$casoId; ?>)" />
+							                <td><input type="button" class="tiny button"  value="Editar" onclick="ventanaFuenteDoc('<?= $casoId; ?>',<?= $fuenteDoc['actorReportado'] ?>,'<?= $index ?>')" />
 							                <input type="button" class="tiny button"  value="Eliminar" onclick="" /></td>
 							              </tr>
 							              <?php }}?>
 					            </tbody>
 				          </table>
-				          <input type="button" class="tiny button <?=$clase?>"  value="Nuevo" onclick="ventanaFuenteDoc(<?=$casoId; ?>, '0')" />
+				          <input type="button" class="tiny button <?=$clase?>"  value="Nuevo" onclick="ventanaFuenteDoc(<?=$casoId; ?>, '0','0')" />
 		  				 </div>
 			  		</div>
 			  	</div><!--fin acordeon Fuente documental-->	  			

@@ -50,6 +50,30 @@ class Casos_c extends CI_Controller {
 
         $datos['estatusVictimaCatalogo'] = $this->general_m->obtener_todo('estatusVictimaCatalogo', 'estatusVictimaId', 'descripcion');
 		
+		$datos['tipoLugarN1Catalogo'] = $this->general_m->obtener_todo('tipoLugarN1Catalogo', 'tipoLugarId', 'descripcion');
+		
+		$datos['tipoLugarN2Catalogo'] = $this->general_m->obtener_todo('tipoLugarN2Catalogo', 'tipoLugarN2Id', 'descripcion');
+		
+		$datos['tipoLugarN3Catalogo'] = $this->general_m->obtener_todo('tipoLugarN3Catalogo', 'tipoLugarN3Id', 'descripcion');
+		
+		$datos['derechosAfectadosN1Catalogo'] = $this->general_m->obtener_todo('derechosAfectadosN1Catalogo', 'derechoAfectadoN1Id', 'descripcion');
+		
+		$datos['derechosAfectadosN2Catalogo'] = $this->general_m->obtener_todo('derechosAfectadosN2Catalogo', 'derechoAfectadoN2Id', 'descripcion');
+		
+		$datos['derechosAfectadosN3Catalogo'] = $this->general_m->obtener_todo('derechosAfectadosN3Catalogo', 'derechoAfectadoN3Id', 'descripcion');
+		
+		$datos['derechosAfectadosN4Catalogo'] = $this->general_m->obtener_todo('derechosAfectadosN4Catalogo', 'derechoAfectadoN4Id', 'descripcion');
+		
+		$datos['actosN1Catalogo'] = $this->general_m->obtener_todo('actosN1Catalogo', 'actoId', 'descripcion');
+		
+		$datos['actosN2Catalogo'] = $this->general_m->obtener_todo('actosN2Catalogo', 'actoN2Id', 'descripcion');
+		
+		$datos['actosN3Catalogo'] = $this->general_m->obtener_todo('actosN3Catalogo', 'actoN3Id', 'descripcion');
+		
+		$datos['actosN4Catalogo'] = $this->general_m->obtener_todo('actosN4Catalogo', 'actoN4Id', 'descripcion');
+		
+		$datos['tipoFuenteCatalogo'] = $this->general_m->obtener_todo('tipoFuenteCatalogo', 'tipoFuenteId', 'descripcion');
+		
         $datos['listaTodosActores'] = $this->actores_m-> mListaTodosActores();
         
         return $datos;
@@ -74,8 +98,6 @@ class Casos_c extends CI_Controller {
             $datos['datosCaso'] = $this->casos_m->mTraerDatosCaso($casoId);
             
         }
-//echo "<pre>";
-       // print_r($datos['datosCaso']);
         $datos['is_active'] = 'casos';
         
         $datos['head'] = $this->load->view('general/head_v', $datos, true);

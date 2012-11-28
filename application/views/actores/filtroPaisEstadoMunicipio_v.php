@@ -66,12 +66,20 @@
 	             <?php endif;?>
 	             
 	              <?php if($tipo == 4):?> 
-		         	
-		         	<select id="nucleoCaso_paisesCatalogo_paisId" name="nucleoCaso_paisesCatalogo_paisId" onchange="changeTest(1)">						
-		                    <option></option>
-		                    <?php foreach($catalogos['paisesCatalogo'] as $pais):?> <!--muestra los estados civiles-->
-		                        <option value="<?=$pais['paisId']; ?>"><?=$pais['nombre']; ?></option>
-		                    <?php endforeach; ?>
+		         	<select id="derechoAfectado_paisesCatalogo_paisId" name="derechoAfectado_paisesCatalogo_paisId" onchange="changeTest(1)">	
+		         		<option></option>	
+		         		<?php if(isset($derechoAfectado['paisesCatalogo_paisId'])):?>
+		             				<?foreach($catalogos['paisesCatalogo'] as $key => $item): ?>
+				                        	<!--muestra los estados civiles-->
+				                    			<option  value="<?=$item['paisId']?>" <?php if($derechoAfectado['paisesCatalogo_paisId'] == $item['paisId']) echo 'selected="selected"'; else echo '' ; ?> > 
+				                    				<?=$item['nombre']?>
+				                    			</option>
+				                    <?php endforeach; ?>
+		             		<?php else:?>
+				                    <?php foreach($catalogos['paisesCatalogo'] as $pais):?> <!--muestra los estados civiles-->
+				                        <option value="<?=$pais['paisId']; ?>"><?=$pais['nombre']; ?></option>
+				                    <?php endforeach; ?>
+		             		<?php endif;?> 
 		             </select>
 		         <?php endif;?> 	
 	        <!--<input id="BotonmasdatosDeNacimiento_paisesCatalogo_paisId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />    
@@ -159,9 +167,21 @@
 		    	<?php endif;?>
             <?php endif;?>
              <?php if($tipo ==4):?>
-	                	<select id="nucleoCaso_estadosCatalogo_estadoId"  disabled="disabled"  name="nucleoCaso_estadosCatalogo_estadoId"  onchange="changeTest(2)">						
+             	<?php if(isset($derechoAfectado['estadosCatalogo_estadoId'])):?>
+		            		<select id="derechoAfectado_estadosCatalogo_estadoId"  name="derechoAfectado_estadosCatalogo_estadoId"  onchange="changeTest(2)">						
+			                       <?php foreach($catalogos['estadosCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
+			                        <?php if($derechoAfectado['paisesCatalogo_paisId'] == $item['paises_paisId']):?>
+			                    		<option  value="<?=$item['estadoId']?>" <?=($derechoAfectado['estadosCatalogo_estadoId'] == $item['estadoId']) ? 'selected="selected"' : '' ; ?> > 
+			                    			 <?=$item['nombre']?>
+			                    		</option>
+			                    	<?php endif;?>
+			                    <?php endforeach;?>
+		                	</select>
+		    		<?php else:?>  
+		            	<select id="derechoAfectado_estadosCatalogo_estadoId"  disabled="disabled"  name="derechoAfectado_estadosCatalogo_estadoId"  onchange="changeTest(2)">						
 			                 	
 		                </select>
+		            <?php endif;?> 
             <?php endif;?> 
             <!--<input id="BotonmasdatosDeNacimiento_paisesCatalogo_paisId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />    
             <span id="TextoEspecial_datosDeNacimiento_paisesCatalogo_paisId" class="Escondido twelve columns">
@@ -248,10 +268,21 @@
 		         	 
                  <?php endif;?>
                   <?php if($tipo==4):?>
-	            	
-		             	 <select id="nucleoCaso_municipiosCatalogo_municipioId" disabled="disabled" name="nucleoCaso_municipiosCatalogo_municipioId">						
+                  	<?php if(isset($derechoAfectado['municipiosCatalogo_municipioId'])):?>
+			            	<select id="derechoAfectado_municipiosCatalogo_municipioId" name="derechoAfectado_municipiosCatalogo_municipioId">						
+				                    <?php foreach($catalogos['municipiosCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
+				                        <?php if($derechoAfectado['estadosCatalogo_estadoId'] == $item['estados_estadoId']):?>
+				                    		<option  value="<?=$item['municipioId']?>" <?=($derechoAfectado['municipiosCatalogo_municipioId'] == $item['municipioId']) ? 'selected="selected"' : '' ; ?> > 
+				                    			 <?=$item['nombre']?>
+				                    		</option>
+				                    	<?php endif;?>
+				                    <?php endforeach;?>
+			                </select>
+			    		<?php else:?>  
+			            	<select id="derechoAfectado_municipiosCatalogo_municipioId" disabled="disabled" name="derechoAfectado_municipiosCatalogo_municipioId">						
 		                   
-		                </select>
+		                	</select>
+			            <?php endif;?>  
 	             <?php endif;?>
             <!--<input id="BotonmasdatosDeNacimiento_municipiosCatalogo_municipioId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />   
             <span id="TextoEspecial_datosDeNacimiento_municipiosCatalogo_municipioId" class="Escondido twelve columns">

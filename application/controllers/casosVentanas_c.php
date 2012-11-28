@@ -100,6 +100,9 @@ class CasosVentanas_c extends CI_Controller {
 		if(!empty($datos['datosCaso']['derechoAfectado'][$i])){
 			
 			$datos['derechoAfectado']=$datos['datosCaso']['derechoAfectado'][$i];
+			$datos['victimas']=$datos['derechoAfectado']['noVictimas'];
+			$datos['fInicial']=$datos['derechoAfectado']['fechaInicial'];
+			$datos['fTermino']=$datos['derechoAfectado']['fechaTermino'];
 			if(isset($datos['datosCaso']['actos'])){
 				foreach($datos['datosCaso']['actos'] as $acto){
 					if($acto['derechoAfectado_derechoAfectadoCasoId']==$datos['derechoAfectado']['derechoAfectadoCasoId']){
@@ -137,11 +140,13 @@ class CasosVentanas_c extends CI_Controller {
         
     }
 
-	function fuentesDeInformacion($casoId,$actorId){
+	function fuentesDeInformacion($casoId,$actorId,$i){
 		
 		$datos['head'] = $this->load->view('general/head_v', "", true);
 
         $datos['casoId'] = $casoId;
+		
+		$datos['id'] = $i;
 		
 		$datos['catalogos'] = $this->traer_catalogos();
 		
@@ -259,12 +264,13 @@ class CasosVentanas_c extends CI_Controller {
 			
 			case(3): 
 				if($_POST['editar'] == 1){
+					print_r($datos['actos']);
+					echo "<pre>";
+					print_r($datos['derechoAfectado']);
 					if(isset($datos['actos'])){
 						$mensaje = $this->casos_m->mActualizaDatosActo($datos['actos'],$datos['actos']['actoId']);
 					}
-					
-					$datos32['derechoAfectado'] =  $datos['derechoAfectado'];
-					$mensaje = $mansaje . $this->casos_m->mActualizaDatosDerechoAfectado($datos['derechoAfectado']);
+					$mensaje = $mansaje . $this->casos_m->mActualizaDatosDerechoAfectado($datos['derechoAfectado'],$datos['derechoAfectado']['derechoAfectadoCasoId']);
 				}else{
 					$datos['actos']['casos_casoId']=$datos['lugares']['casos_casoId'];
 					$datos3['derechoAfectado'] =  $datos['derechoAfectado'];
@@ -318,13 +324,13 @@ class CasosVentanas_c extends CI_Controller {
             break;
             
         }
-		echo "<script languaje='javascript' type='text/javascript'>
+		/*echo "<script languaje='javascript' type='text/javascript'>
 			window.opener.location.reload();
 			window.close();
 		</script>";
 			
 		
-		return $mensaje;
+		return $mensaje;*/
 	}
 
 	public function eliminarLugar($lugarId,$idCaso){

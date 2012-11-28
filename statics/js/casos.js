@@ -26,9 +26,9 @@ function ventanaInterevenciones(casoId, indice){
 	};
 
 
-function ventanaFuenteDoc(casoId, indice){
+function ventanaFuenteDoc(casoId, actorId,indice){
 	  var windowSizeArray = [ "width=770,height=700,scrollbars=yes" ];
-	window.open(base+'index.php/casosVentanas_c/fuentesDeInformacion/'+casoId+'/'+indice+'/', 'Fuente documental', windowSizeArray);
+	window.open(base+'index.php/casosVentanas_c/fuentesDeInformacion/'+casoId+'/'+actorId+'/'+indice+'/', 'Fuente documental', windowSizeArray);
 	};
 
 
@@ -355,21 +355,21 @@ function  nombrarActo(descripcion, valor,notas,nivel,e){
 			$('#fechaAproxAct').attr('name', ' ');
 			$('#fechaSinDiaAct').attr('name', ' ');
 			$('#fechaSinDiaSinMesAct').attr('name', ' ');
-			$('#fechaExactaAct').attr('name', 'nucleCaso_fechaInicio');
+			$('#fechaExactaAct').attr('name', 'derechoAfectado_fechaInicial');
 			$("#fechaAproxVAct").hide();
 			$("#fechaSinDiaVAct").hide();
 			$("#fechaSinDiaSinMesVAct").hide();
 			$("#fechaExactaVAct").show("slow");
 		  }
-		  else if (a=="2"){
+		  else if (a=="2"){			
+			$('#fechaSinDiaVAct').attr('name', ' ');
+			$('#fechaSinDiaSinMesVAct').attr('name', ' ');
+			$('#fechaExactaAct').attr('name', ' ');
+			$('#fechaAproxAct').attr('name', 'derechoAfectado_fechaInicial');
 			$("#fechaSinDiaSinMesVAct").hide();
 			$("#fechaSinDiaVAct").hide();
 			$("#fechaExactaVAct").hide();
 			$("#fechaAproxVAct").show("slow");
-			$('#fechaSinDiaVAct').attr('name', ' ');
-			$('#fechaSinDiaSinMesVAct').attr('name', ' ');
-			$('#fechaExactaVAct').attr('name', ' ');
-			$('#fechaAproxVAct').attr('name', 'nucleCaso_fechaInicio');
 		  }
 		  else if (a=="3"){
 			$("#fechaAproxVAct").hide();
@@ -379,7 +379,7 @@ function  nombrarActo(descripcion, valor,notas,nivel,e){
 			$('#fechaSinDiaSinMesVAct').attr('name', ' ');
 			$('#fechaExactaVAct').attr('name', ' ');
 			$('#fechaAproxVAct').attr('name', ' ');
-			$('#fechaSinDiaVAct').attr('name', 'nucleCaso_fechaInicio');
+			$('#fechaSinDiaAct').attr('name', 'derechoAfectado_fechaInicial');
 		  }
 		  else if (a=="4"){;
 			$("#fechaAproxVAct").hide();
@@ -389,7 +389,7 @@ function  nombrarActo(descripcion, valor,notas,nivel,e){
 			$('#fechaExactaVAct').attr('name', ' ');
 			$('#fechaAproxVAct').attr('name', ' ');
 			$('#fechaSinDiaVAct').attr('name', '');
-			$('#fechaSinDiaSinMesVAct').attr('name', 'nucleCaso_fechaInicio');listaVictimas
+			$('#fechaSinDiaSinMesAct').attr('name', 'derechoAfectado_fechaInicial');
 		  }
 	  
 	  }
@@ -401,7 +401,7 @@ function  nombrarActo(descripcion, valor,notas,nivel,e){
 			$('#fechaAproxAct2').attr('name', ' ');
 			$('#fechaSinDiaAct2').attr('name', ' ');
 			$('#fechaSinDiaSinMesAct2').attr('name', ' ');
-			$('#fechaExactaAct2').attr('name', 'casos_fechaTermino');
+			$('#fechaExactaAct2').attr('name', 'derechoAfectado_fechaTermino');
 			$("#fechaAproxVAct2").hide();
 			$("#fechaSinDiaVAct2").hide();
 			$("#fechaSinDiaSinMesVAct2").hide();
@@ -415,7 +415,7 @@ function  nombrarActo(descripcion, valor,notas,nivel,e){
 			$('#fechaSinDiaAct2').attr('name', ' ');
 			$('#fechaSinDiaSinMesActAct2').attr('name', ' ');
 			$('#fechaExactaAct2').attr('name', ' ');
-			$('#fechaAproxAct2').attr('name', 'casos_fechaTermino');
+			$('#fechaAproxAct2').attr('name', 'derechoAfectado_fechaTermino');
 		  }
 		  else if (a=="3"){
 			$("#fechaAproxVAct2").hide();
@@ -425,7 +425,7 @@ function  nombrarActo(descripcion, valor,notas,nivel,e){
 			$('#fechaSinDiaSinMesAct2').attr('name', ' ');
 			$('#fechaExactaAct2').attr('name', ' ');
 			$('#fechaAproxAct2').attr('name', ' ');
-			$('#fechaSinDiaAct2').attr('name', 'casos_fechaTermino');
+			$('#fechaSinDiaAct2').attr('name', 'derechoAfectado_fechaTermino');
 		  }
 		  else if (a=="4"){;
 			$("#fechaAproxVAct2").hide();
@@ -435,7 +435,7 @@ function  nombrarActo(descripcion, valor,notas,nivel,e){
 			$('#fechaExactaAct2').attr('name', ' ');
 			$('#fechaAproxAct2').attr('name', ' ');
 			$('#fechaSinDiaAct2').attr('name', '');
-			$('#fechaSinDiaSinMesAct2').attr('name', 'casos_fechaTermino');
+			$('#fechaSinDiaSinMesAct2').attr('name', 'derechoAfectado_fechaTermino');
 		  }
 	  
 	  }

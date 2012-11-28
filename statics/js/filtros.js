@@ -328,12 +328,12 @@ function changeTest (tipo) {
 	
 	if(actor == 5){
 		if(tipo == 1){
-				var Index = document.menuForm.nucleoCaso_paisesCatalogo_paisId.options[document.menuForm.nucleoCaso_paisesCatalogo_paisId.selectedIndex].value; 
-				document.getElementById('nucleoCaso_municipiosCatalogo_municipioId').options.length = 0;
+				var Index = document.menuForm.derechoAfectado_paisesCatalogo_paisId.options[document.menuForm.derechoAfectado_paisesCatalogo_paisId.selectedIndex].value; 
+				document.getElementById('derechoAfectado_municipiosCatalogo_municipioId').options.length = 0;
 			}
 			if(tipo == 2){
-				var Index = document.menuForm.nucleoCaso_estadosCatalogo_estadoId.options[document.menuForm.nucleoCaso_estadosCatalogo_estadoId.selectedIndex].value; 
-				document.getElementById('nucleoCaso_municipiosCatalogo_municipioId').options.length = 0;
+				var Index = document.menuForm.derechoAfectado_estadosCatalogo_estadoId.options[document.menuForm.derechoAfectado_estadosCatalogo_estadoId.selectedIndex].value; 
+				document.getElementById('derechoAfectado_municipiosCatalogo_municipioId').options.length = 0;
 			}
 	}
 	
@@ -417,16 +417,16 @@ function changeTest (tipo) {
         	if(actor == 5){
         		
         		if(tipo == 1){
-        			var select=document.getElementById('nucleoCaso_estadosCatalogo_estadoId');
+        			var select=document.getElementById('derechoAfectado_estadosCatalogo_estadoId');
   					select.removeAttribute('disabled');
   					
-	             	$("#nucleoCaso_estadosCatalogo_estadoId").html(data);
+	             	$("#derechoAfectado_estadosCatalogo_estadoId").html(data);
 	             }  
 	             if(tipo == 2){
-	             	var select=document.getElementById('nucleoCaso_municipiosCatalogo_municipioId');
+	             	var select=document.getElementById('derechoAfectado_municipiosCatalogo_municipioId');
   					select.removeAttribute('disabled');
   					
-					$("#nucleoCaso_municipiosCatalogo_municipioId").html(data);
+					$("#derechoAfectado_municipiosCatalogo_municipioId").html(data);
 	             }
         		
         	}
