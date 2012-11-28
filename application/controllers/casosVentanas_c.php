@@ -268,9 +268,10 @@ class CasosVentanas_c extends CI_Controller {
 				}else{
 					$datos['actos']['casos_casoId']=$datos['lugares']['casos_casoId'];
 					$datos3['derechoAfectado'] =  $datos['derechoAfectado'];
-					$Id = $this->casos_m->mAgregarDerechosAfectados($datos3);
+					print_r($datos3);
+					/*$Id = $this->casos_m->mAgregarDerechosAfectados($datos3);
 					$datos['actos']['derechoAfectado_derechoAfectadoCasoId']=$Id;
-					$mensaje = $this->casos_m->mAgregarActoDerechoAfectado($datos['actos']);
+					$mensaje = $this->casos_m->mAgregarActoDerechoAfectado($datos['actos']);*/
 				}
             break;
 			
@@ -318,10 +319,10 @@ class CasosVentanas_c extends CI_Controller {
             break;
             
         }
-		echo "<script languaje='javascript' type='text/javascript'>
+		/*echo "<script languaje='javascript' type='text/javascript'>
 			window.opener.location.reload();
 			window.close();
-		</script>";
+		</script>";*/
 			
 		
 		return $mensaje;

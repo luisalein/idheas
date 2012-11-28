@@ -21,9 +21,7 @@
                 <input type="hidden" value="" name="actos_actoViolatorioId" id="actoViolatorioId" />
                 <input type="hidden" value="" name="actos_actoViolatorioNivel" id="actoViolatorioNivel" />
                 <input type="hidden" value="5" name="5" id="tipoActorAE" />
-                		<?print_r($acto);?>
-                		<?print_r($derechoAfectado)?>
-                		<?echo "<pre>";print_r($datosCaso)?>
+                		
                         <label for="derecho">Derecho afectado</label>
                         <div id="textoDerechoAfectado"></div>
                         <label for="derecho">Notas</label>
@@ -123,22 +121,22 @@
 							<div class="six columns">
 								<br />
 								<p class="Escondido" id="fechaExactaVAct">
-									<input type="text" id="fechaExactaAct"   placeholder="AAAA-MM-DD" />
+									<input type="text" id="fechaExactaAct" name="derechoAfectado_fechaInicial"  placeholder="AAAA-MM-DD" />
 
 								</p>
 
 								<p class="Escondido" id="fechaAproxVAct">
-									<input type="text" id="fechaAproxAct"   placeholder="AAAA-MM-DD" />
+									<input type="text" id="fechaAproxAct"  name="derechoAfectado_fechaInicial"  placeholder="AAAA-MM-DD" />
 
 								</p>
 
 								<p class="Escondido" id="fechaSinDiaVAct">
-									<input type="text" id="fechaSinDiaAct"   placeholder="AAAA-MM-00" />
+									<input type="text" id="fechaSinDiaAct"  name="derechoAfectado_fechaInicial"  placeholder="AAAA-MM-00" />
 
 								</p >
 
 								<p class="Escondido" id="fechaSinDiaSinMesVAct">
-									<input type="text" id="fechaSinDiaSinMesAct"  placeholder="AAAA-00-00" />
+									<input type="text" id="fechaSinDiaSinMesAct"  name="derechoAfectado_fechaInicial" placeholder="AAAA-00-00" />
 
 								</p>
 							</div>
@@ -155,22 +153,22 @@
 						</div>
 						<div class="six columns">
 							<p class="Escondido" id="fechaExactaVAct2">
-								<input type="text" id="fechaExactaAct2"   placeholder="AAAA-MM-DD" />
+								<input type="text" id="fechaExactaAct2"  name="derechoAfectado_fechaTermino"  placeholder="AAAA-MM-DD" />
 
 							</p>
 
 							<p class="Escondido" id="fechaAproxVAct2">
-								<input type="text" id="fechaAproxAct2"   placeholder="AAAA-MM-DD" />
+								<input type="text" id="fechaAproxAct2"  name="derechoAfectado_fechaTermino"  placeholder="AAAA-MM-DD" />
 
 							</p>
 
 							<p class="Escondido" id="fechaSinDiaVAct2">
-								<input type="text" id="fechaSinDiaAct2"   placeholder="AAAA-MM-00" />
+								<input type="text" id="fechaSinDiaAct2"  name="derechoAfectado_fechaTermino"  placeholder="AAAA-MM-00" />
 
 							</p >
 
 							<p class="Escondido" id="fechaSinDiaSinMesVAct2">
-								<input type="text" id="fechaSinDiaSinMesAct2"  placeholder="AAAA-00-00" />
+								<input type="text" id="fechaSinDiaSinMesAct2"  name="derechoAfectado_fechaTermino" placeholder="AAAA-00-00" />
 
 							</p>
 						</div>
@@ -185,7 +183,7 @@
 					<div class="six columns">
 
 							<label for="personas">Personas afectadas:</label>
-							<input type="number"  name="nucleoCaso_noPersonasAfectadas" placeholder="0" />
+							<input type="number"  name="derechoAfectado_noVictimas" placeholder="0" />
 
 
 					</div>
