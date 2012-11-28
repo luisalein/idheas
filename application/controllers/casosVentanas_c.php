@@ -264,9 +264,6 @@ class CasosVentanas_c extends CI_Controller {
 			
 			case(3): 
 				if($_POST['editar'] == 1){
-					print_r($datos['actos']);
-					echo "<pre>";
-					print_r($datos['derechoAfectado']);
 					if(isset($datos['actos'])){
 						$mensaje = $this->casos_m->mActualizaDatosActo($datos['actos'],$datos['actos']['actoId']);
 					}
@@ -324,13 +321,13 @@ class CasosVentanas_c extends CI_Controller {
             break;
             
         }
-		/*echo "<script languaje='javascript' type='text/javascript'>
+		echo "<script languaje='javascript' type='text/javascript'>
 			window.opener.location.reload();
 			window.close();
 		</script>";
 			
 		
-		return $mensaje;*/
+		return $mensaje;
 	}
 
 	public function eliminarLugar($lugarId,$idCaso){
