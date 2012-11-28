@@ -4,12 +4,13 @@
 	</head>
 	<body>
 	<pre>
-	<?=print_r($datosCaso)?>
+	<pre><?= print_r($datosCaso['tipoFuenteDocumental'][1]) ?></pre>
 	<!--<?=print_r($catalogos['nivelConfiabilidadCatalogo'])?>-->
 	</pre>
-<form action='<?=base_url(); ?>index.php/casosVentanas_c/guardarDatosVentanas/5' method="post" accept-charset="utf-8">
-	<!--<input type="hidden" id="editar"  name="editar" value="<?= (isset($datos)) ? "1" : "0" ;?>"/>-->
-		<!-----------------Comienza la parte de Fuente documental------------------------>
+<form action='<?=base_url(); ?>index.php/casosVentanas_c/guardarDatosVentanas/6' method="post" accept-charset="utf-8">
+	<!--<input type="hidden" id="editar"  name="editar" value="<?= (isset($datosCaso['tipoFuenteDocumental'][$id])) ? "1" : "0" ;?>"/>-->
+		<?= $id=1;?>
+		<!-----------------Comienza la parte de Fuente documental- ----------------------->
 		<div id="formularioFuenteDocumental" class="twelve columns">
 			<div id="pestania" data-collapse>
 			<h2 class="open">Fuente documental</h2><!--título de la sub-pestaña-->  
@@ -28,12 +29,13 @@
 							<div class="six columns">
 								<label for="tipoFuente">Tipo de la fuente</label>
 								<select id="tipoFuenteDocumentalCatalogo" name="tipoFuenteDocumental">
-									<option></option>						
-									 <?php if(isset($datosCaso['tipoFuenteDocumental']['tipoFuenteCatalogo_tipoFuenteId'])){
+														
+									 <?php if(isset($datosCaso['tipoFuenteDocumental'][$id]['tipoFuenteCatalogo_tipoFuenteId'])){
 				                                foreach($catalogos['tipoFuenteCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
-				                                    <option onclick="notasCatalogos('<?=$item['notas']; ?>','tipoFuenteDocumentalCatalogo','2')" value="<?=$item['tipoFuenteId']?>" <?=($datosCaso['tipoFuenteDocumental']['tipoFuenteCatalogo_tipoFuenteId'] == $item['tipoFuenteId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
+				                                    <option onclick="notasCatalogos('<?=$item['notas']; ?>','tipoFuenteDocumentalCatalogo','2')" value="<?=$item['tipoFuenteId']?>" <?=($datosCaso['tipoFuenteDocumental'][$id]['tipoFuenteCatalogo_tipoFuenteId'] == $item['tipoFuenteId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
 				                                <?php endforeach;
 				                            } else { ?>
+				                            	<option></option>	
 				                                <?php foreach($catalogos['tipoFuenteCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
 				                                    <option onclick="notasCatalogos('<?=$item['notas']; ?>','tipoFuenteDocumentalCatalogo','2')"  value="<?=$item['tipoFuenteId']?>" ><?=$item['descripcion']?></option>
 				                                <?php endforeach; } 

@@ -26,9 +26,9 @@ function ventanaInterevenciones(casoId, indice){
 	};
 
 
-function ventanaFuenteDoc(casoId, indice){
+function ventanaFuenteDoc(casoId, actorId,indice){
 	  var windowSizeArray = [ "width=770,height=700,scrollbars=yes" ];
-	window.open(base+'index.php/casosVentanas_c/fuentesDeInformacion/'+casoId+'/'+indice+'/', 'Fuente documental', windowSizeArray);
+	window.open(base+'index.php/casosVentanas_c/fuentesDeInformacion/'+casoId+'/'+actorId+'/'+indice+'/', 'Fuente documental', windowSizeArray);
 	};
 
 
