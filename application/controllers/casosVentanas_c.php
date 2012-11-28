@@ -140,7 +140,7 @@ class CasosVentanas_c extends CI_Controller {
         
     }
 
-	function fuentesDeInformacion($casoId,$i){
+	function fuentesDeInformacion($casoId,$actorId, $i){
 		
 		$datos['head'] = $this->load->view('general/head_v', "", true);
 
@@ -264,12 +264,15 @@ class CasosVentanas_c extends CI_Controller {
 			
 			case(3): 
 				if($_POST['editar'] == 1){
-					if(isset($datos['actos'])){
+					print_r($datos['actos']);
+					echo "<pre>";
+					print_r($datos['derechoAfectado']);
+					/*if(isset($datos['actos'])){
 						$mensaje = $this->casos_m->mActualizaDatosActo($datos['actos'],$datos['actos']['actoId']);
 					}
 					
 					$datos32['derechoAfectado'] =  $datos['derechoAfectado'];
-					$mensaje = $mansaje . $this->casos_m->mActualizaDatosDerechoAfectado($datos['derechoAfectado']);
+					$mensaje = $mansaje . $this->casos_m->mActualizaDatosDerechoAfectado($datos['derechoAfectado']);*/
 				}else{
 					$datos['actos']['casos_casoId']=$datos['lugares']['casos_casoId'];
 					$datos3['derechoAfectado'] =  $datos['derechoAfectado'];
@@ -323,10 +326,10 @@ class CasosVentanas_c extends CI_Controller {
             break;
             
         }
-		echo "<script languaje='javascript' type='text/javascript'>
+		/*echo "<script languaje='javascript' type='text/javascript'>
 			window.opener.location.reload();
 			window.close();
-		</script>";
+		</script>";*/
 			
 		
 		return $mensaje;
