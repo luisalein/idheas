@@ -7,23 +7,24 @@
 	<body>
 		<div class="twelve columns">
 			<div class="four columns"> 	<!--Lista de victimas-->
-
 					<div class="twelve columns espacioSuperior">
 						<div class="six columns">
 							<form action="<?= base_url(); ?>index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/0/1" method="post">
 								<center><input class="small button" value="Nueva víctima" type="submit"></center>
 							</form>
 						</div>
-						<div class="six columns">
-							<form action="<?= base_url(); ?>index.php/casos_c/eliminarVictima/<?=$idActo; ?>/<?=$victimas['victimas'][$idVictima]['victimaId']; ?>">
-							<center><input class="small button" value="Eliminar víctima" type="submit"></center>
-							</form>
-						</div>
-						<div class="twelve columns">
-							<form action="http://localhost/idheas/index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/<?=$idVictima; ?>/1" method="post">
-								<center><input class="small button" value="Editar víctima" type="submit"></center>
-							</form>
-						</div>
+						<?php if (isset($victimas['victimas'][$idVictima]['victimaId'])) { ?>
+							<div class="six columns">
+								<form action="<?= base_url(); ?>index.php/casos_c/eliminarVictima/<?=$idActo; ?>/<?=$victimas['victimas'][$idVictima]['victimaId']; ?>">
+								<center><input class="small button" value="Eliminar víctima" type="submit"></center>
+								</form>
+							</div>
+							<div class="twelve columns">
+								<form action="http://localhost/idheas/index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/<?=$idVictima; ?>/1" method="post">
+									<center><input class="small button" value="Editar víctima" type="submit"></center>
+								</form>
+							</div>
+						<?php }?>
 					</div>
 					
 				<div class="twelve columns panel">
@@ -100,7 +101,9 @@
 							<div class="twelve columns espacio">
 								<br/><label>Perpetradores</label> <br/>
 								<div class="two columns push-ten" >
-									<input class="small button" value="nuevo perpetrador" onclick="ventanaPerpetradores()" type="button">
+									<?php if (isset($victimas['victimas'][$idVictima]['victimaId'])) {?>
+										<input class="small button" value="nuevo perpetrador" onclick="ventanaPerpetradores('<?=$idActo;  ;?>', <?= $victimas['victimas'][$idVictima]['victimaId']?>, 0)" type="button">
+									<?php }?>
 								</div>
 
 							</div>

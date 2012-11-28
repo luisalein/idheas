@@ -64,6 +64,16 @@
 	             		 </select>
 	            	<?php endif;?> 
 	             <?php endif;?>
+	             
+	              <?php if($tipo == 4):?> 
+		         	
+		         	<select id="nucleoCaso_paisesCatalogo_paisId" name="nucleoCaso_paisesCatalogo_paisId" onchange="changeTest(1)">						
+		                    <option></option>
+		                    <?php foreach($catalogos['paisesCatalogo'] as $pais):?> <!--muestra los estados civiles-->
+		                        <option value="<?=$pais['paisId']; ?>"><?=$pais['nombre']; ?></option>
+		                    <?php endforeach; ?>
+		             </select>
+		         <?php endif;?> 	
 	        <!--<input id="BotonmasdatosDeNacimiento_paisesCatalogo_paisId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />    
 	        <span id="TextoEspecial_datosDeNacimiento_paisesCatalogo_paisId" class="Escondido twelve columns">
 	        </span>-->
@@ -148,7 +158,11 @@
 		            <?php endif;?>  	
 		    	<?php endif;?>
             <?php endif;?>
-            
+             <?php if($tipo ==4):?>
+	                	<select id="nucleoCaso_estadosCatalogo_estadoId"  disabled="disabled"  name="nucleoCaso_estadosCatalogo_estadoId"  onchange="changeTest(2)">						
+			                 	
+		                </select>
+            <?php endif;?> 
             <!--<input id="BotonmasdatosDeNacimiento_paisesCatalogo_paisId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />    
             <span id="TextoEspecial_datosDeNacimiento_paisesCatalogo_paisId" class="Escondido twelve columns">
             </span>-->
@@ -233,6 +247,12 @@
 			    	<?php endif;?>	
 		         	 
                  <?php endif;?>
+                  <?php if($tipo==4):?>
+	            	
+		             	 <select id="nucleoCaso_municipiosCatalogo_municipioId" disabled="disabled" name="nucleoCaso_municipiosCatalogo_municipioId">						
+		                   
+		                </select>
+	             <?php endif;?>
             <!--<input id="BotonmasdatosDeNacimiento_municipiosCatalogo_municipioId" type="button" class="tiny button"  value="+" onclick="mostrarTexto(this)" />   
             <span id="TextoEspecial_datosDeNacimiento_municipiosCatalogo_municipioId" class="Escondido twelve columns">
             </span>-->
