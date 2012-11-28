@@ -100,6 +100,9 @@ class CasosVentanas_c extends CI_Controller {
 		if(!empty($datos['datosCaso']['derechoAfectado'][$i])){
 			
 			$datos['derechoAfectado']=$datos['datosCaso']['derechoAfectado'][$i];
+			$datos['victimas']=$datos['derechoAfectado']['noVictimas'];
+			$datos['fInicial']=$datos['derechoAfectado']['fechaInicial'];
+			$datos['fTermino']=$datos['derechoAfectado']['fechaTermino'];
 			if(isset($datos['datosCaso']['actos'])){
 				foreach($datos['datosCaso']['actos'] as $acto){
 					if($acto['derechoAfectado_derechoAfectadoCasoId']==$datos['derechoAfectado']['derechoAfectadoCasoId']){
@@ -268,10 +271,9 @@ class CasosVentanas_c extends CI_Controller {
 				}else{
 					$datos['actos']['casos_casoId']=$datos['lugares']['casos_casoId'];
 					$datos3['derechoAfectado'] =  $datos['derechoAfectado'];
-					print_r($datos3);
-					/*$Id = $this->casos_m->mAgregarDerechosAfectados($datos3);
+					$Id = $this->casos_m->mAgregarDerechosAfectados($datos3);
 					$datos['actos']['derechoAfectado_derechoAfectadoCasoId']=$Id;
-					$mensaje = $this->casos_m->mAgregarActoDerechoAfectado($datos['actos']);*/
+					$mensaje = $this->casos_m->mAgregarActoDerechoAfectado($datos['actos']);
 				}
             break;
 			
@@ -319,10 +321,10 @@ class CasosVentanas_c extends CI_Controller {
             break;
             
         }
-		/*echo "<script languaje='javascript' type='text/javascript'>
+		echo "<script languaje='javascript' type='text/javascript'>
 			window.opener.location.reload();
 			window.close();
-		</script>";*/
+		</script>";
 			
 		
 		return $mensaje;
