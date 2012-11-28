@@ -196,7 +196,7 @@ function ventanaVictimas(casoId){
 
 /*//Funciones colapsibles//*/
 /*************************************************************/
-function  nombrederechoAfectado(valor, descripcion,  notas){
+function  nombrederechoAfectado(valor, descripcion,  notas,e){
 	var algo="#"+valor+"DAN1";
 	$('#textoDerechoAfectado').html(descripcion);
 	$('#notasDerechoAfectado').html(notas); 
@@ -204,7 +204,10 @@ function  nombrederechoAfectado(valor, descripcion,  notas){
 	$('#derechoAfectado').attr('value', valor); 
 	$('#derechoAfectadoNivel').attr('value', 1); 
 	$(algo).toggleClass("Escondido");
-	
+	subnivel= $(e).attr('value');
+	    if (subnivel == "subnivel"){
+				$(e).toggleClass('ExpanderFlecha');
+		};
 	traerActos(valor1);
 };
 

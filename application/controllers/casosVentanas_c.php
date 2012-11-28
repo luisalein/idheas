@@ -44,6 +44,13 @@ class CasosVentanas_c extends CI_Controller {
 		
 		$datos['actosN4Catalogo'] = $this->general_m->obtener_todo('actosN4Catalogo', 'actoN4Id', 'descripcion');
 		
+		$datos['derechosAfectadosN1Catalogo'] = $this->general_m->obtener_todo('derechosAfectadosN1Catalogo', 'derechoAfectadoN1Id', 'descripcion');
+		
+		$datos['derechosAfectadosN2Catalogo'] = $this->general_m->obtener_todo('derechosAfectadosN2Catalogo', 'derechoAfectadoN2Id', 'descripcion');
+		
+		$datos['derechosAfectadosN3Catalogo'] = $this->general_m->obtener_todo('derechosAfectadosN3Catalogo', 'derechoAfectadoN3Id', 'descripcion');
+		
+		$datos['derechosAfectadosN4Catalogo'] = $this->general_m->obtener_todo('derechosAfectadosN4Catalogo', 'derechoAfectadoN4Id', 'descripcion');
         return $datos;
         
     }
@@ -89,9 +96,23 @@ class CasosVentanas_c extends CI_Controller {
 
 		$datos['datosCaso'] = $this->casos_m->mTraerDatosCaso($casoId);
 		
-		if(!empty($datos['datosCaso']['derechoAfectado'][$i]))
 		
+		if(!empty($datos['datosCaso']['derechoAfectado'][$i])){
+			
 			$datos['derechoAfectado']=$datos['datosCaso']['derechoAfectado'][$i];
+			if(isset($datos['datosCaso']['actos'])){
+				foreach($datos['datosCaso']['actos'] as $acto){
+					if($acto['derechoAfectado_derechoAfectadoCasoId']==$datos['derechoAfectado']['derechoAfectadoCasoId']){
+						$datos['acto']=$acto;
+					}
+				}
+			}
+		}
+		
+		
+		$datos['tipo'] = '4';
+					
+		$datos['filtroPais'] = $this->load->view('actores/filtroPaisEstadoMunicipio_v', $datos, true);
 		
         $this->load->view('casos/formularioActo_v', $datos);
         
@@ -245,9 +266,11 @@ class CasosVentanas_c extends CI_Controller {
 					$datos32['derechoAfectado'] =  $datos['derechoAfectado'];
 					$mensaje = $mansaje . $this->casos_m->mActualizaDatosDerechoAfectado($datos['derechoAfectado']);
 				}else{
-					$datos3['actos'] = $datos['actos'];
+					$datos['actos']['casos_casoId']=$datos['lugares']['casos_casoId'];
 					$datos3['derechoAfectado'] =  $datos['derechoAfectado'];
-					$mensaje = $this->casos_m->mAgregarDerechosAfectados($datos3);
+					$Id = $this->casos_m->mAgregarDerechosAfectados($datos3);
+					$datos['actos']['derechoAfectado_derechoAfectadoCasoId']=$Id;
+					$mensaje = $this->casos_m->mAgregarActoDerechoAfectado($datos['actos']);
 				}
             break;
 			
@@ -427,10 +450,10 @@ class CasosVentanas_c extends CI_Controller {
 		$sub = '';
 		//print_r($data['actosN1']);
 			if(isset($data['actosN1'])){
-			$lista = $lista.' <ul >';
+			$lista = $lista.' <ul>';
 			foreach ($data['actosN1'] as $acto1) {
-				$lista = $lista. '<li >'.
-						'<div style="padding-left:15px;" class="ExpanderFlecha flecha" value="subnivel" onclick="nombrarActo('."'".$acto1['descripcion']."'".','."'".$acto1['actoId']."'".','."'".$acto1['notas']."'".','."'1',this".')">'.
+				$lista = $lista. '<li class="listas">'.
+						'<div class="ExpanderFlecha flecha hand" value="subnivel" onclick="nombrarActo('."'".$acto1['descripcion']."'".','."'".$acto1['actoId']."'".','."'".$acto1['notas']."'".','."'1',this".')">'.
 							$acto1['descripcion'].
 						'</div>';	
 						if(isset($data['actosN2'])){
@@ -439,38 +462,38 @@ class CasosVentanas_c extends CI_Controller {
 								foreach($catalogos['actosN3Catalogo'] as $c1){
 									if($c1['actosN2Catalogo_actoN2Id']==$acto2['actoN2Id']){
 										$sub = 'subnivel';
-										$expander = 'ExpanderFlecha flecha';
+										$expander = 'ExpanderFlecha flecha hand';
 									}
 								}
 								
-								$lista = $lista. '<li>'.
-								'<div style="padding-left:15px;" value="'.$sub.'"class="'.$expander.'" onclick="nombrarActo('."'".$acto2['descripcion']."'".','."'".$acto2['actoN2Id']."'".','."'".$acto2['notas']."'".','."'2',this".')">'.
+								$lista = $lista. '<li  class="listas">'.
+								'<div value="'.$sub.'"class="'.$expander.'" onclick="nombrarActo('."'".$acto2['descripcion']."'".','."'".$acto2['actoN2Id']."'".','."'".$acto2['notas']."'".','."'2',this".')">'.
 									$acto2['descripcion'].
 								'</div>';	
-								$expander='';
-								$sub = '';
+								
+												$expander='';
+												$sub = '';
 								if(isset($data['actosN3'])){
 									$lista = $lista. '<ul class="Escondido" id="'.$acto2['actoN2Id'].'act2" >';
 									foreach ($data['actosN3'] as $acto3) {
 										foreach($catalogos['actosN4Catalogo'] as $c2){
 											if($c2['actosN3Catalogo_actoN3Id']==$acto3['actoN3Id']){
 												$sub = 'subnivel';
-												$expander = 'ExpanderFlecha flecha';
+												$expander = 'ExpanderFlecha flecha hand';
 											}
 										}
-										
-										$lista=$lista.'<li>'.
-										'<div style="padding-left:15px;" value="'.$sub.'"class="'.$expander.' onclick="nombrarActo('."'".$acto3['descripcion']."'".','."'".$acto3['actoN3Id']."'".','."'".$acto3['notas']."'".','."'3',this".')">'.
+										$lista=$lista.'<li  class="listas">'.
+										'<div value="'.$sub.'"class="'.$expander.'" onclick="nombrarActo('."'".$acto3['descripcion']."'".','."'".$acto3['actoN3Id']."'".','."'".$acto3['notas']."'".','."'3',this".')">'.
 											$acto3['descripcion'].
 										'</div>';
-										$expander='';
-										$sub = '';
+												$expander='';
+												$sub = '';
 										if(isset($data['actosN4'])){
 											$lista = $lista.'<ul class="Escondido" id="'.$acto3['actoN3Id'].'act3">';
 											foreach($data['actosN4'] as $acto4){
 												if($acto4['actosN3Catalogo_actoN3Id']==$acto3['actoN3Id']){
-													$lista = $lista.'<li>'.
-													'<div style="padding-left:15px;" onclick="nombrarActo('."'".$acto4['descripcion']."'".','."'".$acto4['actoN4Id']."'".','."'".$acto4['notas']."'".','."'4',this".')">'.
+													$lista = $lista.'<li class="listas">'.
+													'<div onclick="nombrarActo('."'".$acto4['descripcion']."'".','."'".$acto4['actoN4Id']."'".','."'".$acto4['notas']."'".','."'4',this".')">'.
 														$acto4['descripcion'].
 													'</div></li>';	
 												}

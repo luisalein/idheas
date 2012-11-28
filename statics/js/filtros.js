@@ -283,7 +283,6 @@ function changeTest (tipo) {
 	var actor = $('#tipoActorAE').attr('name');
 	
 	var actorId = $('#actorId').attr('name');
-	
 	if(actor == 1){
 		if(tipo == 1){
 			var Index = document.menuForm.datosDeNacimiento_paisesCatalogo_paisId.options[document.menuForm.datosDeNacimiento_paisesCatalogo_paisId.selectedIndex].value; 
@@ -324,6 +323,17 @@ function changeTest (tipo) {
 			if(tipo == 2){
 				var Index = document.menuForm.lugares_estadosCatalogo_estadoId.options[document.menuForm.lugares_estadosCatalogo_estadoId.selectedIndex].value; 
 				document.getElementById('lugares_municipiosCatalogo_municipioId').options.length = 0;
+			}
+	}
+	
+	if(actor == 5){
+		if(tipo == 1){
+				var Index = document.menuForm.nucleoCaso_paisesCatalogo_paisId.options[document.menuForm.nucleoCaso_paisesCatalogo_paisId.selectedIndex].value; 
+				document.getElementById('nucleoCaso_municipiosCatalogo_municipioId').options.length = 0;
+			}
+			if(tipo == 2){
+				var Index = document.menuForm.nucleoCaso_estadosCatalogo_estadoId.options[document.menuForm.nucleoCaso_estadosCatalogo_estadoId.selectedIndex].value; 
+				document.getElementById('nucleoCaso_municipiosCatalogo_municipioId').options.length = 0;
 			}
 	}
 	
@@ -393,7 +403,6 @@ function changeTest (tipo) {
         		if(tipo == 1){
         			var select=document.getElementById('lugares_estadosCatalogo_estadoId');
   					select.removeAttribute('disabled');
-  					
 	             	$("#lugares_estadosCatalogo_estadoId").html(data);
 	             }  
 	             if(tipo == 2){
@@ -401,6 +410,23 @@ function changeTest (tipo) {
   					select.removeAttribute('disabled');
   					
 					$("#lugares_municipiosCatalogo_municipioId").html(data);
+	             }
+        		
+        	}
+        	
+        	if(actor == 5){
+        		
+        		if(tipo == 1){
+        			var select=document.getElementById('nucleoCaso_estadosCatalogo_estadoId');
+  					select.removeAttribute('disabled');
+  					
+	             	$("#nucleoCaso_estadosCatalogo_estadoId").html(data);
+	             }  
+	             if(tipo == 2){
+	             	var select=document.getElementById('nucleoCaso_municipiosCatalogo_municipioId');
+  					select.removeAttribute('disabled');
+  					
+					$("#nucleoCaso_municipiosCatalogo_municipioId").html(data);
 	             }
         		
         	}
