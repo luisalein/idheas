@@ -5,13 +5,13 @@
 	</head>
 	
 	<body>
-		<pre><?=print_r($datosCaso['fuenteInfoPersonal']) ?></pre>
+		
 		<form method="post"  action='<?=base_url(); ?>index.php/casosVentanas_c/guardarDatosVentanas/5' accept-charset="utf-8">
-		<!-- 
-		input type="hidden" id="editar"  name="editar" value="<?= (isset($datosCaso['fuenteInfoPersonal'][$id])) ? "1" : "0" ;?>"/>
+		 
+		<input type="hidden" id="editar"  name="editar" value="<?= (isset($datosCaso['fuenteInfoPersonal'][$id])) ? "1" : "0" ;?>"/>
 		<input type="hidden" id='casos_casoId' name='casos_casoId'	value="<?= $casoId ?>"/>
 		<input type="hidden" id='fuenteInfoPersonal_casos_casoId' name='fuenteInfoPersonal_casos_casoId' value="<?= $casoId ?>"/>
-			-->
+		
 			<fieldset>
 				<legend>Fuente de información personal</legend>
 					<input type="radio"  value="" name="" id=""/>Persona
