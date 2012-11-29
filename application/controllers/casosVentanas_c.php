@@ -195,10 +195,12 @@ class CasosVentanas_c extends CI_Controller {
 		$this->load->view('casos/formularioFuentePersonal', $datos);
 	}
 	
-	public function relacionCasos($casoId,$actorId){
+	public function relacionCasos($casoId,$id=0){
 		
 		$datos['head'] = $this->load->view('general/head_v', "", true);
 
+		$datos['id']=$id;
+		
         $datos['casoId'] = $casoId;
 		
 		$datos['catalogos'] = $this->traer_catalogos();
@@ -213,8 +215,6 @@ class CasosVentanas_c extends CI_Controller {
 		
 		if(isset($datos['actoresIndividuales']) && isset($datos['actoresTrans']))
 			$datos['actIndividualesTrns'] = array_merge($datos['actoresIndividuales'],$datos['actoresTrans']);
-
-		$datos['actoresRelacionados'] = $this->actores_m->mTraeRelacionesColectivo($actorId);
 		
 		$this->load->view('casos/formularioRelacionCasos', $datos);
 	}
@@ -238,6 +238,7 @@ class CasosVentanas_c extends CI_Controller {
 		$v=$this->load->view('casos/seleccionarCaso_v', $datos, true);
 		
 		echo $v;
+
 	}
 	
 	function guardarDatosVentanas($id){
@@ -339,9 +340,18 @@ class CasosVentanas_c extends CI_Controller {
             case(7):
 				if($_POST['editar'] == 1){
 	            	$mensaje = $this->casos_m->mActualizaDatosRelacionCaso($datos['relacionCasos']['relacionId'],$datos['relacionCasos']);
-				}else{ 
-	            	$datos7['relacionCasos'] = $datos['relacionCasos'];
-	            	$mensaje = $this->general_m->llenar_tabla_m($datos7);
+				}else{
+					if(isset($datos['casoSeleccionado']['seleccionado']) && $datos['casoSeleccionado']['seleccionado'] == 1){
+		            	$datos7['relacionCasos'] = $datos['relacionCasos'];
+		            	$mensaje = $this->general_m->llenar_tabla_m($datos7);
+					} else{
+						echo "<script languaje='javascript' type='text/javascript'>
+							alert('Ningun caso fue seleccionado para relacionarse');
+						</script>";
+						
+						$mensaje ='';
+					}
+					
 				}
 				
             break;

@@ -17,7 +17,7 @@
         </div>
    <?php endif;?>	 
   
-    
+    <?=br(2);?>
     <div class="twelve columns">
         <h1><div class="six columns">Nombre</div></h1>
     </div>
@@ -29,7 +29,7 @@
 	                foreach($listado as $index => $caso): ?>
 	                <?php if(isset($caso['casoId'])): ?>
 		                <?php $total=$total+1;?>
-		                 <div class="twelve columns" id="caja<?=$caso['casoId']; ?>" onclick="casoSeleccionado('<?=$caso['casoId']?>','<?=$caso['nombre']?>','<?=$caso['fechaInicial']?>','<?=$caso['fechaTermino']?>')" style="cursor: pointer;">
+		                 <div class="twelve columns noSeleccionado" id="caja<?=$caso['casoId']; ?>" onclick="casoSeleccionado('<?=$caso['casoId']?>','<?=$caso['nombre']?>','<?=$caso['fechaInicial']?>','<?=$caso['fechaTermino']?>')" style="cursor: pointer;">
 				             <?=$caso['nombre']; ?>
 				        </div>
 				        <hr />

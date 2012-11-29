@@ -75,6 +75,8 @@ class Casos_c extends CI_Controller {
 		$datos['tipoFuenteCatalogo'] = $this->general_m->obtener_todo('tipoFuenteCatalogo', 'tipoFuenteId', 'descripcion');
 		
         $datos['listaTodosActores'] = $this->actores_m-> mListaTodosActores();
+       
+	   	$datos['relacionCasosCatalogo'] = $this->general_m->obtener_todo('relacionCasosCatalogo', 'relacionCasosId', 'descripcion');
         
         return $datos;
         

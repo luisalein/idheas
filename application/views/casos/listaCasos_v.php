@@ -1,4 +1,4 @@
-<div id="listaCasos" name="listaCasos"><!--Lista de Actores---->
+<div id="listaCasos" name="listaCasos">
 
 	<ul class="button-group">
 		<li><a href="<?php echo base_url(); ?>index.php/casos_c/mostrar_formulario"> <input type="button" class="small button"  value="Agregar Caso"  /> </a></li>

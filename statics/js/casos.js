@@ -585,14 +585,19 @@ function  nombrarActo(descripcion, valor,notas,nivel,e){
 
 
 function mostrarCasos(){
-	var windowSizeArray = [ "width=800,height=200" ];
+	var windowSizeArray = [ "width=400,height=600,scrollbars=yes" ];
 	window.open(base+'index.php/casosVentanas_c/mostrarCasos', 'Seleccionar Caso', windowSizeArray);
 }
 
 function casoSeleccionado(idCaso, nombreCaso, fechaInicial, fechaTermino){
 	
-	//alert(idCaso+ nombreCaso+fechaInicial+fechaTermino);
-	var cadena ='<td>'+nombreCaso+'</td>'+'<td>'+fechaInicial+'</td>'+'<td>'+fechaTermino+'</td><input type="hidden" name="relacionCasos_casoIdB" value="'+idCaso+'"/>';
+	window.opener.document.getElementById('casoSeleccionado_seleccionado').value='1';
+	
+	$('.noSeleccionado').css('background','white');
+	
+	$('#caja'+idCaso).css('background','#ccc');
+	
+	var cadena ='<td>'+nombreCaso+'</td>'+'<td>'+fechaInicial+'</td>'+'<td>'+fechaTermino+'</td><input type="hidden" name="relacionCasos_casoIdB" value="'+idCaso+'"required/>';
 	
 	window.opener.document.getElementById('datosCasoRelacionado').innerHTML = cadena;
 	
@@ -600,7 +605,7 @@ function casoSeleccionado(idCaso, nombreCaso, fechaInicial, fechaTermino){
 
 
 function ventanaRelacionCasos(casoId, indice){
-	var windowSizeArray = [ "width=400,height=500" ];
+	var windowSizeArray = [ "width=800,height=700" ];
 	window.open(base+'index.php/casosVentanas_c/relacionCasos/'+casoId+'/'+indice+'/', 'Relación entre casos', windowSizeArray);
 }
 
