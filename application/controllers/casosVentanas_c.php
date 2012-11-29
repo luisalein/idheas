@@ -166,9 +166,11 @@ class CasosVentanas_c extends CI_Controller {
 		$this->load->view('casos/formularioFuenteDoc_v', $datos);
 	}
 	
-	function fuentesDeInformacionPersonal($casoId,$actorId){
+	function fuentesDeInformacionPersonal($casoId,$actorId=0,$id){
 		
 		$datos['head'] = $this->load->view('general/head_v', "", true);
+		
+		$datos['id'] = $id;
 
         $datos['casoId'] = $casoId;
 		
