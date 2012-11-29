@@ -500,6 +500,14 @@ class Casos_c extends CI_Controller {
 		return $mensaje;
 	}
 
+
+	public function traeRelaciones($actorId){
+
+		$datos['actoresRelacionados'] = $this->actores_m->mTraeRelacionesColectivo($actorId);
+		
+		$this->load->view('casos/seleccionaRelacion_v', $datos);
+
+	}
 	
 	
 }
