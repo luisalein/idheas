@@ -5,8 +5,13 @@
 	</head>
 	
 	<body>
-		
+		<pre><?=print_r($datosCaso['fuenteInfoPersonal']) ?></pre>
 		<form method="post"  action='<?=base_url(); ?>index.php/casosVentanas_c/guardarDatosVentanas/5' accept-charset="utf-8">
+		<!-- 
+		input type="hidden" id="editar"  name="editar" value="<?= (isset($datosCaso['fuenteInfoPersonal'][$id])) ? "1" : "0" ;?>"/>
+		<input type="hidden" id='casos_casoId' name='casos_casoId'	value="<?= $casoId ?>"/>
+		<input type="hidden" id='fuenteInfoPersonal_casos_casoId' name='fuenteInfoPersonal_casos_casoId' value="<?= $casoId ?>"/>
+			-->
 			<fieldset>
 				<legend>Fuente de información personal</legend>
 					<input type="radio"  value="" name="" id=""/>Persona
@@ -24,12 +29,22 @@
 			<fieldset>
 			<div class="twelve columns espacioSuperior">
 				<div class="twelve columns" >
-					<div class="six columns" >
-						<label>Tipo de fuente</label>
-						<select >
-							<option> </option>
+					<div class="six columns">
+						<label for="tipoFuente">Tipo de la fuente</label>
+						<select id="tipoFuenteDocumentalCatalogo_tipoFuenteCatalogo_tipoFuenteId" name="tipoFuenteDocumental_tipoFuenteCatalogo_tipoFuenteId">
+							 <option></option>							
+							 <?php if(isset($datosCaso['fuenteInfoPersonal'][$id]['tipoFuenteCatalogo_tipoFuenteId'])){
+		                                foreach($catalogos['tipoFuenteCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
+		                                    <option onclick="notasCatalogos('<?=$item['notas']; ?>','tipoFuenteDocumentalCatalogo','2')" value="<?=$item['tipoFuenteId']?>" <?=($datosCaso['fuenteInfoPersonal'][$id]['tipoFuenteCatalogo_tipoFuenteId'] == $item['tipoFuenteId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
+		                                <?php endforeach;
+		                            } else { ?>
+		                                <?php foreach($catalogos['tipoFuenteCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
+		                                    <option onclick="notasCatalogos('<?=$item['notas']; ?>','tipoFuenteDocumentalCatalogo','2')"  value="<?=$item['tipoFuenteId']?>" ><?=$item['descripcion']?></option>
+		                                <?php endforeach; } 
+		                      ?>
 						</select>
-					</div> 
+								<div id="notastipoFuenteDocumentalCatalogo"></div>
+					</div>
 				</div>
 				
 				<div class="twelve columns espacioSuperior espacioInferior">
@@ -69,27 +84,31 @@
 				
 				<div class="twelve columns">	
 					
-					<div class="six columns">		
-						<label>Idioma</label>			
-						<select>
-							<option> </option>
-						</select>
-					</div>
 					<div class="six columns">
-						<label>Nivel de confiabilidad</label>			
-						<select>
-							<option> </option>
+						<label for="nivelConfiabilidad">Nivel de confiabilidad</label>
+						<select id="nivelConfiabilidadCatalogo_nivelConfiabilidadCatalogo_nivelConfiabilidadId" name="tipoFuenteDocumental_nivelConfiabilidadCatalogo_nivelConfiabilidadId">
+							<option></option>						
+							<?php if(isset($datosCaso['fuenteInfoPersonal'][$id]['nivelConfiabilidadCatalogo_nivelConfiabilidadId'])){
+		                                foreach($catalogos['nivelConfiabilidadCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
+		                                    <option onclick="notasCatalogos('<?=$item['notas']; ?>','nivelConfiabilidadCatalogo','2')" value="<?=$item['nivelConfiabilidadId']?>" <?=($datosCaso['fuenteInfoPersonal'][$id]['nivelConfiabilidadCatalogo_nivelConfiabilidadId'] == $item['nivelConfiabilidadId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
+		                                <?php endforeach;
+		                            } else { ?>
+		                                <?php foreach($catalogos['nivelConfiabilidadCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
+		                                    <option onclick="notasCatalogos('<?=$item['notas']; ?>','nivelConfiabilidadCatalogo','2')" value="<?=$item['nivelConfiabilidadId']?>" > <?=$item['descripcion']?></option>
+		                                <?php endforeach; } 
+		                      ?>
 						</select>
+						<div id="notasnivelConfiabilidadCatalogo"></div>
 					</div>
 				</div>
 				
-				<div class="twelve columns espacioSuperior">
-					<label>Observaciones</label>
-					<textarea id="" wrap="hard"  name="" > </textarea>
+				<div class="twelve columns">
+					<label for="comentFuente">Observaciones</label>
+					<textarea id="infoAdicional_observaciones"  name="infoAdicional_observaciones" ><?=(isset($datosCaso['fuenteInfoPersonal'][$id]['observaciones']) ? $datosCaso['fuenteInfoPersonal'][$id]['observaciones'] : ''); ?></textarea>
 				</div>
 				<div class="twelve columns">
-					<label>Comentarios</label>
-					<textarea id="" wrap="hard"  name="" > </textarea>
+					<label for="comentFuente">Comentarios</label>
+					<textarea id="infoAdicional_comentarios" name="infoAdicional_comentarios"><?=(isset($datosCaso['fuenteInfoPersonal'][$id]['comentarios']) ? $datosCaso['fuenteInfoPersonal'][$id]['comentarios'] : ''); ?></textarea>
 				</div>
 				<fieldset>
 					<legend>Actor reportado</legend>

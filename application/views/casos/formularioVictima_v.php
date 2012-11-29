@@ -27,10 +27,6 @@
 						</form>
 					</div>
 				</div>
-				
-<!-- 						<pre><?= print_r($victimas['victimas'][$idVictima]['victimaId'])?></pre>
-						<pre><?= print_r($victimas)?></pre>
- -->
 				<div class="twelve columns panel">
 					<div class="four columns"> <b>Foto</b> </div>
 					<div class="eight columns">	<b>Nombre</b> </div>

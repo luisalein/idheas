@@ -140,7 +140,7 @@ class CasosVentanas_c extends CI_Controller {
         
     }
 
-	function fuentesDeInformacion($casoId,$actorId,$i){
+	function fuentesDeInformacion($casoId,$actorId=0,$i){
 		
 		$datos['head'] = $this->load->view('general/head_v', "", true);
 
@@ -166,9 +166,11 @@ class CasosVentanas_c extends CI_Controller {
 		$this->load->view('casos/formularioFuenteDoc_v', $datos);
 	}
 	
-	function fuentesDeInformacionPersonal($casoId,$actorId){
+	function fuentesDeInformacionPersonal($casoId,$actorId=0,$id){
 		
 		$datos['head'] = $this->load->view('general/head_v', "", true);
+		
+		$datos['id'] = $id;
 
         $datos['casoId'] = $casoId;
 		
@@ -206,7 +208,8 @@ class CasosVentanas_c extends CI_Controller {
 		
 		$datos['actoresTrans'] = $this->actores_m->listado_actores_m(2);
 		
-		$datos['actIndividualesTrns'] = array_merge($datos['actoresIndividuales'],$datos['actoresTrans']);
+		if(isset($datos['actoresIndividuales']) && isset($datos['actoresTrans']))
+			$datos['actIndividualesTrns'] = array_merge($datos['actoresIndividuales'],$datos['actoresTrans']);
 
 		$datos['actoresRelacionados'] = $this->actores_m->mTraeRelacionesColectivo($actorId);
 		
