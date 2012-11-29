@@ -99,11 +99,11 @@
 			                <td>Content</td>
 			                <td>Content</td>
 			                <td><input type="button" class="tiny button"  value="Editar" onclick="" />
-			                <input type="button" class="tiny button"  value="Eliminar" onclick="" /></td>
+			                <input type="button" class="tiny button"  value="Eliminar" onclick="eliminarRelacionCasos(relacionId,'<?= $casoId; ?>')" /></td>
 			              </tr>
 			            </tbody>
 	          		</table>
-					<input type="button"  class="tiny button" value="Nuevo" onclick="" />
+					<input type="button"  class="tiny button" value="Nuevo" onclick="ventanaRelacionCasos('<?= $casoId; ?>', '0')" />
 				<br /><br />
 	  			</div>
 	  		</div>
