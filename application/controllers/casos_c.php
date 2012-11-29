@@ -111,11 +111,6 @@ class Casos_c extends CI_Controller {
            }else{
            		$datos['listado'] = $this->casos_m->mListaCasos();
            }         
-                    
-            
-            
-            
-        
 
         $datos['casos']=$this->load->view('casos/informacionGeneral_v', $datos, true);
 

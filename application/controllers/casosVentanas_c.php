@@ -51,7 +51,10 @@ class CasosVentanas_c extends CI_Controller {
 		$datos['derechosAfectadosN3Catalogo'] = $this->general_m->obtener_todo('derechosAfectadosN3Catalogo', 'derechoAfectadoN3Id', 'descripcion');
 		
 		$datos['derechosAfectadosN4Catalogo'] = $this->general_m->obtener_todo('derechosAfectadosN4Catalogo', 'derechoAfectadoN4Id', 'descripcion');
-        return $datos;
+       
+	   	$datos['relacionCasosCatalogo'] = $this->general_m->obtener_todo('relacionCasosCatalogo', 'relacionCasosId', 'descripcion');
+		
+	    return $datos;
         
     }
 
@@ -216,6 +219,26 @@ class CasosVentanas_c extends CI_Controller {
 		$this->load->view('casos/formularioRelacionCasos', $datos);
 	}
 	
+	function mostrarCasos(){
+		
+		$datos['is_active'] = 'casos';
+		
+		$datos['catalogos'] = $this->traer_catalogos();
+        
+        $datos['head'] = $this->load->view('general/head_v', $datos, true);
+        
+        $datos['listado'] = $this->casos_m->mListaCasos();
+                
+		 $datos['casos']=$this->load->view('casos/informacionGeneral_v', $datos, true);
+
+        $datos['casosNucleo']=$this->load->view('casos/nucleoCaso_v', $datos, true);
+
+        $datos['infoAdicional']=$this->load->view('casos/infoAdicional_v', $datos, true);
+		
+		$v=$this->load->view('casos/seleccionarCaso_v', $datos, true);
+		
+		echo $v;
+	}
 	
 	function guardarDatosVentanas($id){
 		

@@ -1,9 +1,5 @@
 /******************Ventanas Nuevo*************************/
 
-function ventanaRelacionCasos(casoId, indice){
-	var windowSizeArray = [ "width=800,height=200" ];
-	window.open(base+'index.php/casosVentanas_c/relacionCasos/'+casoId+'/'+indice+'/', 'Relación entre casos', windowSizeArray);
-}
 function ventanaDetalleLugar(casoId, indice){
 	  var windowSizeArray = [ "width=800,height=200" ];
 		window.open(base+'index.php/casosVentanas_c/ventanaLugares/'+casoId+'/'+indice+'/', 'Detalles Lugar', windowSizeArray);

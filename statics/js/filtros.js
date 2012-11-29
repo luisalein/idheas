@@ -34,6 +34,10 @@ function returnCasos(){
 		document.location.href = base+'index.php/casos_c/mostrar_caso';
 }
 
+function returnRelacionCasos(){
+	document.location.href = base+'index.php/casosVentanas_c/mostrarCasos';
+}
+
 function searchCaso(){
 	
 		$('#numeroRegistros').html('');
