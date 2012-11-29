@@ -73,24 +73,25 @@
 							<br/><label>Perpetradores</label> <br/>
 
 
-
 			            <table>
 			                <thead>
 			                    <tr>
-			                        <th>Perpetrador</th>
+			                        <th>Apellido(s)</th>
+			                        <th>Nombre(s)</th>
+			                        <th>Institución/Organización</th>
 			                        <th>Tipo perpetrador</th>
-			                        <th>Tipo lugar</th>
-			                        <th>Grado Involucramiento</th>
+			                        <th>Accion(es)</th>
 			                    </tr>
 			                </thead>
 			                <tbody>
 								<?php if (isset($victimas['victimas'][$idVictima]['perpetradores'])) { ?>
 			            			<?php foreach ($victimas['victimas'][$idVictima]['perpetradores'] as $key => $perpetrador) { ?>
 			                			<tr>
-					                        <td><?=(isset($perpetrador['perpetradorId'])) ? $perpetrador['perpetradorId'] : ''; ?></td>
+					                        <td><?=(isset($perpetrador['perpetradorId'])) ? $catalogos['listaTodosActores'][$perpetrador['perpetradorId']]['nombre'] : ''; ?></td>
+					                        <td><?=(isset($perpetrador['perpetradorId'])) ? $catalogos['listaTodosActores'][$perpetrador['perpetradorId']]['apellidosSiglas'] : ''; ?></td>
 					                        <td><?=(isset($perpetrador['tipoPerpetradorId'])&& isset($perpetrador['tipoPerpetradorNivel'])) ? $perpetrador['tipoPerpetradorNivel'] : ''; ?></td>
 					                        <td><?=(isset($perpetrador['tipoLugarId'])) ? $perpetrador['tipoLugarId'] : ''; ?></td>
-					                        <td><?=(isset($perpetrador['gradoInvolucramientoid'])&& isset($perpetrador['nivelInvolugramientoId'])) ? $perpetrador['nivelInvolugramientoId'] : ''; ?></td>
+					                        <td></td>
 			                    		</tr>
 				            		<?php } ?>
 								<?php } ?>
