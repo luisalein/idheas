@@ -1,12 +1,12 @@
 
 <div id="pestania" data-collapse>
-	<h2>Información adicional</h2><!--título de la sub-pestaña-->  
+	<h2 class="open">Información adicional</h2><!--título de la sub-pestaña-->  
 	<div>
 		<div id="subPestanias" data-collapse>
-	  		<h2>Fuentes de información</h2>
+	  		<h2 class="open">Fuentes de información</h2>
 	  		<div>
 				<div id="subPestanias" data-collapse>
-		  		<h2>Fuente documental</h2>
+		  		<h2 class="open">Fuente documental</h2>
 			  		<div>
 		  				 <div>
 		  				 	<table class="twelve columns">
@@ -42,7 +42,7 @@
 	  			
 	  			
 			  	<div id="subPestanias" data-collapse>
-			  		<h2>Fuentes de información personal</h2>
+			  		<h2 class="open">Fuentes de información personal</h2>
 				  		<div>
 				  			<div>
 				  				<table class="twelve columns">
@@ -63,7 +63,7 @@
 								                <td><?= $infoGeneral['tipoFuenteCatalogo_tipoFuenteId'] ?> </td>
 								                <td><?= $infoGeneral['actorReportadoNombre']." ".$infoGeneral['actorReportadoApellidosSiglas'] ?></td>
 								                <td><?= $infoGeneral['fecha'] ?></td>
-								                <td><input type="button" class="tiny button"  value="Editar" onclick="" />
+								                <td><input type="button" class="tiny button"  value="Editar" onclick="ventanaFuentePersonal('<?= $casoId; ?>', '<?= $index ?>')" />
 								                <input type="button" class="tiny button"  value="Eliminar" onclick="" /></td>
 								               <?php }}?>
 								              </tr>
