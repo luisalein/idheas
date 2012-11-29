@@ -1,11 +1,12 @@
+
 <div id="pestania" data-collapse>
-	<h2>Información adicional</h2><!--título de la sub-pestaña-->  
+	<h2 class="open">Información adicional</h2><!--título de la sub-pestaña-->  
 	<div>
 		<div id="subPestanias" data-collapse>
-	  		<h2>Fuentes de información</h2>
+	  		<h2 class="open">Fuentes de información</h2>
 	  		<div>
 				<div id="subPestanias" data-collapse>
-		  		<h2>Fuente documental</h2>
+		  		<h2 class="open">Fuente documental</h2>
 			  		<div>
 		  				 <div>
 		  				 	<table class="twelve columns">
@@ -24,11 +25,11 @@
 					            		foreach ($datosCaso['tipoFuenteDocumental'] as $index => $fuenteDoc) { ?>
 							              <tr>
 							                <td><?= $fuenteDoc['nombre'] ?></td>
-							                <td><?= $fuenteDoc['tipoFuenteCatalogo_tipoFuenteId'] ?></td>
-							                <td><?= $fuenteDoc['actorReportado'] ?></td>
+							                <td><?= ($fuenteDoc['tipoFuenteCatalogo_tipoFuenteId']==$catalogos['tipoFuenteCatalogo'][$fuenteDoc['tipoFuenteCatalogo_tipoFuenteId']]) ? $catalogos['tipoFuenteCatalogo'][$fuenteDoc['tipoFuenteCatalogo_tipoFuenteId']]['descripcion']:$catalogos['tipoFuenteCatalogo'][$fuenteDoc['tipoFuenteCatalogo_tipoFuenteId']]['descripcion'] ?></td>
+							                <td><?= (isset($fuenteDoc['actorReportado']) ? $catalogos['listaTodosActores'][$fuenteDoc['actorReportado']]['nombre'].' '.$catalogos['listaTodosActores'][$fuenteDoc['actorReportado']]['apellidosSiglas'] : 'No hay actor reportado') ?> </td>
 							                <td><?= $fuenteDoc['fecha'] ?></td>
 							                <td><?= $fuenteDoc['fechaAcceso'] ?></td>
-							                <td><input type="button" class="tiny button"  value="Editar" onclick="ventanaFuenteDoc('<?= $casoId; ?>',<?= $fuenteDoc['actorReportado'] ?>,'<?= $index ?>')" />
+							                <td><input type="button" class="tiny button"  value="Editar" onclick="ventanaFuenteDoc('<?= $casoId; ?>','<?= $fuenteDoc['actorReportado'] ?>','<?= $index ?>')" />
 							                <input type="button" class="tiny button"  value="Eliminar" onclick="" /></td>
 							              </tr>
 							              <?php }}?>
@@ -41,7 +42,7 @@
 	  			
 	  			
 			  	<div id="subPestanias" data-collapse>
-			  		<h2>Fuentes de información personal</h2>
+			  		<h2 class="open">Fuentes de información personal</h2>
 				  		<div>
 				  			<div>
 				  				<table class="twelve columns">
@@ -56,13 +57,14 @@
 						            </thead>
 						            <tbody>
 						            	<?php if(isset($datosCaso['fuenteInfoPersonal'])){
-						            		foreach ($datosCaso['fuenteInfoPersonal'] as $infoGeneral) { ?>
+						            		foreach ($datosCaso['fuenteInfoPersonal'] as $index => $fuentePersonal) { ?>
 								              <tr>
+								              	
 								                <td>No aparece nombre de la fuente</td>
-								                <td><?= $infoGeneral['tipoFuenteCatalogo_tipoFuenteId'] ?> </td>
-								                <td><?= $infoGeneral['actorReportadoNombre']." ".$infoGeneral['actorReportadoApellidosSiglas'] ?></td>
-								                <td><?= $infoGeneral['fecha'] ?></td>
-								                <td><input type="button" class="tiny button"  value="Editar" onclick="" />
+								                <td><?= $fuentePersonal['tipoFuenteCatalogo_tipoFuenteId'] ?> </td>
+								                <td><?= $fuentePersonal['actorReportadoNombre']." ".$fuentePersonal['actorReportadoApellidosSiglas'] ?></td>
+								                <td><?= $fuentePersonal['fecha'] ?></td>
+								                <td><input type="button" class="tiny button"  value="Editar" onclick="ventanaFuentePersonal('<?= $casoId; ?>', <?= $fuentePersonal['actorReportado'] ?>,'<?= $index ?>')" />
 								                <input type="button" class="tiny button"  value="Eliminar" onclick="" /></td>
 								               <?php }}?>
 								              </tr>
