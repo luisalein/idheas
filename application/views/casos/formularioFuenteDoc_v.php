@@ -43,7 +43,7 @@
 				                                    <option onclick="notasCatalogos('<?=$item['notas']; ?>','tipoFuenteDocumentalCatalogo','2')"  value="<?=$item['tipoFuenteId']?>" ><?=$item['descripcion']?></option>
 				                                <?php endforeach; } 
 				                      ?>
-										</select>
+								</select>
 										<div id="notastipoFuenteDocumentalCatalogo"></div>
 							</div>
 							

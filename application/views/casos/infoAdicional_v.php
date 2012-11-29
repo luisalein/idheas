@@ -57,13 +57,14 @@
 						            </thead>
 						            <tbody>
 						            	<?php if(isset($datosCaso['fuenteInfoPersonal'])){
-						            		foreach ($datosCaso['fuenteInfoPersonal'] as $infoGeneral) { ?>
+						            		foreach ($datosCaso['fuenteInfoPersonal'] as $index => $fuentePersonal) { ?>
 								              <tr>
+								              	
 								                <td>No aparece nombre de la fuente</td>
-								                <td><?= $infoGeneral['tipoFuenteCatalogo_tipoFuenteId'] ?> </td>
-								                <td><?= $infoGeneral['actorReportadoNombre']." ".$infoGeneral['actorReportadoApellidosSiglas'] ?></td>
-								                <td><?= $infoGeneral['fecha'] ?></td>
-								                <td><input type="button" class="tiny button"  value="Editar" onclick="ventanaFuentePersonal('<?= $casoId; ?>', '<?= $index ?>')" />
+								                <td><?= $fuentePersonal['tipoFuenteCatalogo_tipoFuenteId'] ?> </td>
+								                <td><?= $fuentePersonal['actorReportadoNombre']." ".$fuentePersonal['actorReportadoApellidosSiglas'] ?></td>
+								                <td><?= $fuentePersonal['fecha'] ?></td>
+								                <td><input type="button" class="tiny button"  value="Editar" onclick="ventanaFuentePersonal('<?= $casoId; ?>', <?= $fuentePersonal['actorReportado'] ?>,'<?= $index ?>')" />
 								                <input type="button" class="tiny button"  value="Eliminar" onclick="" /></td>
 								               <?php }}?>
 								              </tr>

@@ -6,7 +6,6 @@
 	
 	<body>
 		<pre><?=print_r($datosCaso['fuenteInfoPersonal']) ?></pre>
-		<?=$id = 1;?>
 		<form method="post"  action='<?=base_url(); ?>index.php/casosVentanas_c/guardarDatosVentanas/5' accept-charset="utf-8">
 		<!-- 
 		input type="hidden" id="editar"  name="editar" value="<?= (isset($datosCaso['fuenteInfoPersonal'][$id])) ? "1" : "0" ;?>"/>
