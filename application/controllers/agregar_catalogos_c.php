@@ -61,6 +61,8 @@ class Agregar_catalogos_c extends CI_Controller {
 		$this->cAgregarCatalogoTipoLugarN2();
 		
 		$this->cAgregarCatalogoTipoLugarN3();
+		
+		$this->cAgregarCatalogoTipoRelacionCasos();
     }
     
     /*
@@ -359,7 +361,7 @@ class Agregar_catalogos_c extends CI_Controller {
                 
             $datosTipoRelacion = explode('¬', $tipoRelacion);
                 
-            $tiposRelaciones['gruposIndigenas'][trim($datosGrupo[0])] = array('grupoIndigenaId' => trim($datosTipoRelacion[0]), 'paisId' => trim($datosTipoRelacion[1]));
+            $tiposRelaciones['relacionCasosCatalogo'][trim($datosTipoRelacion[0])] = array('relacionCasosId' => trim($datosTipoRelacion[0]), 'descripcion' => trim($datosTipoRelacion[1]));
 
         }
         

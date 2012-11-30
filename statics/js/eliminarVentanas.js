@@ -17,3 +17,4 @@ function eliminarDerechoAfectado(derechoId, idCaso){
 function eliminarRelacionCasos(relacionId,idCaso){
 	document.location.href = base+'index.php/casosVentanas_c/eliminaRelacionCasos/'+relacionId+'/'+idCaso;
 }
+
