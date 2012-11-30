@@ -10,6 +10,16 @@
 	<!-----------------Comienza la parte de Intervención---------------------------->
 	<form action='<?=base_url(); ?>index.php/casosVentanas_c/guardarDatosVentanas/4' method="post" accept-charset="utf-8">
 
+		<input type="hidden"  id="nameSeleccionado"  value="intervenciones_interventorId"><!--Este campo me da el name al que hay modificar el value al agregar acto(SIRVE PARA AGREGAR PERPETRADOR)-->
+
+		<input type="hidden"  id="ValoresBotonCancelar" value="<?= (isset($intervenciones['interventorId'])&&($intervenciones['interventorId']!=0)) ? $intervenciones['interventorId']."*".$catalogos['listaTodosActores'][$intervenciones['interventorId']]['nombre']." ".$catalogos['listaTodosActores'][$intervenciones['interventorId']]['apellidosSiglas']."*".$catalogos['listaTodosActores'][$intervenciones['interventorId']]['foto'] : "" ;  ?>"><!--Este campo da los valores en caso de que se cancele la ventana agregar actor-->
+
+		<input type="hidden" name="intervenciones_interventorId" id="intervenciones_interventorId" value="<?= (isset($intervenciones['interventorId'])) ? $intervenciones['interventorId'] : " " ;?>" >
+
+		<input type="hidden"  id="nameSeleccionado2"  value="intervenciones_receptorId"><!--Este campo me da el name al que hay modificar el value al agregar acto(SIRVE PARA AGREGAR PERPETRADOR)-->
+
+		<input type="hidden" name="intervenciones_receptorId" id="intervenciones_receptorId" value="<?= (isset($intervenciones['receptorId'])) ? $intervenciones['receptorId'] : " " ;?>" >
+
 		<div id="pestania" data-collapse>
 			<h2 class="open twelve columns">Intervención</h2><!--título de la sub-pestaña-->  
 			<div>
@@ -20,7 +30,7 @@
 						<input type="hidden" value="<?=$casoId; ?>" name="lugares_casos_casoId" id="lugares_casos_casoId" />
 						  <legend>Información general</legend>
 							
-							<div class="six columns">
+							<div class="twelve columns">
 								<p>
 									<label for="tipoIntervencion">Tipo de intervención</label>
 									<select id="tipoIntervencion" name="intervenciones_tipoIntervencionId">
@@ -31,6 +41,7 @@
 								</p>
 								</div>
 							
+							<div class="twelve columns">
 							<div class="six columns">	
 								<p>
 									<label for="fecha">Fecha: </label>
@@ -38,14 +49,15 @@
 
 								</p>
 							</div>
+							</div>
 								<div class="twelve columns">
 									<label for="tipoIntervencion">Impacto</label>									
-									<textarea id="intervenciones_impacto" style="width: 400px; height: 200px" name="intervenciones_impacto" value="" wrap="hard"  ><?= (isset($intervenciones['impacto'])) ? $intervenciones['impacto'] : ' ' ;?> </textarea>
+									<textarea id="intervenciones_impacto" class="twelve columns" style="height: 150px" name="intervenciones_impacto" value="" wrap="hard"  ><?= (isset($intervenciones['impacto'])) ? $intervenciones['impacto'] : ' ' ;?> </textarea>
 								</div>
 
 								<div class="twelve columns">
 									<label for="tipoRespuesta">En respuesta</label>
-									<textarea id="intervenciones_respuesta" style="width: 400px; height: 200px" name="intervenciones_respuesta" value="" wrap="hard"  > <?= (isset($intervenciones['respuesta'])) ? $intervenciones['respuesta'] : ' ' ;?> </textarea>
+									<textarea id="intervenciones_respuesta" class="twelve columns" style="height: 150px" name="intervenciones_respuesta" value="" wrap="hard"  ><?= (isset($intervenciones['respuesta'])) ? $intervenciones['respuesta'] : ' ' ;?></textarea>
 								</div>
 							<?php echo br(2);?>	
 
@@ -57,17 +69,18 @@
 									
 									<fieldset>
 										  <legend>Interventor </legend>
+										  	<div class="twelve columns">
 											<label for="Interventor">Persona</label>
-												<input type="button" class="tiny button"  value="Seleccionar actor" onclick="" />
-												<input type="button" class="tiny button"  value="Eliminar actor" onclick="" />
-										
+											<div id="vistaActorRelacionado"></div>
+											<input type="button" class="small button" onclick="seleccionarActorseleccionarActorIndColDatos('1')" value="Seleccionar actor">
+											<input type="button" class="small button" value="Eliminar actor" onclick="eliminaActor()">
+											</div>
+
 											<div id="subpestanias" data-collapse>
 												<h2 class="twelve columns">Actor colectivo</h2><!--título de la sub-pestaña-->  
-												<div>
-
-													<input type="button" class="tiny button"  value="Seleccionar actor" onclick="" />
-													<input type="button" class="tiny button"  value="Eliminar actor" onclick="" />
+												<div class="twelve columns">
 													<div><b>Tipo de relación</b></div>
+													<div id="vistaPintaRelaciones">	</div>	
 												</div>	
 											</div>	
 											
@@ -75,21 +88,23 @@
 
 								</div>
 								
-								<?php echo br(2);?>	
 
 								<div class="six columns">
 									<fieldset>
 										  <legend>Receptor </legend>
 											<label for="receptor">Persona</label>
-												<div  id="listaActoresreceptor" class="casosScorll">
-												</div>
-														
+											<div id="vistaActorRelacionadoReceptor"></div>											
+											<input type="button" class="small button" onclick="seleccionarActorseleccionarActorIndColDatos('2')" value="Seleccionar actor">
+											<input type="button" class="small button" value="Eliminar actor" onclick="eliminaActor()">
+										
 											<div id="subpestanias" data-collapse>
 												<h2 class="twelve columns">Actor colectivo</h2><!--título de la sub-pestaña-->  
 												<div>
 													<div><b>Tipo de relación</b></div>
-												</div>
-											</div>	
+													<div id="vistaPintaRelacionesReceptor">	</div>	
+												</div>	
+											</div>
+											
 									</fieldset>
 								</div>
 								<?php echo br(2);?>	
@@ -102,8 +117,6 @@
 							<div >
 								  <span>Agregar</span>
 				  
-									<div  id="listaActorpersonasinterviene" class="casosScorll">
-									</div>
 							</div>	  
 					</div><!--fin acordeon descripción-->
 			

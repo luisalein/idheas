@@ -1,9 +1,5 @@
 /******************Ventanas Nuevo*************************/
 
-
-function prueba(r){
-	alert(r);
-}
 function ventanaDetalleLugar(casoId, indice){
 	  var windowSizeArray = [ "width=800,height=200" ];
 		window.open(base+'index.php/casosVentanas_c/ventanaLugares/'+casoId+'/'+indice+'/', 'Detalles Lugar', windowSizeArray);
@@ -50,8 +46,9 @@ function ventanaVictimas(casoId){
 
 function ventanaPerpetradores(casoId,victimaId,perpetradorId){
 	  var windowSizeArray = [ "width=950,height=700,scrollbars=yes" ];
-	window.open(base+'index.php/casos_c/mostrarPerpetrador/'+casoId+'/'+victimaId+'/'+perpetradorId, 'Ventana victimas', windowSizeArray);
+	window.open(base+'index.php/casos_c/mostrarPerpetrador/'+casoId+'/'+victimaId+'/'+perpetradorId, 'Ventana perpetradores', windowSizeArray);
 	};
+
 /******************************************/
 
 /* Fechas para fuente documental */
@@ -595,4 +592,30 @@ function  nombrarActo(descripcion, valor,notas,nivel,e){
  	var windowSizeArray = [ "width=770,height=700,scrollbars=yes" ];
 	window.open(base+'index.php/casosVentanas_c/mostrarActores', 'Relacion casos', windowSizeArray);
  }
+
+
+function mostrarCasos(){
+	var windowSizeArray = [ "width=400,height=600,scrollbars=yes" ];
+	window.open(base+'index.php/casosVentanas_c/mostrarCasos', 'Seleccionar Caso', windowSizeArray);
+}
+
+function casoSeleccionado(idCaso, nombreCaso, fechaInicial, fechaTermino){
+	
+	window.opener.document.getElementById('casoSeleccionado_seleccionado').value='1';
+	
+	$('.noSeleccionado').css('background','white');
+	
+	$('#caja'+idCaso).css('background','#ccc');
+	
+	var cadena ='<td>'+nombreCaso+'</td>'+'<td>'+fechaInicial+'</td>'+'<td>'+fechaTermino+'</td><input type="hidden" name="relacionCasos_casoIdB" value="'+idCaso+'"required/>';
+	
+	window.opener.document.getElementById('datosCasoRelacionado').innerHTML = cadena;
+	
+}
+
+
+function ventanaRelacionCasos(casoId, indice){
+	var windowSizeArray = [ "width=800,height=700" ];
+	window.open(base+'index.php/casosVentanas_c/relacionCasos/'+casoId+'/'+indice+'/', 'Relación entre casos', windowSizeArray);
+}
 

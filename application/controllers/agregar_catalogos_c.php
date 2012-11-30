@@ -61,6 +61,8 @@ class Agregar_catalogos_c extends CI_Controller {
 		$this->cAgregarCatalogoTipoLugarN2();
 		
 		$this->cAgregarCatalogoTipoLugarN3();
+		
+		$this->cAgregarCatalogoTipoRelacionCasos();
     }
     
     /*
@@ -350,6 +352,25 @@ class Agregar_catalogos_c extends CI_Controller {
         echo 'Catalogos de grupos indigenas insertados exitosamente.<br />';
         
     }
+	
+	public function cAgregarCatalogoTipoRelacionCasos(){
+        
+        $catalogoTipoRelacionCasos = explode('&', read_file('statics/catalogos/catalogosDeUnSoloNivel/catalogoTipoRelacionCasos.csv'));
+        
+        foreach($catalogoTipoRelacionCasos as $tipoRelacion){
+                
+            $datosTipoRelacion = explode('¬', $tipoRelacion);
+                
+            $tiposRelaciones['relacionCasosCatalogo'][trim($datosTipoRelacion[0])] = array('relacionCasosId' => trim($datosTipoRelacion[0]), 'descripcion' => trim($datosTipoRelacion[1]));
+
+        }
+        
+        $this->agregar_catalogos_m->mAgregarCatalogos($tiposRelaciones);
+        
+        echo 'Catalogos de tipos de relacion entre casos insertados exitosamente.<br />';
+        
+    }
+	
 	
 	public function cAgregarCatalogoMotivoViaje(){
         

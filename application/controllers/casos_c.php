@@ -75,6 +75,8 @@ class Casos_c extends CI_Controller {
 		$datos['tipoFuenteCatalogo'] = $this->general_m->obtener_todo('tipoFuenteCatalogo', 'tipoFuenteId', 'descripcion');
 		
         $datos['listaTodosActores'] = $this->actores_m-> mListaTodosActores();
+       
+	   	$datos['relacionCasosCatalogo'] = $this->general_m->obtener_todo('relacionCasosCatalogo', 'relacionCasosId', 'descripcion');
         
         return $datos;
         
@@ -111,11 +113,6 @@ class Casos_c extends CI_Controller {
            }else{
            		$datos['listado'] = $this->casos_m->mListaCasos();
            }         
-                    
-            
-            
-            
-        
 
         $datos['casos']=$this->load->view('casos/informacionGeneral_v', $datos, true);
 
@@ -505,6 +502,46 @@ class Casos_c extends CI_Controller {
 		return $mensaje;
 	}
 
+
+	public function traeRelaciones($actorId){
+
+        $datos['head'] = $this->load->view('general/head_v', "", true);
+
+		$datos['actoresRelacionados'] = $this->actores_m->mTraeRelacionesColectivo(3);
+		
+		$datos['idActor']=$actorId;
+
+        $datos['catalogos'] = $this->traer_catalogos();
+
+        $datos['datosActor'] = $this->actores_m->traer_datos_actor_m(3,1);
+
+		$this->load->view('casos/seleccionaRelacion_v', $datos);
+
+	}
 	
-	
+	public function actorColectivoDatos($dato){
+		
+		$datos['dato'] = $dato;
+		
+		$datos['head'] = $this->load->view('general/head_v', "", true);
+		 
+		$datos['actoresColectivos'] = $this->actores_m->listado_actores_m(3);
+		
+		$this->load->view('casos/SeleccionActorColectivo', $datos);
+	}
+
+		public function seleccionarIndividualConDatos($dato){
+		
+		$datos['dato'] = $dato;
+		
+		$datos['head'] = $this->load->view('general/head_v',"", true);
+		 
+		$datos['actoresIndividuales'] = $this->actores_m->listado_actores_m(1);
+		
+		$datos['actoresTransmigrantes'] = $this->actores_m->listado_actores_m(2);
+		
+		$datos['pestana'] = 'individual';
+		$this->load->view('casos/SeleccionActorIndividualTrans', $datos);
+	}
+
 }
