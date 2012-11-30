@@ -36,5 +36,11 @@ border: solid 3px #ddd;
 	
 	background-image: url('../../media/img/system/flecha.png') ;
 	background-repeat:no-repeat;
-	background-position:right; 
+	background-position:left; 
+}
+
+.ExpanderFlecha{
+	background-image:url('../../media/img/system/flecha2.png');
+	background-repeat:no-repeat;
+	background-position:left; 
 }

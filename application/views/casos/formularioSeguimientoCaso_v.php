@@ -6,9 +6,8 @@
 	</head>
 	
 <body>
-<form method="post"  action='<?=base_url(); ?>index.php/casosVentanas_c/guardarDatosVentanas/2' accept-charset="utf-8">
-
-<input type="hidden" value="<?= (isset($casoId)) ? "1" : "0" ;?>" name="editar" id="editar"> 
+<form method="post"  action='<?=base_url(); ?>index.php/casosVentanas_c/guardarDatosVentanas/2' enctype="multipart/form-data" accept-charset="utf-8">
+<input type="hidden" value="<?= (isset($ficha)) ? "1" : "0" ;?>" name="editar" id="editar"> 
 <input type="hidden" value="<?=$casoId; ?>" name="fichas_casos_casoId" id="fichas_casos_casoId" />
 
 	<div id="formularioDetallerLugar">
@@ -18,7 +17,7 @@
 					<div class="twelve columns">
 						<div class="six columns">
 								<label for="clave">Clave</label>
-								<input type="text" readonly="readonly" value='<?=(isset($ficha['fichaId'])) ? $ficha['fichaId'] : "Por asignar" ;?>' />
+								<input type="text" readonly="readonly" name="fichas_fichaId" value='<?=(isset($ficha['fichaId'])) ? $ficha['fichaId'] : "Por asignar" ;?>' />
 						</div>
 
 						<div class="six columns">
@@ -74,15 +73,10 @@
 			
 			<?php if (isset($ficha['fichaId']) ) { ?>
 				
-			<div id="pestania" data-collapse >
-				<h2 class="open">Registros</h2><!--título de la sub-pestaña-->  
+			<div id="pestania">
+				<p style="margin-left: 15px;" >Agregar nuevo registro</p><!--título de la sub-pestaña-->  
 				<div>
-					   <form action="upload_file.php" method="post" enctype="multipart/form-data">
-					      <input name="archivo" type="file" size="35" />
-					      <input name="enviar" type="submit" value="Upload File" />
-					      <input type="hidden" id="fichaId" name="fichaId" value="<?php $ficha['fichaId'] ?>"/>
-					      <input name="action" type="hidden" value="uploadPdf" />    
-					   </form>
+					<input style="margin-left: 15px;" name="pdf" type="file" size="10" accept="appplication/pdf""/>
 				</div>
 			</div>
 				
@@ -91,8 +85,8 @@
 		</div>
 	
 		</div>
-			<input class="medium button" type="submit" value="Guardar"  />
-			<input class="medium button" value="Cancelar" onclick="cerrarVentana()" />
+			<input style="margin-left: 25px;" class="medium button" type="submit" value="Guardar"  />
+			<input type="submit" class="medium button" value="Cancelar" onclick="cerrarVentana()" />
 	 </div>
 </form>
 	<!-------------------Termina la parte de seguimiento del caso-------------------------------------->

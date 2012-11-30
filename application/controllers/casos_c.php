@@ -50,7 +50,33 @@ class Casos_c extends CI_Controller {
 
         $datos['estatusVictimaCatalogo'] = $this->general_m->obtener_todo('estatusVictimaCatalogo', 'estatusVictimaId', 'descripcion');
 		
+		$datos['tipoLugarN1Catalogo'] = $this->general_m->obtener_todo('tipoLugarN1Catalogo', 'tipoLugarId', 'descripcion');
+		
+		$datos['tipoLugarN2Catalogo'] = $this->general_m->obtener_todo('tipoLugarN2Catalogo', 'tipoLugarN2Id', 'descripcion');
+		
+		$datos['tipoLugarN3Catalogo'] = $this->general_m->obtener_todo('tipoLugarN3Catalogo', 'tipoLugarN3Id', 'descripcion');
+		
+		$datos['derechosAfectadosN1Catalogo'] = $this->general_m->obtener_todo('derechosAfectadosN1Catalogo', 'derechoAfectadoN1Id', 'descripcion');
+		
+		$datos['derechosAfectadosN2Catalogo'] = $this->general_m->obtener_todo('derechosAfectadosN2Catalogo', 'derechoAfectadoN2Id', 'descripcion');
+		
+		$datos['derechosAfectadosN3Catalogo'] = $this->general_m->obtener_todo('derechosAfectadosN3Catalogo', 'derechoAfectadoN3Id', 'descripcion');
+		
+		$datos['derechosAfectadosN4Catalogo'] = $this->general_m->obtener_todo('derechosAfectadosN4Catalogo', 'derechoAfectadoN4Id', 'descripcion');
+		
+		$datos['actosN1Catalogo'] = $this->general_m->obtener_todo('actosN1Catalogo', 'actoId', 'descripcion');
+		
+		$datos['actosN2Catalogo'] = $this->general_m->obtener_todo('actosN2Catalogo', 'actoN2Id', 'descripcion');
+		
+		$datos['actosN3Catalogo'] = $this->general_m->obtener_todo('actosN3Catalogo', 'actoN3Id', 'descripcion');
+		
+		$datos['actosN4Catalogo'] = $this->general_m->obtener_todo('actosN4Catalogo', 'actoN4Id', 'descripcion');
+		
+		$datos['tipoFuenteCatalogo'] = $this->general_m->obtener_todo('tipoFuenteCatalogo', 'tipoFuenteId', 'descripcion');
+		
         $datos['listaTodosActores'] = $this->actores_m-> mListaTodosActores();
+       
+	   	$datos['relacionCasosCatalogo'] = $this->general_m->obtener_todo('relacionCasosCatalogo', 'relacionCasosId', 'descripcion');
         
         return $datos;
         
@@ -74,7 +100,6 @@ class Casos_c extends CI_Controller {
             $datos['datosCaso'] = $this->casos_m->mTraerDatosCaso($casoId);
             
         }
-        
         $datos['is_active'] = 'casos';
         
         $datos['head'] = $this->load->view('general/head_v', $datos, true);
@@ -88,11 +113,6 @@ class Casos_c extends CI_Controller {
            }else{
            		$datos['listado'] = $this->casos_m->mListaCasos();
            }         
-                    
-            
-            
-            
-        
 
         $datos['casos']=$this->load->view('casos/informacionGeneral_v', $datos, true);
 
@@ -196,7 +216,7 @@ class Casos_c extends CI_Controller {
 
             $datos['head'] = $this->load->view('general/head_v', $datos, true);
 			
-            $datos['action'] = base_url().'index.php/actores_c/editarCasoBd';
+            $datos['action'] = base_url().'index.php/casos_c/editarCasoBd';
             
             $datos['is_active'] = 'casos';
 
@@ -211,6 +231,8 @@ class Casos_c extends CI_Controller {
 	        $datos['body'] = $this->load->view('general/body_v', $datos, true);
 
             $this->load->view('general/principal_v', $datos);
+            
+            
             
         } else {
             
@@ -237,10 +259,11 @@ class Casos_c extends CI_Controller {
             }
 
         }
+		$datos['tablas']=$datos;
+		
+        $this->casos_m->mActualizaDatosCaso($datos['casos']['casoId'], $datos);
         
-        $this->actores_m->mActualizaDatosCaso($datos['casos']['casoId'], $datos);
-        
-        redirect(base_url().'index.php/casos_c/mostrar_caso/'.$datos['casos']['casoId']);
+       redirect(base_url().'index.php/casos_c/mostrar_caso/'.$datos['casos']['casoId']);
         
     }
 	
@@ -388,11 +411,15 @@ class Casos_c extends CI_Controller {
 		
 		$datos['catalogos'] = $this-> traer_catalogos();
 		
+		 $datos['head'] = $this->load->view('general/head_v', $datos, true);
+		
 		if($idPerpetrador != 0){
 			
 			$datos['action'] = base_url().'index.php/casos_c/editarPerpetrador/'.$idActo.'/'.$idVictima.'/'.$idPerpetrador;
 			
 			$datos['victimas'] = $this->casos_m->mTraerVictimasActo($idActo);
+			
+			$datos['victimas']=$datos['victimas']['victimas'];
 			
 			if(isset($datos['victimas'][$idVictima]['perpetradores'][$idPerpetrador]))
 				$datos['perpetrador'] = $datos['victimas'][$idVictima]['perpetradores'][$idPerpetrador];
@@ -475,6 +502,46 @@ class Casos_c extends CI_Controller {
 		return $mensaje;
 	}
 
+
+	public function traeRelaciones($actorId){
+
+        $datos['head'] = $this->load->view('general/head_v', "", true);
+
+		$datos['actoresRelacionados'] = $this->actores_m->mTraeRelacionesColectivo(3);
+		
+		$datos['idActor']=$actorId;
+
+        $datos['catalogos'] = $this->traer_catalogos();
+
+        $datos['datosActor'] = $this->actores_m->traer_datos_actor_m(3,1);
+
+		$this->load->view('casos/seleccionaRelacion_v', $datos);
+
+	}
 	
-	
+	public function actorColectivoDatos($dato){
+		
+		$datos['dato'] = $dato;
+		
+		$datos['head'] = $this->load->view('general/head_v', "", true);
+		 
+		$datos['actoresColectivos'] = $this->actores_m->listado_actores_m(3);
+		
+		$this->load->view('casos/SeleccionActorColectivo', $datos);
+	}
+
+		public function seleccionarIndividualConDatos($dato){
+		
+		$datos['dato'] = $dato;
+		
+		$datos['head'] = $this->load->view('general/head_v',"", true);
+		 
+		$datos['actoresIndividuales'] = $this->actores_m->listado_actores_m(1);
+		
+		$datos['actoresTransmigrantes'] = $this->actores_m->listado_actores_m(2);
+		
+		$datos['pestana'] = 'individual';
+		$this->load->view('casos/SeleccionActorIndividualTrans', $datos);
+	}
+
 }

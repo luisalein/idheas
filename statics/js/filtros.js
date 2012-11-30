@@ -34,6 +34,10 @@ function returnCasos(){
 		document.location.href = base+'index.php/casos_c/mostrar_caso';
 }
 
+function returnRelacionCasos(){
+	document.location.href = base+'index.php/casosVentanas_c/mostrarCasos';
+}
+
 function searchCaso(){
 	
 		$('#numeroRegistros').html('');
@@ -86,14 +90,7 @@ function cargarActor(actor,tipo){
 }
 
 function cargarCaso(casoId){
-	
-	var nombre = $('#'+active+'_nombre').val();
-	
-	if(nombre == ''){
-		nombre = '0';
-	}
-	
-    document.location.href = base+'index.php/casos_c/mostrar_caso/'+casoId+'/'+nombre;
+    document.location.href = base+'index.php/casos_c/mostrar_caso/'+casoId;
 
 }
 function desplegarActores(nombre, filtro, tipoActor){
@@ -170,6 +167,8 @@ function filtroRadio(filtro){
 	
 	
 }
+
+
 function desplegarActoresVentana(nombre, filtro, tipoActor,ventana){
 	
 	if(nombre != '' || filtro != 0){
@@ -288,45 +287,57 @@ function changeTest (tipo) {
 	var actor = $('#tipoActorAE').attr('name');
 	
 	var actorId = $('#actorId').attr('name');
-	
 	if(actor == 1){
 		if(tipo == 1){
 			var Index = document.menuForm.datosDeNacimiento_paisesCatalogo_paisId.options[document.menuForm.datosDeNacimiento_paisesCatalogo_paisId.selectedIndex].value; 
+			document.getElementById('datosDeNacimiento_municipiosCatalogo_municipioId').options.length = 0;
 		}
 		if(tipo == 2){
 			var Index = document.menuForm.datosDeNacimiento_estadosCatalogo_estadoId.options[document.menuForm.datosDeNacimiento_estadosCatalogo_estadoId.selectedIndex].value; 
-	
+			document.getElementById('datosDeNacimiento_municipiosCatalogo_municipioId').options.length = 0;
 		}
 	}
 	if(actor == 2){
 		if(tipo == 1){
 			var Index = document.menuForm.infoMigratoria_lugarOrigenPaisId.options[document.menuForm.infoMigratoria_lugarOrigenPaisId.selectedIndex].value; 
+			document.getElementById('infoMigratoria_lugarOrigenMunicipioId').options.length = 0;
 		}
 		if(tipo == 2){
 			var Index = document.menuForm.infoMigratoria_lugarOrigenEstadoId.options[document.menuForm.infoMigratoria_lugarOrigenEstadoId.selectedIndex].value; 
-	
+			document.getElementById('infoMigratoria_lugarOrigenMunicipioId').options.length = 0;
 		}
 	}
 	if(actor == 3){
 		
 			if(tipo == 1){
 				var Index = document.menuForm.direccionActor_paisesCatalogo_paisId.options[document.menuForm.direccionActor_paisesCatalogo_paisId.selectedIndex].value; 
-				
+				document.getElementById('direccionActor_municipiosCatalogo_municipioId').options.length = 0;
 			}
 			if(tipo == 2){
 				var Index = document.menuForm.direccionActor_estadosCatalogo_estadoId.options[document.menuForm.direccionActor_estadosCatalogo_estadoId.selectedIndex].value; 
-		
+				document.getElementById('direccionActor_municipiosCatalogo_municipioId').options.length = 0;
 			}
 	}
 	if(actor == 4){
 		
 		if(tipo == 1){
 				var Index = document.menuForm.lugares_paisesCatalogo_paisId.options[document.menuForm.lugares_paisesCatalogo_paisId.selectedIndex].value; 
-				
+				document.getElementById('lugares_municipiosCatalogo_municipioId').options.length = 0;
 			}
 			if(tipo == 2){
 				var Index = document.menuForm.lugares_estadosCatalogo_estadoId.options[document.menuForm.lugares_estadosCatalogo_estadoId.selectedIndex].value; 
-		
+				document.getElementById('lugares_municipiosCatalogo_municipioId').options.length = 0;
+			}
+	}
+	
+	if(actor == 5){
+		if(tipo == 1){
+				var Index = document.menuForm.derechoAfectado_paisesCatalogo_paisId.options[document.menuForm.derechoAfectado_paisesCatalogo_paisId.selectedIndex].value; 
+				document.getElementById('derechoAfectado_municipiosCatalogo_municipioId').options.length = 0;
+			}
+			if(tipo == 2){
+				var Index = document.menuForm.derechoAfectado_estadosCatalogo_estadoId.options[document.menuForm.derechoAfectado_estadosCatalogo_estadoId.selectedIndex].value; 
+				document.getElementById('derechoAfectado_municipiosCatalogo_municipioId').options.length = 0;
 			}
 	}
 	
@@ -396,7 +407,6 @@ function changeTest (tipo) {
         		if(tipo == 1){
         			var select=document.getElementById('lugares_estadosCatalogo_estadoId');
   					select.removeAttribute('disabled');
-  					
 	             	$("#lugares_estadosCatalogo_estadoId").html(data);
 	             }  
 	             if(tipo == 2){
@@ -404,6 +414,23 @@ function changeTest (tipo) {
   					select.removeAttribute('disabled');
   					
 					$("#lugares_municipiosCatalogo_municipioId").html(data);
+	             }
+        		
+        	}
+        	
+        	if(actor == 5){
+        		
+        		if(tipo == 1){
+        			var select=document.getElementById('derechoAfectado_estadosCatalogo_estadoId');
+  					select.removeAttribute('disabled');
+  					
+	             	$("#derechoAfectado_estadosCatalogo_estadoId").html(data);
+	             }  
+	             if(tipo == 2){
+	             	var select=document.getElementById('derechoAfectado_municipiosCatalogo_municipioId');
+  					select.removeAttribute('disabled');
+  					
+					$("#derechoAfectado_municipiosCatalogo_municipioId").html(data);
 	             }
         		
         	}
@@ -469,3 +496,34 @@ function changeTest2 (tipo) {
     });
 } 
 
+
+function clearDiv(){
+	
+	var idActor = $('#idActor').attr('name');
+	
+	var url = base+'index.php/actores_c/traerDirecciones';
+	
+	var data = 'idActor='+idActor;
+	
+	$.ajax({
+    
+        url: url,
+    
+        data: data,
+        
+        type: 'POST',
+                
+        success: function(data){
+        		
+        		document.getElementById('direccionActorIndividual').innerHTML = data;
+        },
+        
+        error: function(){
+        
+           alert("no se pudo");
+        }
+    
+    });
+	
+	 // document.getElementById('direccionActorIndividual').innerHTML = "<fieldset><legend>Dirección</legend>";
+}

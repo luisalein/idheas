@@ -29,7 +29,7 @@ class Agregar_catalogos_m extends CI_Model {
         }
         
     }
-        
+	
 }
     
 ?>

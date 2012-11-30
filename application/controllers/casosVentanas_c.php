@@ -34,11 +34,27 @@ class CasosVentanas_c extends CI_Controller {
         
 		$datos['nivelConfiabilidadCatalogo'] = $this->general_m->obtener_todo('nivelConfiabilidadCatalogo', 'nivelConfiabilidadId', 'descripcion');
 		
-		$datos['idiomaCatalogo'] = $this->general_m->obtener_todo('idiomaCatalogo', 'idiomaId', 'descripcion');
-		
 		$datos['tipoFuenteCatalogo'] = $this->general_m->obtener_todo('tipoFuenteCatalogo', 'tipoFuenteId', 'descripcion');
 		
-        return $datos;
+		$datos['actosN1Catalogo'] = $this->general_m->obtener_todo('actosN1Catalogo', 'actoId', 'descripcion');
+		
+		$datos['actosN2Catalogo'] = $this->general_m->obtener_todo('actosN2Catalogo', 'actoN2Id', 'descripcion');
+		
+		$datos['actosN3Catalogo'] = $this->general_m->obtener_todo('actosN3Catalogo', 'actoN3Id', 'descripcion');
+		
+		$datos['actosN4Catalogo'] = $this->general_m->obtener_todo('actosN4Catalogo', 'actoN4Id', 'descripcion');
+		
+		$datos['derechosAfectadosN1Catalogo'] = $this->general_m->obtener_todo('derechosAfectadosN1Catalogo', 'derechoAfectadoN1Id', 'descripcion');
+		
+		$datos['derechosAfectadosN2Catalogo'] = $this->general_m->obtener_todo('derechosAfectadosN2Catalogo', 'derechoAfectadoN2Id', 'descripcion');
+		
+		$datos['derechosAfectadosN3Catalogo'] = $this->general_m->obtener_todo('derechosAfectadosN3Catalogo', 'derechoAfectadoN3Id', 'descripcion');
+		
+		$datos['derechosAfectadosN4Catalogo'] = $this->general_m->obtener_todo('derechosAfectadosN4Catalogo', 'derechoAfectadoN4Id', 'descripcion');
+       
+	   	$datos['relacionCasosCatalogo'] = $this->general_m->obtener_todo('relacionCasosCatalogo', 'relacionCasosId', 'descripcion');
+		
+	    return $datos;
         
     }
 
@@ -57,6 +73,7 @@ class CasosVentanas_c extends CI_Controller {
 			$datos['lugar']=$datos['datosCaso']['lugares'][$i];
 		
         $this->load->view('casos/formulariodetalleLugar_v', $datos);
+	
         
     }
 
@@ -82,9 +99,26 @@ class CasosVentanas_c extends CI_Controller {
 
 		$datos['datosCaso'] = $this->casos_m->mTraerDatosCaso($casoId);
 		
-		if(!empty($datos['datosCaso']['derechoAfectado'][$i]))
 		
+		if(!empty($datos['datosCaso']['derechoAfectado'][$i])){
+			
 			$datos['derechoAfectado']=$datos['datosCaso']['derechoAfectado'][$i];
+			$datos['victimas']=$datos['derechoAfectado']['noVictimas'];
+			$datos['fInicial']=$datos['derechoAfectado']['fechaInicial'];
+			$datos['fTermino']=$datos['derechoAfectado']['fechaTermino'];
+			if(isset($datos['datosCaso']['actos'])){
+				foreach($datos['datosCaso']['actos'] as $acto){
+					if($acto['derechoAfectado_derechoAfectadoCasoId']==$datos['derechoAfectado']['derechoAfectadoCasoId']){
+						$datos['acto']=$acto;
+					}
+				}
+			}
+		}
+		
+		
+		$datos['tipo'] = '4';
+					
+		$datos['filtroPais'] = $this->load->view('actores/filtroPaisEstadoMunicipio_v', $datos, true);
 		
         $this->load->view('casos/formularioActo_v', $datos);
         
@@ -109,11 +143,13 @@ class CasosVentanas_c extends CI_Controller {
         
     }
 
-	function fuentesDeInformacion($casoId,$actorId){
+	function fuentesDeInformacion($casoId,$actorId=0,$i){
 		
 		$datos['head'] = $this->load->view('general/head_v', "", true);
 
         $datos['casoId'] = $casoId;
+		
+		$datos['id'] = $i;
 		
 		$datos['catalogos'] = $this->traer_catalogos();
 		
@@ -124,17 +160,20 @@ class CasosVentanas_c extends CI_Controller {
 		$datos['actoresIndividuales'] =  $this->actores_m->listado_actores_m(1);
 		
 		$datos['actoresTrans'] = $this->actores_m->listado_actores_m(2);
-		
-		$datos['actIndividualesTrns'] = array_merge($datos['actoresIndividuales'],$datos['actoresTrans']);
+				
+		if(isset($datos['actoresIndividuales']) && isset($datos['actoresTrans']))		
+			$datos['actIndividualesTrns'] = array_merge($datos['actoresIndividuales'],$datos['actoresTrans']);
 
 		$datos['actoresRelacionados'] = $this->actores_m->mTraeRelacionesColectivo($actorId);
 		
 		$this->load->view('casos/formularioFuenteDoc_v', $datos);
 	}
 	
-	function fuentesDeInformacionPersonal($casoId,$actorId){
+	function fuentesDeInformacionPersonal($casoId,$actorId=0,$id){
 		
 		$datos['head'] = $this->load->view('general/head_v', "", true);
+		
+		$datos['id'] = $id;
 
         $datos['casoId'] = $casoId;
 		
@@ -148,17 +187,20 @@ class CasosVentanas_c extends CI_Controller {
 		
 		$datos['actoresTrans'] = $this->actores_m->listado_actores_m(2);
 		
-		$datos['actIndividualesTrns'] = array_merge($datos['actoresIndividuales'],$datos['actoresTrans']);
+		if(isset($datos['actoresIndividuales']) && isset($datos['actoresTrans']))
+			$datos['actIndividualesTrns'] = array_merge($datos['actoresIndividuales'],$datos['actoresTrans']);
 
 		$datos['actoresRelacionados'] = $this->actores_m->mTraeRelacionesColectivo($actorId);
 		
 		$this->load->view('casos/formularioFuentePersonal', $datos);
 	}
 	
-	public function relacionCasos($casoId,$actorId){
+	public function relacionCasos($casoId,$id=0){
 		
 		$datos['head'] = $this->load->view('general/head_v', "", true);
 
+		$datos['id']=$id;
+		
         $datos['casoId'] = $casoId;
 		
 		$datos['catalogos'] = $this->traer_catalogos();
@@ -171,13 +213,33 @@ class CasosVentanas_c extends CI_Controller {
 		
 		$datos['actoresTrans'] = $this->actores_m->listado_actores_m(2);
 		
-		$datos['actIndividualesTrns'] = array_merge($datos['actoresIndividuales'],$datos['actoresTrans']);
-
-		$datos['actoresRelacionados'] = $this->actores_m->mTraeRelacionesColectivo($actorId);
+		if(isset($datos['actoresIndividuales']) && isset($datos['actoresTrans']))
+			$datos['actIndividualesTrns'] = array_merge($datos['actoresIndividuales'],$datos['actoresTrans']);
 		
 		$this->load->view('casos/formularioRelacionCasos', $datos);
 	}
 	
+	function mostrarCasos(){
+		
+		$datos['is_active'] = 'casos';
+		
+		$datos['catalogos'] = $this->traer_catalogos();
+        
+        $datos['head'] = $this->load->view('general/head_v', $datos, true);
+        
+        $datos['listado'] = $this->casos_m->mListaCasos();
+                
+		 $datos['casos']=$this->load->view('casos/informacionGeneral_v', $datos, true);
+
+        $datos['casosNucleo']=$this->load->view('casos/nucleoCaso_v', $datos, true);
+
+        $datos['infoAdicional']=$this->load->view('casos/infoAdicional_v', $datos, true);
+		
+		$v=$this->load->view('casos/seleccionarCaso_v', $datos, true);
+		
+		echo $v;
+
+	}
 	
 	function guardarDatosVentanas($id){
 		
@@ -194,111 +256,113 @@ class CasosVentanas_c extends CI_Controller {
             	$datos[$nombre_tabla][$nombre_campo] = $valor; 
 
         } 
-		
 		switch ($id){
             
             case(1): 
 				if($_POST['editar'] == 1){
-					$datos1['lugares'] = $datos['lugares'];
-            		$mensaje = $this->general_m->mActualizaDatosLugar($datos1);
+					$mensaje = $this->casos_m->mActualizaDatosLugar($datos['lugares'],$datos['lugares']['lugarId']);
+					
 				}else{
 					$datos1['lugares'] = $datos['lugares'];
             		$mensaje = $this->general_m->llenar_tabla_m($datos1);	
 				}
-				echo "<script languaje='javascript' type='text/javascript'>
-				 window.opener.location.reload();
-			     window.close();</script>";
+				
             break;
         
-            case(2):
-				if($_POST['editar'] == 1){
-					$datos2['fichas']=$datos['fichas'];
-	            	$mensaje = $this->general_m->general_m->mActualizaDatosFicha($datos2); 
+            case(2):if($_POST['editar'] == 1){
+            	
+            		$ruta = $this->cargarPDF();
+					
+					$nombreArchivo = $_FILES["pdf"]['name'];
+					
+					$data = array('nombreRegistro'=>$nombreArchivo,'ruta'=>$ruta,'fichas_fichaId'=>$datos['fichas']['fichaId']);
+					
+					if($nombreArchivo != '' && $ruta != '')
+						$this->casos_m->mAgregarRegistroFicha($data);
+					
+	            	$mensaje=$this->general_m->casos_m->mActualizaDatosFicha($datos['fichas'],$datos['fichas']['fichaId']); 
+					
 				}else{
 					$datos2['fichas']=$datos['fichas'];
 	            	$mensaje = $this->general_m->general_m->llenar_tabla_m($datos2); 
 				}
-				echo "<script languaje='javascript' type='text/javascript'>
-				 window.opener.location.reload();
-			     window.close();</script>";
+				
             break;
 			
 			case(3): 
 				if($_POST['editar'] == 1){
 					if(isset($datos['actos'])){
-						$datos31['actos'] = $datos['actos'];
-						$mensaje = $this->general_m->casos_m->mActualizaDatosActo($datos31);
+						$mensaje = $this->casos_m->mActualizaDatosActo($datos['actos'],$datos['actos']['actoId']);
 					}
-					
-					$datos32['derechoAfectado'] =  $datos['derechoAfectado'];
-					$mensaje = $mansaje . $this->general_m->casos_m->mActualizaDatosDerechoAfectado($datos32);
+					$mensaje = $mansaje . $this->casos_m->mActualizaDatosDerechoAfectado($datos['derechoAfectado'],$datos['derechoAfectado']['derechoAfectadoCasoId']);
 				}else{
-					$datos3['actos'] = $datos['actos'];
+					$datos['actos']['casos_casoId']=$datos['lugares']['casos_casoId'];
 					$datos3['derechoAfectado'] =  $datos['derechoAfectado'];
-					$mensaje = $this->general_m->casos_m->mAgregarDerechosAfectados($datos3);
+					$Id = $this->casos_m->mAgregarDerechosAfectados($datos3);
+					$datos['actos']['derechoAfectado_derechoAfectadoCasoId']=$Id;
+					$mensaje = $this->casos_m->mAgregarActoDerechoAfectado($datos['actos']);
 				}
-				echo "<script languaje='javascript' type='text/javascript'>
-				 window.opener.location.reload();
-			     window.close();</script>";
             break;
 			
 			case(4):  
 				if($_POST['editar'] == 1){
-					$datos41['intervenciones'] = $datos['intervenciones'];
-					$mensaje =  $this->general_m->casos_m->mActualizaDatosIntervencion($datos41);
-					$datos42['intervenidos'] =  $datos['intervenidos'];
-					$mensaje = $mensaje . $this->general_m->casos_m->mActualizaDatosIntervenido($datos42);
+					$mensaje =  $this->casos_m->mActualizaDatosIntervencion($datos['intervenciones'],$datos['intervenciones']['intervencioNId']);
+
+					$mensaje = $mensaje . $this->casos_m->mActualizaDatosIntervenido($datos['intervenidos'],$datos['intervenidos']['intervenidoId']);
 				}else{
-					$datos4['intervenciones'] = $datos['intervenciones'];
+					$datos4['intervencion'] = $datos['intervenciones'];
 					$datos4['intervenidos'] =  $datos['intervenidos'];
-					$mensaje = $this->general_m->casos_m->mAgregarIntervenciones($datos4);
+					$mensaje = $this->casos_m->mAgregarIntervenciones($datos4);
 				}
-				echo "<script languaje='javascript' type='text/javascript'>
-				 window.opener.location.reload();
-			     window.close();</script>";
+				
             break;
 			
 			case(5): 
 				if($_POST['editar'] == 1){
-					$datos5['fuenteInfoPersonal'] = $datos['fuenteInfoPersonal'];
-					$mensaje = $this->general_m->mActualizaDatosFuenteInfoPersonal($datos5);
+					$mensaje = $this->casos_m->mActualizaDatosFuenteInfoPersonal($datos['fuenteInfoPersonal'],$datos['fuenteInfoPersonal']['fuenteInfoPersonalId']);
 				}else{
 					$datos5['fuenteInfoPersonal'] = $datos['fuenteInfoPersonal'];
 					$mensaje = $this->general_m->llenar_tabla_m($datos5);
 				}
-				echo "<script languaje='javascript' type='text/javascript'>
-				 window.opener.location.reload();
-			     window.close();</script>";
+				
             break;
 			
 			case(6):
 				if($_POST['editar'] == 1){
-					$datos6['tipoFuenteDocumental'] = $datos['tipoFuenteDocumental'];
-					$mensaje = $this->general_m->mActualizaDatosTipoFuenteDocumental($datos6);
+					$mensaje = $this->casos_m->mActualizaDatosTipoFuenteDocumental($datos['tipoFuenteDocumental'],$datos['tipoFuenteDocumental']['tipoFuenteDocumentalId']);
 				}else{ 
 					$datos6['tipoFuenteDocumental'] = $datos['tipoFuenteDocumental'];
 					$mensaje = $this->general_m->llenar_tabla_m($datos6);
 				}
-				echo "<script languaje='javascript' type='text/javascript'>
-				 window.opener.location.reload();
-			     window.close();</script>";
+				
             break;
         
             case(7):
 				if($_POST['editar'] == 1){
-					$datos7['relacionCasos'] = $datos['relacionCasos'];
-	            	$mensaje = $this->general_m->mActualizaDatosRelacionCaso($datos7);
-				}else{ 
-	            	$datos7['relacionCasos'] = $datos['relacionCasos'];
-	            	$mensaje = $this->general_m->llenar_tabla_m($datos7);
+	            	$mensaje = $this->casos_m->mActualizaDatosRelacionCaso($datos['relacionCasos']['relacionId'],$datos['relacionCasos']);
+				}else{
+					if(isset($datos['casoSeleccionado']['seleccionado']) && $datos['casoSeleccionado']['seleccionado'] == 1){
+		            	$datos7['relacionCasos'] = $datos['relacionCasos'];
+		            	$mensaje = $this->general_m->llenar_tabla_m($datos7);
+					} else{
+						echo "<script languaje='javascript' type='text/javascript'>
+							alert('Ningun caso fue seleccionado para relacionarse');
+						</script>";
+						
+						$mensaje ='';
+					}
+					
 				}
-				echo "<script languaje='javascript' type='text/javascript'>
-				 window.opener.location.reload();
-			     window.close();</script>";
+				
             break;
             
         }
-        
+		echo "<script languaje='javascript' type='text/javascript'>
+			window.opener.location.reload();
+			window.close();
+		</script>";
+			
+		
 		return $mensaje;
 	}
 
@@ -314,6 +378,15 @@ class CasosVentanas_c extends CI_Controller {
 	public function eliminarFicha($fichaId,$idCaso){
 		
 		$mensaje = $this->casos_m->mEliminaFicha($fichaId);
+		
+		redirect(base_url().'index.php/casos_c/mostrar_caso/'.$idCaso);
+		
+		return $mensaje;
+	}
+	
+	public function eliminarRegistro($registroId,$idCaso){
+		
+		$mensaje = $this->casos_m->mEliminarRegistro($registroId);
 		
 		redirect(base_url().'index.php/casos_c/mostrar_caso/'.$idCaso);
 		
@@ -385,24 +458,150 @@ class CasosVentanas_c extends CI_Controller {
 	
 	public function traerActos(){
 		
-		$nivel = $this->input->post("nivel");	
+		$id1 = $this->input->post("id1");	
 		
-		$antecesor = $this->input->post("antecesor");	
+		$id2 = $this->input->post("id2");
 		
-		$datos="";
+		$id3 = $this->input->post("id3");
 		
-		foreach($actos as $acto){
-			if(isset($acto['actoId'])){
-				$datos= $datos. '<li class="pestaniaCasos" >
-					<div  onclick="nombrarActo('.$acto['descripcion'].','.$acto['actoId'].','.$acto['notas'].','.$nivel.')">
-						.'.$acto['descripcion'].'
-					</div></li>';
-			}
-		}
-			
-		print_r($datos);
+		$id4 = $this->input->post("id4");	
+		
+		$catalogos= $this->traer_catalogos();
+		
+		$datos=array();
+		
+		if($id1 !='undefined')
+			$datos = array(1=>$id1);
+		
+		if($id1 !='undefined' && $id2 !='undefined')
+			$datos = array(1=>$id1,2=>$id2);
+		
+		if($id1 !='undefined' && $id2 !='undefined' && $id3 !='undefined')
+			$datos = array(1=>$id1,2=>$id2,3=>$id3);
+		
+		if($id1 !='undefined' && $id2 !='undefined' && $id3 !='undefined' && $id4 !='undefined')
+			$datos = array(1=>$id1,2=>$id2,3=>$id3,4=>$id4);
+		
+		$data=$this->casos_m->mTraerActoDerechoAfectado($datos);
+		
+		$lista='';
+		$expander='';
+		$sub = '';
+		//print_r($data['actosN1']);
+			if(isset($data['actosN1'])){
+			$lista = $lista.' <ul>';
+			foreach ($data['actosN1'] as $acto1) {
+				$lista = $lista. '<li class="listas">'.
+						'<div class="ExpanderFlecha flecha hand" value="subnivel" onclick="nombrarActo('."'".$acto1['descripcion']."'".','."'".$acto1['actoId']."'".','."'".$acto1['notas']."'".','."'1',this".')">'.
+							$acto1['descripcion'].
+						'</div>';	
+						if(isset($data['actosN2'])){
+							$lista = $lista. '<ul class="Escondido" id="'.$acto1['actoId'].'act1" >';
+							foreach ($data['actosN2'] as $acto2) {
+								foreach($catalogos['actosN3Catalogo'] as $c1){
+									if($c1['actosN2Catalogo_actoN2Id']==$acto2['actoN2Id']){
+										$sub = 'subnivel';
+										$expander = 'ExpanderFlecha flecha hand';
+									}
+								}
+								
+								$lista = $lista. '<li  class="listas">'.
+								'<div value="'.$sub.'"class="'.$expander.'" onclick="nombrarActo('."'".$acto2['descripcion']."'".','."'".$acto2['actoN2Id']."'".','."'".$acto2['notas']."'".','."'2',this".')">'.
+									$acto2['descripcion'].
+								'</div>';	
+								
+												$expander='';
+												$sub = '';
+								if(isset($data['actosN3'])){
+									$lista = $lista. '<ul class="Escondido" id="'.$acto2['actoN2Id'].'act2" >';
+									foreach ($data['actosN3'] as $acto3) {
+										foreach($catalogos['actosN4Catalogo'] as $c2){
+											if($c2['actosN3Catalogo_actoN3Id']==$acto3['actoN3Id']){
+												$sub = 'subnivel';
+												$expander = 'ExpanderFlecha flecha hand';
+											}
+										}
+										$lista=$lista.'<li  class="listas">'.
+										'<div value="'.$sub.'"class="'.$expander.'" onclick="nombrarActo('."'".$acto3['descripcion']."'".','."'".$acto3['actoN3Id']."'".','."'".$acto3['notas']."'".','."'3',this".')">'.
+											$acto3['descripcion'].
+										'</div>';
+												$expander='';
+												$sub = '';
+										if(isset($data['actosN4'])){
+											$lista = $lista.'<ul class="Escondido" id="'.$acto3['actoN3Id'].'act3">';
+											foreach($data['actosN4'] as $acto4){
+												if($acto4['actosN3Catalogo_actoN3Id']==$acto3['actoN3Id']){
+													$lista = $lista.'<li class="listas">'.
+													'<div onclick="nombrarActo('."'".$acto4['descripcion']."'".','."'".$acto4['actoN4Id']."'".','."'".$acto4['notas']."'".','."'4',this".')">'.
+														$acto4['descripcion'].
+													'</div></li>';	
+												}
+											}$lista=$lista.'</ul>';
+										}
+									}$lista = $lista.'</li></ul>';
+								}
+							}$lista = $lista.'</li></ul>';
+						}
+			     }
+			     $lista = $lista.'</li></ul>';
+		    }
+	
+		//print_r($data);
+		print_r($lista);
+		
+		//echo $id1 .$id2 .$id3.$id4  ;
 		
 	}
+	
+	public function cargarPDF(){
+		
+		$status = "aca";
+	   
+			// obtenemos los datos del archivo
+			$tamano = $_FILES["pdf"]['size'];
+			$tipo = $_FILES["pdf"]['type'];
+			$archivo = $_FILES["pdf"]['name'];
+			$prefijo = substr(md5(uniqid(rand())),0,6);
+	
+			
+			if($tipo == "application/pdf"){			
+				if ($archivo != "") {
+				    // guardamos el archivo a la carpeta files
+				    
+				    //para MAC y Linux
+				    $urlBase = system('pwd');
+					
+				    //Para windows
+					//$urlBase = system('chdir');
+					
+				    $destino = $urlBase.'/statics/fichas/'.$prefijo.'_'.$archivo;
+				  					
+				    if (move_uploaded_file($_FILES['pdf']['tmp_name'],$destino)) {
+				    	
+						$status = "Archivo subido: <b>".$archivo."</b>";
+						
+						return '/statics/fichas/'.$prefijo.'_'.$archivo;
+						
+				    } else {
+				    	
+						$status = $destino;
+						
+				    }
+				} else {
+					
+				    $status = $archivo;
+					
+				}
+				
+			}else{
+					
+				$status = $tipo;
+				
+			}
+	    
+		return $status;
+	}
+	
 }
     
 ?>

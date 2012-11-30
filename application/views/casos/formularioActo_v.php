@@ -6,7 +6,7 @@
 	</head>
 	
 <body>
-<form action='<?=base_url(); ?>index.php/casosVentanas_c/guardarDatosVentanas/3' method="post" accept-charset="utf-8">
+<form action='<?=base_url(); ?>index.php/casosVentanas_c/guardarDatosVentanas/3' method="post" accept-charset="utf-8" id="menuForm" name="menuForm">
 <!-------------------------Comienza la parte de Acto---------------------------->
 <div id="formularioCasoActo">
 	<div id="pestania" data-collapse>
@@ -16,45 +16,80 @@
 				  <legend>Información general</legend>
 				<input type="hidden" name="editar" id="editar" value="<?= (isset($derechoAfectado)) ? '1' : '0' ; ?>"/>
                 <input type="hidden" value="<?=$casoId; ?>" name="lugares_casos_casoId" id="lugares_casos_casoId" />
-                <input type="hidden" value="" name="derechoAfectadoId" id="derechoAfectado" />
-                <input type="hidden" value="" name="derechoAfectadoNivel" id="derechoAfectadoNivel" />
-                <input type="hidden" value="" name="actoViolatorioId" id="actoViolatorioId" />
-                <input type="hidden" value="" name="actoViolatorioNivel" id="actoViolatorioNivel" />
-                        <label for="derecho">Derecho afectado</label>
-                        <div id="textoDerechoAfectado"></div>
-                        <label for="derecho">Notas</label>
-                        <div id="notasDerechoAfectado"></div>
+                <input type="hidden" value="<?php if(isset($acto)) echo $acto['actoId']?>" name="actos_actoId" id="actos_actoId" />
+                <input type="hidden" value="<?php if(isset($derechoAfectado)) echo $derechoAfectado['derechoAfectadoCasoId']?>" name="derechoAfectado_derechoAfectadoCasoId" id="derechoAfectado_derechoAfectadoCasoId" />
+                <input type="hidden" value="5" name="5" id="tipoActorAE" />
+                	<?php if(isset($derechoAfectado['derechoAfectadoNivel'])):?>
+                		<?php foreach($derechosAfectados['derechosAfectadosN'.$derechoAfectado['derechoAfectadoNivel'].'Catalogos'] as $derecho){
+                			if($derecho['derechoAfectadoN'.$derechoAfectado['derechoAfectadoNivel'].'Id']==$derechoAfectado['derechoAfectadoId']){
+                				 echo '<label for="derecho">Derecho afectado</label>
+			                        <div id="textoDerechoAfectado">'.$derecho['descripcion'].'</div>
+			                        <label for="derecho">Notas</label>
+			                        <div id="notasDerechoAfectado">'.$derecho['notas'].'</div>
+			                        <input type="hidden" value="'.$derechoAfectado['derechoAfectadoId'].'" name="derechoAfectado_derechoAfectadoId" id="derechoAfectado" />
+                					<input type="hidden" value="'.$derechoAfectado['derechoAfectadoNivel'].'" name="derechoAfectado_derechoAfectadoNivel" id="derechoAfectadoNivel" />
+                			    ';
+							}
+							
+                		} ?>
+                   <?php else:?>
+                   	<input type="hidden" value="" name="derechoAfectado_derechoAfectadoId" id="derechoAfectado" />
+               		 <input type="hidden" value="" name="derechoAfectado_derechoAfectadoNivel" id="derechoAfectadoNivel" />
+               		  <label for="derecho">Derecho afectado</label>
+			         <div id="textoDerechoAfectado"></div>
+			         <label for="derecho">Notas</label>
+			         <div id="notasDerechoAfectado"></div>
+                   <?php endif;?>
                         <br /><br />
 				         <div  id="listaActorIndiv" class="cajaDerchosActos">
 	                        <ul>
 								<?php foreach($derechosAfectados['derechosAfectadosN1Catalogos'] as $derechoAfectado):?> 
-									<li  id="pestaniaCasos" >
-										<div onclick="nombrederechoAfectado('<?=$derechoAfectado['derechoAfectadoN1Id'];?>','<?=$derechoAfectado['descripcion'];?>','<?=$derechoAfectado['derechoAfectadoN1Id'];?>','<?=$derechoAfectado['notas'];?>')" >
+									<li  class="listas" >
+										<div class="ExpanderFlecha flecha hand" value="subnivel" onclick="nombrederechoAfectado('<?=$derechoAfectado['derechoAfectadoN1Id'];?>','<?=$derechoAfectado['descripcion'];?>','<?=$derechoAfectado['notas'];?>',this)" >
 											<?php echo $derechoAfectado['descripcion'];?>
 										</div>
 										<ul class="Escondido" id="<?=$derechoAfectado['derechoAfectadoN1Id'];?>DAN1" >
 										
 										<?php foreach($derechosAfectados['derechosAfectadosN2Catalogos'] as $derechoAfectadoN2):?>
 											<?php if($derechoAfectadoN2['derechosAfectadosN1Catalogo_derechoAfectadoN1Id'] == $derechoAfectado['derechoAfectadoN1Id']):?>
-												<li class=" pestaniaCasos" >
-													<div  onclick="nombrederechoAfectadosub1('<?=$derechoAfectado['derechoAfectadoN1Id'];?>','<?=$derechoAfectadoN2['descripcion'];?>','<?=$derechoAfectadoN2['derechoAfectadoN2Id'];?>','<?=$derechoAfectadoN2['notas'];?>')">
+												<?php foreach($catalogos['derechosAfectadosN3Catalogo'] as $c1){
+														if($c1['derechosAfectadosN2Catalogo_derechoAfectadoN2Id']==$derechoAfectadoN2['derechoAfectadoN2Id']){
+															$sub = 'subnivel';
+															$expander = 'ExpanderFlecha flecha hand';
+														}
+													}?>
+												
+												<li  class="listas">
+													<div class="<?php if(isset($expander)) echo $expander;?>" value="<?php if(isset($sub)) echo $sub;?>" onclick="nombrederechoAfectadosub1('<?=$derechoAfectado['derechoAfectadoN1Id'];?>','<?=$derechoAfectadoN2['derechoAfectadoN2Id'];?>','<?=$derechoAfectadoN2['descripcion'];?>','<?=$derechoAfectadoN2['notas'];?>')">
 														<?php echo $derechoAfectadoN2['descripcion'];?>
 													</div>
+													<?php $expander='';
+														$sub = ''; ?>
+				
 													<ul class="Escondido"  id="<?=$derechoAfectadoN2['derechoAfectadoN2Id'];?>DAN2" >
 										
 														<?php foreach($derechosAfectados['derechosAfectadosN3Catalogos'] as $derechoAfectadoN3):?>
 															<?php if($derechoAfectadoN3['derechosAfectadosN2Catalogo_derechoAfectadoN2Id'] == $derechoAfectadoN2['derechoAfectadoN2Id']):?>
-																<li class=" pestaniaCasos" >
-																	<div  onclick="nombrederechoAfectadosub2('<?=$derechoAfectado['derechoAfectadoN1Id'];?>','<?=$derechoAfectadoN3['descripcion'];?>','<?=$derechoAfectadoN3['derechoAfectadoN3Id'];?>','<?=$derechoAfectadoN3['notas'];?>')">
+																
+																<?foreach($catalogos['derechosAfectadosN4Catalogo'] as $c2){
+																		if($c2['derechosAfectadosN3Catalogo_derechoAfectadoN3Id']==$derechoAfectadoN3['derechoAfectadoN3Id']){
+																			$sub = 'subnivel';
+																			$expander = 'ExpanderFlecha flecha hand';
+																		}
+																	}?>
+																
+																<li  class="listas">
+																	<div class="<?php if(isset($expander)) echo $expander;?>" value="<?php if(isset($sub)) echo $sub;?>" onclick="nombrederechoAfectadosub2('<?=$derechoAfectado['derechoAfectadoN1Id'];?>','<?=$derechoAfectadoN2['derechoAfectadoN2Id'];?>','<?=$derechoAfectadoN3['derechoAfectadoN3Id'];?>','<?=$derechoAfectadoN3['descripcion'];?>','<?=$derechoAfectadoN3['notas'];?>')">
 																		<?php echo $derechoAfectadoN3['descripcion'];?>
 																	</div>
-																	
+																	<?php $expander='';
+																		$sub = ''; ?>
 																		<ul class="Escondido" id="<?=$derechoAfectadoN3['derechoAfectadoN3Id'];?>DAN3" >
 															
 																			<?php foreach($derechosAfectados['derechosAfectadosN4Catalogos'] as $derechoAfectadoN4):?>
 																				<?php if($derechoAfectadoN4['derechosAfectadosN3Catalogo_derechoAfectadoN3Id'] == $derechoAfectadoN3['derechoAfectadoN3Id']):?>
-																					<li class=" pestaniaCasos" >
-																						<div  onclick="nombrederechoAfectadosub3('<?=$derechoAfectado['derechoAfectadoN1Id'];?>','<?=$derechoAfectadoN4['descripcion'];?>','<?=$derechoAfectadoN4['derechoAfectadoN4Id'];?>','<?=$derechoAfectadoN4['notas'];?>')">
+																					<li  class="listas" >
+																						<div  onclick="nombrederechoAfectadosub3('<?=$derechoAfectado['derechoAfectadoN1Id'];?>','<?=$derechoAfectadoN2['derechoAfectadoN2Id'];?>','<?=$derechoAfectadoN3['derechoAfectadoN3Id'];?>','<?=$derechoAfectadoN4['derechoAfectadoN4Id'];?>','<?=$derechoAfectadoN4['descripcion'];?>','<?=$derechoAfectadoN4['notas'];?>')">
 																							<?php echo $derechoAfectadoN4['descripcion'];?>
 																						</div>
 																					</li>
@@ -76,62 +111,45 @@
 							</ul>
 	  					</div>	
                         <br /><br />
-                        <label for="Acto">Acto</label>
-                        <div id="textoDerechoAfectadoN2"></div>
-                        <label for="Acto">Notas Acto</label>
-                        <div id="notasActoId"></div>
+                        <?php if(isset($acto['actoViolatorioNivel'])):?>
+                			<?php foreach($actos['actosN'.$acto['actoViolatorioNivel'].'Catalogo'] as $catalogo){
+                				if($acto['actoViolatorioNivel']==1){
+                					if($catalogo['actoId']==$acto['actoViolatorioId']){
+		                				 echo '<label for="Acto">Acto</label>
+					                        <div id="textoDerechoAfectadoN2">'.$catalogo['descripcion'].'</div>
+					                        <label for="Acto">Notas Acto</label>
+					                        <div id="notasActoId">'.$catalogo['notas'].'</div>
+					                        <input type="hidden" value="'.$acto['actoViolatorioId'].'" name="actos_actoViolatorioId" id="actos_actoViolatorioId" />
+		                					<input type="hidden" value="'.$acto['actoViolatorioNivel'].'" name="actos_actoViolatorioNivel" id="actoViolatorioNivel" />
+		                			    ';
+									}
+                				}else{
+                					if($catalogo['actoN'.$acto['actoViolatorioNivel'].'Id']==$acto['actoViolatorioId']){
+		                				 echo '<label for="Acto">Acto</label>
+					                        <div id="textoDerechoAfectadoN2">'.$catalogo['descripcion'].'</div>
+					                        <label for="Acto">Notas Acto</label>
+					                        <div id="notasActoId">'.$catalogo['notas'].'</div>
+					                        <input type="hidden" value="'.$acto['actoViolatorioId'].'" name="actos_actoViolatorioId" id="actos_actoViolatorioId" />
+		                					<input type="hidden" value="'.$acto['actoViolatorioNivel'].'" name="actos_actoViolatorioNivel" id="actoViolatorioNivel" />
+		                			    ';
+									}
+                				}
+	                			
+								
+	                		} ?>
+	                   <?php else:?>
+		               		 <input type="hidden" value="" name="actos_actoViolatorioId" id="actoViolatorioId" />
+		                    <input type="hidden" value="" name="actos_actoViolatorioNivel" id="actoViolatorioNivel" />
+		                   	<label for="Acto">Acto</label>
+	                        <div id="textoDerechoAfectadoN2"></div>
+	                        <label for="Acto">Notas Acto</label>
+	                        <div id="notasActoId"></div>
+	                   <?php endif;?>
+                        
+                        
 				         <br /><br />
 							<div  id="listaActos" class="cajaDerchosActos">	
-				                        <ul style="text-decoration:none;">
-											<?php foreach($actos['actosN1Catalogo'] as $acto):?> 
-												<li  id="pestaniaCasos" >
-													<div onclick="nombreacto('<?=$acto['descripcion'];?>','<?=$acto['actoId'];?>')" >
-														<?php echo $acto['descripcion'];?>
-													</div>
-													
-													<ul class="Escondido" id="<?=$acto['actoId'];?>act1" >
-													
-													<?php foreach($actos['actosN2Catalogo'] as $actoN2):?>
-														<?php if($actoN2['actosN1Catalogo_actoId'] == $acto['actoId']):?>
-															<li >
-																<div  onclick="nombreactosub1('<?=$actoN2['descripcion'];?>','<?=$actoN2['actoN2Id'];?>','<?=$actoN2['notas'];?>')" >
-																<?php echo $actoN2['descripcion'];?>
-																<?php echo $actoN2['actoN2Id'];?>
-																</div>	
-																<ul class="Escondido"  id="<?=$actoN2['actoN2Id'];?>act2" >
-													
-																	<?php foreach($actos['actosN3Catalogo'] as $actoN3):?>
-																		<?php if($actoN3["actosN2Catalogo_actoN2Id"] == $actoN2['actoN2Id']):?>
-																			<li >
-																				<div  onclick="nombreactosub2('<?=$actoN3['descripcion'];?>','<?=$actoN3['actoN3Id'];?>','<?=$actoN3['notas'];?>')">
-																				<?php echo $actoN3['descripcion'];?>
-																				</div>
-																				
-																					<ul class="Escondido" id="<?=$actoN3['actoN3Id'];?>act3" >
-																		
-																						<?php foreach($actos['actosN4Catalogo'] as $actoN4):?>
-																							<?php if($actoN4['actosN3Catalogo_actoN3Id'] == $actoN3['actoN3Id']):?>
-																								<li class=" pestaniaCasos" >
-																									<div  onclick="nombreactosub3('<?=$actoN4['descripcion'];?>','<?=$actoN3['actoN3Id'];?>','<?=$actoN4['notas'];?>')">
-																									<?php echo $actoN4['descripcion'];?>
-																									</div>
-																								</li>
-																							<?php endif;?>
-																						<?php endforeach;?>
-																					</ul>
-																				
-																			</li>
-																		<?php endif;?>
-																	<?php endforeach;?>
-																	</ul>
-
-															</li>
-														<?php endif;?>
-													<?php endforeach;?>
-													</ul>
-												</li>
-											<?php endforeach;?>
-										</ul>
+				                       
 							</div>
 							<br /><br />
 			
@@ -148,23 +166,23 @@
 				
 							<div class="six columns">
 								<br />
-								<p class="Escondido" id="fechaExactaVAct">
-									<input type="text" id="fechaExactaAct"   placeholder="AAAA-MM-DD" />
+								<p class="<?php if(isset($fInicial)) echo ''; else echo 'Escondido';?>" id="fechaExactaVAct">
+									<input type="text" id="fechaExactaAct" onclick="fechaInicialCasosActos(1)" value="<?php if(isset($fInicial)) echo $fInicial;?>" placeholder="AAAA-MM-DD" />
 
 								</p>
 
 								<p class="Escondido" id="fechaAproxVAct">
-									<input type="text" id="fechaAproxAct"   placeholder="AAAA-MM-DD" />
+									<input type="text" id="fechaAproxAct" onclick="fechaInicialCasosActos(2)"  placeholder="AAAA-MM-DD" />
 
 								</p>
 
 								<p class="Escondido" id="fechaSinDiaVAct">
-									<input type="text" id="fechaSinDiaAct"   placeholder="AAAA-MM-00" />
+									<input type="text" id="fechaSinDiaAct" onclick="fechaInicialCasosActos(3)"  placeholder="AAAA-MM-00" />
 
 								</p >
 
 								<p class="Escondido" id="fechaSinDiaSinMesVAct">
-									<input type="text" id="fechaSinDiaSinMesAct"  placeholder="AAAA-00-00" />
+									<input type="text" id="fechaSinDiaSinMesAct" onclick="fechaInicialCasosActos(4)"  placeholder="AAAA-00-00" />
 
 								</p>
 							</div>
@@ -180,23 +198,23 @@
 							</select>
 						</div>
 						<div class="six columns">
-							<p class="Escondido" id="fechaExactaVAct2">
-								<input type="text" id="fechaExactaAct2"   placeholder="AAAA-MM-DD" />
+							<p class="<?php if(isset($fTermino)) echo ''; else echo 'Escondido';?>" id="fechaExactaVAct2">
+								<input type="text" id="fechaExactaAct2" onclick="fechaTerminalCasosActos(1)" value="<?php if(isset($fTermino)) echo $fTermino;?>"  placeholder="AAAA-MM-DD" />
 
 							</p>
 
 							<p class="Escondido" id="fechaAproxVAct2">
-								<input type="text" id="fechaAproxAct2"   placeholder="AAAA-MM-DD" />
+								<input type="text" id="fechaAproxAct2" onclick="fechaTerminalCasosActos(2)"  placeholder="AAAA-MM-DD" />
 
 							</p>
 
 							<p class="Escondido" id="fechaSinDiaVAct2">
-								<input type="text" id="fechaSinDiaAct2"   placeholder="AAAA-MM-00" />
+								<input type="text" id="fechaSinDiaAct2" onclick="fechaTerminalCasosActos(3)"  placeholder="AAAA-MM-00" />
 
 							</p >
 
 							<p class="Escondido" id="fechaSinDiaSinMesVAct2">
-								<input type="text" id="fechaSinDiaSinMesAct2"  placeholder="AAAA-00-00" />
+								<input type="text" id="fechaSinDiaSinMesAct2" onclick="fechaTerminalCasosActos(4|	)" placeholder="AAAA-00-00" />
 
 							</p>
 						</div>
@@ -211,46 +229,22 @@
 					<div class="six columns">
 
 							<label for="personas">Personas afectadas:</label>
-							<input type="number"  name="nucleoCaso_noPersonasAfectadas" placeholder="0" />
+							<input type="number"  name="derechoAfectado_noVictimas" placeholder="0" value="<?php if(isset($victimas)) echo $victimas;?>"/>
 
-							<label for="pais">País</label>
-							<select id="nucleoCaso_paisesCatalogo_paisId" name="nucleoCaso_paisesCatalogo_paisId">
-							<?php foreach($catalogos['paisesCatalogo'] as  $item):?> 
-									<option value="<?=$item['paisId']; ?>"><?=$item['nombre']; ?></option>
-							<?php endforeach;?>
-							</select>
 
 					</div>
 				  
 					<div class="six columns">
-
-							<label for="estado">Estado</label>
-							<select id="nucleoCaso_estadosCatalogo_estadoId" name="nucleoCaso_estadosCatalogo_estadoId">
-								<option></option>
-							<?php foreach($catalogos['estadosCatalogo'] as  $item):?> 
-									<option value="<?=$item['estadoId']; ?>"><?=$item['nombre']; ?></option>
-							<?php endforeach;?>
-							</select>
-					</div><!----Termina primer mitad de datos de Nacimiento ---->
-
-					<div class="six columns"><!----Segunda mitad de datos de Nacimiento ---->
-
-							<label for="municipio">Municipio</label>
-							<select id="nucleoCaso_municipiosCatalogo_municipioId" name="nucleoCaso_municipiosCatalogo_municipioId">
-								<option></option>
-							<?php foreach($catalogos['municipiosCatalogo'] as $item):?> 
-									<option value="<?=$item['municipioId']; ?>"><?=$item['nombre']; ?></option>
-							<?php endforeach;?>
-							</select>
+						<?=$filtroPais;?>
 					</div>
 				  
 			</fieldset>
 			<br/>
-			<input class="medium button" type="button" value="Agregar víctima" onclick="listaVictimas()"/>
+			<input class="medium button" type="button" value="Agregar víctima" onclick="ventanaVictimas('<?=$casoId;?>',0,0)"/>
 			<br/>
 			<br/>
-			<input class="medium button" type="submit" value="Guardar"/>
-			<input class="medium button" value="Cancelar" onclick="cerrarVentana()" />
+			<input class="medium button" type="submit" value="Guardar" style="padding: 10px 15px 11px 15px; "/>
+			<input class="medium button" type="button" value="Cancelar" onclick="cerrarVentana()" />
 		</div>
 	</div><!--fin acordeon información general-->
 </div>

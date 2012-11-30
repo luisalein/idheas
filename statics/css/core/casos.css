@@ -16,7 +16,13 @@
 .bordeInferior{
        border-bottom:4px solid #ddd;
 }
-
+.listas{
+	list-style:none !important;
+}  
+.hand{
+	padding-left:15px;
+	cursor:pointer;
+}
 .cursor{
 	cursor:pointer;
 	width: 25px;
@@ -42,4 +48,15 @@
 
 .espacioInferior{
   margin-bottom: 10px;
+}
+
+
+textarea {
+        resize: none;
+}
+/*Define el tamaño máximo para el tipo de perpetrador*/
+.CatalogoTipoPerpetrador{
+  max-height: 300px;
+       overflow:scroll;
+       overflow-x:hidden;
 }

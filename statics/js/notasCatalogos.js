@@ -1,6 +1,6 @@
 function notasCatalogos(notas,escribeNotas,id){
 	if(notas!=""){
-		 if(id==""){
+		 if(id=="1"){
 		 	$('#'+escribeNotas).html(notas); 
 		 } 
 		 else{
@@ -23,4 +23,60 @@ function botonNotas(notas){
 	OpenWindow.document.write('<h6>'+notas+'</h6>')
 	OpenWindow.document.write('<center><input type="button" value="Cerrar" onclick="cerrarVentana()" /></center>')
 	OpenWindow.document.write("</body>")
+}
+
+/**función que despliega el catalogo de tipo de perpetrador**/
+function tipoPerpetrador(id, notas, descripcion, nivel,flechita,e){
+	
+	numNivel=nivel.substr(5, 5);
+	$("#tipoPerpetrador").html(descripcion);
+	$("#notasPerpetrador").html(notas);
+	//$().html(id);//Aqui agrego el id del tipo de perpetrador
+	$('#'+nivel+id).toggleClass("Escondido");
+	$('.cambiarColorPerpetrador').css('background-color', '#efefef');
+    $(e).css('background-color', '#ddd');
+    document.getElementById('perpetradores_tipoPerpetradorId').value=id;
+    document.getElementById('perpetradores_tipoPerpetradorNivel').value=numNivel;
+
+	subnivel= $(e).attr('value');
+	    if (subnivel == "subnivel"){
+				$(e).toggleClass("ExpanderFlecha");
+    			$('.cambiarColorPerpetrador').css('background-color', '#efefef');
+		};
+		
+}
+/* Notas Grado de involucramiento */
+
+function involucramientoPerpetradores(notas, descripcion, id, nivel,e) {
+
+	$('#subNivelInvolucramiento'+id).toggleClass("Escondido");
+	$("#gradoDeInvolucramiento").html(descripcion);
+	$("#notasgradoDeInvolucramiento").html(notas);
+	$('.colorTipoPerpetrador').css('background-color', '#efefef');
+    $(e).css('background-color', '#ddd');
+    document.getElementById('perpetradores_gradoInvolucramientoid').value=id;
+    document.getElementById('perpetradores_nivelInvolugramientoId').value=nivel;
+
+    subnivel= $(e).attr('value');
+	    if (subnivel == "subnivel"){
+				$(e).toggleClass("ExpanderFlecha");
+    			$('.colorTipoPerpetrador').css('background-color', '#efefef');
+		};
+}
+
+
+function tipoLugarNotas(notas, descripcion, id,e) {
+
+	$('#subnivel'+id).toggleClass("Escondido");
+	$("#tipoLugarActo").html(descripcion);
+	$("#notastipoLugarActo").html(notas);
+    document.getElementById('perpetradores_tipoLugarId').value=id;
+	$('.colorTipoLugar').css('background-color', '#efefef');
+    $(e).css('background-color', '#ddd');
+
+    subnivel= $(e).attr('value');
+	    if (subnivel == "subnivel"){
+				$(e).toggleClass("ExpanderFlecha");
+    			$('.colorTipoLugar').css('background-color', '#efefef');
+		};
 }

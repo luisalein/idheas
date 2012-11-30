@@ -2,7 +2,7 @@
 
 function ventanaDetalleLugar(casoId, indice){
 	  var windowSizeArray = [ "width=800,height=200" ];
-	window.open(base+'index.php/casosVentanas_c/ventanaLugares/'+casoId+'/'+indice+'/', 'Detalles Lugar', windowSizeArray);
+		window.open(base+'index.php/casosVentanas_c/ventanaLugares/'+casoId+'/'+indice+'/', 'Detalles Lugar', windowSizeArray);
 	};
 
 function ventanaFicha(casoId, indice){
@@ -16,23 +16,21 @@ function ventanaDerAfectados(casoId, indice){
 	window.open(base+'index.php/casosVentanas_c/derechosAfectados/'+casoId+'/'+indice+'/', 'Derechos Afectados/'+casoId, windowSizeArray);
 	};
 
-
-
 function ventanaInterevenciones(casoId, indice){
 	  var windowSizeArray = [ "width=770,height=700,scrollbars=yes" ];
 	window.open(base+'index.php/casosVentanas_c/intervenciones/'+casoId+'/'+indice+'/', 'Intervenciones', windowSizeArray);
 	};
 
 
-function ventanaFuenteDoc(casoId, indice){
+function ventanaFuenteDoc(casoId, actorId,indice){
 	  var windowSizeArray = [ "width=770,height=700,scrollbars=yes" ];
-	window.open(base+'index.php/casosVentanas_c/fuentesDeInformacion/'+casoId+'/'+indice+'/', 'Fuente documental', windowSizeArray);
+	window.open(base+'index.php/casosVentanas_c/fuentesDeInformacion/'+casoId+'/'+actorId+'/'+indice+'/', 'Fuente documental', windowSizeArray);
 	};
 
 
 function ventanaFuentePersonal(casoId, indice){
 	  var windowSizeArray = [ "width=770,height=700,scrollbars=yes" ];
-	window.open(base+'index.php/casosVentanas_c/fuentesDeInformacion/'+casoId+'/'+indice+'/', 'Fuente Personal', windowSizeArray);
+	window.open(base+'index.php/casosVentanas_c/fuentesDeInformacionPersonal/'+casoId+'/'+indice+'/', 'Fuente Personal', windowSizeArray);
 	};
 
 
@@ -40,6 +38,17 @@ function ventanaRelacionCasos(casoId, indice){
 	  var windowSizeArray = [ "width=770,height=700,scrollbars=yes" ];
 	window.open(base+'index.php/casosVentanas_c/relacionCasos/'+casoId+'/'+indice+'/', 'Relacion casos', windowSizeArray);
 	};
+
+function ventanaVictimas(casoId){
+	  var windowSizeArray = [ "width=900,height=700,scrollbars=yes" ];
+	window.open(base+'index.php/casos_c/mostrarVictimas/'+casoId+'/0/0', 'Ventana victimas', windowSizeArray);
+	};
+
+function ventanaPerpetradores(casoId,victimaId,perpetradorId){
+	  var windowSizeArray = [ "width=950,height=700,scrollbars=yes" ];
+	window.open(base+'index.php/casos_c/mostrarPerpetrador/'+casoId+'/'+victimaId+'/'+perpetradorId, 'Ventana perpetradores', windowSizeArray);
+	};
+
 /******************************************/
 
 
@@ -189,7 +198,7 @@ function ventanaRelacionCasos(casoId, indice){
 
 /*//Funciones colapsibles//*/
 /*************************************************************/
-function  nombrederechoAfectado(antecesor,descripcion, valor, notas){
+function  nombrederechoAfectado(valor, descripcion,  notas,e){
 	var algo="#"+valor+"DAN1";
 	$('#textoDerechoAfectado').html(descripcion);
 	$('#notasDerechoAfectado').html(notas); 
@@ -197,50 +206,60 @@ function  nombrederechoAfectado(antecesor,descripcion, valor, notas){
 	$('#derechoAfectado').attr('value', valor); 
 	$('#derechoAfectadoNivel').attr('value', 1); 
 	$(algo).toggleClass("Escondido");
-	
-	traerActos(1,valor,antecesor);
+	subnivel= $(e).attr('value');
+	    if (subnivel == "subnivel"){
+				$(e).toggleClass('ExpanderFlecha');
+		};
+	traerActos(valor1);
 };
 
-function nombrederechoAfectadosub1(antecesor,descripcion2, valor, notas){
-	var nombre="#"+valor+"DAN2";
+function nombrederechoAfectadosub1(valor1, valor2,descripcion2, notas){
+	var nombre="#"+valor2+"DAN2";
 	$('#notasDerechoAfectado').html(notas); 
 	$('#textoDerechoAfectado').html(descripcion2); 
 	$('#textoDerechoAfectado').attr('name', ' ');
-	$('#derechoAfectado').attr('value', valor);
+	$('#derechoAfectado').attr('value', valor2);
 	$('#derechoAfectadoNivel').attr('value', 2); 
 	$(nombre).toggleClass("Escondido");
-	traerActos(2,valor,antecesor);
+	traerActos(valor1,valor2);
 };
 	
 
-function nombrederechoAfectadosub2(antecesor,descripcion3, valor, notas){
-	var nombre="#"+valor+"DAN3";
+function nombrederechoAfectadosub2(valor1, valor2, valor3,descripcion3, notas){
+	var nombre="#"+valor3+"DAN3";
 	$('#notasDerechoAfectado').html(notas); 
 	$('#textoDerechoAfectado').html(descripcion3); 
 	$('#textoDerechoAfectado').attr('name', ' ');
-	$('#derechoAfectado').attr('value', valor);
+	$('#derechoAfectado').attr('value', valor3);
 	$('#derechoAfectadoNivel').attr('value', 3); 
 	$(nombre).toggleClass("Escondido");
-	traerActos(3,valor,antecesor);
+	traerActos(valor1,valor2,valor3);
 };
 
 
-function nombrederechoAfectadosub3(antecesor,descripcion4, valor, notas){
+function nombrederechoAfectadosub3(valor1,valor2,valor3,valor4,descripcion4,notas){
 	$('#notasDerechoAfectado').html(notas); 
 	$('#textoDerechoAfectado').html(descripcion4); 
 	$('#textoDerechoAfectado').attr('name', ' ');
-	$('#derechoAfectado').attr('value', valor);
+	$('#derechoAfectado').attr('value', valor4);
 	$('#derechoAfectadoNivel').attr('value', 4); 
-	traerActos(4,valor,antecesor);
+	traerActos(valor1,valor2,valor3,valor4);
 };
 
-function traerActos(nivel,valor,antecesor){
+function traerActos(id1,id2,id3,id4){
 	
-	alert("nivel "+nivel+'id: '+valor+"antecesor: "+antecesor);
+	//alert("nivel "+nivel+'id: '+valor+"antecesor: "+antecesor);
 	
 	var url = base+'index.php/casosVentanas_c/traerActos';
 	
-	var data = 'antecesor='+antecesor+'&nivel='+nivel;
+	if(id1 != 'undefined')
+		var data = 'id1='+id1;
+	if(id2 != 'undefined')
+		var data = 'id1='+id1+'&id2='+id2;
+	if(id3 != 'undefined')
+		var data = 'id1='+id1+'&id2='+id2+'&id3='+id3;
+	if(id4 != 'undefined')
+		var data = 'id1='+id1+'&id2='+id2+'&id3='+id3+'&id4='+id4;			
 		
 	$.ajax({
 	    
@@ -266,59 +285,19 @@ function traerActos(nivel,valor,antecesor){
 
 /*//Funciones colapsibles derechos afectados//*/
 /*************************************************************/
-function  nombrarActo(descripcion, valor,notas, nivel){
+function  nombrarActo(descripcion, valor,notas,nivel,e){
 	var activar="#"+valor+"act"+nivel;
 	$('#textoDerechoAfectadoN2').html(descripcion); 
 	$('#notasActoId').html(notas); 
 	$('#textoDerechoAfectadoN2').attr('name', ' ');
 	$('#actoViolatorioId').attr('value', valor); 
 	$('#actoViolatorioNivel').attr('value', nivel); 
-	if(nivel <= 3){
-		$(activar).toggleClass("Escondido");
-	}
-	
+	$(activar).toggleClass("Escondido");
+	subnivel= $(e).attr('value');
+	    if (subnivel == "subnivel"){
+				$(e).toggleClass('ExpanderFlecha');
+		};
 };
-
-
-function  nombreacto(descripcion, valor,notas){
-	var algo="#"+valor+"act1";
-	$('#textoDerechoAfectadoN2').html(descripcion); 
-	$('#notasActoId').html(notas); 
-	$('#textoDerechoAfectadoN2').attr('name', ' ');
-	$('#actoViolatorioId').attr('value', valor); 
-	$('#actoViolatorioNivel').attr('value', 1); 
-	$(algo).toggleClass("Escondido");
-};
-
-function nombreactosub1(descripcion1, valor,notas){
-	var nombre="#"+valor+"act2";
-	$('#textoDerechoAfectadoN2').html(descripcion1); 
-	$('#notasActoId').html(notas); 
-	$('#textoDerechoAfectadoN2').attr('name', ' ');
-	$('#actoViolatorioId').attr('value', valor);
-	$('#actoViolatorioNivel').attr('value', 2); 
-	$(nombre).toggleClass("Escondido");
-};
-	
-
-function nombreactosub2(descripcion3, valor,notas){
-	var nombre="#"+valor+"act3";
-	$('#textoDerechoAfectadoN2').html(descripcion3); 
-	$('#notasActoId').html(notas); 
-	$('#textoDerechoAfectadoN2').attr('name', ' ');
-	$('#actoViolatorioId').attr('value', valor);
-	$('#actoViolatorioNivel').attr('value', 3); 
-	$(nombre).toggleClass("Escondido");
-};
-listaVictimas
-
-function nombreactosub3(descripcion4, valor,notas){
-	$('#textoDerechoAfectadoN2').html(descripcion4); 
-	$('#notasActoId').html(notas); 
-	$('#textoDerechoAfectadoN2').attr('name', ' ');
-	$('#actoViolatorioId').attr('value', valor);
-};
-
 
 
 	$(function() {
@@ -329,7 +308,7 @@ function nombreactosub3(descripcion4, valor,notas){
 
 	$(function() {
 		$( "#fechaAproxAct" ).datepicker({ dateFormat: "yy-mm-dd"});
-		 });listaVictimas
+		 });
     
 /***Script para cambiar el año y el mes****/
 	$(function() {
@@ -373,21 +352,21 @@ function nombreactosub3(descripcion4, valor,notas){
 			$('#fechaAproxAct').attr('name', ' ');
 			$('#fechaSinDiaAct').attr('name', ' ');
 			$('#fechaSinDiaSinMesAct').attr('name', ' ');
-			$('#fechaExactaAct').attr('name', 'nucleCaso_fechaInicio');
+			$('#fechaExactaAct').attr('name', 'derechoAfectado_fechaInicial');
 			$("#fechaAproxVAct").hide();
 			$("#fechaSinDiaVAct").hide();
 			$("#fechaSinDiaSinMesVAct").hide();
 			$("#fechaExactaVAct").show("slow");
 		  }
-		  else if (a=="2"){
+		  else if (a=="2"){			
+			$('#fechaSinDiaVAct').attr('name', ' ');
+			$('#fechaSinDiaSinMesVAct').attr('name', ' ');
+			$('#fechaExactaAct').attr('name', ' ');
+			$('#fechaAproxAct').attr('name', 'derechoAfectado_fechaInicial');
 			$("#fechaSinDiaSinMesVAct").hide();
 			$("#fechaSinDiaVAct").hide();
 			$("#fechaExactaVAct").hide();
 			$("#fechaAproxVAct").show("slow");
-			$('#fechaSinDiaVAct').attr('name', ' ');
-			$('#fechaSinDiaSinMesVAct').attr('name', ' ');
-			$('#fechaExactaVAct').attr('name', ' ');
-			$('#fechaAproxVAct').attr('name', 'nucleCaso_fechaInicio');
 		  }
 		  else if (a=="3"){
 			$("#fechaAproxVAct").hide();
@@ -397,7 +376,7 @@ function nombreactosub3(descripcion4, valor,notas){
 			$('#fechaSinDiaSinMesVAct').attr('name', ' ');
 			$('#fechaExactaVAct').attr('name', ' ');
 			$('#fechaAproxVAct').attr('name', ' ');
-			$('#fechaSinDiaVAct').attr('name', 'nucleCaso_fechaInicio');
+			$('#fechaSinDiaAct').attr('name', 'derechoAfectado_fechaInicial');
 		  }
 		  else if (a=="4"){;
 			$("#fechaAproxVAct").hide();
@@ -407,7 +386,7 @@ function nombreactosub3(descripcion4, valor,notas){
 			$('#fechaExactaVAct').attr('name', ' ');
 			$('#fechaAproxVAct').attr('name', ' ');
 			$('#fechaSinDiaVAct').attr('name', '');
-			$('#fechaSinDiaSinMesVAct').attr('name', 'nucleCaso_fechaInicio');listaVictimas
+			$('#fechaSinDiaSinMesAct').attr('name', 'derechoAfectado_fechaInicial');
 		  }
 	  
 	  }
@@ -419,7 +398,7 @@ function nombreactosub3(descripcion4, valor,notas){
 			$('#fechaAproxAct2').attr('name', ' ');
 			$('#fechaSinDiaAct2').attr('name', ' ');
 			$('#fechaSinDiaSinMesAct2').attr('name', ' ');
-			$('#fechaExactaAct2').attr('name', 'casos_fechaTermino');
+			$('#fechaExactaAct2').attr('name', 'derechoAfectado_fechaTermino');
 			$("#fechaAproxVAct2").hide();
 			$("#fechaSinDiaVAct2").hide();
 			$("#fechaSinDiaSinMesVAct2").hide();
@@ -433,7 +412,7 @@ function nombreactosub3(descripcion4, valor,notas){
 			$('#fechaSinDiaAct2').attr('name', ' ');
 			$('#fechaSinDiaSinMesActAct2').attr('name', ' ');
 			$('#fechaExactaAct2').attr('name', ' ');
-			$('#fechaAproxAct2').attr('name', 'casos_fechaTermino');
+			$('#fechaAproxAct2').attr('name', 'derechoAfectado_fechaTermino');
 		  }
 		  else if (a=="3"){
 			$("#fechaAproxVAct2").hide();
@@ -443,7 +422,7 @@ function nombreactosub3(descripcion4, valor,notas){
 			$('#fechaSinDiaSinMesAct2').attr('name', ' ');
 			$('#fechaExactaAct2').attr('name', ' ');
 			$('#fechaAproxAct2').attr('name', ' ');
-			$('#fechaSinDiaAct2').attr('name', 'casos_fechaTermino');
+			$('#fechaSinDiaAct2').attr('name', 'derechoAfectado_fechaTermino');
 		  }
 		  else if (a=="4"){;
 			$("#fechaAproxVAct2").hide();
@@ -453,7 +432,7 @@ function nombreactosub3(descripcion4, valor,notas){
 			$('#fechaExactaAct2').attr('name', ' ');
 			$('#fechaAproxAct2').attr('name', ' ');
 			$('#fechaSinDiaAct2').attr('name', '');
-			$('#fechaSinDiaSinMesAct2').attr('name', 'casos_fechaTermino');
+			$('#fechaSinDiaSinMesAct2').attr('name', 'derechoAfectado_fechaTermino');
 		  }
 	  
 	  }
@@ -603,4 +582,30 @@ function nombreactosub3(descripcion4, valor,notas){
  	var windowSizeArray = [ "width=770,height=700,scrollbars=yes" ];
 	window.open(base+'index.php/casosVentanas_c/mostrarActores', 'Relacion casos', windowSizeArray);
  }
+
+
+function mostrarCasos(){
+	var windowSizeArray = [ "width=400,height=600,scrollbars=yes" ];
+	window.open(base+'index.php/casosVentanas_c/mostrarCasos', 'Seleccionar Caso', windowSizeArray);
+}
+
+function casoSeleccionado(idCaso, nombreCaso, fechaInicial, fechaTermino){
+	
+	window.opener.document.getElementById('casoSeleccionado_seleccionado').value='1';
+	
+	$('.noSeleccionado').css('background','white');
+	
+	$('#caja'+idCaso).css('background','#ccc');
+	
+	var cadena ='<td>'+nombreCaso+'</td>'+'<td>'+fechaInicial+'</td>'+'<td>'+fechaTermino+'</td><input type="hidden" name="relacionCasos_casoIdB" value="'+idCaso+'"required/>';
+	
+	window.opener.document.getElementById('datosCasoRelacionado').innerHTML = cadena;
+	
+}
+
+
+function ventanaRelacionCasos(casoId, indice){
+	var windowSizeArray = [ "width=800,height=700" ];
+	window.open(base+'index.php/casosVentanas_c/relacionCasos/'+casoId+'/'+indice+'/', 'Relación entre casos', windowSizeArray);
+}
 

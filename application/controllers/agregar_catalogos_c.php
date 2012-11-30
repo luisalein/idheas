@@ -54,6 +54,15 @@ class Agregar_catalogos_c extends CI_Controller {
 		
 		$this->cAgregarCatalogoMotivoViaje();
         
+		$this->cAgregarCatalogoActosDerechoAfectado();
+		
+		$this->cAgregarCatalogoTipoLugarN1();
+		
+		$this->cAgregarCatalogoTipoLugarN2();
+		
+		$this->cAgregarCatalogoTipoLugarN3();
+		
+		$this->cAgregarCatalogoTipoRelacionCasos();
     }
     
     /*
@@ -166,56 +175,16 @@ class Agregar_catalogos_c extends CI_Controller {
             
             $obtener_datos = explode('¬', $derechoN2);
                 
-              $derechos['actosN2Catalogo'][trim($obtener_datos[0])] = array('actoN2Id' => trim($obtener_datos[0]), 'descripcion' => trim($obtener_datos[1]), 
-              'actosN1Catalogo_actoId' => trim($obtener_datos[2]), 'notas' => trim($obtener_datos[3]),'derechosAfectadosN2Catalogo_derechoAfectadoN2Id' => trim($obtener_datos[4]));
+              $derechos['actosN2Catalogo'][trim($obtener_datos[0])] = array('actoN2Id' => trim($obtener_datos[0]), 
+              'descripcion' => trim($obtener_datos[1]), 
+              'actosN1Catalogo_actoId' => trim($obtener_datos[2]), 
+              'notas' => trim($obtener_datos[3]),
+              'derechosAfectadosN2Catalogo_derechoAfectadoN2Id' => trim($obtener_datos[4]));
 
         }
 		
         
-        /*$derechosN3 = read_file('statics/catalogos/catalogoviolaciones/CatalogoViolaciones_nivel3.csv');
-        
-        $derechosN3 = explode('&', $derechosN3);
-        
-        foreach($derechosN3 as $derechoN3){
-            
-            $obtener_datos = explode('¬', $derechoN3);
-			
-            if(trim($obtener_datos[4]) != NULL){
-                	
-					$derechos['actosN3Catalogo'][trim($obtener_datos[0])] = array('actoN3Id' => trim($obtener_datos[0]), 
-              'descripcion' => trim($obtener_datos[1]), 'actosN2Catalogo_actoN2Id' => trim($obtener_datos[2]), 
-              'notas' => trim($obtener_datos[3]),'derechosAfectadosN3Catalogo_derechoAfectadoN3Id' => trim($obtener_datos[4]));
-					
-            }else{
-                	
-					$derechos['actosN3Catalogo'][trim($obtener_datos[0])] = array('actoN3Id' => trim($obtener_datos[0]), 
-              'descripcion' => trim($obtener_datos[1]), 'actosN2Catalogo_actoN2Id' => trim($obtener_datos[2]), 
-              'notas' => trim($obtener_datos[3]));
-            }
-              	
-        }
-		echo '<pre>';
-		//print_r($derechos);
-
-        
-        $derechosN4 = read_file('statics/catalogos/catalogoviolaciones/CatalogoViolaciones_nivel3.csv');
-        
-        $derechosN4 = explode('&', $derechosN4);
-        
-        foreach($derechosN4 as $derechoN4){
-            
-            $obtener_datos = explode('¬', $derechoN4);
-                if(trim($obtener_datos[4]) == ''){
-                	trim($obtener_datos[4]) = NULL;
-                }
-              $derechos['actosN4Catalogo'][trim($obtener_datos[0])] = array('actoN4Id' => trim($obtener_datos[0]), 
-              'descripcion' => trim($obtener_datos[1]), 
-              'actosN3Catalogo_actoN3Id' => trim($obtener_datos[2]), 
-              'notas' => trim($obtener_datos[3]),'derechosAfectadosN4Catalogo_derechoAfectadoN4Id' => trim($obtener_datos[4]));
-
-        }
-        */
-        $this->agregar_catalogos_m->mAgregarDerechosCatalogos($derechos);
+       $this->agregar_catalogos_m->mAgregarDerechosCatalogos($derechos);
         
         echo 'Cataologos de actos violatorios ingresados correctamente<br />';
         
@@ -383,6 +352,25 @@ class Agregar_catalogos_c extends CI_Controller {
         echo 'Catalogos de grupos indigenas insertados exitosamente.<br />';
         
     }
+	
+	public function cAgregarCatalogoTipoRelacionCasos(){
+        
+        $catalogoTipoRelacionCasos = explode('&', read_file('statics/catalogos/catalogosDeUnSoloNivel/catalogoTipoRelacionCasos.csv'));
+        
+        foreach($catalogoTipoRelacionCasos as $tipoRelacion){
+                
+            $datosTipoRelacion = explode('¬', $tipoRelacion);
+                
+            $tiposRelaciones['relacionCasosCatalogo'][trim($datosTipoRelacion[0])] = array('relacionCasosId' => trim($datosTipoRelacion[0]), 'descripcion' => trim($datosTipoRelacion[1]));
+
+        }
+        
+        $this->agregar_catalogos_m->mAgregarCatalogos($tiposRelaciones);
+        
+        echo 'Catalogos de tipos de relacion entre casos insertados exitosamente.<br />';
+        
+    }
+	
 	
 	public function cAgregarCatalogoMotivoViaje(){
         
@@ -629,6 +617,7 @@ class Agregar_catalogos_c extends CI_Controller {
         
         echo 'Catalogo de grado involucramiento N1 insertado exitosamente.<br />';
     }
+	
     public function cAgregarCatalogoGradoInvolucramientoN2(){
     	
 		$catalogo =explode('&',read_file('statics/catalogos/catalogogradodeinvolucramiento/GradodeInvolucramientoNivel2.csv'));
@@ -645,6 +634,52 @@ class Agregar_catalogos_c extends CI_Controller {
         echo 'Catalogo de grado involucramiento N2 insertado exitosamente.<br />';
     }
     
+	public function cAgregarCatalogoTipoLugarN1(){
+		
+		$catalogo =explode('&',read_file('statics/catalogos/catalogoTipoLugar/catalogoTipoLugarNivel1.csv'));
+
+		foreach($catalogo as $filaCatalogo){
+                
+            $datos = explode('¬', $filaCatalogo);
+			
+            $filas['tipoLugarN1Catalogo'][trim($datos[0])] = array('descripcion' => trim($datos[1]),'notas' => trim($datos[2]));
+        }
+		 $this->agregar_catalogos_m->mAgregarCatalogos($filas);
+        
+        echo 'Catalogo de tipo lugar N1 insertado exitosamente.<br />';
+	}
+	
+	public function cAgregarCatalogoTipoLugarN2(){
+		
+		$catalogo =explode('&',read_file('statics/catalogos/catalogoTipoLugar/catalogoTipoLugarNivel2.csv'));
+
+		foreach($catalogo as $filaCatalogo){
+                
+            $datos = explode('¬', $filaCatalogo);
+			
+            $filas['tipoLugarN2Catalogo'][trim($datos[0])] = array('descripcion' => trim($datos[1]),'notas' => trim($datos[2]),
+			'tipoLugarN1Catalogo_tipoLugarId' => trim($datos[3]));
+        }
+		 $this->agregar_catalogos_m->mAgregarCatalogos($filas);
+        
+        echo 'Catalogo de tipo lugar N2 insertado exitosamente.<br />';
+	}
+	
+	public function cAgregarCatalogoTipoLugarN3(){
+		
+		$catalogo =explode('&',read_file('statics/catalogos/catalogoTipoLugar/catalogoTipoLugarNivel3.csv'));
+
+		foreach($catalogo as $filaCatalogo){
+                
+            $datos = explode('¬', $filaCatalogo);
+			
+            $filas['tipoLugarN3Catalogo'][trim($datos[0])] = array('descripcion' => trim($datos[1]),'notas' => trim($datos[2]),
+			'tipoLugarN2Catalogo_tipoLugarN2Id' => trim($datos[3]));
+        }
+		 $this->agregar_catalogos_m->mAgregarCatalogos($filas);
+        
+        echo 'Catalogo de tipo lugar N3 insertado exitosamente.<br />';
+	}
 }
 
 /* End of file principal.php */

@@ -544,7 +544,9 @@
 			//print_r($consulta->num_rows());
 			if($consulta->num_rows() != 0){
 				foreach($consulta->result_array() as $row){
+
 					$listaActoresId[$row['actorRelacionadoId']] = $row;
+
 				}
 				
 				foreach ($listaActoresId as $key => $value) {
@@ -553,14 +555,15 @@
 		            $this->db->where('actorId',$value['actorRelacionadoId']);
 		            $actores = $this->db->get();
 					
-					if($actores->num_rows() != 0){
-						foreach($actores->result_array() as $row){
-							$listaActores[$row['actorId']] = $row;
+					if($actores->num_rows() > 0){
+						foreach($actores->result_array() as $row2){
+							$listaActores[$row2['actorId']] = $row2;
 						}
-						/* Regresa la cadena al controlador */
-						return $listaActores;
+                       
+									
 					}
 				}
+                return $listaActores;
 			}else{
 				return '0';
 			}

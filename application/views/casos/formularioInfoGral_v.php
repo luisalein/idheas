@@ -3,6 +3,7 @@
 		<div id="pestania" data-collapse>
 		<h2 class="open twelve columns">Información general</h2><!--título de la sub-pestaña--->  
 		<div>
+			<input type="hidden" name="casos_casoId" value="<?= (isset($datosCaso['casos']['casoId'])) ? $datosCaso['casos']['casoId'] : "" ;?>"/>
 			<!--Comienzan datos-->
 			<div class="twelve columns">
 			<div class="six columns">
@@ -91,14 +92,15 @@
 		  	<div id="subPestanias" data-collapse>
 				<h2 class="twelve columns">Descripción</h2>
 					<div class="twelve columns">
-						<textarea placeholder="Descripción"  rows="15" cols="100" id="infoCaso_descripcion"  wrap="hard"  name="infoCaso_descripcion"><?= (isset($datosCaso['casos']['descripcion'])) ? $datosCaso['casos']['descripcion'] : "" ;?></textarea>
+						<textarea placeholder="Descripción"  rows="15" cols="100" id="infoCaso_descripcion"  wrap="hard"  name="infoCaso_descripcion"><?=(isset($datosCaso['infoCaso']['descripcion'])) ? $datosCaso['infoCaso']['descripcion'] : ''; ?></textarea>
 				   </div>	  
 			</div><!--fin acordeon descripción-->
 		  	
 		  	<div id="subPestanias" data-collapse>
 		  		<h2 class="twelve columns">Resumen</h2>
+		  		
 					<div class="twelve columns">
-						<textarea placeholder="Resumen"  rows="20" cols="100" id="infoCaso_resumen"  wrap="hard"  name="infoCaso_resumen"><?= (isset($datosCaso['casos']['resumen'])) ? $datosCaso['casos']['resumen'] : "" ;?></textarea>
+						<textarea placeholder="Resumen"  rows="20" cols="100" id="infoCaso_resumen"  wrap="hard"  name="infoCaso_resumen"><?=(isset($datosCaso['infoCaso']['resumen'])) ? $datosCaso['infoCaso']['resumen'] : ''; ?></textarea>
 				   </div>	  
 
 		  	</div><!--fin acordeon observaciones-->
@@ -106,7 +108,7 @@
 		  	<div id="subPestanias" data-collapse onchange="editarOpciones()" >
 		  		<h2 class="twelve columns">Obsevaciones</h2>
 				<div class="twelve columns">
-						<textarea placeholder="Observaciones"  rows="20" cols="100" id="infoCaso_observaciones" wrap="hard"  name="infoCaso_observaciones"><?= (isset($datosCaso['casos']['observaciones'])) ? $datosCaso['casos']['observaciones'] : "" ;?></textarea>
+						<textarea placeholder="Observaciones"  rows="20" cols="100" id="infoCaso_observaciones" wrap="hard"  name="infoCaso_observaciones"><?=(isset($datosCaso['infoCaso']['observaciones'])) ? $datosCaso['infoCaso']['observaciones'] : ''; ?></textarea>
 				</div>	
 		  	</div><!--fin acordeon observaciones-->
 

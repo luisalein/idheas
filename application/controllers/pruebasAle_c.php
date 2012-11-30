@@ -14,15 +14,10 @@ class PruebasAle_c extends CI_Controller
 	function index() 
 	{	
 		
-		$datos = array ('derechoAfectado' => array (
- 									'fechaInicial' => '1879-12-01',
- 									'noVictimas' => '11'
-	 								));
-									
-	$datos['filtroDireccion'] = $this->load->view('actores/filtroDireccion', $datos, true);		
-	$Data['datos']= $this->load->view('actores/filtroDireccion', $datos, true);	
+		$datos['idiomaCatalogo'] = $this->general_m->obtener_todo('idiomaCatalogo', 'idiomaId', 'descripcion');
 		//  $this->load->view('actores/lista_v', $datos, true);
-			
+		print_r($datos['idiomaCatalogo']);
+			$Data['datos']=$datos['idiomaCatalogo'];
 	 $this->load->view('pruebasAle',$Data);
 	}
 	

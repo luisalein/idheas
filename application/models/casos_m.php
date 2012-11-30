@@ -122,19 +122,6 @@ class Casos_m extends CI_Model {
 			}
 		}
 		
-		/* Trae todos los datos de nucleoCaso*/
-		$this->db->select('*');
-		$this->db->from('nucleoCaso');
-		$this->db->where('casos_casoId',$casoId);
-		$consulta = $this->db->get();
-					
-		if ($consulta->num_rows() > 0){				
-			/* Pasa la consulta a un cadena */
-			foreach ($consulta->result_array() as $row) {
-				$datos['nucleoCaso'] = $row;
-			}
-		}
-		
 		/* Trae todos los datos de relacionCasos*/
 		$this->db->select('*');
 		$this->db->from('relacionCasos');
@@ -232,6 +219,7 @@ class Casos_m extends CI_Model {
 			}/* Fin foreach de derechoAfectado*/
 			
 			foreach ($datos['actos'] as $row) {
+				//print_r($row);
 				$this->db->select('*');
 				$this->db->from('victimas');
 				$this->db->where('actos_actoId', $row['actoId']);
@@ -241,12 +229,12 @@ class Casos_m extends CI_Model {
 					/* Pasa la consulta a un cadena */
 					foreach ($consulta->result_array() as $row2) {
 						$datos['actos'][$row['actoId']]['victimas'][$row2['victimaId']] = $row2;
-						
-						//print_r($datos['actos']['victimas']);
+
 						foreach ($datos['actos'] as $row3) {
+							
 							$this->db->select('*');
 							$this->db->from('perpetradores');
-							$this->db->where('victimas_victimaId', $row3['victimas'][$row['actoId']]['victimaId']);
+							$this->db->where('victimas_victimaId', $row3['victimas'][$row2['victimaId']]['victimaId']);
 							$consulta = $this->db->get();
 							
 							if ($consulta->num_rows() > 0){				
@@ -339,9 +327,11 @@ class Casos_m extends CI_Model {
 	/* Ese modelo lista los casos */
 	 public function mListaCasos(){
 	 	
-             $this->db->select();
+             $this->db->select('*');
 		
              $this->db->from('casos');
+			 
+			 $this->db->where('estadoActivo', 1);
 		
              $casos = $this->db->get();
 		
@@ -412,9 +402,9 @@ class Casos_m extends CI_Model {
 		if($consulta->num_rows() > 0){
 			$this->db->where('casoId', $casoId);
 			$this->db->update('casos',$estado);
-			
+			$mensaje = $casoId.$estado;
 			/* Regresa la cadena al controlador*/
-			return ($mensaje = 'Hecho');
+			return ($mensaje = $mensaje .'Hecho');
 		}else{
 			return '0';
 			
@@ -451,9 +441,14 @@ class Casos_m extends CI_Model {
 	 * */
 	
 	public function mEliminaFicha($fichaId){
-			
-		$this->db->where('fichaId', $fichaId);
 		
+		/*Eliminamos los registros asociados a una ficha */	
+		$this->db->where('fichas_fichaId', $fichaId);	
+		$this->db->delete('registro');
+			
+		/*Elimina la ficha asociada al $fichaId*/
+		$this->db->where('fichaId', $fichaId);
+	
 		if($this->db->delete('fichas')){
 		
 			/* Regresa la cadena al controlador*/
@@ -464,7 +459,7 @@ class Casos_m extends CI_Model {
 			$mensaje['error'] = $this->db->_error_message();
 			/* Regresa la cadena al controlador*/
         	return $mensaje;
-		}
+		}	
 		
 	}/*Fin de mEliminaFichas*/
 	
@@ -675,23 +670,6 @@ class Casos_m extends CI_Model {
 					foreach ($consultaVictimas->result_array() as $row2){
 						//$datos['victmas'][$row2['victimaId']] = $row2;
 						
-						/* Trae los perpetradores asociados a una victima */
-						$this->db->select('perpetradorVictimaId');
-						$this->db->from('perpetradores');
-						$this->db->where('victimas_victimaId',$row2['victimaId']);
-						$consultaPerpetradores = $this->db->get();
-						
-						if($consultaPerpetradores->num_rows() > 0){
-							/* Pasa la consulta a un cadena */
-							foreach ($consultaPerpetradores->result_array() as $row3){
-								//$datos['perpetradores'][$row3['perpetradorVictimaId']] = $row3;
-								/* Elimina la relacion de un perpetrador con un acto */
-								$this->mEliminaActosPerpetrador($row3['perpetradorVictimaId']);
-								 
-							}/* fin foreach consultaPerpetradores*/
-							
-						}/*fin de if consultaPerpetradores */
-							
 						 /* Elimina un perpetrador asiciado a una victima */
 						$this->mEliminaPerpetradoresVictima($row2['victimaId']);		
 					}
@@ -1050,25 +1028,33 @@ class Casos_m extends CI_Model {
 	
 	public function mAgregarIntervenciones($datos){
 		
-		$this->db->insert('intervenciones', $datos['intervencion']);
-        $obtener_id = $this->db->select_max('intervencionId')->from('intervenciones')->get();
-		
-		if($obtener_id->num_rows() > 0){
-	        foreach ($obtener_id->result_array() as $row) {
-	            $intervencionId = $row['intervencionId'];
-	        }
-	    }/* Fin de obtener_id */
-	    
-	    foreach($datos as $tabla => $campo){
-                
-            if($tabla != 'intervencion' && (!empty($tabla))){
-                
-                $datos[$tabla]['intervenciones_intervencionId'] = $intervencionId;
-                $this->db->insert($tabla, $datos[$tabla]);
-            }
-     	}/* Fin foreach tabla */
-     	
-	    return $intervencionId;
+		if($this->db->insert('intervenciones', $datos['intervencion'])){
+			$obtener_id = $this->db->select_max('intervencionId')->from('intervenciones')->get();
+			
+			if($obtener_id->num_rows() > 0){
+		        foreach ($obtener_id->result_array() as $row) {
+		            $intervencionId = $row['intervencionId'];
+		        }
+		    }/* Fin de obtener_id */
+		    
+		    foreach($datos as $tabla => $campo){
+	                
+	            if($tabla != 'intervencion' && (!empty($tabla))){
+	                
+	                $datos[$tabla]['intervenciones_intervencionId'] = $intervencionId;
+	                $this->db->insert($tabla, $datos[$tabla]);
+	            }
+	     	}/* Fin foreach tabla */
+	     	
+		    return $intervencionId;
+		}else{
+			
+			$mensaje['error'] = $this->db->_error_message();
+			/* Regresa la cadena al controlador*/
+        	return $mensaje;
+			
+		}
+        
 		
 	}/* fin de mAgregarIntervenciones */
 	
@@ -1092,6 +1078,34 @@ class Casos_m extends CI_Model {
         	return $mensaje;
 		}
 	 }/* Fin de mActualizaDatosintervencion */
+	 
+	 /* Este modelo agrega un intervenido a una intervencion 
+	  * @param:
+	  * 
+	  * $datosIntervenido = array (
+	  * 				relacionId => 1,
+	  * 				tipoRelacionId => 1,
+	  * 				comentarios => '',
+	  * 				observacines => '',
+	  * 				intervenciones_intervencionId => 1
+	  * );
+	  * 
+	  * */
+	 public function mAgregarIntervenidoIntervenciones($datosIntervenido){
+	 	
+		 /* inserta el array registro en la tabla de registros de la BD */
+		if($this->db->insert('intervenidos', $datosIntervenido)){
+			
+			return 'Hecho';
+			
+		}else{
+			
+			$mensaje['error'] = $this->db->_error_message();
+			/* Regresa la cadena al controlador*/
+        	return $mensaje;
+			
+		}
+	 }
 	 
 	 /* Este modelo edita una intervencion
 	 *@ $datos = array(
@@ -1303,7 +1317,7 @@ class Casos_m extends CI_Model {
 			
 			return $datos;
 		}else{
-			$mensaje['error'] = $this->db->_error_message();
+			$mensaje= '0';
 			/* Regresa la cadena al controlador*/
         	return $mensaje;
 		}
@@ -1314,72 +1328,208 @@ class Casos_m extends CI_Model {
 	/* Este modelo Trae los actos relacionados a un derecho afectado por niveles
 	 * @param
 	 * 
-	 * $datosArrray [array]
+	 * $datosArrray = array (
+	 * 						[nivel] = [idNivel]
+	 * 						[1] 	= 1, 
+	 * 						[2] 	= 3,
+	 * 						[3] 	= 5, 
+	 * 						[4] 	= 10
+	 * )
+	 * 
+	 * 
 	 * */
 	public function mTraerActoDerechoAfectado($datosArray){
-		
-		/*Trae los datos del nivel 1 para el derecho afectadoId nivel1*/
-		$this->db->select('actosN1Catalogo_actoId');
-		$this->db->from('actosN1Catalogo_has_derechosAfactadosN1Catalogo');
-		$this->db->where('derechosAfactadosN1Catalogo_derechoAfectadoN1Id', $datosArray['1']);
-		$consultaActos = $this->db->get();
-		
-		if($consultaActos->num_rows() > 0){
-			foreach ($consultaActos->result_array() as $actos) {
-				$this->db->select('*');
-				$this->db->from('actosN1Catalogo');
-				$this->db->where('actoId', $actos['actosN1Catalogo_actoId']);
-				$consultaActosN1 = $this->db->get();
-				
-				if($consultaActosN1->num_rows() > 0){
-					foreach ($consultaActosN1->result_array() as $actosN1) {
-						$datos['actosN1'][$actosN1['actoId']]= $actosN1;
-						/*Trae los datos del nivel 2 para el derecho afectadoId nivel2*/
-						$this->db->select('*');
-						$this->db->from('actosN2Catalogo');
-						$this->db->where('actosN1Catalogo_actoId', $actosN1['actoId']);
-						$this->db->where('derechosAfectadosN2Catalogo_derechoAfectadoN2Id', $datosAray['2']);
-						
-						$consultaActosN2 = $this->db->get();
-						
-						if($consultaActosN2->num_rows() > 0){
-							foreach ($consultaActosN2->result_array() as $actosN2) {
-								$datos['actosN2'][$actosN2['actoN2Id']]= $actosN2;
-								/*Trae los datos del nivel 3 para el derecho afectadoId nivel3 */
-								$this->db->select('*');
-								$this->db->from('actosN3Catalogo');
-								$this->db->where('actosN3Catalogo_actoId', $actosN2['actoN2Id']);
-								$this->db->where('derechosAfectadosN3Catalogo_derechoAfectadoN3Id', $datosAray['3']);
-								
-								$consultaActosN3 = $this->db->get();
-								
-								if($consultaActosN3->num_rows() > 0){
-									foreach ($consultaActosN3->result_array() as $actosN3) {
-										$datos['actosN3'][$actosN3['actoN3Id']]= $actosN3;
-										/*Trae los datos del nivel 4 para el derecho afectadoId nivel4 */
-										$this->db->select('*');
-										$this->db->from('actosN4Catalogo');
-										$this->db->where('actosN4Catalogo_actoId', $actosN3['actoN3Id']);
-										$this->db->where('derechosAfectadosN4Catalogo_derechoAfectadoN4Id', $datosAray['4']);
-										
-										$consultaActosN4 = $this->db->get();
-										
-										if($consultaActosN4->num_rows() > 0){
-											foreach ($consultaActosN4->result_array() as $actosN4) {
-												
-												$datos['actosN4'][$actosN4['actoN4Id']]= $actosN4;
-												
-											}/* fin foreach consultaActosN4 */
-										}/* fin if consultaActosN4*/		
-									}/*fin foreach consultaActosN3 */
-								}/* fin if consultaActosN3 */	
-							}/*fon foreach consultaActosN2*/
-						}/* fin if consultaActosN2 */
-					}/*fin foreach $consultaActosN1*/
-				}/*fin if consultaActoN1*/		
-			}
+			
+			$this->db->select('actosN1Catalogo_actoId');
+			$this->db->from('actosN1Catalogo_has_derechosAfactadosN1Catalogo');
+			$this->db->where('derechosAfactadosN1Catalogo_derechoAfectadoN1Id',$datosArray[1]);
+			$consultaActosN1 = $this->db->get();
+			
+			
+			if ($consultaActosN1->num_rows() > 0) {
+				foreach ($consultaActosN1->result_array() as $row) {
+					
+					$this->db->select('*');
+					$this->db->from('actosN1Catalogo');
+					$this->db->where('actoId',$row['actosN1Catalogo_actoId']);
+					$consultaActoN1 = $this->db->get();
+					
+					if ($consultaActoN1->num_rows() > 0) {
+						foreach ($consultaActoN1->result_array() as $row2) {
 
-			return $datos;
+							$datos['actosN1'][$row2['actoId']] = $row2;
+							
+							if(isset($datosArray[2]) && isset($row2)){
+								$this->db->select('*');
+								$this->db->from('actosN2Catalogo');
+								$this->db->where('actosN1Catalogo_actoId',$row2['actoId']);
+								$this->db->where('derechosAfectadosN2Catalogo_derechoAfectadoN2Id',$datosArray[2]);
+								$consultaActoN2 = $this->db->get();
+								
+								if ($consultaActoN2->num_rows() > 0) {
+									foreach ($consultaActoN2->result_array() as $row3) {
+										$datos['actosN2'][$row2['actoId']] = $row3;
+										
+										if(isset($datosArray[3]) && isset($row3)){
+											$this->db->select('*');
+											$this->db->from('actosN3Catalogo');
+											$this->db->where('actosN2Catalogo_actoN2Id',$row3['actoN2Id']);
+											$this->db->where('derechosAfectadosN3Catalogo_derechoAfectadoN3Id',$datosArray[3]);
+											$consultaActoN3 = $this->db->get();
+											
+											if ($consultaActoN3->num_rows() > 0) {
+												foreach ($consultaActoN3->result_array() as $row4) {
+													$datos['actosN3'][$row4['actoN3Id']] = $row4;
+													
+													if(isset($datosArray[4]) && isset($row4)){
+														$this->db->select('*');
+														$this->db->from('actosN4Catalogo');
+														$this->db->where('actosN3Catalogo_actoN3Id',$row4['actoN3Id']);
+														$this->db->where('derechosAfectadosN4Catalogo_derechoAfectadoN4Id',$datosArray[4]);
+														$consultaActoN4 = $this->db->get();
+														
+														if ($consultaActoN4->num_rows() > 0) {
+															foreach ($consultaActoN4->result_array() as $row5) {
+																$datos['actosN4'][$row5['actoN4Id']] = $row5;
+															}
+														}
+													}else{
+														
+														$this->db->select('*');
+														$this->db->from('actosN4Catalogo');
+														$this->db->where('actosN3Catalogo_actoN3Id',$row4['actoN3Id']);
+														$consultaActoN4 = $this->db->get();
+														
+														if ($consultaActoN4->num_rows() > 0) {
+															
+															foreach ($consultaActoN4->result_array() as $row5) {
+																$datos['actosN4'][$row5['actoN4Id']] = $row5;
+															}/*fin foreach $consultaActoN4*/
+														}/*fin if $consultaActoN4*/
+													}/*fin else*/
+													
+												}/*fin foreach $consultaActoN3*/
+											}/* fin if $consultaActoN3*/
+										}else{
+											
+											$this->db->select('*');
+											$this->db->from('actosN3Catalogo');
+											$this->db->where('actosN2Catalogo_actoN2Id',$row3['actoN2Id']);
+											$consultaActoN3 = $this->db->get();
+											
+											if ($consultaActoN3->num_rows() > 0) {
+												foreach ($consultaActoN3->result_array() as $row4) {
+													$datos['actosN3'][$row4['actoN3Id']] = $row4;
+													
+													$this->db->select('*');
+													$this->db->from('actosN4Catalogo');
+													$this->db->where('actosN3Catalogo_actoN3Id',$row4['actoN3Id']);
+													$consultaActoN4 = $this->db->get();
+													
+													if ($consultaActoN4->num_rows() > 0) {
+														
+														foreach ($consultaActoN4->result_array() as $row5) {
+															$datos['actosN4'][$row5['actoN4Id']] = $row5;
+														}/*fin foreach $consultaActoN4*/
+														
+													}/*fin if $consultaActoN4*/
+													
+												}/*fin foreach $consultaActoN3*/
+											}/* fin if $consultaActoN3 */
+										}/*fin else $datosArray[3]*/
+									}/*fin foreach $consultaActoN2*/
+								}/*fin if $consultaActoN2 */
+							}else{
+								$this->db->select('*');
+								$this->db->from('actosN2Catalogo');
+								$this->db->where('actosN1Catalogo_actoId',$row2['actoId']);
+								$consultaActoN2 = $this->db->get();
+								
+								if ($consultaActoN2->num_rows() > 0) {
+									foreach ($consultaActoN2->result_array() as $row3) {
+										
+										$datos['actosN2'][$row3['actoN2Id']] = $row3;
+										
+										$this->db->select('*');
+										$this->db->from('actosN3Catalogo');
+										$this->db->where('actosN2Catalogo_actoN2Id',$row3['actoN2Id']);
+										$consultaActoN3 = $this->db->get();
+										
+										if ($consultaActoN3->num_rows() > 0) {
+											foreach ($consultaActoN3->result_array() as $row4) {
+												$datos['actosN3'][$row4['actoN3Id']] = $row4;
+												
+												$this->db->select('*');
+												$this->db->from('actosN4Catalogo');
+												$this->db->where('actosN3Catalogo_actoN3Id',$row4['actoN3Id']);
+												$consultaActoN4 = $this->db->get();
+												
+												if ($consultaActoN4->num_rows() > 0) {
+													
+													foreach ($consultaActoN4->result_array() as $row5) {
+														$datos['actosN4'][$row5['actoN4Id']] = $row5;
+													}/*fin foreach $consultaActoN4*/
+													
+												}/*fin if $consultaActoN4*/
+												
+											}/*fin foreach $consultaActoN3*/
+											
+										}/*fin if $consultaActoN3*/
+										
+									}/*fin foreach $consultaActoN2*/
+									
+								}/*fin if $consultaActoN2*/
+								
+							}/*fin else */
+		
+							
+							
+						}
+					}
+					
+					
+				}
+				
+				
+				
+				return $datos;
+			}		
+		
+	}
+	
+	/*Este modelo agrega un registro a a una ficha
+	 * @param:
+	 * $datosResgistro = array (
+	 * 							nombreRegistro => 'nombre',
+	 * 							ruta => '/ruta',
+	 * 							fichas_fichaId => 1
+	 * );
+	 * 
+	 * */
+	public function mAgregarRegistroFicha($datosRegistro){
+		
+		/* inserta el array registro en la tabla de registros de la BD */
+		if($this->db->insert('registro', $datosRegistro)){
+			
+			return 'Hecho';
+			
+		}else{
+			
+			$mensaje['error'] = $this->db->_error_message();
+			/* Regresa la cadena al controlador*/
+        	return $mensaje;
+			
+		}
+	}
+	
+	public function mEliminarRegistro($registroId){
+		
+		$this->db->where('registroId', $registroId);
+		
+		if($this->db->delete('registro')){
+		
+			/* Regresa la cadena al controlador*/
+			return ($mensaje = 'Hecho');
 			
 		}else{
 			

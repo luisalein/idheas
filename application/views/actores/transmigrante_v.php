@@ -2,10 +2,7 @@
 	<?php if(isset($datosActor['actores'])){?>
     <img src="<?=base_url().$datosActor['actores']['foto']; ?>" class="foto"/>
     <br />
-    <div class="twelve columns">
-	    <?=$datosActor['actores']['nombre'].' '.$datosActor['actores']['apellidosSiglas']; ?>
 	    <?php }?>
-    </div>
 </div>
 
 <div class="ten columns">	
@@ -336,7 +333,18 @@
 		                                <td><?=$nombreRelacionado?></td>
 		                                <td><?=$relacion['fechaInicial']; ?></td>
 		                                <td><?=$relacion['fechaTermino']; ?></td>
-		                                <td><input type="button" class="tiny button"  value="Editar" onclick="nueva_relacion_a_a('<?=$idActor ?>' , 1 , '<?=$relacion['relacionActoresId']; ?>')" /></td>
+		                                <td>
+		                                	<div class="twelve columns">
+	                                        	<div class="six columns">
+			                                	<input type="button" class="tiny button"  value="Editar" onclick="nueva_relacion_a_a('<?=$idActor ?>' , 1 , '<?=$relacion['relacionActoresId']; ?>')" />
+			                                	</div>
+	                                        	<div class="six columns">
+	                                            <form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarRelacionActor/<?=$relacion['relacionActoresId']."/".$relacion['actorRelacionadoId']; ?>" >
+	                                                <input type="submit" value="Elminar" class="tiny button" />
+	                                            </form>
+	                                        	</div>
+                                        	</div>
+                                        </td>
 		                            </tr>
 		                        <?php }
 		                        }
@@ -349,79 +357,128 @@
 			    </div>
 			    <!--Comienza citado como persona relacionada-->
 	        <div id="subPestanias" data-collapse>
-	            <h2>Citado como persona relacionada</h2>
+	            <h2>Citado como actor</h2>
 	            <div>
-	            <table>
-	                <thead>
-	                    <tr>
-	                        <th>Persona</th>
-	                        <th>Tipo de relación</th>
-	                        <th>Persona Relacionada</th>
-	                        <th>Fecha de incio</th>
-	                        <th>Fecha de témino</th>
-	                    </tr>
-	                </thead>
-	                <tbody>
-	                    <?php if(isset($citaActor['citas'])){
-	                        foreach($citaActor['citas'] as $citas){ ?>
-	                            <tr>
-	                                <td><?=$datosActor['actores']['nombre'].' '.$datosActor['actores']['apellidosSiglas']; ?></td>
-	                                <td><?=$catalogos['relacionActoresCatalogo'][$citas['datosCitas']['tipoRelacionId']]['nombre']; ?></td>
-	                                <td><?=$catalogos['listaTodosActores'][$citas['datosCitas']['actores_actorId']]['nombre']." ".$catalogos['listaTodosActores'][$citas['datosCitas']['actores_actorId']]['apellidosSiglas']?></td>
-	                                <td><?=$citas['datosCitas']['fechaInicial']; ?></td>
-	                                <td><?=$citas['datosCitas']['fechaTermino']; ?></td>
-	                            </tr><?php
-	                        }
-	                    } ?>
-	                </tbody>
-	            </table>
-	            </div>
+		            <table>
+		            <thead>
+		                <tr>
+		                    <th>Persona</th>
+		                    <th>Tipo de relación</th>
+		                    <th>Persona Relacionada</th>
+		                    <th>Fecha de incio</th>
+		                    <th>Fecha de témino</th>
+		                </tr>
+		            </thead>
+		            <tbody>
+		                <?php if(isset($citaActor['citas'])){
+		                    foreach($citaActor['citas'] as $citas){ 
+		                    	if ($citas['datosCitas']['tipoRelacionIndividualColectivoId']==1) {?>
+			                        <tr>
+			                            <td><?=$datosActor['actores']['nombre'].' '.$datosActor['actores']['apellidosSiglas']; ?></td>
+			                            <td><?=$catalogos['relacionActoresCatalogo'][$citas['datosCitas']['tipoRelacionId']]['Nivel2']; ?></td>
+			                            <td><?=$catalogos['listaTodosActores'][$citas['datosCitas']['actores_actorId']]['nombre']." ".$catalogos['listaTodosActores'][$citas['datosCitas']['actores_actorId']]['apellidosSiglas']?></td>
+			                            <td><?=$citas['datosCitas']['fechaInicial']; ?></td>
+			                            <td><?=$citas['datosCitas']['fechaTermino']; ?></td>
+			                        </tr><?php
+		                    	}
+		                    }
+		                } ?>
+		                </tbody>
+		            </table>
+		        </div>
 	        </div>
 	        <!--Termina citado como persona relacionada-->
 		    </div>
 	</div>
 	        
-	        <!--Comienza actores colectivos---->
-	        <div id="pestania" data-collapse>
-	            <h2>Actores colectivos </h2>
-	            <div>
-	            <table>
-	                <thead>
-	                    <tr>
-	                        <th>Persona</th>
-	                        <th>Tipo de relación</th>
-	                        <th>Actor colectivo relacionado </th>
-	                        <th>Fecha de incio</th>
-	                        <th>Fecha de témino</th>
-	                        <th>Acción(es)</th>
-	                    </tr>
-	                </thead>
-	                <tbody>
-	                    <?php if(isset($datosActor['relacionActores'])){
-	                        foreach($datosActor['relacionActores'] as $relacion){
-	                        if ($relacion['tipoRelacionIndividualColectivoId']==2) {
-	                            ?><tr>
-	                                <td><?=$datosActor['actores']['nombre'].' '.$datosActor['actores']['apellidosSiglas']; ?></td>
-	                                <td><?=$catalogos['relacionActoresCatalogo'][$relacion['tipoRelacionId']]['nombre']; ?></td>
-	                                <?php if ($relacion['actorRelacionadoId']>0) {
-	                                   $nombreRelacionado=$catalogos['listaTodosActores'][$relacion['actorRelacionadoId']]['nombre'].' '.$catalogos['listaTodosActores'][$relacion['actorRelacionadoId']]['apellidosSiglas']; 
-	                                }
-	                                else{
-	                                   $nombreRelacionado="No hay actor relacionado";
-	                                }?>
-	                                <td><?=$nombreRelacionado?></td>
-	                                <td><?=$relacion['fechaInicial']; ?></td>
-	                                <td><?=$relacion['fechaTermino']; ?></td>
-	                                <td><input type="button" class="tiny button"  value="Editar" onclick="nueva_relacion_a_Col('<?=$idActor ?>' ,1, '<?=$relacion['relacionActoresId']; ?>')" /></td>
-	                            </tr><?php
-	                        }
-	                        }
-	                    } ?>
-	                </tbody>
-	            </table>
-	            <input type="button" class="tiny button <?=$clase?>"  value="Nuevo" onclick="nueva_relacion_a_Col(<?=$idActor; ?>,0,0)" />
-	            </div>
-	        </div>
-	        <!--Termina actores colectivos-->
+    
+    <!--Comienza actores colectivos---->
+    <div id="pestania" data-collapse>
+        <h2>Actores colectivos </h2>
+        <div>
+
+            <div id="subPestanias" data-collapse >
+                <h2>Relacion con otros actores </h2>
+                <div>
+
+		            <table>
+		                <thead>
+		                    <tr>
+		                        <th>Persona</th>
+		                        <th>Tipo de relación</th>
+		                        <th>Actor colectivo relacionado </th>
+		                        <th>Fecha de incio</th>
+		                        <th>Fecha de témino</th>
+		                        <th>Acción(es)</th>
+		                    </tr>
+		                </thead>
+		                <tbody>
+		                    <?php if(isset($datosActor['relacionActores'])){
+		                        foreach($datosActor['relacionActores'] as $relacion){
+		                        if ($relacion['tipoRelacionIndividualColectivoId']==2) {
+		                            ?><tr>
+		                                <td><?=$datosActor['actores']['nombre'].' '.$datosActor['actores']['apellidosSiglas']; ?></td>
+		                                <td><?=$catalogos['relacionActoresCatalogo'][$relacion['tipoRelacionId']]['Nivel2']; ?></td>
+		                                <?php if ($relacion['actorRelacionadoId']>0) {
+		                                   $nombreRelacionado=$catalogos['listaTodosActores'][$relacion['actorRelacionadoId']]['nombre'].' '.$catalogos['listaTodosActores'][$relacion['actorRelacionadoId']]['apellidosSiglas']; 
+		                                }
+		                                else{
+		                                   $nombreRelacionado="No hay actor relacionado";
+		                                }?>
+		                                <td><?=$nombreRelacionado?></td>
+		                                <td><?=$relacion['fechaInicial']; ?></td>
+		                                <td><?=$relacion['fechaTermino']; ?></td>
+		                                <td><input type="button" class="tiny button"  value="Editar" onclick="nueva_relacion_a_Col('<?=$idActor ?>',1, '<?=$relacion['relacionActoresId']; ?>')" />
+						                    <form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarRelacionActor/<?=$relacion['relacionActoresId']."/".$relacion['actorRelacionadoId']; ?>" >
+						                        <input type="submit" value="Elminar" class="tiny button" />
+						                    </form>
+		                                </td>
+		                            </tr><?php
+		                        }
+		                        }
+		                    } ?>
+		                </tbody>
+		            </table>
+		            <input type="button" class="tiny button <?=$clase?>"  value="Nuevo" onclick="nueva_relacion_a_Col(<?=$idActor; ?>,0,0)" />
+		        </div>
+		    </div>
+
+            <!--Comienza citado como persona relacionada colectivo-->
+		    <div id="subPestanias" data-collapse>
+		        <h2>Citado como actor</h2>
+		        <div>
+		            <table>
+		            <thead>
+		                <tr>
+		                    <th>Persona</th>
+		                    <th>Tipo de relación</th>
+		                    <th>Persona Relacionada</th>
+		                    <th>Fecha de incio</th>
+		                    <th>Fecha de témino</th>
+		                </tr>
+		            </thead>
+		            <tbody>
+		                <?php if(isset($citaActor['citas'])){
+		                    foreach($citaActor['citas'] as $citas){ 
+		                    	if ($citas['datosCitas']['tipoRelacionIndividualColectivoId']==2) {?>
+			                        <tr>
+			                            <td><?=$catalogos['listaTodosActores'][$citas['datosCitas']['actores_actorId']]['nombre']." ".$catalogos['listaTodosActores'][$citas['datosCitas']['actores_actorId']]['apellidosSiglas']?></td>
+			                            <td><?=$catalogos['relacionActoresCatalogo'][$citas['datosCitas']['tipoRelacionId']]['Nivel2']; ?></td>
+			                            <td><?=$datosActor['actores']['nombre'].' '.$datosActor['actores']['apellidosSiglas']; ?></td>
+			                            <td><?=$citas['datosCitas']['fechaInicial']; ?></td>
+			                            <td><?=$citas['datosCitas']['fechaTermino']; ?></td>
+			                        </tr><?php
+		                    	}
+		                    }
+		                } ?>
+		                </tbody>
+		            </table>
+		        </div>
+		    </div>
+		    <!--Termina citado como persona relacionada colectivo-->
+
+        </div>
+    </div>
+        <!--Termina actores colectivos-->
 	</fieldset>
 </div>

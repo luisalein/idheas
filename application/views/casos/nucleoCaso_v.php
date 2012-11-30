@@ -17,20 +17,37 @@
 			            </thead>
 			            <tbody>
   			              <?php if(isset($datosCaso['derechoAfectado'])){ ?>
-			              <?php foreach ($datosCaso['derechoAfectado'] as $index => $lugar) {?>
+			              <?php foreach ($datosCaso['derechoAfectado'] as $index => $derecho) {?>
 			              <tr>
-			              	<td><?php print_r($lugar['derechoAfectadoId']); ?></td>
-
+			              	<?php foreach ($catalogos['derechosAfectadosN'.$derecho['derechoAfectadoNivel'].'Catalogo'] as $catalogo) {
+								  		if($catalogo['derechoAfectadoN'.$derecho['derechoAfectadoNivel'].'Id']==$derecho['derechoAfectadoId']){
+										  	echo '<td>'.$catalogo['descripcion'].'</td>';
+										  }
+							  } ?>
+							  
+							 
+						<?php if(isset($datosCaso['actos'])){?>	  	
 			              <?php foreach ($datosCaso['actos'] as $index2 => $acto) {
-			              	if ($acto['derechoAfectado_derechoAfectadoCasoId']== $lugar['derechoAfectadoCasoId']) { ?>
-			              	<td><?php print_r($acto['actoViolatorioId']); ?></td>
+			              	if ($acto['derechoAfectado_derechoAfectadoCasoId']== $derecho['derechoAfectadoCasoId']) { ?>
+			              		<?php foreach ($catalogos['actosN'.$acto['actoViolatorioNivel'].'Catalogo'] as $catalogo) {
+			              			if($acto['actoViolatorioNivel']==1){
+			              				if($catalogo['actoId']==$acto['actoViolatorioId']){
+										  	echo '<td>'.$catalogo['descripcion'].'</td>';
+										  }
+			              			}else{
+			              				if($catalogo['actoN'.$acto['actoViolatorioNivel'].'Id']==$acto['actoViolatorioId']){
+										  	echo '<td>'.$catalogo['descripcion'].'</td>';
+										  }
+			              			}
+								  		
+							  	} ?>
 			              	<?} }?>
 
-			              	<td><?php print_r($lugar['fechaInicial']); ?></td>
-			              	<td><?php print_r($lugar['fechaTermino']); ?></td>
+			              	<td><?php print_r($derecho['fechaInicial']); ?></td>
+			              	<td><?php print_r($derecho['fechaTermino']); ?></td>
 			                <td><input type="button" class="tiny button"  value="Editar" onclick="ventanaDerAfectados('<?=$casoId; ?>', '<?=$index?>')" />
-			                <input type="button" class="tiny button"  value="Eliminar" onclick="" /></td>
-			              </tr><?php } ?><?php } ?>
+			                <input type="button" class="tiny button"  value="Eliminar" onclick="eliminarDerechoAfectado('<?= $derecho['derechoAfectadoCasoId']?>', '<?=$casoId; ?>')" /></td>
+			              </tr><?php } }?><?php } ?>
 			            </tbody>
 			          </table>
 			    <input type="button" class="tiny button <?=$clase?>"  value="Nuevo " onclick="ventanaDerAfectados('<?=$casoId; ?>',0)" />
