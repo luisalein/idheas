@@ -22,7 +22,11 @@
 			
 			<input type="hidden" name="perpetradores_tipoLugarId" value="<?= (isset($perpetrador['tipoLugarId'])) ? $perpetrador['tipoLugarId'] : " " ;?>" id="perpetradores_tipoLugarId" >
 			
+			<input type="hidden" value="perpetradores_actorRelacionadoId" id="nameDeLaRelacion" >
+	
 			<input type="hidden" name="perpetradores_actorRelacionadoId" value="<?= (isset($perpetrador['actorRelacionadoId'])) ? $perpetrador['actorRelacionadoId'] : " " ;?>" id="perpetradores_actorRelacionadoId" >
+
+
 
 			<fieldset>
 				<legend>Información general</legend>
@@ -152,6 +156,7 @@
 				<h2>Actor Colectivo</h2>
 				<div class=]"twelve columns">
 					Actualmente relacionado con:
+					<div id="vistaActorRelacionadoPerpetrador"></div>
 					<div id="vistaPintaRelaciones">
 						<?php if (isset($perpetrador['actorRelacionadoId'])) { ?>
 		                <div class="three columns" >
@@ -160,7 +165,7 @@
 						<div class="nine columns"><h5><?=(isset($catalogos['listaTodosActores'][$perpetrador['actorRelacionadoId']]['nombre'])) ? $catalogos['listaTodosActores'][$perpetrador['actorRelacionadoId']]['nombre']." "	 : " " ; ?><?= (isset($catalogos['listaTodosActores'][$perpetrador['actorRelacionadoId']]['apellidosSiglas'])) ? $catalogos['listaTodosActores'][$perpetrador['actorRelacionadoId']]['apellidosSiglas'] : "" ;?>
 						</h5> <br> 
 						<h5>Tipo de relacion</h5>
-							
+
 						</div> <input type="button" value="Eliminar" onclick="eliminarRelacionVista('vistaPintaRelaciones','perpetradores_actorRelacionadoId')" class="tiny button">
 						<?php }?> 
 					</div>	

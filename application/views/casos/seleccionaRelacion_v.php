@@ -3,11 +3,15 @@
 	<title><?= $head ?></title>
 </head>
 <body>
+
+	<pre><?php print_r($actoresRelacionados)?></pre>
+	<h3>Actore colectivos relacionados</h3>
     <table>
         <thead>
             <tr>
                 <th>Nombre(s)</th>
                 <th>Sigla(s)</th>
+                <th>Tipo de relación</th>
                 <th>Accion(es)</th>
             </tr>
         </thead>
@@ -18,7 +22,8 @@
 		        			<tr>
 		                        <td><?=(isset($relacionados['actorId'])) ? $catalogos['listaTodosActores'][$relacionados['actorId']]['nombre'] : ''; ?></td>
 		                        <td><?=(isset($relacionados['actorId'])) ? $catalogos['listaTodosActores'][$relacionados['actorId']]['apellidosSiglas'] : ''; ?></td>
-		                        <td><input type="button" class="tiny button" value="Relacionar" onclick="seleccionarRelacionColectivo('<?=(isset($relacionados['actorId'])) ? $catalogos['listaTodosActores'][$relacionados['actorId']]['nombre'] : ''; ?>','<?=(isset($relacionados['actorId'])) ? $catalogos['listaTodosActores'][$relacionados['actorId']]['apellidosSiglas'] : ''; ?>')"></td>
+		                        <td><?=(isset($relacionados['tipoRelacionId'])) ? $catalogos['relacionActoresCatalogo'][$relacionados['tipoRelacionId']]['Nivel2'] : ''; ?></td>
+		                        <td><input type="button" class="tiny button" value="Relacionar" onclick="seleccionarRelacionColectivo('<?=(isset($relacionados['actorId'])) ? $catalogos['listaTodosActores'][$relacionados['actorId']]['nombre'] : ''; ?>','<?=(isset($relacionados['actorId'])) ? $catalogos['listaTodosActores'][$relacionados['actorId']]['apellidosSiglas'] : ''; ?>','<?=(isset($relacionados['tipoRelacionId'])) ? $catalogos['relacionActoresCatalogo'][$relacionados['tipoRelacionId']]['Nivel2'] : ''; ?>','<?=(isset($relacionados['actorRelacionadoId'])) ? $relacionados['actorRelacionadoId'] : ''; ?>')"></td>
 		            		</tr>
         			<?php }
         			} ?>

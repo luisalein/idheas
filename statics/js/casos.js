@@ -28,9 +28,9 @@ function ventanaFuenteDoc(casoId, actorId,indice){
 	};
 
 
-function ventanaFuentePersonal(casoId, indice){
+function ventanaFuentePersonal(casoId,actorId, indice){
 	  var windowSizeArray = [ "width=770,height=700,scrollbars=yes" ];
-	window.open(base+'index.php/casosVentanas_c/fuentesDeInformacionPersonal/'+casoId+'/'+indice+'/', 'Fuente Personal', windowSizeArray);
+	window.open(base+'index.php/casosVentanas_c/fuentesDeInformacionPersonal/'+casoId+'/'+actorId+'/'+indice+'/', 'Fuente Personal', windowSizeArray);
 	};
 
 
@@ -51,6 +51,16 @@ function ventanaPerpetradores(casoId,victimaId,perpetradorId){
 
 /******************************************/
 
+/* Fechas para fuente documental */
+	$(function() {
+		$( "#fechaPubli" ).datepicker({ dateFormat: "yy-mm-dd",
+		changeYear: true });
+		 });
+		 
+	$(function() {
+		$( "#fechaAcceso" ).datepicker({ dateFormat: "yy-mm-dd",
+		changeYear: true });
+		 });
 
 ////Fechas para Seguimiento del caso
 	$(function() {

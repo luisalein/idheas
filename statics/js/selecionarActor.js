@@ -45,6 +45,14 @@ function SeleccionarYTreaeRelaciones(title){
 }    
 
 
+function seleccionarRelacionColectivo(nombre, Siglas, TipoRelacion,IdRelacion){  
+    var nameSeleccionado= window.opener.document.getElementById('nameDeLaRelacion').value;
+    alert(nameSeleccionado);
+    window.opener.document.getElementById(nameSeleccionado).value = IdRelacion;
+    window.opener.document.getElementById('vistaActorRelacionadoPerpetrador').innerHTML = ('<div class="three columns"><img style="width:120px !important; height:150px !important;" src="" /></div><b><h4>'+nombre+' '+Siglas+'<br>Tipo de relacion<br>'+TipoRelacion+'</h4></b>');
+}    
+
+
 function SeleccionarYTreaeRelacionesrceptor(title){  
     var n=title.split("*");
     $('.lista').css('background-color','#fff')

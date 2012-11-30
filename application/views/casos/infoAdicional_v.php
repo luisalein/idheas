@@ -24,13 +24,14 @@
 					            	<?php if(isset($datosCaso['tipoFuenteDocumental'])){
 					            		foreach ($datosCaso['tipoFuenteDocumental'] as $index => $fuenteDoc) { ?>
 							              <tr>
+							              	
 							                <td><?= $fuenteDoc['nombre'] ?></td>
 							                <td><?= ($fuenteDoc['tipoFuenteCatalogo_tipoFuenteId']==$catalogos['tipoFuenteCatalogo'][$fuenteDoc['tipoFuenteCatalogo_tipoFuenteId']]) ? $catalogos['tipoFuenteCatalogo'][$fuenteDoc['tipoFuenteCatalogo_tipoFuenteId']]['descripcion']:$catalogos['tipoFuenteCatalogo'][$fuenteDoc['tipoFuenteCatalogo_tipoFuenteId']]['descripcion'] ?></td>
 							                <td><?= (isset($fuenteDoc['actorReportado']) ? $catalogos['listaTodosActores'][$fuenteDoc['actorReportado']]['nombre'].' '.$catalogos['listaTodosActores'][$fuenteDoc['actorReportado']]['apellidosSiglas'] : 'No hay actor reportado') ?> </td>
 							                <td><?= $fuenteDoc['fecha'] ?></td>
 							                <td><?= $fuenteDoc['fechaAcceso'] ?></td>
 							                <td><input type="button" class="tiny button"  value="Editar" onclick="ventanaFuenteDoc('<?= $casoId; ?>','<?= $fuenteDoc['actorReportado'] ?>','<?= $index ?>')" />
-							                <input type="button" class="tiny button"  value="Eliminar" onclick="" /></td>
+							                <input type="button" class="tiny button"  value="Eliminar" onclick="eliminarFuenteDocumental('<?=$index?>','<?= $casoId; ?>')" /></td>
 							              </tr>
 							              <?php }}?>
 					            </tbody>
@@ -64,8 +65,8 @@
 								                <td><?= $fuentePersonal['tipoFuenteCatalogo_tipoFuenteId'] ?> </td>
 								                <td><?= $fuentePersonal['actorReportadoNombre']." ".$fuentePersonal['actorReportadoApellidosSiglas'] ?></td>
 								                <td><?= $fuentePersonal['fecha'] ?></td>
-								                <td><input type="button" class="tiny button"  value="Editar" onclick="ventanaFuentePersonal('<?= $casoId; ?>', <?= $fuentePersonal['actorReportado'] ?>,'<?= $index ?>')" />
-								                <input type="button" class="tiny button"  value="Eliminar" onclick="" /></td>
+								                <td><input type="button" class="tiny button"  value="Editar" onclick="ventanaFuentePersonal('<?= $casoId; ?>', '<?= $fuentePersonal['actorReportado'] ?>','<?=$fuentePersonal['fuenteInfoPersonalId']?>')" />
+								                <input type="button" class="tiny button"  value="Eliminar" onclick="eliminarFuentePersonal('<?=$fuentePersonal['fuenteInfoPersonalId']?>','<?= $casoId; ?>')" /></td>
 								               <?php }}?>
 								              </tr>
 						            </tbody>

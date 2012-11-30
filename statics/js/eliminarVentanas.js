@@ -14,7 +14,17 @@ function eliminarDerechoAfectado(derechoId, idCaso){
 	document.location.href = base+'index.php/casosVentanas_c/eliminarDerechoAfectado/'+derechoId+'/'+idCaso;
 }
 
+<<<<<<< HEAD
+function eliminarFuenteDocumental(fuenteDocId, idCaso){
+	document.location.href = base+'index.php/casosVentanas_c/eliminarFuenteInfoDocumental/'+fuenteDocId+'/'+idCaso;
+}
+
+function eliminarFuentePersonal(fuentePersonalId, idCaso){
+	document.location.href = base+'index.php/casosVentanas_c/eliminarFuenteInfoPersonal/'+fuentePersonalId+'/'+idCaso;
+}
+=======
 function eliminarRelacionCasos(relacionId,idCaso){
 	document.location.href = base+'index.php/casosVentanas_c/eliminaRelacionCasos/'+relacionId+'/'+idCaso;
 }
 
+>>>>>>> e43706a55188620159c2293236c2f388408aeda3

@@ -507,7 +507,7 @@ class Casos_c extends CI_Controller {
 
         $datos['head'] = $this->load->view('general/head_v', "", true);
 
-		$datos['actoresRelacionados'] = $this->actores_m->mTraeRelacionesColectivo($actorId);
+		$datos['actoresRelacionados'] = $this->actores_m->mTraeRelacionesActor($actorId);
 		
 		$datos['idActor']=$actorId;
 
