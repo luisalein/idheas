@@ -576,7 +576,7 @@
 		  * @param $actorId [INT]
 		  * 
 		  * */
-        public function mTraeRelacionesActor($actorId){
+        public function mTraerRelacionesActor($actorId){
             $this->db->select('*');
             $this->db->from('relacionActores');
             $this->db->where('actores_actorId',$actorId);
@@ -600,6 +600,7 @@
 							$listaActores[$row['actorRelacionadoId']]['nombre'] = $row2['nombre'];
 							$listaActores[$row['actorRelacionadoId']]['apellidosSiglas'] = $row2['apellidosSiglas'];
 							$listaActores[$row['actorRelacionadoId']]['tipoActorId'] = $row2['tipoActorId'];
+							$listaActores[$row['actorRelacionadoId']]['foto'] = $row2['foto'];
 						}
 					}
 					
