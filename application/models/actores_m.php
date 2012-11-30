@@ -533,6 +533,7 @@
         
         /* Fin de mRelacionaActores 
          */
+         
         /*Este modelo trae las relaciones actor-actor de un actor */
         public function mTraeRelacionesColectivo($actorId){
             $this->db->select('actorRelacionadoId');
@@ -570,6 +571,50 @@
 			 
 			 //*fin If*/
 	      }/* fin mTraeRekacionesColectivo*/
+	     
+	     /*Este modelo trae las relaciones actor-actor de un actor 
+		  * @param $actorId [INT]
+		  * 
+		  * */
+        public function mTraeRelacionesActor($actorId){
+            $this->db->select('*');
+            $this->db->from('relacionActores');
+            $this->db->where('actores_actorId',$actorId);
+            $consulta = $this->db->get();
+			
+			//echo '<pre>';
+			//print_r($consulta->num_rows());
+			if($consulta->num_rows() != 0){
+				foreach($consulta->result_array() as $row){
+					
+					$listaActores[$row['actorRelacionadoId']] = $row;
+					
+					$this->db->select('*');
+		            $this->db->from('actores');
+		            $this->db->where('actorId',$row['actorRelacionadoId']);
+		            $actores = $this->db->get();
+					
+					if($actores->num_rows() > 0){
+						foreach($actores->result_array() as $row2){
+							$listaActores[$row['actorRelacionadoId']]['actorId'] = $row2['actorId'];
+							$listaActores[$row['actorRelacionadoId']]['nombre'] = $row2['nombre'];
+							$listaActores[$row['actorRelacionadoId']]['apellidosSiglas'] = $row2['apellidosSiglas'];
+							$listaActores[$row['actorRelacionadoId']]['tipoActorId'] = $row2['tipoActorId'];
+						}
+					}
+					
+
+				}
+				
+				
+                return $listaActores;
+			}else{
+				return '0';
+			}
+			 
+			 //*fin If*/
+	      }/* fin mTraeRekacionesColectivo*/
+	     
 	     
 	     /*Este modelo relaciona un actor con un caso 
 		 * @param $datos 
