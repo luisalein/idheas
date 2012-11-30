@@ -148,7 +148,7 @@
 				</ul>
 			</div>
 
-			<div id="subpestanias" data-collapse>
+			<div id="pestania" data-collapse>
 				<h2>Actor Colectivo</h2>
 				<div class=]"twelve columns">
 					Actualmente relacionado con:
@@ -158,7 +158,10 @@
 		                <img style="width:120px !important; height:150px !important;" src="<?= (isset($catalogos['listaTodosActores'][$perpetrador['actorRelacionadoId']]['foto'])) ? base_url().$catalogos['listaTodosActores'][$perpetrador['actorRelacionadoId']]['foto'] : " " ; ?>" />
 						</div>
 						<div class="nine columns"><h5><?=(isset($catalogos['listaTodosActores'][$perpetrador['actorRelacionadoId']]['nombre'])) ? $catalogos['listaTodosActores'][$perpetrador['actorRelacionadoId']]['nombre']." "	 : " " ; ?><?= (isset($catalogos['listaTodosActores'][$perpetrador['actorRelacionadoId']]['apellidosSiglas'])) ? $catalogos['listaTodosActores'][$perpetrador['actorRelacionadoId']]['apellidosSiglas'] : "" ;?>
-						</h5></div> <input type="button" value="Eliminar" onclick="eliminarRelacionVista('vistaPintaRelaciones','perpetradores_actorRelacionadoId')" class="tiny button">
+						</h5> <br> 
+						<h5>Tipo de relacion</h5>
+							
+						</div> <input type="button" value="Eliminar" onclick="eliminarRelacionVista('vistaPintaRelaciones','perpetradores_actorRelacionadoId')" class="tiny button">
 						<?php }?> 
 					</div>	
 				</div>

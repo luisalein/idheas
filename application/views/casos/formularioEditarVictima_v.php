@@ -101,9 +101,9 @@
 
 							<div class="twelve columns espacio">
 								<br/><label>Perpetradores</label> <br/>
-								<div class="two columns push-ten" >
+								<div class="three columns push-nine" >
 									<?php if ($idVictima>0) {?>
-										<input class="small button" value="nuevo perpetrador" onclick="ventanaPerpetradores('<?=$idActo;  ;?>', <?= $victimas['victimas'][$idVictima]['victimaId']?>, 0)" type="button">
+										<input class="tiny button" value="nuevo perpetrador" onclick="ventanaPerpetradores('<?=$idActo;  ;?>', <?= $victimas['victimas'][$idVictima]['victimaId']?>, 0)" type="button">
 									<?php }?>
 								</div>
 

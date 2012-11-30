@@ -3,15 +3,6 @@
 	<title><?= $head ?></title>
 </head>
 <body>
-
-	<?php if (isset($dato)) { 
-		echo "<script>
-			window.onunload = function(){
-			   window.opener.traeColectivosRelacionados('".$dato."');
-			}
-		    </script>";
-	} ?>
-
     <table>
         <thead>
             <tr>
@@ -27,7 +18,7 @@
 		        			<tr>
 		                        <td><?=(isset($relacionados['actorId'])) ? $catalogos['listaTodosActores'][$relacionados['actorId']]['nombre'] : ''; ?></td>
 		                        <td><?=(isset($relacionados['actorId'])) ? $catalogos['listaTodosActores'][$relacionados['actorId']]['apellidosSiglas'] : ''; ?></td>
-		                        <td><input type="button" class="tiny button" value="Relacionar"></td>
+		                        <td><input type="button" class="tiny button" value="Relacionar" onclick="seleccionarRelacionColectivo('<?=(isset($relacionados['actorId'])) ? $catalogos['listaTodosActores'][$relacionados['actorId']]['nombre'] : ''; ?>','<?=(isset($relacionados['actorId'])) ? $catalogos['listaTodosActores'][$relacionados['actorId']]['apellidosSiglas'] : ''; ?>')"></td>
 		            		</tr>
         			<?php }
         			} ?>
@@ -38,15 +29,13 @@
 
     <div class="twelve columns">
 	    <div class="six columns">
-	    	<input type="button" class="tiny button" value="Cerrar" onclick="seleccionarColectivoConDatos(1)">
+	    	<input type="button" class="tiny button" value="Cerrar" onclick="cerrarVentana()">
 	    </div>
 	    <div class="six columns">
+    		<input type="button" class="tiny button "  value="Nuevo" onclick="nueva_relacion_a_Col(<?=$idActor; ?>,0,0)" />
 	    </div>
     </div>
-    <input type="button" class="tiny button "  value="Nuevo" onclick="nueva_relacion_a_Col(<?=$idActor; ?>,0,0)" />
 	
-	<!-- <pre><?= print_r($actoresRelacionados)?></pre>
-	<pre><?= print_r($catalogos[' listaTodosActores'])?></pre> -->
 
 </body>
 </html>

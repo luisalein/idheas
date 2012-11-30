@@ -507,13 +507,15 @@ class Casos_c extends CI_Controller {
 
         $datos['head'] = $this->load->view('general/head_v', "", true);
 
-		$datos['actoresRelacionados'] = $this->actores_m->mTraeRelacionesColectivo(3);
+		$datos['actoresRelacionados'] = $this->actores_m->mTraeRelacionesColectivo($actorId);
 		
 		$datos['idActor']=$actorId;
 
         $datos['catalogos'] = $this->traer_catalogos();
 
-        $datos['datosActor'] = $this->actores_m->traer_datos_actor_m(3,1);
+        $datos['datosActor'] = $this->actores_m->traer_datos_actor_m($actorId,$datos['catalogos']['listaTodosActores'][$actorId]['tipoActorId']);
+
+        $datos['relaciones']=$datos['datosActor']['relacionActores'];
 
 		$this->load->view('casos/seleccionaRelacion_v', $datos);
 
