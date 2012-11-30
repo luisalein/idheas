@@ -54,12 +54,21 @@
 						<legend>Información general</legend>
 							<label>Victima</label><br/>
 							<div class="twelve columns">
+<script type="text/javascript">
+	function valorID(){
+
+alert("el");
+	}
+
+
+</script>
+
 
 									<input type="hidden"  id="nameSeleccionado"  value="victimas_actorId"><!--Este campo me da el name al que hay modificar el value al agregar acto(SIRVE PARA AGREGAR ACTOR)-->
 
 									<input type="hidden"  id="ValoresBotonCancelar" value="<?= (isset($victimas['victimas'][$idVictima]['actorId'])&&($victimas['victimas'][$idVictima]['actorId']!=0)) ? $victimas['victimas'][$idVictima]['actorId']."*".$victimas['victimas'][$idVictima]['nombre']." ".$victimas['victimas'][$idVictima]['apellidosSiglas']."*".$victimas['victimas'][$idVictima]['foto'] : "" ;  ?>"><!--Este campo da los valores en caso de que se cancele la ventana agregar actor-->
 
-									<input type="hidden" name="victimas_actorId" id="victimas_actorId" value="<?= (isset($victimas['victimas'][$idVictima]['actorId'])) ? $victimas['victimas'][$idVictima]['actorId'] : " " ;?>" >
+									<input type="hidden" onchange="valorID()" name="victimas_actorId" id="victimas_actorId" value="<?= (isset($victimas['victimas'][$idVictima]['actorId'])) ? $victimas['victimas'][$idVictima]['actorId'] : " " ;?>" >
 
 								<div id="vistaActorRelacionado"  >
 

@@ -508,11 +508,40 @@ class Casos_c extends CI_Controller {
 
 	public function traeRelaciones($actorId){
 
-		$datos['actoresRelacionados'] = $this->actores_m->mTraeRelacionesColectivo($actorId);
+        $datos['head'] = $this->load->view('general/head_v', "", true);
+
+		$datos['actoresRelacionados'] = $this->actores_m->mTraeRelacionesColectivo(3);
 		
+		$datos['idActor']=$actorId;
+
+        $datos['catalogos'] = $this->traer_catalogos();
+
+        $datos['datosActor'] = $this->actores_m->traer_datos_actor_m(3,1);
+
 		$this->load->view('casos/seleccionaRelacion_v', $datos);
 
 	}
 	
-	
+	public function actorColectivoDatos($dato){
+		
+		$datos['dato'] = $dato;
+		
+		$datos['head'] = $this->load->view('general/head_v', "", true);
+		 
+		$datos['actoresColectivos'] = $this->actores_m->listado_actores_m(3);
+		
+		$this->load->view('casos/SeleccionActorColectivo', $datos);
+	}
+
+		public function seleccionarColectivoConDatos($dato){
+		
+		$datos['dato'] = $dato;
+		
+		$datos['head'] = $this->load->view('general/head_v',"", true);
+		 
+		$datos['actoresColectivos'] = $this->actores_m->listado_actores_m(3);
+		
+		$this->load->view('casos/SeleccionActorColectivo', $datos);
+	}
+
 }

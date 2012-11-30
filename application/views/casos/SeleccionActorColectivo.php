@@ -5,6 +5,7 @@
 	</head>
 	
 	<body>
+
 		<br />
 		<dl class="tabs">
 		  <dd class="active"><a href="#colectivo">Colectivos</a></dd>
@@ -46,7 +47,12 @@
 			    	<?php if (isset($actoresColectivos)) {
 			    	foreach ($actoresColectivos as $individual) {?>
 
-					    <div class="twelve columns lista" id="<?= $individual['actorId']?>" onclick="Seleccionar('<?= $individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto'] ?>')"> 
+					    <div class="twelve columns lista" id="<?= $individual['actorId']?>" onclick="<?php if (isset($dato)) {
+					    	echo "SeleccionarYTreaeRelaciones('".$individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto']."')";
+					    } else {
+					    	echo "Seleccionar('".$individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto']."')";
+					    }
+					    ?>"> 
 					    		<img class="three columns imagenFoto" src="<?=base_url().$individual['foto'] ?> " />
 					    		<b class="nine columns"> <?php print_r($individual['nombre']." ".$individual['apellidosSiglas']) ?></b>
 						</div >

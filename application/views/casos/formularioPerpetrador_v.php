@@ -24,8 +24,8 @@
 
 			<fieldset>
 				<legend>Información general</legend>
-					<pre><?= print_r($perpetrador)?></pre>
-					<pre><?= print_r($catalogos['listaTodosActores'][$perpetrador['perpetradorId']]['nombre'])?></pre>
+					<!-- <pre><?= print_r($perpetrador)?></pre>
+					<pre><?= print_r($catalogos['listaTodosActores'][$perpetrador['perpetradorId']]['nombre'])?></pre> -->
 				<label>Perpetrador</label>
 
 					<div id="vistaActorRelacionado"  >
@@ -40,7 +40,7 @@
 
 					</div>
 
-					<input type="button" class="small button" onclick="seleccionarActorIndividual()" value="Agregar actor">
+					<input type="button" class="small button" onclick="seleccionarActorColectivoConDatos('1')" value="Agregar actor">
 					<input type="button" class="small button" value="Eliminar actor" onclick="eliminaActor()">
 			</fieldset>
 
@@ -99,9 +99,7 @@
 				</ol>
 			</div>
 
-			<pre><?= print_r($catalogos['gradoInvolucramientoN1Catalogo'])?></pre>
-
-			<div class="twelve columns">
+			<div class="twelve columns espacioSuperior espacioInferior">
 				<label>Status del perpetrador</label>
 					<select name="estatusPerpetradorCatalogo_estatusPerpetradorId">
 						<option></option>
@@ -157,7 +155,16 @@
 				</ul>
 			</div>
 
+			<div class="twelve columns">
+				<h2>Actor Colectivo</h2>
+				<div>
+					Actualmente relacionado con:
+			<input type="button" value="Editar" onclick="ventanaColectivoRelacionados('3')" class="tiny button">
+			<input type="button" value="Eliminar" onclick="ventanaColectivoRelacionados('3')" class="tiny button">
+				</div>
+			</div>
 
+			<div id="vistaPintaRelaciones"></div>
 			<input type="submit" value="Guardar" class="tiny button">
 			<input type="button" value="Cancelar" onclick="ventanaVictimas('1')" class="tiny button">
 
