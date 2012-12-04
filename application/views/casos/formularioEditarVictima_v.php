@@ -13,7 +13,7 @@
 								<center><input class="small button" value="Nueva víctima" type="submit"></center>
 							</form>
 						</div>
-						<?php if (isset($victimas['victimas'][$idVictima]['victimaId'])) { ?>
+						<?php if ($idVictima>0) { ?>
 							<div class="six columns">
 								<form action="<?= base_url(); ?>index.php/casos_c/eliminarVictima/<?=$idActo; ?>/<?=$victimas['victimas'][$idVictima]['victimaId']; ?>">
 								<center><input class="small button" value="Eliminar víctima" type="submit"></center>
@@ -33,7 +33,7 @@
 				</div>
 
 				<div class="twelve columns lineasLista" >
-					<?php if ($victimas!=0) {
+					<?php if ($idVictima>0) {
 						foreach ($victimas['victimas'] as $victima) { ?>
 							 <a href="<?=base_url(); ?>index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/<?=$victima['actorId']; ?>/0">
 							 	<div class="<?= $idVictima==($victima['actorId']) ? "victimaSeleccionada" : "victimaNoSeleccionada" ;?>">
@@ -55,15 +55,16 @@
 							<label>Victima</label><br/>
 							<div class="twelve columns">
 
+
 									<input type="hidden"  id="nameSeleccionado"  value="victimas_actorId"><!--Este campo me da el name al que hay modificar el value al agregar acto(SIRVE PARA AGREGAR ACTOR)-->
 
-									<input type="hidden"  id="ValoresBotonCancelar" value="<?= (isset($victimas['victimas'][$idVictima]['actorId'])&&($victimas['victimas'][$idVictima]['actorId']!=0)) ? $victimas['victimas'][$idVictima]['actorId']."*".$victimas['victimas'][$idVictima]['nombre']." ".$victimas['victimas'][$idVictima]['apellidosSiglas']."*".$victimas['victimas'][$idVictima]['foto'] : "" ;  ?>"><!--Este campo da los valores en caso de que se cancele la ventana agregar actor-->
+									<input type="hidden"  id="ValoresBotonCancelar" value="<?= ($idVictima>0) ? $victimas['victimas'][$idVictima]['actorId']."*".$victimas['victimas'][$idVictima]['nombre']." ".$victimas['victimas'][$idVictima]['apellidosSiglas']."*".$victimas['victimas'][$idVictima]['foto'] : "" ;  ?>"><!--Este campo da los valores en caso de que se cancele la ventana agregar actor-->
 
-									<input type="hidden" name="victimas_actorId" id="victimas_actorId" value="<?= (isset($victimas['victimas'][$idVictima]['actorId'])) ? $victimas['victimas'][$idVictima]['actorId'] : " " ;?>" >
+									<input type="hidden" onchange="valorID()" name="victimas_actorId" id="victimas_actorId" value="<?= ($idVictima>0) ? $victimas['victimas'][$idVictima]['actorId'] : " " ;?>" >
 
 								<div id="vistaActorRelacionado"  >
 
-					                <?php if(isset($victimas['victimas'][$idVictima])){ ?>    
+					                <?php if($idVictima>0){ ?>    
 
 					                <input type="hidden" value="<?=$idVictima; ?>" name="victimas_victimaId" />
 
@@ -81,7 +82,7 @@
 								<br /><label>Estado</label>	<br />
 								<select name="victimas_estatusVictimaId" id="victimas_estatusVictimaId">
 									<option></option>
-									<?php if (isset($victimas['victimas'][$idVictima]['estatusVictimaId']) ){
+									<?php if ($idVictima>0){
 										foreach ($catalogos['estatusVictimaCatalogo'] as $estatus) { ?>
 										<option value="<?= $estatus['estatusVictimaId'];?>" onclick="notasCatalogos('<?= $estatus['notas']; ?>')" <?= ($victimas['victimas'][$idVictima]['estatusVictimaId']==$estatus['estatusVictimaId']) ? "selected=selected" : "" ;?> ><?= $estatus['descripcion'];?></option>
 									<?php }
@@ -95,14 +96,14 @@
 
 							<div class="twelve columns">
 								<br /><label>Comentarios sobre víctimas y perpetradores</label>	<br />
-									 <textarea  placeholder="Escribir algun comentario"  rows="10" cols="100" name="victimas_comentarios" id="victimas_comentarios"  wrap="hard" ><?= (isset($victimas['victimas'][$idVictima]['comentarios'])) ? $victimas['victimas'][$idVictima]['comentarios'] : "" ; ?></textarea>
+									 <textarea  placeholder="Escribir algun comentario"  rows="10" cols="100" name="victimas_comentarios" id="victimas_comentarios"  wrap="hard" ><?= ($idVictima>0) ? $victimas['victimas'][$idVictima]['comentarios'] : "" ; ?></textarea>
 							</div>
 
 							<div class="twelve columns espacio">
 								<br/><label>Perpetradores</label> <br/>
-								<div class="two columns push-ten" >
-									<?php if (isset($victimas['victimas'][$idVictima]['victimaId'])) {?>
-										<input class="small button" value="nuevo perpetrador" onclick="ventanaPerpetradores('<?=$idActo;  ;?>', <?= $victimas['victimas'][$idVictima]['victimaId']?>, 0)" type="button">
+								<div class="three columns push-nine" >
+									<?php if ($idVictima>0) {?>
+										<input class="tiny button" value="nuevo perpetrador" onclick="ventanaPerpetradores('<?=$idActo;  ;?>', <?= $victimas['victimas'][$idVictima]['victimaId']?>, 0)" type="button">
 									<?php }?>
 								</div>
 

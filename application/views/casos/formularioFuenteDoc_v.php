@@ -93,30 +93,30 @@
 							</div>
 							
 							
-							
+							<div class="twelve columns">
+							<fieldset>
+								<legend>Actor reportado</legend>
+									<input type="radio"  value="" name="" id=""/>Persona
+									<input type="radio"  value="" name="" id=""/>Actor colectivo
+									<b>Persona:</b> <br />
+																
+									
+									<div id="pestania" data-collapse >
+										<h2 class="open">Actor colectivo</h2><!--título de la sub-pestaña-->  
+											<div >
+											  
+											</div>
+									</div>
+							</fieldset>
+						</div>
 							
 							
 					
 						
 						</div>
-						<div class="twelve columns">
-								<fieldset>
-									<legend>Actor reportado</legend>
-										<input type="radio"  value="" name="" id=""/>Persona
-										<input type="radio"  value="" name="" id=""/>Actor colectivo
-										<b>Persona:</b> <br />
-																	
-										
-										<div id="pestania" data-collapse >
-											<h2 class="open">Actor colectivo</h2><!--título de la sub-pestaña-->  
-												<div >
-												  
-												</div>
-										</div>
-								</fieldset>
-							</div>
+						
 
-			</div>										
+						</div>										
 										
 				</fieldset>
 			</div>

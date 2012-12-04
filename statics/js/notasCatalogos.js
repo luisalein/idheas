@@ -47,11 +47,36 @@ function tipoPerpetrador(id, notas, descripcion, nivel,flechita,e){
 }
 /* Notas Grado de involucramiento */
 
-function involucramientoPerpetradores(notas, descripcion, id, nivel) {
+function involucramientoPerpetradores(notas, descripcion, id, nivel,e) {
 
 	$('#subNivelInvolucramiento'+id).toggleClass("Escondido");
 	$("#gradoDeInvolucramiento").html(descripcion);
 	$("#notasgradoDeInvolucramiento").html(notas);
+	$('.colorTipoPerpetrador').css('background-color', '#efefef');
+    $(e).css('background-color', '#ddd');
     document.getElementById('perpetradores_gradoInvolucramientoid').value=id;
     document.getElementById('perpetradores_nivelInvolugramientoId').value=nivel;
+
+    subnivel= $(e).attr('value');
+	    if (subnivel == "subnivel"){
+				$(e).toggleClass("ExpanderFlecha");
+    			$('.colorTipoPerpetrador').css('background-color', '#efefef');
+		};
+}
+
+
+function tipoLugarNotas(notas, descripcion, id,e) {
+
+	$('#subnivel'+id).toggleClass("Escondido");
+	$("#tipoLugarActo").html(descripcion);
+	$("#notastipoLugarActo").html(notas);
+    document.getElementById('perpetradores_tipoLugarId').value=id;
+	$('.colorTipoLugar').css('background-color', '#efefef');
+    $(e).css('background-color', '#ddd');
+
+    subnivel= $(e).attr('value');
+	    if (subnivel == "subnivel"){
+				$(e).toggleClass("ExpanderFlecha");
+    			$('.colorTipoLugar').css('background-color', '#efefef');
+		};
 }
