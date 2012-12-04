@@ -22,8 +22,6 @@ $(document).ready(function() {
 				
     });
     
-    
-    
 });
 
 function returnActores(){
@@ -270,7 +268,7 @@ function eliminarCaso(idCaso){
         	
              alert(data);    
               
-             document.location.href = base+'index.php/casos_c/mostrar_caso';
+             document.location.href = base+'index.php/casos_c/mostrar_caso/';
         },
         
         error: function(){

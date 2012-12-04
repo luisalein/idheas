@@ -46,7 +46,7 @@ class ReporteExcel_c extends CI_Controller
 						
 		$this->excel->getActiveSheet()->setCellValue('C1', 'Tipo de perpetrador');
 						
-		$this->excel->getActiveSheet()->setCellValue('D1', 'Número de Víctimas');
+		$this->excel->getActiveSheet()->setCellValue('D1', 'Número de Víctimas del caso');
 						
 		$this->excel->getActiveSheet()->setCellValue('E1', 'Fecha de inicio');
 						
@@ -61,7 +61,7 @@ class ReporteExcel_c extends CI_Controller
 			
 		$Data = $this->reportes_m->mReporteCortoActoDerechoAfectado($datos);
 		
-		$datos = array('nombre'=>'caso1');
+		$datos = array('nombre'=>'Caso 2');
 			
 		$Data = $this->reportes_m->mReporteCortoNombre($datos);
 		
@@ -81,12 +81,14 @@ class ReporteExcel_c extends CI_Controller
                     case(2): 
 						$datos = array('desdeFecha'=>$_POST['fechaInicial'],'hastaFecha'=>$_POST['fechaTermino']);
                         $Data = $this->reportes_m->mReporteCortoFechas($datos);
-
                     break;
 
                     case(3): 
-						$datos =array('actoViolatorioId'=>$_POST['derechoId'],'actoViolatorioNivel'=>$_POST['nivelId']);
+						$datos =array('derechoAfectadoId'=>$_POST['derechoAfectadoId'],'actoViolatorioNivel'=>$_POST['actoViolatorioNivel'],'actoViolatorioId'=>$_POST['actoViolatorioId']);
                         $Data = $this->reportes_m->mReporteCortoActoDerechoAfectado($datos);
+                      // print_r($_POST);
+                      echo "<pre>";
+                     print_r($Data);
 
                     break;
                 
@@ -98,83 +100,68 @@ class ReporteExcel_c extends CI_Controller
 		
 		if($tipo == 1){
 			
-			for($i=1 ; $i <= sizeof($Data['actos']); $i++){
-			
-				$n = $Data['actos'][$i]['actoViolatorioNivel'];
-				
-				if($n == 1){
-					for($j=1; $j<= sizeof($catActos['actosN'.$n.'Catalogo']); $j++){
-					
-						if($catActos['actosN'.$n.'Catalogo'][$j]['actoId'] == $Data['actos'][$i]['actoViolatorioId']){
-							$Data['actos'][$i]['actoViolatorioId'] = $catActos['actosN'.$n.'Catalogo'][$j]['descripcion'];
-						}
-						
-					}
-					
-				}else{
-					
-					for($j=1; $j<= sizeof($catActos['actosN'.$n.'Catalogo']); $j++){
-					
-						if($catActos['actosN'.$n.'Catalogo'][$j]['actoN'.$n.'Id'] == $Data['actos'][$i]['actoViolatorioId']){
-							$Data['actos'][$i]['actoViolatorioId'] = $catActos['actosN'.$n.'Catalogo'][$j]['descripcion'];
-						}
-						
-					}
-					
-				}
-				
-				
-			}
-						
-			for($i=1 ; $i <= sizeof($Data['derechoAfectado']); $i++){
-				
-				$n = $Data['derechoAfectado'][$i]['derechoAfectadoNivel'];
-				
-					for($j=1; $j<= sizeof($catDA['derechosAfectadosN'.$n.'Catalogos']); $j++){
-					
-						if($catDA['derechosAfectadosN'.$n.'Catalogos'][$j]['derechoAfectadoN'.$n.'Id'] == $Data['derechoAfectado'][$i]['derechoAfectadoId']){
-							$Data['derechoAfectado'][$i]['derechoAfectadoId'] = $catDA['derechosAfectadosN'.$n.'Catalogos'][$j]['descripcion'];
-						
-					}
-					
-				}
-				
-				
-			}
-			
 			$actoslist="";
+			if(isset($Data['actos']) && isset($Data['derechoAfectado']) ){
+					foreach($Data['actos'] as $acto){
+						foreach ($catDA['derechosAfectadosN'.$Data['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['derechoAfectadoNivel'].'Catalogos'] as $DA) {
+							if($DA['derechoAfectadoN'.$Data['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['derechoAfectadoNivel'].'Id']==$Data['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['derechoAfectadoId']){
+								$derechoAfectado = $DA['descripcion'];
+							}
+						}
+						
+						if($acto['actoViolatorioNivel']==1){
+							foreach ($catActos['actosN'.$acto['actoViolatorioNivel'].'Catalogos'] as $catA) {
+								if($catA['actoId']==$acto['actoId']){
+									$nombreActo = $catA['descripcion'];
+								}
+							}
+						}else{
+							foreach ($catActos['actosN'.$acto['actoViolatorioNivel'].'Catalogo'] as $catA) {
+								if($catA['actoN'.$acto['actoViolatorioNivel'].'Id']==$acto['actoId']){
+									$nombreActo = $catA['descripcion'];
+								}
+							}
+						}
+						
+						
+						$actoslist = $actoslist."Derecho Afectado: ".$derechoAfectado." . Acto:".$nombreActo.". "
+						."(Fecha inicio: ".$Data['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['fechaInicial'].". Fecha término: ".
+						$Data['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['fechaTermino']."No victimas:  "
+						.$Data['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['noVictimas']." )."."\n";
+	
+					}
+				}
 			
-			for($k=1; $k <= sizeof($Data['actos']); $k++){
-				
-				$actoslist = $actoslist."Derecho Afectado: ".$Data['derechoAfectado'][$k]['derechoAfectadoId']." Acto:".$Data['actos'][$k]['actoViolatorioId'].". "
-				."(Fecha inicio: ".$Data['derechoAfectado'][$k]['fechaInicial']."Fecha término: ".$Data['derechoAfectado'][$k]['fechaTermino'].")";
-				
-			}
 			
-			
-			for($i=1 ; $i <= sizeof($Data['perpetradores']); $i++){
+			if(isset($Data['perpetradores'])){
+				for($i=1 ; $i <= sizeof($Data['perpetradores']); $i++){
 				
-				$n = $Data['perpetradores'][$i]['tipoPerpetradorNivel'];
-				
-					for($j=1; $j<= sizeof($catPerpe['tipoPerpetradorN'.$n.'Catalogo']); $j++){
+					$n = $Data['perpetradores'][$i]['tipoPerpetradorNivel'];
 					
-						if($catPerpe['tipoPerpetradorN'.$n.'Catalogo'][$j]['tipoPerpetradorN'.$n.'Id'] == $Data['perpetradores'][$i]['tipoPerpetradorId']){
-							$Data['perpetradores'][$i]['tipoPerpetradorId'] = $catPerpe['tipoPerpetradorN'.$n.'Catalogo'][$j]['descripcion'];
+						for($j=1; $j<= sizeof($catPerpe['tipoPerpetradorN'.$n.'Catalogo']); $j++){
+						
+							if($catPerpe['tipoPerpetradorN'.$n.'Catalogo'][$j]['tipoPerpetradorN'.$n.'Id'] == $Data['perpetradores'][$i]['tipoPerpetradorId']){
+								$Data['perpetradores'][$i]['tipoPerpetradorId'] = $catPerpe['tipoPerpetradorN'.$n.'Catalogo'][$j]['descripcion'];
+							
+						}
 						
 					}
 					
+					
 				}
-				
-				
 			}
+			
+			
 			
 			$perpetradoreslist="";
-			
-			for($k=1; $k <= sizeof($Data['perpetradores']); $k++){
-				
-				$perpetradoreslist = $perpetradoreslist.$Data['perpetradores'][$k]['tipoPerpetradorId'].". ";
-				
+			if(isset($Data['perpetradores'])){
+				for($k=1; $k <= sizeof($Data['perpetradores']); $k++){
+					
+					$perpetradoreslist = $perpetradoreslist.$Data['perpetradores'][$k]['tipoPerpetradorId'].". ";
+					
+				}
 			}
+			
 			
 			$this->excel->getActiveSheet()->setCellValue('A2', $Data['caso']['nombre']);
 			
@@ -182,107 +169,89 @@ class ReporteExcel_c extends CI_Controller
 			
 			$this->excel->getActiveSheet()->setCellValue('C2', $perpetradoreslist);
 			
-			$this->excel->getActiveSheet()->setCellValue('D2', sizeof($Data['victimas']));
+			$this->excel->getActiveSheet()->setCellValue('D2', $Data['caso']['personasAfectadas']);
 			
 			$this->excel->getActiveSheet()->setCellValue('E2', $Data['caso']['fechaInicial']);
 			
 			$this->excel->getActiveSheet()->setCellValue('F2', $Data['caso']['fechaTermino']);
 		}else{
+			$r=1;
 			
-			for($r=1; $r<=sizeof($Data['casos']);$r++){
+			foreach($Data['casos'] as $caso){
 			
-							
-				for($i=1 ; $i <= sizeof($Data['casos'][$r]['actos']); $i++){
-					
-					$n = $Data['casos'][$r]['actos'][$i]['actoViolatorioNivel'];
-					
-					if($n == 1){
-						for($j=1; $j<= sizeof($catActos['actosN'.$n.'Catalogo']); $j++){
-						
-							if($catActos['actosN'.$n.'Catalogo'][$j]['actoId'] == $Data['casos'][$r]['actos'][$i]['actoViolatorioId']){
-								$Data['casos'][$r]['actos'][$i]['actoViolatorioId'] = $catActos['actosN'.$n.'Catalogo'][$j]['descripcion'];
-							}
-							
-						}
-						
-					}else{
-						
-						for($j=1; $j<= sizeof($catActos['actosN'.$n.'Catalogo']); $j++){
-						
-							if($catActos['actosN'.$n.'Catalogo'][$j]['actoN'.$n.'Id'] == $Data['casos'][$r]['actos'][$i]['actoViolatorioId']){
-								$Data['casos'][$r]['actos'][$i]['actoViolatorioId'] = $catActos['actosN'.$n.'Catalogo'][$j]['descripcion'];
-							}
-							
-						}
-						
-					}
-					
-					
-				}
-							
-				for($i=1 ; $i <= sizeof($Data['casos'][$r]['derechoAfectado']); $i++){
-				
-					$n = $Data['casos'][$r]['derechoAfectado'][$i]['derechoAfectadoNivel'];
-					
-						for($j=1; $j<= sizeof($catDA['derechosAfectadosN'.$n.'Catalogos']); $j++){
-						
-							if($catDA['derechosAfectadosN'.$n.'Catalogos'][$j]['derechoAfectadoN'.$n.'Id'] == $Data['casos'][$r]['derechoAfectado'][$i]['derechoAfectadoId']){
-								$Data['casos'][$r]['derechoAfectado'][$i]['derechoAfectadoId'] = $catDA['derechosAfectadosN'.$n.'Catalogos'][$j]['descripcion'];
-							
-						}
-						
-					}
-					
-					
-				}
-				
 				$actoslist="";
 				
-				
-				for($k=1; $k <= sizeof($Data['casos'][$r]['actos']); $k++){
-					
-					$actoslist = $actoslist."Derecho Afectado: ".$Data['casos'][$r]['derechoAfectado'][$k]['derechoAfectadoId']." Acto:".$Data['casos'][$r]['actos'][$k]['actoViolatorioId'].". "
-					."(Fecha inicio: ".$Data['casos'][$r]['derechoAfectado'][$k]['fechaInicial']."Fecha término: ".$Data['casos'][$r]['derechoAfectado'][$k]['fechaTermino'].")";
-					
-				}
-				for($i=1 ; $i <= sizeof($Data['casos'][$r]['perpetradores']); $i++){
-					
-					$n = $Data['casos'][$r]['perpetradores'][$i]['tipoPerpetradorNivel'];
-					
-						for($j=1; $j<= sizeof($catPerpe['tipoPerpetradorN'.$n.'Catalogo']); $j++){
-						
-							if($catPerpe['tipoPerpetradorN'.$n.'Catalogo'][$j]['tipoPerpetradorN'.$n.'Id'] == $Data['casos'][$r]['perpetradores'][$i]['tipoPerpetradorId']){
-								$Data['casos'][$r]['perpetradores'][$i]['tipoPerpetradorId'] = $catPerpe['tipoPerpetradorN'.$n.'Catalogo'][$j]['descripcion'];
-							
+				if(isset($caso['actos']) && isset($caso['derechoAfectado']) ){
+					foreach($caso['actos'] as $acto){
+						foreach ($catDA['derechosAfectadosN'.$caso['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['derechoAfectadoNivel'].'Catalogos'] as $DA) {
+							if($DA['derechoAfectadoN'.$caso['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['derechoAfectadoNivel'].'Id']==$caso['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['derechoAfectadoId']){
+								$derechoAfectado = $DA['descripcion'];
+							}
 						}
 						
+						if($acto['actoViolatorioNivel']==1){
+							foreach ($catActos['actosN'.$acto['actoViolatorioNivel'].'Catalogos'] as $catA) {
+								if($catA['actoId']==$acto['actoId']){
+									$nombreActo = $catA['descripcion'];
+								}
+							}
+						}else{
+							foreach ($catActos['actosN'.$acto['actoViolatorioNivel'].'Catalogo'] as $catA) {
+								if($catA['actoN'.$acto['actoViolatorioNivel'].'Id']==$acto['actoId']){
+									$nombreActo = $catA['descripcion'];
+								}
+							}
+						}
+						
+						
+						$actoslist = $actoslist."Derecho Afectado: ".$derechoAfectado." . Acto:".$nombreActo.". "
+						."(Fecha inicio: ".$caso['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['fechaInicial'].". Fecha término: ".
+						$caso['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['fechaTermino'].". No victimas: ".
+						$caso['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['noVictimas'].")."."\n\n";
+	
 					}
-					
-					
 				}
-				
+
 				$perpetradoreslist="";
 				
-				for($k=1; $k <= sizeof($Data['casos'][$r]['perpetradores']); $k++){
+				if(isset($caso['perpetradores'])){
+					foreach($caso['perpetradores'] as $perpetrador){
 					
-					$perpetradoreslist = $perpetradoreslist.$Data['casos'][$r]['perpetradores'][$k]['tipoPerpetradorId'].". ";
-					
+						$n =$caso['perpetradores'][$i]['tipoPerpetradorNivel'];
+						
+							for($j=1; $j<= sizeof($catPerpe['tipoPerpetradorN'.$n.'Catalogo']); $j++){
+							
+								if($catPerpe['tipoPerpetradorN'.$n.'Catalogo'][$j]['tipoPerpetradorN'.$n.'Id'] == $caso['perpetradores'][$i]['tipoPerpetradorId']){
+									$caso['perpetradores'][$i]['tipoPerpetradorId'] = $catPerpe['tipoPerpetradorN'.$n.'Catalogo'][$j]['descripcion'];
+								
+							}
+						}
+					}
 				}
-				$r = $r +1;
 				
-				$this->excel->getActiveSheet()->setCellValue('A'.$r, $Data['casos'][$r-1]['caso']['nombre']);
+				
+				
+				if(isset($caso['perpetradores'])){
+					for($k=1; $k <= sizeof($caso['perpetradores']); $k++){
+					
+						$perpetradoreslist = $perpetradoreslist.$caso['perpetradores'][$k]['tipoPerpetradorId'].". ";
+						
+					}
+				}
+				
+				$r = $r+1;
+				
+				$this->excel->getActiveSheet()->setCellValue('A'.$r, $caso['caso']['nombre']);
 				
 				$this->excel->getActiveSheet()->setCellValue('B'.$r, $actoslist);
 				
 				$this->excel->getActiveSheet()->setCellValue('C'.$r, $perpetradoreslist);
 				
-				$this->excel->getActiveSheet()->setCellValue('D'.$r, sizeof($Data['casos'][$r-1]['victimas']));
+				$this->excel->getActiveSheet()->setCellValue('D'.$r, $caso['caso']['personasAfectadas']);
 				
-				$this->excel->getActiveSheet()->setCellValue('E'.$r, $Data['casos'][$r-1]['caso']['fechaInicial']);
+				$this->excel->getActiveSheet()->setCellValue('E'.$r, $caso['caso']['fechaInicial']);
 				
-				$this->excel->getActiveSheet()->setCellValue('F'.$r, $Data['casos'][$r-1]['caso']['fechaTermino']);
-				
-					
+				$this->excel->getActiveSheet()->setCellValue('F'.$r, $caso['caso']['fechaTermino']);
 				
 			}
 			

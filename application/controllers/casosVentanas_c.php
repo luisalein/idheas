@@ -296,11 +296,20 @@ class CasosVentanas_c extends CI_Controller {
 					}
 					$mensaje = $mansaje . $this->casos_m->mActualizaDatosDerechoAfectado($datos['derechoAfectado'],$datos['derechoAfectado']['derechoAfectadoCasoId']);
 				}else{
-					$datos['actos']['casos_casoId']=$datos['lugares']['casos_casoId'];
-					$datos3['derechoAfectado'] =  $datos['derechoAfectado'];
-					$Id = $this->casos_m->mAgregarDerechosAfectados($datos3);
-					$datos['actos']['derechoAfectado_derechoAfectadoCasoId']=$Id;
-					$mensaje = $this->casos_m->mAgregarActoDerechoAfectado($datos['actos']);
+					if(isset($datos['actos'])){
+		            	$datos['actos']['casos_casoId']=$datos['lugares']['casos_casoId'];
+						$datos3['derechoAfectado'] =  $datos['derechoAfectado'];
+						$Id = $this->casos_m->mAgregarDerechosAfectados($datos3);
+						$datos['actos']['derechoAfectado_derechoAfectadoCasoId']=$Id;
+						$mensaje = $this->casos_m->mAgregarActoDerechoAfectado($datos['actos']);
+					} else{
+						echo "<script languaje='javascript' type='text/javascript'>
+								alert('Ningun derecho/acto fue seleccionado');
+							</script>";
+							
+						$mensaje ='';
+					}
+					
 				}
             break;
 			
