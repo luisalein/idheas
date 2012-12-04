@@ -19,7 +19,7 @@
 	  	</div>
 	  	<div id="casos_fechaTermino">
 	  		<p>Fecha término:
-          	<span id="casos_fechaInicial"><?=(isset($datosCaso['casos']['fechaInicial'])) ? $datosCaso['casos']['fechaInicial'] : ''; ?></span>
+          	<span id="casos_fechaInicial"><?=(isset($datosCaso['casos']['fechaTermino'])) ? $datosCaso['casos']['fechaTermino'] : ''; ?></span>
           	</p>
                 <form action="<?=base_url(); ?>index.php/ReportePdf_c/generaReporteLargo/<?=$casoId; ?>" method="post" >
                     <input type="submit" class="tiny button <?=$clase?>" value="Exportar" />

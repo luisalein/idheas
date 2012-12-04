@@ -51,6 +51,40 @@ function ventanaPerpetradores(casoId,victimaId,perpetradorId){
 
 /******************************************/
 
+<<<<<<< HEAD
+/***Activar y desactivar botones para generar reportes*****/
+$(function(){
+	$('#nombreCaso').click(function(){
+		var select=document.getElementById('botonNombre');
+  		select.removeAttribute('disabled');
+  		$('#botonFecha').attr('disabled','disabled'); 
+  		$('#botonDA').attr('disabled','disabled'); 
+  		
+	});
+});
+
+$(function(){
+	$('#fechaInicial').click(function(){
+		var select=document.getElementById('botonFecha');
+  		select.removeAttribute('disabled');
+  		$('#botonNombre').attr('disabled','disabled'); 
+  		$('#botonDA').attr('disabled','disabled'); 
+  		
+	});
+});
+
+$(function(){
+	$('#fechaTermino').click(function(){
+		var select=document.getElementById('botonFecha');
+  		select.removeAttribute('disabled');
+  		$('#botonNombre').attr('disabled','disabled'); 
+  		$('#botonDA').attr('disabled','disabled'); 
+  		
+	});
+});
+
+/******************************************/
+=======
 /* Fechas para fuente documental */
 	$(function() {
 		$( "#fechaPubli" ).datepicker({ dateFormat: "yy-mm-dd",
@@ -61,6 +95,7 @@ function ventanaPerpetradores(casoId,victimaId,perpetradorId){
 		$( "#fechaAcceso" ).datepicker({ dateFormat: "yy-mm-dd",
 		changeYear: true });
 		 });
+>>>>>>> d1aed954b79e30de3e13a816a6a108a2f06f4316
 
 ////Fechas para Seguimiento del caso
 	$(function() {
@@ -104,6 +139,16 @@ function ventanaPerpetradores(casoId,victimaId,perpetradorId){
 /***Funcion para cambiar el año****/
 	$(function() {
 		$( "#fichaSinDiaSinMesR" ).datepicker({ dateFormat: "yy-00-00"});
+		});
+
+/****Fechas para reporte corto****/
+
+$(function() {
+		$( "#fechaInicial" ).datepicker({ dateFormat: "yy-mm-dd"});
+		});
+
+$(function() {
+		$( "#fechaTermino" ).datepicker({ dateFormat: "yy-mm-dd"});
 		});
 
 
@@ -280,9 +325,15 @@ function traerActos(id1,id2,id3,id4){
 	        type: 'POST',
 	                
 	        success: function(data){ 
-	               
 	          $('#listaActos').html(data);  
-	            
+	          	var select=document.getElementById('botonDA');
+	          	if(select != 'undefined'){
+		          		select.removeAttribute('disabled');
+			  		$('#botonNombre').attr('disabled','disabled'); 
+			  		$('#botonFecha').attr('disabled','disabled');      
+		               
+	          	}
+		  		
 	        },
 	        
 	        error: function(){
@@ -307,6 +358,7 @@ function  nombrarActo(descripcion, valor,notas,nivel,e){
 	    if (subnivel == "subnivel"){
 				$(e).toggleClass('ExpanderFlecha');
 		};
+	
 };
 
 

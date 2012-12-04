@@ -65,19 +65,6 @@
 					}
 				}
 				
-				/* Trae todos los datos de nucleoCaso*/
-				$this->db->select('*');
-				$this->db->from('nucleoCaso');
-				$this->db->where('casos_casoId',$casoId);
-				$consulta = $this->db->get();
-							
-				if ($consulta->num_rows() > 0){				
-					/* Pasa la consulta a un cadena */
-					foreach ($consulta->result_array() as $row) {
-						$datos['nucleoCaso'] = $row;
-					}
-				}
-				
 				/* Trae todos los datos de intervenciones*/
 				$this->db->select('*');
 				$this->db->from('intervenciones');
@@ -304,12 +291,11 @@
 			/*$datos = array('desdeFecha'=>'fechainicial','hastaFecha'=>'fechafinal');
 			 * */
 			public function mReporteCortoFechas($datos){
-				
 				/* Trae los casoId de los casos que esten entre las fechas desdeFecha, hastaFecha*/
 				$this->db->select('casoId');
 				$this->db->from('casos');
-				$this->db->where('fechaInicial >',$datos['desdeFecha']);
-				$this->db->where('fechaInicial <',$datos['hastaFecha']);
+				$this->db->where('fechaInicial >=',$datos['desdeFecha']);
+				$this->db->where('fechaInicial <=',$datos['hastaFecha']);
 				$consulta = $this->db->get();
 				
 				if ($consulta->num_rows() > 0){				
@@ -323,8 +309,8 @@
 						$casoId = $row['casoId'];
 						$datosCasos['casos'][$row['casoId']]=$this->mTraeDatosCorto($casoId);
 					}
-					
 					return($datosCasos);
+					
 				}/*fin if */
 				
 			}/* fin de mReporteCortoFechas*/

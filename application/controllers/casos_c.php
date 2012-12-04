@@ -196,6 +196,8 @@ class Casos_c extends CI_Controller {
 			
 			 $mensaje = $this->casos_m->mCambiaEstadoActivoCaso($casoId);
 			
+				$mensaje = 'Hecho';
+			
 		}else{
 			
 			$mensaje = "Este caso tiene otros casos o actores relacionados, elimina primero estas relaciones";

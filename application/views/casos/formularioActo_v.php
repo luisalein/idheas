@@ -19,6 +19,7 @@
                 <input type="hidden" value="<?php if(isset($acto)) echo $acto['actoId']?>" name="actos_actoId" id="actos_actoId" />
                 <input type="hidden" value="<?php if(isset($derechoAfectado)) echo $derechoAfectado['derechoAfectadoCasoId']?>" name="derechoAfectado_derechoAfectadoCasoId" id="derechoAfectado_derechoAfectadoCasoId" />
                 <input type="hidden" value="5" name="5" id="tipoActorAE" />
+
                 	<?php if(isset($derechoAfectado['derechoAfectadoNivel'])):?>
                 		<?php foreach($derechosAfectados['derechosAfectadosN'.$derechoAfectado['derechoAfectadoNivel'].'Catalogos'] as $derecho){
                 			if($derecho['derechoAfectadoN'.$derechoAfectado['derechoAfectadoNivel'].'Id']==$derechoAfectado['derechoAfectadoId']){
@@ -147,7 +148,7 @@
 	                   <?php endif;?>
                         
                         
-				         <br /><br />
+				        	 <br /><br />
 							<div  id="listaActos" class="cajaDerchosActos">	
 				                       
 							</div>
@@ -157,6 +158,7 @@
 							<div class="six columns">
 								<label for="edad">Fecha de inicio</label>
 									<select onclick="fechaInicialCasosActos(value)">
+												<option></option>
 												<option  value="1" checked="checked" >fecha exacta</option>
 												<option  value="2">fecha aproximada</option>
 												<option  value="3">Se desconce el día</option>
@@ -191,6 +193,7 @@
 							<label for="edad">Fecha de término</label>
 						<div class="six columns">
 							<select onclick="fechaTerminalCasosActos(value)">
+										<option></option>
 										<option  value="1" checked="checked" >fecha exacta</option>
 										<option  value="2">fecha aproximada</option>
 										<option  value="3">Se desconce el día</option>
