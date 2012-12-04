@@ -4,7 +4,7 @@
 	</head>
 
 	<body>
-		<form>
+		<form action="<?= $action ?>" method="post" >
 
 			<input type="hidden"  id="nameSeleccionado"  value="perpetradores_perpetradorId"><!--Este campo me da el name al que hay modificar el value al agregar acto(SIRVE PARA AGREGAR PERPETRADOR)-->
 
@@ -31,7 +31,7 @@
 			<fieldset>
 				<legend>Información general</legend>
 					<!-- <pre><?= print_r($perpetrador)?></pre>
-					<pre><?= print_r($catalogos['listaTodosActores'][$perpetrador['perpetradorId']]['nombre'])?></pre> -->
+					<pre><?= print_r($catalogos['listaTodosActores'][$perpetrador['perpetradorId']]['nombre'])?></pre>  -->
 				<label>Perpetrador</label>
 
 					<div id="vistaActorRelacionado"  >
@@ -107,15 +107,16 @@
 
 			<div class="twelve columns espacioSuperior espacioInferior">
 				<label>Status del perpetrador</label>
-					<select name="estatusPerpetradorCatalogo_estatusPerpetradorId">
+					<select name="perpetradores_estatusPerpetradorCatalogo_estatusPerpetradorId">
 						<option></option>
 						<?php if (isset($perpetrador['estatusPerpetradorCatalogo_estatusPerpetradorId'])) {
 							foreach ($catalogos['estatusPerpetradorCatalogo'] as $estatusPerpetrador ) { ?>
 							<option <?=($estatusPerpetrador['estatusPerpetradorId']==$perpetrador['estatusPerpetradorCatalogo_estatusPerpetradorId']) ? 'selected=selected' : "" ;?> onclick="notasCatalogos('<?= $estatusPerpetrador['notas']?>','estatusPerpetradorCatalogo_estatusPerpetradorId','2')" value="<?= $estatusPerpetrador['estatusPerpetradorId']?>" ><?= $estatusPerpetrador['descripcion']?></option>
 						<?php }
-						} else {?>
+						} else {
+							foreach ($catalogos['estatusPerpetradorCatalogo'] as $estatusPerpetrador ) { ?>
 							<option onclick="notasCatalogos('<?= $estatusPerpetrador['notas']?>','estatusPerpetradorCatalogo_estatusPerpetradorId','2')" value="<?= $estatusPerpetrador['estatusPerpetradorId']?>" ><?= $estatusPerpetrador['descripcion']?></option>
-						<?php } ?>
+						<?php } }?>
 
 					</select>
 					<div id="notasestatusPerpetradorCatalogo_estatusPerpetradorId"> </div>

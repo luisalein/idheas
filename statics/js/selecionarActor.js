@@ -40,16 +40,17 @@ function SeleccionarYTreaeRelaciones(title){
     var nameSeleccionado= window.opener.document.getElementById('nameSeleccionado').value;
     window.opener.document.getElementById(nameSeleccionado).value = n[0];
     notas="ventanaColectivoRelacionados('"+n[0]+"')";
+    alert(notas);
     window.opener.document.getElementById('vistaActorRelacionado').innerHTML = ('<div class="three columns"><img style="width:120px !important; height:150px !important;" src="'+base+n[2]+'" /></div><b><h4>'+n[1]+'</h4></b>');
     window.opener.document.getElementById('vistaPintaRelaciones').innerHTML = ('<input type="button" class="tiny button" value="Seleccionar relación" onclick="'+notas+'" />');
 }    
 
 
-function seleccionarRelacionColectivo(nombre, Siglas, TipoRelacion,IdRelacion){  
+function seleccionarRelacionColectivo(nombre, Siglas, TipoRelacion,IdRelacion,foto){  
     var nameSeleccionado= window.opener.document.getElementById('nameDeLaRelacion').value;
     alert(nameSeleccionado);
     window.opener.document.getElementById(nameSeleccionado).value = IdRelacion;
-    window.opener.document.getElementById('vistaActorRelacionadoPerpetrador').innerHTML = ('<div class="three columns"><img style="width:120px !important; height:150px !important;" src="" /></div><b><h4>'+nombre+' '+Siglas+'<br>Tipo de relacion<br>'+TipoRelacion+'</h4></b>');
+    window.opener.document.getElementById('vistaActorRelacionadoPerpetrador').innerHTML = ('<div class="three columns"><img style="width:120px !important; height:150px !important;" src="'+foto+'" /></div><b><h4>'+nombre+' '+Siglas+'<br>Tipo de relacion<br>'+TipoRelacion+'</h4></b>');
 }    
 
 

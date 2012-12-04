@@ -320,6 +320,7 @@ class Casos_c extends CI_Controller {
 			
 		$datos['catalogos'] = $this->traer_catalogos();
 		
+
 		$datos['victimas'] = $this->casos_m->mTraerVictimasActo($idActo);
 		
 		$datos['head'] = $this->load->view('general/head_v', $datos, true);
@@ -411,18 +412,20 @@ class Casos_c extends CI_Controller {
 		
 		$datos['catalogos'] = $this-> traer_catalogos();
 		
-		 $datos['head'] = $this->load->view('general/head_v', $datos, true);
+		$datos['head'] = $this->load->view('general/head_v', $datos, true);
 		
+		$datos['victimas'] = $this->casos_m->mTraerVictimasActo($idActo);
+
+		$datos['victimas']=$datos['victimas']['victimas'];
+
 		if($idPerpetrador != 0){
 			
 			$datos['action'] = base_url().'index.php/casos_c/editarPerpetrador/'.$idActo.'/'.$idVictima.'/'.$idPerpetrador;
 			
-			$datos['victimas'] = $this->casos_m->mTraerVictimasActo($idActo);
-			
-			$datos['victimas']=$datos['victimas']['victimas'];
-			
 			if(isset($datos['victimas'][$idVictima]['perpetradores'][$idPerpetrador]))
+
 				$datos['perpetrador'] = $datos['victimas'][$idVictima]['perpetradores'][$idPerpetrador];
+
 		}else{
 			
 			$datos['action'] = base_url().'index.php/casos_c/agregarPerpetrador/'.$idActo.'/'.$idVictima;
@@ -437,7 +440,7 @@ class Casos_c extends CI_Controller {
 	 * */
 	public function agregarPerpetrador($idActo,$idVictima){
 			
-		foreach($_POST as $campo => $valor){ 
+			foreach($_POST as $campo => $valor){ 
 			
             $pos = strpos($campo, '_');
 			
@@ -454,8 +457,9 @@ class Casos_c extends CI_Controller {
 		$datos['perpetradores']['victimas_victimaId'] = $idVictima;
 		
 		$this->casos_m->mAgregarPerpetradorVictima($datos['perpetradores']);
-		
-		redirect(base_url().'index.php/casos_c/mostrarVictimas/'.$idActo.'/'.$idVictima);
+		echo "<script languaje='javascript' type='text/javascript'>
+		 window.opener.location.reload();
+		 window.close();</script>";
 		
 	}
 	/**
@@ -505,9 +509,10 @@ class Casos_c extends CI_Controller {
 
 	public function traeRelaciones($actorId){
 
+
         $datos['head'] = $this->load->view('general/head_v', "", true);
 
-		$datos['actoresRelacionados'] = $this->actores_m->mTraeRelacionesActor($actorId);
+		$datos['actoresRelacionados'] = $this->actores_m->mTraerRelacionesActor($actorId);
 		
 		$datos['idActor']=$actorId;
 
@@ -515,7 +520,10 @@ class Casos_c extends CI_Controller {
 
         $datos['datosActor'] = $this->actores_m->traer_datos_actor_m($actorId,$datos['catalogos']['listaTodosActores'][$actorId]['tipoActorId']);
 
-        $datos['relaciones']=$datos['datosActor']['relacionActores'];
+        if (isset($datos['datosActor']['relacionActores'])) {
+
+        	$datos['relaciones']=$datos['datosActor']['relacionActores'];
+        }
 
 		$this->load->view('casos/seleccionaRelacion_v', $datos);
 
@@ -532,7 +540,7 @@ class Casos_c extends CI_Controller {
 		$this->load->view('casos/SeleccionActorColectivo', $datos);
 	}
 
-		public function seleccionarIndividualConDatos($dato){
+	public function seleccionarIndividualConDatos($dato){
 		
 		$datos['dato'] = $dato;
 		
@@ -543,7 +551,25 @@ class Casos_c extends CI_Controller {
 		$datos['actoresTransmigrantes'] = $this->actores_m->listado_actores_m(2);
 		
 		$datos['pestana'] = 'individual';
+
 		$this->load->view('casos/SeleccionActorIndividualTrans', $datos);
 	}
+
+	public function seleccionarTransmigranteConDatos($dato){
+		
+		$datos['dato'] = $dato;
+
+		$datos['head'] = $this->load->view('general/head_v',  "", true);
+		
+		$datos['actoresIndividuales'] = $this->actores_m->listado_actores_m(1);
+		
+		$datos['actoresTransmigrantes'] = $this->actores_m->listado_actores_m(2);
+		
+		$datos['pestana'] = 'trans';
+		
+		$this->load->view('casos/actorTransmigrante_v', $datos);
+
+	}
+
 
 }

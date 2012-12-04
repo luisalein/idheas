@@ -68,15 +68,13 @@
 						<div class="twelve columns espacio">
 							<br/><label>Perpetradores</label> <br/>
 
-
-			            <table>
+			            <table class="twelve columns">
 			                <thead>
 			                    <tr>
 			                        <th>Apellido(s)</th>
 			                        <th>Nombre(s)</th>
 			                        <th>Institución/Organización</th>
 			                        <th>Tipo perpetrador</th>
-			                        <th>Accion(es)</th>
 			                    </tr>
 			                </thead>
 			                <tbody>
@@ -85,9 +83,8 @@
 			                			<tr>
 					                        <td><?=(isset($perpetrador['perpetradorId'])) ? $catalogos['listaTodosActores'][$perpetrador['perpetradorId']]['nombre'] : ''; ?></td>
 					                        <td><?=(isset($perpetrador['perpetradorId'])) ? $catalogos['listaTodosActores'][$perpetrador['perpetradorId']]['apellidosSiglas'] : ''; ?></td>
-					                        <td><?=(isset($perpetrador['tipoPerpetradorId'])&& isset($perpetrador['tipoPerpetradorNivel'])) ? $perpetrador['tipoPerpetradorNivel'] : ''; ?></td>
-					                        <td><?=(isset($perpetrador['tipoLugarId'])) ? $perpetrador['tipoLugarId'] : ''; ?></td>
-					                        <td></td>
+					                        <td><?=(isset($perpetrador['actorRelacionadoId'])) ? $catalogos['listaTodosActores'][$perpetrador['actorRelacionadoId']]['nombre'] : ''; ?></td>
+					                        <td><?=(isset($perpetrador['tipoPerpetradorId'])&& isset($perpetrador['tipoPerpetradorNivel'])) ? $catalogos['tipoPerpetradorN'.$perpetrador['tipoPerpetradorNivel'].'Catalogo'][$perpetrador['tipoPerpetradorId']]['descripcion'] : ''; ?></td>
 			                    		</tr>
 				            		<?php } ?>
 								<?php } ?>

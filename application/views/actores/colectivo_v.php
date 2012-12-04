@@ -294,7 +294,7 @@
 
             <!--Comienza citado como persona relacionada colectivo-->
             <div id="subPestanias" data-collapse>
-                <h2>Citado actor</h2>
+                <h2>Citado como actor</h2>
                 <div>
                     <table>
                     <thead>

@@ -101,12 +101,44 @@
 
 							<div class="twelve columns espacio">
 								<br/><label>Perpetradores</label> <br/>
+
+						<div class="twelve columns espacio">
+							<br/><label>Perpetradores</label> <br/>
+
+			            <table class="twelve columns">
+			                <thead>
+			                    <tr>
+			                        <th>Apellido(s)</th>
+			                        <th>Nombre(s)</th>
+			                        <th>Institución/Organización</th>
+			                        <th>Tipo perpetrador</th>
+			                        <th>Accion(es)</th>
+			                    </tr>
+			                </thead>
+			                <tbody>
+								<?php if (isset($victimas['victimas'][$idVictima]['perpetradores'])) { ?>
+			            			<?php foreach ($victimas['victimas'][$idVictima]['perpetradores'] as $key => $perpetrador) { ?>
+			                			<tr>
+					                        <td><?=(isset($perpetrador['perpetradorId'])) ? $catalogos['listaTodosActores'][$perpetrador['perpetradorId']]['nombre'] : ''; ?></td>
+					                        <td><?=(isset($perpetrador['perpetradorId'])) ? $catalogos['listaTodosActores'][$perpetrador['perpetradorId']]['apellidosSiglas'] : ''; ?></td>
+					                        <td><?=(isset($perpetrador['actorRelacionadoId'])) ? $catalogos['listaTodosActores'][$perpetrador['actorRelacionadoId']]['nombre'] : ''; ?></td>
+					                        <td><?=(isset($perpetrador['tipoPerpetradorId'])&& isset($perpetrador['tipoPerpetradorNivel'])) ? $catalogos['tipoPerpetradorN'.$perpetrador['tipoPerpetradorNivel'].'Catalogo'][$perpetrador['tipoPerpetradorId']]['descripcion'] : ''; ?></td>
+					                        <td>
+					                        	<div class="twelve columns"><input class="tiny button" value="Editar" onclick="ventanaPerpetradores('<?=$idActo;  ;?>', <?= $victimas['victimas'][$idVictima]['victimaId']?>, '<?= $perpetrador['perpetradorVictimaId'] ?>')" type="button"> </div>
+					                        	<div class="twelve columns"><input class="tiny button" value="Eliminar" onclick="ventanaPerpetradores('<?=$idActo;  ;?>', <?= $victimas['victimas'][$idVictima]['victimaId']?>, '$perpetrador['perpetradorId']')" type="button"> </div>
+					                        </td>
+			                    		</tr>
+				            		<?php } ?>
+								<?php } ?>
+			                </tbody>
+			            </table>
+			            <div class="twelve columns"> 
 								<div class="three columns push-nine" >
 									<?php if ($idVictima>0) {?>
 										<input class="tiny button" value="nuevo perpetrador" onclick="ventanaPerpetradores('<?=$idActo;  ;?>', <?= $victimas['victimas'][$idVictima]['victimaId']?>, 0)" type="button">
 									<?php }?>
 								</div>
-
+						</div>
 							</div>
 
 					</fieldset>
