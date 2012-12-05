@@ -468,7 +468,7 @@ class Casos_c extends CI_Controller {
 	 * Edita el perpetrador y redirecciona a la victima del perpetrador que se edito.
 	 * */
 	public function editarPerpetrador($idActo,$idVictima,$idPerpetrador){
-		
+
 		foreach($_POST as $campo => $valor){ 
 			
             $pos = strpos($campo, '_');
@@ -483,9 +483,13 @@ class Casos_c extends CI_Controller {
 
         } 
 		
+
 		$this->casos_m->mActualizaDatosPerpetrador($datos['perpetradores'],$idPerpetrador);
+
+		echo "<script languaje='javascript' type='text/javascript'>
+		 window.opener.location.reload();
+		 window.close();</script>";
 		
-		redirect(base_url().'index.php/casos_c/mostrarVictimas/'.$idActo.'/'.$idVictima);
 	}
 	/**
 	 * Elimina un perpetrador de una victima y redirecciona a la página de la victima
@@ -509,8 +513,9 @@ class Casos_c extends CI_Controller {
 	}
 
 
-	public function traeRelaciones($actorId){
+	public function traeRelaciones($actorId,$dato = 0){
 
+		$datos['dato'] = $dato;
 
         $datos['head'] = $this->load->view('general/head_v', "", true);
 
@@ -531,7 +536,7 @@ class Casos_c extends CI_Controller {
 
 	}
 	
-	public function actorColectivoDatos($dato){
+	public function actorColectivoDatos($dato=0){
 		
 		$datos['dato'] = $dato;
 		

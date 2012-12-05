@@ -65,12 +65,13 @@ function involucramientoPerpetradores(notas, descripcion, id, nivel,e) {
 }
 
 
-function tipoLugarNotas(notas, descripcion, id,e) {
+function tipoLugarNotas(notas, descripcion, id, e, nivel) {
 
 	$('#subnivel'+id).toggleClass("Escondido");
 	$("#tipoLugarActo").html(descripcion);
 	$("#notastipoLugarActo").html(notas);
     document.getElementById('perpetradores_tipoLugarId').value=id;
+    document.getElementById('perpetradores_tipoLugarNivelId').value=nivel;
 	$('.colorTipoLugar').css('background-color', '#efefef');
     $(e).css('background-color', '#ddd');
 

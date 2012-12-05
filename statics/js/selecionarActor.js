@@ -19,9 +19,9 @@ function seleccionarActor(){
     };
 
 
-function ventanaColectivoRelacionados(actorId){ 
+function ventanaColectivoRelacionados(actorId,dato){ 
       var windowSizeArray = [ "width=950,height=700,scrollbars=yes" ];
-    window.open(base+'index.php/casos_c/traeRelaciones/'+actorId, 'Actores relacionados', windowSizeArray);
+    window.open(base+'index.php/casos_c/traeRelaciones/'+actorId+'/'+ dato, 'Actores relacionados', windowSizeArray);
     };
 
 function Seleccionar(title){  
@@ -39,18 +39,28 @@ function SeleccionarYTreaeRelaciones(title){
     $('#'+n[0]).css('background-color','#ccc');
     var nameSeleccionado= window.opener.document.getElementById('nameSeleccionado').value;
     window.opener.document.getElementById(nameSeleccionado).value = n[0];
-    notas="ventanaColectivoRelacionados('"+n[0]+"')";
-    alert(notas);
+    notas="ventanaColectivoRelacionados('"+n[0]+"','')";
     window.opener.document.getElementById('vistaActorRelacionado').innerHTML = ('<div class="three columns"><img style="width:120px !important; height:150px !important;" src="'+base+n[2]+'" /></div><b><h4>'+n[1]+'</h4></b>');
     window.opener.document.getElementById('vistaPintaRelaciones').innerHTML = ('<input type="button" class="tiny button" value="Seleccionar relación" onclick="'+notas+'" />');
 }    
 
+function eliminarRelacionVista(id,name){  
+    document.getElementById(name).value = 0;
+    document.getElementById(id).innerHTML = (' ');
+}    
 
-function seleccionarRelacionColectivo(nombre, Siglas, TipoRelacion,IdRelacion,foto){  
-    var nameSeleccionado= window.opener.document.getElementById('nameDeLaRelacion').value;
-    alert(nameSeleccionado);
+
+function seleccionarRelacionColectivo(nombre, Siglas, TipoRelacion,IdRelacion,foto, nameOpcional){  
+    if (nameOpcional== "2") {
+        var nameSeleccionado = window.opener.document.getElementById('nameDeLaRelacion').value;
+        var vista='vistaActorRelacionadoPerpetrador';
+    } else {
+        var nameSeleccionado= window.opener.document.getElementById('nameDeLaRelacion2').value;
+        alert(nameSeleccionado);
+        var vista='vistaActorRelacionadoPerpetrador2'
+    };
     window.opener.document.getElementById(nameSeleccionado).value = IdRelacion;
-    window.opener.document.getElementById('vistaActorRelacionadoPerpetrador').innerHTML = ('<div class="three columns"><img style="width:120px !important; height:150px !important;" src="'+foto+'" /></div><b><h4>'+nombre+' '+Siglas+'<br>Tipo de relacion<br>'+TipoRelacion+'</h4></b>');
+    window.opener.document.getElementById(vista).innerHTML = ('<div class="three columns"><img style="width:120px !important; height:150px !important;" src="'+foto+'" /></div><b><h6>'+nombre+' '+Siglas+'<br>Tipo de relacion<br>'+TipoRelacion+'</h6></b>');
 }    
 
 
@@ -60,7 +70,7 @@ function SeleccionarYTreaeRelacionesrceptor(title){
     $('#'+n[0]).css('background-color','#ccc');
     var nameSeleccionado= window.opener.document.getElementById('nameSeleccionado2').value;
     window.opener.document.getElementById(nameSeleccionado).value = n[0];
-    notas="ventanaColectivoRelacionados('"+n[0]+"')";
+    notas="ventanaColectivoRelacionados('"+n[0]+"','2')";
     window.opener.document.getElementById('vistaActorRelacionadoReceptor').innerHTML = ('<div class="three columns"><img style="width:120px !important; height:150px !important;" src="'+base+n[2]+'" /></div><b><h4>'+n[1]+'</h4></b>');
     window.opener.document.getElementById('vistaPintaRelacionesReceptor').innerHTML = ('<input type="button" class="tiny button" value="Seleccionar relación" onclick="'+notas+'" />');
 } 

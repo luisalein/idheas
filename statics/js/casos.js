@@ -51,8 +51,8 @@ function ventanaPerpetradores(casoId,victimaId,perpetradorId){
 
 /******************************************/
 
-<<<<<<< HEAD
-/***Activar y desactivar botones para generar reportes*****/
+
+/***Activar y desactivar botones para generar reportes<<<<<<< HEAD*****/
 $(function(){
 	$('#nombreCaso').click(function(){
 		var select=document.getElementById('botonNombre');
@@ -84,7 +84,6 @@ $(function(){
 });
 
 /******************************************/
-=======
 /* Fechas para fuente documental */
 	$(function() {
 		$( "#fechaPubli" ).datepicker({ dateFormat: "yy-mm-dd",
@@ -95,7 +94,6 @@ $(function(){
 		$( "#fechaAcceso" ).datepicker({ dateFormat: "yy-mm-dd",
 		changeYear: true });
 		 });
->>>>>>> d1aed954b79e30de3e13a816a6a108a2f06f4316
 
 ////Fechas para Seguimiento del caso
 	$(function() {

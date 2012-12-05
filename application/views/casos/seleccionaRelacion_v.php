@@ -3,7 +3,6 @@
 	<title><?= $head ?></title>
 </head>
 <body>
-<pre><?php print_r($actoresRelacionados)?></pre>
 	<h3>Actore colectivos relacionados</h3>
     <table>
         <thead>
@@ -17,12 +16,16 @@
         <tbody>
 			<?php if ($actoresRelacionados != '0' ) { ?>
     			<?php foreach ($actoresRelacionados as $relacionados) { 
-    					if ($relacionados['tipoActorId'] == 3) { ?>
+    					if ((isset($relacionados['tipoActorId'])) && ($relacionados['tipoActorId'] == 3)) { ?>
 		        			<tr>
 		                        <td><?=(isset($relacionados['actorId'])) ? $catalogos['listaTodosActores'][$relacionados['actorId']]['nombre'] : ''; ?></td>
 		                        <td><?=(isset($relacionados['actorId'])) ? $catalogos['listaTodosActores'][$relacionados['actorId']]['apellidosSiglas'] : ''; ?></td>
 		                        <td><?=(isset($relacionados['tipoRelacionId'])) ? $catalogos['relacionActoresCatalogo'][$relacionados['tipoRelacionId']]['Nivel2'] : ''; ?></td>
-		                        <td><input type="button" class="tiny button" value="Relacionar" onclick="seleccionarRelacionColectivo('<?=(isset($relacionados['actorId'])) ? $catalogos['listaTodosActores'][$relacionados['actorId']]['nombre'] : ''; ?>','<?=(isset($relacionados['actorId'])) ? $catalogos['listaTodosActores'][$relacionados['actorId']]['apellidosSiglas'] : ''; ?>','<?=(isset($relacionados['tipoRelacionId'])) ? $catalogos['relacionActoresCatalogo'][$relacionados['tipoRelacionId']]['Nivel2'] : ''; ?>','<?=(isset($relacionados['actorRelacionadoId'])) ? $relacionados['actorRelacionadoId'] : ''; ?>','<?=(isset($relacionados['foto'])) ? base_url().$relacionados['foto'] : ''; ?>')"></td>
+                                <?php if ($dato==2) {?>
+                                <td><input type="button" class="tiny button" value="Relacionar" onclick="seleccionarRelacionColectivo('<?=(isset($relacionados['actorId'])) ? $catalogos['listaTodosActores'][$relacionados['actorId']]['nombre'] : ''; ?>','<?=(isset($relacionados['actorId'])) ? $catalogos['listaTodosActores'][$relacionados['actorId']]['apellidosSiglas'] : ''; ?>','<?=(isset($relacionados['tipoRelacionId'])) ? $catalogos['relacionActoresCatalogo'][$relacionados['tipoRelacionId']]['Nivel2'] : ''; ?>','<?=(isset($relacionados['actorRelacionadoId'])) ? $relacionados['actorRelacionadoId'] : ''; ?>','<?=(isset($relacionados['foto'])) ? base_url().$relacionados['foto'] : ''; ?>', '1' )"></td>
+                                <?php } else{ ?>
+		                        <td><input type="button" class="tiny button" value="Relacionar" onclick="seleccionarRelacionColectivo('<?=(isset($relacionados['actorId'])) ? $catalogos['listaTodosActores'][$relacionados['actorId']]['nombre'] : ''; ?>','<?=(isset($relacionados['actorId'])) ? $catalogos['listaTodosActores'][$relacionados['actorId']]['apellidosSiglas'] : ''; ?>','<?=(isset($relacionados['tipoRelacionId'])) ? $catalogos['relacionActoresCatalogo'][$relacionados['tipoRelacionId']]['Nivel2'] : ''; ?>','<?=(isset($relacionados['actorRelacionadoId'])) ? $relacionados['actorRelacionadoId'] : ''; ?>','<?=(isset($relacionados['foto'])) ? base_url().$relacionados['foto'] : ''; ?>','2')"></td>
+                                <?php } ?>
 		            		</tr>
         			<?php }
         			} ?>

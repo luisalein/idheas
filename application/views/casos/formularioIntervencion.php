@@ -10,20 +10,27 @@
 	<!-----------------Comienza la parte de Intervención---------------------------->
 	<form action='<?=base_url(); ?>index.php/casosVentanas_c/guardarDatosVentanas/4' method="post" accept-charset="utf-8">
 
-		<input type="hidden"  id="nameSeleccionado"  value="intervenciones_interventorId"><!--Este campo me da el name al que hay modificar el value al agregar acto(SIRVE PARA AGREGAR PERPETRADOR)-->
+		<input type="hidden"  id="nameSeleccionado"  value="intervenciones_interventorId"><!--Este campo me da el name al que hay modificar el value al agregar acto(SIRVE PARA AGREGAR intervenciones)-->
 
 		<input type="hidden"  id="ValoresBotonCancelar" value="<?= (isset($intervenciones['interventorId'])&&($intervenciones['interventorId']!=0)) ? $intervenciones['interventorId']."*".$catalogos['listaTodosActores'][$intervenciones['interventorId']]['nombre']." ".$catalogos['listaTodosActores'][$intervenciones['interventorId']]['apellidosSiglas']."*".$catalogos['listaTodosActores'][$intervenciones['interventorId']]['foto'] : "" ;  ?>"><!--Este campo da los valores en caso de que se cancele la ventana agregar actor-->
 
 		<input type="hidden" name="intervenciones_interventorId" id="intervenciones_interventorId" value="<?= (isset($intervenciones['interventorId'])) ? $intervenciones['interventorId'] : " " ;?>" >
 
-		<input type="hidden"  id="nameSeleccionado2"  value="intervenciones_receptorId"><!--Este campo me da el name al que hay modificar el value al agregar acto(SIRVE PARA AGREGAR PERPETRADOR)-->
+		<input type="hidden"  id="nameSeleccionado2"  value="intervenciones_receptorId"><!--Este campo me da el name al que hay modificar el value al agregar acto(SIRVE PARA AGREGAR intervenciones)-->
 
 		<input type="hidden" name="intervenciones_receptorId" id="intervenciones_receptorId" value="<?= (isset($intervenciones['receptorId'])) ? $intervenciones['receptorId'] : " " ;?>" >
 
+		<input type="hidden" value="intervenciones_receptorId" id="nameDeLaRelacion" >
+
+		<input type="hidden" value="intervenciones_receptorId" id="nameDeLaRelacion2" >
+
+		<input type="hidden" value="intervenciones_receptorId" id="intervenciones_receptorId"  value="">
+	
 		<div id="pestania" data-collapse>
 			<h2 class="open twelve columns">Intervención</h2><!--título de la sub-pestaña-->  
 			<div>
 				
+				<pre><?php print_r($catalogos)?></pre>
 					
 				<br /><br />		
 					<fieldset>
@@ -78,10 +85,24 @@
 
 											<div id="subpestanias" data-collapse>
 												<h2 class="twelve columns">Actor colectivo</h2><!--título de la sub-pestaña-->  
-												<div class="twelve columns">
-													<div><b>Tipo de relación</b></div>
-													<div id="vistaPintaRelaciones">	</div>	
-												</div>	
+												<div class=]"twelve columns">
+													Actualmente relacionado con:
+													<div id="vistaActorRelacionadointervenciones"></div>
+													<div id="vistaPintaRelaciones">
+														<?php if (isset($intervenciones['actorRelacionadoId'])) { ?>
+										                <div class="three columns" >
+										                <img style="width:120px !important; height:150px !important;" src="<?= (isset($catalogos['listaTodosActores'][$intervenciones['actorRelacionadoId']]['foto'])) ? base_url().$catalogos['listaTodosActores'][$intervenciones['actorRelacionadoId']]['foto'] : " " ; ?>" />
+														</div>
+														<div class="nine columns"><h5><?=(isset($catalogos['listaTodosActores'][$intervenciones['actorRelacionadoId']]['nombre'])) ? $catalogos['listaTodosActores'][$intervenciones['actorRelacionadoId']]['nombre']." "	 : " " ; ?><?= (isset($catalogos['listaTodosActores'][$intervenciones['actorRelacionadoId']]['apellidosSiglas'])) ? $catalogos['listaTodosActores'][$intervenciones['actorRelacionadoId']]['apellidosSiglas'] : "" ;?>
+														</h5> <br> 
+														<h5>Tipo de relacion</h5>
+
+														</div> 
+														<?php }?> 
+													</div>
+													<input type="button" value="Eliminar" onclick="eliminarRelacionVista('vistaPintaRelaciones','intervencioneses_actorRelacionadoId')" class="tiny button">	
+												</div>
+
 											</div>	
 											
 									</fieldset>
@@ -99,10 +120,25 @@
 										
 											<div id="subpestanias" data-collapse>
 												<h2 class="twelve columns">Actor colectivo</h2><!--título de la sub-pestaña-->  
-												<div>
-													<div><b>Tipo de relación</b></div>
-													<div id="vistaPintaRelacionesReceptor">	</div>	
-												</div>	
+												
+												<div class=]"twelve columns">
+													Actualmente relacionado con:
+													<div id="vistaActorRelacionadointervenciones2"></div>
+													<div id="vistaPintaRelacionesReceptor">
+														<?php if (isset($intervenciones['actorRelacionadoId'])) { ?>
+										                <div class="three columns" >
+										                <img style="width:120px !important; height:150px !important;" src="<?= (isset($catalogos['listaTodosActores'][$intervenciones['actorRelacionadoId']]['foto'])) ? base_url().$catalogos['listaTodosActores'][$intervenciones['actorRelacionadoId']]['foto'] : " " ; ?>" />
+														</div>
+														<div class="nine columns"><h5><?=(isset($catalogos['listaTodosActores'][$intervenciones['actorRelacionadoId']]['nombre'])) ? $catalogos['listaTodosActores'][$intervenciones['actorRelacionadoId']]['nombre']." "	 : " " ; ?><?= (isset($catalogos['listaTodosActores'][$intervenciones['actorRelacionadoId']]['apellidosSiglas'])) ? $catalogos['listaTodosActores'][$intervenciones['actorRelacionadoId']]['apellidosSiglas'] : "" ;?>
+														</h5> <br> 
+														<h5>Tipo de relacion</h5>
+
+														</div> 
+														<?php }?> 
+													</div>
+													<input type="button" value="Eliminar" onclick="eliminarRelacionVista('vistaPintaRelacionesReceptor','intervencioneses_actorRelacionadoId')" class="tiny button">	
+												</div>
+
 											</div>
 											
 									</fieldset>

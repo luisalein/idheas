@@ -119,7 +119,7 @@
 								<?php if (isset($victimas['victimas'][$idVictima]['perpetradores'])) { ?>
 			            			<?php foreach ($victimas['victimas'][$idVictima]['perpetradores'] as $key => $perpetrador) { ?>
 			                			<tr>
-					                        <td><?=(isset($perpetrador['perpetradorId'])) ? $catalogos['listaTodosActores'][$perpetrador['perpetradorId']]['nombre'] : ''; ?></td>
+					                        <td><?=(isset($perpetrador['perpetradorId'])) ? $catalogos['listaTodosActores'][$perpetrador['perpetradorId']]['nombre'].$perpetrador['perpetradorId'] : ''; ?></td>
 					                        <td><?=(isset($perpetrador['perpetradorId'])) ? $catalogos['listaTodosActores'][$perpetrador['perpetradorId']]['apellidosSiglas'] : ''; ?></td>
 					                        <td><?=(isset($perpetrador['actorRelacionadoId'])) ? $catalogos['listaTodosActores'][$perpetrador['actorRelacionadoId']]['nombre'] : ''; ?></td>
 					                        <td><?=(isset($perpetrador['tipoPerpetradorId'])&& isset($perpetrador['tipoPerpetradorNivel'])) ? $catalogos['tipoPerpetradorN'.$perpetrador['tipoPerpetradorNivel'].'Catalogo'][$perpetrador['tipoPerpetradorId']]['descripcion'] : ''; ?></td>

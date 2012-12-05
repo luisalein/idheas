@@ -21,6 +21,8 @@
 			<input type="hidden" name="perpetradores_nivelInvolugramientoId" value="<?= (isset($perpetrador['nivelInvolugramientoId'])) ? $perpetrador['nivelInvolugramientoId'] : " " ;?>" id="perpetradores_nivelInvolugramientoId" >
 			
 			<input type="hidden" name="perpetradores_tipoLugarId" value="<?= (isset($perpetrador['tipoLugarId'])) ? $perpetrador['tipoLugarId'] : " " ;?>" id="perpetradores_tipoLugarId" >
+
+			<input type="hidden" name="perpetradores_tipoLugarNivelId" value="<?= (isset($perpetrador['tipoLugarNivelId'])) ? $perpetrador['tipoLugarNivelId'] : " " ;?>" id="perpetradores_tipoLugarNivelId" >
 			
 			<input type="hidden" value="perpetradores_actorRelacionadoId" id="nameDeLaRelacion" >
 	
@@ -30,8 +32,8 @@
 
 			<fieldset>
 				<legend>Información general</legend>
-					<!-- <pre><?= print_r($perpetrador)?></pre>
-					<pre><?= print_r($catalogos['listaTodosActores'][$perpetrador['perpetradorId']]['nombre'])?></pre>  -->
+					 <!-- <pre><?= print_r($perpetrador)?></pre>
+					<pre><?= print_r($catalogos)?></pre>   -->
 				<label>Perpetrador</label>
 
 					<div id="vistaActorRelacionado"  >
@@ -53,7 +55,11 @@
 			<label>Notas</label>
 			<div id="notasPerpetrador"></div>
 			<label>Tipo de perpetrador</label>
-			<div id="tipoPerpetrador"></div>
+			<div id="tipoPerpetrador" class="EspacioInferior">
+				<?php if (isset($perpetrador['tipoPerpetradorNivel']) && isset($perpetrador['tipoPerpetradorId']) ) { ?>
+					Actualmente: <?= $catalogos['tipoPerpetradorN'.$perpetrador['tipoPerpetradorNivel'].'Catalogo'][$perpetrador['tipoPerpetradorId']]['descripcion']; ?>
+				<?php }?>
+			</div>
 
 			<div class="caja CatalogoTipoPerpetrador">
 				<ol>
@@ -125,7 +131,13 @@
 			<label>Notas</label>
 			<div id="notasgradoDeInvolucramiento"></div>
 			<label>Grado de involucramiento</label>
-			<div id="gradoDeInvolucramiento"></div>
+			<div id="gradoDeInvolucramiento">
+				<?php if (isset($perpetrador['gradoInvolucramientoid']) && isset($perpetrador['nivelInvolugramientoId']) ) { ?>
+					<?php if (($perpetrador['gradoInvolucramientoid']>0) && ($perpetrador['nivelInvolugramientoId']>0) ) { ?>
+							Actualmente: <?= $catalogos['gradoInvolucramientoN'.$perpetrador['nivelInvolugramientoId'].'Catalogo'][$perpetrador['gradoInvolucramientoid']]['descripcion']; ?>
+					<?php }?>
+				<?php }?>
+			</div>
 
 			<div class="caja CatalogoTipoPerpetrador">
 				<ul>
@@ -167,9 +179,10 @@
 						</h5> <br> 
 						<h5>Tipo de relacion</h5>
 
-						</div> <input type="button" value="Eliminar" onclick="eliminarRelacionVista('vistaPintaRelaciones','perpetradores_actorRelacionadoId')" class="tiny button">
+						</div> 
 						<?php }?> 
-					</div>	
+					</div>
+					<input type="button" value="Eliminar" onclick="eliminarRelacionVista('vistaPintaRelaciones','perpetradores_actorRelacionadoId')" class="tiny button">	
 				</div>
 			</div>
 
@@ -177,13 +190,17 @@
 			<label>Notas</label>
 			<div id="notastipoLugarActo"></div>
 			<label>Lugar de Acto</label>
-			<div id="tipoLugarActo"></div>
+			<div id="tipoLugarActo">
+				<?php if (isset($perpetrador['tipoLugarId']) && isset($perpetrador['tipoLugarNivelId']) ) { ?>
+							Actualmente: <?= $catalogos['tipoLugarN'.$perpetrador['tipoLugarNivelId'].'Catalogo'][$perpetrador['tipoLugarId']]['descripcion']; ?>
+				<?php }?>
+			</div>
 			<div class="caja CatalogoTipoPerpetrador">
 
 				<ul>
 					<?php foreach ($catalogos['tipoLugarN1Catalogo'] as $lugarN1) {?>
 					<li> 
-						<div id="lugarN1<?= $lugarN1['tipoLugarId']?>" style="padding-left:15px;" onclick="tipoLugarNotas('<?= $lugarN1['notas']?>','<?= $lugarN1['descripcion']?>','<?= $lugarN1['tipoLugarId']?>',this)" 
+						<div id="lugarN1<?= $lugarN1['tipoLugarId']?>" style="padding-left:15px;" onclick="tipoLugarNotas('<?= $lugarN1['notas']?>','<?= $lugarN1['descripcion']?>','<?= $lugarN1['tipoLugarId']?>',this, '1')" 
 							class="colorTipoLugar <?php foreach ($catalogos['tipoLugarN2Catalogo'] as $lugarN2) {
 									if ($lugarN2['tipoLugarN1Catalogo_tipoLugarId']==$lugarN1['tipoLugarId']) {
 										echo'ExpanderFlecha flecha"';
@@ -195,7 +212,7 @@
 							<?php foreach ($catalogos['tipoLugarN2Catalogo'] as $lugarN2) {
 								if ($lugarN2['tipoLugarN1Catalogo_tipoLugarId']==$lugarN1['tipoLugarId']) { ?>
 								<li> 
-									<div id="lugarN2<?= $lugarN2['tipoLugarN2Id']?>" style="padding-left:15px;" onclick="tipoLugarNotas('<?= $lugarN2['notas']?>','<?= $lugarN2['descripcion']?>','<?= $lugarN2['tipoLugarN2Id']?>',this)"
+									<div id="lugarN2<?= $lugarN2['tipoLugarN2Id']?>" style="padding-left:15px;" onclick="tipoLugarNotas('<?= $lugarN2['notas']?>','<?= $lugarN2['descripcion']?>','<?= $lugarN2['tipoLugarN2Id']?>',this, '2')"
 										class="colorTipoLugar <?php foreach ($catalogos['tipoLugarN3Catalogo'] as $lugarN3) {
 												if ($lugarN3['tipoLugarN2Catalogo_tipoLugarN2Id']==$lugarN2['tipoLugarN2Id']) { 
 													echo'ExpanderFlecha flecha"';
@@ -207,7 +224,7 @@
 										<?php foreach ($catalogos['tipoLugarN3Catalogo'] as $lugarN3) {
 										if ($lugarN3['tipoLugarN2Catalogo_tipoLugarN2Id']==$lugarN2['tipoLugarN2Id']) { ?>
 											<li>
-												<div id="lugarN3<?= $lugarN3['tipoLugarN3Id']?>" style="padding-left:15px;" onclick="tipoLugarNotas('<?= $lugarN3['notas']?>','<?= $lugarN3['descripcion']?>','<?= $lugarN3['tipoLugarN3Id']?>',this)"
+												<div id="lugarN3<?= $lugarN3['tipoLugarN3Id']?>" style="padding-left:15px;" onclick="tipoLugarNotas('<?= $lugarN3['notas']?>','<?= $lugarN3['descripcion']?>','<?= $lugarN3['tipoLugarN3Id']?>',this, '3')"
 													class="colorTipoLugar">
 													<?= $lugarN3['descripcion']?>
 												</div> 

@@ -964,7 +964,7 @@ class Casos_m extends CI_Model {
 	 * */
 	 public function mActualizaDatosPerpetrador($datos,$perpetradorId){
 		
-		$this->db->where('perpetradorId', $perpetradorId);
+		$this->db->where('perpetradorVictimaId', $perpetradorId);
 		if($this->db->update('perpetradores',$datos)){
 			/* Regresa la cadena al controlador*/
 			return ($mensaje = 'Hecho');
