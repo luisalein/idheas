@@ -258,7 +258,9 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`intervenciones` (
   `impacto` VARCHAR(3000) NULL ,
   `respuesta` VARCHAR(3000) NULL ,
   `interventorId` INT NULL ,
+  `tipoRelacionInterventor` INT NULL ,
   `receptorId` INT NULL ,
+  `tipoRelacionReceptor` INT NULL ,
   `casos_casoId` INT NOT NULL ,
   PRIMARY KEY (`intervencionId`) ,
   INDEX `fk_intervenciones_casos1_idx` (`casos_casoId` ASC) ,
@@ -303,16 +305,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `idheasIkari`.`idiomaCatalogo`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `idheasIkari`.`idiomaCatalogo` (
-  `idiomaId` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion` VARCHAR(45) NULL ,
-  PRIMARY KEY (`idiomaId`) )
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `idheasIkari`.`nivelConfiabilidadCatalogo`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`nivelConfiabilidadCatalogo` (
@@ -331,14 +323,14 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`fuenteInfoPersonal` (
   `actorId` INT NULL ,
   `fecha` DATE NULL ,
   `actorReportado` INT NULL ,
+  `observaciones` VARCHAR(1500) NULL ,
+  `comentarios` VARCHAR(1500) NULL ,
   `casos_casoId` INT NOT NULL ,
   `tipoFuenteCatalogo_tipoFuenteId` INT NOT NULL ,
-  `idiomaCatalogo_idiomaId` INT NOT NULL ,
   `nivelConfiabilidadCatalogo_nivelConfiabilidadId` INT NOT NULL ,
   PRIMARY KEY (`fuenteInfoPersonalId`) ,
   INDEX `fk_fuenteInfoPersonal_casos1_idx` (`casos_casoId` ASC) ,
   INDEX `fk_fuenteInfoPersonal_tipoFuenteCatalogo1_idx` (`tipoFuenteCatalogo_tipoFuenteId` ASC) ,
-  INDEX `fk_fuenteInfoPersonal_idiomaCatalogo1_idx` (`idiomaCatalogo_idiomaId` ASC) ,
   INDEX `fk_fuenteInfoPersonal_nivelConfiabilidadCatalogo1_idx` (`nivelConfiabilidadCatalogo_nivelConfiabilidadId` ASC) ,
   CONSTRAINT `fk_fuenteInfoPersonal_casos1`
     FOREIGN KEY (`casos_casoId` )
@@ -350,55 +342,10 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`fuenteInfoPersonal` (
     REFERENCES `idheasIkari`.`tipoFuenteCatalogo` (`tipoFuenteId` )
     ON DELETE CASCADE
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_fuenteInfoPersonal_idiomaCatalogo1`
-    FOREIGN KEY (`idiomaCatalogo_idiomaId` )
-    REFERENCES `idheasIkari`.`idiomaCatalogo` (`idiomaId` )
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_fuenteInfoPersonal_nivelConfiabilidadCatalogo1`
     FOREIGN KEY (`nivelConfiabilidadCatalogo_nivelConfiabilidadId` )
     REFERENCES `idheasIkari`.`nivelConfiabilidadCatalogo` (`nivelConfiabilidadId` )
     ON DELETE CASCADE
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `idheasIkari`.`nucleoCaso`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `idheasIkari`.`nucleoCaso` (
-  `nucleoCasoId` INT NOT NULL AUTO_INCREMENT ,
-  `fechaInicio` DATE NULL ,
-  `fechaTermino` DATE NULL ,
-  `noPersonasAfectadas` INT NULL ,
-  `casos_casoId` INT NOT NULL ,
-  `municipiosCatalogo_municipioId` INT NULL ,
-  `estadosCatalogo_estadoId` INT NULL ,
-  `paisesCatalogo_paisId` INT NULL ,
-  INDEX `fk_nucleoCaso_casos1_idx` (`casos_casoId` ASC) ,
-  INDEX `fk_nucleoCaso_municipiosCatalogo1_idx` (`municipiosCatalogo_municipioId` ASC) ,
-  INDEX `fk_nucleoCaso_estadosCatalogo1_idx` (`estadosCatalogo_estadoId` ASC) ,
-  INDEX `fk_nucleoCaso_paisesCatalogo1_idx` (`paisesCatalogo_paisId` ASC) ,
-  PRIMARY KEY (`nucleoCasoId`) ,
-  CONSTRAINT `fk_nucleoCaso_casos1`
-    FOREIGN KEY (`casos_casoId` )
-    REFERENCES `idheasIkari`.`casos` (`casoId` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_nucleoCaso_municipiosCatalogo1`
-    FOREIGN KEY (`municipiosCatalogo_municipioId` )
-    REFERENCES `idheasIkari`.`municipiosCatalogo` (`municipioId` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_nucleoCaso_estadosCatalogo1`
-    FOREIGN KEY (`estadosCatalogo_estadoId` )
-    REFERENCES `idheasIkari`.`estadosCatalogo` (`estadoId` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_nucleoCaso_paisesCatalogo1`
-    FOREIGN KEY (`paisesCatalogo_paisId` )
-    REFERENCES `idheasIkari`.`paisesCatalogo` (`paisId` )
-    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -578,7 +525,28 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`derechoAfectado` (
   `noVictimas` INT NULL ,
   `derechoAfectadoNivel` INT NULL ,
   `derechoAfectadoId` INT NULL ,
-  PRIMARY KEY (`derechoAfectadoCasoId`) )
+  `paisesCatalogo_paisId` INT NULL ,
+  `estadosCatalogo_estadoId` INT NULL ,
+  `municipiosCatalogo_municipioId` INT NULL ,
+  PRIMARY KEY (`derechoAfectadoCasoId`) ,
+  INDEX `fk_derechoAfectado_paisesCatalogo1` (`paisesCatalogo_paisId` ASC) ,
+  INDEX `fk_derechoAfectado_estadosCatalogo1` (`estadosCatalogo_estadoId` ASC) ,
+  INDEX `fk_derechoAfectado_municipiosCatalogo1` (`municipiosCatalogo_municipioId` ASC) ,
+  CONSTRAINT `fk_derechoAfectado_paisesCatalogo1`
+    FOREIGN KEY (`paisesCatalogo_paisId` )
+    REFERENCES `idheasIkari`.`paisesCatalogo` (`paisId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_derechoAfectado_estadosCatalogo1`
+    FOREIGN KEY (`estadosCatalogo_estadoId` )
+    REFERENCES `idheasIkari`.`estadosCatalogo` (`estadoId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_derechoAfectado_municipiosCatalogo1`
+    FOREIGN KEY (`municipiosCatalogo_municipioId` )
+    REFERENCES `idheasIkari`.`municipiosCatalogo` (`municipioId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -670,8 +638,10 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`perpetradores` (
   `tipoPerpetradorId` INT NOT NULL ,
   `tipoPerpetradorNivel` INT NOT NULL ,
   `tipoLugarId` INT NULL ,
+  `tipoLugarNivelId` INT NULL ,
   `gradoInvolucramientoid` INT NULL ,
   `nivelInvolugramientoId` INT NULL ,
+  `actorRelacionadoId` INT NULL ,
   `estatusPerpetradorCatalogo_estatusPerpetradorId` INT NOT NULL ,
   `victimas_victimaId` INT NOT NULL ,
   PRIMARY KEY (`perpetradorVictimaId`) ,
@@ -685,49 +655,6 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`perpetradores` (
   CONSTRAINT `fk_perpetradores_victimas1`
     FOREIGN KEY (`victimas_victimaId` )
     REFERENCES `idheasIkari`.`victimas` (`victimaId` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `idheasIkari`.`actosPerpetrador`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `idheasIkari`.`actosPerpetrador` (
-  `actosPerpetradorId` INT NOT NULL AUTO_INCREMENT ,
-  `actorId` INT NOT NULL ,
-  `ubicacion` VARCHAR(3000) NULL ,
-  `tipoLugarId` INT NOT NULL ,
-  `nivelTipoLugarId` INT NOT NULL ,
-  `actoId` INT NOT NULL ,
-  `actoNId` INT NOT NULL ,
-  `paisesCatalogo_paisId` INT NULL ,
-  `estadosCatalogo_estadoId` INT NULL ,
-  `municipiosCatalogo_municipioId` INT NULL ,
-  `perpetradores_perpetradorVitimaId` INT NOT NULL ,
-  INDEX `fk_actosPerpetrador_paisesCatalogo1_idx` (`paisesCatalogo_paisId` ASC) ,
-  INDEX `fk_actosPerpetrador_estadosCatalogo1_idx` (`estadosCatalogo_estadoId` ASC) ,
-  INDEX `fk_actosPerpetrador_municipiosCatalogo1_idx` (`municipiosCatalogo_municipioId` ASC) ,
-  PRIMARY KEY (`actosPerpetradorId`) ,
-  INDEX `fk_actosPerpetrador_perpetradores1_idx` (`perpetradores_perpetradorVitimaId` ASC) ,
-  CONSTRAINT `fk_actosPerpetrador_paisesCatalogo1`
-    FOREIGN KEY (`paisesCatalogo_paisId` )
-    REFERENCES `idheasIkari`.`paisesCatalogo` (`paisId` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_actosPerpetrador_estadosCatalogo1`
-    FOREIGN KEY (`estadosCatalogo_estadoId` )
-    REFERENCES `idheasIkari`.`estadosCatalogo` (`estadoId` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_actosPerpetrador_municipiosCatalogo1`
-    FOREIGN KEY (`municipiosCatalogo_municipioId` )
-    REFERENCES `idheasIkari`.`municipiosCatalogo` (`municipioId` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_actosPerpetrador_perpetradores1`
-    FOREIGN KEY (`perpetradores_perpetradorVitimaId` )
-    REFERENCES `idheasIkari`.`perpetradores` (`perpetradorVictimaId` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -901,6 +828,7 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoLugarN1Catalogo` (
   `tipoLugarId` INT NOT NULL AUTO_INCREMENT ,
   `descripcion` VARCHAR(100) NULL ,
+  `notas` VARCHAR(500) NULL ,
   PRIMARY KEY (`tipoLugarId`) )
 ENGINE = InnoDB;
 
@@ -911,6 +839,7 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoLugarN2Catalogo` (
   `tipoLugarN2Id` INT NOT NULL AUTO_INCREMENT ,
   `descripcion` VARCHAR(100) NULL ,
+  `notas` VARCHAR(500) NULL ,
   `tipoLugarN1Catalogo_tipoLugarId` INT NOT NULL ,
   PRIMARY KEY (`tipoLugarN2Id`) ,
   INDEX `fk_tipoLugarN2Catalogo_tipoLugarN1Catalogo1_idx` (`tipoLugarN1Catalogo_tipoLugarId` ASC) ,
@@ -928,6 +857,7 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoLugarN3Catalogo` (
   `tipoLugarN3Id` INT NOT NULL AUTO_INCREMENT ,
   `descripcion` VARCHAR(100) NULL ,
+  `notas` VARCHAR(500) NULL ,
   `tipoLugarN2Catalogo_tipoLugarN2Id` INT NOT NULL ,
   PRIMARY KEY (`tipoLugarN3Id`) ,
   INDEX `fk_tipoLugarN3Catalogo_tipoLugarN2Catalogo1_idx` (`tipoLugarN2Catalogo_tipoLugarN2Id` ASC) ,
@@ -1256,12 +1186,10 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoFuenteDocumental` (
   `actorReportado` INT NULL ,
   `casos_casoId` INT NOT NULL ,
   `tipoFuenteCatalogo_tipoFuenteId` INT NOT NULL ,
-  `idiomaCatalogo_idiomaId` INT NOT NULL ,
   `nivelConfiabilidadCatalogo_nivelConfiabilidadId` INT NOT NULL ,
   PRIMARY KEY (`tipoFuenteDocumentalId`) ,
   INDEX `fk_tipoFuenteDocumental_casos1_idx` (`casos_casoId` ASC) ,
   INDEX `fk_tipoFuenteDocumental_tipoFuenteCatalogo1_idx` (`tipoFuenteCatalogo_tipoFuenteId` ASC) ,
-  INDEX `fk_tipoFuenteDocumental_idiomaCatalogo1_idx` (`idiomaCatalogo_idiomaId` ASC) ,
   INDEX `fk_tipoFuenteDocumental_nivelConfiabilidadCatalogo1_idx` (`nivelConfiabilidadCatalogo_nivelConfiabilidadId` ASC) ,
   CONSTRAINT `fk_tipoFuenteDocumental_casos1`
     FOREIGN KEY (`casos_casoId` )
@@ -1271,11 +1199,6 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoFuenteDocumental` (
   CONSTRAINT `fk_tipoFuenteDocumental_tipoFuenteCatalogo1`
     FOREIGN KEY (`tipoFuenteCatalogo_tipoFuenteId` )
     REFERENCES `idheasIkari`.`tipoFuenteCatalogo` (`tipoFuenteId` )
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_tipoFuenteDocumental_idiomaCatalogo1`
-    FOREIGN KEY (`idiomaCatalogo_idiomaId` )
-    REFERENCES `idheasIkari`.`idiomaCatalogo` (`idiomaId` )
     ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_tipoFuenteDocumental_nivelConfiabilidadCatalogo1`
@@ -1338,6 +1261,17 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`motivoViajeCatalogo` (
   `descripcion` VARCHAR(100) NOT NULL ,
   `notas` VARCHAR(3000) NULL ,
   PRIMARY KEY (`motivoViajeId`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `idheasIkari`.`relacionCasosCatalogo`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `idheasIkari`.`relacionCasosCatalogo` (
+  `relacionCasosId` INT NOT NULL AUTO_INCREMENT ,
+  `descripcion` VARCHAR(100) NULL ,
+  `notas` VARCHAR(45) NULL ,
+  PRIMARY KEY (`relacionCasosId`) )
 ENGINE = InnoDB;
 
 
