@@ -255,9 +255,6 @@ class CasosVentanas_c extends CI_Controller {
 	
 	function guardarDatosVentanas($id){
 		
-		echo "<pre>";
-		print_r($_POST);
-		echo "</pre>";
 		 foreach($_POST as $campo => $valor){ 
 			
             $pos = strpos($campo, '_');
@@ -335,7 +332,6 @@ class CasosVentanas_c extends CI_Controller {
 					$mensaje = $mensaje . $this->casos_m->mActualizaDatosIntervenido($datos['intervenidos'],$datos['intervenidos']['intervenidoId']);
 				}else{
 					$datos4['intervencion'] = $datos['intervenciones'];
-					$datos4['intervenidos'] =  $datos['intervenidos'];
 					$mensaje = $this->casos_m->mAgregarIntervenciones($datos4);
 				}
 				
