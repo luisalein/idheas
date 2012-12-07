@@ -328,7 +328,6 @@ class CasosVentanas_c extends CI_Controller {
 			case(4):  
 				if($_POST['editar'] == 1){
 					$mensaje =  $this->casos_m->mActualizaDatosIntervencion($datos['intervenciones'],$datos['intervenciones']['intervencionNId']);
-
 					$mensaje = $mensaje . $this->casos_m->mActualizaDatosIntervenido($datos['intervenidos'],$datos['intervenidos']['intervenidoId']);
 				}else{
 					$datos4['intervencion'] = $datos['intervenciones'];
