@@ -77,7 +77,7 @@
 			              	 <tr>
 			                <td><span id="descho_fichaId"><?=(isset($inter['receptorId'])) ? $catalogos['listaTodosActores'][$inter['receptorId']]['nombre']." ".$catalogos['listaTodosActores'][$inter['receptorId']]['apellidosSiglas'] : ''; ?></span></td>
 			                <td><span id="descho_fichaId"><?=(isset($inter['interventorId'])) ?  $catalogos['listaTodosActores'][$inter['interventorId']]['nombre']." ".$catalogos['listaTodosActores'][$inter['interventorId']]['apellidosSiglas'] : ''; ?></span></td>
-			                <td><span id="descho_fichaId">Tipo de Intervencion</td>
+			                <td><span id="descho_fichaId"><?=(isset($inter['tipoIntervencionId']) && isset($inter['intervencionNId'])) ?  $catalogos['tipoIntervencionN'.$inter['intervencionNId'].'Catalogo'][$inter['tipoIntervencionId']]['descripcion'] : ''; ?></span></td>
 			                <td><span id="descho_fichaId"><?=(isset($inter['fecha'])) ? $inter['fecha'] : ''; ?></span>	</td>
 			                <td><input type="button" class="tiny button"  value="Editar" onclick="ventanaInterevenciones('<?=$casoId; ?>', '<?=$index?>')" />
 			                <input type="button" class="tiny button"  value="Eliminar" onclick="ventanaInterevenciones()" /></td>

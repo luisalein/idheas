@@ -4,7 +4,7 @@ $(function() {
 	 });
 
 function nueva_relacion_a_a(actorId,ventana,actorRelacionado){
-    var windowSizeArray = [ "width=770,height=535,scrollbars=yes" ];
+    var windowSizeArray = [ "width=770,height=535,scrollbars=yes,scrollbars=yes" ];
     window.open(base+'index.php/actores_c/agregar_relacion_actor/'+actorId+'/1/'+ventana+'/'+actorRelacionado, 'Relacion entre actores individuales', windowSizeArray);
 }
 function nueva_relacion_a_Col(actorId,ventana,actorRelacionado){

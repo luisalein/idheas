@@ -1,7 +1,7 @@
 /******************Ventanas Nuevo*************************/
 
 function ventanaDetalleLugar(casoId, indice){
-	  var windowSizeArray = [ "width=800,height=200" ];
+	  var windowSizeArray = [ "width=800,height=200,scrollbars=yes" ];
 		window.open(base+'index.php/casosVentanas_c/ventanaLugares/'+casoId+'/'+indice+'/', 'Detalles Lugar', windowSizeArray);
 	};
 
