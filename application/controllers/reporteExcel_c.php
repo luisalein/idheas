@@ -74,8 +74,7 @@ class ReporteExcel_c extends CI_Controller
 
                     case(1):
 						$datos = array('nombre'=>$_POST['nombreCaso']);
-                       	$Data = $this->reportes_m->mReporteCortoNombre($datos);
-
+                       	$Data = $this->reportes_m->mReporteCortioNombre($datos);
                     break;
 
                     case(2): 
@@ -86,10 +85,6 @@ class ReporteExcel_c extends CI_Controller
                     case(3): 
 						$datos =array('derechoAfectadoId'=>$_POST['derechoAfectadoId'],'actoViolatorioNivel'=>$_POST['actoViolatorioNivel'],'actoViolatorioId'=>$_POST['actoViolatorioId']);
                         $Data = $this->reportes_m->mReporteCortoActoDerechoAfectado($datos);
-                      // print_r($_POST);
-                      echo "<pre>";
-                     print_r($Data);
-
                     break;
                 
                     default : redirect(base_url().'index.php/reportes_c/generar_reporte');
@@ -123,41 +118,30 @@ class ReporteExcel_c extends CI_Controller
 							}
 						}
 						
+						$listaPerpetradores =" ";
+						if(isset($Data['perpetradores'])){
+							foreach ($Data['perpetradores'] as $perpetrador) {
+								$listaPerpetradores = $listaPerpetradores . $perpetrador['nombre'].' '.$perpetrador['apellidos'].'. ';
+							}
+						}
+							
 						
 						$actoslist = $actoslist."Derecho Afectado: ".$derechoAfectado." . Acto:".$nombreActo.". "
 						."(Fecha inicio: ".$Data['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['fechaInicial'].". Fecha término: ".
-						$Data['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['fechaTermino']."No victimas:  "
-						.$Data['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['noVictimas']." )."."\n";
+						$Data['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['fechaTermino']." )."."No victimas:  "
+						.$Data['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['noVictimas']."Perpetradores: ".$listaPerpetradores;
 	
 					}
 				}
 			
-			
+			$tipoPerpetradores="";
 			if(isset($Data['perpetradores'])){
-				for($i=1 ; $i <= sizeof($Data['perpetradores']); $i++){
-				
-					$n = $Data['perpetradores'][$i]['tipoPerpetradorNivel'];
-					
-						for($j=1; $j<= sizeof($catPerpe['tipoPerpetradorN'.$n.'Catalogo']); $j++){
-						
-							if($catPerpe['tipoPerpetradorN'.$n.'Catalogo'][$j]['tipoPerpetradorN'.$n.'Id'] == $Data['perpetradores'][$i]['tipoPerpetradorId']){
-								$Data['perpetradores'][$i]['tipoPerpetradorId'] = $catPerpe['tipoPerpetradorN'.$n.'Catalogo'][$j]['descripcion'];
-							
+				foreach($Data['perpetradores'] as $perpetrador){
+					foreach($catPerpe['tipoPerpetradorN'.$perpetrador['tipoPerpetradorNivel'].'Catalogo'] as $tipo){
+						if($tipo['tipoPerpetradorN'.$perpetrador['tipoPerpetradorNivel'].'Id'] == $perpetrador['tipoPerpetradorId']){
+							$tipoPerpetradores= $tipoPerpetradores.$tipo['descripcion'].'. ';
 						}
-						
 					}
-					
-					
-				}
-			}
-			
-			
-			
-			$perpetradoreslist="";
-			if(isset($Data['perpetradores'])){
-				for($k=1; $k <= sizeof($Data['perpetradores']); $k++){
-					
-					$perpetradoreslist = $perpetradoreslist.$Data['perpetradores'][$k]['tipoPerpetradorId'].". ";
 					
 				}
 			}
@@ -167,7 +151,7 @@ class ReporteExcel_c extends CI_Controller
 			
 			$this->excel->getActiveSheet()->setCellValue('B2', $actoslist);
 			
-			$this->excel->getActiveSheet()->setCellValue('C2', $perpetradoreslist);
+			$this->excel->getActiveSheet()->setCellValue('C2', $tipoPerpetradores);
 			
 			$this->excel->getActiveSheet()->setCellValue('D2', $Data['caso']['personasAfectadas']);
 			
@@ -202,39 +186,30 @@ class ReporteExcel_c extends CI_Controller
 								}
 							}
 						}
-						
+						$listaPerpetradores =" ";
+						if(isset($caso['perpetradores'])){
+							foreach ($caso['perpetradores'] as $perpetrador) {
+								$listaPerpetradores = $listaPerpetradores . $perpetrador['nombre'].' '.$perpetrador['apellidos'].'. ';
+							}
+						}
 						
 						$actoslist = $actoslist."Derecho Afectado: ".$derechoAfectado." . Acto:".$nombreActo.". "
 						."(Fecha inicio: ".$caso['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['fechaInicial'].". Fecha término: ".
-						$caso['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['fechaTermino'].". No victimas: ".
-						$caso['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['noVictimas'].")."."\n\n";
+						$caso['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['fechaTermino'].")."." No victimas: ".
+						$caso['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['noVictimas']."Perpetradores: ".$listaPerpetradores;
 	
 					}
 				}
 
-				$perpetradoreslist="";
+				$tipoPerpetradores="";
 				
 				if(isset($caso['perpetradores'])){
 					foreach($caso['perpetradores'] as $perpetrador){
-					
-						$n =$caso['perpetradores'][$i]['tipoPerpetradorNivel'];
-						
-							for($j=1; $j<= sizeof($catPerpe['tipoPerpetradorN'.$n.'Catalogo']); $j++){
-							
-								if($catPerpe['tipoPerpetradorN'.$n.'Catalogo'][$j]['tipoPerpetradorN'.$n.'Id'] == $caso['perpetradores'][$i]['tipoPerpetradorId']){
-									$caso['perpetradores'][$i]['tipoPerpetradorId'] = $catPerpe['tipoPerpetradorN'.$n.'Catalogo'][$j]['descripcion'];
-								
+						foreach($catPerpe['tipoPerpetradorN'.$perpetrador['tipoPerpetradorNivel'].'Catalogo'] as $tipo){
+							if($tipo['tipoPerpetradorN'.$perpetrador['tipoPerpetradorNivel'].'Id'] == $perpetrador['tipoPerpetradorId']){
+								$tipoPerpetradores= $tipoPerpetradores.$tipo['descripcion'].'. ';
 							}
 						}
-					}
-				}
-				
-				
-				
-				if(isset($caso['perpetradores'])){
-					for($k=1; $k <= sizeof($caso['perpetradores']); $k++){
-					
-						$perpetradoreslist = $perpetradoreslist.$caso['perpetradores'][$k]['tipoPerpetradorId'].". ";
 						
 					}
 				}
@@ -245,7 +220,7 @@ class ReporteExcel_c extends CI_Controller
 				
 				$this->excel->getActiveSheet()->setCellValue('B'.$r, $actoslist);
 				
-				$this->excel->getActiveSheet()->setCellValue('C'.$r, $perpetradoreslist);
+				$this->excel->getActiveSheet()->setCellValue('C'.$r, $tipoPerpetradores);
 				
 				$this->excel->getActiveSheet()->setCellValue('D'.$r, $caso['caso']['personasAfectadas']);
 				

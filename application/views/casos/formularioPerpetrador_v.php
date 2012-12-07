@@ -5,7 +5,6 @@
 
 	<body>
 		<form action="<?= $action ?>" method="post" >
-
 			<input type="hidden"  id="nameSeleccionado"  value="perpetradores_perpetradorId"><!--Este campo me da el name al que hay modificar el value al agregar acto(SIRVE PARA AGREGAR PERPETRADOR)-->
 
 			<input type="hidden"  id="ValoresBotonCancelar" value="<?= (isset($perpetrador['perpetradorId'])&&($perpetrador['perpetradorId']!=0)) ? $perpetrador['perpetradorId']."*".$catalogos['listaTodosActores'][$perpetrador['perpetradorId']]['nombre']." ".$catalogos['listaTodosActores'][$perpetrador['perpetradorId']]['apellidosSiglas']."*".$catalogos['listaTodosActores'][$perpetrador['perpetradorId']]['foto'] : "" ;  ?>"><!--Este campo da los valores en caso de que se cancele la ventana agregar actor-->
@@ -167,21 +166,27 @@
 
 			<div id="pestania" data-collapse>
 				<h2>Actor Colectivo</h2>
-				<div class=]"twelve columns">
-					Actualmente relacionado con:
-					<div id="vistaActorRelacionadoPerpetrador"></div>
-					<div id="vistaPintaRelaciones">
-						<?php if (isset($perpetrador['actorRelacionadoId'])) { ?>
-		                <div class="three columns" >
-		                <img style="width:120px !important; height:150px !important;" src="<?= (isset($catalogos['listaTodosActores'][$perpetrador['actorRelacionadoId']]['foto'])) ? base_url().$catalogos['listaTodosActores'][$perpetrador['actorRelacionadoId']]['foto'] : " " ; ?>" />
-						</div>
-						<div class="nine columns"><h5><?=(isset($catalogos['listaTodosActores'][$perpetrador['actorRelacionadoId']]['nombre'])) ? $catalogos['listaTodosActores'][$perpetrador['actorRelacionadoId']]['nombre']." "	 : " " ; ?><?= (isset($catalogos['listaTodosActores'][$perpetrador['actorRelacionadoId']]['apellidosSiglas'])) ? $catalogos['listaTodosActores'][$perpetrador['actorRelacionadoId']]['apellidosSiglas'] : "" ;?>
-						</h5> <br> 
-						<h5>Tipo de relacion</h5>
+				<div class="twelve columns">
+					<div id="vistaActorRelacionadoPerpetrador">
+		<div id="vistaPintaRelaciones">
+								<?php if (isset($perpetrador['actorRelacionadoId'])) { ?>
+								
+								<div class="nine columns">
 
-						</div> 
-						<?php }?> 
+								Actualmente relacionado con:
+									<h5><?=(isset($perpetrador['actorRelacionadoId'])) ? $catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$perpetrador['actorRelacionadoId']]['actorRelacionadoId']]['nombre'] : ''; ?>
+								</h5> 
+								Tipo de relación
+								<h5><?=(isset($perpetrador['actorRelacionadoId'])) ? $catalogos['relacionActoresCatalogo'][$catalogos['relacionesActoresCatalogo'][$perpetrador['actorRelacionadoId']]['tipoRelacionId']]['Nivel2'] : ''; ?></h5>
+								</div> 
+				                <div class="three columns" >
+				                <img style="width:120px !important; height:150px !important;" src="<?= (isset($catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$perpetrador['actorRelacionadoId']]['actorRelacionadoId']]['foto'])) ? base_url().$catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$perpetrador['actorRelacionadoId']]['actorRelacionadoId']]['foto'] : " " ; ?>" />
+								</div>
+								<input type="button" class="tiny button" value="Seleccionar relación" onclick="ventanaColectivoRelacionados('<?= $perpetrador['perpetradorId']?>','')" />
+								<?php }?> 
+							</div>
 					</div>
+
 					<input type="button" value="Eliminar" onclick="eliminarRelacionVista('vistaPintaRelaciones','perpetradores_actorRelacionadoId')" class="tiny button">	
 				</div>
 			</div>
@@ -191,7 +196,7 @@
 			<div id="notastipoLugarActo"></div>
 			<label>Lugar de Acto</label>
 			<div id="tipoLugarActo">
-				<?php if (isset($perpetrador['tipoLugarId']) && isset($perpetrador['tipoLugarNivelId']) ) { ?>
+				<?php if (isset($perpetrador['tipoLugarId']) && isset($perpetrador['tipoLugarNivelId']) && $perpetrador['tipoLugarNivelId']>0) { ?>
 							Actualmente: <?= $catalogos['tipoLugarN'.$perpetrador['tipoLugarNivelId'].'Catalogo'][$perpetrador['tipoLugarId']]['descripcion']; ?>
 				<?php }?>
 			</div>

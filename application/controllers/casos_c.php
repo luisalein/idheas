@@ -77,7 +77,17 @@ class Casos_c extends CI_Controller {
         $datos['listaTodosActores'] = $this->actores_m-> mListaTodosActores();
        
 	   	$datos['relacionCasosCatalogo'] = $this->general_m->obtener_todo('relacionCasosCatalogo', 'relacionCasosId', 'descripcion');
-        
+
+	   	$datos['tipoIntervencionN1Catalogo'] = $this->general_m->obtener_todo('tipoIntervencionN1Catalogo', 'tipoIntervencionN1Id', 'descripcion');
+
+	   	$datos['tipoIntervencionN2Catalogo'] = $this->general_m->obtener_todo('tipoIntervencionN2Catalogo', 'tipoIntervencionN2Id', 'descripcion');
+
+	   	$datos['tipoIntervencionN3Catalogo'] = $this->general_m->obtener_todo('tipoIntervencionN3Catalogo', 'tipoIntervencionN3Id', 'descripcion');
+	   	
+	   	$datos['tipoIntervencionN4Catalogo'] = $this->general_m->obtener_todo('tipoIntervencionN4Catalogo', 'tipoIntervencionN4Id', 'descripcion');
+
+	   	$datos['relacionesActoresCatalogo'] = $this->general_m->obtener_todo('relacionActores', 'relacionActoresId', 'relacionActoresId');
+		
         return $datos;
         
     }
@@ -419,7 +429,6 @@ class Casos_c extends CI_Controller {
 		$datos['victimas'] = $this->casos_m->mTraerVictimasActo($idActo);
 
 		$datos['victimas']=$datos['victimas']['victimas'];
-
 		if($idPerpetrador != 0){
 			
 			$datos['action'] = base_url().'index.php/casos_c/editarPerpetrador/'.$idActo.'/'.$idVictima.'/'.$idPerpetrador;
@@ -494,11 +503,11 @@ class Casos_c extends CI_Controller {
 	/**
 	 * Elimina un perpetrador de una victima y redirecciona a la página de la victima
 	 * */
-	public function eliminarPerpetrador($idVictima,$perpetradorId){
+	public function eliminarPerpetrador($idActo,$idVictima,$perpetradorId){
 		
-		$mensaje = $this->casos_m->mEliminaPerpetradorVictima($perpetradorVictimaId);
+		$mensaje = $this->casos_m->mEliminaPerpetradorVictima($perpetradorId);
 		
-		redirect(base_url().'index.php/casos_c/mostrarVictimas/'.$idActo.'/'.$idVictima);
+		redirect(base_url().'index.php/casos_c/mostrarVictimas/'.$idActo.'/'.$idVictima.'/1');
 		
 		return $mensaje;
 	}

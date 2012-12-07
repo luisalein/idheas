@@ -1,20 +1,20 @@
 function seleccionarActorColectivo(){
-      var windowSizeArray = [ "width=775,height=800" ];
+      var windowSizeArray = [ "width=775,height=800,scrollbars=yes" ];
     Actor=window.open(base+'index.php/actores_c/seleccionarColectivo', 'seleccionar Actor', windowSizeArray);
     };
 
 function seleccionarActorseleccionarActorIndColDatos(dato){
-      var windowSizeArray = [ "width=775,height=800" ];
+      var windowSizeArray = [ "width=775,height=800,scrollbars=yes" ];
     Actor=window.open(base+'index.php/casos_c/seleccionarIndividualConDatos/'+dato, 'seleccionar Actor', windowSizeArray);
     };
 
 function seleccionarActorIndividual(){
-      var windowSizeArray = [ "width=775,height=800" ];
+      var windowSizeArray = [ "width=775,height=800,scrollbars=yes" ];
     Actor=window.open(base+'index.php/actores_c/seleccionarIndividual', 'seleccionar Actor', windowSizeArray);
     };
 
 function seleccionarActor(){
-      var windowSizeArray = [ "width=775,height=800" ];
+      var windowSizeArray = [ "width=775,height=800,scrollbars=yes" ];
     Actor=window.open(base+'index.php/actores_c/seleccionarActores', 'seleccionar Actor', windowSizeArray);
     };
 
@@ -32,6 +32,23 @@ function Seleccionar(title){
     window.opener.document.getElementById(nameSeleccionado).value = n[0];
     window.opener.document.getElementById('vistaActorRelacionado').innerHTML = ('<div class="three columns"><img style="width:120px !important; height:150px !important;" src="'+base+n[2]+'" /></div><b><h4>'+n[1]+'</h4></b>');
 }    
+
+function SeleccionarIntervenidos(title){  
+    var n=title.split("*");
+    $('.lista').css('background-color','#fff')
+    $('#'+n[0]).css('background-color','#ccc');
+    var nameSeleccionado= window.opener.document.getElementById('nameSeleccionado').value;
+    document.getElementById(nameSeleccionado).value = n[0];
+    document.getElementById('vistaActorRelacionado').innerHTML = ('<div class="three columns"><img style="width:120px !important; height:150px !important;" src="'+base+n[2]+'" /></div><b><h4>'+n[1]+'</h4></b>');
+}    
+
+function agregaIntervenidos(title){  
+    var n=title.split("*");
+    $('.lista').css('background-color','#fff')
+    $('#'+n[0]).css('background-color','#ccc');
+    document.getElementById('agregaIntervenidosLista').innerHTML = ('<div class="three columns"><img style="width:120px !important; height:150px !important;" src="'+base+n[2]+'" /></div><b><h4>'+n[1]+'</h4></b>');
+}    
+
 
 function SeleccionarYTreaeRelaciones(title){  
     var n=title.split("*");

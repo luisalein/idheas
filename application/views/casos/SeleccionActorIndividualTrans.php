@@ -57,6 +57,12 @@
 							    		case '2':
 							    		echo "SeleccionarYTreaeRelacionesrceptor('".$individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto']."')";
 							    			break;
+							    		case '3':
+							    		echo "SeleccionarIntervenidos('".$individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto']."')";
+							    			break;
+							    		case '4':
+							    		echo "agregaIntervenidos('".$individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto']."')";
+							    			break;
 							    	}
 					    	
 								    } else {
@@ -76,8 +82,9 @@
 			  
 			</ul>
 		</div>
-		
+	<div id="VentanaIntervenciones">
 	<input type="button"  class="button" value="Aceptar" onclick="cerrarVentana()"/>
 	<input type="button"  class="button" value="Cancelar" onclick="cerrarVentanaCancelar()"/>
+	</div>
 	</body>
 </html>

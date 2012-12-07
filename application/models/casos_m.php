@@ -927,8 +927,14 @@ class Casos_m extends CI_Model {
 	  * $victimaId [INT]
 	  * */
 	 public function mEliminaVictimaActo($victimaId){
+
+	 	$this->db->where('victimas_victimaId',$victimaId);
+
+	 	$this->db->delete('perpetradores');
+
+
 	 	$this->db->where('victimaId', $victimaId);
-		
+
 		if($this->db->delete('victimas')){
 			/* Regresa la cadena al controlador*/
 			return ($mensaje = 'Hecho');
@@ -1003,7 +1009,7 @@ class Casos_m extends CI_Model {
 	 public function mEliminaPerpetradorVictima($perpetradorVictimaId){
 	 	
 		/* Elimina el la relacion entre un acto y un perpetrador */
-		$this->mEliminaActosPerpetrador($perpetradorVictimaId);
+		//$this->mEliminaActosPerpetrador($perpetradorVictimaId);
 		
 	 	$this->db->where('perpetradorVictimaId',$perpetradorVictimaId);
 		
@@ -1058,7 +1064,6 @@ class Casos_m extends CI_Model {
 	 *@ $intervencionId [INT]
 	 * */
 	 public function mActualizaDatosIntervencion($datos,$intervencionId){
-		
 		$this->db->where('intervencionId', $intervencionId);
 		if($this->db->update('intervenciones',$datos)){
 			/* Regresa la cadena al controlador*/
@@ -1284,10 +1289,10 @@ class Casos_m extends CI_Model {
 				if($consultaActores->num_rows() > 0){
 			
 					foreach ($consultaActores->result_array() as $datosActores) {
-						$datos['victimas'][$datosActores['actorId']] = $datosActores;
-						$datos['victimas'][$datosActores['actorId']]['victimaId'] = $victimas['victimaId'];
-						$datos['victimas'][$datosActores['actorId']]['estatusVictimaId'] = $victimas['estatusVictimaId'];
-						$datos['victimas'][$datosActores['actorId']]['comentarios'] = $victimas['comentarios'];
+						$datos['victimas'][$victimas['victimaId']] = $datosActores;
+						$datos['victimas'][$victimas['victimaId']]['victimaId'] = $victimas['victimaId'];
+						$datos['victimas'][$victimas['victimaId']]['estatusVictimaId'] = $victimas['estatusVictimaId'];
+						$datos['victimas'][$victimas['victimaId']]['comentarios'] = $victimas['comentarios'];
 						
 						$this->db->select('*');
 						$this->db->from('perpetradores');
@@ -1297,7 +1302,7 @@ class Casos_m extends CI_Model {
 						if($consultaPerpetradores->num_rows() > 0){
 			
 							foreach ($consultaPerpetradores->result_array() as $datosPerpetradores) {
-								$datos['victimas'][$datosActores['actorId']]['perpetradores'][$datosPerpetradores['perpetradorVictimaId']]=$datosPerpetradores;
+								$datos['victimas'][$victimas['victimaId']]['perpetradores'][$datosPerpetradores['perpetradorVictimaId']]=$datosPerpetradores;
 							}	
 						}/* fin if $consultaPerpetradores */		
 					}
