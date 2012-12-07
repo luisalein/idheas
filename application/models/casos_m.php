@@ -1313,7 +1313,7 @@ class Casos_m extends CI_Model {
 						if($consultaPerpetradores->num_rows() > 0){
 			
 							foreach ($consultaPerpetradores->result_array() as $datosPerpetradores) {
-								$datos['victimas'][$datosActores['actorId']]['perpetradores'][$datosPerpetradores['perpetradorVictimaId']]=$datosPerpetradores;
+								$datos['victimas'][$victimas['victimaId']]['perpetradores'][$datosPerpetradores['perpetradorVictimaId']]=$datosPerpetradores;
 							}	
 						}/* fin if $consultaPerpetradores */		
 					}
