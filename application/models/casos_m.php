@@ -1037,15 +1037,6 @@ class Casos_m extends CI_Model {
 		        }
 		    }/* Fin de obtener_id */
 		    
-		    foreach($datos as $tabla => $campo){
-	                
-	            if($tabla != 'intervencion' && (!empty($tabla))){
-	                
-	                $datos[$tabla]['intervenciones_intervencionId'] = $intervencionId;
-	                $this->db->insert($tabla, $datos[$tabla]);
-	            }
-	     	}/* Fin foreach tabla */
-	     	
 		    return $intervencionId;
 		}else{
 			
@@ -1091,20 +1082,19 @@ class Casos_m extends CI_Model {
 	  * );
 	  * 
 	  * */
-	 public function mAgregarIntervenidoIntervenciones($datosIntervenido){
+	 public function mAgregarIntervenidoIntervenciones($datosIntervenidos,$intervencionId){
 	 	
-		 /* inserta el array registro en la tabla de registros de la BD */
-		if($this->db->insert('intervenidos', $datosIntervenido)){
-			
-			return 'Hecho';
-			
-		}else{
-			
-			$mensaje['error'] = $this->db->_error_message();
-			/* Regresa la cadena al controlador*/
-        	return $mensaje;
+		
+		foreach ($datosIntervenidos as $datos) {
+		
+			/* inserta el array registro en la tabla de registros de la BD */
+			$this->db->insert('intervenidos', $datos);
 			
 		}
+		
+		/* Regresa la cadena al controlador*/
+		return $mensaje='Hecho';
+			
 	 }
 	 
 	 /* Este modelo edita una intervencion
