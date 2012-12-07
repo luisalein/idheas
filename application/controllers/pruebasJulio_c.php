@@ -22,7 +22,7 @@ class PruebasJulio_c extends CI_Controller
 							   
 			echo 'Antes de entrar a la funcion....';
 			  						
-			$Data['datos']=$this->actores_m->mTraerRelacionesActor(2);
+			$Data['datos']=$this->reportes_m->mTraeDatosCorto(1);
 			
 			echo 'Entro a la funcion.....';
 			

@@ -221,7 +221,21 @@
 									/* Pasa la consulta a un cadena */
 									foreach ($consulta->result_array() as $row) {
 										$datos['perpetradores'][$row['perpetradorVictimaId']] = $row;
-									}
+										
+										$this->db->select('nombre,apellidosSiglas');
+										$this->db->from('actores');
+										$this->db->where('actorId',$row['perpetradorId']);
+										$consultaActores = $this->db->get();
+										
+										if($consultaActores->num_rows() > 0){
+											foreach ($consultaActores->result_array() as $datosActores) {
+												$datos['perpetradores'][$row['perpetradorVictimaId']]['nombre'] = $datosActores['nombre'];
+												$datos['perpetradores'][$row['perpetradorVictimaId']]['apellidos'] = $datosActores['apellidosSiglas'];
+											}/*fin foreach $consultaActores*/
+											
+										}/*fin if $consultaActores*/
+										
+									}/*fin foreach consulta*/
 								}
 							}/*Fin foreach Victimas*/
 						}
