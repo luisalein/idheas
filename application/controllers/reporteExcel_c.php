@@ -56,8 +56,6 @@ class ReporteExcel_c extends CI_Controller
 		$catActos = $this->catalogos_m->mTraerDatosCatalogoActos(); 
 		$catPerpe = $this->catalogos_m->mTraerDatosCatalogoTipoPerpetrador();
 		$catDA = $this->catalogos_m->mTraerDatosCatalogoDerechosAfectados();
-		
-	echo "<pre>"; print_r($catPerpe);
 		 
 		/*$datos = array('actoViolatorioId'=>'1','actoViolatorioNivel'=>'1');
 			
@@ -77,7 +75,6 @@ class ReporteExcel_c extends CI_Controller
                     case(1):
 						$datos = array('nombre'=>$_POST['nombreCaso']);
                        	$Data = $this->reportes_m->mReporteCortioNombre($datos);
-
                     break;
 
                     case(2): 
@@ -88,10 +85,6 @@ class ReporteExcel_c extends CI_Controller
                     case(3): 
 						$datos =array('derechoAfectadoId'=>$_POST['derechoAfectadoId'],'actoViolatorioNivel'=>$_POST['actoViolatorioNivel'],'actoViolatorioId'=>$_POST['actoViolatorioId']);
                         $Data = $this->reportes_m->mReporteCortoActoDerechoAfectado($datos);
-                      // print_r($_POST);
-                      echo "<pre>";
-                     print_r($Data);
-
                     break;
                 
                     default : redirect(base_url().'index.php/reportes_c/generar_reporte');
@@ -202,7 +195,7 @@ class ReporteExcel_c extends CI_Controller
 						
 						$actoslist = $actoslist."Derecho Afectado: ".$derechoAfectado." . Acto:".$nombreActo.". "
 						."(Fecha inicio: ".$caso['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['fechaInicial'].". Fecha término: ".
-						$caso['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['fechaTermino'].").".". No victimas: ".
+						$caso['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['fechaTermino'].")."." No victimas: ".
 						$caso['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['noVictimas']."Perpetradores: ".$listaPerpetradores;
 	
 					}
