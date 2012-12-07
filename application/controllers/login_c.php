@@ -70,6 +70,18 @@ class Login_c extends CI_Controller
 		return $mensaje;
 		
 	}
+	
+	
+	
+	public function reiniciarSesion(){
+		
+		$this->session->sess_destroy();
+		
+		$datos['head'] = $this->load->view('general/head_v', '', true);
+        	
+        $this->load->view('login',$datos); 
+		
+	}
 }
 
 ?>
