@@ -428,10 +428,6 @@ class Casos_c extends CI_Controller {
 		
 		$datos['victimas'] = $this->casos_m->mTraerVictimasActo($idActo);
 
-echo "<pre>";
-		print_r($datos['victimas']);
-echo "</pre>";
-
 		$datos['victimas']=$datos['victimas']['victimas'];
 		if($idPerpetrador != 0){
 			
@@ -507,11 +503,11 @@ echo "</pre>";
 	/**
 	 * Elimina un perpetrador de una victima y redirecciona a la página de la victima
 	 * */
-	public function eliminarPerpetrador($idVictima,$perpetradorId){
+	public function eliminarPerpetrador($idActo,$idVictima,$perpetradorId){
 		
-		$mensaje = $this->casos_m->mEliminaPerpetradorVictima($perpetradorVictimaId);
+		$mensaje = $this->casos_m->mEliminaPerpetradorVictima($perpetradorId);
 		
-		redirect(base_url().'index.php/casos_c/mostrarVictimas/'.$idActo.'/'.$idVictima);
+		redirect(base_url().'index.php/casos_c/mostrarVictimas/'.$idActo.'/'.$idVictima.'/1');
 		
 		return $mensaje;
 	}

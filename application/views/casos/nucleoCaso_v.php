@@ -79,7 +79,7 @@
 			                <td><span id="descho_fichaId"><?=(isset($inter['interventorId'])) ?  $catalogos['listaTodosActores'][$inter['interventorId']]['nombre']." ".$catalogos['listaTodosActores'][$inter['interventorId']]['apellidosSiglas'] : ''; ?></span></td>
 			                <td><span id="descho_fichaId"><?=(isset($inter['tipoIntervencionId']) && isset($inter['intervencionNId'])) ?  $catalogos['tipoIntervencionN'.$inter['intervencionNId'].'Catalogo'][$inter['tipoIntervencionId']]['descripcion'] : ''; ?></span></td>
 			                <td><span id="descho_fichaId"><?=(isset($inter['fecha'])) ? $inter['fecha'] : ''; ?></span>	</td>
-			                <td><input type="button" class="tiny button"  value="Editar" onclick="ventanaInterevenciones('<?=$casoId; ?>', '<?=$index?>')" />
+			                <td><input type="button" class="tiny button"  value="Editar" onclick="ventanaInterevenciones('<?=$casoId; ?>', '<?=$inter['intervencionId']?>')" />
 			                <input type="button" class="tiny button"  value="Eliminar" onclick="ventanaInterevenciones()" /></td>
 			              </tr> <?php } }?>
 			            </tbody>

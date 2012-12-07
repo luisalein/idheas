@@ -60,6 +60,9 @@
 							    		case '3':
 							    		echo "SeleccionarIntervenidos('".$individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto']."')";
 							    			break;
+							    		case '4':
+							    		echo "agregaIntervenidos('".$individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto']."')";
+							    			break;
 							    	}
 					    	
 								    } else {

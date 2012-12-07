@@ -931,7 +931,7 @@ class Casos_m extends CI_Model {
 	 	$this->db->where('victimas_victimaId',$victimaId);
 
 	 	$this->db->delete('perpetradores');
-	 	
+
 
 	 	$this->db->where('victimaId', $victimaId);
 
@@ -1009,7 +1009,7 @@ class Casos_m extends CI_Model {
 	 public function mEliminaPerpetradorVictima($perpetradorVictimaId){
 	 	
 		/* Elimina el la relacion entre un acto y un perpetrador */
-		$this->mEliminaActosPerpetrador($perpetradorVictimaId);
+		//$this->mEliminaActosPerpetrador($perpetradorVictimaId);
 		
 	 	$this->db->where('perpetradorVictimaId',$perpetradorVictimaId);
 		
@@ -1073,7 +1073,6 @@ class Casos_m extends CI_Model {
 	 *@ $intervencionId [INT]
 	 * */
 	 public function mActualizaDatosIntervencion($datos,$intervencionId){
-		
 		$this->db->where('intervencionId', $intervencionId);
 		if($this->db->update('intervenciones',$datos)){
 			/* Regresa la cadena al controlador*/
