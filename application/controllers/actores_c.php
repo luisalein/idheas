@@ -52,7 +52,7 @@ class Actores_c extends CI_Controller {
         
     }
     
-    function mostrar_actor($actorId = 0, $tipoActorId = 0, $cadena = '0', $tipoFiltro = 0){
+    function mostrar_actor($actorId = 0, $tipoActorId = 1, $cadena = '0', $tipoFiltro = 0){
         
         $datos['actorId'] = $actorId;
         
