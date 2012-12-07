@@ -14,12 +14,14 @@
 		<div>	
 			<fieldset>
 				  <legend>Información general</legend>
-				<input type="hidden" name="editar" id="editar" value="<?= (isset($derechoAfectado)) ? '1' : '0' ; ?>"/>
+				<input type="hidden" name="editar" id="editar" value="<?= (isset($derechoAfectado['derechoAfectadoCasoId'])) ? '1' : '0' ; ?>"/>
                 <input type="hidden" value="<?=$casoId; ?>" name="lugares_casos_casoId" id="lugares_casos_casoId" />
                 <input type="hidden" value="<?php if(isset($acto)) echo $acto['actoId']?>" name="actos_actoId" id="actos_actoId" />
                 <input type="hidden" value="<?php if(isset($derechoAfectado)) echo $derechoAfectado['derechoAfectadoCasoId']?>" name="derechoAfectado_derechoAfectadoCasoId" id="derechoAfectado_derechoAfectadoCasoId" />
                 <input type="hidden" value="5" name="5" id="tipoActorAE" />
-
+				<?php if (isset($derechoAfectado['derechoAfectadoCasoId'])) { 
+						$botonVictimas=1;
+				 } ?>
                 	<?php if(isset($derechoAfectado['derechoAfectadoNivel'])):?>
                 		<?php foreach($derechosAfectados['derechosAfectadosN'.$derechoAfectado['derechoAfectadoNivel'].'Catalogos'] as $derecho){
                 			if($derecho['derechoAfectadoN'.$derechoAfectado['derechoAfectadoNivel'].'Id']==$derechoAfectado['derechoAfectadoId']){
@@ -189,6 +191,7 @@
 								</p>
 							</div>
 						</div> <!---termina opciones de fechaInicial-->
+
 					<div class="twelve columns">
 							<label for="edad">Fecha de término</label>
 						<div class="six columns">
@@ -243,7 +246,9 @@
 				  
 			</fieldset>
 			<br/>
-			<input class="medium button" type="button" value="Agregar víctima" onclick="ventanaVictimas('<?=$casoId;?>',0,0)"/>
+			<?php if (isset($botonVictimas)) { ?>
+				<input class="medium button" type="button" value="Agregar víctima" onclick="ventanaVictimas('<?=$casoId;?>',0,0)"/>
+			<?php } ?>
 			<br/>
 			<br/>
 			<input class="medium button" type="submit" value="Guardar" style="padding: 10px 15px 11px 15px; "/>

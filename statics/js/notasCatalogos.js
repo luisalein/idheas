@@ -45,6 +45,25 @@ function tipoPerpetrador(id, notas, descripcion, nivel,flechita,e){
 		};
 		
 }
+/**función que despliega el catalogo de tipo de intervención**/
+function tipoIntervencion(id, descripcion, nivel,flechita,e){
+	
+	numNivel=nivel.substr(5, 5);
+	$("#tipoIntervencion").html(descripcion);
+	//$().html(id);//Aqui agrego el id del tipo de perpetrador
+	$('#'+nivel+id).toggleClass("Escondido");
+	$('.cambiarColorPerpetrador').css('background-color', '#efefef');
+    $(e).css('background-color', '#ddd');
+    document.getElementById('intervenciones_tipoIntervencionId').value=id;
+    document.getElementById('intervenciones_intervencionNId').value=numNivel;
+
+	subnivel= $(e).attr('value');
+	    if (subnivel == "subnivel"){
+				$(e).toggleClass("ExpanderFlecha");
+    			$('.cambiarColorPerpetrador').css('background-color', '#efefef');
+		};
+		
+}
 /* Notas Grado de involucramiento */
 
 function involucramientoPerpetradores(notas, descripcion, id, nivel,e) {
