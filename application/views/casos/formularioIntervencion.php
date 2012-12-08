@@ -239,7 +239,7 @@
 					<div id="subPestanias" data-collapse>
 						<h2 class="twelve columns">Personas por las que se interviene</h2>
 							<div >
-								  <input type="button" class="tiny button" onclick="seleccionarActorseleccionarActorIndColDatos('1')" value="Agregar">
+								  <input type="button" class="tiny button" onclick="seleccionarActorseleccionarActorIndColDatos('4')" value="Agregar">
 								  <div id="agregaIntervenidosLista"></div>
 				  
 							</div>	  
