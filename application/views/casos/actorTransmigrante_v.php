@@ -7,8 +7,13 @@
 	<body>
 		<br />
 		<dl class="tabs">
-		  <dd class="<?=($pestana == 'individual') ? 'active' : '' ; ?>"><a href="<?=base_url(); ?>index.php/actores_c/seleccionarIndividual">Individual</a></dd>
-		  <dd class="<?=($pestana == 'trans') ? 'active' : '' ; ?>"><a href="<?=base_url(); ?>index.php/actores_c/cargarTransmigrante">Transmigrante</a></dd>
+  			<?php if (isset($dato)) { ?>
+			  <dd class="<?=($pestana == 'individual') ? 'active' : '' ; ?>"><a href="<?=base_url(); ?>index.php/casos_c/seleccionarIndividualConDatos/<?= $dato ?>" >Individual</a></dd>
+			  <dd class="<?=($pestana == 'trans') ? 'active' : '' ; ?>"><a href="<?=base_url(); ?>index.php/casos_c/seleccionarTransmigranteConDatos/<?= $dato ?>" >Transmigrante</a></dd>
+			<?php }else{ ?>
+			  <dd class="<?=($pestana == 'individual') ? 'active' : '' ; ?>"><a href="<?=base_url(); ?>index.php/actores_c/seleccionarIndividual">Individual</a></dd>
+			  <dd class="<?=($pestana == 'trans') ? 'active' : '' ; ?>"><a href="<?=base_url(); ?>index.php/actores_c/cargarTransmigrante">Transmigrante</a></dd>
+			<?php } ?>
 		</dl>
 		<div id="individual">
 	
@@ -52,6 +57,12 @@
 							    			break;
 							    		case '2':
 							    		echo "SeleccionarYTreaeRelacionesrceptor('".$individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto']."')";
+							    			break;
+							    		case '3':
+							    		echo "SeleccionarIntervenidos('".$individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto']."')";
+							    			break;
+							    		case '4':
+							    		echo "agregaIntervenidos('".$individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto']."')";
 							    			break;
 							    	}
 					    	
