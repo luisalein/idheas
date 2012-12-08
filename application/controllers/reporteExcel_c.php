@@ -164,7 +164,6 @@ class ReporteExcel_c extends CI_Controller
 			foreach($Data['casos'] as $caso){
 			
 				$actoslist="";
-				
 				if(isset($caso['actos']) && isset($caso['derechoAfectado']) ){
 					foreach($caso['actos'] as $acto){
 						foreach ($catDA['derechosAfectadosN'.$caso['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['derechoAfectadoNivel'].'Catalogos'] as $DA) {
