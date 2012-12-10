@@ -404,8 +404,18 @@ class CasosVentanas_c extends CI_Controller {
 		}else{
 			$mensaje = 'faltan datos';
 		}
-		echo $mensaje;
+
+		$casoId=$_POST['casoId'];
+
+		$datos['datosCaso'] = $this->casos_m->mTraerDatosCaso($casoId);
+
+		$datos['intervenciones'] =$datos['datosCaso']['intervenciones'];
+
+		$data=$datos['intervenciones'];
+
+		print_r($data);
 	}
+
 	/***
 	 * Elimina una persona que participa en una intervención como intervenido
 	 * Recibe el id del intervenido
