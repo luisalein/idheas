@@ -17,7 +17,7 @@
         <dd class="<?=($is_active == 'actores') ? 'active' : '' ; ?>"><a href="<?=base_url(); ?>index.php/actores_c/mostrar_actor">Actores</a></dd>
         <dd class="<?=($is_active == 'casos') ? 'active' : '' ; ?>"><a href="<?=base_url(); ?>index.php/casos_c/mostrar_caso">Casos</a></dd>
         <dd class="<?=($is_active == 'reportes') ? 'active' : '' ; ?>"><a href="<?=base_url(); ?>index.php/reportes_c/generar_reporte">Reportes</a></dd>
-        <dd class="<?=($is_active == 'contrasenia') ? 'active' : '' ; ?>"><a href="<?=base_url(); ?>index.php/contrasenia_c/cambiarContra">Cambiar Contraseña</a></dd>
+        <dd class="<?=($is_active == 'contrasenia') ? 'active' : '' ; ?>"><a href="<?=base_url(); ?>index.php/contrasenia_c/mostrar_cambioPass">Cambiar Contraseña</a></dd>
     </dl>
 </div>
 <div class="ten columns">

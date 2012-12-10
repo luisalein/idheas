@@ -22,8 +22,53 @@ function eliminarFoto(){
     document.getElementById('actores_foto').value="foto";
 
 }
+function cancelarCambioContrasenia(){
+	document.location.href = base+'index.php/contrasenia_c/mostrar_cambioPass';
+}
 
-
+function cambiarPass(){
+	var oldPass= $('#oldPass').val();
+	var newPass1= $('#newPass1').val();
+	var newPass2= $('#newPass2').val();
+	if(oldPass==''){
+		alert('Se requiere la contraseña actual');
+	}
+	if(newPass1==''){
+		alert('Se requiere la nueva contraseña');
+	}
+	if(newPass2==''){
+		alert('Repite tu nueva contraseña');
+	}
+	
+	if(oldPass!='' && newPass1!='' && newPass2!=''){
+		
+		var url = base+'index.php/contrasenia_c/cambiarPass';
+    
+	    var data = 'oldPass='+oldPass+'&newPass1='+newPass1+'&newPass2='+newPass2;
+	
+	    $.ajax({
+	    
+	        url: url,
+	    
+	        data: data,
+	        
+	        type: 'POST',
+	                
+	        success: function(data){
+	            
+	            alert(data);
+	            document.location.href = base+'index.php/contrasenia_c/mostrar_cambioPass/';
+	        },
+	        
+	        error: function(){
+	        
+	           alert("no se pudo cambiar la contraseña");
+	        }
+	    
+	    });
+    
+	}
+}
 function eliminarDireccionActor(direccionId,actorId,tipoActor){
 
     var url = base+'index.php/actores_c/eliminarDireccion/'+direccionId+'/'+actorId+'/'+tipoActor ;
