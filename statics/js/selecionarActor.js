@@ -129,11 +129,11 @@ function agregarIntervenidoAjax(){
     var actorIntervenidoId = document.getElementById('intervenidos_actorIntervenidoId').value;
     var intervenciones_intervencionId = document.getElementById('intervenidos_intervenciones_intervencionId').value
     var casoId = document.getElementById('casoId').value
-    
-        var url = base+'index.php/casosVentanas_c/agregarIntervenido/'+intervenciones_intervencionId+'/'+casoId;
+
+        var url = base+'index.php/casosVentanas_c/agregarIntervenido';
     
         var data = 'intervenidos_actorIntervenidoId='+actorIntervenidoId + '&intervenidos_intervenciones_intervencionId='+intervenciones_intervencionId;
-        
+
             $.ajax({
         
             url: url,
