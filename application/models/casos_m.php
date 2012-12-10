@@ -1087,18 +1087,22 @@ class Casos_m extends CI_Model {
 	  * );
 	  * 
 	  * */
-	 public function mAgregarIntervenidoIntervenciones($datosIntervenidos,$intervencionId){
+	 public function mAgregarIntervenidoIntervenciones($datosIntervenidos){
 	 	
 		
-		foreach ($datosIntervenidos as $datos) {
-		
-			/* inserta el array registro en la tabla de registros de la BD */
-			$this->db->insert('intervenidos', $datos);
+			/* inserta el array $datosIntervenidos en la tabla de intervenidos de la BD */
+			if($this->db->insert('intervenidos', $datosIntervenidos)){
+				
+				/* Regresa la cadena al controlador*/
+				return $mensaje='Hecho';
+			}else{
 			
-		}
-		
-		/* Regresa la cadena al controlador*/
-		return $mensaje='Hecho';
+				$mensaje['error'] = $this->db->_error_message();
+				/* Regresa la cadena al controlador*/
+	        	return $mensaje;
+				
+			} 
+			
 			
 	 }
 	 

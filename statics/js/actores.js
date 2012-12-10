@@ -27,6 +27,7 @@ function cancelarCambioContrasenia(){
 }
 
 function cambiarPass(){
+	
 	var oldPass= $('#oldPass').val();
 	var newPass1= $('#newPass1').val();
 	var newPass2= $('#newPass2').val();
@@ -40,7 +41,7 @@ function cambiarPass(){
 		alert('Repite tu nueva contraseña');
 	}
 	
-	if(oldPass!='' && newPass1!='' && newPass2!=''){
+	if(oldPass != '' && newPass1 != '' && newPass2 != ''){
 		
 		var url = base+'index.php/contrasenia_c/cambiarPass';
     
