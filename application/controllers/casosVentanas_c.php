@@ -252,7 +252,11 @@ class CasosVentanas_c extends CI_Controller {
 		echo $v;
 
 	}
-	
+	/***
+	 * Agrega y edita las ventanas emergentes de la sección casos
+	 * dependiendo del valor de la variable editar, si es 1 se edita si es 0 se agrega
+	 * Cierra la ventana con JS y recarga la página que la abrió
+	 * ***/
 	function guardarDatosVentanas($id){
 		
 		 foreach($_POST as $campo => $valor){ 
@@ -387,6 +391,46 @@ class CasosVentanas_c extends CI_Controller {
 		return $mensaje;
 	}
 
+	
+	public function agregarIntervenido($idIntervencion){
+		
+		foreach($_POST as $campo => $valor){ 
+			
+            $pos = strpos($campo, '_');
+			
+            $nombre_tabla = substr($campo, 0, $pos);
+	
+            $nombre_campo = substr($campo, ++$pos);
+			
+			if(!empty($valor))
+			
+            	$datos[$nombre_tabla][$nombre_campo] = $valor; 
+
+        } 
+		
+		$mensaje = $this->casos_m->mAgregarIntervenidoIntervenciones($datos['intervenidos'],$idIntervencion);
+		
+	}
+	/***
+	 * Elimina una persona que participa en una intervención como intervenido
+	 * Recibe el id del intervenido
+	 * Redirecciona al caso en donde se elimino el intervenido
+	 * **/
+	public function eliminarIntervenido($idIntervenido,$idCaso){
+		
+		$mensaje = $this->casos_m->mEliminarIntervenido($idIntervenido);
+		
+		redirect(base_url().'index.php/casos_c/mostrar_caso/'.$idCaso);
+		
+		return $mensaje;
+		
+	}
+	
+	/****
+	 * Elimina un lugar de la información general del caso
+	 * Recibe el id del lugar a eliminar y el id del caso al que se redirecciona despues de
+	 * la eliminación.
+	 * **/
 	public function eliminarLugar($lugarId,$idCaso){
 	
 		$mensaje = $this->casos_m->mEliminaLugar($lugarId);
@@ -396,6 +440,10 @@ class CasosVentanas_c extends CI_Controller {
 		return $mensaje;
     }
 	
+	/****
+	 * Elimina una Ficha de la sección seguimiento del caso
+	 * recibe el id de la ficha a eliminar y el id del caso para redireccionar
+	 * **/
 	public function eliminarFicha($fichaId,$idCaso){
 		
 		$mensaje = $this->casos_m->mEliminaFicha($fichaId);
