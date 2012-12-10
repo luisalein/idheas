@@ -1102,6 +1102,24 @@ class Casos_m extends CI_Model {
 			
 	 }
 	 
+	 /*Este modelo elimina un intervenido*/
+	 public function mEliminarIntervenido($intervenidoId) {
+		 
+		$this->db->where('intervenidoId', $intervenidoId);
+		
+		if($this->db->delete('intervenidos')){
+			/* Regresa la cadena al controlador*/
+			return ($mensaje = 'Hecho');
+			
+		}else{
+			
+			$mensaje['error'] = $this->db->_error_message();
+			/* Regresa la cadena al controlador*/
+        	return $mensaje;
+			
+		} 
+		 
+	 }
 	 /* Este modelo edita una intervencion
 	 *@ $datos = array(
                   
