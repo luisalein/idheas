@@ -277,13 +277,10 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`intervenidos` (
   `intervenidoId` INT NOT NULL AUTO_INCREMENT ,
-  `relacionId` INT NULL ,
-  `tipoRelacionId` INT NULL ,
-  `comentarios` VARCHAR(3000) NULL ,
-  `observaciones` VARCHAR(3000) NULL ,
+  `actorIntervenidoId` INT NOT NULL ,
   `intervenciones_intervencionId` INT NOT NULL ,
   INDEX `fk_intervenidos_intervenciones1_idx` (`intervenciones_intervencionId` ASC) ,
-  PRIMARY KEY (`intervenidoId`) ,
+  PRIMARY KEY (`intervenidoId`, `actorIntervenidoId`) ,
   CONSTRAINT `fk_intervenidos_intervenciones1`
     FOREIGN KEY (`intervenciones_intervencionId` )
     REFERENCES `idheasIkari`.`intervenciones` (`intervencionId` )
