@@ -395,24 +395,16 @@ class CasosVentanas_c extends CI_Controller {
 	}
 
 	
-	public function agregarIntervenido($idIntervencion){
+	public function agregarIntervenido(){
 		
-		foreach($_POST as $campo => $valor){ 
-			
-            $pos = strpos($campo, '_');
-			
-            $nombre_tabla = substr($campo, 0, $pos);
-	
-            $nombre_campo = substr($campo, ++$pos);
-			
-			if(!empty($valor))
-			
-            	$datos[$nombre_tabla][$nombre_campo] = $valor; 
-
-        } 
+		if(isset($_POST['intervenciones_intervencionId']) && isset($_POST['actorIntervenidoId'])){
+			$datos = array('actorIntervenidoId'=>$_POST['actorIntervenidoId'],'intervenciones_intervencionId'=>$_POST['intervenciones_intervencionId']);
 		
-		$mensaje = $this->casos_m->mAgregarIntervenidoIntervenciones($datos['intervenidos'],$idIntervencion);
-		
+			$mensaje = $this->casos_m->mAgregarIntervenidoIntervenciones($datos);
+		}else{
+			$mensaje = 'faltan datos';
+		}
+		echo $mensaje;
 	}
 	/***
 	 * Elimina una persona que participa en una intervención como intervenido
