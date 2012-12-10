@@ -21,7 +21,7 @@
 	       <div class="twelve columns">
 	       		<div class="six columns">		
 		        	<label for="pais">País</label>
-		       		<select id="lugares_paisesCatalogo_paisId" name="lugares_paisesCatalogo_paisId"  onchange="changeTest(1)">
+		       		<select id="lugares_paisesCatalogo_paisId" name="lugares_paisesCatalogo_paisId"  onkeypress="changeTest(1)">
 				          	<option></option>
 				          <?php if(isset($lugar['paisesCatalogo_paisId'])){?>
 		                        <?foreach($catalogos['paisesCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
@@ -35,7 +35,7 @@
 				 <div class="six columns">
 				 	<label for="estado">Estado</label>
 				 	 <?php if(isset($lugar['estadosCatalogo_estadoId'])):?>
-					     <select id="lugares_estadosCatalogo_estadoId" name="lugares_estadosCatalogo_estadoId" onchange="changeTest(2)">						
+					     <select id="lugares_estadosCatalogo_estadoId" name="lugares_estadosCatalogo_estadoId" onkeypress="changeTest(2)">						
 				                <? foreach($catalogos['estadosCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
 				                        <?php if($lugar['paisesCatalogo_paisId'] == $item['paises_paisId']):?>
 				                    		<option  value="<?=$item['estadoId']?>" <?=($lugar['estadosCatalogo_estadoId'] == $item['estadoId']) ? 'selected="selected"' : '' ; ?> > 
@@ -45,7 +45,7 @@
 			                    	<?php endforeach;?> 
 			             </select>
 		             <?php else:?>
-			             <select id="lugares_estadosCatalogo_estadoId" name="lugares_estadosCatalogo_estadoId"  disabled="disabled" onchange="changeTest(2)">						
+			             <select id="lugares_estadosCatalogo_estadoId" name="lugares_estadosCatalogo_estadoId"  disabled="disabled" onkeypress="changeTest(2)">						
 				               
 			             </select>
 		             

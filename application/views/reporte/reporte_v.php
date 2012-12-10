@@ -1,36 +1,36 @@
 <form method="post" name="formRelacionCasos"  action='<?=base_url(); ?>index.php/reporteExcel_c/generaExcel' accept-charset="utf-8">
-	<fieldset>
+	<fieldset style="padding:10px;">
 	<div class="twelve columns">
 		<label for="nombre">Nombre del caso</label>
 		<input type="text" id="nombreCaso" name="nombreCaso"  required />
 		<input type="hidden" id="tipoFiltro" name="tipoFiltro" value="1"/>
 	</div>	
-	<input class="medium button" type="submit" value="Guardar" id="botonNombre" disabled="disabled" style="background: #E32500 !important;"/>
+	<input class="medium button" type="submit" value="Guardar" id="botonNombre" disabled="disabled" style="margin-left:15px; background: #E32500 !important;"/>
 	<br /></fieldset><br />
 
 </form>
 
 <form method="post" name="formRelacionCasos"  action='<?=base_url(); ?>index.php/reporteExcel_c/generaExcel' accept-charset="utf-8">
-		<fieldset>
+		<fieldset style="padding:10px;">
 	<input type="hidden" id="tipoFiltro" name="tipoFiltro" value="2"/>
 	<div class="twelve columns">
 	<div class="six columns">
 		<label for="fechaInicia">Desde la fecha</label>
-		<input type="text" id="fechaInicial" name="fechaInicial" placeholder="AAAA-MM-DD" required />
+		<input style="margin-left:-15px;" type="text" id="fechaInicial" name="fechaInicial" placeholder="AAAA-MM-DD" required />
 	</div>		
 	<div class="six columns">
 		<label for="fechaTermina">Hasta la fecha</label>
 		<input type="text" id="fechaTermino" name="fechaTermino" placeholder="AAAA-MM-DD" required />
 	</div>
 	</div>
-		<input class="medium button" type="submit" value="Guardar"  id="botonFecha"  disabled="disabled" style="background: #E32500 !important;"/>
+		<input class="medium button" type="submit" value="Guardar"  id="botonFecha"  disabled="disabled" style="margin-left:15px; background: #E32500 !important;"/>
 
 	<br /></fieldset><br />
 
 </form>
 
 <form method="post" name="formRelacionCasos"  action='<?=base_url(); ?>index.php/reporteExcel_c/generaExcel' accept-charset="utf-8">
-<fieldset>
+<fieldset style="padding:10px;">
 	<input type="hidden" id="tipoFiltro" name="tipoFiltro" value="3"/>
 	<legend>   </legend>
 	<label for="derecho">Derecho afectado</label>

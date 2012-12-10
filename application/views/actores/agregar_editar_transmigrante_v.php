@@ -1,4 +1,4 @@
-<<div class="twelve columns">
+<div class="twelve columns">
 <input type="hidden" id="tipoActorAE"  name="2"/>
 <form action="<?=$action; ?>" method="post" enctype="multipart/form-data" id="menuForm" name="menuForm">
     

@@ -3,7 +3,7 @@
 	        	<input type="hidden" id="actorId"  name="<?php isset($actorId) ? $actorId:''?>"/>
 	        	 <input type="hidden" id="tipoActorAE"  name="<?=$tipo?>"/>
 	        	<?php if($tipo == 1):?>
-		            <select id="datosDeNacimiento_paisesCatalogo_paisId" name="datosDeNacimiento_paisesCatalogo_paisId" onchange="changeTest(1)">						
+		            <select id="datosDeNacimiento_paisesCatalogo_paisId" name="datosDeNacimiento_paisesCatalogo_paisId" onkeypress="changeTest(1)">						
 		                    <option></option>
 		                    <?php if(isset($datosActor['datosDeNacimiento']['paisesCatalogo_paisId'])){
 		                        foreach($catalogos['paisesCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
@@ -16,7 +16,7 @@
 		         <?php endif;?>
 		         <?php if($tipo == 2):?> 
 		         	
-		         	<select id="infoMigratoria_lugarOrigenPaisId" name="infoMigratoria_lugarOrigenPaisId" onchange="changeTest(1)">						
+		         	<select id="infoMigratoria_lugarOrigenPaisId" name="infoMigratoria_lugarOrigenPaisId" onkeypress="changeTest(1)">						
 		                    <option></option>
 		                    <?php if(isset($datosActor['infoMigratoria']['lugarOrigenPaisId'])){?>
 		                       <? foreach($catalogos['paisesCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
@@ -30,7 +30,7 @@
 		         
 	             <?php if($tipo==3 ):?>
 	             	<?php if(isset($direccionExtra)):?>
-	             		<select id="direccionActor_paisesCatalogo_paisId" name="direccionActor_paisesCatalogo_paisId" onchange="changeTest(1)">						
+	             		<select id="direccionActor_paisesCatalogo_paisId" name="direccionActor_paisesCatalogo_paisId" onkeypress="changeTest(1)">						
 			                    <option></option>
 			                    <?php if(isset($datosActor['direccionActor'])){
 			                        	foreach($catalogos['paisesCatalogo'] as $key => $item): ?>
@@ -46,7 +46,7 @@
 								  } ?>
 			             </select>
 	             	<?php else:?>
-	             		<select id="direccionActor_paisesCatalogo_paisId" name="direccionActor_paisesCatalogo_paisId" onchange="changeTest(1)">	
+	             		<select id="direccionActor_paisesCatalogo_paisId" name="direccionActor_paisesCatalogo_paisId" onkeypress="changeTest(1)">	
 		             		<?php if(isset($datosActor['direccionActor'])):?>
 		             			<?php foreach($datosActor['direccionActor'] as $direccion):?>
 		             				<?foreach($catalogos['paisesCatalogo'] as $key => $item): ?>
@@ -66,7 +66,7 @@
 	             <?php endif;?>
 	             
 	              <?php if($tipo == 4):?> 
-		         	<select id="derechoAfectado_paisesCatalogo_paisId" name="derechoAfectado_paisesCatalogo_paisId" onchange="changeTest(1)">	
+		         	<select id="derechoAfectado_paisesCatalogo_paisId" name="derechoAfectado_paisesCatalogo_paisId" onkeypress="changeTest(1)">	
 		         		<option></option>	
 		         		<?php if(isset($derechoAfectado['paisesCatalogo_paisId'])):?>
 		             				<?foreach($catalogos['paisesCatalogo'] as $key => $item): ?>
@@ -92,7 +92,7 @@
             <label for="estado">Estado</label>
             <?php if($tipo == 1):?>
 	            	<?php if(isset($datosActor['datosDeNacimiento']['estadosCatalogo_estadoId'])):?>
-		                <select id="datosDeNacimiento_estadosCatalogo_estadoId"    name="datosDeNacimiento_estadosCatalogo_estadoId"  onchange="changeTest(2)">						
+		                <select id="datosDeNacimiento_estadosCatalogo_estadoId"    name="datosDeNacimiento_estadosCatalogo_estadoId"  onkeypress="changeTest(2)">						
 			                 	
 			                        <? foreach($catalogos['estadosCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
 				                        <?php if($datosActor['datosDeNacimiento']['paisesCatalogo_paisId'] == $item['paises_paisId']):?>
@@ -104,14 +104,14 @@
 								
 		                </select>
 	                <?php else:?>
-	                	<select id="datosDeNacimiento_estadosCatalogo_estadoId"  disabled="disabled"  name="datosDeNacimiento_estadosCatalogo_estadoId"  onchange="changeTest(2)">						
+	                	<select id="datosDeNacimiento_estadosCatalogo_estadoId"  disabled="disabled"  name="datosDeNacimiento_estadosCatalogo_estadoId"  onkeypress="changeTest(2)">						
 			                 	
 		                </select>
 	                <?php endif;?>
             <?php endif;?>
             <?php if($tipo == 2):?>
             	<?php if(isset($datosActor['infoMigratoria']['lugarOrigenEstadoId'])):?>
-		                <select id="infoMigratoria_lugarOrigenEstadoId"    name="infoMigratoria_lugarOrigenEstadoId"  onchange="changeTest(2)">						
+		                <select id="infoMigratoria_lugarOrigenEstadoId"    name="infoMigratoria_lugarOrigenEstadoId"  onkeypress="changeTest(2)">						
 			                 	
 			                        <? foreach($catalogos['estadosCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
 				                        <?php if($datosActor['infoMigratoria']['lugarOrigenPaisId'] == $item['paises_paisId']):?>
@@ -123,7 +123,7 @@
 								
 		                </select>
 	                <?php else:?>
-	                	<select id="infoMigratoria_lugarOrigenEstadoId"  disabled="disabled"  name="infoMigratoria_lugarOrigenEstadoId"  onchange="changeTest(2)">						
+	                	<select id="infoMigratoria_lugarOrigenEstadoId"  disabled="disabled"  name="infoMigratoria_lugarOrigenEstadoId"  onkeypress="changeTest(2)">						
 			                 	
 		                </select>
 	                <?php endif;?>
@@ -131,7 +131,7 @@
 		    <?php if($tipo==3):?>
 		    	<?php if(isset($direccionExtra)):?>
 		    		<?php if(isset($datosActor['direccionActor'])):?>
-		                <select id="direccionActor_estadosCatalogo_estadoId"  name="direccionActor_estadosCatalogo_estadoId"  onchange="changeTest(2)">
+		                <select id="direccionActor_estadosCatalogo_estadoId"  name="direccionActor_estadosCatalogo_estadoId"  onkeypress="changeTest(2)">
 			                       <?php foreach($catalogos['estadosCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
 			                        <?php if($datosActor['direccionActor']['paisesCatalogo_paisId'] == $item['paises_paisId']):?>
 			                    		<option  value="<?=$item['estadoId']?>" <?=($datosActor['direccionActor']['estadosCatalogo_estadoId'] == $item['estadoId']) ? 'selected="selected"' : '' ; ?> > 
@@ -141,14 +141,14 @@
 			                    <?php endforeach;?>
 		                </select>
 		            <?php else:?>  
-		            	<select id="direccionActor_estadosCatalogo_estadoId" disabled="disabled" name="direccionActor_estadosCatalogo_estadoId"  onchange="changeTest(2)">
+		            	<select id="direccionActor_estadosCatalogo_estadoId" disabled="disabled" name="direccionActor_estadosCatalogo_estadoId"  onkeypress="changeTest(2)">
 			                     
 		                </select>
 		            <?php endif;?> 
 		    	<?php else:?>	
 		    		<?php if(isset($datosActor['direccionActor'])):?>
 		    			<?php foreach ($datosActor['direccionActor'] as $direccion) :?>
-							 <select id="direccionActor_estadosCatalogo_estadoId"  name="direccionActor_estadosCatalogo_estadoId"  onchange="changeTest(2)">
+							 <select id="direccionActor_estadosCatalogo_estadoId"  name="direccionActor_estadosCatalogo_estadoId"  onkeypress="changeTest(2)">
 			                       <?php foreach($catalogos['estadosCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
 			                        <?php if($direccion['paisesCatalogo_paisId'] == $item['paises_paisId']):?>
 			                    		<option  value="<?=$item['estadoId']?>" <?=($direccion['estadosCatalogo_estadoId'] == $item['estadoId']) ? 'selected="selected"' : '' ; ?> > 
@@ -160,7 +160,7 @@
 							
 						<?endforeach;?>
 		    		<?php else:?>  
-		            	<select id="direccionActor_estadosCatalogo_estadoId" disabled="disabled" name="direccionActor_estadosCatalogo_estadoId"  onchange="changeTest(2)">
+		            	<select id="direccionActor_estadosCatalogo_estadoId" disabled="disabled" name="direccionActor_estadosCatalogo_estadoId"  onkeypress="changeTest(2)">
 			                     
 		                </select>
 		            <?php endif;?>  	
@@ -168,7 +168,7 @@
             <?php endif;?>
              <?php if($tipo ==4):?>
              	<?php if(isset($derechoAfectado['estadosCatalogo_estadoId'])):?>
-		            		<select id="derechoAfectado_estadosCatalogo_estadoId"  name="derechoAfectado_estadosCatalogo_estadoId"  onchange="changeTest(2)">						
+		            		<select id="derechoAfectado_estadosCatalogo_estadoId"  name="derechoAfectado_estadosCatalogo_estadoId"  onkeypress="changeTest(2)">						
 			                       <?php foreach($catalogos['estadosCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
 			                        <?php if($derechoAfectado['paisesCatalogo_paisId'] == $item['paises_paisId']):?>
 			                    		<option  value="<?=$item['estadoId']?>" <?=($derechoAfectado['estadosCatalogo_estadoId'] == $item['estadoId']) ? 'selected="selected"' : '' ; ?> > 
@@ -178,7 +178,7 @@
 			                    <?php endforeach;?>
 		                	</select>
 		    		<?php else:?>  
-		            	<select id="derechoAfectado_estadosCatalogo_estadoId"  disabled="disabled"  name="derechoAfectado_estadosCatalogo_estadoId"  onchange="changeTest(2)">						
+		            	<select id="derechoAfectado_estadosCatalogo_estadoId"  disabled="disabled"  name="derechoAfectado_estadosCatalogo_estadoId"  onkeypress="changeTest(2)">						
 			                 	
 		                </select>
 		            <?php endif;?> 
