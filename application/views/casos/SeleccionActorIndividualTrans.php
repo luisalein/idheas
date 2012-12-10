@@ -81,10 +81,27 @@
 			  </li>
 			  
 			</ul>
+
+			<?php if (isset($dato)) {
+				if ($dato ==4) { 
+					$formulario=1; ?>
+				<form method="POST">
+					<input type="hidden" name="intervenidos_intervenciones_intervencionId" id="intervenidos_intervenciones_intervencionId" value="" >
+					<input type="hidden" name="intervenidos_actorIntervenidoId" id="intervenidos_actorIntervenidoId" value="" >
+
+					<input type="submit" class="button" value="Agregar" />
+					<input type="button"  class="button" value="Cancelar" onclick="cerrarVentana()"/>
+				</form>
+				<?php }
+			} ?>
+
 		</div>
 	<div id="VentanaIntervenciones">
-	<input type="button"  class="button" value="Aceptar" onclick="cerrarVentana()"/>
-	<input type="button"  class="button" value="Cancelar" onclick="cerrarVentanaCancelar()"/>
+
+		<?php if (!isset($formulario)) { ?>
+			<input type="button"  class="button" value="Aceptar" onclick="cerrarVentana()"/>
+			<input type="button"  class="button" value="Cancelar" onclick="cerrarVentanaCancelar()"/>
+		<?php }?>
 	</div>
 	</body>
 </html>
