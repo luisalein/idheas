@@ -85,13 +85,12 @@
 			<?php if (isset($dato)) {
 				if ($dato ==4) { 
 					$formulario=1; ?>
-				<form method="POST">
 					<input type="hidden" name="intervenidos_intervenciones_intervencionId" id="intervenidos_intervenciones_intervencionId" value="" >
 					<input type="hidden" name="intervenidos_actorIntervenidoId" id="intervenidos_actorIntervenidoId" value="" >
+					<input type="hidden" id="casoId" value="" >
 
-					<input type="submit" class="button" value="Agregar" />
+					<input type="button"  class="button" value="Aceptar" onclick="agregarIntervenidoAjax()"/>
 					<input type="button"  class="button" value="Cancelar" onclick="cerrarVentana()"/>
-				</form>
 				<?php }
 			} ?>
 
