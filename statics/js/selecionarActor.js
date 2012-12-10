@@ -46,6 +46,9 @@ function agregaIntervenidos(title){
     var n=title.split("*");
     $('.lista').css('background-color','#fff')
     $('#'+n[0]).css('background-color','#ccc');
+    var intervencionId = window.opener.document.getElementById('intervenciones_intervencionId').value;
+    document.getElementById('intervenidos_actorIntervenidoId').value= n[0];
+    document.getElementById('intervenidos_intervenciones_intervencionId').value= intervencionId;
     window.opener.document.getElementById('agregaIntervenidosLista').innerHTML = ('<div class="three columns"><img style="width:120px !important; height:150px !important;" src="'+base+n[2]+'" /></div><b><h4>'+n[1]+'</h4></b>');
 }    
 
@@ -117,3 +120,36 @@ function eliminaActor(){
     document.getElementById(nameSeleccionado).value =0;
     document.getElementById('vistaActorRelacionado').innerHTML=(" ");
 };
+
+//Actualizará dinámicamente los actores intervenido de una intervención
+function agregarIntervenidoAjax(){
+    
+   var actorIntervenidoId = document.getElementById('intervenidos_actorIntervenidoId').value;
+    var intervenciones_intervencionId = document.getElementById('intervenidos_intervenciones_intervencionId').value
+    
+        
+        var url = base+'index.php/casos_c/buscarCasos';
+    
+        var data = 'intervenidos_actorIntervenidoId='+actorIntervenidoId + '&intervenidos_intervenciones_intervencionId='+intervenciones_intervencionId;
+        
+            $.ajax({
+        
+            url: url,
+        
+            data: data,
+            
+            type: 'POST',
+                    
+            success: function(data){ 
+                   
+              $('#agregaIntervenidosLista').html(data);  
+                
+            },
+            
+            error: function(){
+            
+               alert("no es posible agregar actor");
+            }
+        
+        });
+}
