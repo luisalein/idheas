@@ -46,7 +46,7 @@ function agregaIntervenidos(title){
     var n=title.split("*");
     $('.lista').css('background-color','#fff')
     $('#'+n[0]).css('background-color','#ccc');
-    document.getElementById('agregaIntervenidosLista').innerHTML = ('<div class="three columns"><img style="width:120px !important; height:150px !important;" src="'+base+n[2]+'" /></div><b><h4>'+n[1]+'</h4></b>');
+    window.opener.document.getElementById('agregaIntervenidosLista').innerHTML = ('<div class="three columns"><img style="width:120px !important; height:150px !important;" src="'+base+n[2]+'" /></div><b><h4>'+n[1]+'</h4></b>');
 }    
 
 
