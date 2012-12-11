@@ -23,10 +23,10 @@
 			        <label for="fechaNacimiento"><b>Entrada</b></label>
 			        
 			        <label for="fechaNacimiento">Fecha:</label>
-			       <input type="text" id="fechaEntrada" name="" <?=(isset($datosActor['datosDeNacimiento']['fechaNacimiento']) ? 'value="'.$datosActor['datosDeNacimiento']['fechaNacimiento'].'"' : 'value=""'); ?> 
+			       <input type="text" id="fechaEntrada" name="infoMigratoria_fechaEntrada" <?=(isset($datosActor['datosDeNacimiento']['fechaNacimiento']) ? 'value="'.$datosActor['datosDeNacimiento']['fechaNacimiento'].'"' : 'value=""'); ?> 
 			       placeholder="<?=date("Y-m-d");?>" />
 			       <label for="fechaNacimiento">Hora:</label>
-			       <input type="text" name="" <?=(isset($datosActor['datosDeNacimiento']['fechaNacimiento']) ? 'value="'.$datosActor['datosDeNacimiento']['fechaNacimiento'].'"' : 'value=""'); ?> 
+			       <input type="text" name="infoMigratoria_horaEntrada" <?=(isset($datosActor['datosDeNacimiento']['fechaNacimiento']) ? 'value="'.$datosActor['datosDeNacimiento']['fechaNacimiento'].'"' : 'value=""'); ?> 
 			       placeholder="<?=date("H:i");?>" />
 		        </div>
 		        <br/>
@@ -34,10 +34,10 @@
     				 <br/>
 			           <label for="fechaNacimiento"><b>Salida</b></label>
 			        	<label for="fechaNacimiento">Fecha:</label>
-			          <input type="text" id="fechaSalida" name="" <?=(isset($datosActor['datosDeNacimiento']['fechaNacimiento']) ? 'value="'.$datosActor['datosDeNacimiento']['fechaNacimiento'].'"' : 'value=""'); ?> 
+			          <input type="text" id="fechaSalida" name="infoMigratoria_fechaSalida" <?=(isset($datosActor['datosDeNacimiento']['fechaNacimiento']) ? 'value="'.$datosActor['datosDeNacimiento']['fechaNacimiento'].'"' : 'value=""'); ?> 
 			          placeholder="AAAA-MM-DD" />
 			          <label for="fechaNacimiento">Hora:</label>
-			       <input type="text" name="" <?=(isset($datosActor['datosDeNacimiento']['fechaNacimiento']) ? 'value="'.$datosActor['datosDeNacimiento']['fechaNacimiento'].'"' : 'value=""'); ?> 
+			       <input type="text" name="infoMigratoria_horaSalida" <?=(isset($datosActor['datosDeNacimiento']['fechaNacimiento']) ? 'value="'.$datosActor['datosDeNacimiento']['fechaNacimiento'].'"' : 'value=""'); ?> 
 			       placeholder="HH:MM" />
 		        </div>
     </div>
