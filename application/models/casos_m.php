@@ -171,6 +171,7 @@ class Casos_m extends CI_Model {
 				$this->db->select('*');
 				$this->db->from('intervenidos');
 				$this->db->where('intervenciones_intervencionId',$row['intervencionId']);
+				$this->db->order_by("intervenidoId", "desc"); 
 				$consultaIntervenidos = $this->db->get();
 				
 				if ($consultaIntervenidos->num_rows() > 0) {
