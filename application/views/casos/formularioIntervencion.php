@@ -241,6 +241,8 @@
 			
 			<input class="medium button" type="submit" value="Guardar"/>
 			<input class="medium button" value="Cancelar" onclick="cerrarVentana()" />		
+
+	</form>
 					<!-- <pre>	<?= print_r($intervenciones['intervenidos'])?></pre> -->
 
 					<div id="subPestanias" data-collapse>
@@ -257,7 +259,7 @@
 								  					</div>
 								  					<div class="three columns">
 								  						<br> <br> <br> <br> 
-								  						<form method="POST" action='<?=base_url(); ?>index.php/casosVentanas_c/eliminarIntervenido/'<?= $intervenidos['actorIntervenidoId'].'/'.$casoId ?> >
+								  						<form method="POST" action='<?=base_url(); ?>index.php/casosVentanas_c/eliminarIntervenido/<?= $intervenidos['intervenidoId'].'/'.$casoId ?>' >
 								  							<input type="submit" class="tiny button" value="Eliminar" Onclick="eliminarInterventor();">
 								  						</form>
 								  					</div>
@@ -274,7 +276,6 @@
 			</div>
 			
 		</div><!--fin acordeon información general-->
-	</form>
 	<!-----------------------Termina la parte de Intervención---------------------->
 
 </body>

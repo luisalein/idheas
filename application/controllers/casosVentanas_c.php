@@ -436,8 +436,20 @@ class CasosVentanas_c extends CI_Controller {
 		
 		$mensaje = $this->casos_m->mEliminarIntervenido($idIntervenido);
 		
-		redirect(base_url().'index.php/casos_c/mostrar_caso/'.$idCaso);
+		//redirect(base_url().'index.php/casos_c/mostrar_caso/'.$idCaso);
+	
+
+		// foreach ($datos['intervenciones'][$_POST['intervenciones_intervencionId']]['intervenidos'] as $intervenidos) {
+								
+		// 	$data= $data.'<div class="twelve columns margenes" >'.'<img class="foto" src="'.base_url().$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['foto'].'"><br><br><br><br>'.$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['nombre']." ".$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['apellidosSiglas'].'</div>';
+
+		// }
+
+		// // $data=$datos['intervenciones'][$_POST['intervenciones_intervencionId']]['intervenidos'];
+
+		// print_r($data);
 		
+
 		return $mensaje;
 		
 	}
