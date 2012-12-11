@@ -166,6 +166,20 @@ class Casos_m extends CI_Model {
 			}
 			
 			foreach ($datos['intervenciones'] as $row) {
+				
+				/*Trae los intervenidos de una intervención*/
+				$this->db->select('*');
+				$this->db->from('intervenidos');
+				$this->db->where('intervenciones_intervencionId',$row['intervencionId']);
+				$consultaIntervenidos = $this->db->get();
+				
+				if ($consultaIntervenidos->num_rows() > 0) {
+					foreach ($consultaIntervenidos->result_array() as $row4) {
+						$datos['intervenciones'][$row['intervencionId']]['intervenidos'][$row4['intervenidoId']]=$row4;
+					}
+				}
+				
+				
 				$this->db->select('actorId');
 				$this->db->from('actorReportado');
 				$this->db->where('intervenciones_intervencionId', $row['intervencionId']);
@@ -182,13 +196,16 @@ class Casos_m extends CI_Model {
 						
 						if ($consultaActorReportado->num_rows() > 0){
 							foreach ($consultaActorReportado->result_array() as $row3) {
+								
 								$datos['intervenciones'][$row['intervencionId']]['actorReportado'][$row3['actorId']] =$row3;
+								
+								
 							}
 						}/*fin if consultaActorReportado*/ 
 					}/*fin foreach consulta de intervenciones */
 				}/* fin de if consulta intervenciones*/
+				
 			}
-			
 			
 		}
 

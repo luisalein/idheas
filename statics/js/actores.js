@@ -97,3 +97,16 @@ function eliminarDireccionActor(direccionId,actorId,tipoActor){
     });
     
 }
+
+/**Fecha de entrada y salida**/
+$(function() {
+		$( "#fechaEntrada" ).datepicker({ dateFormat: "yy-mm-dd",
+		changeYear: true });
+});
+		 
+$(function() {
+		$( "#fechaSalida" ).datepicker({ dateFormat: "yy-mm-dd",
+		changeYear: true });
+});
+
+

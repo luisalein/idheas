@@ -1,4 +1,4 @@
-<<div class="twelve columns">
+<div class="twelve columns">
 <input type="hidden" id="tipoActorAE"  name="2"/>
 <form action="<?=$action; ?>" method="post" enctype="multipart/form-data" id="menuForm" name="menuForm">
     
@@ -15,9 +15,33 @@
                  <label>Foto </label>
                     <input name="archivo" type="file" size="10" accept="image/*" />  
                     <input type="hidden" <?= (isset($datosActor['actores']['foto'])) ? 'value="'.$datosActor['actores']['foto'].'"' : 'value=""' ;?> name="actores_foto" />
-                <input type="button" class="small button" value="Eliminar Foto" onclick="eliminarFoto()">
+                <?php if(isset($datosActor['actores']['foto'])):?>
+                	<input type="button" class="small button" value="Eliminar Foto" onclick="eliminarFoto()">
+    			<?php endif;?>
+    			<br/>
+    			<div class="nine columns">
+			        <label for="fechaNacimiento"><b>Entrada</b></label>
+			        
+			        <label for="fechaNacimiento">Fecha:</label>
+			       <input type="text" id="fechaEntrada" name="" <?=(isset($datosActor['datosDeNacimiento']['fechaNacimiento']) ? 'value="'.$datosActor['datosDeNacimiento']['fechaNacimiento'].'"' : 'value=""'); ?> 
+			       placeholder="<?=date("Y-m-d");?>" />
+			       <label for="fechaNacimiento">Hora:</label>
+			       <input type="text" name="" <?=(isset($datosActor['datosDeNacimiento']['fechaNacimiento']) ? 'value="'.$datosActor['datosDeNacimiento']['fechaNacimiento'].'"' : 'value=""'); ?> 
+			       placeholder="<?=date("H:i");?>" />
+		        </div>
+		        <br/>
+    			<div class="nine columns">
+    				 <br/>
+			           <label for="fechaNacimiento"><b>Salida</b></label>
+			        	<label for="fechaNacimiento">Fecha:</label>
+			          <input type="text" id="fechaSalida" name="" <?=(isset($datosActor['datosDeNacimiento']['fechaNacimiento']) ? 'value="'.$datosActor['datosDeNacimiento']['fechaNacimiento'].'"' : 'value=""'); ?> 
+			          placeholder="AAAA-MM-DD" />
+			          <label for="fechaNacimiento">Hora:</label>
+			       <input type="text" name="" <?=(isset($datosActor['datosDeNacimiento']['fechaNacimiento']) ? 'value="'.$datosActor['datosDeNacimiento']['fechaNacimiento'].'"' : 'value=""'); ?> 
+			       placeholder="HH:MM" />
+		        </div>
     </div>
-
+		 
     <div class="nine columns">
             <?php if(isset($actorId)){ ?>
             <input type="hidden" value="<?=$actorId; ?>" name="actores_actorId" />

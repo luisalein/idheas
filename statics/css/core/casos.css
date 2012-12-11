@@ -60,3 +60,7 @@ textarea {
        overflow:scroll;
        overflow-x:hidden;
 }
+
+.texto{
+  margin-top: 50px;
+}

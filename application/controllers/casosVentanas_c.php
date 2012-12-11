@@ -397,6 +397,9 @@ class CasosVentanas_c extends CI_Controller {
 	
 	public function agregarIntervenido(){
 		
+		$catalogos= $this->traer_catalogos();
+
+
 		if(isset($_POST['intervenciones_intervencionId']) && isset($_POST['actorIntervenidoId'])){
 			$datos = array('actorIntervenidoId'=>$_POST['actorIntervenidoId'],'intervenciones_intervencionId'=>$_POST['intervenciones_intervencionId']);
 		
@@ -411,9 +414,15 @@ class CasosVentanas_c extends CI_Controller {
 
 		$datos['intervenciones'] =$datos['datosCaso']['intervenciones'];
 
-		$datos['intervenciones']['intervenidos'] =1;
+		$data="";
 
-		$data=$datos['intervenciones'];
+		foreach ($datos['intervenciones'][$_POST['intervenciones_intervencionId']]['intervenidos'] as $intervenidos) {
+								
+			$data= $data.'<div>'.$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['nombre']." ".$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['apellidosSiglas'].'</div>';
+
+		}
+
+		// $data=$datos['intervenciones'][$_POST['intervenciones_intervencionId']]['intervenidos'];
 
 		print_r($data);
 	}
