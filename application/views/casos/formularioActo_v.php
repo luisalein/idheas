@@ -247,7 +247,7 @@
 			</fieldset>
 			<br/>
 			<?php if (isset($botonVictimas)) { ?>
-				<input class="medium button" type="button" value="Agregar víctima" onclick="ventanaVictimas('<?=$casoId;?>',0,0)"/>
+				<input class="medium button" type="button" value="Agregar víctima" onclick="ventanaVictimas('<?=$acto['actoId'];?>',0,0)"/>
 			<?php } ?>
 			<br/>
 			<br/>
