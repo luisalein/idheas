@@ -240,7 +240,12 @@
 						<h2 class="twelve columns">Personas por las que se interviene</h2>
 							<div >
 								  <input type="button" class="tiny button" onclick="seleccionarActorseleccionarActorIndColDatos('4')" value="Agregar">
-								  <div id="agregaIntervenidosLista"></div>
+								  <div id="agregaIntervenidosLista">
+								  		<?php if (isset($intervenciones['intervenidos'])) {?>
+								  		<?= $catalogos['listaTodosActores'][]['nombre'].$catalogos['listaTodosActores'][]['apellidosSiglas'] ?>
+
+								  		<?php } ?>
+								  </div>
 				  
 							</div>	  
 					</div><!--fin acordeon descripción-->

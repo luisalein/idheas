@@ -411,6 +411,8 @@ class CasosVentanas_c extends CI_Controller {
 
 		$datos['intervenciones'] =$datos['datosCaso']['intervenciones'];
 
+		$datos['intervenciones']['intervenidos'] =1;
+
 		$data=$datos['intervenciones'];
 
 		print_r($data);
