@@ -144,8 +144,10 @@ function agregarIntervenidoAjax(){
                     
             success: function(data){ 
                    
-            alert(data);
+            //alert(data);
             window.opener.document.getElementById('agregaIntervenidosLista').innerHTML = (data);
+            
+            window.close();
                 
             },
             

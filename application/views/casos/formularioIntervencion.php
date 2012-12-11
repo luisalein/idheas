@@ -238,7 +238,9 @@
 								</div>
 								<?php echo br(2);?>	
 							</div>
-					
+			
+			<input class="medium button" type="submit" value="Guardar"/>
+			<input class="medium button" value="Cancelar" onclick="cerrarVentana()" />		
 					<!-- <pre>	<?= print_r($intervenciones['intervenidos'])?></pre> -->
 
 					<div id="subPestanias" data-collapse>
@@ -248,7 +250,18 @@
 								  <div id="agregaIntervenidosLista">
 								  		<?php if (isset($intervenciones['intervenidos'])) {
 								  			foreach ($intervenciones['intervenidos'] as $intervenidos) {?>
-								  				<div class="twelve columns"><img class="foto" src="<?= base_url().$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['foto']?>"><br> <br> <br> <br> <?= $catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['nombre']." ".$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['apellidosSiglas'] ?></div> 
+								  				<div class="twelve columns margenes" >
+								  					<div class="nine columns" >
+								  						<img class="foto" src="<?= base_url().$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['foto']?>">
+								  						<br> <br> <br> <br> <?= $catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['nombre']." ".$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['apellidosSiglas'] ?>
+								  					</div>
+								  					<div class="three columns">
+								  						<br> <br> <br> <br> 
+								  						<form method="POST" action='<?=base_url(); ?>index.php/casosVentanas_c/eliminarIntervenido/'<?= $intervenidos['actorIntervenidoId'].'/'.$casoId ?> >
+								  							<input type="submit" class="tiny button" value="Eliminar" Onclick="eliminarInterventor();">
+								  						</form>
+								  					</div>
+								  				</div> 
 								  			<?php }?>
 								  		
 
@@ -258,8 +271,6 @@
 							</div>	  
 					</div><!--fin acordeon descripción-->
 			
-			<input class="medium button" type="submit" value="Guardar"/>
-			<input class="medium button" value="Cancelar" onclick="cerrarVentana()" />
 			</div>
 			
 		</div><!--fin acordeon información general-->

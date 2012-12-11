@@ -61,6 +61,7 @@ textarea {
        overflow-x:hidden;
 }
 
-.texto{
-  margin-top: 50px;
+.margenes{
+
+  border-bottom: 3px solid #ddd;
 }

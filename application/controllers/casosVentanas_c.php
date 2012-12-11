@@ -418,7 +418,7 @@ class CasosVentanas_c extends CI_Controller {
 
 		foreach ($datos['intervenciones'][$_POST['intervenciones_intervencionId']]['intervenidos'] as $intervenidos) {
 								
-			$data= $data.'<div>'.$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['nombre']." ".$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['apellidosSiglas'].'</div>';
+			$data= $data.'<div class="twelve columns margenes" >'.'<img class="foto" src="'.base_url().$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['foto'].'"><br><br><br><br>'.$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['nombre']." ".$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['apellidosSiglas'].'</div>';
 
 		}
 
