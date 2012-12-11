@@ -19,7 +19,10 @@
                 	<input type="button" class="small button" value="Eliminar Foto" onclick="eliminarFoto()">
     			<?php endif;?>
     </div>
-
+		 <div class="six columns">
+	           <label for="fechaNacimiento">Fecha de nacimiento</label>
+	          <input type="text" id="fechaDeNacimientoIndividual" name="datosDeNacimiento_fechaNacimiento" <?=(isset($datosActor['datosDeNacimiento']['fechaNacimiento']) ? 'value="'.$datosActor['datosDeNacimiento']['fechaNacimiento'].'"' : 'value=""'); ?> placeholder="AAAA-MM-DD" />
+        </div>
     <div class="nine columns">
             <?php if(isset($actorId)){ ?>
             <input type="hidden" value="<?=$actorId; ?>" name="actores_actorId" />
