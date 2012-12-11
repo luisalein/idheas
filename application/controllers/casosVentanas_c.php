@@ -397,6 +397,9 @@ class CasosVentanas_c extends CI_Controller {
 	
 	public function agregarIntervenido(){
 		
+		$catalogos= $this->traer_catalogos();
+
+
 		if(isset($_POST['intervenciones_intervencionId']) && isset($_POST['actorIntervenidoId'])){
 			$datos = array('actorIntervenidoId'=>$_POST['actorIntervenidoId'],'intervenciones_intervencionId'=>$_POST['intervenciones_intervencionId']);
 		
@@ -404,8 +407,26 @@ class CasosVentanas_c extends CI_Controller {
 		}else{
 			$mensaje = 'faltan datos';
 		}
-		echo $mensaje;
+
+		$casoId=$_POST['casoId'];
+
+		$datos['datosCaso'] = $this->casos_m->mTraerDatosCaso($casoId);
+
+		$datos['intervenciones'] =$datos['datosCaso']['intervenciones'];
+
+		$data="";
+
+		foreach ($datos['intervenciones'][$_POST['intervenciones_intervencionId']]['intervenidos'] as $intervenidos) {
+								
+			$data= $data.'<div>'.$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['nombre']." ".$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['apellidosSiglas'].'</div>';
+
+		}
+
+		// $data=$datos['intervenciones'][$_POST['intervenciones_intervencionId']]['intervenidos'];
+
+		print_r($data);
 	}
+
 	/***
 	 * Elimina una persona que participa en una intervención como intervenido
 	 * Recibe el id del intervenido

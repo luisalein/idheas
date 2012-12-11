@@ -127,12 +127,12 @@ function eliminaActor(){
 function agregarIntervenidoAjax(){
     
     var actorIntervenidoId = document.getElementById('intervenidos_actorIntervenidoId').value;
-    var intervenciones_intervencionId = document.getElementById('intervenidos_intervenciones_intervencionId').value
-    var casoId = document.getElementById('casoId').value
+    var intervenciones_intervencionId = document.getElementById('intervenidos_intervenciones_intervencionId').value;
+    var casoId = document.getElementById('casoId').value;
 
         var url = base+'index.php/casosVentanas_c/agregarIntervenido';
     
-        var data = 'intervenidos_actorIntervenidoId='+actorIntervenidoId + '&intervenidos_intervenciones_intervencionId='+intervenciones_intervencionId;
+        var data = 'actorIntervenidoId='+actorIntervenidoId + '&intervenciones_intervencionId='+intervenciones_intervencionId+'&casoId='+casoId;
 
             $.ajax({
         
@@ -144,7 +144,8 @@ function agregarIntervenidoAjax(){
                     
             success: function(data){ 
                    
-              $('#agregaIntervenidosLista').html(data);  
+            alert(data);
+            window.opener.document.getElementById('agregaIntervenidosLista').innerHTML = (data);
                 
             },
             
