@@ -1,10 +1,26 @@
 <div class="two columns">
-	<?php if(isset($datosActor['actores'])){?>
-    <img src="<?=base_url().$datosActor['actores']['foto']; ?>" class="foto"/>
-    <br />
-	    <?php }?>
+	<div>
+		<?php if(isset($datosActor['actores'])){?>
+		    <img src="<?=base_url().$datosActor['actores']['foto']; ?>" class="foto"/>
+		    <br />
+		<?php }?>
+	</div>
+	<div style="margin-top: 30px;" class="nine columns">
+			<label for="fechaNacimiento"><b>Entrada</b></label>
+			<label for="fechaNacimiento">Fecha:</label>
+			<label><?= (isset($datosActor['infoMigratoria']['fechaEntrada']))? $datosActor['infoMigratoria']['fechaEntrada']:'';?></label>
+			<label for="fechaNacimiento">Hora:</label>
+			<label><?=(isset($datosActor['infoMigratoria']['horaEntrada']))? $datosActor['infoMigratoria']['horaEntrada']:'';?></label>  
+			<br/>
+			<label for="fechaNacimiento"><b>Salida</b></label>
+			<label for="fechaNacimiento">Fecha:</label>
+			<label><?= (isset($datosActor['infoMigratoria']['fechaSalida']))? $datosActor['infoMigratoria']['fechaSalida']:'';?></label>
+			<label for="fechaNacimiento">Hora:</label>
+			<label><?= (isset($datosActor['infoMigratoria']['horaSalida']))? $datosActor['infoMigratoria']['horaSalida']:'';?></label>
+	</div>    
 </div>
-
+<br/>
+	   
 <div class="ten columns">	
 	<fieldset> <!--Información general-->
 		  <legend>Información general</legend>
@@ -18,8 +34,6 @@
 		 
 			<h6>Alias:   </h6>
 			<label id="alias"><?=(isset($datosActor['alias']['alias'])) ? $datosActor['alias']['alias'] : ''; ?></label>
-		  
-		  
 		</div>
 		  
 		<div class="six columns">
