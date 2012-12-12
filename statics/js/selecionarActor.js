@@ -51,7 +51,6 @@ function agregaIntervenidos(title){
     document.getElementById('intervenidos_actorIntervenidoId').value= n[0];
     document.getElementById('intervenidos_intervenciones_intervencionId').value= intervencionId;
     document.getElementById('casoId').value= casoId;
-    window.opener.document.getElementById('agregaIntervenidosLista').innerHTML = ('<div class="three columns"><img style="width:120px !important; height:150px !important;" src="'+base+n[2]+'" /></div><b><h4>'+n[1]+'</h4></b>');
 }    
 
 
@@ -78,7 +77,6 @@ function seleccionarRelacionColectivo(nombre, Siglas, TipoRelacion,IdRelacion,fo
         var vista='vistaActorRelacionadoPerpetrador';
     } else {
         var nameSeleccionado= window.opener.document.getElementById('nameDeLaRelacion2').value;
-        alert(nameSeleccionado);
         var vista='vistaActorRelacionadoPerpetrador2'
     };
     window.opener.document.getElementById(nameSeleccionado).value = IdRelacion;
@@ -154,6 +152,39 @@ function agregarIntervenidoAjax(){
             error: function(){
             
                alert("no es posible agregar actor");
+            }
+        
+        });
+}
+
+
+//Actualizará dinámicamente los actores intervenido de una intervención
+function eliminarIntervenidoAjax(idIntervenido,idCaso,idInternvencion){
+    
+        var url = base+'index.php/casosVentanas_c/eliminarIntervenido/'+idIntervenido+'/'+idCaso+'/'+idInternvencion;
+
+            var data;
+
+            $.ajax({
+        
+            url: url,
+        
+            data: data,
+            
+            type: 'POST',
+                    
+            success: function(data){ 
+                   
+
+            document.getElementById('agregaIntervenidosLista').innerHTML = (data);
+            
+            //window.close();
+                
+            },
+            
+            error: function(){
+            
+               alert("no es posible eliminar actor");
             }
         
         });

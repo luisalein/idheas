@@ -418,7 +418,17 @@ class CasosVentanas_c extends CI_Controller {
 
 		foreach ($datos['intervenciones'][$_POST['intervenciones_intervencionId']]['intervenidos'] as $intervenidos) {
 								
-			$data= $data.'<div class="twelve columns margenes" >'.'<img class="foto" src="'.base_url().$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['foto'].'"><br><br><br><br>'.$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['nombre']." ".$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['apellidosSiglas'].'</div>';
+			$data= $data.
+			'<div class="twelve columns margenes" >'.
+				'<div class="nine columns" >'.
+					'<img class="foto" src="'.base_url().$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['foto'].'">
+					<br><br><br><br>'.$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['nombre']." ".$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['apellidosSiglas'].
+				"</div>
+				<div class='three columns'>
+					<br> <br> <br> <br> 
+					<input type='button' class='tiny button' value='Eliminar' Onclick=".'"eliminarIntervenidoAjax('."'".$intervenidos['intervenidoId']."','".$casoId."','".$_POST['intervenciones_intervencionId']."')".'">
+				</div>
+			</div>';
 
 		}
 
@@ -432,22 +442,37 @@ class CasosVentanas_c extends CI_Controller {
 	 * Recibe el id del intervenido
 	 * Redirecciona al caso en donde se elimino el intervenido
 	 * **/
-	public function eliminarIntervenido($idIntervenido,$idCaso){
+	public function eliminarIntervenido($idIntervenido,$idCaso,$idInternvencion){
 		
 		$mensaje = $this->casos_m->mEliminarIntervenido($idIntervenido);
 		
 		//redirect(base_url().'index.php/casos_c/mostrar_caso/'.$idCaso);
 	
+		$catalogos= $this->traer_catalogos();
 
-		// foreach ($datos['intervenciones'][$_POST['intervenciones_intervencionId']]['intervenidos'] as $intervenidos) {
+		$datos['datosCaso'] = $this->casos_m->mTraerDatosCaso($idCaso);
+
+		$datos['intervenciones'] =$datos['datosCaso']['intervenciones'];
+
+		$data="";
+
+		foreach ($datos['intervenciones'][$idInternvencion]['intervenidos'] as $intervenidos) {
 								
-		// 	$data= $data.'<div class="twelve columns margenes" >'.'<img class="foto" src="'.base_url().$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['foto'].'"><br><br><br><br>'.$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['nombre']." ".$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['apellidosSiglas'].'</div>';
+			$data= $data.'<div class="twelve columns margenes" >'.
+				'<div class="nine columns">
+					<img class="foto" src="'.base_url().$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['foto'].
+					'"><br><br><br><br>'.
+				$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['nombre']." ".$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['apellidosSiglas'].
+				"</div>
+				<div class='three columns'>
+					<br> <br> <br> <br> 
+						<input type='button' class='tiny button' value='Eliminar' Onclick=".'"eliminarIntervenidoAjax('."'".$intervenidos['intervenidoId']."','".$idCaso."','".$idInternvencion."')".'">
+				</div>
+			</div>';
 
-		// }
+		}
 
-		// // $data=$datos['intervenciones'][$_POST['intervenciones_intervencionId']]['intervenidos'];
-
-		// print_r($data);
+		 print_r($data);
 		
 
 		return $mensaje;

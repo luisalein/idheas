@@ -43,7 +43,7 @@
                             <input type="radio" id="infoGralActor_generoid" name="infoGralActor_generoId" <?php if($datosActor['infoGralActor']['generoId'] == 1){ echo 'checked="checked"'; }?> checked="checked" value="1" />Hombre
                             <input type="radio" id="infoGralActor_generoid" name="infoGralActor_generoId" <?php if($datosActor['infoGralActor']['generoId'] == 2){ echo 'checked="checked"'; }?> value="2" />Mujer
                         <?php } else { ?>
-                            <input type="radio" id="infoGralActor_generoid" name="infoGralActor_generoId"  value="1" />Hombre
+                            <input type="radio" id="infoGralActor_generoid" name="infoGralActor_generoId"  value="1" checked="checked" />Hombre
                             <input type="radio" id="infoGralActor_generoid" name="infoGralActor_generoId"  value="2" />Mujer
                         <?php } ?>
                         <label for="edad">Edad</label>

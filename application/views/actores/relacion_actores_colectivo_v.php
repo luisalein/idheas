@@ -64,7 +64,7 @@
 
 					<?php if(isset($relacionActoresColectivo)){ ?>
 						<ol>
-							<li  class="ExpanderFlecha flecha" id="listaEmpleo" onclick="desplegar('relacionEmpleo','listaEmpleo')" > Relaciones de empleo </li>
+							<li style="padding-left:15px;" class="ExpanderFlecha flecha" id="listaEmpleo" onclick="desplegar('relacionEmpleo','listaEmpleo')" > Relaciones de empleo </li>
 								<li>
 									<ul id="relacionEmpleo" class="Escondido">
 									<?php foreach($relacionActoresColectivo['relacionActoresCatalogo'] as  $item):?> 
@@ -74,7 +74,7 @@
 									<?php endforeach;?>
 									</ul>
 								</li>
-							<li  class="ExpanderFlecha flecha" id="listaAfiliacion" onclick="desplegar('relacionAfiliacion','listaAfiliacion')" >Relaciones de afiliación</li>
+							<li style="padding-left:15px;" class="ExpanderFlecha flecha" id="listaAfiliacion" onclick="desplegar('relacionAfiliacion','listaAfiliacion')" >Relaciones de afiliación</li>
 								<li>
 									<ul id="relacionAfiliacion" class="Escondido" >
 									<?php foreach($relacionActoresColectivo['relacionActoresCatalogo'] as  $item):?> 
@@ -101,6 +101,7 @@
 			</div>
 			
 			
+			<br /><br />
 	<label>Actores colectivos</label>
 	
 	<div id="vistaActorRelacionado">
@@ -118,6 +119,7 @@
 			
 			
 			<div class="twelve columns">
+			<br /><br />
 				<div class="six columns">
 				<label for="edad">Fecha inicial</label>
 					<select onclick="fechaInicialCasosRIC(value)" >
@@ -188,15 +190,15 @@
 				</div>
 			</div> <!---termina opciones de fechaTermino-->
 			
+		<div class="twelve columns">
 			<br /><br />
-
 			<fieldset>
 				<legend>Comentarios</legend>
 					<textarea rows="10" cols="100"  id="TextoRelActoresColectivo" style="width: 400px; height: 200px" wrap="hard"  name="comentarios"><?=(isset($relaciones) ? $relaciones['comentarios'] : ''); ?></textarea>
-			</fieldset>
-			
-		<input class="medium button" type="submit" value="Guardar" />
-		<input class="medium button" type="button" value="Cancelar"  onclick="cerrarVentana()"/>
+			</fieldset>	
+			<input class="medium button" type="submit" value="Guardar" />
+			<input class="medium button" type="button" value="Cancelar"  onclick="cerrarVentana()"/>
+		</div>		
 			
 		</form>		
 		
