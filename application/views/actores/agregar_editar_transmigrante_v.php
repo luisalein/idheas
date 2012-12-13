@@ -19,10 +19,11 @@
                 	<input type="button" class="small button" value="Eliminar Foto" onclick="eliminarFoto()">
     			<?php endif;?>
     			<br/>
+    			<?php date_default_timezone_set('America/Mexico_City');?>
     			<div class="nine columns">
 			        <label for="fechaNacimiento"><b>Entrada</b></label>
 			        
-			        <label for="fechaNacimiento">Fecha:</label>
+			        <label for="fechaNacimiento">Fecha:</label><!---->
 			       <input type="text" id="fechaEntrada" name="infoMigratoria_fechaEntrada" value="<?= (isset($datosActor['infoMigratoria']))? $datosActor['infoMigratoria']['fechaEntrada']:date("Y-m-d");?>" />
 			       <label for="fechaNacimiento">Hora:</label>
 			       <input type="text" name="infoMigratoria_horaEntrada" value="<?=(isset($datosActor['infoMigratoria']))? $datosActor['infoMigratoria']['horaEntrada']:date("H:i");?>" />
