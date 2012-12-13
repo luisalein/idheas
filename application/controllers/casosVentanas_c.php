@@ -455,23 +455,24 @@ class CasosVentanas_c extends CI_Controller {
 		$datos['intervenciones'] =$datos['datosCaso']['intervenciones'];
 
 		$data="";
+		if (isset($datos['intervenciones'][$idInternvencion]['intervenidos'])) {
+			
+			foreach ($datos['intervenciones'][$idInternvencion]['intervenidos'] as $intervenidos) {
+									
+				$data= $data.'<div class="twelve columns margenes" >'.
+					'<div class="nine columns">
+						<img class="foto" src="'.base_url().$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['foto'].
+						'"><br><br><br><br>'.
+					$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['nombre']." ".$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['apellidosSiglas'].
+					"</div>
+					<div class='three columns'>
+						<br> <br> <br> <br> 
+							<input type='button' class='tiny button' value='Eliminar' Onclick=".'"eliminarIntervenidoAjax('."'".$intervenidos['intervenidoId']."','".$idCaso."','".$idInternvencion."')".'">
+					</div>
+				</div>';
 
-		foreach ($datos['intervenciones'][$idInternvencion]['intervenidos'] as $intervenidos) {
-								
-			$data= $data.'<div class="twelve columns margenes" >'.
-				'<div class="nine columns">
-					<img class="foto" src="'.base_url().$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['foto'].
-					'"><br><br><br><br>'.
-				$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['nombre']." ".$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['apellidosSiglas'].
-				"</div>
-				<div class='three columns'>
-					<br> <br> <br> <br> 
-						<input type='button' class='tiny button' value='Eliminar' Onclick=".'"eliminarIntervenidoAjax('."'".$intervenidos['intervenidoId']."','".$idCaso."','".$idInternvencion."')".'">
-				</div>
-			</div>';
-
+			}
 		}
-
 		 print_r($data);
 		
 

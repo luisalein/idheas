@@ -63,7 +63,7 @@
 		/*Este modelo Lista los actores dependiendo del tipoActorId */
         function listado_actores_m($tipoActorId){
             
-            $consulta = $this->db->select('actorId, nombre,tipoActorId, apellidosSiglas,foto')->from('actores')->where('tipoActorId',$tipoActorId)->where('estadoActivo', 1)->get();
+            $consulta = $this->db->select('actorId, nombre,tipoActorId, apellidosSiglas,foto')->from('actores')->where('tipoActorId',$tipoActorId)->where('estadoActivo', 1)->order_by('nombre','asc')->get();
 	
             if($consulta->num_rows() > 0){
                 

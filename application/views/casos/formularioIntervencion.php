@@ -52,7 +52,7 @@
 							<div class="twelve columns">
 									<label for="tipoIntervencion">Tipo de intervención</label>
 									
-			<div class="caja CatalogotipoIntervencion">
+			<div class="caja CatalogotipoIntervencion casosScorll">
 				<ol>
 					<?php foreach($catalogos['tipoIntervencionN1Catalogo'] as  $nivel1) { ?> 
 							<li >
@@ -244,12 +244,13 @@
 
 	</form>
 					<!-- <pre>	<?= print_r($intervenciones['intervenidos'])?></pre> -->
-
+			<?php if (isset($intervenciones['interventorId'])) { ?>
 					<div id="subPestanias" data-collapse>
 						<h2 class="twelve columns">Personas por las que se interviene</h2>
+			
 							<div >
 								  <input type="button" class="tiny button" onclick="seleccionarActorseleccionarActorIndColDatos('4')" value="Agregar">
-								  <div id="agregaIntervenidosLista">
+								  <div id="agregaIntervenidosLista" class="PruebaScorll">
 								  		<?php if (isset($intervenciones['intervenidos'])) {
 								  			foreach ($intervenciones['intervenidos'] as $intervenidos) {?>
 								  				<div class="twelve columns margenes" >
@@ -270,7 +271,7 @@
 				  
 							</div>	  
 					</div><!--fin acordeon descripción-->
-			
+			<?php } ?>
 			</div>
 			
 		</div><!--fin acordeon información general-->

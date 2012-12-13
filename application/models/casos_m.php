@@ -350,6 +350,8 @@ class Casos_m extends CI_Model {
              $this->db->from('casos');
 			 
 			 $this->db->where('estadoActivo', 1);
+
+			 $this->db->order_by('nombre','asc');
 		
              $casos = $this->db->get();
 		
