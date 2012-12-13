@@ -64,6 +64,9 @@
 							    		case '4':
 							    		echo "agregaIntervenidos('".$individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto']."')";
 							    			break;
+							    		case '5':
+							    		echo "agregarActorFuenteInfoPersonal('".$individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto']."')";
+							    			break;
 							    	}
 					    	
 					    } else {

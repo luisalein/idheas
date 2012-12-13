@@ -54,6 +54,7 @@ function agregaIntervenidos(title){
 }    
 
 
+
 function SeleccionarYTreaeRelaciones(title){  
     var n=title.split("*");
     $('.lista').css('background-color','#fff')
@@ -189,3 +190,15 @@ function eliminarIntervenidoAjax(idIntervenido,idCaso,idInternvencion){
         
         });
 }
+
+function agregarActorFuenteInfoPersonal(title){  
+    var n=title.split("*");
+    $('.lista').css('background-color','#fff')
+    $('#'+n[0]).css('background-color','#ccc');
+    notas="seleccionarActorseleccionarActorIndColDatos('5')";
+    notas2="function eliminarRelacionVista('eliminarVistaActor','fuenteInfoPersonal_actorId')";
+    // var nameSeleccionado= window.opener.document.getElementById('nameSeleccionado').value;
+    // window.opener.document.getElementById(nameSeleccionado).value = n[0];
+    window.opener.document.getElementById('infoPersonalActor').innerHTML = ('<div class="nine columns"><div class="three columns"><img class="foto" src="'+ base+n[2]+'" /></div><b><h4>'+n[1]+'</h4></b> <input type="button" class="tiny button" value="Seleccionar actor" onclick="'+notas+'" /></div>'+
+        '<div class="three columns" id="eliminarVistaActor"><input type="button" class="tiny button" value="Eliminar Actor" onclick="'+notas2+'" /></div>');
+}  

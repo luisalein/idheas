@@ -669,3 +669,19 @@ function ventanaRelacionCasos(casoId, indice){
 	window.open(base+'index.php/casosVentanas_c/relacionCasos/'+casoId+'/'+indice+'/', 'Relación entre casos', windowSizeArray);
 }
 
+/**Funciones de la ventana fuentes de información personal **/
+
+function pintaIndividualesInfoPersonal(){
+
+	$('#infoColectio').removeClass("Escondido");
+    notas="seleccionarActorseleccionarActorIndColDatos('5')";
+    notas2="function eliminarRelacionVista('eliminarVistaActor','fuenteInfoPersonal_actorId')";
+	document.getElementById('infoPersonalActor').innerHTML = ('<div class="nine columns"><input type="button" class="tiny button" value="Seleccionar actor" onclick="'+notas+'" /></div>'+
+		'<div class="three columns" id="eliminarVistaActor"><input type="button" class="tiny button" value="Eliminar Actor" onclick="'+notas2+'" /></div>');
+}
+
+function pintaColectivosInfoPersonal(){
+	$('#infoColectio').addClass("Escondido");
+	document.getElementById('infoPersonalActor').innerHTML ="Algo";
+
+}

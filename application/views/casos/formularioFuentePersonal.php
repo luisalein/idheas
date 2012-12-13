@@ -13,18 +13,21 @@
 		<input type="hidden" id='fuenteInfoPersonal_casos_casoId' name='fuenteInfoPersonal_casos_casoId' value="<?= $casoId ?>"/>
 		
 			<fieldset>
-				<legend>Fuente de información personal</legend>
-					<input type="radio"  value="" name="" id=""/>Persona
-					<input type="radio"  value="" name="" id=""/>Actor colectivo
-					<b>Persona:</b> <br />
+				<legend class="espacioInferior">Fuente de información personal</legend>
+					<input type="radio" onclick="pintaIndividualesInfoPersonal()" name="selecionaActor"/>Persona
+					<input type="radio"	onclick="pintaColectivosInfoPersonal()" name="selecionaActor" />Actor colectivo <br />
+					<label class="espacioSuperior"><b >Persona:</b></label> <br />
+
+					<div class="twelve columns espacioSuperior" id="infoPersonalActor"></div>
 												
-					
-					<div id="pestania" data-collapse >
-						<h2 class="open">Actor colectivo</h2><!--título de la sub-pestaña-->  
-							<div >
-							  
-							</div>
-					</div>					
+					<div class="twelve columns espacioSuperior" id="infoColectio" class="Escondido">
+						<div id="pestania" data-collapse  >
+							<h2 class="open">Actor colectivo</h2>
+								<div >
+								  
+								</div>
+						</div>
+					</div>
 			</fieldset>
 			<fieldset>
 			<div class="twelve columns espacioSuperior">
