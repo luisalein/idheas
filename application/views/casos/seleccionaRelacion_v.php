@@ -3,6 +3,7 @@
 	<title><?= $head ?></title>
 </head>
 <body>
+    <!-- <pre><?= print_r($actoresRelacionados)?></pre> -->
 	<h3>Actore colectivos relacionados</h3>
     <table>
         <thead>

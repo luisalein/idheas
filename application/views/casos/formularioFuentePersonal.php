@@ -28,16 +28,35 @@
 
 		<pre> <?php print_r($datosCaso['fuenteInfoPersonal'][$id])?></pre>
 		<pre> <?php print_r($catalogos['listaTodosActores'][$datosCaso['fuenteInfoPersonal'][$id]['actorId']])?></pre>
-		<pre> <?php print_r($catalogos['listaTodosActores'][$datosCaso['fuenteInfoPersonal'][$id]['actorId']]['tipoActorId'])?></pre>
-		<?= (isset($datosCaso['fuenteInfoPersonal'][$id]['actorId']) && ($datosCaso['fuenteInfoPersonal'][$id]['actorId']< 3)) ? $catalogos['listaTodosActores'][$datosCaso['fuenteInfoPersonal'][$id]['actorId']]['tipoActorId'] : " " ;?>
+		
 			<fieldset>
 				<legend class="espacioInferior">Fuente de información personal</legend>
-					<input type="radio" onclick="pintaIndividualesInfoPersonal()" name="selecionaActor"/>Persona
-					<input type="radio"	onclick="pintaColectivosInfoPersonal()" name="selecionaActor" />Actor colectivo <br />
+					<input type="radio" onclick="pintaIndividualesInfoPersonal()" name="selecionaActor" <?= (isset($datosCaso['fuenteInfoPersonal'][$id]['actorId']) && ($datosCaso['fuenteInfoPersonal'][$id]['actorId']< 3)) ? "checked='checked'" : " " ;?>/>Persona
+					<input type="radio"	onclick="pintaColectivosInfoPersonal()" name="selecionaActor"<?= (isset($datosCaso['fuenteInfoPersonal'][$id]['actorId']) && ($datosCaso['fuenteInfoPersonal'][$id]['actorId']== 3)) ? "checked='checked'" : " " ;?> />Actor colectivo <br />
 					<label class="espacioSuperior"><b >Persona:</b></label> <br />
 
-					<div class="twelve columns espacioSuperior" id="infoPersonalActor"></div>
-					<div class="twelve columns espacioSuperior" id="infoPersonalActorBotones"></div>
+
+					<div class="twelve columns espacioSuperior" id="infoPersonalActor">
+						<div class="seven columns">
+							<img class="foto" src="http://localhost/idheas//statics/fotosActor/7d0e2a_adeljuzga.jpg">
+						</div>
+						<div class="five columns">
+							<b>
+							<h4>Adel Ortega</h4>
+							</b>
+						</div>
+					</div>
+
+					<div class="twelve columns espacioSuperior" id="infoPersonalActorBotones">
+						<?php if (isset($datosCaso['fuenteInfoPersonal']) &&($datosCaso['fuenteInfoPersonal'] > 0)) { ?>
+							<div class="nine columns">
+								<input class="tiny button" type="button" onclick="seleccionarActorseleccionarActorIndColDatos('5')" value="Seleccionar actor">
+							</div>
+							<div id="eliminarVistaActor" class="three columns">
+								<input class="tiny button" type="button" onclick="eliminarRelacionVista('eliminarVistaActor','fuenteInfoPersonal_actorId')" value="Eliminar Actor">
+							</div>
+						<?php } ?>
+					</div>
 												
 					<div class="twelve columns espacioSuperior" id="infoColectio" <?= (isset($datosCaso['fuenteInfoPersonal'][$id])) ? "" : 'class="Escondido"' ;?>>
 						<div id="pestania" data-collapse  >
