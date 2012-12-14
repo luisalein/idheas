@@ -418,9 +418,7 @@
     <fieldset class="espacioSuperior">
         <legend>Comentarios</legend>
         <div class="twelve columns">
-            <textarea  placeholder="Escribir algun comentario"  rows="10" cols="100" name="infoMigratoria_comentarios" id="infoMigratoria_comentarios" wrap="hard" >
-                <?= (isset($datosActor['infoMigratoria']['comentarios'])) ? $datosActor['infoMigratoria']['comentarios'] : "" ;?>
-            </textarea>
+            <textarea  placeholder="Escribir algun comentario"  rows="10" cols="100" name="infoMigratoria_comentarios" id="infoMigratoria_comentarios" wrap="hard" ><?= (isset($datosActor['infoMigratoria']['comentarios'])) ? $datosActor['infoMigratoria']['comentarios'] : "" ;?></textarea>
         </div>
     </fieldset>
 
