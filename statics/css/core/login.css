@@ -2,18 +2,18 @@ body{
 	background-color:#fff;
 }
 #container{
-		position:absolute;
-		background-color:#fff;
-		margin:2% 0% 20% 30%;
-		width:40%;
-		height:60%;
-	border: 2px solid #333;
-		-moz-box-shadow:10px 10px 10px #333;
-		-webkit-box-shadow:10px 10px 10px #333;
-		box-shadow:10px 10px 10px #333;
-		-moz-border-radius: 29px;
-		-webkit-border-radius: 29px;
-		border-radius: 29px;
+		position:absolute !important;
+		background-color:#fff !important;
+		margin:5% 0% 20% 30% !important;
+		width:35% !important;
+		border: 2px solid #ccc !important;
+		-moz-box-shadow:10px 10px 10px #aaa !important;
+		-webkit-box-shadow:10px 10px 10px #aaa !important;
+		box-shadow:10px 10px 10px #aaa !important;
+		-moz-border-radius: 29px !important;
+		-webkit-border-radius: 29px !important;
+		border-radius: 29px !important;
+		padding: 0 !important;
 }
 #bienvenido{
 		width:30%;
@@ -22,9 +22,9 @@ body{
 	}
 
 #texto{
-		background-color:#e33;
-		height:5%;
-		margin-top:-1%;
+		background-color:#e33 !important;
+		height:5% !important;
+		margin-top:10% !important;
 		
 	}
 
@@ -38,7 +38,7 @@ body{
 	}
 
 #usuario, #contrasenia{
-	width:90%;
+	width:100%;
 	}
 
 img{
@@ -59,15 +59,7 @@ H1{
 input:focus { border: 2px solid #000; }
 input:invalid { border: 2px solid #F00; }
 
-.submit input {  
-    width: auto;  
-    padding: 9px 15px;  
-    background: #F33;  
-    border: 2px;  
-    font-size: 16px;  
-    color: #Faa;  
-    }  
-    
+
  
 
 /* 1280px*/
