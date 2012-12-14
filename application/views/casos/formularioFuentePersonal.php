@@ -20,7 +20,7 @@
 
 					<div class="twelve columns espacioSuperior" id="infoPersonalActor"></div>
 												
-					<div class="twelve columns espacioSuperior" id="infoColectio" class="Escondido">
+					<div class="twelve columns espacioSuperior" id="infoColectio" <?= (isset($datosCaso['fuenteInfoPersonal'][$id])) ? "" : 'class="Escondido"' ;?>>
 						<div id="pestania" data-collapse  >
 							<h2 class="open">Actor colectivo</h2>
 								<div id="infoColectioContenido" >

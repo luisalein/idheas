@@ -424,6 +424,10 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`infoMigratoria` (
   `lugarOrigenPaisId` INT NULL ,
   `lugarOrigenEstadoId` INT NULL ,
   `lugarOrigenMunicipioId` INT NULL ,
+  `fechaEntrada` DATE NULL ,
+  `horaEntrada` TIME NULL ,
+  `fechaSalida` DATE NULL ,
+  `horaSalida` TIME NULL ,
   PRIMARY KEY (`actores_actorId`) ,
   CONSTRAINT `fk_infoMigratoria_actores1`
     FOREIGN KEY (`actores_actorId` )

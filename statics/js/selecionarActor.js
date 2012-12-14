@@ -80,6 +80,7 @@ function seleccionarRelacionColectivo(nombre, Siglas, TipoRelacion,IdRelacion,fo
         break;
 
         case '3':
+            var nameSeleccionado= window.opener.document.getElementById('nameDeLaRelacion').value;
             var vista='infoColectioContenidoFoto'
         break;
 
