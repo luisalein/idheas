@@ -154,27 +154,29 @@
 									<div class="twelve columns">
 										<div id="vistaActorRelacionadoPerpetrador">
 											<div id="vistaPintaRelaciones">
-													<?php if (isset($intervenciones['receptorId'])) { 
-														if (isset($intervenciones['tipoRelacionReceptor'])&& ($intervenciones['tipoRelacionReceptor']>0)) { ?>
-											                <div class="four columns" >
-											                	<?=$intervenciones['tipoRelacionReceptor']?>
-											                <img class="foto" src="<?= (isset($catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$intervenciones['tipoRelacionReceptor']]['actorRelacionadoId']]['foto'])) ? base_url().$catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$intervenciones['tipoRelacionReceptor']]['actorRelacionadoId']]['foto'] : " " ; ?>" />
+													<?php if (isset($intervenciones['interventorId'])) { 
+														if (isset($intervenciones['tipoRelacionInterventor'])&& ($intervenciones['tipoRelacionInterventor']>0)) { ?>
+											                <div class="three columns" >
+											                <img class="foto" src="<?= (isset($catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$intervenciones['tipoRelacionInterventor']]['actorRelacionadoId']]['foto'])) ? base_url().$catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$intervenciones['tipoRelacionInterventor']]['actorRelacionadoId']]['foto'] : " " ; ?>" />
 															</div>
 																																						
-															<div class="eight columns"> 
-																<h5><?=(isset($catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$intervenciones['tipoRelacionReceptor']]['actorRelacionadoId']]['nombre'])) ? $catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$intervenciones['tipoRelacionReceptor']]['actorRelacionadoId']]['nombre']	 : " " ; ?>
-																<?=(isset($catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$intervenciones['tipoRelacionReceptor']]['actorRelacionadoId']]['apellidosSiglas'])) ? $catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$intervenciones['tipoRelacionReceptor']]['actorRelacionadoId']]['apellidosSiglas']	 : " " ; ?></h5> <br> 
+															<div class="nine columns"> 
+																<h5><?=(isset($catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$intervenciones['tipoRelacionInterventor']]['actorRelacionadoId']]['nombre'])) ? $catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$intervenciones['tipoRelacionInterventor']]['actorRelacionadoId']]['nombre']	 : " " ; ?>
+																<?=(isset($catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$intervenciones['tipoRelacionInterventor']]['actorRelacionadoId']]['apellidosSiglas'])) ? $catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$intervenciones['tipoRelacionInterventor']]['actorRelacionadoId']]['apellidosSiglas']	 : " " ; ?></h5> <br> 
 															<h5>Tipo de relacion</h5>
-																<?=(isset($catalogos['relacionesActoresCatalogo'][$intervenciones['tipoRelacionReceptor']]['tipoRelacionId'])) ? $catalogos['relacionActoresCatalogo'][$catalogos['relacionesActoresCatalogo'][$intervenciones['tipoRelacionReceptor']]['tipoRelacionId']]['Nivel2']	 : " " ; ?></h5> <br> 
-																<?php if (isset($intervenciones['interventorId']) ) {?>
-																	<input type="button" class="small button" value="Cambiar relación" onclick="ventanaColectivoRelacionados('<?= $intervenciones['interventorId'] ?>')">
+																<?=(isset($catalogos['relacionesActoresCatalogo'][$intervenciones['tipoRelacionInterventor']]['tipoRelacionId'])) ? $catalogos['relacionActoresCatalogo'][$catalogos['relacionesActoresCatalogo'][$intervenciones['tipoRelacionInterventor']]['tipoRelacionId']]['Nivel2']	 : " " ; ?></h5> <br> 
+																<?php if (isset($intervenciones['receptorId'] )) {?>
+																	<input type="button" class="small button" value="Cambiar relación" onclick="ventanaColectivoRelacionados('<?= $intervenciones['receptorId'] ?>','2')">
 																<?php	}?>
 															</div> 
-														<?php }
+															<?php }
 													}?> 
 											</div>
 										</div>
-											<input type="button" value="Eliminar" onclick="eliminarRelacionVista('vistaPintaRelacionesReceptor','intervencioneses_actorRelacionadoId')" class="tiny button">	
+											<?php if (isset($intervenciones['interventorId'])&& ($intervenciones['interventorId']>0)) { ?>
+												<input type="button" value="Eliminar" onclick="eliminarRelacionVista('vistaActorRelacionadoPerpetrador','intervencioneses_actorRelacionadoId')" class="tiny button">	
+												<input type="button" class="tiny button" value="Cambiar relación" onclick="ventanaColectivoRelacionados('<?= $intervenciones['interventorId'] ?>')">
+											<?php } ?>
 									</div>
 								</div>
 
@@ -208,26 +210,30 @@
 									<div class="twelve columns">
 										<div id="vistaActorRelacionadoPerpetrador2">
 											<div id="vistaPintaRelacionesReceptor">
-													<?php if (isset($intervenciones['tipoRelacionInterventor'])) { 
-														if (isset($intervenciones['tipoRelacionInterventor'])&& ($intervenciones['tipoRelacionInterventor']>0)) { ?>
-											                <div class="three columns" >
-											                <img class="foto" src="<?= (isset($catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$intervenciones['tipoRelacionInterventor']]['actorRelacionadoId']]['foto'])) ? base_url().$catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$intervenciones['tipoRelacionInterventor']]['actorRelacionadoId']]['foto'] : " " ; ?>" />
+													<?php if (isset($intervenciones['receptorId'])) { 
+														if (isset($intervenciones['tipoRelacionReceptor'])&& ($intervenciones['tipoRelacionReceptor']>0)) { ?>
+											                <div class="four columns" >
+											                	<?=$intervenciones['tipoRelacionReceptor']?>
+											                <img class="foto" src="<?= (isset($catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$intervenciones['tipoRelacionReceptor']]['actorRelacionadoId']]['foto'])) ? base_url().$catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$intervenciones['tipoRelacionReceptor']]['actorRelacionadoId']]['foto'] : " " ; ?>" />
 															</div>
 																																						
-															<div class="nine columns"> 
-																<h5><?=(isset($catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$intervenciones['tipoRelacionInterventor']]['actorRelacionadoId']]['nombre'])) ? $catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$intervenciones['tipoRelacionInterventor']]['actorRelacionadoId']]['nombre']	 : " " ; ?>
-																<?=(isset($catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$intervenciones['tipoRelacionInterventor']]['actorRelacionadoId']]['apellidosSiglas'])) ? $catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$intervenciones['tipoRelacionInterventor']]['actorRelacionadoId']]['apellidosSiglas']	 : " " ; ?></h5> <br> 
+															<div class="eight columns"> 
+																<h5><?=(isset($catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$intervenciones['tipoRelacionReceptor']]['actorRelacionadoId']]['nombre'])) ? $catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$intervenciones['tipoRelacionReceptor']]['actorRelacionadoId']]['nombre']	 : " " ; ?>
+																<?=(isset($catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$intervenciones['tipoRelacionReceptor']]['actorRelacionadoId']]['apellidosSiglas'])) ? $catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$intervenciones['tipoRelacionReceptor']]['actorRelacionadoId']]['apellidosSiglas']	 : " " ; ?></h5> <br> 
 															<h5>Tipo de relacion</h5>
-																<?=(isset($catalogos['relacionesActoresCatalogo'][$intervenciones['tipoRelacionInterventor']]['tipoRelacionId'])) ? $catalogos['relacionActoresCatalogo'][$catalogos['relacionesActoresCatalogo'][$intervenciones['tipoRelacionInterventor']]['tipoRelacionId']]['Nivel2']	 : " " ; ?></h5> <br> 
-																<?php if (isset($intervenciones['receptorId'] )) {?>
-																	<input type="button" class="small button" value="Cambiar relación" onclick="ventanaColectivoRelacionados('<?= $intervenciones['receptorId'] ?>','2')">
+																<?=(isset($catalogos['relacionesActoresCatalogo'][$intervenciones['tipoRelacionReceptor']]['tipoRelacionId'])) ? $catalogos['relacionActoresCatalogo'][$catalogos['relacionesActoresCatalogo'][$intervenciones['tipoRelacionReceptor']]['tipoRelacionId']]['Nivel2']	 : " " ; ?></h5> <br> 
+																<?php if (isset($intervenciones['interventorId']) ) {?>
+																	<input type="button" class="small button" value="Cambiar relación" onclick="ventanaColectivoRelacionados('<?= $intervenciones['interventorId'] ?>')">
 																<?php	}?>
 															</div> 
-															<?php }
+														<?php }
 													}?> 
+											<?php if (isset($intervenciones['receptorId'])&& ($intervenciones['receptorId']>0)) { ?>
+												<input type="button" value="Eliminar" onclick="eliminarRelacionVista('vistaActorRelacionadoPerpetrador','intervencioneses_actorRelacionadoId')" class="tiny button">	
+												<input type="button" class="tiny button" value="Cambiar relación" onclick="ventanaColectivoRelacionados('<?= $intervenciones['receptorId'] ?>')">
+											<?php } ?>
 											</div>
 										</div>
-											<input type="button" value="Eliminar" onclick="eliminarRelacionVista('vistaPintaRelacionesReceptor','intervencioneses_actorRelacionadoId')" class="tiny button">	
 									</div>
 								</div>
 

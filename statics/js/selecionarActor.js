@@ -63,24 +63,35 @@ function SeleccionarYTreaeRelaciones(title){
     window.opener.document.getElementById(nameSeleccionado).value = n[0];
     notas="ventanaColectivoRelacionados('"+n[0]+"','')";
     window.opener.document.getElementById('vistaActorRelacionado').innerHTML = ('<div class="three columns"><img style="width:120px !important; height:150px !important;" src="'+base+n[2]+'" /></div><b><h4>'+n[1]+'</h4></b>');
-    window.opener.document.getElementById('vistaPintaRelaciones').innerHTML = ('<input type="button" class="tiny button" value="Seleccionar relación" onclick="'+notas+'" />');
+    window.opener.document.getElementById('vistaActorRelacionadoPerpetrador').innerHTML = ('<input type="button" class="tiny button" value="Seleccionar relación" onclick="'+notas+'" />');
 }    
 
 function eliminarRelacionVista(id,name){  
+    document.getElementById(id).innerHTML = (" ");
     document.getElementById(name).value = 0;
-    document.getElementById(id).innerHTML = (' ');
 }    
 
 
 function seleccionarRelacionColectivo(nombre, Siglas, TipoRelacion,IdRelacion,foto, nameOpcional){  
-    if (nameOpcional== "2") {
-        var nameSeleccionado = window.opener.document.getElementById('nameDeLaRelacion').value;
-        var vista='vistaActorRelacionadoPerpetrador';
-    } else {
-        var nameSeleccionado= window.opener.document.getElementById('nameDeLaRelacion2').value;
-        var vista='vistaActorRelacionadoPerpetrador2'
-    };
-    window.opener.document.getElementById(nameSeleccionado).value = IdRelacion;
+    switch(nameOpcional) {
+        case '2':
+            var nameSeleccionado = window.opener.document.getElementById('nameDeLaRelacion2').value
+            var vista='vistaActorRelacionadoPerpetrador2'
+        break;
+
+        case '3':
+            var vista='infoColectioContenidoFoto'
+        break;
+
+        case '4':
+        break;
+
+        default:
+            var nameSeleccionado= window.opener.document.getElementById('nameDeLaRelacion').value;
+            var vista='vistaActorRelacionadoPerpetrador'
+        break;
+    }
+    //window.opener.document.getElementById(nameSeleccionado).value = IdRelacion;
     window.opener.document.getElementById(vista).innerHTML = ('<div class="three columns"><img style="width:120px !important; height:150px !important;" src="'+foto+'" /></div><b><h6>'+nombre+' '+Siglas+'<br>Tipo de relacion<br>'+TipoRelacion+'</h6></b>');
 }    
 
@@ -93,7 +104,7 @@ function SeleccionarYTreaeRelacionesrceptor(title){
     window.opener.document.getElementById(nameSeleccionado).value = n[0];
     notas="ventanaColectivoRelacionados('"+n[0]+"','2')";
     window.opener.document.getElementById('vistaActorRelacionadoReceptor').innerHTML = ('<div class="three columns"><img style="width:120px !important; height:150px !important;" src="'+base+n[2]+'" /></div><b><h4>'+n[1]+'</h4></b>');
-    window.opener.document.getElementById('vistaPintaRelacionesReceptor').innerHTML = ('<input type="button" class="tiny button" value="Seleccionar relación" onclick="'+notas+'" />');
+    window.opener.document.getElementById('vistaPintaRelacionesReceptor').innerHTML = ('<div id="vistaPintaRelacionesReceptorFoto"></div><input type="button" class="tiny button" value="Seleccionar relación" onclick="'+notas+'" />');
 } 
 
 
@@ -197,8 +208,10 @@ function agregarActorFuenteInfoPersonal(title){
     $('#'+n[0]).css('background-color','#ccc');
     notas="seleccionarActorseleccionarActorIndColDatos('5')";
     notas2="function eliminarRelacionVista('eliminarVistaActor','fuenteInfoPersonal_actorId')";
+    notas3="ventanaColectivoRelacionados('"+n[0]+"','3')";
     // var nameSeleccionado= window.opener.document.getElementById('nameSeleccionado').value;
     // window.opener.document.getElementById(nameSeleccionado).value = n[0];
     window.opener.document.getElementById('infoPersonalActor').innerHTML = ('<div class="nine columns"><div class="three columns"><img class="foto" src="'+ base+n[2]+'" /></div><b><h4>'+n[1]+'</h4></b> <input type="button" class="tiny button" value="Seleccionar actor" onclick="'+notas+'" /></div>'+
         '<div class="three columns" id="eliminarVistaActor"><input type="button" class="tiny button" value="Eliminar Actor" onclick="'+notas2+'" /></div>');
+    window.opener.document.getElementById('infoColectioContenido').innerHTML = ('<div id="infoColectioContenidoFoto"></div><input type="button" class="tiny button" value="Seleccionar relación" onclick="'+notas3+'" />')
 }  

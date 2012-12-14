@@ -23,7 +23,7 @@
 					<div class="twelve columns espacioSuperior" id="infoColectio" class="Escondido">
 						<div id="pestania" data-collapse  >
 							<h2 class="open">Actor colectivo</h2>
-								<div >
+								<div id="infoColectioContenido" >
 								  
 								</div>
 						</div>
