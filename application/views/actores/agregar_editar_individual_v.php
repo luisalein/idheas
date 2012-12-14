@@ -293,7 +293,7 @@
         <div class="row espacioInferior espacioSuperior">
 
                 <input class="medium button" type="submit" value="Guardar" style="margin-left: 340px;" />
-                <a href="<?=base_url(); ?>index.php/actores_c/mostrar_actor/<?= (isset($actorId)) ? $actorId : "0" ;?>/2" class="medium button">Cancelar</a>
+                <a href="<?=base_url(); ?>index.php/actores_c/mostrar_actor/<?= (isset($actorId)) ? $actorId : "0" ;?>/<?=$tipoActor;?>" class="medium button">Cancelar</a>
         </div>
     </div>
 </form>

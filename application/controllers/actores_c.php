@@ -1,5 +1,5 @@
 
-<?php if ( ! defined('BASEPATH') ) exit('No direct script access allowed'); 
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); 
 	 
 	
 class Actores_c extends CI_Controller {
@@ -8,17 +8,15 @@ class Actores_c extends CI_Controller {
         
         parent::__construct();
         
+		
         $this->load->helper(array('html', 'url'));
-        
-        //$this->load->library(array('traer_catalogos_l'));
+		
+		$this->load->library('session');
         
         $this->load->model(array('actores_m', 'general_m','catalogos_m','casos_m'));
         
     }
 	
-	
-		
-
     
     function traer_catalogos(){
         
@@ -53,8 +51,8 @@ class Actores_c extends CI_Controller {
     }
     
     function mostrar_actor($actorId = 0, $tipoActorId = 1, $cadena = '0', $tipoFiltro = 0){
-        
-        $datos['actorId'] = $actorId;
+   
+	    $datos['actorId'] = $actorId;
         
 		$datos['EstoyEnActor']=1;
 		
@@ -224,6 +222,7 @@ class Actores_c extends CI_Controller {
         
         $datos['catalogos'] = $this->traer_catalogos();
 		 $datos['head'] = $this->load->view('general/head_v', $datos, true);
+		 $datos['tipoActor']=$tipoActorId;
         if($tipoActorId > 0){
             
             $datos['action'] = base_url().'index.php/actores_c/agregar_actor_bd';

@@ -39,10 +39,9 @@ class Login_c extends CI_Controller
 		
 				$this->session->set_userdata($newdata);	
 				
-				$session =	$this->session->all_userdata();
+				$_SESSION =	$this->session->all_userdata();
 		
-				if(!empty($session['usr'])){
-		        	
+				if(!empty($_SESSION['usr'])){
 		        	redirect('actores_c/mostrar_actor');  
 					    	
 		        }
