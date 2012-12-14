@@ -83,6 +83,13 @@ $(function(){
 	});
 });
 
+//Intervenciones
+
+	$(function() {
+		$( "#datepickerIntervencion" ).datepicker({ dateFormat: "yy-mm-dd",
+		changeYear: true });
+		 });
+		 
 /******************************************/
 /* Fechas para fuente documental */
 	$(function() {
@@ -676,11 +683,41 @@ function pintaIndividualesInfoPersonal(){
 	$('#infoColectio').removeClass("Escondido");
     notas="seleccionarActorseleccionarActorIndColDatos('5')";
     notas2="eliminarRelacionVista('eliminarVistaActor','fuenteInfoPersonal_actorId')";
-	document.getElementById('infoPersonalActor').innerHTML = ('<div class="nine columns"><input type="button" class="tiny button" value="Seleccionar actor" onclick="'+notas+'" /></div>'+
+	document.getElementById('infoPersonalActorBotones').innerHTML = ('<div class="nine columns"><input type="button" class="tiny button" value="Seleccionar actor" onclick="'+notas+'" /></div>'+
 		'<div class="three columns" id="eliminarVistaActor"><input type="button" class="tiny button" value="Eliminar Actor" onclick="'+notas2+'" /></div>');
 }
 
 function pintaColectivosInfoPersonal(){
+    var nameSeleccionado2= document.getElementById('nameDeLaRelacion').value;
+    document.getElementById(nameSeleccionado2).value = 0;
 	$('#infoColectio').addClass("Escondido");
-	document.getElementById('infoPersonalActor').innerHTML ="Algo";
+	document.getElementById('infoPersonalActor').innerHTML =" ";
+    notas="seleccionarActorseleccionarColDatos('1')";
+    notas2="eliminarRelacionVista('eliminarVistaActor','fuenteInfoPersonal_actorId')";
+	document.getElementById('infoPersonalActorBotones').innerHTML = ('<div class="nine columns"><input type="button" class="tiny button" value="Seleccionar actor" onclick="'+notas+'" /></div>'+
+		'<div class="three columns" id="eliminarVistaActor"><input type="button" class="tiny button" value="Eliminar Actor" onclick="'+notas2+'" /></div>');
 }
+
+
+/**Funciones de la ventana fuentes de información personal de la parte de actor reportado**/
+
+function pintaIndividualesInfoPersonalReportado(){
+
+	$('#infoColectioReportado').removeClass("Escondido");
+    notas="seleccionarActorseleccionarActorIndColDatos('7')";
+    notas2="eliminarRelacionVista('eliminarVistaActorReportado','fuenteInfoPersonal_actorId')";
+	document.getElementById('infoPersonalActorReportadoBotones').innerHTML = ('<div class="nine columns"><input type="button" class="tiny button" value="Seleccionar actor" onclick="'+notas+'" /></div>'+
+		'<div class="three columns" id="eliminarVistaActorReportado"><input type="button" class="tiny button" value="Eliminar Actor" onclick="'+notas2+'" /></div>');
+}
+
+function pintaColectivosInfoPersonalReportado(){
+    var nameSeleccionado2= document.getElementById('nameDeLaRelacionReceptor').value;
+    document.getElementById(nameSeleccionado2).value = 0;
+    notas="seleccionarActorseleccionarActorIndColDatos('2')";
+    notas2="eliminarRelacionVista('eliminarVistaActorReportado','fuenteInfoPersonal_actorId')";
+	$('#infoColectioReportado').addClass("Escondido");
+	document.getElementById('infoPersonalActorReportado').innerHTML =" ";
+	document.getElementById('infoPersonalActorReportadoBotones').innerHTML =('<div class="nine columns"><input type="button" class="tiny button" value="Seleccionar actor" onclick="'+notas+'" /></div>'+
+		'<div class="three columns" id="eliminarVistaActorReportado"><input type="button" class="tiny button" value="Eliminar Actor" onclick="'+notas2+'" /></div>');
+}
+

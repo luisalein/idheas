@@ -249,16 +249,18 @@ class Casos_m extends CI_Model {
 						$datos['actos'][$row['actoId']]['victimas'][$row2['victimaId']] = $row2;
 
 						foreach ($datos['actos'] as $row3) {
-							
-							$this->db->select('*');
-							$this->db->from('perpetradores');
-							$this->db->where('victimas_victimaId', $row3['victimas'][$row2['victimaId']]['victimaId']);
-							$consulta = $this->db->get();
-							
-							if ($consulta->num_rows() > 0){				
-								/* Pasa la consulta a un cadena */
-								foreach ($consulta->result_array() as $row4) {
-									$datos['actos'][$row['actoId']]['victimas'][$row2['victimaId']]['perpetradores'][$row4['perpetradorVictimaId']] = $row4;
+								if (isset($row3['victmas'])) {
+									//echo "<pre>"; print_r($datos['actos']); echo "</pre>";
+									$this->db->select('*');
+									$this->db->from('perpetradores');
+									$this->db->where('victimas_victimaId', $row3['victimas'][$row2['victimaId']]['victimaId']);
+									$consulta = $this->db->get();
+									
+									if ($consulta->num_rows() > 0){				
+										/* Pasa la consulta a un cadena */
+										foreach ($consulta->result_array() as $row4) {
+											$datos['actos'][$row['actoId']]['victimas'][$row2['victimaId']]['perpetradores'][$row4['perpetradorVictimaId']] = $row4;
+										}
 								}
 							}
 						}/*Fin foreach Victimas*/

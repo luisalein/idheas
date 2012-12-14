@@ -48,7 +48,15 @@
 			    	foreach ($actoresColectivos as $individual) {?>
 
 					    <div class="twelve columns lista" id="<?= $individual['actorId']?>" onclick="<?php if (isset($dato)) {
-					    	echo "SeleccionarYTreaeRelaciones('".$individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto']."')";
+					    	switch ($dato) {
+					    		case '1':
+					    			echo "SeleccionarInfoGeneral('".$individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto']."')";
+					    			break;
+					    		case '2':
+					    			echo "SeleccionarInfoGeneralReceptor('".$individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto']."')";
+					    			break;
+
+					    	}
 					    } else {
 					    	echo "Seleccionar('".$individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto']."')";
 					    }

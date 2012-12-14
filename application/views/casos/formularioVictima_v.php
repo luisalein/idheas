@@ -18,7 +18,7 @@
 							</form>
 						</div>
 						<div class="six columns">
-							<form action="http://localhost/idheas/index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/<?=$idVictima; ?>/1" method="post">
+							<form action="<?= base_url(); ?>index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/<?=$idVictima; ?>/1" method="post">
 								<center><input class="small button" value="Editar víctima" type="submit"></center>
 							</form>
 						</div>

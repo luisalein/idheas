@@ -9,9 +9,27 @@
 		<form method="post"  action='<?=base_url(); ?>index.php/casosVentanas_c/guardarDatosVentanas/5' accept-charset="utf-8">
 		 
 		<input type="hidden" id="editar"  name="editar" value="<?= (isset($datosCaso['fuenteInfoPersonal'][$id])) ? "1" : "0" ;?>"/>
+		<input type="hidden" id="nameSeleccionado"  value="fuenteInfoPersonal_actorId"/>
+		
+		<input type="hidden" id="nameSeleccionado"  value="fuenteInfoPersonal_actorId"/>
+		<input type="hidden" id="fuenteInfoPersonal_actorId"  name="fuenteInfoPersonal_actorId" value="<?= (isset($datosCaso['fuenteInfoPersonal'][$id]['actorId'])) ? $datosCaso['fuenteInfoPersonal'][$id]['actorId'] : " " ;?>"/>
+		
+		<input type="hidden" id="nameDeLaRelacion"  value="fuenteInfoPersonal_relacionId"/>
+		<input type="hidden" id="fuenteInfoPersonal_relacionId"  name="fuenteInfoPersonal_relacionId" value="<?= (isset($datosCaso['fuenteInfoPersonal'][$id]['relacionId'])) ? $datosCaso['fuenteInfoPersonal'][$id]['relacionId'] : " " ;?>"/>
+		
+		<input type="hidden" id="nameSeleccionadoReceptor"  value="fuenteInfoPersonal_actorReportado"/>
+		<input type="hidden" id="fuenteInfoPersonal_actorReportado"  name="fuenteInfoPersonal_actorReportado" value="<?= (isset($datosCaso['fuenteInfoPersonal'][$id]['actorReportado'])) ? $datosCaso['fuenteInfoPersonal'][$id]['actorReportado'] : " " ;?>"/>
+
+		<input type="hidden" id="nameDeLaRelacionReceptor"  value="fuenteInfoPersonal_tipoRelacionActorReportadoId"/>
+		<input type="hidden" id="fuenteInfoPersonal_tipoRelacionActorReportadoId"  name="fuenteInfoPersonal_tipoRelacionActorReportadoId" value="<?= (isset($datosCaso['fuenteInfoPersonal'][$id]['tipoRelacionActorReportadoId'])) ? $datosCaso['fuenteInfoPersonal'][$id]['tipoRelacionActorReportadoId'] : " " ;?>"/>
+
 		<input type="hidden" id='casos_casoId' name='casos_casoId'	value="<?= $casoId ?>"/>
 		<input type="hidden" id='fuenteInfoPersonal_casos_casoId' name='fuenteInfoPersonal_casos_casoId' value="<?= $casoId ?>"/>
-		
+
+		<pre> <?php print_r($datosCaso['fuenteInfoPersonal'][$id])?></pre>
+		<pre> <?php print_r($catalogos['listaTodosActores'][$datosCaso['fuenteInfoPersonal'][$id]['actorId']])?></pre>
+		<pre> <?php print_r($catalogos['listaTodosActores'][$datosCaso['fuenteInfoPersonal'][$id]['actorId']]['tipoActorId'])?></pre>
+		<?= (isset($datosCaso['fuenteInfoPersonal'][$id]['actorId']) && ($datosCaso['fuenteInfoPersonal'][$id]['actorId']< 3)) ? $catalogos['listaTodosActores'][$datosCaso['fuenteInfoPersonal'][$id]['actorId']]['tipoActorId'] : " " ;?>
 			<fieldset>
 				<legend class="espacioInferior">Fuente de información personal</legend>
 					<input type="radio" onclick="pintaIndividualesInfoPersonal()" name="selecionaActor"/>Persona
@@ -19,18 +37,21 @@
 					<label class="espacioSuperior"><b >Persona:</b></label> <br />
 
 					<div class="twelve columns espacioSuperior" id="infoPersonalActor"></div>
+					<div class="twelve columns espacioSuperior" id="infoPersonalActorBotones"></div>
 												
 					<div class="twelve columns espacioSuperior" id="infoColectio" <?= (isset($datosCaso['fuenteInfoPersonal'][$id])) ? "" : 'class="Escondido"' ;?>>
 						<div id="pestania" data-collapse  >
 							<h2 class="open">Actor colectivo</h2>
-								<div id="infoColectioContenido" >
-									<!--Información por corrergir pero en escencia es la idea-->
-									<?php if (isset($intervenciones['interventorId'])&& ($intervenciones['interventorId']>0)) { ?>
-										<input type="button" value="Eliminar" onclick="eliminarRelacionVista('vistaActorRelacionadoPerpetrador','intervencioneses_actorRelacionadoId')" class="tiny button">	
-										<input type="button" class="tiny button" value="Cambiar relación" onclick="ventanaColectivoRelacionados('<?= $intervenciones['interventorId'] ?>')">
-									<!--Aquí termina lo que hay que corregir-->
-									<?php } ?>
-								  
+								<div>
+									<div id="infoColectioContenido" >
+										<!--Información por corrergir pero en escencia es la idea-->
+										<?php if (isset($intervenciones['interventorId'])&& ($intervenciones['interventorId']>0)) { ?>
+											<input type="button" value="Eliminar" onclick="eliminarRelacionVista('vistaActorRelacionadoPerpetrador','intervencioneses_actorRelacionadoId')" class="tiny button">	
+											<input type="button" class="tiny button" value="Cambiar relación" onclick="ventanaColectivoRelacionados('<?= $intervenciones['interventorId'] ?>')">
+										<!--Aquí termina lo que hay que corregir-->
+										<?php } ?>
+									</div>
+									<div id="infoColectioContenidoBotones" ></div>
 								</div>
 						</div>
 					</div>
@@ -40,7 +61,7 @@
 				<div class="twelve columns" >
 					<div class="six columns">
 						<label for="tipoFuente">Tipo de la fuente</label>
-						<select id="tipoFuenteDocumentalCatalogo_tipoFuenteCatalogo_tipoFuenteId" name="tipoFuenteDocumental_tipoFuenteCatalogo_tipoFuenteId">
+						<select id="fuenteInfoPersonal_tipoFuenteCatalogo_tipoFuenteId" name="fuenteInfoPersonal_tipoFuenteCatalogo_tipoFuenteId">
 							 <option></option>							
 							 <?php if(isset($datosCaso['fuenteInfoPersonal'][$id]['tipoFuenteCatalogo_tipoFuenteId'])){
 		                                foreach($catalogos['tipoFuenteCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
@@ -95,7 +116,7 @@
 					
 					<div class="six columns">
 						<label for="nivelConfiabilidad">Nivel de confiabilidad</label>
-						<select id="nivelConfiabilidadCatalogo_nivelConfiabilidadCatalogo_nivelConfiabilidadId" name="tipoFuenteDocumental_nivelConfiabilidadCatalogo_nivelConfiabilidadId">
+						<select id="nivelConfiabilidadCatalogo_nivelConfiabilidadCatalogo_nivelConfiabilidadId" name="fuenteInfoPersonal_nivelConfiabilidadCatalogo_nivelConfiabilidadId">
 							<option></option>						
 							<?php if(isset($datosCaso['fuenteInfoPersonal'][$id]['nivelConfiabilidadCatalogo_nivelConfiabilidadId'])){
 		                                foreach($catalogos['nivelConfiabilidadCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
@@ -119,20 +140,33 @@
 					<label for="comentFuente">Comentarios</label>
 					<textarea id="infoAdicional_comentarios" name="infoAdicional_comentarios"><?=(isset($datosCaso['fuenteInfoPersonal'][$id]['comentarios']) ? $datosCaso['fuenteInfoPersonal'][$id]['comentarios'] : ''); ?></textarea>
 				</div>
-				<fieldset>
-					<legend>Actor reportado</legend>
-						<input type="radio"  value="" name="" id=""/>Persona
-						<input type="radio"  value="" name="" id=""/>Actor colectivo
-						<b>Persona:</b> <br />
-													
-						
-						<div id="pestania" data-collapse >
-							<h2 class="open">Actor colectivo</h2><!--título de la sub-pestaña-->  
-								<div >
-								  
+
+
+			<fieldset>
+				<legend class="espacioInferior">Actor reportado</legend>
+					<input type="radio" onclick="pintaIndividualesInfoPersonalReportado()" name="selecionaActorReportado"/>Persona
+					<input type="radio"	onclick="pintaColectivosInfoPersonalReportado()" name="selecionaActorReportado" />Actor colectivo <br />
+					<label class="espacioSuperior"><b >Persona:</b></label> <br />
+
+					<div class="twelve columns espacioSuperior" id="infoPersonalActorReportado"></div>
+					<div class="twelve columns espacioSuperior" id="infoPersonalActorReportadoBotones"></div>
+												
+					<div class="twelve columns espacioSuperior" id="infoColectioReportado" <?= (isset($datosCaso['fuenteInfoPersonal'][$id])) ? "" : 'class="Escondido"' ;?>>
+						<div id="pestania" data-collapse  >
+							<h2 class="open">Actor colectivo</h2>
+								<div>
+									<div id="infoColectioContenidoReportado" >
+										<!--Información por corrergir pero en escencia es la idea-->
+										<?php if (isset($intervenciones['interventorId'])&& ($intervenciones['interventorId']>0)) { ?>
+											<input type="button" value="Eliminar" onclick="eliminarRelacionVista('vistaActorRelacionadoPerpetrador','intervencioneses_actorRelacionadoId')" class="tiny button">	
+											<input type="button" class="tiny button" value="Cambiar relación" onclick="ventanaColectivoRelacionados('<?= $intervenciones['interventorId'] ?>')">
+										<!--Aquí termina lo que hay que corregir-->
+										<?php } ?>
+									</div>
+									<div id="infoColectioContenidoReportadoBotones" ></div>
 								</div>
 						</div>
-				</fieldset>
+					</div>
 			</div>
 			</fieldset>
 			<input class="medium button" type="submit" value="Guardar"/>

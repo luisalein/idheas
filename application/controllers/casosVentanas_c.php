@@ -181,7 +181,7 @@ class CasosVentanas_c extends CI_Controller {
 		$this->load->view('casos/formularioFuenteDoc_v', $datos);
 	}
 	
-	function fuentesDeInformacionPersonal($casoId,$actorId=0,$id){
+	function fuentesDeInformacionPersonal($casoId,$actorId=0,$id=0){
 		
 		$datos['head'] = $this->load->view('general/head_v', "", true);
 		
@@ -349,6 +349,7 @@ class CasosVentanas_c extends CI_Controller {
 				if($_POST['editar'] == 1){
 					$mensaje = $this->casos_m->mActualizaDatosFuenteInfoPersonal($datos['fuenteInfoPersonal'],$datos['fuenteInfoPersonal']['fuenteInfoPersonalId']);
 				}else{
+					echo "<pre>"; print_r($_POST);echo "</pre>";
 					$datos5['fuenteInfoPersonal'] = $datos['fuenteInfoPersonal'];
 					$mensaje = $this->general_m->llenar_tabla_m($datos5);
 				}

@@ -51,8 +51,9 @@
 							
 							<div class="twelve columns">
 									<label for="tipoIntervencion">Tipo de intervención</label>
+									<div id="tipoIntervencion"></div>
 									
-			<div class="caja CatalogotipoIntervencion casosScorll">
+			<div class="caja CatalogotipoIntervencion casosScorll espacioSuperior">
 				<ol>
 					<?php foreach($catalogos['tipoIntervencionN1Catalogo'] as  $nivel1) { ?> 
 							<li >
@@ -109,7 +110,7 @@
 							<div class="six columns">	
 								<p>
 									<label for="fecha">Fecha: </label>
-									<input type="text" id="datepickerIntervencion"name="intervenciones_fecha" <?= (isset($intervenciones['fecha'])) ? 'value="'.$intervenciones['fecha'].'"' : "" ;?> placeholder="AAAA-MM-DD" />
+									<input type="text" id="datepickerIntervencion" name="intervenciones_fecha" <?= (isset($intervenciones['fecha'])) ? 'value="'.$intervenciones['fecha'].'"' : "" ;?> placeholder="AAAA-MM-DD" />
 
 								</p>
 							</div>
