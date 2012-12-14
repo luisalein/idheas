@@ -24,6 +24,12 @@
 						<div id="pestania" data-collapse  >
 							<h2 class="open">Actor colectivo</h2>
 								<div id="infoColectioContenido" >
+									<!--Información por corrergir pero en escencia es la idea-->
+									<?php if (isset($intervenciones['interventorId'])&& ($intervenciones['interventorId']>0)) { ?>
+										<input type="button" value="Eliminar" onclick="eliminarRelacionVista('vistaActorRelacionadoPerpetrador','intervencioneses_actorRelacionadoId')" class="tiny button">	
+										<input type="button" class="tiny button" value="Cambiar relación" onclick="ventanaColectivoRelacionados('<?= $intervenciones['interventorId'] ?>')">
+									<!--Aquí termina lo que hay que corregir-->
+									<?php } ?>
 								  
 								</div>
 						</div>
