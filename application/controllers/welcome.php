@@ -30,16 +30,6 @@ class Welcome extends CI_Controller {
      }
 	 
 	public function index(){
-            
-		/*$newdata = array(
-                   'username'  => '',
-                   'pass'     => '',
-                   'logged_in' => TRUE
-         );
-
-
-		//validar en base de datos si existe el usuario y contraseña
-		$this->session->set_userdata($newdata);		*/
 			
 		$session =	$this->session->all_userdata();
 		

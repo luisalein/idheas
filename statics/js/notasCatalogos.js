@@ -1,4 +1,8 @@
 function notasCatalogos(notas,escribeNotas,id){
+	
+	
+	//var notas =document.getElementById(value).getAttribute("name");
+	
 	if(notas!=""){
 		 if(id=="1"){
 		 	$('#'+escribeNotas).html(notas); 
@@ -13,7 +17,21 @@ function notasCatalogos(notas,escribeNotas,id){
 		$('#notas'+escribeNotas).html(" "); 
 	}
 }
+function notasCatalogos2(notas,escribeNotas,id){
+	if(notas!=""){
+		 if(id=="1"){
+		 	$('#'+escribeNotas).html(notas); 
+		 } 
+		 else{
+		 	notas="botonNotas('"+notas+"')";
+		 	$('#notas'+escribeNotas).html('<input type="button" value="i" class="tiny button" onclick="'+notas+'" />');
 
+		 }	
+	}
+	else{
+		$('#notas'+escribeNotas).html(" "); 
+	}
+}
 function botonNotas(notas){
     var windowSizeArray = [ "width=350,height=150" ];
     OpenWindow=window.open(base+'index.php/casosVentanas_c/notas', 'notas del catálogo', windowSizeArray);;
