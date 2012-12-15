@@ -72,8 +72,9 @@ function SeleccionarYTreaeRelaciones(title){
 }    
 
 function eliminarRelacionVista(id,name,id2,name2){  
-    document.getElementById(id).innerHTML = (" ");
+    alert(name);
     document.getElementById(name).value = 0;
+    document.getElementById(id).innerHTML = (" ");
     document.getElementById(id2).innerHTML = (" ");
     document.getElementById(name2).value = 0;
 }    
@@ -224,7 +225,7 @@ function agregarActorFuenteInfoPersonal(title){
     notas="seleccionarActorseleccionarActorIndColDatos('5')";
     notas2="eliminarRelacionVista('infoPersonalActor','fuenteInfoPersonal_actorId','infoColectioContenido','"+nameSeleccionado2+"')";
     notas3="ventanaColectivoRelacionados('"+n[0]+"','3')";
-    notas4="eliminarRelacionVista('infoColectioContenido')";
+    notas4="eliminarRelacionVista('infoColectioContenido','fuenteInfoPersonal_relacionId')";
     window.opener.document.getElementById(nameSeleccionado).value = n[0];
     window.opener.document.getElementById('infoPersonalActor').innerHTML = ('<div class="seven columns"><img class="foto" src="'+ base+n[2]+'" /></div><div class="five columns"><b><h4>'+n[1]+'</h4></b></div>');
     window.opener.document.getElementById('infoPersonalActorBotones').innerHTML = ('<div class="five columns" id="eliminarVistaActor"><input type="button" class="tiny button" value="Seleccionar actor" onclick="'+notas+'" /><input type="button" class="tiny button" value="Eliminar Actor" onclick="'+notas2+'" /></div>');
