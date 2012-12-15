@@ -603,18 +603,60 @@
 							$listaActores[$row['actorRelacionadoId']]['foto'] = $row2['foto'];
 						}
 					}
-					
 
 				}
 				
-				
-                return $listaActores;
-			}else{
-				return '0';
 			}
-			 
-			 //*fin If*/
-	      }/* fin mTraeRekacionesColectivo*/
+
+			/* Trae todos los datos de relacionActores */
+			$this->db->select('*');
+			$this->db->from('relacionActores');
+			$this->db->where('actorRelacionadoId',$actorId);
+			$consulta = $this->db->get();
+						
+			if($consulta->num_rows() != 0){
+				foreach($consulta->result_array() as $row3){
+					
+					$listaCitados[$row3['actores_actorId']] = $row3;
+					
+					$this->db->select('*');
+		            $this->db->from('actores');
+		            $this->db->where('actorId',$row3['actores_actorId']);
+		            $actores = $this->db->get();
+					
+					if($actores->num_rows() > 0){
+						foreach($actores->result_array() as $row4){
+							$listaCitados[$row3['actores_actorId']]['actorId'] = $row4['actorId'];
+							$listaCitados[$row3['actores_actorId']]['nombre'] = $row4['nombre'];
+							$listaCitados[$row3['actores_actorId']]['apellidosSiglas'] = $row4['apellidosSiglas'];
+							$listaCitados[$row3['actores_actorId']]['tipoActorId'] = $row4['tipoActorId'];
+							$listaCitados[$row3['actores_actorId']]['foto'] = $row4['foto'];
+						}
+					}
+
+				}
+				
+			}
+				
+				
+				
+				
+			if(isset($listaActores) && isset($listaCitados)){
+				echo 'hola';	
+				$lista = array_merge($listaActores, $listaCitados);
+				return $lista;
+				
+			}else{
+				if (isset($listaActores)) {
+					return $listaActores;
+					
+				} else {
+					return $listaCitados;
+					
+				}/*fin else*/
+			}/*fin else*/
+               
+	     }/* fin mTraeRekacionesColectivo*/
 	     
 	     
 	     /*Este modelo relaciona un actor con un caso 
