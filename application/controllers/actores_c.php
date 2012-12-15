@@ -1,21 +1,28 @@
 
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); 
 	 
-	
 class Actores_c extends CI_Controller {
     
     function __construct() {
         
         parent::__construct();
         
-		
         $this->load->helper(array('html', 'url'));
 		
 		$this->load->library('session');
         
+		$this->is_logged_in();
+		
         $this->load->model(array('actores_m', 'general_m','catalogos_m','casos_m'));
         
     }
+	
+	private function is_logged_in(){
+		$logged_in = $this->session->userdata('logged_in');
+		if(!isset($logged_in) or $logged_in != TRUE){
+			redirect(base_url());
+		}
+	}
 	
     
     function traer_catalogos(){
