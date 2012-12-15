@@ -1,8 +1,12 @@
-function notasCatalogos(notas,escribeNotas,id){
+function notasCatalogos(tipo,value,escribeNotas,id){
 	
+	if(tipo == '2'){
+		var notas =document.getElementById(value+'OC').getAttribute("name");
+	}else{
+		var notas =document.getElementById(value).getAttribute("name");	
+	}
 	
-	//var notas =document.getElementById(value).getAttribute("name");
-	
+
 	if(notas!=""){
 		 if(id=="1"){
 		 	$('#'+escribeNotas).html(notas); 

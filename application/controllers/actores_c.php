@@ -11,7 +11,7 @@ class Actores_c extends CI_Controller {
 		
 		$this->load->library('session');
         
-		$this->is_logged_in();
+		//$this->is_logged_in();
 		
         $this->load->model(array('actores_m', 'general_m','catalogos_m','casos_m'));
         

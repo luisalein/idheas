@@ -119,16 +119,16 @@
                         <?php } ?>
                         
                         <label for="grupoIndigena">Grupo Indígena</label>
-                        <select id="infoGralActor_gruposIndigenas_grupoIndigenaId" name="infoGralActor_gruposIndigenas_grupoIndigenaId">
-                            <option></option>
-                            <?php if(isset($datosActor['infoGralActor']['gruposIndigenas_grupoIndigenaId'])){
-                            foreach($catalogos['gruposIndigenasCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
-                            <option value="<?=$item['grupoIndigenaId']?>" onclick="notasCatalogos('<?=$item['notas']; ?>','infoGralActor_gruposIndigenas_grupoIndigenaId','2')" <?=($datosActor['infoGralActor']['gruposIndigenas_grupoIndigenaId'] == $item['grupoIndigenaId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
-                            <?php endforeach; } else { ?>
-                            <?php foreach($catalogos['gruposIndigenasCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
-                            <option  onclick="notasCatalogos('<?=$item['notas']; ?>','infoGralActor_gruposIndigenas_grupoIndigenaId','2')" value="<?=$item['grupoIndigenaId']; ?>"><?=$item['descripcion']; ?></option>
-                            <?php endforeach; } ?>
-                        </select>
+                        <select onkeyup="notasCatalogos('1',value,'infoGralActor_gruposIndigenas_grupoIndigenaId','2')" onclick="notasCatalogos('1',value,'infoGralActor_gruposIndigenas_grupoIndigenaId','2')"  id="infoGralActor_gruposIndigenas_grupoIndigenaId" name="infoGralActor_gruposIndigenas_grupoIndigenaId">
+		                    <option></option>
+		                    <?php if(isset($datosActor['infoGralActor']['gruposIndigenas_grupoIndigenaId'])){
+		                    foreach($catalogos['gruposIndigenasCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
+		                    <option name="<?=$item['notas']?>" id="<?=$item['grupoIndigenaId']?>" value="<?=$item['grupoIndigenaId']?>"  <?=($datosActor['infoGralActor']['gruposIndigenas_grupoIndigenaId'] == $item['grupoIndigenaId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
+		                    <?php endforeach; } else { ?>
+		                    <?php foreach($catalogos['gruposIndigenasCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
+		                    <option name="<?=$item['notas']?>" id="<?=$item['grupoIndigenaId']?>"  value="<?=$item['grupoIndigenaId']; ?>"><?=$item['descripcion']; ?></option>
+		                    <?php endforeach; } ?>
+		              </select>
                         <div id="notasinfoGralActor_gruposIndigenas_grupoIndigenaId"> </div>
                     </div>
                 </div><!----Termina primer mitad de detalles---->
@@ -150,21 +150,21 @@
                 </select>
 
                 <label for="UltimaOcupacion">Última Ocupación</label>
-                <select id="infoGralActor_ocupacionesCatalogo_ultimaOcupacionId" name="infoGralActor_ocupacionesCatalogo_ultimaOcupacionId" >						
-                    <option></option>
-                    <?php if(isset($datosActor['infoGralActor']['ocupacionesCatalogo_ultimaOcupacionId'])){
-                        foreach($catalogos['ocupacionesCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
-                            <?php if($item['tipoActorId'] == 1){ ?>
-                                    <option onclick="notasCatalogos('<?=$item['notas']; ?>','infoGralActor_ocupacionesCatalogo_ultimaOcupacionId','2')" value="<?=$item['ocupacionId']?>" <?=($datosActor['infoGralActor']['ocupacionesCatalogo_ultimaOcupacionId'] == $item['ocupacionId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
-                                 <?php } ?>
-                        <?php endforeach; } 
-                        else { ?>
-                            <?php foreach($catalogos['ocupacionesCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
-                                <?php if($item['tipoActorId'] == 1){ ?>
-                                    <option onclick="notasCatalogos('<?=$item['notas']; ?>','infoGralActor_ocupacionesCatalogo_ultimaOcupacionId','2')" value="<?=$item['ocupacionId']; ?>"><?=$item['descripcion']; ?></option>
-                                <?php } ?>
-                    <?php endforeach; } ?>
-                </select><span id="notasinfoGralActor_ocupacionesCatalogo_ultimaOcupacionId"></span>
+                <select onkeyup="notasCatalogos('2',value,'infoGralActor_ocupacionesCatalogo_ultimaOcupacionId','2')" onclick="notasCatalogos('2',value,'infoGralActor_ocupacionesCatalogo_ultimaOcupacionId','2')" id="infoGralActor_ocupacionesCatalogo_ultimaOcupacionId" name="infoGralActor_ocupacionesCatalogo_ultimaOcupacionId" >						
+			         <option></option>
+			         <?php if(isset($datosActor['infoGralActor']['ocupacionesCatalogo_ultimaOcupacionId'])){
+			         foreach($catalogos['ocupacionesCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
+			         <?php if($item['tipoActorId'] == 1){ ?>
+			             <option name="<?=$item['notas']?>" id="<?=$item['ocupacionId']; ?>OC"  value="<?=$item['ocupacionId']?>" <?=($datosActor['infoGralActor']['ocupacionesCatalogo_ultimaOcupacionId'] == $item['ocupacionId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
+			         <?php } ?>
+			         <?php endforeach; } 
+			         else { ?>
+			         <?php foreach($catalogos['ocupacionesCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
+			         <?php if($item['tipoActorId'] == 1){ ?>
+			             <option name="<?=$item['notas']?>" id="<?=$item['ocupacionId']; ?>OC"  value="<?=$item['ocupacionId']; ?>"><?=$item['descripcion']; ?></option>
+			         <?php } ?>
+			         <?php endforeach; } ?>
+			    </select><span id="notasinfoGralActor_ocupacionesCatalogo_ultimaOcupacionId"></span>
                 
                 </div>	<!----Termina segunda mitad de detalles---->
 

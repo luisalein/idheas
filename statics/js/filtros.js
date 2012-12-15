@@ -449,10 +449,12 @@ function changeTest2 (tipo) {
 	
 		if(tipo == 1){
 			var Index = document.menuForm.direccionActor_paisesCatalogo_paisId.options[document.menuForm.direccionActor_paisesCatalogo_paisId.selectedIndex].value; 
+			document.getElementById('direccionActor_municipiosCatalogo_municipioId').options.length = 0;
 		}
 		if(tipo == 2){
 			var Index = document.menuForm.direccionActor_estadosCatalogo_estadoId.options[document.menuForm.direccionActor_estadosCatalogo_estadoId.selectedIndex].value; 
-	
+			document.getElementById('direccionActor_municipiosCatalogo_municipioId').options.length = 0;
+
 		}
 	
 	

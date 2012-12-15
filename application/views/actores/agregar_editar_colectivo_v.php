@@ -47,7 +47,7 @@
         <div class="six columns">
             <label for="tipoActor">Tipo de actor colectivo</label>
             <span id="infoGralActores_tipoActorColectivoIdSelect">
-	             <select onclick="notasCatalogos(value,'infoGralActores_tipoActorColectivoId','2')" onkeypress="notasCatalogos(value,'infoGralActores_tipoActorColectivoId','2')" name="infoGralActores_tipoActorColectivoId" id="infoGralActores_tipoActorColectivoId">
+	             <select onkeyup="notasCatalogos('1',value,'infoGralActores_tipoActorColectivoId','2')" onclick="notasCatalogos('1',value,'infoGralActores_tipoActorColectivoId','2')"  name="infoGralActores_tipoActorColectivoId" id="infoGralActores_tipoActorColectivoId">
 		            <option></option>
 		            <?php if(isset($datosActor['infoGralActores']['tipoActorColectivoId'])){
 		            foreach($catalogos['tipoActorColectivo'] as $key => $item): ?> <!--muestra los estados civiles-->
@@ -65,17 +65,17 @@
             
             <label for="actividad">Actividad</label>
             <span id="infoGralActores_actividadSelect">
-            <select onclick="notasCatalogos(value,'infoGralActores_actividad','2')" onkeypress="notasCatalogos(value,'infoGralActores_actividad','2')" name="infoGralActores_actividad" id="infoGralActores_actividad">
+            <select onclick="notasCatalogos('2',value,'infoGralActores_actividad','2')" onkeyup="notasCatalogos('2',value,'infoGralActores_actividad','2')" name="infoGralActores_actividad" id="infoGralActores_actividad">
 				<option > </option>
 	            <?php if(isset($datosActor['infoGralActores']['actividad'])){
 	            foreach($catalogos['ocupacionesCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
 	            <?php if($item['tipoActorId'] == 2){ ?>
-	                <option name="<?=$item['notas']?>" id="<?=$item['ocupacionId']; ?>" value="<?=$item['ocupacionId']?>" <?=($datosActor['infoGralActores']['actividad'] == $item['ocupacionId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
+	                <option name="<?=$item['notas']?>" id="<?=$item['ocupacionId']; ?>OC" value="<?=$item['ocupacionId']?>" <?=($datosActor['infoGralActores']['actividad'] == $item['ocupacionId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
 	             <?php } ?>
 	            <?php endforeach; } else { ?>
 	            <?php foreach($catalogos['ocupacionesCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
 	            <?php if($item['tipoActorId'] == 2){ ?>
-	                <option name="<?=$item['notas']?>" id="<?=$item['ocupacionId']; ?>" value="<?=$item['ocupacionId']; ?>"><?=$item['descripcion']; ?></option>
+	                <option name="<?=$item['notas']?>" id="<?=$item['ocupacionId']; ?>OC" value="<?=$item['ocupacionId']; ?>"><?=$item['descripcion']; ?></option>
 	             <?php } ?>
 	            <?php endforeach; } ?>
             </select><div id="notasinfoGralActores_actividad"></div>
