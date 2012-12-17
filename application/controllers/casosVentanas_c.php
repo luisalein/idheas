@@ -201,6 +201,12 @@ class CasosVentanas_c extends CI_Controller {
 		
 		if(isset($datos['actoresIndividuales']) && isset($datos['actoresTrans']))
 			$datos['actIndividualesTrns'] = array_merge($datos['actoresIndividuales'],$datos['actoresTrans']);
+		
+		if ($id>0) {
+			if (isset($datos['datosCaso']['fuenteInfoPersonal'][$id])) {
+				$datos['fuenteInfoPersonal']=$datos['datosCaso']['fuenteInfoPersonal'][$id];
+			}
+		}
 
 		$datos['actoresRelacionados'] = $this->actores_m->mTraeRelacionesColectivo($actorId);
 		
