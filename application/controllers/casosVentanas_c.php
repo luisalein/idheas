@@ -353,8 +353,8 @@ class CasosVentanas_c extends CI_Controller {
 			
 			case(5): 
 				if($_POST['editar'] == 1){
-					echo "<pre>"; print_r($_POST);echo "</pre>";
-					echo "<pre>"; print_r($datos['fuenteInfoPersonal']);echo "</pre>";
+					// echo "<pre>"; print_r($_POST);echo "</pre>";
+					// echo "<pre>"; print_r($datos['fuenteInfoPersonal']);echo "</pre>";
 					$mensaje = $this->casos_m->mActualizaDatosFuenteInfoPersonal($datos['fuenteInfoPersonal'],$datos['fuenteInfoPersonal']['fuenteInfoPersonalId']);
 				}else{
 					$datos5['fuenteInfoPersonal'] = $datos['fuenteInfoPersonal'];
@@ -393,10 +393,10 @@ class CasosVentanas_c extends CI_Controller {
             break;
             
         }
-		// echo "<script languaje='javascript' type='text/javascript'>
-		// window.opener.location.reload();
-		// window.close();
-		// </script>";
+		echo "<script languaje='javascript' type='text/javascript'>
+		window.opener.location.reload();
+		window.close();
+		</script>";
 			
 		
 		return $mensaje;

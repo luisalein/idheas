@@ -587,7 +587,7 @@
 			if($consulta->num_rows() != 0){
 				foreach($consulta->result_array() as $row){
 					
-					$listaActores[$row['actorRelacionadoId']] = $row;
+					$listaActores[$row['relacionActoresId']] = $row;
 					
 					$this->db->select('*');
 		            $this->db->from('actores');
@@ -596,11 +596,11 @@
 					
 					if($actores->num_rows() > 0){
 						foreach($actores->result_array() as $row2){
-							$listaActores[$row['actorRelacionadoId']]['actorId'] = $row2['actorId'];
-							$listaActores[$row['actorRelacionadoId']]['nombre'] = $row2['nombre'];
-							$listaActores[$row['actorRelacionadoId']]['apellidosSiglas'] = $row2['apellidosSiglas'];
-							$listaActores[$row['actorRelacionadoId']]['tipoActorId'] = $row2['tipoActorId'];
-							$listaActores[$row['actorRelacionadoId']]['foto'] = $row2['foto'];
+							$listaActores[$row['relacionActoresId']]['actorId'] = $row2['actorId'];
+							$listaActores[$row['relacionActoresId']]['nombre'] = $row2['nombre'];
+							$listaActores[$row['relacionActoresId']]['apellidosSiglas'] = $row2['apellidosSiglas'];
+							$listaActores[$row['relacionActoresId']]['tipoActorId'] = $row2['tipoActorId'];
+							$listaActores[$row['relacionActoresId']]['foto'] = $row2['foto'];
 						}
 					}
 
@@ -617,7 +617,7 @@
 			if($consulta->num_rows() != 0){
 				foreach($consulta->result_array() as $row3){
 					
-					$listaCitados[$row3['actores_actorId']] = $row3;
+					$listaCitados[$row3['relacionActoresId']] = $row3;
 					
 					$this->db->select('*');
 		            $this->db->from('actores');
@@ -626,11 +626,11 @@
 					
 					if($actores->num_rows() > 0){
 						foreach($actores->result_array() as $row4){
-							$listaCitados[$row3['actores_actorId']]['actorId'] = $row4['actorId'];
-							$listaCitados[$row3['actores_actorId']]['nombre'] = $row4['nombre'];
-							$listaCitados[$row3['actores_actorId']]['apellidosSiglas'] = $row4['apellidosSiglas'];
-							$listaCitados[$row3['actores_actorId']]['tipoActorId'] = $row4['tipoActorId'];
-							$listaCitados[$row3['actores_actorId']]['foto'] = $row4['foto'];
+							$listaCitados[$row3['relacionActoresId']]['actorId'] = $row4['actorId'];
+							$listaCitados[$row3['relacionActoresId']]['nombre'] = $row4['nombre'];
+							$listaCitados[$row3['relacionActoresId']]['apellidosSiglas'] = $row4['apellidosSiglas'];
+							$listaCitados[$row3['relacionActoresId']]['tipoActorId'] = $row4['tipoActorId'];
+							$listaCitados[$row3['relacionActoresId']]['foto'] = $row4['foto'];
 						}
 					}
 
@@ -650,10 +650,11 @@
 				if (isset($listaActores)) {
 					return $listaActores;
 					
-				} else {
+				} elseif (isset($listaCitados)) {
 					return $listaCitados;
-					
-				}/*fin else*/
+				}else{
+					return 0;
+				}
 			}/*fin else*/
                
 	     }/* fin mTraeRekacionesColectivo*/
