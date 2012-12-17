@@ -175,7 +175,7 @@
 													}?> 
 											</div>
 											<?php if (isset($intervenciones['interventorId'])&& ($intervenciones['interventorId']>0)) { ?>
-												<input type="button" value="Eliminar" onclick="eliminarRelacionVista('vistaActorRelacionadoPerpetrador','intervencioneses_actorRelacionadoId')" class="tiny button">	
+												<input type="button" value="Eliminar" onclick="eliminarRelacionVista('vistaPintaRelaciones','intervenciones_tipoRelacionInterventor')" class="tiny button">	
 											<?php } ?>
 										</div>
 									</div>
@@ -204,7 +204,7 @@
 												<?php }?> 
 											</div>											
 											<input type="button" class="small button" onclick="seleccionarActorseleccionarActorIndColDatos('2')" value="Seleccionar actor"><br>
-											<input type="button" class="small button" value="Eliminar actor" onclick="eliminaActor()">
+											<input type="button" class="small button" value="Eliminar actor" onclick="eliminarRelacionVista('vistaActorRelacionadoReceptor','intervenciones_receptorId','vistaPintaRelacionesReceptor','intervenciones_tipoRelacionReceptor')">
 										
 								<div id="pestania" data-collapse>
 									<h2>Actor Colectivo</h2>
@@ -229,10 +229,12 @@
 															</div> 
 														<?php }
 													}?> 
-											<?php if (isset($intervenciones['receptorId'])&& ($intervenciones['receptorId']>0)) { ?>
-												<input type="button" value="Eliminar" onclick="eliminarRelacionVista('vistaActorRelacionadoPerpetrador','intervencioneses_actorRelacionadoId')" class="tiny button">	
-											<?php } ?>
 											</div>
+										</div>
+										<div id="botonesreceptor">
+											<?php if (isset($intervenciones['receptorId'])&& ($intervenciones['receptorId']>0)) { ?>
+												<input type="button" value="Eliminar" onclick="eliminarRelacionVista('vistaActorRelacionadoPerpetrador2','intervenciones_tipoRelacionReceptor')" class="tiny button">	
+											<?php } ?>
 										</div>
 									</div>
 								</div>

@@ -31,6 +31,8 @@ class Casos_c extends CI_Controller {
         $datos['nacionalidadesCatalogo'] = $this->general_m->obtener_todo('nacionalidadesCatalogo', 'nacionalidadId', 'nombre');
         
         $datos['relacionActoresCatalogo'] = $this->general_m->obtener_todo('relacionActoresCatalogo', 'tipoRelacionId', 'nombre');
+        
+		$datos['nivelConfiabilidadCatalogo'] = $this->general_m->obtener_todo('nivelConfiabilidadCatalogo', 'nivelConfiabilidadId', 'descripcion');
 		
 		$datos['tipoPerpetradorN1Catalogo'] = $this->general_m->obtener_todo('tipoPerpetradorN1Catalogo', 'tipoPerpetradorN1Id', 'descripcion');
 		

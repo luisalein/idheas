@@ -27,7 +27,8 @@
 		<input type="hidden" id='fuenteInfoPersonal_casos_casoId' name='fuenteInfoPersonal_casos_casoId' value="<?= $casoId ?>"/>
 
 		<input type="hidden" id="fuenteInfoPersonal_fuenteInfoPersonalId"  name="fuenteInfoPersonal_fuenteInfoPersonalId" value="<?= (isset($fuenteInfoPersonal['fuenteInfoPersonalId'])) ? $fuenteInfoPersonal['fuenteInfoPersonalId'] : " " ;?>"/>
-<!-- 
+
+		<!-- 
 		<pre> <?php print_r($catalogos['relacionesActoresCatalogo'][$fuenteInfoPersonal['relacionId']])?></pre>
 		<pre> <?php print_r($catalogos['relacionesActoresCatalogo'][$fuenteInfoPersonal['relacionId']]['actorRelacionadoId'])?></pre>
 		<pre> <?php print_r($catalogos['listaTodosActores'][$fuenteInfoPersonal['actorId']])?></pre>
@@ -173,22 +174,39 @@
 					<input type="radio"	onclick="pintaColectivosInfoPersonalReportado()" name="selecionaActorReportado" />Actor colectivo <br />
 					<label class="espacioSuperior"><b >Persona:</b></label> <br />
 
-					<div class="twelve columns espacioSuperior" id="infoPersonalActorReportado"></div>
-					<div class="twelve columns espacioSuperior" id="infoPersonalActorReportadoBotones"></div>
+					<div class="twelve columns espacioSuperior" id="infoPersonalActorReportado">
+						<?php if (isset($fuenteInfoPersonal['actorReportado']) && ($fuenteInfoPersonal['actorReportado']>0)) {?>
+						<div class="three columns"><img class="foto" src="<?= base_url().$catalogos['listaTodosActores'][$fuenteInfoPersonal['actorReportado']]['foto']?>" /></div><b><h4><?= (isset($catalogos['listaTodosActores'][$fuenteInfoPersonal['actorReportado']]['nombre'])) ? $catalogos['listaTodosActores'][$fuenteInfoPersonal['actorReportado']]['nombre'] : " " ; ?>  <?= (isset($fuenteInfoPersonal['actorReportado'])) ? $catalogos['listaTodosActores'][$fuenteInfoPersonal['actorReportado']]['apellidosSiglas'] :  '' ;?></h4></b>
+						<?php }?>
+					</div>
+					<div class="twelve columns espacioSuperior" id="infoPersonalActorReportadoBotones">
+						<?php if (isset($fuenteInfoPersonal['actorReportado']) && ($fuenteInfoPersonal['actorReportado']>0)) {?>
+							<input class="tiny button" type="button" onclick="seleccionarActorseleccionarActorIndColDatos('7')" value="Seleccionar actor">
+							<input class="tiny button" type="button" onclick="eliminarRelacionVista('infoPersonalActorReportado','fuenteInfoPersonal_actorReportado','infoColectioContenidoReportado','fuenteInfoPersonal_tipoRelacionActorReportadoId')" value="Eliminar Actor">
+						<?php }?>
+					</div>
 												
 					<div class="twelve columns espacioSuperior" id="infoColectioReportado" <?= (isset($fuenteInfoPersonal)) ? "" : 'class="Escondido"' ;?>>
 						<div id="pestania" data-collapse  >
 							<h2 class="open">Actor colectivo</h2>
 								<div>
 									<div id="infoColectioContenidoReportado" >
-										<!--Información por corrergir pero en escencia es la idea-->
-										<?php if (isset($intervenciones['interventorId'])&& ($intervenciones['interventorId']>0)) { ?>
-											<input type="button" value="Eliminar" onclick="eliminarRelacionVista('vistaActorRelacionadoPerpetrador','intervencioneses_actorRelacionadoId')" class="tiny button">	
-											<input type="button" class="tiny button" value="Cambiar relación" onclick="ventanaColectivoRelacionados('<?= $intervenciones['interventorId'] ?>')">
-										<!--Aquí termina lo que hay que corregir-->
+										<?php if (isset($fuenteInfoPersonal['tipoRelacionActorReportadoId']) &&($fuenteInfoPersonal['tipoRelacionActorReportadoId'] > 0)) { ?>
+											<div class="three columns">
+												<img class="foto" src="<?= base_url().$catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$fuenteInfoPersonal['tipoRelacionActorReportadoId']]['actorRelacionadoId']]['foto']?>" />
+											</div>
+											<b><h4><?= (isset($catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$fuenteInfoPersonal['tipoRelacionActorReportadoId']]['actorRelacionadoId']]['nombre'])) ? $catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$fuenteInfoPersonal['tipoRelacionActorReportadoId']]['actorRelacionadoId']]['nombre'] : " " ; ?>  <?= (isset($catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$fuenteInfoPersonal['tipoRelacionActorReportadoId']]['actorRelacionadoId']]['apellidosSiglas'])) ? $catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$fuenteInfoPersonal['tipoRelacionActorReportadoId']]['actorRelacionadoId']]['apellidosSiglas'] :  '' ;?></h4></b>
+										<?php } ?>
+									<h5>Tipo de relacion</h5>
+										<?=(isset($catalogos['relacionesActoresCatalogo'][$fuenteInfoPersonal['tipoRelacionActorReportadoId']]['tipoRelacionId'])) ? $catalogos['relacionActoresCatalogo'][$catalogos['relacionesActoresCatalogo'][$fuenteInfoPersonal['tipoRelacionActorReportadoId']]['tipoRelacionId']]['Nivel2']	 : " " ; ?></h5> <br> 
+									</div>
+
+									<div id="infoColectioContenidoReportadoBotones" >
+										<?php if (isset($fuenteInfoPersonal['tipoRelacionActorReportadoId'])&& ($fuenteInfoPersonal['tipoRelacionActorReportadoId']>0)) { ?>
+											<input type="button" value="Eliminar" onclick="eliminarRelacionVista('infoColectioContenidoReportado','fuenteInfoPersonal_actorId')" class="tiny button">	
+											<input type="button" class="tiny button" value="Selecciona relación" onclick="ventanaColectivoRelacionados('<?= $fuenteInfoPersonal['actorReportado'] ?>', '5')">
 										<?php } ?>
 									</div>
-									<div id="infoColectioContenidoReportadoBotones" ></div>
 								</div>
 						</div>
 					</div>
