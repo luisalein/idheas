@@ -7,6 +7,8 @@
             parent::__construct();
             
             $this->load->database();
+			
+			$this->load->model(array('casos_m'));
         
         }
         
@@ -1196,14 +1198,16 @@
 		
 		/* Este modelo trae los id's de los casos relaciones con un actor*/
 		public function mTraeCasosRelacionadosActor($actorId){
-			$this->db->select('casos_casoId');
+			$this->db->select('*');
 			$this->db->from('casos_has_actores');
 			$this->db->where('actores_actorId',$actorId);
 			$consulta = $this->db->get();
 			
 			if ($consulta->num_rows() > 0){
 				foreach ($consulta->result_array() as $row) {
-					$casos[$row['casos_casoId']]=$row;
+					//$casos[$row['casos_casoId']]=$row;
+					
+					$casos[$row['casoActorId']]=$this->casos_m->mTraerDatosCaso($row['casoActorId']);
 				}
 				
 				return $casos;
