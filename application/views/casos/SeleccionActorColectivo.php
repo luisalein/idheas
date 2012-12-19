@@ -55,6 +55,12 @@
 					    		case '2':
 					    			echo "SeleccionarInfoGeneralReceptor('".$individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto']."')";
 					    			break;
+					    		case '3':
+					    			echo "SeleccionarInfoGeneralReceptor('".$individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto']."')";
+					    			break;
+					    		case '4':
+					    			echo "SeleccionarInfoGeneralDocumental('".$individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto']."')";
+					    			break;
 
 					    	}
 					    } else {
