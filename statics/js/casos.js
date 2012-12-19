@@ -725,6 +725,7 @@ function ventanaRelacionCasos(casoId, indice){
 function pintaIndividualesInfoPersonal(){
 
 	$('#infoColectio').removeClass("Escondido");
+	document.getElementById('infoPersonalActor').innerHTML =" ";
     notas="seleccionarActorseleccionarActorIndColDatos('5')";
     notas2="eliminarRelacionVista('eliminarVistaActor','fuenteInfoPersonal_actorId','infoColectio','fuenteInfoPersonal_relacionId')";
 	document.getElementById('infoPersonalActorBotones').innerHTML = ('<div class="nine columns"><input type="button" class="tiny button" value="Seleccionar actor" onclick="'+notas+'" /></div>'+
@@ -748,6 +749,7 @@ function pintaColectivosInfoPersonal(){
 function pintaIndividualesInfoPersonalReportado(){
 
 	$('#infoColectioReportado').removeClass("Escondido");
+	document.getElementById('infoPersonalActorReportado').innerHTML =" ";
     notas="seleccionarActorseleccionarActorIndColDatos('7')";
     notas2="eliminarRelacionVista('eliminarVistaActorReportado','fuenteInfoPersonal_actorId')";
 	document.getElementById('infoPersonalActorReportadoBotones').innerHTML = ('<div class="nine columns"><input type="button" class="tiny button" value="Seleccionar actor" onclick="'+notas+'" /></div>'+
@@ -757,11 +759,35 @@ function pintaIndividualesInfoPersonalReportado(){
 function pintaColectivosInfoPersonalReportado(){
     var nameSeleccionado2= document.getElementById('nameDeLaRelacionReceptor').value;
     document.getElementById(nameSeleccionado2).value = 0;
-    notas="seleccionarActorseleccionarActorIndColDatos('2')";
+    notas="seleccionarActorseleccionarColDatos('2')";
     notas2="eliminarRelacionVista('eliminarVistaActorReportado','fuenteInfoPersonal_actorId')";
 	$('#infoColectioReportado').addClass("Escondido");
 	document.getElementById('infoPersonalActorReportado').innerHTML =" ";
 	document.getElementById('infoPersonalActorReportadoBotones').innerHTML =('<div class="nine columns"><input type="button" class="tiny button" value="Seleccionar actor" onclick="'+notas+'" /></div>'+
 		'<div class="three columns" id="eliminarVistaActorReportado"><input type="button" class="tiny button" value="Eliminar Actor" onclick="'+notas2+'" /></div>');
+}
+
+/**Funciones de la ventana fuentes de información documental **/
+
+function pintaIndividualesInfoDocumental(){
+
+	$('#infoColectio').removeClass("Escondido");
+    notas="seleccionarActorseleccionarActorIndColDatos('5')";
+	document.getElementById('actorReportado').innerHTML =" ";
+    notas2="eliminarRelacionVista('eliminarVistaActor','tipoFuenteDocumental_actorReportado','infoColectio','tipoFuenteDocumental_relacionId')";
+	document.getElementById('actorReportadoBotones').innerHTML = ('<div class="nine columns"><input type="button" class="tiny button" value="Seleccionar actor" onclick="'+notas+'" /></div>'+
+		'<div class="three columns" id="eliminarVistaActor"><input type="button" class="tiny button" value="Eliminar Actor" onclick="'+notas2+'" /></div>');
+}
+
+function pintaColectivosInfoDocumental(){
+    var nameSeleccionado= document.getElementById('nameDeLaRelacion').value;
+    document.getElementById(nameSeleccionado).value = 0;
+	$('#infoColectio').addClass("Escondido");
+	document.getElementById('actorReportado').innerHTML =" ";
+    notas="seleccionarActorseleccionarColDatos('4')";
+    notas2="eliminarRelacionVista('eliminarVistaActor','tipoFuenteDocumental_actorReportado')";
+	document.getElementById('actorReportadoBotones').innerHTML = ('<div class="nine columns"><input type="button" class="tiny button" value="Seleccionar actor" onclick="'+notas+'" /></div>'+
+		'<div class="three columns" id="eliminarVistaActor"><input type="button" class="tiny button" value="Eliminar Actor" onclick="'+notas2+'" /></div>');
+	alert('algo');
 }
 

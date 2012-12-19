@@ -155,7 +155,7 @@ class CasosVentanas_c extends CI_Controller {
         
     }
 
-	function fuentesDeInformacion($casoId,$actorId=0,$i){
+	function fuentesDeInformacion($casoId,$actorId=0,$i=0){
 		
 		$datos['head'] = $this->load->view('general/head_v', "", true);
 
@@ -166,6 +166,14 @@ class CasosVentanas_c extends CI_Controller {
 		$datos['catalogos'] = $this->traer_catalogos();
 		
 		$datos['datosCaso'] = $this->casos_m->mTraerDatosCaso($casoId);
+
+		if ($i>0) {
+			// echo "<pre>";
+			// print_r($datos['datosCaso']['tipoFuenteDocumental']);
+			// echo "</pre>";
+			$datos['fuenteDocumental']=$datos['datosCaso']['tipoFuenteDocumental'][$i];
+
+		}
 		
 		$datos['actoresColectivos'] = $this->actores_m->listado_actores_m(3);
 		 
@@ -364,6 +372,8 @@ class CasosVentanas_c extends CI_Controller {
             break;
 			
 			case(6):
+					echo "<pre>"; print_r($_POST);echo "</pre>";
+					echo "<pre>"; print_r($datos['tipoFuenteDocumental']);echo "</pre>";
 				if($_POST['editar'] == 1){
 					$mensaje = $this->casos_m->mActualizaDatosTipoFuenteDocumental($datos['tipoFuenteDocumental'],$datos['tipoFuenteDocumental']['tipoFuenteDocumentalId']);
 				}else{ 

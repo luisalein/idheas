@@ -68,7 +68,7 @@
 							    		echo "agregarActorFuenteInfoPersonal('".$individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto']."')";
 							    			break;
 							    		case '6':
-							    		echo "agregarActorFuenteInfoPersonal('".$individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto']."')";
+							    		echo "agregarActorFuenteDocumental('".$individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto']."')";
 							    			break;
 							    		case '7':
 							    		echo "agregarActorFuenteInfoPersonalReportado('".$individual['actorId']."*".$individual['nombre']." ".$individual['apellidosSiglas']."*".$individual['foto']."')";

@@ -92,12 +92,14 @@ function seleccionarRelacionColectivo(nombre, Siglas, TipoRelacion,IdRelacion,fo
             var nameSeleccionado= window.opener.document.getElementById('nameDeLaRelacion').value;
         break;
 
-        case '4':
-        break;
-
         case '5':
             var vista='infoColectioContenidoReportado'
             var nameSeleccionado= window.opener.document.getElementById('nameDeLaRelacionReceptor').value;
+        break;
+
+        case '6':
+            var vista='infoColectioContenido'
+            var nameSeleccionado= window.opener.document.getElementById('nameDeLaRelacion').value;
         break;
 
         default:
@@ -223,7 +225,25 @@ function agregarActorFuenteInfoPersonal(title){
     $('#'+n[0]).css('background-color','#ccc');
     var nameSeleccionado= window.opener.document.getElementById('nameSeleccionado').value;
     var nameSeleccionado2= window.opener.document.getElementById('nameDeLaRelacion').value;
-    notas="seleccionarActorseleccionarActorIndColDatos('5')";
+    notas="seleccionarActorseleccionarActorIndColDatos('7')";
+    notas2="eliminarRelacionVista('actorReportado','fuenteInfoPersonal_actorId','infoColectioContenido','"+nameSeleccionado2+"')";
+    notas3="ventanaColectivoRelacionados('"+n[0]+"','3')";
+    notas4="eliminarRelacionVista('infoColectioContenido','fuenteInfoPersonal_relacionId')";
+    window.opener.document.getElementById(nameSeleccionado).value = n[0];
+    window.opener.document.getElementById('actorReportado').innerHTML = ('<div class="seven columns"><img class="foto" src="'+ base+n[2]+'" /></div><div class="five columns"><b><h4>'+n[1]+'</h4></b></div>');
+    window.opener.document.getElementById('actorReportadoBotones').innerHTML = ('<div class="five columns" id="eliminarVistaActor"><input type="button" class="tiny button" value="Seleccionar actor" onclick="'+notas+'" /><input type="button" class="tiny button" value="Eliminar Actor" onclick="'+notas2+'" /></div>');
+    window.opener.document.getElementById('infoColectioContenidoBotones').innerHTML = ('<input type="button" class="tiny button" value="Seleccionar relación" onclick="'+notas3+'" /><input type="button" class="tiny button" value="Eliminar relación" onclick="'+notas4+'" />')
+    window.opener.document.getElementById('infoColectioContenido').innerHTML = (' ');
+    window.opener.document.getElementById(nameSeleccionado2).value = 0;
+}  
+
+function agregarActorFuenteDocumental(title){  
+    var n=title.split("*");
+    $('.lista').css('background-color','#fff')
+    $('#'+n[0]).css('background-color','#ccc');
+    var nameSeleccionado= window.opener.document.getElementById('nameSeleccionado').value;
+    var nameSeleccionado2= window.opener.document.getElementById('nameDeLaRelacion').value;
+    notas="seleccionarActorseleccionarActorIndColDatos('7')";
     notas2="eliminarRelacionVista('infoPersonalActor','fuenteInfoPersonal_actorId','infoColectioContenido','"+nameSeleccionado2+"')";
     notas3="ventanaColectivoRelacionados('"+n[0]+"','3')";
     notas4="eliminarRelacionVista('infoColectioContenido','fuenteInfoPersonal_relacionId')";
@@ -271,4 +291,13 @@ function SeleccionarInfoGeneralReceptor(title){
     var nameSeleccionado= window.opener.document.getElementById('nameSeleccionadoReceptor').value;
     window.opener.document.getElementById(nameSeleccionado).value = n[0];
     window.opener.document.getElementById('infoPersonalActorReportado').innerHTML = ('<div class="three columns"><img style="width:120px !important; height:150px !important;" src="'+base+n[2]+'" /></div><b><h4>'+n[1]+'</h4></b>');
-}    
+}
+
+function SeleccionarInfoGeneralDocumental(title){  
+    var n=title.split("*");
+    $('.lista').css('background-color','#fff')
+    $('#'+n[0]).css('background-color','#ccc');
+    var nameSeleccionado= window.opener.document.getElementById('nameSeleccionado').value;
+    window.opener.document.getElementById(nameSeleccionado).value = n[0];
+    window.opener.document.getElementById('actorReportado').innerHTML = ('<div class="three columns"><img style="width:120px !important; height:150px !important;" src="'+base+n[2]+'" /></div><b><h4>'+n[1]+'</h4></b>');
+}   
