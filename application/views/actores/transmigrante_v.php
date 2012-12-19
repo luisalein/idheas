@@ -323,9 +323,9 @@
 		            <table>
 		                <thead>
 		                    <tr>
-		                        <th>Persona</th>
+		                        <th>Actor</th>
 		                        <th>Tipo de relación</th>
-		                        <th>Persona Relacionada</th>
+		                        <th>Actor relacionado</th>
 		                        <th>Fecha de incio</th>
 		                        <th>Fecha de témino</th>
 		                        <th>Acción(es)</th>
@@ -376,9 +376,9 @@
 		            <table>
 		            <thead>
 		                <tr>
-		                    <th>Persona</th>
+		                    <th>Actor</th>
 		                    <th>Tipo de relación</th>
-		                    <th>Persona Relacionada</th>
+		                    <th>Actor relacionado</th>
 		                    <th>Fecha de incio</th>
 		                    <th>Fecha de témino</th>
 		                </tr>
@@ -418,7 +418,7 @@
 		            <table>
 		                <thead>
 		                    <tr>
-		                        <th>Persona</th>
+		                        <th>Actor</th>
 		                        <th>Tipo de relación</th>
 		                        <th>Actor colectivo relacionado </th>
 		                        <th>Fecha de incio</th>
@@ -464,9 +464,9 @@
 		            <table>
 		            <thead>
 		                <tr>
-		                    <th>Persona</th>
+		                    <th>Actor</th>
 		                    <th>Tipo de relación</th>
-		                    <th>Persona Relacionada</th>
+		                    <th>Actor relacionado</th>
 		                    <th>Fecha de incio</th>
 		                    <th>Fecha de témino</th>
 		                </tr>
