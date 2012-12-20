@@ -1,6 +1,8 @@
 <div id="pestania" data-collapse>	
 	<h2 class="open">Casos</h2><!--título de la pestaña-->  
+	<!-- 
 	<pre> <?php print_r($casosRelacionados)?></pre>
+	 -->
 	<?php if (isset($casosRelacionados)) {?>
 	<?php foreach ($casosRelacionados as $datosCaso) {?>
 	<div>
@@ -174,7 +176,7 @@
 													<?php foreach($victimas['perpetradores'] as $actor):?> <!--muestra cada elemento de la lista-->
 													
 										                <div class="twelve columns">
-										                    <img class="three columns" src="<?=base_url(); ?>statics/media/img/actores/<?=$actor['perpetradorId']; ?>.jpg" />
+										                    <img class="three columns" src="<?=base_url().$catalogos['listaTodosActores'][$actor['perpetradorId']]['foto'] ?>" />
 										                    <br/><br/>
 											                <div class="nine columns">
 											                        <?=$catalogos['listaTodosActores'][$actor['perpetradorId']]['nombre'].' '.$catalogos['listaTodosActores'][$actor['perpetradorId']]['apellidosSiglas']; ?>

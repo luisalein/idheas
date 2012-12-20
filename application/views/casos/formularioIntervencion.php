@@ -53,7 +53,7 @@
 							<div class="twelve columns">
 									<label for="tipoIntervencion">Tipo de intervención</label>
 									<div id="tipoIntervencion">
-									<br>Intervención actual: <?= $catalogos['tipoIntervencionN'.$intervenciones['intervencionNId'].'Catalogo'][$intervenciones['tipoIntervencionId']]['descripcion']?>
+									<br>Intervención actual: <?=(isset($intervenciones['intervencionNId'])&& ($intervenciones['intervencionNId']>0)) ? $catalogos['tipoIntervencionN'.$intervenciones['intervencionNId'].'Catalogo'][$intervenciones['tipoIntervencionId']]['descripcion'] : " " ;?>
 
 									</div>
 									
