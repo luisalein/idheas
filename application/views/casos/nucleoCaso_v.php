@@ -84,7 +84,7 @@
 			              </tr> <?php } }?>
 			            </tbody>
 			          </table>
-				<input type="button" class="tiny button <?=$clase?>"  value="Nuevo" onclick="ventanaInterevenciones('<?=$casoId; ?>',0)" />	  
+				<input type="button" class="small button <?=$clase?>"  value="Nuevo" onclick="ventanaInterevenciones('<?=$casoId; ?>',0)" />	  
 	  			</div>
 	  			  
 	  		</div>
