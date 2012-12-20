@@ -66,7 +66,7 @@
 	             <?php endif;?>
 	             
 	              <?php if($tipo == 4):?> 
-		         	<select id="derechoAfectado_paisesCatalogo_paisId" name="derechoAfectado_paisesCatalogo_paisId"  onclick="changeTest(1)" onkeypress="changeTest(1)">	
+		         	<select id="derechoAfectado_paisesCatalogo_paisId" name="derechoAfectado_paisesCatalogo_paisId" onclick="changeTest(1)" onkeypress="changeTest(1)">	
 		         		<option></option>	
 		         		<?php if(isset($derechoAfectado['paisesCatalogo_paisId'])):?>
 		             				<?foreach($catalogos['paisesCatalogo'] as $key => $item): ?>
