@@ -151,8 +151,8 @@
 								                <?php }?>
 
 											</div>
-											<input type="button" class="small button" onclick="seleccionarActorseleccionarActorIndColDatos('1')" value="Seleccionars actor"><br>
-											<input type="button" class="small button" value="Eliminar actor" onclick="eliminarRelacionVista('vistaActorRelacionado','intervenciones_interventorId','vistaPintaRelaciones','intervenciones_tipoRelacionInterventor')">
+											<input type="button" style="padding: 9px 12px 9px 12px !important" class="small button" onclick="seleccionarActorseleccionarActorIndColDatos('1')" value="Seleccionars actor"><br>
+											<input type="button" style="padding: 9px 24px 9px 25px !important" class="small button" value="Eliminar actor" onclick="eliminarRelacionVista('vistaActorRelacionado','intervenciones_interventorId','vistaPintaRelaciones','intervenciones_tipoRelacionInterventor')">
 											</div>
 								<div id="pestania" data-collapse>
 									<h2>Actor Colectivo</h2>
@@ -206,8 +206,8 @@
 													</div> 
 												<?php }?> 
 											</div>											
-											<input type="button" class="small button" onclick="seleccionarActorseleccionarActorIndColDatos('2')" value="Seleccionar actor"><br>
-											<input type="button" class="small button" value="Eliminar actor" onclick="eliminarRelacionVista('vistaActorRelacionadoReceptor','intervenciones_receptorId','vistaPintaRelacionesReceptor','intervenciones_tipoRelacionReceptor')">
+											<input type="button" style="padding: 9px 12px 9px 12px !important" class="small button" onclick="seleccionarActorseleccionarActorIndColDatos('2')" value="Seleccionar actor"><br>
+											<input type="button" style="padding: 9px 20px 9px 22px !important" class="small button" value="Eliminar actor" onclick="eliminarRelacionVista('vistaActorRelacionadoReceptor','intervenciones_receptorId','vistaPintaRelacionesReceptor','intervenciones_tipoRelacionReceptor')">
 										
 								<div id="pestania" data-collapse>
 									<h2>Actor Colectivo</h2>
@@ -250,8 +250,8 @@
 								<?php echo br(2);?>	
 							</div>
 			
-			<input class="medium button" type="submit" value="Guardar"/>
-			<input class="medium button" value="Cancelar" onclick="cerrarVentana()" />		
+			<input class="medium button" style="padding: 9px 40px 9px 40px !important" type="submit" value="Guardar"/>
+			<input class="medium button" style="padding: 9px 0px 9px 0px !important" value="Cancelar" onclick="cerrarVentana()" />		
 
 	</form>
 					<!-- <pre>	<?= print_r($intervenciones['intervenidos'])?></pre> -->
@@ -271,7 +271,7 @@
 								  					</div>
 								  					<div class="three columns">
 								  						<br> <br> <br> <br> 
-								  							<input type="button" class="tiny button" value="Eliminar" Onclick="eliminarIntervenidoAjax('<?= $intervenidos['intervenidoId'] ?>','<?=$casoId ?>',<?=$intervenciones['intervencionId']?>);">
+								  							<input type="button" class="small button" value="Eliminar" Onclick="eliminarIntervenidoAjax('<?= $intervenidos['intervenidoId'] ?>','<?=$casoId ?>',<?=$intervenciones['intervencionId']?>);">
 								  					</div>
 								  				</div> 
 								  			<?php }?>

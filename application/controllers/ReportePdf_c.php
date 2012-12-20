@@ -7,6 +7,9 @@ class ReportePdf_c extends CI_Controller
           parent::__construct();
           
             $this->load->helper(array('html', 'url'));
+			$this->load->library('session');
+        
+			$this->is_logged_in();
         	$this->load->model(array('actores_m', 'general_m','reportes_m', 'catalogos_m'));
 			$this->load->library('cezpdf');
        }
@@ -17,6 +20,13 @@ class ReportePdf_c extends CI_Controller
 		$this->headers();
 	}
     
+	private function is_logged_in(){
+		$logged_in = $this->session->userdata('logged_in');
+		if(!isset($logged_in) or $logged_in != TRUE){
+			redirect(base_url());
+		}
+	}
+	
     function traer_catalogos(){
         
         $datos['paisesCatalogo'] = $this->general_m->obtener_todo('paisesCatalogo', 'paisId', 'nombre');
