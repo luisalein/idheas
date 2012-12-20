@@ -792,7 +792,7 @@ function pintaColectivosInfoPersonalReportado(){
 function pintaIndividualesInfoDocumental(){
 
 	$('#infoColectio').removeClass("Escondido");
-    notas="seleccionarActorseleccionarActorIndColDatos('5')";
+    notas="seleccionarActorseleccionarActorIndColDatos('6')";
 	document.getElementById('actorReportado').innerHTML =" ";
     notas2="eliminarRelacionVista('eliminarVistaActor','tipoFuenteDocumental_actorReportado','infoColectio','tipoFuenteDocumental_relacionId')";
 	document.getElementById('actorReportadoBotones').innerHTML = ('<div class="nine columns"><input type="button" class="tiny button" value="Seleccionar actor" onclick="'+notas+'" /></div>'+
@@ -808,6 +808,25 @@ function pintaColectivosInfoDocumental(){
     notas2="eliminarRelacionVista('eliminarVistaActor','tipoFuenteDocumental_actorReportado')";
 	document.getElementById('actorReportadoBotones').innerHTML = ('<div class="nine columns"><input type="button" class="tiny button" value="Seleccionar actor" onclick="'+notas+'" /></div>'+
 		'<div class="three columns" id="eliminarVistaActor"><input type="button" class="tiny button" value="Eliminar Actor" onclick="'+notas2+'" /></div>');
-	alert('algo');
+	//alert('algo');
 }
 
+/*//Funciones colapsibles para el catalogo de tipo de la fuente//*/
+/*************************************************************/
+function  Nivel1TipoFuete(valor, descripcion,  notas,e){
+	//var algo="#"+valor+"DAN1";
+	$('#textoTipoFuente').html(descripcion);
+	$('#notasTipoFuente').html(notas); 
+	$('#derechoAfectado').attr('value', valor); 
+	$("#subnivel"+valor).toggleClass("Escondido");
+	$(e).toggleClass('ExpanderFlecha');
+};
+
+function  Nivel2TipoFuete(valor, descripcion,  notas,e){
+	$('#textoTipoFuente').html(descripcion);
+	$('#notasTipoFuente').html(notas); 
+	$('#derechoAfectado').attr('value', valor); 
+	$("#subnivel"+valor).toggleClass("Escondido");
+    $('.listaNivel2').css('background-color','##EFEFEF')
+	$(e).css('background-color','#ccc');
+};

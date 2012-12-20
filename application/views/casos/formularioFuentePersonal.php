@@ -33,8 +33,8 @@
 		<pre> <?php print_r($catalogos['relacionesActoresCatalogo'][$fuenteInfoPersonal['relacionId']]['actorRelacionadoId'])?></pre>
 		<pre> <?php print_r($catalogos['listaTodosActores'][$fuenteInfoPersonal['actorId']])?></pre>
 		<pre> <?php print_r($catalogos['listaTodosActores'][$fuenteInfoPersonal['actorId']]['actorId'])?></pre>
-		 -->
 		<pre> <?php print_r($fuenteInfoPersonal['relacionId'])?></pre>
+		 -->
 			<fieldset>
 				<legend class="espacioInferior">Fuente de información personal</legend>
 					<input type="radio" onclick="pintaIndividualesInfoPersonal()" name="selecionaActor" <?= (isset($fuenteInfoPersonal['actorId']) &&($fuenteInfoPersonal['actorId']>0) && ($catalogos['listaTodosActores'][$fuenteInfoPersonal['actorId']]['tipoActorId']< 3)) ? "checked='checked'" : " " ;?>/>Persona
