@@ -22,7 +22,9 @@
 	
 	<input type="hidden" id='tipoFuenteDocumental_tipoFuenteDocumentalId' name='tipoFuenteDocumental_tipoFuenteDocumentalId' value="<?= (isset($fuenteDocumental['tipoFuenteDocumentalId'])) ? $fuenteDocumental['tipoFuenteDocumentalId'] : " " ; ?>"/>
 
-	<input type="hidden" id='tipoFuenteDocumental_tipoFuenteDocumentalN1Catalogo_tipoFuenteDocumentalN1CatalogoId' name='tipoFuenteDocumental_tipoFuenteDocumentalN1Catalogo_tipoFuenteDocumentalN1CatalogoId' value="<?= (isset($fuenteDocumental['tipoFuenteDocumentalN1Catalogo_tipoFuenteDocumentalN1CatalogoId'])) ? $fuenteDocumental['tipoFuenteDocumentalN1Catalogo_tipoFuenteDocumentalN1CatalogoId'] : " " ; ?>"/>
+	<input type="hidden" id='tipoFuenteDocumental_tipoFuenteDocumentalCatalogoNivel' name='tipoFuenteDocumental_tipoFuenteDocumentalCatalogoNivel' value="<?= (isset($fuenteDocumental['tipoFuenteDocumentalCatalogoNivel'])) ? $fuenteDocumental['tipoFuenteDocumentalCatalogoNivel'] : " " ; ?>"/>
+
+	<input type="hidden" id='tipoFuenteDocumental_tipoFuenteDocumentalCatalogoId' name='tipoFuenteDocumental_tipoFuenteDocumentalCatalogoId' value="<?= (isset($fuenteDocumental['tipoFuenteDocumentalCatalogoId'])) ? $fuenteDocumental['tipoFuenteDocumentalCatalogoId'] : " " ; ?>"/>
 	
 	<input type="hidden" id='nameDeLaRelacion' value="tipoFuenteDocumental_relacionId"/>
 	<input type="hidden" id='tipoFuenteDocumental_relacionId' name='tipoFuenteDocumental_relacionId' value="<?= (isset($fuenteDocumental['relacionId'])) ? $fuenteDocumental['relacionId'] : " " ; ?>"/>
@@ -48,11 +50,11 @@
 							<div class="twelve columns espacioSuperior espacioInferior">
 								<label for="tipoFuente"><b>Tipo de la fuente</b></label>
 								<div id='textoTipoFuente'>
-									<?= (isset($fuenteDocumental['tipoFuenteDocumentalId']) && isset($fuenteDocumental['tipoFuenteDocumentalN1Catalogo_tipoFuenteDocumentalN1CatalogoId'])) ? $catalogos['tipoFuenteDocumentalN'.$fuenteDocumental['tipoFuenteDocumentalN1Catalogo_tipoFuenteDocumentalN1CatalogoId'].'Catalogo'][$fuenteDocumental['tipoFuenteDocumentalId']]['descripcion'] : " " ; ?>
+									<?= (isset($fuenteDocumental['tipoFuenteDocumentalCatalogoId']) && isset($fuenteDocumental['tipoFuenteDocumentalCatalogoNivel']) && ($fuenteDocumental['tipoFuenteDocumentalCatalogoId']>0)) ? $catalogos['tipoFuenteDocumentalN'.$fuenteDocumental['tipoFuenteDocumentalCatalogoNivel'].'Catalogo'][$fuenteDocumental['tipoFuenteDocumentalCatalogoId']]['descripcion'] : " " ; ?>
 								</div>
 								<label for="tipoFuente"><b>Notas</b></label>
 								<div id="notasTipoFuente">
-									<?= (isset($fuenteDocumental['tipoFuenteDocumentalId']) && isset($fuenteDocumental['tipoFuenteDocumentalN1Catalogo_tipoFuenteDocumentalN1CatalogoId'])) ? $catalogos['tipoFuenteDocumentalN'.$fuenteDocumental['tipoFuenteDocumentalN1Catalogo_tipoFuenteDocumentalN1CatalogoId'].'Catalogo'][$fuenteDocumental['tipoFuenteDocumentalId']]['notas'] : " " ; ?>
+									<?= (isset($fuenteDocumental['tipoFuenteDocumentalCatalogoId']) && isset($fuenteDocumental['tipoFuenteDocumentalCatalogoNivel'])&& ($fuenteDocumental['tipoFuenteDocumentalCatalogoId']>0)) ? $catalogos['tipoFuenteDocumentalN'.$fuenteDocumental['tipoFuenteDocumentalCatalogoNivel'].'Catalogo'][$fuenteDocumental['tipoFuenteDocumentalCatalogoId']]['notas'] : " " ; ?>
 								</div>
 
 				         					<div  id="listaActorIndiv" class="cajaDerchosActos">

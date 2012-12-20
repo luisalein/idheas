@@ -26,7 +26,7 @@
 							              <tr>
 							              	
 							                <td><?= $fuenteDoc['nombre'] ?></td>
-							                <td><?= ($fuenteDoc['tipoFuenteCatalogo_tipoFuenteId']==$catalogos['tipoFuenteCatalogo'][$fuenteDoc['tipoFuenteCatalogo_tipoFuenteId']]) ? $catalogos['tipoFuenteCatalogo'][$fuenteDoc['tipoFuenteCatalogo_tipoFuenteId']]['descripcion']:$catalogos['tipoFuenteCatalogo'][$fuenteDoc['tipoFuenteCatalogo_tipoFuenteId']]['descripcion'] ?></td>
+							                <td><?= (isset($fuenteDoc['tipoFuenteDocumentalCatalogoId']) && isset($fuenteDoc['tipoFuenteDocumentalCatalogoNivel']) && ($fuenteDoc['tipoFuenteDocumentalCatalogoId']>0)) ? $catalogos['tipoFuenteDocumentalN'.$fuenteDoc['tipoFuenteDocumentalCatalogoNivel'].'Catalogo'][$fuenteDoc['tipoFuenteDocumentalCatalogoId']]['descripcion'] : " " ; ?></td>
 							                <td><?= (isset($fuenteDoc['actorReportado']) ? $catalogos['listaTodosActores'][$fuenteDoc['actorReportado']]['nombre'].' '.$catalogos['listaTodosActores'][$fuenteDoc['actorReportado']]['apellidosSiglas'] : 'No hay actor reportado') ?> </td>
 							                <td><?= $fuenteDoc['fecha'] ?></td>
 							                <td><?= $fuenteDoc['fechaAcceso'] ?></td>
