@@ -151,7 +151,38 @@ class Casos_m extends CI_Model {
 			}
 
 			
-		}
+		}else{
+			/* Trae todos los datos de relacionCasos*/
+			$this->db->select('*');
+			$this->db->from('relacionCasos');
+			$this->db->where('casoIdB',$casoId);
+			$consulta = $this->db->get();
+						
+			if ($consulta->num_rows() > 0){				
+				/* Pasa la consulta a un cadena */
+				foreach ($consulta->result_array() as $row) {
+					$datos['relacionCasos'][$row['relacionId']] = $row;
+					$datos['relacionCasos'][$row['relacionId']]['casoIdB'] = $row['casos_casoId'];
+					
+					$this->db->select('nombre,fechaInicial,fechaTermino');
+					$this->db->from('casos');
+					$this->db->where('casoId', $row['casos_casoId']);
+					$consultaCaso = $this->db->get();
+					
+					if ($consultaCaso->num_rows() > 0){
+						foreach ($consultaCaso->result_array() as $row3) {
+							$nombreCaso = $row3;
+						}	
+					}
+					
+					$datos['relacionCasos'][$row['relacionId']]['nombreCasoIdB'] = $nombreCaso['nombre']; 
+					$datos['relacionCasos'][$row['relacionId']]['fechaIncial'] = $nombreCaso['fechaInicial'];
+					$datos['relacionCasos'][$row['relacionId']]['fechaTermino'] = $nombreCaso['fechaTermino'];
+				}
+	
+				
+			}
+		}/* fin else */
 		
 		/* Trae todos los datos de intervenciones*/
 		$this->db->select('*');
@@ -1607,6 +1638,7 @@ class Casos_m extends CI_Model {
         	return $mensaje;
 		}
 	}
+	 
 	 
 }
 
