@@ -817,7 +817,8 @@ function  Nivel1TipoFuete(valor, descripcion,  notas,e){
 	//var algo="#"+valor+"DAN1";
 	$('#textoTipoFuente').html(descripcion);
 	$('#notasTipoFuente').html(notas); 
-	$('#derechoAfectado').attr('value', valor); 
+	$('#tipoFuenteDocumental_tipoFuenteDocumentalId').attr('value', valor); 
+	$('#tipoFuenteDocumental_tipoFuenteDocumentalN1Catalogo_tipoFuenteDocumentalN1CatalogoId').attr('value', 1); 
 	$("#subnivel"+valor).toggleClass("Escondido");
 	$(e).toggleClass('ExpanderFlecha');
 };
@@ -825,8 +826,8 @@ function  Nivel1TipoFuete(valor, descripcion,  notas,e){
 function  Nivel2TipoFuete(valor, descripcion,  notas,e){
 	$('#textoTipoFuente').html(descripcion);
 	$('#notasTipoFuente').html(notas); 
-	$('#derechoAfectado').attr('value', valor); 
-	$("#subnivel"+valor).toggleClass("Escondido");
-    $('.listaNivel2').css('background-color','##EFEFEF')
-	$(e).css('background-color','#ccc');
+	$('#tipoFuenteDocumental_tipoFuenteDocumentalId').attr('value', valor); 
+	$('#tipoFuenteDocumental_tipoFuenteDocumentalN1Catalogo_tipoFuenteDocumentalN1CatalogoId').attr('value', 2); 
+	$('.listaNivel2').css('background-color', '#efefef');
+    $(e).css('background-color', '#ddd');
 };
