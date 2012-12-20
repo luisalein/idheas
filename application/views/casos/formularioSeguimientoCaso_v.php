@@ -8,6 +8,7 @@
 <body>
 <form method="post"  action='<?=base_url(); ?>index.php/casosVentanas_c/guardarDatosVentanas/2' enctype="multipart/form-data" accept-charset="utf-8">
 <input type="hidden" value="<?= (isset($ficha)) ? "1" : "0" ;?>" name="editar" id="editar"> 
+<input type="hidden" value="<?= (isset($ficha)) ? $ficha['fichaId'] : '' ;?>" name="fichas_fichaId" id="fichas_fichaId"> 
 <input type="hidden" value="<?=$casoId; ?>" name="fichas_casos_casoId" id="fichas_casos_casoId" />
 
 	<div id="formularioDetallerLugar">
@@ -19,7 +20,6 @@
 								<label for="clave">Clave</label>
 								<input type="text" name="fichas_clave" value='<?=(isset($ficha['clave'])) ? $ficha['clave'] : " " ;?>' />
 						</div>
-
 						<div class="six columns">
 								<label for="claveTitulo">Título</label>
 								<input type="text" id="fichas_titulo" name="fichas_titulo" value="<?=(isset($ficha['titulo'])) ? $ficha['titulo'] : " " ;?>" size="60"  />
@@ -70,18 +70,12 @@
 						<textarea id="fichas_Comentarios" style="width: 690px; height: 200px" name="fichas_Comentarios" wrap="hard"  value=""><?=(isset($ficha['comentarios'])) ? $ficha['comentarios'] : " " ; ?> </textarea>
 			
 			</div>	
-			
-			<?php if (isset($ficha['fichaId']) ) { ?>
-				
 			<div id="pestania">
 				<p style="margin-left: 15px;" >Agregar nuevo registro</p><!--título de la sub-pestaña-->  
 				<div>
 					<input style="margin-left: 15px;" name="pdf" type="file" size="10" accept="appplication/pdf""/>
 				</div>
 			</div>
-				
-				
-			<?php } ?>
 		</div>
 	
 		</div>
