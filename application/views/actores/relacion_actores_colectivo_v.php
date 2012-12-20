@@ -23,9 +23,9 @@
 
 			<br />
 	
-			<label>Actor</label>
+			<label style="margin-left: 15px;">Actor</label>
 
-			<div class="twelve columns">
+			<div style="margin-left: 15px;" class="twelve columns">
 			<img class="foto" src="<?=base_url().$listaTodosActores[$actorId]['foto']?>" />
 			<br /><br />
 			<?=$listaTodosActores[$actorId]['nombre']." ".$listaTodosActores[$actorId]['apellidosSiglas']?>
@@ -39,19 +39,19 @@
 			
 			<br/><br/>
 
-		<label for="TipoRel">Tipo de relación</label>
+		<label for="TipoRel" style="margin-left: 15px;">Tipo de relación</label>
 		<!--Estos datos solo apareceran para su actualización-->
 			<?php if (isset($relaciones['tipoRelacionId'])) {?>
-				<div id="relacionActual"> <br />
+				<div style="margin-left: 15px;" id="relacionActual"> <br />
 					Relación Actual<br />
 					<?php if ($listaTodosActores[$actorId]['tipoActorId']<3) {?>
 						<?php print_r($relacionActoresColectivo['relacionActoresCatalogo'][$relaciones['tipoRelacionId']]['Nivel2'])?>
-						<label>notas</label>
-						<?php print_r($relacionActoresColectivo['relacionActoresCatalogo'][$relaciones['tipoRelacionId']]['notas'])?>
+						<label style="margin-left: 15px;">notas</label>
+						<label style="margin-left: 15px;"><?php print_r($relacionActoresColectivo['relacionActoresCatalogo'][$relaciones['tipoRelacionId']]['notas'])?></label>
 					<?php } else{?>
 						<?php print_r($relacionActoresColectivo['relacionActoresCatalogo'][$relaciones['tipoRelacionId']]['nombre'])?>
-						<label>notas</label>
-						<?php print_r($relacionActoresColectivo['relacionActoresCatalogo'][$relaciones['tipoRelacionId']]['notas'])?>
+						<label style="margin-left: 15px;">notas</label>
+						<label style="margin-left: 15px;"><?php print_r($relacionActoresColectivo['relacionActoresCatalogo'][$relaciones['tipoRelacionId']]['notas'])?></label>
 					<?php }?>
 					<br />
 					<br />
@@ -59,7 +59,7 @@
 				</div>
 			<?php }?>
 
-			<div class="caja">
+			<div style="margin-left: 15px;" class="caja">
 				<?php if ($listaTodosActores[$actorId]['tipoActorId']<3) {?>
 
 					<?php if(isset($relacionActoresColectivo)){ ?>
@@ -102,7 +102,7 @@
 			
 			
 			<br /><br />
-	<label>Actores colectivos</label>
+	<label style="margin-left: 15px;">Actores colectivos</label>
 	
 	<div id="vistaActorRelacionado">
 	<?php if (isset($relaciones['actorRelacionadoId'])) {?> 
@@ -111,7 +111,7 @@
 		<h4><b><?php print_r($catalogos['listaTodosActores'][$relaciones['actorRelacionadoId']]['nombre']." ".$catalogos['listaTodosActores'][$relaciones['actorRelacionadoId']]['apellidosSiglas']) ?></h4></b>
 	<?php }}?>
 	</div>
-		<input type="button" class="small button" onclick="seleccionarActorColectivo()" value="Agregar actor">
+		<input style="margin-left: 15px;" type="button" class="small button" onclick="seleccionarActorColectivo()" value="Agregar actor">
 		<input type="button" class="small button" value="Eliminar actor">
 	<br/>
 
@@ -196,8 +196,8 @@
 				<legend>Comentarios</legend>
 					<textarea rows="10" cols="100"  id="TextoRelActoresColectivo" style="width: 400px; height: 200px" wrap="hard"  name="comentarios"><?=(isset($relaciones) ? $relaciones['comentarios'] : ''); ?></textarea>
 			</fieldset>	
-			<input class="medium button" type="submit" value="Guardar" />
-			<input class="medium button" type="button" value="Cancelar"  onclick="cerrarVentana()"/>
+			<input style="margin:5px 0px 5px 20px;" class="medium button" type="submit" value="Guardar" />
+			<input style="padding: 9px 22px 9px 22px !important;margin:5px 0px 5px 0px;" class="medium button" type="button" value="Cancelar"  onclick="cerrarVentana()"/>
 		</div>		
 			
 		</form>		

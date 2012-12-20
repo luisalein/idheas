@@ -19,7 +19,7 @@
 
 	<div class="twelve columns">
 		<br/>
-		<label for="TipoRel">Tipo de relación</label>
+		<label  style="margin-left: 15px;"  for="TipoRel">Tipo de relación</label>
 			<?php 
 			if($catalogos['listaTodosActores'][$actorId]['tipoActorId']<3){ ?>
 				<select id="tipoRelacionId" name="tipoRelacionId">
@@ -45,7 +45,7 @@
 
 			<input type="hidden"  id="tipoRelacionId" name="tipoRelacionId" <?= (isset($relaciones['tipoRelacionId'])) ? 'value="'.$relaciones['tipoRelacionId'].'"' : 'value=""' ;?> />
 
-			<div class="caja">
+			<div  style="margin-left: 15px;"  class="caja">
 					<ol>
 						<li style="padding-left:15px;" class="ExpanderFlecha flecha" id="listaEmpleo" onclick="desplegar('relacionEmpleo','listaEmpleo')" > Relaciones de empleo</li>
 							<li>
@@ -72,10 +72,10 @@
 			<?php }?>
 			
 		<br />
-		<label for="TipoRel">Notas tipo de relación</label>
+		<label style="margin-left: 15px;"  for="TipoRel">Notas tipo de relación</label>
 		<br />
-		<div id="notasTipoDeRelacion" class="twelve columns"></div>
-		<div id="tipoRelNotas" class="twelve columns"></div>
+		<div style="margin-left: 15px;"  id="notasTipoDeRelacion" class="twelve columns"></div>
+		<div style="margin-left: 15px;"  id="tipoRelNotas" class="twelve columns"></div>
 	<br/><br/>
 	</div>
 
@@ -172,8 +172,8 @@
 		<legend>Comentarios</legend>
 			<textarea placeholder="Agregar un comentario" rows="10"   cols="100" id="TextoRelActoresIndividual" value="" style="width: 400px; height: 200px" wrap="hard"  name="comentarios"> <?=(isset($relaciones['comentarios']) ? $relaciones['comentarios'] : ''); ?></textarea>
 	</fieldset>
-	<input class="medium button" type="submit" value="Guardar" />
-	<input class="medium button" type="button" value="Cancelar"  onclick="cerrarVentana()"/>
+	<input style="margin:5px 0px 5px 20px;" class="medium button" type="submit" value="Guardar" />
+	<input style="padding: 9px 22px 9px 22px !important;margin:5px 0px 5px 0px;" class="medium button" type="button" value="Cancelar"  onclick="cerrarVentana()"/>
 
 	</form>		
 </body>

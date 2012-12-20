@@ -1514,7 +1514,7 @@ class Actores_c extends CI_Controller {
 	                <legend>Dirección</legend>
 	                	   <div id='pestania' data-collapse>
 	                	   	<div>
-	                            <table>
+	                            <table style='margin-left: 10px'>
 	                                <thead>
 	                                    <tr>
 	                                        <th>Tipo de dirección</th>
@@ -1574,8 +1574,6 @@ class Actores_c extends CI_Controller {
 						$municipio ='';
 					}
 				
-						
-										
 					$data = $data. '<tr>
 						<td>'.$tipoDireccion.'</td>
 						<td>'.$campoDireccion.'</td>
@@ -1584,8 +1582,13 @@ class Actores_c extends CI_Controller {
 						<td>'.$estado.'</td>
 						<td>'.$municipio.'</td>
 					';
-						$data = $data .' <td><input type="button" class="tiny button"  value="Editar" onclick="nuevaDireccion('.$idActor.','.$direccion['direccionId'].')"/>
-		                                 <input type="button" value="Elminar" class="tiny button" onclick="eliminarDireccionActor('.$direccion['direccionId'].','.$idActor.',2)"/>
+						$data = $data .' <td>
+											<div style="margin-left:-15px;"  class="six columns">
+												<input type="button" class="tiny button"  value="Editar" onclick="nuevaDireccion('.$idActor.','.$direccion['direccionId'].')"/> 
+											</div>
+		                                 	<div class="six columns">
+		                                 		<input type="button" value="Elminar" class="tiny button" onclick="eliminarDireccionActor('.$direccion['direccionId'].','.$idActor.',2)"/> 
+		                                 	</div>
 		                             </td></tr>';
 					
 	      		}
@@ -1593,7 +1596,7 @@ class Actores_c extends CI_Controller {
 	      	}
 					$data = $data. '</tbody>
 	                            </table>
-	                                <input type="button" class="small button"  value="Agregar dirección" onclick="nuevaDireccion('.$idActor.',0)">
+	                                <input style="margin-left:15px;" type="button" class="small button"  value="Agregar dirección" onclick="nuevaDireccion('.$idActor.',0)">
 	                  </div></div></fieldset>
 	                  ';
 		}
