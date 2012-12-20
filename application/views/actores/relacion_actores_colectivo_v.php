@@ -69,7 +69,7 @@
 									<ul id="relacionEmpleo" class="Escondido">
 									<?php foreach($relacionActoresColectivo['relacionActoresCatalogo'] as  $item):?> 
 										<?php if (($item['tipoDeRelacionId']==2)&&($item['nombre']=='Relaciones de empleo')) {?>
-											<li class="cambiarColorRelacion" id='<?=$item['tipoRelacionId']?>' onclick="tipoRelacion('<?=$item['tipoRelacionId']?>','<?=$item['notas']?>','<?=$item['Nivel2']?>')"> <?=$item['Nivel2']?>	 </li>
+											<li class="cambiarColorRelacion"  id='<?=$item['tipoRelacionId']?>' onclick="tipoRelacion('<?=$item['tipoRelacionId']?>','<?=$item['notas']?>','<?=$item['Nivel2']?>')"> <?=$item['Nivel2']?>	 </li>
 										<?php }?>
 									<?php endforeach;?>
 									</ul>

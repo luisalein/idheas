@@ -47,7 +47,7 @@
 
 			<div class="caja">
 					<ol>
-						<li class="ExpanderFlecha flecha" id="listaEmpleo" onclick="desplegar('relacionEmpleo','listaEmpleo')" > Relaciones de empleo</li>
+						<li style="padding-left:15px;" class="ExpanderFlecha flecha" id="listaEmpleo" onclick="desplegar('relacionEmpleo','listaEmpleo')" > Relaciones de empleo</li>
 							<li>
 								<ul id="relacionEmpleo" class="Escondido">
 								<?php foreach($relacionActoresColectivo['relacionActoresCatalogo'] as  $item):?> 
@@ -57,7 +57,7 @@
 								<?php endforeach;?>
 								</ul>
 							</li>
-						<li class="ExpanderFlecha flecha" id="listaAfiliacion" onclick="desplegar('relacionAfiliacion','listaAfiliacion')"  > Relaciones de afiliación</li>
+						<li style="padding-left:15px;" class="ExpanderFlecha flecha" id="listaAfiliacion" onclick="desplegar('relacionAfiliacion','listaAfiliacion')"  > Relaciones de afiliación</li>
 							<li>
 								<ul id="relacionAfiliacion" class="Escondido" >
 								<?php foreach($relacionActoresColectivo['relacionActoresCatalogo'] as  $item):?> 

@@ -582,11 +582,41 @@ class Casos_m extends CI_Model {
 				foreach ($consulta->result_array() as $row) {
                     $relaciones[$casoId] = $row;
                     $relaciones[$casoId]['casoIdB'] = $this->db->select('*')->from('casos')->where('casoId', $row['casoIdB'])->get()->result_array();
+					
 				}
-				return $relaciones;
-		}else{
-			return '0';
+				
 		}
+		
+		$this->db->select('*');
+		$this->db->from('relacionCasos');
+		$this->db->where('casoIdB',$casoId);
+		
+		$consulta = $this->db->get();
+		
+		if ($consulta->num_rows() > 0){				
+				/* Pasa la consulta a un cadena */
+				foreach ($consulta->result_array() as $row) {
+                    $relacionesIdB[$casoId] = $row;
+                    $relacionesIdB[$casoId]['casoIdB'] = $this->db->select('*')->from('casos')->where('casoId', $row['casos_casoId'])->get()->result_array();
+					
+				}
+		}
+
+
+		if(isset($relaciones) && isset($relacionesIdB)){
+			$lista = array_merge($relaciones, $relacionesIdB);
+			return $lista;
+			
+		}else{
+			if (isset($relaciones)) {
+				return $relaciones;
+				
+			} elseif (isset($relacionesIdB)) {
+				return $relacionesIdB;
+			}else{
+				return 0;
+			}
+		}/*fin else*/		
 			
 	}/* Fin de mTraeRelacionesCaso 	*/
 	
