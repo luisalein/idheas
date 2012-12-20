@@ -518,49 +518,49 @@ function  nombrarActo(descripcion, valor,notas,nivel,e){
 	  
 	  }
   ///Función que agrega name a lafecha seleccionada en información personal
-  function fechaInicialCasosActos(a){
-		  if(a=="1"){
-			$('#fechaAproxAct').attr('name', ' ');
-			$('#fechaSinDiaAct').attr('name', ' ');
-			$('#fechaSinDiaSinMesAct').attr('name', ' ');
-			$('#fechaExactaAct').attr('name', 'fuenteInfoPersonal_fecha');
-			$("#fechaAproxVAct").hide();
-			$("#fechaSinDiaVAct").hide();
-			$("#fechaSinDiaSinMesVAct").hide();
-			$("#fechaExactaVAct").show("slow");
-		  }
-		  else if (a=="2"){			
-			$('#fechaSinDiaVAct').attr('name', ' ');
-			$('#fechaSinDiaSinMesVAct').attr('name', ' ');
-			$('#fechaExactaAct').attr('name', ' ');
-			$('#fechaAproxAct').attr('name', 'fuenteInfoPersonal_fecha');
-			$("#fechaSinDiaSinMesVAct").hide();
-			$("#fechaSinDiaVAct").hide();
-			$("#fechaExactaVAct").hide();
-			$("#fechaAproxVAct").show("slow");
-		  }
-		  else if (a=="3"){
-			$("#fechaAproxVAct").hide();
-			$("#fechaSinDiaSinMesVAct").hide();
-			$("#fechaExactaVAct").hide();
-			$("#fechaSinDiaVAct").show("slow");
-			$('#fechaSinDiaSinMesVAct').attr('name', ' ');
-			$('#fechaExactaVAct').attr('name', ' ');
-			$('#fechaAproxVAct').attr('name', ' ');
-			$('#fechaSinDiaAct').attr('name', 'fuenteInfoPersonal_fecha');
-		  }
-		  else if (a=="4"){;
-			$("#fechaAproxVAct").hide();
-			$("#fechaSinDiaVAct").hide();
-			$("#fechaExactaVAct").hide();
-			$("#fechaSinDiaSinMesVAct").show("slow");
-			$('#fechaExactaVAct').attr('name', ' ');
-			$('#fechaAproxVAct').attr('name', ' ');
-			$('#fechaSinDiaVAct').attr('name', '');
-			$('#fechaSinDiaSinMesAct').attr('name', 'fuenteInfoPersonal_fecha');
-		  }
+  // function fechaInicialCasosActos(a){
+		//   if(a=="1"){
+		// 	$('#fechaAproxAct').attr('name', ' ');
+		// 	$('#fechaSinDiaAct').attr('name', ' ');
+		// 	$('#fechaSinDiaSinMesAct').attr('name', ' ');
+		// 	$('#fechaExactaAct').attr('name', 'fuenteInfoPersonal_fecha');
+		// 	$("#fechaAproxVAct").hide();
+		// 	$("#fechaSinDiaVAct").hide();
+		// 	$("#fechaSinDiaSinMesVAct").hide();
+		// 	$("#fechaExactaVAct").show("slow");
+		//   }
+		//   else if (a=="2"){			
+		// 	$('#fechaSinDiaVAct').attr('name', ' ');
+		// 	$('#fechaSinDiaSinMesVAct').attr('name', ' ');
+		// 	$('#fechaExactaAct').attr('name', ' ');
+		// 	$('#fechaAproxAct').attr('name', 'fuenteInfoPersonal_fecha');
+		// 	$("#fechaSinDiaSinMesVAct").hide();
+		// 	$("#fechaSinDiaVAct").hide();
+		// 	$("#fechaExactaVAct").hide();
+		// 	$("#fechaAproxVAct").show("slow");
+		//   }
+		//   else if (a=="3"){
+		// 	$("#fechaAproxVAct").hide();
+		// 	$("#fechaSinDiaSinMesVAct").hide();
+		// 	$("#fechaExactaVAct").hide();
+		// 	$("#fechaSinDiaVAct").show("slow");
+		// 	$('#fechaSinDiaSinMesVAct').attr('name', ' ');
+		// 	$('#fechaExactaVAct').attr('name', ' ');
+		// 	$('#fechaAproxVAct').attr('name', ' ');
+		// 	$('#fechaSinDiaAct').attr('name', 'fuenteInfoPersonal_fecha');
+		//   }
+		//   else if (a=="4"){;
+		// 	$("#fechaAproxVAct").hide();
+		// 	$("#fechaSinDiaVAct").hide();
+		// 	$("#fechaExactaVAct").hide();
+		// 	$("#fechaSinDiaSinMesVAct").show("slow");
+		// 	$('#fechaExactaVAct').attr('name', ' ');
+		// 	$('#fechaAproxVAct').attr('name', ' ');
+		// 	$('#fechaSinDiaVAct').attr('name', '');
+		// 	$('#fechaSinDiaSinMesAct').attr('name', 'fuenteInfoPersonal_fecha');
+		//   }
 	  
-	  }
+	 //  }
      
 /**********************Agregar caso************************/
 /////////FECHA INICIAL CASOS
