@@ -65,6 +65,17 @@
 	
         }
 		
+		public function llenar_ficha($datos){
+
+            foreach($datos as $key => $value){
+
+                    $this->db->insert($key, $datos[$key]);
+
+            }
+			
+			return $this->db->insert_id();
+	
+        }
 		
 		/* Este modelo trae todos los campos de una tabla:
 		 * @param 

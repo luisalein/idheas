@@ -313,8 +313,19 @@ class CasosVentanas_c extends CI_Controller {
 	            	$mensaje=$this->general_m->casos_m->mActualizaDatosFicha($datos['fichas'],$datos['fichas']['fichaId']); 
 					
 				}else{
+					
 					$datos2['fichas']=$datos['fichas'];
-	            	$mensaje = $this->general_m->general_m->llenar_tabla_m($datos2); 
+	            	$id = $this->general_m->general_m->llenar_ficha($datos2); 
+					
+					$ruta = $this->cargarPDF();
+					
+					$nombreArchivo = $_FILES["pdf"]['name'];
+					
+					$data = array('nombreRegistro'=>$nombreArchivo,'ruta'=>$ruta,'fichas_fichaId'=>$id);
+					
+					if($nombreArchivo != '' && $ruta != '')
+						$this->casos_m->mAgregarRegistroFicha($data);
+					
 				}
 				
             break;
