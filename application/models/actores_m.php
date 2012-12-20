@@ -644,7 +644,6 @@
 				
 				
 			if(isset($listaActores) && isset($listaCitados)){
-				echo 'hola';	
 				$lista = array_merge($listaActores, $listaCitados);
 				return $lista;
 				
