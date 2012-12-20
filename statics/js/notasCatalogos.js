@@ -42,8 +42,8 @@ function botonNotas(notas){
 	OpenWindow.document.write("<title>Notas</title>")
 	OpenWindow.document.write("<body>")
 	OpenWindow.document.write("<script>function cerrarVentana(){window.close();	};</script>");
-	OpenWindow.document.write('<h6>'+notas+'</h6>')
-	OpenWindow.document.write('<center><input type="button" value="Cerrar" onclick="cerrarVentana()" /></center>')
+	OpenWindow.document.write("<h6>"+notas+"</h6>")
+	OpenWindow.document.write("<center><input type='button' value='Cerrar' onclick='cerrarVentana()' /></center>")
 	OpenWindow.document.write("</body>")
 }
 

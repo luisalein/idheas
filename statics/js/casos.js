@@ -110,17 +110,20 @@ $(function(){
     
 
 	$(function() {
-		$( "#fichaAprox" ).datepicker({ dateFormat: "yy-mm-dd"});
+		$( "#fichaAprox" ).datepicker({ dateFormat: "yy-mm-dd",
+		changeYear: true});
 		 });
     
 /***Script para cambiar el año y el mes****/
 	$(function() {
-		$( "#fichaSinDia" ).datepicker({ dateFormat: "yy-mm-00"});
+		$( "#fichaSinDia" ).datepicker({ dateFormat: "yy-mm-00",
+		changeYear: true});
 		});
 
 /***Funcion para cambiar el año****/
 	$(function() {
-		$( "#fichaSinDiaSinMes" ).datepicker({ dateFormat: "yy-00-00"});
+		$( "#fichaSinDiaSinMes" ).datepicker({ dateFormat: "yy-00-00",
+		changeYear: true});
 		});
 		
 
@@ -133,27 +136,32 @@ $(function(){
     
 
 	$(function() {
-		$( "#fichaAproxR" ).datepicker({ dateFormat: "yy-mm-dd"});
+		$( "#fichaAproxR" ).datepicker({ dateFormat: "yy-mm-dd",
+		changeYear: true});
 		 });
     
 /***Script para cambiar el año y el mes****/
 	$(function() {
-		$( "#fichaSinDiaR" ).datepicker({ dateFormat: "yy-mm-00"});
+		$( "#fichaSinDiaR" ).datepicker({ dateFormat: "yy-mm-00",
+		changeYear: true});
 		});
 
 /***Funcion para cambiar el año****/
 	$(function() {
-		$( "#fichaSinDiaSinMesR" ).datepicker({ dateFormat: "yy-00-00"});
+		$( "#fichaSinDiaSinMesR" ).datepicker({ dateFormat: "yy-00-00",
+		changeYear: true});
 		});
 
 /****Fechas para reporte corto****/
 
 $(function() {
-		$( "#fechaInicial" ).datepicker({ dateFormat: "yy-mm-dd"});
+		$( "#fechaInicial" ).datepicker({ dateFormat: "yy-mm-dd",
+		changeYear: true});
 		});
 
 $(function() {
-		$( "#fechaTermino" ).datepicker({ dateFormat: "yy-mm-dd"});
+		$( "#fechaTermino" ).datepicker({ dateFormat: "yy-mm-dd",
+		changeYear: true});
 		});
 
 
@@ -374,17 +382,20 @@ function  nombrarActo(descripcion, valor,notas,nivel,e){
     
 
 	$(function() {
-		$( "#fechaAproxAct" ).datepicker({ dateFormat: "yy-mm-dd"});
+		$( "#fechaAproxAct" ).datepicker({ dateFormat: "yy-mm-dd",
+		changeYear: true});
 		 });
     
 /***Script para cambiar el año y el mes****/
 	$(function() {
-		$( "#fechaSinDiaAct" ).datepicker({ dateFormat: "yy-mm-00"});
+		$( "#fechaSinDiaAct" ).datepicker({ dateFormat: "yy-mm-00",
+		changeYear: true});
 		});
 
 /***Funcion para cambiar el año****/
 	$(function() {
-		$( "#fechaSinDiaSinMesAct" ).datepicker({ dateFormat: "yy-00-00"});
+		$( "#fechaSinDiaSinMesAct" ).datepicker({ dateFormat: "yy-00-00",
+		changeYear: true});
 		});
 		
 /////////FECHA TERMINAL ACTOS
@@ -396,17 +407,20 @@ function  nombrarActo(descripcion, valor,notas,nivel,e){
     
 
 	$(function() {listaVictimas
-		$( "#fechaAproxAct2" ).datepicker({ dateFormat: "yy-mm-dd"});
+		$( "#fechaAproxAct2" ).datepicker({ dateFormat: "yy-mm-dd",
+		changeYear: true});
 		 });
     
 /***Script para cambiar el año y el mes****/
 	$(function() {
-		$( "#fechaSinDiaAct2" ).datepicker({ dateFormat: "yy-mm-00"});
+		$( "#fechaSinDiaAct2" ).datepicker({ dateFormat: "yy-mm-00",
+		changeYear: true});
 		});
 
 /***Funcion para cambiar el año****/
 	$(function() {
-		$( "#fechaSinDiaSinMesAct2" ).datepicker({ dateFormat: "yy-00-00"});
+		$( "#fechaSinDiaSinMesAct2" ).datepicker({ dateFormat: "yy-00-00",
+		changeYear: true});
 		});
 		
 
@@ -514,17 +528,20 @@ function  nombrarActo(descripcion, valor,notas,nivel,e){
     
 
 	$(function() {
-		$( "#fechaAprox" ).datepicker({ dateFormat: "yy-mm-dd"});
+		$( "#fechaAprox" ).datepicker({ dateFormat: "yy-mm-dd",
+		changeYear: true});
 		 });
     
 /***Script para cambiar el año y el mes****/
 	$(function() {
-		$( "#fechaSinDia" ).datepicker({ dateFormat: "yy-mm-00"});
+		$( "#fechaSinDia" ).datepicker({ dateFormat: "yy-mm-00",
+		changeYear: true});
 		});
 
 /***Funcion para cambiar el año****/
 	$(function() {
-		$( "#fechaSinDiaSinMes" ).datepicker({ dateFormat: "yy-00-00"});
+		$( "#fechaSinDiaSinMes" ).datepicker({ dateFormat: "yy-00-00",
+		changeYear: true});
 		});
 		
 /////////FECHA TERMINAL CASOS
@@ -536,17 +553,20 @@ function  nombrarActo(descripcion, valor,notas,nivel,e){
     
 
 	$(function() {
-		$( "#fechaAprox2" ).datepicker({ dateFormat: "yy-mm-dd"});
+		$( "#fechaAprox2" ).datepicker({ dateFormat: "yy-mm-dd",
+		changeYear: true});
 		 });
     
 /***Script para cambiar el año y el mes****/
 	$(function() {
-		$( "#fechaSinDia2" ).datepicker({ dateFormat: "yy-mm-00"});
+		$( "#fechaSinDia2" ).datepicker({ dateFormat: "yy-mm-00",
+		changeYear: true});
 		});
 
 /***Funcion para cambiar el año****/
 	$(function() {
-		$( "#fechaSinDiaSinMes2" ).datepicker({ dateFormat: "yy-00-00"});
+		$( "#fechaSinDiaSinMes2" ).datepicker({ dateFormat: "yy-00-00",
+		changeYear: true});
 		});
 
 
