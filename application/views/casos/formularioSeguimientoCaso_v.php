@@ -17,7 +17,7 @@
 					<div class="twelve columns">
 						<div class="six columns">
 								<label for="clave">Clave</label>
-								<input type="text" readonly="readonly" name="fichas_fichaId" value='<?=(isset($ficha['fichaId'])) ? $ficha['fichaId'] : "Por asignar" ;?>' />
+								<input type="text" name="fichas_clave" value='<?=(isset($ficha['clave'])) ? $ficha['clave'] : " " ;?>' />
 						</div>
 
 						<div class="six columns">

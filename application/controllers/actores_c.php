@@ -75,8 +75,8 @@ class Actores_c extends CI_Controller {
             if ($casosRelacionados != 0) {
 
             	$datos['casosRelacionados'] = $this->actores_m->mTraeCasosRelacionadosActor($actorId);
-            }
             	print_r($datos['casosRelacionados']);
+            }
 
 			/*----------Termina la parte que me trae los casos con los que se encuntra relacionado un actor------------------*/
 
@@ -522,6 +522,9 @@ class Actores_c extends CI_Controller {
         $datos['datosActor'] = $this->actores_m->traer_datos_actor_m($actorId, $tipoActorId);
         
         $datos['catalogos'] = $this->traer_catalogos();
+        /*----------Agregue este campo-------------------*/
+		 $datos['tipoActor']=$tipoActorId;
+        /*----------Agregue este campo-------------------*/
         
         if($tipoActorId > 0){
             
