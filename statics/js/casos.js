@@ -110,17 +110,20 @@ $(function(){
     
 
 	$(function() {
-		$( "#fichaAprox" ).datepicker({ dateFormat: "yy-mm-dd"});
+		$( "#fichaAprox" ).datepicker({ dateFormat: "yy-mm-dd",
+		changeYear: true});
 		 });
     
 /***Script para cambiar el año y el mes****/
 	$(function() {
-		$( "#fichaSinDia" ).datepicker({ dateFormat: "yy-mm-00"});
+		$( "#fichaSinDia" ).datepicker({ dateFormat: "yy-mm-00",
+		changeYear: true});
 		});
 
 /***Funcion para cambiar el año****/
 	$(function() {
-		$( "#fichaSinDiaSinMes" ).datepicker({ dateFormat: "yy-00-00"});
+		$( "#fichaSinDiaSinMes" ).datepicker({ dateFormat: "yy-00-00",
+		changeYear: true});
 		});
 		
 
@@ -133,27 +136,32 @@ $(function(){
     
 
 	$(function() {
-		$( "#fichaAproxR" ).datepicker({ dateFormat: "yy-mm-dd"});
+		$( "#fichaAproxR" ).datepicker({ dateFormat: "yy-mm-dd",
+		changeYear: true});
 		 });
     
 /***Script para cambiar el año y el mes****/
 	$(function() {
-		$( "#fichaSinDiaR" ).datepicker({ dateFormat: "yy-mm-00"});
+		$( "#fichaSinDiaR" ).datepicker({ dateFormat: "yy-mm-00",
+		changeYear: true});
 		});
 
 /***Funcion para cambiar el año****/
 	$(function() {
-		$( "#fichaSinDiaSinMesR" ).datepicker({ dateFormat: "yy-00-00"});
+		$( "#fichaSinDiaSinMesR" ).datepicker({ dateFormat: "yy-00-00",
+		changeYear: true});
 		});
 
 /****Fechas para reporte corto****/
 
 $(function() {
-		$( "#fechaInicial" ).datepicker({ dateFormat: "yy-mm-dd"});
+		$( "#fechaInicial" ).datepicker({ dateFormat: "yy-mm-dd",
+		changeYear: true});
 		});
 
 $(function() {
-		$( "#fechaTermino" ).datepicker({ dateFormat: "yy-mm-dd"});
+		$( "#fechaTermino" ).datepicker({ dateFormat: "yy-mm-dd",
+		changeYear: true});
 		});
 
 
@@ -374,17 +382,20 @@ function  nombrarActo(descripcion, valor,notas,nivel,e){
     
 
 	$(function() {
-		$( "#fechaAproxAct" ).datepicker({ dateFormat: "yy-mm-dd"});
+		$( "#fechaAproxAct" ).datepicker({ dateFormat: "yy-mm-dd",
+		changeYear: true});
 		 });
     
 /***Script para cambiar el año y el mes****/
 	$(function() {
-		$( "#fechaSinDiaAct" ).datepicker({ dateFormat: "yy-mm-00"});
+		$( "#fechaSinDiaAct" ).datepicker({ dateFormat: "yy-mm-00",
+		changeYear: true});
 		});
 
 /***Funcion para cambiar el año****/
 	$(function() {
-		$( "#fechaSinDiaSinMesAct" ).datepicker({ dateFormat: "yy-00-00"});
+		$( "#fechaSinDiaSinMesAct" ).datepicker({ dateFormat: "yy-00-00",
+		changeYear: true});
 		});
 		
 /////////FECHA TERMINAL ACTOS
@@ -396,17 +407,20 @@ function  nombrarActo(descripcion, valor,notas,nivel,e){
     
 
 	$(function() {listaVictimas
-		$( "#fechaAproxAct2" ).datepicker({ dateFormat: "yy-mm-dd"});
+		$( "#fechaAproxAct2" ).datepicker({ dateFormat: "yy-mm-dd",
+		changeYear: true});
 		 });
     
 /***Script para cambiar el año y el mes****/
 	$(function() {
-		$( "#fechaSinDiaAct2" ).datepicker({ dateFormat: "yy-mm-00"});
+		$( "#fechaSinDiaAct2" ).datepicker({ dateFormat: "yy-mm-00",
+		changeYear: true});
 		});
 
 /***Funcion para cambiar el año****/
 	$(function() {
-		$( "#fechaSinDiaSinMesAct2" ).datepicker({ dateFormat: "yy-00-00"});
+		$( "#fechaSinDiaSinMesAct2" ).datepicker({ dateFormat: "yy-00-00",
+		changeYear: true});
 		});
 		
 
@@ -504,49 +518,49 @@ function  nombrarActo(descripcion, valor,notas,nivel,e){
 	  
 	  }
   ///Función que agrega name a lafecha seleccionada en información personal
-  function fechaInicialCasosActos(a){
-		  if(a=="1"){
-			$('#fechaAproxAct').attr('name', ' ');
-			$('#fechaSinDiaAct').attr('name', ' ');
-			$('#fechaSinDiaSinMesAct').attr('name', ' ');
-			$('#fechaExactaAct').attr('name', 'fuenteInfoPersonal_fecha');
-			$("#fechaAproxVAct").hide();
-			$("#fechaSinDiaVAct").hide();
-			$("#fechaSinDiaSinMesVAct").hide();
-			$("#fechaExactaVAct").show("slow");
-		  }
-		  else if (a=="2"){			
-			$('#fechaSinDiaVAct').attr('name', ' ');
-			$('#fechaSinDiaSinMesVAct').attr('name', ' ');
-			$('#fechaExactaAct').attr('name', ' ');
-			$('#fechaAproxAct').attr('name', 'fuenteInfoPersonal_fecha');
-			$("#fechaSinDiaSinMesVAct").hide();
-			$("#fechaSinDiaVAct").hide();
-			$("#fechaExactaVAct").hide();
-			$("#fechaAproxVAct").show("slow");
-		  }
-		  else if (a=="3"){
-			$("#fechaAproxVAct").hide();
-			$("#fechaSinDiaSinMesVAct").hide();
-			$("#fechaExactaVAct").hide();
-			$("#fechaSinDiaVAct").show("slow");
-			$('#fechaSinDiaSinMesVAct').attr('name', ' ');
-			$('#fechaExactaVAct').attr('name', ' ');
-			$('#fechaAproxVAct').attr('name', ' ');
-			$('#fechaSinDiaAct').attr('name', 'fuenteInfoPersonal_fecha');
-		  }
-		  else if (a=="4"){;
-			$("#fechaAproxVAct").hide();
-			$("#fechaSinDiaVAct").hide();
-			$("#fechaExactaVAct").hide();
-			$("#fechaSinDiaSinMesVAct").show("slow");
-			$('#fechaExactaVAct').attr('name', ' ');
-			$('#fechaAproxVAct').attr('name', ' ');
-			$('#fechaSinDiaVAct').attr('name', '');
-			$('#fechaSinDiaSinMesAct').attr('name', 'fuenteInfoPersonal_fecha');
-		  }
+  // function fechaInicialCasosActos(a){
+		//   if(a=="1"){
+		// 	$('#fechaAproxAct').attr('name', ' ');
+		// 	$('#fechaSinDiaAct').attr('name', ' ');
+		// 	$('#fechaSinDiaSinMesAct').attr('name', ' ');
+		// 	$('#fechaExactaAct').attr('name', 'fuenteInfoPersonal_fecha');
+		// 	$("#fechaAproxVAct").hide();
+		// 	$("#fechaSinDiaVAct").hide();
+		// 	$("#fechaSinDiaSinMesVAct").hide();
+		// 	$("#fechaExactaVAct").show("slow");
+		//   }
+		//   else if (a=="2"){			
+		// 	$('#fechaSinDiaVAct').attr('name', ' ');
+		// 	$('#fechaSinDiaSinMesVAct').attr('name', ' ');
+		// 	$('#fechaExactaAct').attr('name', ' ');
+		// 	$('#fechaAproxAct').attr('name', 'fuenteInfoPersonal_fecha');
+		// 	$("#fechaSinDiaSinMesVAct").hide();
+		// 	$("#fechaSinDiaVAct").hide();
+		// 	$("#fechaExactaVAct").hide();
+		// 	$("#fechaAproxVAct").show("slow");
+		//   }
+		//   else if (a=="3"){
+		// 	$("#fechaAproxVAct").hide();
+		// 	$("#fechaSinDiaSinMesVAct").hide();
+		// 	$("#fechaExactaVAct").hide();
+		// 	$("#fechaSinDiaVAct").show("slow");
+		// 	$('#fechaSinDiaSinMesVAct').attr('name', ' ');
+		// 	$('#fechaExactaVAct').attr('name', ' ');
+		// 	$('#fechaAproxVAct').attr('name', ' ');
+		// 	$('#fechaSinDiaAct').attr('name', 'fuenteInfoPersonal_fecha');
+		//   }
+		//   else if (a=="4"){;
+		// 	$("#fechaAproxVAct").hide();
+		// 	$("#fechaSinDiaVAct").hide();
+		// 	$("#fechaExactaVAct").hide();
+		// 	$("#fechaSinDiaSinMesVAct").show("slow");
+		// 	$('#fechaExactaVAct').attr('name', ' ');
+		// 	$('#fechaAproxVAct').attr('name', ' ');
+		// 	$('#fechaSinDiaVAct').attr('name', '');
+		// 	$('#fechaSinDiaSinMesAct').attr('name', 'fuenteInfoPersonal_fecha');
+		//   }
 	  
-	  }
+	 //  }
      
 /**********************Agregar caso************************/
 /////////FECHA INICIAL CASOS
@@ -558,17 +572,20 @@ function  nombrarActo(descripcion, valor,notas,nivel,e){
     
 
 	$(function() {
-		$( "#fechaAprox" ).datepicker({ dateFormat: "yy-mm-dd"});
+		$( "#fechaAprox" ).datepicker({ dateFormat: "yy-mm-dd",
+		changeYear: true});
 		 });
     
 /***Script para cambiar el año y el mes****/
 	$(function() {
-		$( "#fechaSinDia" ).datepicker({ dateFormat: "yy-mm-00"});
+		$( "#fechaSinDia" ).datepicker({ dateFormat: "yy-mm-00",
+		changeYear: true});
 		});
 
 /***Funcion para cambiar el año****/
 	$(function() {
-		$( "#fechaSinDiaSinMes" ).datepicker({ dateFormat: "yy-00-00"});
+		$( "#fechaSinDiaSinMes" ).datepicker({ dateFormat: "yy-00-00",
+		changeYear: true});
 		});
 		
 /////////FECHA TERMINAL CASOS
@@ -580,17 +597,20 @@ function  nombrarActo(descripcion, valor,notas,nivel,e){
     
 
 	$(function() {
-		$( "#fechaAprox2" ).datepicker({ dateFormat: "yy-mm-dd"});
+		$( "#fechaAprox2" ).datepicker({ dateFormat: "yy-mm-dd",
+		changeYear: true});
 		 });
     
 /***Script para cambiar el año y el mes****/
 	$(function() {
-		$( "#fechaSinDia2" ).datepicker({ dateFormat: "yy-mm-00"});
+		$( "#fechaSinDia2" ).datepicker({ dateFormat: "yy-mm-00",
+		changeYear: true});
 		});
 
 /***Funcion para cambiar el año****/
 	$(function() {
-		$( "#fechaSinDiaSinMes2" ).datepicker({ dateFormat: "yy-00-00"});
+		$( "#fechaSinDiaSinMes2" ).datepicker({ dateFormat: "yy-00-00",
+		changeYear: true});
 		});
 
 
@@ -772,7 +792,7 @@ function pintaColectivosInfoPersonalReportado(){
 function pintaIndividualesInfoDocumental(){
 
 	$('#infoColectio').removeClass("Escondido");
-    notas="seleccionarActorseleccionarActorIndColDatos('5')";
+    notas="seleccionarActorseleccionarActorIndColDatos('6')";
 	document.getElementById('actorReportado').innerHTML =" ";
     notas2="eliminarRelacionVista('eliminarVistaActor','tipoFuenteDocumental_actorReportado','infoColectio','tipoFuenteDocumental_relacionId')";
 	document.getElementById('actorReportadoBotones').innerHTML = ('<div class="nine columns"><input type="button" class="tiny button" value="Seleccionar actor" onclick="'+notas+'" /></div>'+
@@ -788,6 +808,26 @@ function pintaColectivosInfoDocumental(){
     notas2="eliminarRelacionVista('eliminarVistaActor','tipoFuenteDocumental_actorReportado')";
 	document.getElementById('actorReportadoBotones').innerHTML = ('<div class="nine columns"><input type="button" class="tiny button" value="Seleccionar actor" onclick="'+notas+'" /></div>'+
 		'<div class="three columns" id="eliminarVistaActor"><input type="button" class="tiny button" value="Eliminar Actor" onclick="'+notas2+'" /></div>');
-	alert('algo');
+	//alert('algo');
 }
 
+/*//Funciones colapsibles para el catalogo de tipo de la fuente//*/
+/*************************************************************/
+function  Nivel1TipoFuete(valor, descripcion,  notas,e){
+	//var algo="#"+valor+"DAN1";
+	$('#textoTipoFuente').html(descripcion);
+	$('#notasTipoFuente').html(notas); 
+	$('#tipoFuenteDocumental_tipoFuenteDocumentalId').attr('value', valor); 
+	$('#tipoFuenteDocumental_tipoFuenteDocumentalN1Catalogo_tipoFuenteDocumentalN1CatalogoId').attr('value', 1); 
+	$("#subnivel"+valor).toggleClass("Escondido");
+	$(e).toggleClass('ExpanderFlecha');
+};
+
+function  Nivel2TipoFuete(valor, descripcion,  notas,e){
+	$('#textoTipoFuente').html(descripcion);
+	$('#notasTipoFuente').html(notas); 
+	$('#tipoFuenteDocumental_tipoFuenteDocumentalId').attr('value', valor); 
+	$('#tipoFuenteDocumental_tipoFuenteDocumentalN1Catalogo_tipoFuenteDocumentalN1CatalogoId').attr('value', 2); 
+	$('.listaNivel2').css('background-color', '#efefef');
+    $(e).css('background-color', '#ddd');
+};

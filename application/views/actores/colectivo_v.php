@@ -140,10 +140,10 @@
         $idActor=0;
         $clase="Escondido";
     } ?>
-
-<div id="pestania" data-collapse>
-        <h2>Actores individuales o transmigrantes</h2> <!--Comienza relacion con otros actores-->
+ <div id="pestania" data-collapse>
+        <h2>Actores individuales o transmigrantes</h2>
         <div>
+<!--
         <div id="subPestanias" data-collapse>   
             <h2>Relacion con otros actores </h2>
             <div>
@@ -196,7 +196,8 @@
             <input type="button" class="tiny button <?=$clase?>"  value="Nuevo" onclick="nueva_relacion_a_a(<?=$idActor ?>,0,1)" />
         </div>
         </div>
-        <!--Comienza citado como persona relacionada-->
+
+ -->        
         <div id="subPestanias"  data-collapse>
             <h2>Citado como actor</h2>
                <div>
@@ -228,11 +229,10 @@
                         </table>
                 </div>
         </div>
-        <!--Termina citado como persona relacionada-->
+        
         
         </div>
 </div>
-        
     
     <!--Comienza actores colectivos---->
     <div id="pestania" data-collapse>
@@ -272,12 +272,12 @@
                                         <td><?=$relacion['fechaTermino']; ?></td>
                                         <td>
                                             <div class="twelve columns">
-                                                <div class="six columns">
-                                                    <input type="button" class="tiny button"  value="Editar" onclick="nueva_relacion_a_Col('<?=$idActor ?>',1, '<?=$relacion['relacionActoresId']; ?>')" />
+                                                <div style="margin-left: -20px;" class="six columns">
+                                                    <input style="margin-left: -20px;padding: 5px 12px 6px 12px" type="button" class="small button"  value="Editar" onclick="nueva_relacion_a_Col('<?=$idActor ?>',1, '<?=$relacion['relacionActoresId']; ?>')" />
                                                 </div>
                                                 <div class="six columns">
                                                     <form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarRelacionActor/<?=$relacion['relacionActoresId']."/".$relacion['actorRelacionadoId']; ?>" >
-                                                        <input type="submit" value="Elminar" class="tiny button" />
+                                                        <input style="margin-left: -20px;" type="submit" value="Elminar" class="small button" />
                                                     </form>
                                                 </div>
                                             </div>

@@ -42,9 +42,9 @@
 		<div id="pestania" data-collapse>
 			<h2 class="open twelve columns">Intervención</h2><!--título de la sub-pestaña-->  
 			<div>
-				
+				<!-- 
 <pre><?= print_r($intervenciones)?></pre>					
-<pre><?= print_r($catalogos['relacionesActoresCatalogo'])?></pre>					
+<pre><?= print_r($catalogos['relacionesActoresCatalogo'])?></pre>					 -->
 				<br /><br />		
 					<fieldset>
 						<input type="hidden" value="<?=$casoId; ?>" name="lugares_casos_casoId" id="lugares_casos_casoId" />
@@ -52,7 +52,10 @@
 							
 							<div class="twelve columns">
 									<label for="tipoIntervencion">Tipo de intervención</label>
-									<div id="tipoIntervencion"></div>
+									<div id="tipoIntervencion">
+									<br>Intervención actual: <?= $catalogos['tipoIntervencionN'.$intervenciones['intervencionNId'].'Catalogo'][$intervenciones['tipoIntervencionId']]['descripcion']?>
+
+									</div>
 									
 			<div class="caja CatalogotipoIntervencion casosScorll espacioSuperior">
 				<ol>

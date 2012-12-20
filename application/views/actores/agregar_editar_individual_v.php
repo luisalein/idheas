@@ -14,7 +14,7 @@
                 <input name="archivo" type="file" size="10" accept="image/*"/>
                 <input type="hidden" <?= (isset($datosActor['actores']['foto'])) ? 'value="'.$datosActor['actores']['foto'].'"' : 'value=""' ;?> name="actores_foto" id="actores_foto" />
                 <?php if(isset($datosActor['actores']['foto'])):?>
-                	<input type="button" class="small button" value="Eliminar Foto" onclick="eliminarFoto()">
+                	<input style="margin-top: 15px;" type="button" class="small button" value="Eliminar Foto" onclick="eliminarFoto()">
     			<?php endif;?>
     </div>
 
@@ -212,7 +212,7 @@
 	                    <div id="pestania" data-collapse>
 	                       
 	                        <div>
-	                            <table>
+	                            <table style="margin-left: 10px">
 	                                <thead>
 	                                    <tr>
 	                                        <th>Tipo de dirección</th>
@@ -237,7 +237,7 @@
 	                                                <td><?=(isset($direccion['estadosCatalogo_estadoId'])) ? $catalogos['estadosCatalogo'][$direccion['estadosCatalogo_estadoId']]['nombre'] : ''; ?></td>
 	                                                <td><?=(isset($direccion['municipiosCatalogo_municipioId'])) ? $catalogos['municipiosCatalogo'][$direccion['municipiosCatalogo_municipioId']]['nombre'] : ''; ?></td>                        
 	                                                <td>
-                                                        <div class="six columns">
+                                                        <div style="margin-left:-15px;"  class="six columns">
                                                             <input type="button" class="tiny button"  value="Editar" onclick="nuevaDireccion('<?=$actorId?>','<?=$direccion['direccionId']?>')"/>
                                                         </div>
                                                         <div class="six columns">
@@ -250,7 +250,7 @@
 	                                    }?>
 	                                </tbody>
 	                            </table>
-	                                <input type="button" class="small button"  value="Agregar dirección" onclick="nuevaDireccion('<?=$actorId?>','0')">
+	                                <input style="margin-left:15px;" type="button" class="small button"  value="Agregar dirección" onclick="nuevaDireccion('<?=$actorId?>','0')">
 	                        </div>
 	                    </div>
 	                </fieldset>
@@ -288,13 +288,15 @@
 	                </fieldset><!--Termina datos dirección-->
 	                <?php }?>
 	       		 </div>
+	       		  <div class="row espacioInferior espacioSuperior">
+					<div class="nine columns">
+		                <input style="float: right;" class="medium button" type="submit" value="Guardar" />
+		            </div>
+		            <div  class="three columns" >
+	               		 <a href="<?=base_url(); ?>index.php/actores_c/mostrar_actor/<?= (isset($actorId)) ? $actorId : "0" ;?>/<?=$tipoActor;?>" class="medium button">Cancelar</a>
+		           	</div>
+	     		 </div>
 		</div>
-        
-        <div class="row espacioInferior espacioSuperior">
-
-                <input class="medium button" type="submit" value="Guardar" style="margin-left: 340px;" />
-                <a href="<?=base_url(); ?>index.php/actores_c/mostrar_actor/<?= (isset($actorId)) ? $actorId : "0" ;?>/<?=$tipoActor;?>" class="medium button">Cancelar</a>
-        </div>
     </div>
 </form>
 
@@ -346,12 +348,12 @@
                                             <td><?=$relacion['fechaTermino']; ?></td>
                                             <td>
                                                 <div class="twelve columns">
-                                                    <div class="six columns">
-                                                    <input type="button" class="tiny button"  value="Editar" onclick="nueva_relacion_a_a('<?=$idActor ?>', 1 , '<?=$relacion['relacionActoresId']; ?>')" />
+                                                    <div style="margin-left: -20px;" class="six columns">
+                                                    <input style="margin-left: -20px;padding: 5px 12px 6px 12px" type="button" class="small button"  value="Editar" onclick="nueva_relacion_a_a('<?=$idActor ?>', 1 , '<?=$relacion['relacionActoresId']; ?>')" />
                                                     </div>
                                                     <div class="six columns">
-                                                    <form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarRelacionActor/<?=$relacion['relacionActoresId']."/".$relacion['actorRelacionadoId'].$datosActor['actores']['actorId'].'/'.$datosActor['actores']['tipoActorId']; ?>" >
-                                                        <input type="submit" value="Elminar" class="tiny button" />
+                                                    <form  method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarRelacionActor/<?=$relacion['relacionActoresId']."/".$relacion['actorRelacionadoId'].$datosActor['actores']['actorId'].'/'.$datosActor['actores']['tipoActorId']; ?>" >
+                                                        <input style="margin-left: -20px;" type="submit" value="Elminar" class="small button" />
                                                     </form>
                                                     </div>
                                                 </div>
@@ -441,12 +443,12 @@
                                         <td><?=$relacion['fechaTermino']; ?></td>
                                         <td>
                                             <div class="twelve columns">
-                                            <div class="six columns">
-                                            <input type="button" class="tiny button"  value="Editar" onclick="nueva_relacion_a_Col('<?=$idActor ?>',1, '<?=$relacion['relacionActoresId']; ?>')"/>
+                                            <div style="margin-left: -20px;" class="six columns">
+                                            <input style="margin-left: -20px;padding: 5px 12px 6px 12px" type="button" class="small button"  value="Editar" onclick="nueva_relacion_a_Col('<?=$idActor ?>',1, '<?=$relacion['relacionActoresId']; ?>')"/>
                                             </div>
                                             <div class="six columns">
                                             <form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarRelacionActor/<?=$relacion['relacionActoresId']."/".$relacion['actorRelacionadoId']; ?>/<?= $actorId?>/1" />
-                                                <input type="submit" value="Elminar" class="tiny button" />
+                                                <input style="margin-left: -20px;" type="submit" value="Elminar" class="small button" />
                                             </form>
                                             </div>
                                             </div>

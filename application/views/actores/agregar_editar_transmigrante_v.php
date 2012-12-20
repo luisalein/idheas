@@ -544,7 +544,7 @@
 
         <div class="row espacioInferior espacioSuperior">
             <div class="nine columns">
-                <input class="medium button" type="submit" value="Guardar" />
+                <input style="float: right;" class="medium button" type="submit" value="Guardar" />
             </div>
             <div  class="three columns" >
                 <a href="<?=base_url(); ?>index.php/actores_c/mostrar_actor/<?= (isset($actorId)) ? $actorId : "0" ;?>/2" class="medium button">Cancelar</a>
@@ -609,12 +609,12 @@
                                         <td><?=$relacion['fechaTermino']; ?></td>
                                         <td>
                                             <div class="twelve columns">
-                                                <div class="six columns">
-                                                    <input type="button" class="tiny button"  value="Editar" onclick="nueva_relacion_a_a('<?=$idActor ?>' , 1 , '<?=$relacion['relacionActoresId']; ?>')" />
+                                                <div style="margin-left: -20px;"  class="six columns">
+                                                    <input type="button" style="margin-left: -20px;padding: 5px 12px 6px 12px"  class="small button"  value="Editar" onclick="nueva_relacion_a_a('<?=$idActor ?>' , 1 , '<?=$relacion['relacionActoresId']; ?>')" />
                                                 </div>
                                                 <div class="six columns">
                                                 <form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarRelacionActor/<?=$relacion['relacionActoresId']."/".$relacion['actorRelacionadoId']; ?>/<?= $actorId?>/2" >
-                                                    <input type="submit" value="Elminar" class="tiny button" />
+                                                    <input style="margin-left: -20px;"  type="submit" value="Elminar" class="small button" />
                                                 </form>
                                                 </div>
                                             </div>
@@ -704,12 +704,12 @@
                                         <td><?=$relacion['fechaTermino']; ?></td>
                                         <td>
                                             <div class="twelve columns">
-                                                <div class="six columns">
-                                                    <input type="button" class="tiny button"  value="Editar" onclick="nueva_relacion_a_Col('<?=$idActor ?>',1, '<?=$relacion['relacionActoresId']; ?>')" />
+                                                <div style="margin-left: -20px;" class="six columns">
+                                                    <input style="margin-left: -20px;padding: 5px 12px 6px 12px" type="button" class="small button"  value="Editar" onclick="nueva_relacion_a_Col('<?=$idActor ?>',1, '<?=$relacion['relacionActoresId']; ?>')" />
                                                 </div>
                                                 <div class="six columns">
                                                 <form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarRelacionActor/<?=$relacion['relacionActoresId']."/".$relacion['actorRelacionadoId']; ?>/<?= $actorId?>/2" >
-                                                    <input type="submit" value="Elminar" class="tiny button" />
+                                                    <input style="margin-left: -20px;" type="submit" value="Elminar" class="small button" />
                                                 </form>
                                                 </div>
                                             </div>

@@ -64,6 +64,10 @@ class CasosVentanas_c extends CI_Controller {
 
 	   	$datos['relacionesActoresCatalogo'] = $this->general_m->obtener_todo('relacionActores', 'relacionActoresId', 'relacionActoresId');
 
+	   	$datos['tipoFuenteDocumentalN1Catalogo'] = $this->general_m->obtener_todo('tipoFuenteDocumentalN1Catalogo','tipoFuenteDocumentalN1CatalogoId', 'descripcion', 'notas');
+
+	   	$datos['tipoFuenteDocumentalN2Catalogo'] = $this->general_m->obtener_todo('tipoFuenteDocumentalN2Catalogo','tipoFuenteDocumentalN2CatalogoId', 'tipoFuenteDocumentalN1Catalogo_tipoFuenteDocumentalN1CatalogoId','descripcion', 'notas');
+
         $datos['listaTodosActores'] = $this->actores_m-> mListaTodosActores();
 		
 	    return $datos;
@@ -313,11 +317,24 @@ class CasosVentanas_c extends CI_Controller {
 	            	$mensaje=$this->general_m->casos_m->mActualizaDatosFicha($datos['fichas'],$datos['fichas']['fichaId']); 
 					
 				}else{
+					
 					$datos2['fichas']=$datos['fichas'];
-	            	$mensaje = $this->general_m->general_m->llenar_tabla_m($datos2); 
+	            	$id = $this->general_m->general_m->llenar_ficha($datos2); 
+					
+					$ruta = $this->cargarPDF();
+					
+					$nombreArchivo = $_FILES["pdf"]['name'];
+					
+					$data = array('nombreRegistro'=>$nombreArchivo,'ruta'=>$ruta,'fichas_fichaId'=>$id);
+					
+					if($nombreArchivo != '' && $ruta != '')
+						$this->casos_m->mAgregarRegistroFicha($data);
+					
 				}
 				
             break;
+			
+			
 			
 			case(3): 
 				if($_POST['editar'] == 1){
@@ -326,9 +343,13 @@ class CasosVentanas_c extends CI_Controller {
 					}
 					$mensaje = $mensaje . $this->casos_m->mActualizaDatosDerechoAfectado($datos['derechoAfectado'],$datos['derechoAfectado']['derechoAfectadoCasoId']);
 				}else{
-					if(isset($datos['actos'])){
+					print_r($datos['derechoAfectado'] );
+					if(!empty($datos['actos']['actoViolatorioId'])){
 		            	$datos['actos']['casos_casoId']=$datos['lugares']['casos_casoId'];
 						$datos3['derechoAfectado'] =  $datos['derechoAfectado'];
+						if(empty($datos3['derechoAfectado']['paisesCatalogo_paisId'])){
+							$datos3['derechoAfectado']['paisesCatalogo_paisId']=NULL;
+						}
 						$Id = $this->casos_m->mAgregarDerechosAfectados($datos3);
 						$datos['actos']['derechoAfectado_derechoAfectadoCasoId']=$Id;
 						$mensaje = $this->casos_m->mAgregarActoDerechoAfectado($datos['actos']);
@@ -403,10 +424,18 @@ class CasosVentanas_c extends CI_Controller {
             break;
             
         }
+        if (!isset($botonVictimas)) {
 		echo "<script languaje='javascript' type='text/javascript'>
 		window.opener.location.reload();
 		window.close();
 		</script>";
+        }
+        else{
+		echo "<script languaje='javascript' type='text/javascript'>
+		window.opener.location.reload();
+		</script>";
+        	redirect(base_url().'index.php/casosVentanas_c/derechosAfectados/'.$datos['lugares']['casos_casoId'].'/'.$Id);
+        }
 			
 		
 		return $mensaje;

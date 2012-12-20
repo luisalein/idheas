@@ -4,9 +4,13 @@
 	</head>
 	<body>
 	<pre>
-	<!--<pre><?= print_r($fuenteDocumental) ?></pre>-->
-	<!-- <pre><?= print_r($catalogos['listaTodosActores']) ?></pre> -->
-	
+	<!-- 
+	<pre><?= print_r($fuenteDocumental) ?></pre>
+	<pre><?= print_r($catalogos['listaTodosActores']) ?></pre> 
+	 <pre><?= print_r($catalogos['tipoFuenteDocumentalN1Catalogo']) ?></pre> 
+	 <pre><?= print_r($catalogos['tipoFuenteDocumentalN2Catalogo']) ?></pre> 
+									<pre> <?= print_r($fuenteDocumental)?></pre>
+	 -->
 	</pre>
 	<form action='<?=base_url(); ?>index.php/casosVentanas_c/guardarDatosVentanas/6' method="post" accept-charset="utf-8">
 	<input type="hidden" id="editar"  name="editar" value="<?= (isset($fuenteDocumental)) ? "1" : "0" ;?>"/>
@@ -17,6 +21,8 @@
 	<input type="hidden" id='tipoFuenteDocumental_actorReportado' name='tipoFuenteDocumental_actorReportado' value="<?= (isset($fuenteDocumental['actorReportado'])) ? $fuenteDocumental['actorReportado'] : " " ; ?>"/>
 	
 	<input type="hidden" id='tipoFuenteDocumental_tipoFuenteDocumentalId' name='tipoFuenteDocumental_tipoFuenteDocumentalId' value="<?= (isset($fuenteDocumental['tipoFuenteDocumentalId'])) ? $fuenteDocumental['tipoFuenteDocumentalId'] : " " ; ?>"/>
+
+	<input type="hidden" id='tipoFuenteDocumental_tipoFuenteDocumentalN1Catalogo_tipoFuenteDocumentalN1CatalogoId' name='tipoFuenteDocumental_tipoFuenteDocumentalN1Catalogo_tipoFuenteDocumentalN1CatalogoId' value="<?= (isset($fuenteDocumental['tipoFuenteDocumentalN1Catalogo_tipoFuenteDocumentalN1CatalogoId'])) ? $fuenteDocumental['tipoFuenteDocumentalN1Catalogo_tipoFuenteDocumentalN1CatalogoId'] : " " ; ?>"/>
 	
 	<input type="hidden" id='nameDeLaRelacion' value="tipoFuenteDocumental_relacionId"/>
 	<input type="hidden" id='tipoFuenteDocumental_relacionId' name='tipoFuenteDocumental_relacionId' value="<?= (isset($fuenteDocumental['relacionId'])) ? $fuenteDocumental['relacionId'] : " " ; ?>"/>
@@ -39,21 +45,36 @@
 								<label for="tipoRespuesta">Información adicional</label>
 								<textarea id="infoAdicional_infoAdicionalFuenteDocumental" name="tipoFuenteDocumental_infoAdicional" ><?=(isset($fuenteDocumental['infoAdicional']) ? $fuenteDocumental['infoAdicional'] : ''); ?></textarea>
 							</div>
-							<div class="six columns">
-								<label for="tipoFuente">Tipo de la fuente</label>
-								<select id="tipoFuenteDocumentalCatalogo_tipoFuenteCatalogo_tipoFuenteId" name="tipoFuenteDocumental_tipoFuenteCatalogo_tipoFuenteId">
-									 <option></option>							
-									 <?php if(isset($fuenteDocumental['tipoFuenteCatalogo_tipoFuenteId'])){
-				                                foreach($catalogos['tipoFuenteCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
-				                                    <option onclick="notasCatalogos('<?=$item['notas']; ?>','tipoFuenteDocumentalCatalogo','2')" value="<?=$item['tipoFuenteId']?>" <?=($fuenteDocumental['tipoFuenteCatalogo_tipoFuenteId'] == $item['tipoFuenteId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
-				                                <?php endforeach;
-				                            } else { ?>
-				                                <?php foreach($catalogos['tipoFuenteCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
-				                                    <option onclick="notasCatalogos('<?=$item['notas']; ?>','tipoFuenteDocumentalCatalogo','2')"  value="<?=$item['tipoFuenteId']?>" ><?=$item['descripcion']?></option>
-				                                <?php endforeach; } 
-				                      ?>
-								</select>
-										<div id="notastipoFuenteDocumentalCatalogo"></div>
+							<div class="twelve columns espacioSuperior espacioInferior">
+								<label for="tipoFuente"><b>Tipo de la fuente</b></label>
+								<div id='textoTipoFuente'>
+									<?= (isset($fuenteDocumental['tipoFuenteDocumentalId']) && isset($fuenteDocumental['tipoFuenteDocumentalN1Catalogo_tipoFuenteDocumentalN1CatalogoId'])) ? $catalogos['tipoFuenteDocumentalN'.$fuenteDocumental['tipoFuenteDocumentalN1Catalogo_tipoFuenteDocumentalN1CatalogoId'].'Catalogo'][$fuenteDocumental['tipoFuenteDocumentalId']]['descripcion'] : " " ; ?>
+								</div>
+								<label for="tipoFuente"><b>Notas</b></label>
+								<div id="notasTipoFuente">
+									<?= (isset($fuenteDocumental['tipoFuenteDocumentalId']) && isset($fuenteDocumental['tipoFuenteDocumentalN1Catalogo_tipoFuenteDocumentalN1CatalogoId'])) ? $catalogos['tipoFuenteDocumentalN'.$fuenteDocumental['tipoFuenteDocumentalN1Catalogo_tipoFuenteDocumentalN1CatalogoId'].'Catalogo'][$fuenteDocumental['tipoFuenteDocumentalId']]['notas'] : " " ; ?>
+								</div>
+
+				         					<div  id="listaActorIndiv" class="cajaDerchosActos">
+				                            	<ol>
+				                                <?php foreach($catalogos['tipoFuenteDocumentalN1Catalogo'] as $nivel1):?> <!--muestra los estados civiles-->
+				                                    <li >
+				                                    	<div class="ExpanderFlecha flecha hand" value="subnivel" onclick="Nivel1TipoFuete('<?=$nivel1['tipoFuenteDocumentalN1CatalogoId']?>','<?=$nivel1['descripcion'];?>','<?=$nivel1['notas'];?>',this)" >
+				                                    	<?=$nivel1['descripcion']?>
+				                                    	</div>
+				                                    		<ol id="subnivel<?=$nivel1['tipoFuenteDocumentalN1CatalogoId']?>" class="Escondido">
+				                                    			<?php foreach ($catalogos['tipoFuenteDocumentalN2Catalogo'] as $nivel2) { 
+				                                    				if ($nivel1['tipoFuenteDocumentalN1CatalogoId'] == $nivel2['tipoFuenteDocumentalN1Catalogo_tipoFuenteDocumentalN1CatalogoId']) { ?>
+				                                    					<li class="listaNivel2" onclick="Nivel2TipoFuete('<?=$nivel2['tipoFuenteDocumentalN2CatalogoId']?>','<?=$nivel2['descripcion'];?>','<?=$nivel2['notas'];?>',this)"   >
+				                                    						<?=$nivel2['descripcion']?>
+				                                    					</li>
+				                                    			<?php }
+				                                    		}?>
+				                                    		</ol>
+				                                    </li>
+				                                <?php endforeach; ?>
+				                                </ol>
+											</div>
 							</div>
 							
 

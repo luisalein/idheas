@@ -43,7 +43,7 @@
 				
 				<input type="hidden" value="<?=(isset($datosCaso['relacionCasos'][$id]['nombreCasoIdB'])? '1' : '0')?>" id="casoSeleccionado_seleccionado" name="casoSeleccionado_seleccionado"/>
 				<?=br(2);?>
-				<input type="button" value="Seleccionar Caso" onclick="mostrarCasos()" style="margin-left: 20px;"/>
+				<input type="button" class="small button" value="Seleccionar Caso" onclick="mostrarCasos()" style="margin-left: 20px;"/>
 				<?=br(3);?>
 				<label for="comentFichas">Comentarios</label>
 				<textarea id="relacionCasos_Comentarios" style="width: 550px; height: 200px" name="relacionCasos_Comentarios" wrap="hard"  ><?=(isset($datosCaso['relacionCasos'][$id]['comentarios']))? $datosCaso['relacionCasos'][$id]['comentarios'] : ''?></textarea>
@@ -51,8 +51,8 @@
 				<label for="comentFichas">Observaciones</label>
 				<textarea id="relacionCasos_Observaciones" style="width: 550px; height: 200px" name="relacionCasos_Observaciones" wrap="hard"  ><?=(isset($datosCaso['relacionCasos'][$id]['comentarios']))? $datosCaso['relacionCasos'][$id]['observaciones'] : ''?></textarea>
 				
-				<input class="medium button" type="submit" value="Guardar"/>
-				<input class="medium button" type="button" value="Cancelar" onclick="cerrarVentana()" />
+				<input style="padding: 7px 11px 8px 11px;" class="small button" type="submit" value="Guardar"/>
+				<input class="small button" type="button" value="Cancelar" onclick="cerrarVentana()" />
 			</div>
 		</form>
 	</body>

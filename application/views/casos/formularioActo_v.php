@@ -9,6 +9,11 @@
 <form action='<?=base_url(); ?>index.php/casosVentanas_c/guardarDatosVentanas/3' method="post" accept-charset="utf-8" id="menuForm" name="menuForm">
 <!-------------------------Comienza la parte de Acto---------------------------->
 <div id="formularioCasoActo">
+	<!---
+	<?= print_r($derechoAfectado['fechaTermino'])?>
+	<?= print_r($derechoAfectado['fechaInicial'])?>
+-->
+
 	<div id="pestania" data-collapse>
 		<h2 class="open" >Acto</h2><!--título de la sub-pestaña---->  
 		<div>	
@@ -170,8 +175,8 @@
 				
 							<div class="six columns">
 								<br />
-								<p class="<?php if(isset($fInicial)) echo ''; else echo 'Escondido';?>" id="fechaExactaVAct">
-									<input type="text" id="fechaExactaAct" onclick="fechaInicialCasosActos(1)" value="<?php if(isset($fInicial)) echo $fInicial;?>" placeholder="AAAA-MM-DD" />
+								<p class="<?php if(isset($derechoAfectado['fechaInicial'])) echo ''; else echo 'Escondido';?>" id="fechaExactaVAct">
+									<input type="text" id="fechaExactaAct" onclick="fechaInicialCasosActos(1)" value="<?php if(isset($derechoAfectado['fechaInicial'])) echo $derechoAfectado['fechaInicial'];?>" placeholder="AAAA-MM-DD" />
 
 								</p>
 
@@ -204,8 +209,8 @@
 							</select>
 						</div>
 						<div class="six columns">
-							<p class="<?php if(isset($fTermino)) echo ''; else echo 'Escondido';?>" id="fechaExactaVAct2">
-								<input type="text" id="fechaExactaAct2" onclick="fechaTerminalCasosActos(1)" value="<?php if(isset($fTermino)) echo $fTermino;?>"  placeholder="AAAA-MM-DD" />
+							<p class="<?php if(isset($derechoAfectado['fechaTermino'])) echo ''; else echo 'Escondido';?>" id="fechaExactaVAct2">
+								<input type="text" id="fechaExactaAct2" onclick="fechaTerminalCasosActos(1)" value="<?php if(isset($derechoAfectado['fechaTermino'])) echo $derechoAfectado['fechaTermino'];?>"  placeholder="AAAA-MM-DD" />
 
 							</p>
 
@@ -253,6 +258,9 @@
 			<br/>
 			<input class="medium button" type="submit" value="Guardar" style="padding: 10px 15px 11px 15px; "/>
 			<input class="medium button" type="button" value="Cancelar" onclick="cerrarVentana()" />
+			<?php if (isset($botonVictimas)) { ?>
+			<input class="medium button" type="button" value="Cerrar" onclick="cerrarVentana()"/>
+			<?php } ?>
 		</div>
 	</div><!--fin acordeon información general-->
 </div>

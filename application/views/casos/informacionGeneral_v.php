@@ -114,7 +114,7 @@
 			              <?php if(isset($datosCaso['fichas'])){ ?>
 			              <?php foreach ($datosCaso['fichas'] as $key => $seguimiento) {
 			              	?><tr>
-			                <td> <span id="infoCaso_fichaId"><?=(isset($seguimiento['fichaId'])) ? $seguimiento['fichaId'] : ''; ?></span> </td>
+			                <td> <span id="infoCaso_fichaId"><?=(isset($seguimiento['clave'])) ? $seguimiento['clave'] : ''; ?></span> </td>
 			                <td> <span id="infoCaso_titulo"><?=(isset($seguimiento['titulo'])) ? $seguimiento['titulo'] : ''; ?></span> </td>
 			                <td> <span id="infoCaso_titulo"><?=(isset($seguimiento['fecha'])) ? $seguimiento['fecha'] : ''; ?></span></td>
 			                <td>
