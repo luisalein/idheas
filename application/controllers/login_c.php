@@ -8,13 +8,10 @@ class Login_c extends CI_Controller
           parent::__construct();
           
             $this->load->helper(array('html', 'url'));
-			
 			$this->load->library('session');
-
         	$this->load->model(array('actores_m', 'general_m','reportes_m', 'catalogos_m','casos_m'));
      }
 	
-	 
     function index(){
            
 		if(!empty($_POST['usuario']) && !empty($_POST['contrasenia'])){
@@ -27,7 +24,7 @@ class Login_c extends CI_Controller
 			
 			if($mensaje == '2'){
 				
-				return "contraseña no válida";
+				echo "contraseña no válida";
 			
 			}elseif($mensaje == '1'){
 				
@@ -42,16 +39,17 @@ class Login_c extends CI_Controller
 				$_SESSION =	$this->session->all_userdata();
 		
 				if(!empty($_SESSION['usr'])){
+					
 		        	redirect('actores_c/mostrar_actor');  
 					    	
 		        }
 				
 			}elseif($mensaje == '3'){
 				
-				return "No existe el usuario";
+				echo "No existe el usuario";
 			}else{
 				
-				return "Error en validación";
+				echo "Error en validación";
 				
 			}
 			

@@ -193,8 +193,8 @@
 
 			</div>
 			
-		<input class="medium button" type="submit" value="Guardar" />
-		<input class="medium button" value="Cancelar" onclick="cerrarVentana()" />		
+		<input style="padding: 9px 40px 9px 40px !important;margin-left: 15px;" class="medium button" type="submit" value="Guardar" />
+		<input style="padding: 9px 0px 9px 0px !important" class="medium button" value="Cancelar" onclick="cerrarVentana()" />		
 		</div>
 		<!-----------------termina la parte de Fuente documental------------------------>
 

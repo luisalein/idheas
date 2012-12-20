@@ -8,10 +8,21 @@ class Agregar_catalogos_c extends CI_Controller {
         
         $this->load->helper(array('file', 'url'));
         
+		$this->load->library('session');
+        
+		$this->is_logged_in();
+		
         $this->load->model('agregar_catalogos_m');
         
     }
     
+	private function is_logged_in(){
+		$logged_in = $this->session->userdata('logged_in');
+		if(!isset($logged_in) or $logged_in != TRUE){
+			redirect(base_url());
+		}
+	}
+	
     public function index(){
     	
         $this->cAgregarCatalogoDeOcupaciones();

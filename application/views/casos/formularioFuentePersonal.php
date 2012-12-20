@@ -218,8 +218,8 @@
 					</div>
 			</div>
 			</fieldset>
-			<input class="medium button" type="submit" value="Guardar"/>
-			<input class="medium button" value="Cancelar" onclick="cerrarVentana()" />
+			<input style="padding: 10px 40px 10px 40px;margin-left: 15px;" class="medium button" type="submit" value="Guardar"/>
+			<input style="padding: 10px 0px 10px 0px" class="medium button" value="Cancelar" onclick="cerrarVentana()" />
 		</form>
 	</body>
 </html>
