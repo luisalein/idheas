@@ -42,8 +42,8 @@
                     <?= $filtroDireccion?>                                               
                 </div>
             </fieldset><!--Termina datos dirección-->
-           	
-            <input type="submit" class="small button"  value="guardar">
+           	<input style="float: right;margin:20px 25px 0px 0px;padding: 9px 20px 9px 20px !important;" onclick="cerrarVentana()" type="button" class="medium button"  value="cancelar">
+            <input style="float: right;margin:20px 25px 0px 0px	" type="submit" class="medium button"  value="guardar">
     </form>
 </body>
 </html>
