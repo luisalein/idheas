@@ -334,22 +334,25 @@ class CasosVentanas_c extends CI_Controller {
 				
             break;
 			
+			
+			
 			case(3): 
 				if($_POST['editar'] == 1){
 					if(isset($datos['actos'])){
 						$mensaje = $this->casos_m->mActualizaDatosActo($datos['actos'],$datos['actos']['actoId']);
 					}
 					$mensaje = $mensaje . $this->casos_m->mActualizaDatosDerechoAfectado($datos['derechoAfectado'],$datos['derechoAfectado']['derechoAfectadoCasoId']);
-					$Id=$datos['derechoAfectado']['derechoAfectadoCasoId'];
-					$botonVictimas=1;
 				}else{
-					if(isset($datos['actos'])){
+					print_r($datos['derechoAfectado'] );
+					if(!empty($datos['actos']['actoViolatorioId'])){
 		            	$datos['actos']['casos_casoId']=$datos['lugares']['casos_casoId'];
 						$datos3['derechoAfectado'] =  $datos['derechoAfectado'];
+						if(empty($datos3['derechoAfectado']['paisesCatalogo_paisId'])){
+							$datos3['derechoAfectado']['paisesCatalogo_paisId']=NULL;
+						}
 						$Id = $this->casos_m->mAgregarDerechosAfectados($datos3);
 						$datos['actos']['derechoAfectado_derechoAfectadoCasoId']=$Id;
 						$mensaje = $this->casos_m->mAgregarActoDerechoAfectado($datos['actos']);
-						$botonVictimas=1;
 					} else{
 						echo "<script languaje='javascript' type='text/javascript'>
 								alert('Ningun derecho/acto fue seleccionado');
