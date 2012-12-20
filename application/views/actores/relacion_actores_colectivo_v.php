@@ -23,7 +23,7 @@
 
 			<br />
 	
-			<label>Persona</label>
+			<label>Actor</label>
 
 			<div class="twelve columns">
 			<img class="foto" src="<?=base_url().$listaTodosActores[$actorId]['foto']?>" />

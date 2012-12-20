@@ -517,7 +517,51 @@ function  nombrarActo(descripcion, valor,notas,nivel,e){
 		  }
 	  
 	  }
-
+  ///Función que agrega name a lafecha seleccionada en información personal
+  function fechaInicialCasosActos(a){
+		  if(a=="1"){
+			$('#fechaAproxAct').attr('name', ' ');
+			$('#fechaSinDiaAct').attr('name', ' ');
+			$('#fechaSinDiaSinMesAct').attr('name', ' ');
+			$('#fechaExactaAct').attr('name', 'fuenteInfoPersonal_fecha');
+			$("#fechaAproxVAct").hide();
+			$("#fechaSinDiaVAct").hide();
+			$("#fechaSinDiaSinMesVAct").hide();
+			$("#fechaExactaVAct").show("slow");
+		  }
+		  else if (a=="2"){			
+			$('#fechaSinDiaVAct').attr('name', ' ');
+			$('#fechaSinDiaSinMesVAct').attr('name', ' ');
+			$('#fechaExactaAct').attr('name', ' ');
+			$('#fechaAproxAct').attr('name', 'fuenteInfoPersonal_fecha');
+			$("#fechaSinDiaSinMesVAct").hide();
+			$("#fechaSinDiaVAct").hide();
+			$("#fechaExactaVAct").hide();
+			$("#fechaAproxVAct").show("slow");
+		  }
+		  else if (a=="3"){
+			$("#fechaAproxVAct").hide();
+			$("#fechaSinDiaSinMesVAct").hide();
+			$("#fechaExactaVAct").hide();
+			$("#fechaSinDiaVAct").show("slow");
+			$('#fechaSinDiaSinMesVAct').attr('name', ' ');
+			$('#fechaExactaVAct').attr('name', ' ');
+			$('#fechaAproxVAct').attr('name', ' ');
+			$('#fechaSinDiaAct').attr('name', 'fuenteInfoPersonal_fecha');
+		  }
+		  else if (a=="4"){;
+			$("#fechaAproxVAct").hide();
+			$("#fechaSinDiaVAct").hide();
+			$("#fechaExactaVAct").hide();
+			$("#fechaSinDiaSinMesVAct").show("slow");
+			$('#fechaExactaVAct').attr('name', ' ');
+			$('#fechaAproxVAct').attr('name', ' ');
+			$('#fechaSinDiaVAct').attr('name', '');
+			$('#fechaSinDiaSinMesAct').attr('name', 'fuenteInfoPersonal_fecha');
+		  }
+	  
+	  }
+     
 /**********************Agregar caso************************/
 /////////FECHA INICIAL CASOS
 
@@ -701,8 +745,9 @@ function ventanaRelacionCasos(casoId, indice){
 function pintaIndividualesInfoPersonal(){
 
 	$('#infoColectio').removeClass("Escondido");
+	document.getElementById('infoPersonalActor').innerHTML =" ";
     notas="seleccionarActorseleccionarActorIndColDatos('5')";
-    notas2="eliminarRelacionVista('eliminarVistaActor','fuenteInfoPersonal_actorId')";
+    notas2="eliminarRelacionVista('eliminarVistaActor','fuenteInfoPersonal_actorId','infoColectio','fuenteInfoPersonal_relacionId')";
 	document.getElementById('infoPersonalActorBotones').innerHTML = ('<div class="nine columns"><input type="button" class="tiny button" value="Seleccionar actor" onclick="'+notas+'" /></div>'+
 		'<div class="three columns" id="eliminarVistaActor"><input type="button" class="tiny button" value="Eliminar Actor" onclick="'+notas2+'" /></div>');
 }
@@ -724,6 +769,7 @@ function pintaColectivosInfoPersonal(){
 function pintaIndividualesInfoPersonalReportado(){
 
 	$('#infoColectioReportado').removeClass("Escondido");
+	document.getElementById('infoPersonalActorReportado').innerHTML =" ";
     notas="seleccionarActorseleccionarActorIndColDatos('7')";
     notas2="eliminarRelacionVista('eliminarVistaActorReportado','fuenteInfoPersonal_actorId')";
 	document.getElementById('infoPersonalActorReportadoBotones').innerHTML = ('<div class="nine columns"><input type="button" class="tiny button" value="Seleccionar actor" onclick="'+notas+'" /></div>'+
@@ -733,11 +779,35 @@ function pintaIndividualesInfoPersonalReportado(){
 function pintaColectivosInfoPersonalReportado(){
     var nameSeleccionado2= document.getElementById('nameDeLaRelacionReceptor').value;
     document.getElementById(nameSeleccionado2).value = 0;
-    notas="seleccionarActorseleccionarActorIndColDatos('2')";
+    notas="seleccionarActorseleccionarColDatos('2')";
     notas2="eliminarRelacionVista('eliminarVistaActorReportado','fuenteInfoPersonal_actorId')";
 	$('#infoColectioReportado').addClass("Escondido");
 	document.getElementById('infoPersonalActorReportado').innerHTML =" ";
 	document.getElementById('infoPersonalActorReportadoBotones').innerHTML =('<div class="nine columns"><input type="button" class="tiny button" value="Seleccionar actor" onclick="'+notas+'" /></div>'+
 		'<div class="three columns" id="eliminarVistaActorReportado"><input type="button" class="tiny button" value="Eliminar Actor" onclick="'+notas2+'" /></div>');
+}
+
+/**Funciones de la ventana fuentes de información documental **/
+
+function pintaIndividualesInfoDocumental(){
+
+	$('#infoColectio').removeClass("Escondido");
+    notas="seleccionarActorseleccionarActorIndColDatos('5')";
+	document.getElementById('actorReportado').innerHTML =" ";
+    notas2="eliminarRelacionVista('eliminarVistaActor','tipoFuenteDocumental_actorReportado','infoColectio','tipoFuenteDocumental_relacionId')";
+	document.getElementById('actorReportadoBotones').innerHTML = ('<div class="nine columns"><input type="button" class="tiny button" value="Seleccionar actor" onclick="'+notas+'" /></div>'+
+		'<div class="three columns" id="eliminarVistaActor"><input type="button" class="tiny button" value="Eliminar Actor" onclick="'+notas2+'" /></div>');
+}
+
+function pintaColectivosInfoDocumental(){
+    var nameSeleccionado= document.getElementById('nameDeLaRelacion').value;
+    document.getElementById(nameSeleccionado).value = 0;
+	$('#infoColectio').addClass("Escondido");
+	document.getElementById('actorReportado').innerHTML =" ";
+    notas="seleccionarActorseleccionarColDatos('4')";
+    notas2="eliminarRelacionVista('eliminarVistaActor','tipoFuenteDocumental_actorReportado')";
+	document.getElementById('actorReportadoBotones').innerHTML = ('<div class="nine columns"><input type="button" class="tiny button" value="Seleccionar actor" onclick="'+notas+'" /></div>'+
+		'<div class="three columns" id="eliminarVistaActor"><input type="button" class="tiny button" value="Eliminar Actor" onclick="'+notas2+'" /></div>');
+	alert('algo');
 }
 

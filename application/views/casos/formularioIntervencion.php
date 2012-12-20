@@ -43,7 +43,8 @@
 			<h2 class="open twelve columns">Intervención</h2><!--título de la sub-pestaña-->  
 			<div>
 				
-					
+<pre><?= print_r($intervenciones)?></pre>					
+<pre><?= print_r($catalogos['relacionesActoresCatalogo'])?></pre>					
 				<br /><br />		
 					<fieldset>
 						<input type="hidden" value="<?=$casoId; ?>" name="lugares_casos_casoId" id="lugares_casos_casoId" />
@@ -147,8 +148,8 @@
 								                <?php }?>
 
 											</div>
-											<input type="button" class="small button" onclick="seleccionarActorseleccionarActorIndColDatos('1')" value="Seleccionar actor"><br>
-											<input type="button" class="small button" value="Eliminar actor" onclick="eliminaActor()">
+											<input type="button" class="small button" onclick="seleccionarActorseleccionarActorIndColDatos('1')" value="Seleccionars actor"><br>
+											<input type="button" class="small button" value="Eliminar actor" onclick="eliminarRelacionVista('vistaActorRelacionado','intervenciones_interventorId','vistaPintaRelaciones','intervenciones_tipoRelacionInterventor')">
 											</div>
 								<div id="pestania" data-collapse>
 									<h2>Actor Colectivo</h2>
@@ -170,14 +171,13 @@
 																	<input type="button" class="small button" value="Cambiar relación" onclick="ventanaColectivoRelacionados('<?= $intervenciones['receptorId'] ?>','2')">
 																<?php	}?>
 															</div> 
-															<?php }
+														<?php }
 													}?> 
 											</div>
-										</div>
 											<?php if (isset($intervenciones['interventorId'])&& ($intervenciones['interventorId']>0)) { ?>
-												<input type="button" value="Eliminar" onclick="eliminarRelacionVista('vistaActorRelacionadoPerpetrador','intervencioneses_actorRelacionadoId')" class="tiny button">	
-												<input type="button" class="tiny button" value="Cambiar relación" onclick="ventanaColectivoRelacionados('<?= $intervenciones['interventorId'] ?>')">
+												<input type="button" value="Eliminar" onclick="eliminarRelacionVista('vistaPintaRelaciones','intervenciones_tipoRelacionInterventor')" class="tiny button">	
 											<?php } ?>
+										</div>
 									</div>
 								</div>
 
@@ -194,17 +194,17 @@
 											<label for="receptor">Persona</label>
 											<div id="vistaActorRelacionadoReceptor">
 												<?php if (isset($intervenciones['receptorId'])) { ?>
-								                <div class="three columns" >
-								                <img class="foto" src="<?= (isset($catalogos['listaTodosActores'][$intervenciones['receptorId']]['foto'])) ? base_url().$catalogos['listaTodosActores'][$intervenciones['receptorId']]['foto'] : " " ; ?>" />
-												</div>
-												<div class="nine columns"><h5><?=(isset($catalogos['listaTodosActores'][$intervenciones['receptorId']]['nombre'])) ? $catalogos['listaTodosActores'][$intervenciones['receptorId']]['nombre']." "	 : " " ; ?><?= (isset($catalogos['listaTodosActores'][$intervenciones['receptorId']]['apellidosSiglas'])) ? $catalogos['listaTodosActores'][$intervenciones['receptorId']]['apellidosSiglas'] : "" ;?>
-												</h5>
+									                <div class="three columns" >
+									                <img class="foto" src="<?= (isset($catalogos['listaTodosActores'][$intervenciones['receptorId']]['foto'])) ? base_url().$catalogos['listaTodosActores'][$intervenciones['receptorId']]['foto'] : " " ; ?>" />
+													</div>
+													<div class="nine columns"><h5><?=(isset($catalogos['listaTodosActores'][$intervenciones['receptorId']]['nombre'])) ? $catalogos['listaTodosActores'][$intervenciones['receptorId']]['nombre']." "	 : " " ; ?><?= (isset($catalogos['listaTodosActores'][$intervenciones['receptorId']]['apellidosSiglas'])) ? $catalogos['listaTodosActores'][$intervenciones['receptorId']]['apellidosSiglas'] : "" ;?>
+													</h5>
 
-												</div> 
+													</div> 
 												<?php }?> 
 											</div>											
 											<input type="button" class="small button" onclick="seleccionarActorseleccionarActorIndColDatos('2')" value="Seleccionar actor"><br>
-											<input type="button" class="small button" value="Eliminar actor" onclick="eliminaActor()">
+											<input type="button" class="small button" value="Eliminar actor" onclick="eliminarRelacionVista('vistaActorRelacionadoReceptor','intervenciones_receptorId','vistaPintaRelacionesReceptor','intervenciones_tipoRelacionReceptor')">
 										
 								<div id="pestania" data-collapse>
 									<h2>Actor Colectivo</h2>
@@ -229,11 +229,12 @@
 															</div> 
 														<?php }
 													}?> 
-											<?php if (isset($intervenciones['receptorId'])&& ($intervenciones['receptorId']>0)) { ?>
-												<input type="button" value="Eliminar" onclick="eliminarRelacionVista('vistaActorRelacionadoPerpetrador','intervencioneses_actorRelacionadoId')" class="tiny button">	
-												<input type="button" class="tiny button" value="Cambiar relación" onclick="ventanaColectivoRelacionados('<?= $intervenciones['receptorId'] ?>')">
-											<?php } ?>
 											</div>
+										</div>
+										<div id="botonesreceptor">
+											<?php if (isset($intervenciones['receptorId'])&& ($intervenciones['receptorId']>0)) { ?>
+												<input type="button" value="Eliminar" onclick="eliminarRelacionVista('vistaActorRelacionadoPerpetrador2','intervenciones_tipoRelacionReceptor')" class="tiny button">	
+											<?php } ?>
 										</div>
 									</div>
 								</div>

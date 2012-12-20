@@ -155,7 +155,7 @@ class CasosVentanas_c extends CI_Controller {
         
     }
 
-	function fuentesDeInformacion($casoId,$actorId=0,$i){
+	function fuentesDeInformacion($casoId,$actorId=0,$i=0){
 		
 		$datos['head'] = $this->load->view('general/head_v', "", true);
 
@@ -166,6 +166,14 @@ class CasosVentanas_c extends CI_Controller {
 		$datos['catalogos'] = $this->traer_catalogos();
 		
 		$datos['datosCaso'] = $this->casos_m->mTraerDatosCaso($casoId);
+
+		if ($i>0) {
+			// echo "<pre>";
+			// print_r($datos['datosCaso']['tipoFuenteDocumental']);
+			// echo "</pre>";
+			$datos['fuenteDocumental']=$datos['datosCaso']['tipoFuenteDocumental'][$i];
+
+		}
 		
 		$datos['actoresColectivos'] = $this->actores_m->listado_actores_m(3);
 		 
@@ -201,6 +209,12 @@ class CasosVentanas_c extends CI_Controller {
 		
 		if(isset($datos['actoresIndividuales']) && isset($datos['actoresTrans']))
 			$datos['actIndividualesTrns'] = array_merge($datos['actoresIndividuales'],$datos['actoresTrans']);
+		
+		if ($id>0) {
+			if (isset($datos['datosCaso']['fuenteInfoPersonal'][$id])) {
+				$datos['fuenteInfoPersonal']=$datos['datosCaso']['fuenteInfoPersonal'][$id];
+			}
+		}
 
 		$datos['actoresRelacionados'] = $this->actores_m->mTraeRelacionesColectivo($actorId);
 		
@@ -347,8 +361,8 @@ class CasosVentanas_c extends CI_Controller {
 			
 			case(5): 
 				if($_POST['editar'] == 1){
-					echo "<pre>"; print_r($_POST);echo "</pre>";
-					echo "<pre>"; print_r($datos['fuenteInfoPersonal']);echo "</pre>";
+					// echo "<pre>"; print_r($_POST);echo "</pre>";
+					// echo "<pre>"; print_r($datos['fuenteInfoPersonal']);echo "</pre>";
 					$mensaje = $this->casos_m->mActualizaDatosFuenteInfoPersonal($datos['fuenteInfoPersonal'],$datos['fuenteInfoPersonal']['fuenteInfoPersonalId']);
 				}else{
 					$datos5['fuenteInfoPersonal'] = $datos['fuenteInfoPersonal'];
@@ -358,6 +372,8 @@ class CasosVentanas_c extends CI_Controller {
             break;
 			
 			case(6):
+					echo "<pre>"; print_r($_POST);echo "</pre>";
+					echo "<pre>"; print_r($datos['tipoFuenteDocumental']);echo "</pre>";
 				if($_POST['editar'] == 1){
 					$mensaje = $this->casos_m->mActualizaDatosTipoFuenteDocumental($datos['tipoFuenteDocumental'],$datos['tipoFuenteDocumental']['tipoFuenteDocumentalId']);
 				}else{ 
@@ -387,10 +403,10 @@ class CasosVentanas_c extends CI_Controller {
             break;
             
         }
-		// echo "<script languaje='javascript' type='text/javascript'>
-		// window.opener.location.reload();
-		// window.close();
-		// </script>";
+		echo "<script languaje='javascript' type='text/javascript'>
+		window.opener.location.reload();
+		window.close();
+		</script>";
 			
 		
 		return $mensaje;

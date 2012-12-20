@@ -1,5 +1,6 @@
 <div id="pestania" data-collapse>	
 	<h2 class="open">Casos</h2><!--título de la pestaña-->  
+	<?php print_r($casosRelacionados)?>
 	<?php if (isset($casosRelacionados['casosActor'])) {?>
 	<?php foreach ($casosRelacionados['casosActor'] as $datosCaso) {?>
 	<div>
@@ -120,7 +121,7 @@
 					</div>
 						<!--fin acordeon Intervenciones-->
 					<div id="subPestanias" data-collapse>
-						<h2>Personas asociadas al caso</h2><!--título de la pestaña-->
+						<h2>Actores asociados al caso</h2><!--título de la pestaña-->
 						<div>
 							<div class="twelve" id="subPestanias" data-collapse>	
 								  <h2>Victimas</h2><!--título de la pestaña-->									

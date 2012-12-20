@@ -60,10 +60,9 @@
 						            	<?php if(isset($datosCaso['fuenteInfoPersonal'])){
 						            		foreach ($datosCaso['fuenteInfoPersonal'] as $index => $fuentePersonal) { ?>
 								              <tr>
-								              	
-								                <td>No aparece nombre de la fuente</td>
-								                <td><?= $fuentePersonal['tipoFuenteCatalogo_tipoFuenteId'] ?> </td>
-								                <td><?= $fuentePersonal['actorReportadoNombre']." ".$fuentePersonal['actorReportadoApellidosSiglas'] ?></td>
+								              	<td><?= (isset($fuentePersonal['actorId'])) ? $catalogos['listaTodosActores'][$fuentePersonal['actorId']]['nombre']." ".$catalogos['listaTodosActores'][$fuentePersonal['actorId']]['apellidosSiglas'] : "No hay hactor" ; ?> </td>
+								                <td><?= (isset($fuentePersonal['tipoFuenteCatalogo_tipoFuenteId'])) ? $catalogos['tipoFuenteCatalogo'][$fuentePersonal['tipoFuenteCatalogo_tipoFuenteId']]['descripcion'] : " " ; ?> </td>
+								              	<td><?= (isset($fuentePersonal['actorReportadoNombre'])) ? $fuentePersonal['actorReportadoNombre']." ".$fuentePersonal['actorReportadoApellidosSiglas']  : "No hay hactor" ; ?> </td>
 								                <td><?= $fuentePersonal['fecha'] ?></td>
 								                <td><input type="button" class="tiny button"  value="Editar" onclick="ventanaFuentePersonal('<?= $casoId; ?>', '<?= $fuentePersonal['actorReportado'] ?>','<?=$fuentePersonal['fuenteInfoPersonalId']?>')" />
 								                <input type="button" class="tiny button"  value="Eliminar" onclick="eliminarFuentePersonal('<?=$fuentePersonal['fuenteInfoPersonalId']?>','<?= $casoId; ?>')" /></td>

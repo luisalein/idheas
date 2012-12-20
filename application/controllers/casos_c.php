@@ -31,6 +31,8 @@ class Casos_c extends CI_Controller {
         $datos['nacionalidadesCatalogo'] = $this->general_m->obtener_todo('nacionalidadesCatalogo', 'nacionalidadId', 'nombre');
         
         $datos['relacionActoresCatalogo'] = $this->general_m->obtener_todo('relacionActoresCatalogo', 'tipoRelacionId', 'nombre');
+        
+		$datos['nivelConfiabilidadCatalogo'] = $this->general_m->obtener_todo('nivelConfiabilidadCatalogo', 'nivelConfiabilidadId', 'descripcion');
 		
 		$datos['tipoPerpetradorN1Catalogo'] = $this->general_m->obtener_todo('tipoPerpetradorN1Catalogo', 'tipoPerpetradorN1Id', 'descripcion');
 		
@@ -87,6 +89,10 @@ class Casos_c extends CI_Controller {
 	   	$datos['tipoIntervencionN4Catalogo'] = $this->general_m->obtener_todo('tipoIntervencionN4Catalogo', 'tipoIntervencionN4Id', 'descripcion');
 
 	   	$datos['relacionesActoresCatalogo'] = $this->general_m->obtener_todo('relacionActores', 'relacionActoresId', 'relacionActoresId');
+		
+		$datos['tipoFuenteDocumentalN1Catalogo'] = $this->general_m->obtener_todo('tipoFuenteDocumentalN1Catalogo', 'tipoFuenteDocumentalN1CatalogoId', 'descripcion');
+		
+		$datos['tipoFuenteDocumentalN2Catalogo'] = $this->general_m->obtener_todo('tipoFuenteDocumentalN2Catalogo', 'tipoFuenteDocumentalN2CatalogoId', 'descripcion');
 		
         return $datos;
         

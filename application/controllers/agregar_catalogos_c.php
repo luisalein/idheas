@@ -13,7 +13,7 @@ class Agregar_catalogos_c extends CI_Controller {
     }
     
     public function index(){
-                    
+    	
         $this->cAgregarCatalogoDeOcupaciones();
         
         $this->cAgregarCatalogoGruposIndigenas();
@@ -63,6 +63,10 @@ class Agregar_catalogos_c extends CI_Controller {
 		$this->cAgregarCatalogoTipoLugarN3();
 		
 		$this->cAgregarCatalogoTipoRelacionCasos();
+		
+		$this->cAgregarCatalogoTipoFuenteDocumentalN1();
+		
+		$this->cAgregarCatalogoTipoFuenteDocumentalN2();
     }
     
     /*
@@ -679,6 +683,37 @@ class Agregar_catalogos_c extends CI_Controller {
 		 $this->agregar_catalogos_m->mAgregarCatalogos($filas);
         
         echo 'Catalogo de tipo lugar N3 insertado exitosamente.<br />';
+	}
+	
+	public function cAgregarCatalogoTipoFuenteDocumentalN1()
+	{
+		$catalogo =explode('&',read_file('statics/catalogos/catalogosFuenteDocumental/tipoFuenteDocumentalN1Catalogo.csv'));
+
+		foreach($catalogo as $filaCatalogo){
+                
+            $datos = explode('¬', $filaCatalogo);
+			
+            $filas['tipoFuenteDocumentalN1Catalogo'][trim($datos[0])] = array('descripcion' => trim($datos[1]),'notas' => trim($datos[2]));
+        }
+		 $this->agregar_catalogos_m->mAgregarCatalogos($filas);
+        
+        echo 'Catalogo de tipo fuente documental N1 insertado exitosamente.<br />';
+	}
+	
+	public function cAgregarCatalogoTipoFuenteDocumentalN2()
+	{
+		$catalogo =explode('&',read_file('statics/catalogos/catalogosFuenteDocumental/tipoFuenteDocumentalN2Catalogo.csv'));
+
+		foreach($catalogo as $filaCatalogo){
+                
+            $datos = explode('¬', $filaCatalogo);
+			
+            $filas['tipoFuenteDocumentalN2Catalogo'][trim($datos[0])] = array('descripcion' => trim($datos[1]),'notas' => trim($datos[2]),
+			'tipoFuenteDocumentalN1Catalogo_tipoFuenteDocumentalN1CatalogoId' => trim($datos[3]));
+        }
+		 $this->agregar_catalogos_m->mAgregarCatalogos($filas);
+        
+        echo 'Catalogo de tipo fuente documental N2 insertado exitosamente.<br />';
 	}
 }
 

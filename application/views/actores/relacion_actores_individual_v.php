@@ -81,7 +81,7 @@
 
 	<br /><br />
 	<div class="twelve columns">
-	<label for="PerRelacionada">Persona Relacionada</label><br />
+	<label for="PerRelacionada">Actor relacionado</label><br />
 	<div id="vistaActorRelacionado"  >
 	<?php if (isset($relaciones['actorRelacionadoId'])) {?> 
 	<?php if ($relaciones['actorRelacionadoId']!=0) {?> 
