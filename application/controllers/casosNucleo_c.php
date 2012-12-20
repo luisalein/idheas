@@ -4,10 +4,23 @@ class casosNucleo_c extends CI_Controller {
     
     function __construct() {
         parent::__construct();
+		
+		$this->load->library('session');
+        
+		$this->is_logged_in();
+		
           $this->load->model(array('actores_m', 'casos_m', 'catalogos_m', 'actores_m', 'general_m'));
     }
 /**Las siguientes funciones pertenecen a la parte de Nucleo Caso **/
 
+
+	private function is_logged_in(){
+		$logged_in = $this->session->userdata('logged_in');
+		if(!isset($logged_in) or $logged_in != TRUE){
+			redirect(base_url());
+		}
+	}
+	
     function index($casoId) /***Funcion que carga los detalles de la información personal***/
 	{
 		$this->load->helper(array('html', 'url'));					

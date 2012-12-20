@@ -43,8 +43,8 @@
 							  	} ?>
 			              	<?} }?>
 
-			              	<td><?php print_r($derecho['fechaInicial']); ?></td>
-			              	<td><?php print_r($derecho['fechaTermino']); ?></td>
+			              	<td><?=(isset($derecho['fechaInicial'])) ? $derecho['fechaInicial'] : " " ; ?></td>
+			              	<td><?=(isset($derecho['fechaTermino'])) ? $derecho['fechaTermino'] : " " ; ?></td>
 			                <td><input type="button" style="padding: 7px 19px 7px 19px"  class="small button"  value="Editar" onclick="ventanaDerAfectados('<?=$casoId; ?>', '<?=$index?>')" />
 			                <input type="button" style="margin-top: 5px;" class="small button"  value="Eliminar" onclick="eliminarDerechoAfectado('<?= $derecho['derechoAfectadoCasoId']?>', '<?=$casoId; ?>')" /></td>
 			              </tr><?php } }?><?php } ?>
