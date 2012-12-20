@@ -45,12 +45,12 @@
 
 			              	<td><?php print_r($derecho['fechaInicial']); ?></td>
 			              	<td><?php print_r($derecho['fechaTermino']); ?></td>
-			                <td><input type="button" class="small button"  value="Editar" onclick="ventanaDerAfectados('<?=$casoId; ?>', '<?=$index?>')" />
-			                <input type="button" class="tiny button"  value="Eliminar" onclick="eliminarDerechoAfectado('<?= $derecho['derechoAfectadoCasoId']?>', '<?=$casoId; ?>')" /></td>
+			                <td><input type="button" style="padding: 7px 19px 7px 19px"  class="small button"  value="Editar" onclick="ventanaDerAfectados('<?=$casoId; ?>', '<?=$index?>')" />
+			                <input type="button" style="margin-top: 5px;" class="small button"  value="Eliminar" onclick="eliminarDerechoAfectado('<?= $derecho['derechoAfectadoCasoId']?>', '<?=$casoId; ?>')" /></td>
 			              </tr><?php } }?><?php } ?>
 			            </tbody>
 			          </table>
-			    <input type="button" style="margin-top: 15px;" class="small button <?=$clase?>"  value="Nuevo " onclick="ventanaDerAfectados('<?=$casoId; ?>',0)" />
+			    <input type="button" class="small button <?=$clase?>"  value="Nuevo " onclick="ventanaDerAfectados('<?=$casoId; ?>',0)" />
 	  			</div>
 	  			  
 	  		</div>
