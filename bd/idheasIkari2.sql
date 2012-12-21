@@ -322,6 +322,8 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`fuenteInfoPersonal` (
   `actorReportado` INT NULL ,
   `observaciones` VARCHAR(1500) NULL ,
   `comentarios` VARCHAR(1500) NULL ,
+  `tipoRelacionActorReportadoId` INT NULL ,
+  `relacionId` INT NULL ,
   `casos_casoId` INT NOT NULL ,
   `tipoFuenteCatalogo_tipoFuenteId` INT NOT NULL ,
   `nivelConfiabilidadCatalogo_nivelConfiabilidadId` INT NOT NULL ,
@@ -904,7 +906,8 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`casos_has_actores` (
   `casos_casoId` INT NOT NULL ,
   `actores_actorId` INT NOT NULL ,
-  PRIMARY KEY (`casos_casoId`, `actores_actorId`) ,
+  `casoActorId` INT NOT NULL AUTO_INCREMENT ,
+  PRIMARY KEY (`casoActorId`, `casos_casoId`, `actores_actorId`) ,
   INDEX `fk_casos_has_actores_actores1_idx` (`actores_actorId` ASC) ,
   INDEX `fk_casos_has_actores_casos1_idx` (`casos_casoId` ASC) ,
   CONSTRAINT `fk_casos_has_actores_casos1`
@@ -1185,21 +1188,18 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoFuenteDocumental` (
   `infoAdicional` VARCHAR(3000) NULL ,
   `url` VARCHAR(100) NULL ,
   `actorReportado` INT NULL ,
+  `tipoActorReportadoId` INT NULL ,
+  `relacionId` INT NULL ,
+  `tipoFuenteDocumentalCatalogoId` INT NULL ,
+  `tipoFuenteDocumentalCatalogoNivel` INT NULL ,
   `casos_casoId` INT NOT NULL ,
-  `tipoFuenteCatalogo_tipoFuenteId` INT NOT NULL ,
   `nivelConfiabilidadCatalogo_nivelConfiabilidadId` INT NOT NULL ,
   PRIMARY KEY (`tipoFuenteDocumentalId`) ,
   INDEX `fk_tipoFuenteDocumental_casos1_idx` (`casos_casoId` ASC) ,
-  INDEX `fk_tipoFuenteDocumental_tipoFuenteCatalogo1_idx` (`tipoFuenteCatalogo_tipoFuenteId` ASC) ,
   INDEX `fk_tipoFuenteDocumental_nivelConfiabilidadCatalogo1_idx` (`nivelConfiabilidadCatalogo_nivelConfiabilidadId` ASC) ,
   CONSTRAINT `fk_tipoFuenteDocumental_casos1`
     FOREIGN KEY (`casos_casoId` )
     REFERENCES `idheasIkari`.`casos` (`casoId` )
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_tipoFuenteDocumental_tipoFuenteCatalogo1`
-    FOREIGN KEY (`tipoFuenteCatalogo_tipoFuenteId` )
-    REFERENCES `idheasIkari`.`tipoFuenteCatalogo` (`tipoFuenteId` )
     ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_tipoFuenteDocumental_nivelConfiabilidadCatalogo1`
@@ -1273,6 +1273,35 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`relacionCasosCatalogo` (
   `descripcion` VARCHAR(100) NULL ,
   `notas` VARCHAR(45) NULL ,
   PRIMARY KEY (`relacionCasosId`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `idheasIkari`.`tipoFuenteDocumentalN1Catalogo`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoFuenteDocumentalN1Catalogo` (
+  `tipoFuenteDocumentalN1CatalogoId` INT NOT NULL AUTO_INCREMENT ,
+  `descripcion` VARCHAR(100) NULL ,
+  `notas` VARCHAR(1000) NULL ,
+  PRIMARY KEY (`tipoFuenteDocumentalN1CatalogoId`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `idheasIkari`.`tipoFuenteDocumentalN2Catalogo`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoFuenteDocumentalN2Catalogo` (
+  `tipoFuenteDocumentalN2CatalogoId` INT NOT NULL AUTO_INCREMENT ,
+  `descripcion` VARCHAR(100) NULL ,
+  `notas` VARCHAR(1000) NULL ,
+  `tipoFuenteDocumentalN1Catalogo_tipoFuenteDocumentalN1CatalogoId` INT NOT NULL ,
+  PRIMARY KEY (`tipoFuenteDocumentalN2CatalogoId`) ,
+  INDEX `fk_tipoFuenteDocumentalN2Catalogo_tipoFuenteDocumentalN1Catal1` (`tipoFuenteDocumentalN1Catalogo_tipoFuenteDocumentalN1CatalogoId` ASC) ,
+  CONSTRAINT `fk_tipoFuenteDocumentalN2Catalogo_tipoFuenteDocumentalN1Catal1`
+    FOREIGN KEY (`tipoFuenteDocumentalN1Catalogo_tipoFuenteDocumentalN1CatalogoId` )
+    REFERENCES `idheasIkari`.`tipoFuenteDocumentalN1Catalogo` (`tipoFuenteDocumentalN1CatalogoId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
