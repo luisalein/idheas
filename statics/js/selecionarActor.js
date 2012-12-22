@@ -69,11 +69,15 @@ function SeleccionarYTreaeRelaciones(title){
     notas="ventanaColectivoRelacionados('"+n[0]+"','')";
     window.opener.document.getElementById('vistaActorRelacionado').innerHTML = ('<div class="three columns"><img style="width:120px !important; height:150px !important;" src="'+base+n[2]+'" /></div><b><h4>'+n[1]+'</h4></b>');
     window.opener.document.getElementById('vistaActorRelacionadoPerpetrador').innerHTML = ('<input type="button" class="tiny button" value="Seleccionar relación" onclick="'+notas+'" />');
+    var nameDeLaRelacion= window.opener.document.getElementById('nameDeLaRelacion').value;
+    notas2="eliminarRelacionVista('vistaActorRelacionadoPerpetrador','"+nameDeLaRelacion+"')";
+    window.opener.document.getElementById('BotonesColectivo').innerHTML = ('<input type="button" class="tiny button" value="Seleccionar relación" onclick="'+notas+'" /><input type="button" value="Eliminar" onclick='+notas2+' class="tiny button"> ');
+    window.opener.document.getElementById('vistaActorRelacionadoPerpetrador').innerHTML = (' ');
 }    
 
 function eliminarRelacionVista(id,name,id2,name2){  
-    //alert(name);
     document.getElementById(name).value = 0;
+alert(name);
     document.getElementById(id).innerHTML = (" ");
     document.getElementById(id2).innerHTML = (" ");
     document.getElementById(name2).value = 0;

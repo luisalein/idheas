@@ -805,7 +805,7 @@ function pintaColectivosInfoDocumental(){
 	$('#infoColectio').addClass("Escondido");
 	document.getElementById('actorReportado').innerHTML =" ";
     notas="seleccionarActorseleccionarColDatos('4')";
-    notas2="eliminarRelacionVista('eliminarVistaActor','tipoFuenteDocumental_actorReportado')";
+    notas2="eliminarRelacionVista('actorReportado','tipoFuenteDocumental_actorReportado','infoColectio','fuenteDocumental_relacionId')";
 	document.getElementById('actorReportadoBotones').innerHTML = ('<div class="nine columns"><input type="button" class="tiny button" value="Seleccionar actor" onclick="'+notas+'" /></div>'+
 		'<div class="three columns" id="eliminarVistaActor"><input type="button" class="tiny button" value="Eliminar Actor" onclick="'+notas2+'" /></div>');
 	//alert('algo');

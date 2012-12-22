@@ -24,7 +24,7 @@
 						</div>
 					<?php }?>
 					<div  class="twelve columns">
-						<form action="<?= base_url(); ?>index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/0/1" method="post" >
+						<form action="<?= base_url(); ?>index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/0/1/<?=$casoId?>" method="post" >
 							<center><input class="small button " value="Nueva víctima" type="submit"></center>
 						</form>
 					</div>

@@ -214,10 +214,10 @@
                         <tbody>
                             <?php if(isset($citaActor['citas'])){
                                 foreach($citaActor['citas'] as $citas){ 
-                                    if ($citas['datosCitas']['tipoRelacionIndividualColectivoId']==2) {?>
+                                    if ($citas['datosCitas']['tipoRelacionIndividualColectivoId']<3) {?>
                                         <tr>
                                             <td><?=$catalogos['listaTodosActores'][$citas['datosCitas']['actores_actorId']]['nombre']." ".$catalogos['listaTodosActores'][$citas['datosCitas']['actores_actorId']]['apellidosSiglas']?></td>
-                                            <td><?=$catalogos['relacionActoresCatalogo'][$citas['datosCitas']['tipoRelacionId']]['Nivel2']; ?></td>
+                                            <td><?=($citas['datosCitas']['tipoRelacionIndividualColectivoId']==2) ? $catalogos['relacionActoresCatalogo'][$citas['datosCitas']['tipoRelacionId']]['Nivel2'] : $catalogos['relacionActoresCatalogo'][$citas['datosCitas']['tipoRelacionId']]['nombre'] ;?> </td>
                                             <td><?=$datosActor['actores']['nombre'].' '.$datosActor['actores']['apellidosSiglas']; ?></td>
                                             <td><?=$citas['datosCitas']['fechaInicial']; ?></td>
                                             <td><?=$citas['datosCitas']['fechaTermino']; ?></td>
