@@ -626,7 +626,7 @@ class Casos_m extends CI_Model {
 					
 					$this->db->select('nombre,fechaInicial,fechaTermino');
 					$this->db->from('casos');
-					$this->db->where('casoIdB', $row['casoIdB']);
+					$this->db->where('casoId', $row['casos_casoId']);
 					$consultaCaso = $this->db->get();
 					
 					if ($consultaCaso->num_rows() > 0){
