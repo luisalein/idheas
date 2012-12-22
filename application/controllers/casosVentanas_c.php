@@ -378,10 +378,23 @@ class CasosVentanas_c extends CI_Controller {
 				if($_POST['editar'] == 1){
 					if (isset($datos['intervenciones'])) {
 						$mensaje =  $this->casos_m->mActualizaDatosIntervencion($datos['intervenciones'],$datos['intervenciones']['intervencionId']);
+						
+						$data1 = array('casos_casoId'=>$_POST['casoId'],'actores_actorId'=>$datos['intervenciones']['interventorId'],'casoActorId'=>$_POST['casoActorIdInterventor']);
+		
+						$this->casos_m->mActualizaRelacionCasoActor($data1);
+						
+						$data2 = array('casos_casoId'=>$_POST['casoId'],'actores_actorId'=>$datos['intervenciones']['receptorId'],'casoActorId'=>$_POST['casoActorIdReceptor']);
+		
+						$this->casos_m->mActualizaRelacionCasoActor($data2);
 					}
 					
 					if (isset($datos['intervenidos'])) {
 						$mensaje = $mensaje . $this->casos_m->mActualizaDatosIntervenido($datos['intervenidos'],$datos['intervenidos']['intervenidoId']);
+						
+						$data = array('casos_casoId'=>$_POST['casoId'],'actores_actorId'=>$datos['intervenidos']['actorIntervenidoId'],'casoActorId'=>$_POST['casoActorIdIntervenido']);
+		
+						$this->casos_m->mActualizaRelacionCasoActor($data);		
+			
 					}
 				}else{
 					$data1['casos_has_actores']= array('casos_casoId' =>$_POST['casoId'],'actores_actorId'=>$datos['intervenciones']['interventorId']);
@@ -401,6 +414,15 @@ class CasosVentanas_c extends CI_Controller {
 			case(5): 
 				if($_POST['editar'] == 1){
 					$mensaje = $this->casos_m->mActualizaDatosFuenteInfoPersonal($datos['fuenteInfoPersonal'],$datos['fuenteInfoPersonal']['fuenteInfoPersonalId']);
+			
+					$data1 = array('casos_casoId'=>$_POST['casoId'],'actores_actorId'=>$datos['fuenteInfoPersonal']['actorId'],'casoActorId'=>$_POST['casoActorIdActor']);
+		
+					$this->casos_m->mActualizaRelacionCasoActor($data1);
+						
+					$data2 = array('casos_casoId'=>$_POST['casoId'],'actores_actorId'=>$datos['fuenteInfoPersonal']['actorReportado'],'casoActorId'=>$_POST['casoActorIdActorReportado']);
+		
+					$this->casos_m->mActualizaRelacionCasoActor($data2);	
+					
 				}else{
 					
 					$data1['casos_has_actores']= array('casos_casoId' =>$_POST['casoId'],'actores_actorId'=>$datos['fuenteInfoPersonal']['actorId']);
@@ -420,13 +442,14 @@ class CasosVentanas_c extends CI_Controller {
 			case(6):
 				if($_POST['editar'] == 1){
 					$mensaje = $this->casos_m->mActualizaDatosTipoFuenteDocumental($datos['tipoFuenteDocumental'],$datos['tipoFuenteDocumental']['tipoFuenteDocumentalId']);
-				}else{
-					$data1['casos_has_actores']= array('casos_casoId' =>$_POST['casoId'],'actores_actorId'=>$datos['tipoFuenteDocumental']['actorId']);
-							
-					$data2['casos_has_actores']= array('casos_casoId' =>$_POST['casoId'],'actores_actorId'=>$datos['tipoFuenteDocumental']['actorReportado']);
-													
-					$this->general_m->llenar_tabla_m($data1);
 					
+					$data = array('casos_casoId'=>$_POST['casoId'],'actores_actorId'=>$datos['tipoFuenteDocumental']['actorReportado'],'casoActorId'=>$_POST['casoActorIdActorReportado']);
+		
+					$this->casos_m->mActualizaRelacionCasoActor($data);				
+	
+				}else{
+					$data2['casos_has_actores']= array('casos_casoId' =>$_POST['casoId'],'actores_actorId'=>$datos['tipoFuenteDocumental']['actorReportado']);
+																		
 					$this->general_m->llenar_tabla_m($data2);
 					 
 					$datos6['tipoFuenteDocumental'] = $datos['tipoFuenteDocumental'];
@@ -626,18 +649,24 @@ class CasosVentanas_c extends CI_Controller {
 		return $mensaje;
 	}
 	
-	public function eliminarFuenteInfoPersonal($fuenteInfoPersonalId,$idCaso){
+	public function eliminarFuenteInfoPersonal($fuenteInfoPersonalId,$idCaso,$casoActorIdActorId,$actorReportado){
 			
 		$mensaje =  $this->casos_m->mEliminaFuenteInfoPersonal($fuenteInfoPersonalId);
+		
+		$this->casos_m->mEliminarRelacionCasoActor($casoActorIdActorId);
+		
+		$this->casos_m->mEliminarRelacionCasoActor($actorReportado);
 		
 		redirect(base_url().'index.php/casos_c/mostrar_caso/'.$idCaso);
 		
 		return $mensaje;
 	}
 	
-	public function eliminarFuenteInfoDocumental($tipoFuenteDocumentalId,$idCaso){
+	public function eliminarFuenteInfoDocumental($tipoFuenteDocumentalId,$idCaso,$actorReportado){
 		
-		$mensaje =  $this->casos_m->mEliminaTipoFuenteDocumental($tipoFuenteDocumentalId);
+		$mensaje =  $this->casos_m->mEliminaTipoFuenteDocumental($tipoFuenteDocumentalId);		
+		
+		$this->casos_m->mEliminarRelacionCasoActor($actorReportado);
 		
 		redirect(base_url().'index.php/casos_c/mostrar_caso/'.$idCaso);
 		

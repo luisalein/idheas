@@ -388,9 +388,9 @@ class Casos_c extends CI_Controller {
 
         } 
 		
-		$datos['casos_has_actores']['casos_casoId']=$_POST['casoId'];
-		
-		$datos['casos_has_actores']['actores_actorId']=$datos['victimas']['actorId'];
+		$data['casos_has_actores']= array('casos_casoId' =>$_POST['casoId'],'actores_actorId'=>$datos['victimas']['actorId']);
+																		
+		$this->general_m->llenar_tabla_m($data);
 		
 		$datos['victimas']['actos_actoId'] = $idActo;
 		
@@ -493,10 +493,9 @@ class Casos_c extends CI_Controller {
 
         } 
 		
-		
-		$datos['casos_has_actores']['casos_casoId']=$_POST['casoId'];
-		
-		$datos['casos_has_actores']['actores_actorId']=$datos['perpetradores']['perpetradorId'];
+		$data['casos_has_actores']= array('casos_casoId' =>$_POST['casoId'],'actores_actorId'=>$datos['perpetradores']['perpetradorId']);
+																		
+		$this->general_m->llenar_tabla_m($data);
 		
 		$datos['perpetradores']['victimas_victimaId'] = $idVictima;
 		
