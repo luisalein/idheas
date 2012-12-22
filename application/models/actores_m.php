@@ -1283,7 +1283,7 @@
 		 /* Este modelo elimina la direccion de un actor 
 		  * $direccionId [INT]
 		  * */ 
-	 	 public function mEliminarDireccionActor($direccionId)		  {
+	 	 public function mEliminarDireccionActor($direccionId){
 			$this->db->where('direccionId', $direccionId);
 			if($this->db->delete('direccionActor')){
 				/* Regresa la cadena al controlador*/
