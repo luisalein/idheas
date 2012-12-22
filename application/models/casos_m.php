@@ -572,7 +572,8 @@ class Casos_m extends CI_Model {
 	 * @param $casoId
 	 * */
     public function mTraeRelacionesCaso($casoId){
-			
+		
+		/*Trae datos relacion directa*/	
 		$this->db->select('*');
 		$this->db->from('relacionCasos');
 		$this->db->where('casos_casoId',$casoId);
@@ -609,7 +610,8 @@ class Casos_m extends CI_Model {
 				}
 				
 		}
-		
+	
+		/*Trae datos relacion citada*/
 		$this->db->select('*');
 		$this->db->from('relacionCasos');
 		$this->db->where('casoIdB',$casoId);
@@ -624,7 +626,7 @@ class Casos_m extends CI_Model {
 					
 					$this->db->select('nombre,fechaInicial,fechaTermino');
 					$this->db->from('casos');
-					$this->db->where('casoId', $row['casoIdB']);
+					$this->db->where('casoId', $row['casos_casoId']);
 					$consultaCaso = $this->db->get();
 					
 					if ($consultaCaso->num_rows() > 0){
@@ -633,9 +635,9 @@ class Casos_m extends CI_Model {
 						}	
 					}
 					
-					$relacionesIdB[$casoId]['nombreCasoIdB'] = $nombreCaso['nombre']; 
-					$relacionesIdB[$casoId]['fechaIncial'] = $nombreCaso['fechaInicial'];
-					$relacionesIdB[$casoId]['fechaTermino'] = $nombreCaso['fechaTermino'];
+					$relacionesIdB[$casoId]['nombreCasoId'] = $nombreCaso['nombre']; 
+					$relacionesIdB[$casoId]['fechaIncialCasoId'] = $nombreCaso['fechaInicial'];
+					$relacionesIdB[$casoId]['fechaTerminoCasoId'] = $nombreCaso['fechaTermino'];
 					
 				}
 		}

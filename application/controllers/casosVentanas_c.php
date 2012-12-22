@@ -182,9 +182,6 @@ class CasosVentanas_c extends CI_Controller {
 		$datos['datosCaso'] = $this->casos_m->mTraerDatosCaso($casoId);
 
 		if ($i>0) {
-			// echo "<pre>";
-			// print_r($datos['datosCaso']['tipoFuenteDocumental']);
-			// echo "</pre>";
 			$datos['fuenteDocumental']=$datos['datosCaso']['tipoFuenteDocumental'][$i];
 
 		}
@@ -392,8 +389,6 @@ class CasosVentanas_c extends CI_Controller {
 			
 			case(5): 
 				if($_POST['editar'] == 1){
-					// echo "<pre>"; print_r($_POST);echo "</pre>";
-					// echo "<pre>"; print_r($datos['fuenteInfoPersonal']);echo "</pre>";
 					$mensaje = $this->casos_m->mActualizaDatosFuenteInfoPersonal($datos['fuenteInfoPersonal'],$datos['fuenteInfoPersonal']['fuenteInfoPersonalId']);
 				}else{
 					$datos5['fuenteInfoPersonal'] = $datos['fuenteInfoPersonal'];
@@ -403,8 +398,6 @@ class CasosVentanas_c extends CI_Controller {
             break;
 			
 			case(6):
-					echo "<pre>"; print_r($_POST);echo "</pre>";
-					echo "<pre>"; print_r($datos['tipoFuenteDocumental']);echo "</pre>";
 				if($_POST['editar'] == 1){
 					$mensaje = $this->casos_m->mActualizaDatosTipoFuenteDocumental($datos['tipoFuenteDocumental'],$datos['tipoFuenteDocumental']['tipoFuenteDocumentalId']);
 				}else{ 
@@ -416,6 +409,7 @@ class CasosVentanas_c extends CI_Controller {
         
             case(7):
 				if($_POST['editar'] == 1){
+					print_r($datos['relacionCasos']);
 	            	$mensaje = $this->casos_m->mActualizaDatosRelacionCaso($datos['relacionCasos']['relacionId'],$datos['relacionCasos']);
 				}else{
 					if(isset($datos['casoSeleccionado']['seleccionado']) && $datos['casoSeleccionado']['seleccionado'] == 1){

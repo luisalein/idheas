@@ -123,8 +123,6 @@ class Casos_c extends CI_Controller {
             $datos['datosCaso'] = $this->casos_m->mTraerDatosCaso($casoId);
 			
 			$datos['datosCaso']['relacionCasos'] = $this->casos_m->mTraeRelacionesCaso($casoId);
-			//echo "<pre>";
-            print_r($datos['datosCaso']['relacionCasos'] );
         }
         $datos['is_active'] = 'casos';
         
