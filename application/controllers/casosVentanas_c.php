@@ -348,8 +348,8 @@ class CasosVentanas_c extends CI_Controller {
 					if(isset($datos['actos'])){
 						$mensaje = $this->casos_m->mActualizaDatosActo($datos['actos'],$datos['actos']['actoId']);
 					}
-					if(empty($datos3['derechoAfectado']['paisesCatalogo_paisId'])){
-							$datos3['derechoAfectado']['paisesCatalogo_paisId']=NULL;
+					if(empty($datos['derechoAfectado']['paisesCatalogo_paisId'])){
+							unset($datos['derechoAfectado']['paisesCatalogo_paisId']);
 					}
 					$mensaje = $mensaje . $this->casos_m->mActualizaDatosDerechoAfectado($datos['derechoAfectado'],$datos['derechoAfectado']['derechoAfectadoCasoId']);
 				}else{
@@ -358,7 +358,7 @@ class CasosVentanas_c extends CI_Controller {
 						$datos3['derechoAfectado'] =  $datos['derechoAfectado'];
 						
 						if(empty($datos3['derechoAfectado']['paisesCatalogo_paisId'])){
-							$datos3['derechoAfectado']['paisesCatalogo_paisId']=NULL;
+							unset($datos['derechoAfectado']['paisesCatalogo_paisId']);
 						}
 						$Id = $this->casos_m->mAgregarDerechosAfectados($datos3);
 						$datos['actos']['derechoAfectado_derechoAfectadoCasoId']=$Id;
@@ -479,7 +479,7 @@ class CasosVentanas_c extends CI_Controller {
             break;
             
         }
-        if (!isset($botonVictimas)) {
+       if (!isset($botonVictimas)) {
 		echo "<script languaje='javascript' type='text/javascript'>
 		window.opener.location.reload();
 		window.close();
@@ -491,7 +491,6 @@ class CasosVentanas_c extends CI_Controller {
 		</script>";
         	redirect(base_url().'index.php/casosVentanas_c/derechosAfectados/'.$datos['lugares']['casos_casoId'].'/'.$Id);
         }
-			
 		
 		return $mensaje;
 	}
