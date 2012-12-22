@@ -594,11 +594,13 @@ class Casos_m extends CI_Model {
 						foreach ($consultaCaso->result_array() as $row3) {
 							$nombreCaso = $row3;
 						}	
+						
+						$relaciones[$casoId]['nombreCasoIdB'] = $nombreCaso['nombre']; 
+						$relaciones[$casoId]['fechaIncial'] = $nombreCaso['fechaInicial'];
+						$relaciones[$casoId]['fechaTermino'] = $nombreCaso['fechaTermino'];
 					}
 					
-					$relaciones[$casoId]['nombreCasoIdB'] = $nombreCaso['nombre']; 
-					$relaciones[$casoId]['fechaIncial'] = $nombreCaso['fechaInicial'];
-					$relaciones[$casoId]['fechaTermino'] = $nombreCaso['fechaTermino'];
+					
 					
 					
 				}
