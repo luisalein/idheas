@@ -1418,9 +1418,23 @@ class Casos_m extends CI_Model {
 							foreach ($consultaPerpetradores->result_array() as $datosPerpetradores) {
 								$datos['victimas'][$victimas['victimaId']]['perpetradores'][$datosPerpetradores['perpetradorVictimaId']]=$datosPerpetradores;
 							}	
-						}/* fin if $consultaPerpetradores */		
+						}/* fin if $consultaPerpetradores */	
+						
+						$this->db->select('*');
+						$this->db->from('casos_has_actores');
+						$this->db->where('actores_actorId',$victimas['actorId']);
+						$consultaCasosActor = $this->db->get();
+						
+						if($consultaCasosActor->num_rows() > 0){
+							foreach ($consultaCasosActor->result_array() as $valor) {
+								//print_r($valor);
+								$datos['victimas'][$victimas['victimaId']]['casosActor'][$valor['casoActorId']]=$valor;
+							}
+						}	
 					}
 				}/* fin if consultaActores*/		
+				
+				
 				
 			}/*fin for each consultaVictimas */
 			
@@ -1645,6 +1659,34 @@ class Casos_m extends CI_Model {
 			$mensaje['error'] = $this->db->_error_message();
 			/* Regresa la cadena al controlador*/
         	return $mensaje;
+		}
+	}
+	
+	public function mActualizaRelacionCasoActor($datosRelacion){
+		
+		$this->db->where('casoActorId', $datosRelacion['casoActorId']);
+		if($this->db->update('casos_has_actores',$datosRelacion)){
+			/* Regresa la cadena al controlador*/
+			return ($mensaje = 'Hecho');
+		}else{
+			$mensaje['error'] = $this->db->_error_message();
+			/* Regresa la cadena al controlador*/
+        	return $mensaje;
+		}
+	}
+	
+	public function mEliminarRelacionCasoActor($casoActorId){
+		$this->db->where('casos_has_actores', $casoActorId);
+		if($this->db->delete('casos_has_actores')){
+			/* Regresa la cadena al controlador*/
+			return ($mensaje = 'Hecho');
+			
+		}else{
+			
+			$mensaje['error'] = $this->db->_error_message();
+			/* Regresa la cadena al controlador*/
+        	return $mensaje;
+			
 		}
 	}
 	 
