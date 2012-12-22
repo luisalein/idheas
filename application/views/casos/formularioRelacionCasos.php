@@ -35,7 +35,7 @@
 							<td><?=$datosCaso['relacionCasos'][$id]['nombreCasoIdB']?></td>
 							<td><?=$datosCaso['relacionCasos'][$id]['fechaIncial']?></td>
 							<td><?=$datosCaso['relacionCasos'][$id]['fechaTermino']?></td>
-							<input type="hidden" name="relacionCasos_casoIdB" value="<?=$datosCaso['relacionCasos'][$id]['relacionId']?>"/>
+							<input type="hidden" name="relacionCasos_casoIdB" value="<?=$datosCaso['relacionCasos'][$id]['casoIdB']?>"/>
 						<?php endif;?>	
 					</tr>
 					
