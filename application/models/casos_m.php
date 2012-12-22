@@ -582,22 +582,24 @@ class Casos_m extends CI_Model {
 		if ($consulta->num_rows() > 0){				
 				/* Pasa la consulta a un cadena */
 				foreach ($consulta->result_array() as $row) {
-                    $relaciones[$casoId] = $row;
+					
+                    $relaciones[$row['casoIdB']] = $row;
                     //$relaciones[$casoId]['casoIdB'] = $this->db->select('*')->from('casos')->where('casoId', $row['casoIdB'])->get()->result_array();
 					
 					$this->db->select('nombre,fechaInicial,fechaTermino');
 					$this->db->from('casos');
 					$this->db->where('casoId', $row['casoIdB']);
 					$consultaCaso = $this->db->get();
-					
+					// echo 'hola';
+					// print_r($consultaCaso->resul_array());
 					if ($consultaCaso->num_rows() > 0){
 						foreach ($consultaCaso->result_array() as $row3) {
 							$nombreCaso = $row3;
 						}	
 						
-						$relaciones[$casoId]['nombreCasoIdB'] = $nombreCaso['nombre']; 
-						$relaciones[$casoId]['fechaIncial'] = $nombreCaso['fechaInicial'];
-						$relaciones[$casoId]['fechaTermino'] = $nombreCaso['fechaTermino'];
+						$relaciones[$row['casoIdB']]['nombreCasoIdB'] = $nombreCaso['nombre']; 
+						$relaciones[$row['casoIdB']]['fechaIncial'] = $nombreCaso['fechaInicial'];
+						$relaciones[$row['casoIdB']]['fechaTermino'] = $nombreCaso['fechaTermino'];
 					}
 					
 					
