@@ -597,6 +597,7 @@ class Casos_m extends CI_Model {
 							$nombreCaso = $row3;
 						}	
 						
+						
 						$relaciones[$row['casoIdB']]['nombreCasoIdB'] = $nombreCaso['nombre']; 
 						$relaciones[$row['casoIdB']]['fechaIncial'] = $nombreCaso['fechaInicial'];
 						$relaciones[$row['casoIdB']]['fechaTermino'] = $nombreCaso['fechaTermino'];
