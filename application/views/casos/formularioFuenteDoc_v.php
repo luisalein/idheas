@@ -135,7 +135,12 @@
 
 					<div class="twelve columns espacioSuperior" id="actorReportado">
 						<?php if (isset($fuenteDocumental['actorReportado']) && ($fuenteDocumental['actorReportado']>0)) {?>
-						<div class="three columns"><img class="foto" src="<?= base_url().$catalogos['listaTodosActores'][$fuenteDocumental['actorReportado']]['foto']?>" /></div><b><h4><?= (isset($catalogos['listaTodosActores'][$fuenteDocumental['actorReportado']]['nombre'])) ? $catalogos['listaTodosActores'][$fuenteDocumental['actorReportado']]['nombre'] : " " ; ?>  <?= (isset($fuenteDocumental['actorReportado'])) ? $catalogos['listaTodosActores'][$fuenteDocumental['actorReportado']]['apellidosSiglas'] :  '' ;?></h4></b>
+						<div class="three columns">
+							<img class="foto" src="<?= base_url().$catalogos['listaTodosActores'][$fuenteDocumental['actorReportado']]['foto']?>" />
+						</div>
+						<b>
+							<h4><?= (isset($catalogos['listaTodosActores'][$fuenteDocumental['actorReportado']]['nombre'])) ? $catalogos['listaTodosActores'][$fuenteDocumental['actorReportado']]['nombre'] : " " ; ?>  <?= (isset($fuenteDocumental['actorReportado'])) ? $catalogos['listaTodosActores'][$fuenteDocumental['actorReportado']]['apellidosSiglas'] :  '' ;?></h4>
+						</b>
 						<?php }?>
 					</div>
 
@@ -149,7 +154,7 @@
 							</div>
 							<div id="eliminarVistaActor" class="three columns">
 								<?php if (isset($fuenteDocumental['actorReportado']) && ($fuenteDocumental['actorReportado']>0)) {?>
-									<input class="tiny button" type="button" onclick="eliminarRelacionVista('eliminarVistaActor','fuenteDocumental_actorReportado','infoColectio','fuenteDocumental_relacionId')" value="Eliminar Actor">
+									<input class="tiny button" type="button" onclick="eliminarRelacionVista('actorReportado','tipoFuenteDocumental_actorReportado','infoColectio','fuenteDocumental_relacionId')" value="Eliminar Actor">
 								<?php }?>
 							</div>
 					</div>
