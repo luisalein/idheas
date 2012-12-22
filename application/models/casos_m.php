@@ -581,7 +581,23 @@ class Casos_m extends CI_Model {
 				/* Pasa la consulta a un cadena */
 				foreach ($consulta->result_array() as $row) {
                     $relaciones[$casoId] = $row;
-                    $relaciones[$casoId]['casoIdB'] = $this->db->select('*')->from('casos')->where('casoId', $row['casoIdB'])->get()->result_array();
+                    //$relaciones[$casoId]['casoIdB'] = $this->db->select('*')->from('casos')->where('casoId', $row['casoIdB'])->get()->result_array();
+					
+					$this->db->select('nombre,fechaInicial,fechaTermino');
+					$this->db->from('casos');
+					$this->db->where('casoId', $row['casoIdB']);
+					$consultaCaso = $this->db->get();
+					
+					if ($consultaCaso->num_rows() > 0){
+						foreach ($consultaCaso->result_array() as $row3) {
+							$nombreCaso = $row3;
+						}	
+					}
+					
+					$relaciones[$casoId]['nombreCasoIdB'] = $nombreCaso['nombre']; 
+					$relaciones[$casoId]['fechaIncial'] = $nombreCaso['fechaInicial'];
+					$relaciones[$casoId]['fechaTermino'] = $nombreCaso['fechaTermino'];
+					
 					
 				}
 				
@@ -597,7 +613,22 @@ class Casos_m extends CI_Model {
 				/* Pasa la consulta a un cadena */
 				foreach ($consulta->result_array() as $row) {
                     $relacionesIdB[$casoId] = $row;
-                    $relacionesIdB[$casoId]['casoIdB'] = $this->db->select('*')->from('casos')->where('casoId', $row['casos_casoId'])->get()->result_array();
+                    //$relacionesIdB[$casoId]['casoIdB'] = $this->db->select('*')->from('casos')->where('casoId', $row['casos_casoId'])->get()->result_array();
+					
+					$this->db->select('nombre,fechaInicial,fechaTermino');
+					$this->db->from('casos');
+					$this->db->where('casoId', $row['casoIdB']);
+					$consultaCaso = $this->db->get();
+					
+					if ($consultaCaso->num_rows() > 0){
+						foreach ($consultaCaso->result_array() as $row3) {
+							$nombreCaso = $row3;
+						}	
+					}
+					
+					$relacionesIdB[$casoId]['nombreCasoIdB'] = $nombreCaso['nombre']; 
+					$relacionesIdB[$casoId]['fechaIncial'] = $nombreCaso['fechaInicial'];
+					$relacionesIdB[$casoId]['fechaTermino'] = $nombreCaso['fechaTermino'];
 					
 				}
 		}
