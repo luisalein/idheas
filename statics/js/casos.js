@@ -39,14 +39,14 @@ function ventanaRelacionCasos(casoId, indice){
 	window.open(base+'index.php/casosVentanas_c/relacionCasos/'+casoId+'/'+indice+'/', 'Relacion casos', windowSizeArray);
 	};
 
-function ventanaVictimas(casoId){
+function ventanaVictimas(actoId,casoId){
 	  var windowSizeArray = [ "width=900,height=700,scrollbars=yes" ];
-	window.open(base+'index.php/casos_c/mostrarVictimas/'+casoId+'/0/0', 'Ventana victimas', windowSizeArray);
+	window.open(base+'index.php/casos_c/mostrarVictimas/'+actoId+'/0/0/'+casoId, 'Ventana victimas', windowSizeArray);
 	};
 
-function ventanaPerpetradores(casoId,victimaId,perpetradorId){
+function ventanaPerpetradores(actoId,victimaId,perpetradorId,casoId){
 	  var windowSizeArray = [ "width=950,height=700,scrollbars=yes" ];
-	window.open(base+'index.php/casos_c/mostrarPerpetrador/'+casoId+'/'+victimaId+'/'+perpetradorId, 'Ventana perpetradores', windowSizeArray);
+	window.open(base+'index.php/casos_c/mostrarPerpetrador/'+actoId+'/'+victimaId+'/'+perpetradorId+'/'+casoId, 'Ventana perpetradores', windowSizeArray);
 	};
 
 /******************************************/

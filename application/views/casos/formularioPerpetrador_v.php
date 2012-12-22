@@ -27,6 +27,7 @@
 	
 			<input type="hidden" name="perpetradores_actorRelacionadoId" value="<?= (isset($perpetrador['actorRelacionadoId'])) ? $perpetrador['actorRelacionadoId'] : " " ;?>" id="perpetradores_actorRelacionadoId" >
 
+			<input type="hidden" value="<?=$casoId?>" id="casoId" >
 
 
 			<fieldset>

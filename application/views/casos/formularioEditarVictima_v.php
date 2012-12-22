@@ -9,7 +9,7 @@
 			<div class="four columns"> 	<!--Lista de victimas-->
 					<div class="twelve columns espacioSuperior">
 						<div class="six columns">
-							<form action="<?= base_url(); ?>index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/0/1" method="post">
+							<form action="<?= base_url(); ?>index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/0/1/<?=$casoId?>" method="post">
 								<center><input class="small button" value="Nueva víctima" type="submit"></center>
 							</form>
 						</div>
@@ -20,7 +20,7 @@
 								</form>
 							</div>
 							<div class="twelve columns">
-								<form action="http://localhost/idheas/index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/<?=$idVictima; ?>/1" method="post">
+								<form action="http://localhost/idheas/index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/<?=$idVictima; ?>/1/<?=$casoId?>" method="post">
 									<center><input class="small button" value="Editar víctima" type="submit"></center>
 								</form>
 							</div>
@@ -34,7 +34,7 @@
 				<div class="twelve columns lineasLista" >
 					<?php if (isset($victimas['victimas']) && ($victimas['victimas']!=0)) {
 						foreach ($victimas['victimas'] as $victima) { ?>
-							 <a href="<?=base_url(); ?>index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/<?=$victima['victimaId']; ?>/0">
+							 <a href="<?=base_url(); ?>index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/<?=$victima['victimaId']; ?>/0/<?=$casoId?>">
 							 	<div class="<?= $idVictima==($victima['actorId']) ? "victimaSeleccionada" : "victimaNoSeleccionada" ;?>">
 									<img class="four columns" style="width:90px !important; height:70px !important;" src="<?=base_url().$victima["foto"]; ?>" />
 									<span class="eight columns"><?= $victima['nombre']." ".$victima['apellidosSiglas']?></span>
@@ -55,6 +55,8 @@
 							<div class="twelve columns">
 
 
+									<input type="hidden"  id="casoId"  value="<?=$casoId?>">
+									
 									<input type="hidden"  id="nameSeleccionado"  value="victimas_actorId"><!--Este campo me da el name al que hay modificar el value al agregar acto(SIRVE PARA AGREGAR ACTOR)-->
 
 									<input type="hidden"  id="ValoresBotonCancelar" value="<?= ($idVictima>0) ? $victimas['victimas'][$idVictima]['actorId']."*".$victimas['victimas'][$idVictima]['nombre']." ".$victimas['victimas'][$idVictima]['apellidosSiglas']."*".$victimas['victimas'][$idVictima]['foto'] : "" ;  ?>"><!--Este campo da los valores en caso de que se cancele la ventana agregar actor-->
@@ -127,7 +129,7 @@
 								                          <td><?=(isset($perpetrador['actorRelacionadoId'])&&($perpetrador['actorRelacionadoId']>0)) ? $catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$perpetrador['actorRelacionadoId']]['actorRelacionadoId']]['nombre'] : ''; ?></td>
 								                        <td><?=(isset($perpetrador['tipoPerpetradorId'])&& isset($perpetrador['tipoPerpetradorNivel'])) ? $catalogos['tipoPerpetradorN'.$perpetrador['tipoPerpetradorNivel'].'Catalogo'][$perpetrador['tipoPerpetradorId']]['descripcion'] : ''; ?></td>
 								                        <td>
-								                        	<div class="twelve columns"><input class="tiny button" value="Editar" onclick="ventanaPerpetradores('<?=$idActo;?>', '<?= $victimas['victimas'][$idVictima]['victimaId']?>', '<?= $perpetrador['perpetradorVictimaId'] ?>')" type="button"> </div>
+								                        	<div class="twelve columns"><input class="tiny button" value="Editar" onclick="ventanaPerpetradores('<?=$idActo;?>', '<?= $victimas['victimas'][$idVictima]['victimaId']?>', '<?= $perpetrador['perpetradorVictimaId'] ?>','<?=$casoId?>')" type="button"> </div>
 								                        	<div class="twelve columns">
 								                        		<form method="POST" action="<?= base_url(); ?>index.php/casos_c/eliminarPerpetrador/<?=$idActo; ?>/<?=$victimas['victimas'][$idVictima]['victimaId']; ?>/<?= $perpetrador['perpetradorVictimaId']; ?>">
 								                        		<input class="tiny button" value="Eliminar" type="submit"> 
@@ -142,7 +144,7 @@
 						            <div class="twelve columns"> 
 											<div class="three columns push-nine" >
 												<?php if ($idVictima>0) {?>
-													<input class="tiny button" value="nuevo perpetrador" onclick="ventanaPerpetradores('<?=$idActo;  ;?>', <?= $victimas['victimas'][$idVictima]['victimaId']?>, 0)" type="button">
+													<input class="tiny button" value="nuevo perpetrador" onclick="ventanaPerpetradores('<?=$idActo;  ;?>', <?= $victimas['victimas'][$idVictima]['victimaId']?>, 0,'<?=$casoId?>')" type="button">
 												<?php }?>
 											</div>
 									</div>

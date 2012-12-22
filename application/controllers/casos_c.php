@@ -344,10 +344,11 @@ class Casos_c extends CI_Controller {
 	/**
 	 * Carga la vista para editar o para guardar una nueva victima
 	 */
-	public function mostrarVictimas($idActo,$idVictima = 0, $ventana = 0){
+	public function mostrarVictimas($idActo,$idVictima = 0, $ventana = 0, $casoId){
 			
 		$datos['catalogos'] = $this->traer_catalogos();
 		
+		$datos['casoId']=$casoId;
 
 		$datos['victimas'] = $this->casos_m->mTraerVictimasActo($idActo);
 		
@@ -436,9 +437,11 @@ class Casos_c extends CI_Controller {
 	 * carga la vista de un perpetrador para editarlo o crear uno nuevo dependiendo de si el perpetrador es distinto de cero
 	 * se cargara para editar si es cero se cargara para agregar.
 	 * */
-	public function mostrarPerpetrador($idActo,$idVictima,$idPerpetrador){
+	public function mostrarPerpetrador($idActo,$idVictima,$idPerpetrador,$casoId){
 		
 		$datos['catalogos'] = $this-> traer_catalogos();
+
+		$datos['casoId']=$casoId;
 		
 		$datos['head'] = $this->load->view('general/head_v', $datos, true);
 		
