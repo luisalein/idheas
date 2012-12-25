@@ -173,8 +173,8 @@
 
 			<fieldset>
 				<legend class="espacioInferior">Actor reportado</legend>
-					<input type="radio" onclick="pintaIndividualesInfoPersonalReportado()" name="selecionaActorReportado" <?= (isset($fuenteInfoPersonal['actorReportado']) && ($catalogos['listaTodosActores'][$fuenteInfoPersonal['actorReportado']]['tipoActorId']< 3)) ? "checked='checked'" : " " ;?> />Persona
-					<input type="radio"	onclick="pintaColectivosInfoPersonalReportado()" name="selecionaActorReportado" <?= (isset($fuenteInfoPersonal['actorReportado']) && ($catalogos['listaTodosActores'][$fuenteInfoPersonal['actorReportado']]['tipoActorId']== 3)) ? "checked='checked'" : " " ;?>/>Actor colectivo <br />
+					<input type="radio" onclick="pintaIndividualesInfoPersonalReportado()" name="selecionaActorReportado" <?= (isset($fuenteInfoPersonal['actorReportado']) && ($fuenteInfoPersonal['actorReportado']>0 )&& ($catalogos['listaTodosActores'][$fuenteInfoPersonal['actorReportado']]['tipoActorId']< 3)) ? "checked='checked'" : " " ;?> />Persona
+					<input type="radio"	onclick="pintaColectivosInfoPersonalReportado()" name="selecionaActorReportado" <?= (isset($fuenteInfoPersonal['actorReportado'])&& ($fuenteInfoPersonal['actorReportado']>0 ) && ($catalogos['listaTodosActores'][$fuenteInfoPersonal['actorReportado']]['tipoActorId']== 3)) ? "checked='checked'" : " " ;?>/>Actor colectivo <br />
 					<label class="espacioSuperior"><b >Persona:</b></label> <br />
 
 					<div class="twelve columns espacioSuperior" id="infoPersonalActorReportado">
