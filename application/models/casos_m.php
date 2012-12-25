@@ -1764,7 +1764,7 @@ class Casos_m extends CI_Model {
 	}
 	
 	public function mEliminarRelacionCasoActor($casoActorId){
-		$this->db->where('casos_has_actores', $casoActorId);
+		$this->db->where('casoActorId', $casoActorId);
 		if($this->db->delete('casos_has_actores')){
 			/* Regresa la cadena al controlador*/
 			return ($mensaje = 'Hecho');

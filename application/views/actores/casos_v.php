@@ -6,9 +6,9 @@
 	<?php if (isset($casosRelacionados)) {?>
 	<?php foreach ($casosRelacionados as $datosCaso) {?>
 	<div>
-		<div id="subPestanias" data-collapse>	
+		<div class="twelve columns" data-collapse>	
   
-			<h2 class="open"><?php print_r($datosCaso['casos']['nombre'])?></h2><!--título de la pestaña-->  
+			<h2 class="twelve columns open"><?php print_r($datosCaso['casos']['nombre'])?></h2><!--título de la pestaña-->  
 				<div>
 
 
@@ -130,7 +130,7 @@
 						              	 <tr>
 						                <td><span id="descho_fichaId"><?=(isset($inter['receptorId'])) ? $catalogos['listaTodosActores'][$inter['receptorId']]['nombre']." ".$catalogos['listaTodosActores'][$inter['receptorId']]['apellidosSiglas'] : ''; ?></span></td>
 						                <td><span id="descho_fichaId"><?=(isset($inter['interventorId'])) ?  $catalogos['listaTodosActores'][$inter['interventorId']]['nombre']." ".$catalogos['listaTodosActores'][$inter['interventorId']]['apellidosSiglas'] : ''; ?></span></td>
-			                <td><span id="descho_fichaId"><?=(isset($inter['tipoIntervencionId']) && isset($inter['intervencionNId'])) ?  $catalogos['tipoIntervencionN'.$inter['intervencionNId'].'Catalogo'][$inter['tipoIntervencionId']]['descripcion'] : ''; ?></span></td>
+			                			<td><span id="descho_fichaId"><?=(isset($inter['tipoIntervencionId']) && isset($inter['intervencionNId'])) ?  $catalogos['tipoIntervencionN'.$inter['intervencionNId'].'Catalogo'][$inter['tipoIntervencionId']]['descripcion'] : ''; ?></span></td>
 						                <td><span id="descho_fichaId"><?=(isset($inter['fecha'])) ? $inter['fecha'] : ''; ?></span>	</td>
 						              </tr> <?php } }?>
 									</tbody>
@@ -148,15 +148,16 @@
 											<?php if (isset($datosCaso['actos'])) {?>
 											<?php foreach($datosCaso['actos'] as $acto):?> <!--muestra cada elemento de la lista-->
 											<?php if (isset($acto['victimas'])) {?>
-											<?php foreach($acto['victimas'] as $actor):?> <!--muestra cada elemento de la lista-->
+											<?php foreach($acto['victimas'] as $actor):
+												if ($actor['actorId']>0) {?> <!--muestra cada elemento de la lista-->
 								                <div class="twelve columns">
-								                    <img class="three columns" src="<?=base_url().$catalogos['listaTodosActores'][$actor['victimaId']]['foto'] ?>" />
+								                    <img class="three columns" src="<?=base_url().$catalogos['listaTodosActores'][$actor['actorId']]['foto'] ?>" />
 								                    <br/><br/>
 									                <div class="nine columns">
-									                        <?=$catalogos['listaTodosActores'][$actor['victimaId']]['nombre'].' '.$catalogos['listaTodosActores'][$actor['actorId']]['apellidosSiglas']; ?>
+									                        <?=$catalogos['listaTodosActores'][$actor['actorId']]['nombre'].' '.$catalogos['listaTodosActores'][$actor['actorId']]['apellidosSiglas']; ?>
 									                </div>
 								                </div>
-											<?php endforeach;?><!--Termina lista de los actores-->
+											<?php } endforeach;?><!--Termina lista de los actores-->
 											<?php }?>
 											<?php endforeach;?><!--Termina lista de los actores-->
 											<?php }?>

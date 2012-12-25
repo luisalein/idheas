@@ -1200,13 +1200,14 @@
 			$this->db->select('*');
 			$this->db->from('casos_has_actores');
 			$this->db->where('actores_actorId',$actorId);
+            $this->db->distinct();
 			$consulta = $this->db->get();
 			
 			if ($consulta->num_rows() > 0){
 				foreach ($consulta->result_array() as $row) {
 					//$casos[$row['casos_casoId']]=$row;
 					
-					$casos[$row['casoActorId']]=$this->casos_m->mTraerDatosCaso($row['casoActorId']);
+					$casos[$row['casoActorId']]=$this->casos_m->mTraerDatosCaso($row['casos_casoId']);
 				}
 				
 				return $casos;

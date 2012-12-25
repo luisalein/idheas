@@ -27,12 +27,18 @@
 	
 			<input type="hidden" name="perpetradores_actorRelacionadoId" value="<?= (isset($perpetrador['actorRelacionadoId'])) ? $perpetrador['actorRelacionadoId'] : " " ;?>" id="perpetradores_actorRelacionadoId" >
 
-			<input type="hidden" value="<?=$casoId?>" id="casoId" >
+			<input type="hidden" value="<?=$casoId?>" id="casoId" name='casoId' >
 
 
 			<fieldset>
 				<legend>Información general</legend>
-					 <!-- <pre><?= print_r($perpetrador)?></pre>
+				<?php if (isset(isset($perpetrador['perpetradorId'])&&($perpetrador['perpetradorId']!=0))) {
+					foreach ($perpetrador['casosActor'] as $casosActor) {
+						
+					}
+				}?>
+				<pre><?= print_r($perpetrador['casosActor'])?></pre>
+					 <!-- 
 					<pre><?= print_r($catalogos)?></pre>   -->
 				<label>Perpetrador</label>
 

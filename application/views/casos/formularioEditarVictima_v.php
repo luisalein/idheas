@@ -4,7 +4,22 @@
 	<?=$head?>
 	</head>
 		
-	<body>
+	<body><!-- casos_casoId
+		<pre><?= print_r($victimas['victimas'])?><pre>
+		<pre><?= print_r($victimas['victimas'][$idVictima]['casosActor'])?><pre>
+		 -->
+		
+
+		<?php if ($idVictima>0) {
+			foreach ($victimas['victimas'][$idVictima]['casosActor'] as $casoActor) {
+			if ($casoId== $casoActor['casos_casoId'] ) {
+			
+				echo '<input type="hidden"  id="casoActorId" name="casoActorId" value="'.$casoActor['casoActorId'].'">';
+				
+			}
+		}
+		}
+		?>
 		<div class="twelve columns">
 			<div class="four columns"> 	<!--Lista de victimas-->
 					<div class="twelve columns espacioSuperior">
@@ -15,7 +30,7 @@
 						</div>
 						<?php if ($idVictima>0) { ?>
 							<div class="six columns">
-								<form action="<?= base_url(); ?>index.php/casos_c/eliminarVictima/<?=$idActo; ?>/<?=$victimas['victimas'][$idVictima]['victimaId']; ?>">
+								<form action="<?= base_url(); ?>index.php/casos_c/eliminarVictima/<?=$idActo; ?>/<?=$victimas['victimas'][$idVictima]['victimaId']; ?>/0/<?=$casoId?>">
 								<center><input class="small button" value="Eliminar víctima" type="submit"></center>
 								</form>
 							</div>
@@ -55,8 +70,10 @@
 							<div class="twelve columns">
 
 
-									<input type="hidden"  id="casoId"  value="<?=$casoId?>">
-									
+									<input type="hidden"  id="casoId" name="casoId" value="<?=$casoId?>">
+
+									<input type="hidden"  id="casos_casoId" name="casos_casoId" value="<?=$casoId?>">
+
 									<input type="hidden"  id="nameSeleccionado"  value="victimas_actorId"><!--Este campo me da el name al que hay modificar el value al agregar acto(SIRVE PARA AGREGAR ACTOR)-->
 
 									<input type="hidden"  id="ValoresBotonCancelar" value="<?= ($idVictima>0) ? $victimas['victimas'][$idVictima]['actorId']."*".$victimas['victimas'][$idVictima]['nombre']." ".$victimas['victimas'][$idVictima]['apellidosSiglas']."*".$victimas['victimas'][$idVictima]['foto'] : "" ;  ?>"><!--Este campo da los valores en caso de que se cancele la ventana agregar actor-->

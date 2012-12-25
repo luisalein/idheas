@@ -7,13 +7,14 @@
 	<body>
 <!-- <pre><?= $idVictima?><pre>
 <pre><?= print_r($victimas['victimas'])?><pre> -->
+		
 		<div class="twelve columns">
 			<div class="four columns"> 	<!--Lista de victimas-->
 
 				<div class="twelve columns espacioSuperior">
 					<?php if ($idVictima>0) {?>
 						<div class="six columns">
-							<form action="<?= base_url(); ?>index.php/casos_c/eliminarVictima/<?=$idActo; ?>/<?=$victimas['victimas'][$idVictima]['victimaId']; ?>">
+							<form action="<?= base_url(); ?>index.php/casos_c/eliminarVictima/<?=$idActo; ?>/<?=$victimas['victimas'][$idVictima]['victimaId']; ?>/0/<?=$casoId?>">
 							<center><input class="small button" value="Eliminar víctima" type="submit"></center>
 							</form>
 						</div>
