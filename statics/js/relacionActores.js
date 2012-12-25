@@ -132,17 +132,20 @@ function desplegar(nombre,lista){
     
 
 	$(function() {
-		$( "#fechaAproxRIC" ).datepicker({ dateFormat: "yy-mm-dd"});
+		$( "#fechaAproxRIC" ).datepicker({ dateFormat: "yy-mm-dd",
+		changeYear: true });
 		 });
     
 /***Script para cambiar el año y el mes****/
 	$(function() {
-		$( "#fechaSinDiaRIC" ).datepicker({ dateFormat: "yy-mm-00"});
+		$( "#fechaSinDiaRIC" ).datepicker({ dateFormat: "yy-mm-00",
+		changeYear: true });
 		});
 
 /***Funcion para cambiar el año****/
 	$(function() {
-		$( "#fechaSinDiaSinMesRIC" ).datepicker({ dateFormat: "yy-00-00"});
+		$( "#fechaSinDiaSinMesRIC" ).datepicker({ dateFormat: "yy-00-00",
+		changeYear: true });
 		});
 		
 /////////FECHA TERMINAL relacion entre actores individuales y colectivo
@@ -154,17 +157,20 @@ function desplegar(nombre,lista){
     
 
 	$(function() {
-		$( "#fechaAprox2RIC" ).datepicker({ dateFormat: "yy-mm-dd"});
+		$( "#fechaAprox2RIC" ).datepicker({ dateFormat: "yy-mm-dd",
+		changeYear: true });
 		 });
     
 /***Script para cambiar el año y el mes****/
 	$(function() {
-		$( "#fechaSinDia2RIC" ).datepicker({ dateFormat: "yy-mm-00"});
+		$( "#fechaSinDia2RIC" ).datepicker({ dateFormat: "yy-mm-00",
+		changeYear: true });
 		});
 
 /***Funcion para cambiar el año****/
 	$(function() {
-		$( "#fechaSinDiaSinMes2RIC" ).datepicker({ dateFormat: "yy-00-00"});
+		$( "#fechaSinDiaSinMes2RIC" ).datepicker({ dateFormat: "yy-00-00",
+		changeYear: true });
 		});
 		
 			
@@ -181,17 +187,20 @@ function desplegar(nombre,lista){
     
 
 	$(function() {
-		$( "#fechaAproxRP" ).datepicker({ dateFormat: "yy-mm-dd"});
+		$( "#fechaAproxRP" ).datepicker({ dateFormat: "yy-mm-dd",
+		changeYear: true });
 		 });
     
 /***Script para cambiar el año y el mes****/
 	$(function() {
-		$( "#fechaSinDiaRP" ).datepicker({ dateFormat: "yy-mm-00"});
+		$( "#fechaSinDiaRP" ).datepicker({ dateFormat: "yy-mm-00",
+		changeYear: true });
 		});
 
 /***Funcion para cambiar el año****/
 	$(function() {
-		$( "#fechaSinDiaSinMesRP" ).datepicker({ dateFormat: "yy-00-00"});
+		$( "#fechaSinDiaSinMesRP" ).datepicker({ dateFormat: "yy-00-00",
+		changeYear: true });
 		});
 		
 /////////FECHA TERMINAL relacion entre actores Individuales
@@ -203,17 +212,20 @@ function desplegar(nombre,lista){
     
 
 	$(function() {
-		$( "#fechaAprox2RP" ).datepicker({ dateFormat: "yy-mm-dd"});
+		$( "#fechaAprox2RP" ).datepicker({ dateFormat: "yy-mm-dd",
+		changeYear: true });
 		 });
     
 /***Script para cambiar el año y el mes****/
 	$(function() {
-		$( "#fechaSinDia2RP" ).datepicker({ dateFormat: "yy-mm-00"});
+		$( "#fechaSinDia2RP" ).datepicker({ dateFormat: "yy-mm-00",
+		changeYear: true });
 		});
 
 /***Funcion para cambiar el año****/
 	$(function() {
-		$( "#fechaSinDiaSinMes2RP" ).datepicker({ dateFormat: "yy-00-00"});
+		$( "#fechaSinDiaSinMes2RP" ).datepicker({ dateFormat: "yy-00-00",
+		changeYear: true });
 		});
 		
 
