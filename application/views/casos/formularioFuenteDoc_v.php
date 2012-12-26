@@ -4,8 +4,8 @@
 	</head>
 	<body>
 	<pre>
-	<!-- 
 	<pre><?= print_r($fuenteDocumental) ?></pre>
+	<!-- 
 	<pre><?= print_r($catalogos['listaTodosActores']) ?></pre> 
 	 <pre><?= print_r($catalogos['tipoFuenteDocumentalN1Catalogo']) ?></pre> 
 	 <pre><?= print_r($catalogos['tipoFuenteDocumentalN2Catalogo']) ?></pre> 
@@ -14,7 +14,11 @@
 	</pre>
 	<form action='<?=base_url(); ?>index.php/casosVentanas_c/guardarDatosVentanas/6' method="post" accept-charset="utf-8">
 	<input type="hidden" id="editar"  name="editar" value="<?= (isset($fuenteDocumental)) ? "1" : "0" ;?>"/>
+
 	<input type="hidden" id='casos_casoId' name='casos_casoId'	value="<?= $casoId ?>"/>
+
+	<input type="hidden" id='casoId' name='casoId'	value="<?= $casoId ?>"/>
+
 	<input type="hidden" id='tipoFuenteDocumental_casos_casoId' name='tipoFuenteDocumental_casos_casoId' value="<?= $casoId ?>"/>
 	
 	<input type="hidden" id='nameSeleccionado' value="tipoFuenteDocumental_actorReportado"/>

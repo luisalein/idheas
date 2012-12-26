@@ -24,16 +24,43 @@
 		<input type="hidden" id="fuenteInfoPersonal_tipoRelacionActorReportadoId"  name="fuenteInfoPersonal_tipoRelacionActorReportadoId" value="<?= (isset($fuenteInfoPersonal['tipoRelacionActorReportadoId'])) ? $fuenteInfoPersonal['tipoRelacionActorReportadoId'] : " " ;?>"/>
 
 		<input type="hidden" id='casos_casoId' name='casos_casoId'	value="<?= $casoId ?>"/>
+		<input type="hidden" id='casoId' name='casoId'	value="<?= $casoId ?>"/>
 		<input type="hidden" id='fuenteInfoPersonal_casos_casoId' name='fuenteInfoPersonal_casos_casoId' value="<?= $casoId ?>"/>
 
 		<input type="hidden" id="fuenteInfoPersonal_fuenteInfoPersonalId"  name="fuenteInfoPersonal_fuenteInfoPersonalId" value="<?= (isset($fuenteInfoPersonal['fuenteInfoPersonalId'])) ? $fuenteInfoPersonal['fuenteInfoPersonalId'] : " " ;?>"/>
 
+
+		<?php if (isset($fuenteInfoPersonal['casosActorReportado'])) {
+			foreach ($fuenteInfoPersonal['casosActorReportado'] as $casosActorReportado) {
+			if ($casoId== $casosActorReportado['casos_casoId'] ) {
+			
+				echo '<input type="hidden"  id="casoActorIdReportado" name="casoActorIdReportado" value="'.$casosActorReportado['casoActorId'].'">';
+				$casoActorReportadoId=$casosActorReportado['casoActorId'];
+			}else
+
+				$casoActorReportadoId=0;
+		}
+		}
+		?>
+		<?php if (isset($fuenteInfoPersonal['casosActor'])) {
+			foreach ($fuenteInfoPersonal['casosActor'] as $casoActor) {
+			if ($casoId== $casosActorReportado['casos_casoId'] ) {
+			
+				echo '<input type="hidden"  id="casoActorId" name="casoActorId" value="'.$casoActor['casoActorId'].'">';
+				$casoActorId=$casoActor['casoActorId'];
+			}else
+
+				$casoActorId=0;
+		}
+		}
+		?>
 		<!-- 
+		<pre> <?php print_r($fuenteInfoPersonal['casosActor'])?></pre>
+		<pre> <?php print_r($fuenteInfoPersonal['casosActorReportado'])?></pre>
 		<pre> <?php print_r($catalogos['relacionesActoresCatalogo'][$fuenteInfoPersonal['relacionId']])?></pre>
 		<pre> <?php print_r($catalogos['relacionesActoresCatalogo'][$fuenteInfoPersonal['relacionId']]['actorRelacionadoId'])?></pre>
 		<pre> <?php print_r($catalogos['listaTodosActores'][$fuenteInfoPersonal['actorId']])?></pre>
 		<pre> <?php print_r($catalogos['listaTodosActores'][$fuenteInfoPersonal['actorId']]['actorId'])?></pre>
-		<pre> <?php print_r($fuenteInfoPersonal['relacionId'])?></pre>
 		 -->
 			<fieldset>
 				<legend class="espacioInferior">Fuente de información personal</legend>

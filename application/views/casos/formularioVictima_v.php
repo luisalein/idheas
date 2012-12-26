@@ -5,6 +5,16 @@
 	</head>
 		
 	<body>
+		<?php if ($idVictima>0) {
+			foreach ($victimas['victimas'][$idVictima]['casosActor'] as $casoActor) {
+			if ($casoId== $casoActor['casos_casoId'] ) {
+			
+				$casoVictimaActorId=$casoActor['casoActorId'];
+			}else {
+				$casoVictimaActorId=0;
+			}
+		}
+		}?>
 <!-- <pre><?= $idVictima?><pre>
 <pre><?= print_r($victimas['victimas'])?><pre> -->
 		
@@ -14,7 +24,7 @@
 				<div class="twelve columns espacioSuperior">
 					<?php if ($idVictima>0) {?>
 						<div class="six columns">
-							<form action="<?= base_url(); ?>index.php/casos_c/eliminarVictima/<?=$idActo; ?>/<?=$victimas['victimas'][$idVictima]['victimaId']; ?>/0/<?=$casoId?>">
+							<form action="<?= base_url(); ?>index.php/casos_c/eliminarVictima/<?=$idActo; ?>/<?=$victimas['victimas'][$idVictima]['victimaId']; ?>/<?=$casoVictimaActorId?>/<?=$casoId?>">
 							<center><input class="small button" value="Eliminar víctima" type="submit"></center>
 							</form>
 						</div>
@@ -93,7 +103,9 @@
 				                </tbody>
 				            </table>
 						</div>
+ <pre><?=print_r($victimas['victimas'][$idVictima]['perpetradores'])?></pre>
  -->
+
 							<div class="twelve columns espacio">
 								<br/><label>Perpetradores</label> <br/>
 
@@ -110,6 +122,17 @@
 						                <tbody>
 											<?php if (isset($victimas['victimas'][$idVictima]['perpetradores'])) { ?>
 						            			<?php foreach ($victimas['victimas'][$idVictima]['perpetradores'] as $key => $perpetrador) { ?>
+
+														<?php foreach ($perpetrador['casosActor'] as $casoActor) {
+																if ($casoId== $casoActor['casos_casoId'] ) {
+																
+																	$casoActorId=$casoActor['casoActorId'];
+																	
+																} else{
+																	$casoActorId=0;
+																}
+															}
+														?>
 						                			<tr>
 								                        <td><?=(isset($perpetrador['perpetradorId'])) ? $catalogos['listaTodosActores'][$perpetrador['perpetradorId']]['nombre'] : ''; ?></td>
 								                        <td><?=(isset($perpetrador['perpetradorId'])) ? $catalogos['listaTodosActores'][$perpetrador['perpetradorId']]['apellidosSiglas'] : ''; ?></td>
@@ -118,7 +141,7 @@
 								                        <td>
 								                        	<div class="twelve columns"><input class="tiny button" value="Editar" onclick="ventanaPerpetradores('<?=$idActo;?>', '<?= $victimas['victimas'][$idVictima]['victimaId']?>', '<?= $perpetrador['perpetradorVictimaId'] ?>','<?=$casoId?>')" type="button"> </div>
 								                        	<div class="twelve columns">
-								                        		<form method="POST" action="<?= base_url(); ?>index.php/casos_c/eliminarPerpetrador/<?=$idActo; ?>/<?=$victimas['victimas'][$idVictima]['victimaId']; ?>/<?= $perpetrador['perpetradorVictimaId']; ?>">
+								                        		<form method="POST" action="<?= base_url(); ?>index.php/casos_c/eliminarPerpetrador/<?=$idActo; ?>/<?=$victimas['victimas'][$idVictima]['victimaId']; ?>/<?= $perpetrador['perpetradorVictimaId']; ?>/<?=$casoActorId?>/<?=$casoId?>">
 								                        		<input class="tiny button" value="Eliminar"type="submit"> 
 								                        		</form>
 								                        	</div>

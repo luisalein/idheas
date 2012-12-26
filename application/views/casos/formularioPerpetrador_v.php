@@ -30,16 +30,21 @@
 			<input type="hidden" value="<?=$casoId?>" id="casoId" name='casoId' >
 
 
+					 <!-- 
+				<pre><?= print_r($perpetrador['casosActor'])?></pre>
+					<pre><?= print_r($catalogos)?></pre>   -->
 			<fieldset>
 				<legend>Información general</legend>
-				<?php if (isset(isset($perpetrador['perpetradorId'])&&($perpetrador['perpetradorId']!=0))) {
+				<?php if (isset($perpetrador['perpetradorId']) && ($perpetrador['perpetradorId']!=0)) {
 					foreach ($perpetrador['casosActor'] as $casosActor) {
-						
+						if ($casosActor['casos_casoId'] == $casoId) {
+
+							echo '<input type="hidden"  id="casoActorId" name="casoActorId" value="'.$casosActor['casoActorId'].'">';
+
+						}
 					}
+
 				}?>
-				<pre><?= print_r($perpetrador['casosActor'])?></pre>
-					 <!-- 
-					<pre><?= print_r($catalogos)?></pre>   -->
 				<label>Perpetrador</label>
 
 					<div id="vistaActorRelacionado"  >

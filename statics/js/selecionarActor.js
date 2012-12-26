@@ -162,7 +162,6 @@ function agregarIntervenidoAjax(){
     var casoId = document.getElementById('casoId').value;
 
         var url = base+'index.php/casosVentanas_c/agregarIntervenido';
-    
         var data = 'actorIntervenidoId='+actorIntervenidoId + '&intervenciones_intervencionId='+intervenciones_intervencionId+'&casoId='+casoId;
 
             $.ajax({
@@ -183,7 +182,7 @@ function agregarIntervenidoAjax(){
             },
             
             error: function(){
-            
+                
                alert("no es posible agregar actor");
             }
         
@@ -192,9 +191,9 @@ function agregarIntervenidoAjax(){
 
 
 //Actualizará dinámicamente los actores intervenido de una intervención
-function eliminarIntervenidoAjax(idIntervenido,idCaso,idInternvencion){
+function eliminarIntervenidoAjax(idIntervenido,idCaso,idInternvencion, casoActor){
     
-        var url = base+'index.php/casosVentanas_c/eliminarIntervenido/'+idIntervenido+'/'+idCaso+'/'+idInternvencion;
+        var url = base+'index.php/casosVentanas_c/eliminarIntervenido/'+idIntervenido+'/'+idCaso+'/'+idInternvencion+'/'+casoActor;
 
             var data;
 

@@ -456,16 +456,19 @@ class Casos_c extends CI_Controller {
 
 		$datos['casoId']=$casoId;
 
+
 		$datos['head'] = $this->load->view('general/head_v', $datos, true);
 		
 		$datos['victimas'] = $this->casos_m->mTraerVictimasActo($idActo);
 
 		$datos['victimas']=$datos['victimas']['victimas'];
 
-		print_r($idPerpetrador);
+		//print_r($idPerpetrador);
 
 		if($idPerpetrador != 0){
 			
+			$datos['idPerpetrador']=$idPerpetrador;
+
 			$datos['action'] = base_url().'index.php/casos_c/editarPerpetrador/'.$idActo.'/'.$idVictima.'/'.$idPerpetrador;
 			
 			if(isset($datos['victimas'][$idVictima]['perpetradores'][$idPerpetrador]))
@@ -544,13 +547,13 @@ class Casos_c extends CI_Controller {
 	/**
 	 * Elimina un perpetrador de una victima y redirecciona a la página de la victima
 	 * */
-	public function eliminarPerpetrador($idActo,$idVictima,$perpetradorId,$casoActorId){
+	public function eliminarPerpetrador($idActo,$idVictima,$perpetradorId,$casoActorId,$casoId){
 		
 		$mensaje = $this->casos_m->mEliminaPerpetradorVictima($perpetradorId);
 		
 		$this->casos_m->mEliminarRelacionCasoActor($casoActorId);
 		
-		redirect(base_url().'index.php/casos_c/mostrarVictimas/'.$idActo.'/'.$idVictima.'/1');
+		redirect(base_url().'index.php/casos_c/mostrarVictimas/'.$idActo.'/'.$idVictima.'/1/'.$casoId);
 		
 		return $mensaje;
 	}

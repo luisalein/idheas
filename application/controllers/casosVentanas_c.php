@@ -564,11 +564,23 @@ class CasosVentanas_c extends CI_Controller {
 
 		$datos['intervenciones'] =$datos['datosCaso']['intervenciones'];
 
+		// echo "<pre>";
+		// print_r($datos['intervenciones'][$idInternvencion]['intervenidos']);
+		// echo "</pre>";
+
 		$data="";
 		if (isset($datos['intervenciones'][$idInternvencion]['intervenidos'])) {
 			
 			foreach ($datos['intervenciones'][$idInternvencion]['intervenidos'] as $intervenidos) {
 									
+
+				foreach ($intervenidos['casosActor'] as $intervenido) {
+						if ($intervenido['casos_casoId']==$idCaso) {
+							$valorCaso=$intervenido['casoActorId'];
+						} else {
+							$valorCaso=0;
+						}
+				}
 				$data= $data.'<div class="twelve columns margenes" >'.
 					'<div class="nine columns">
 						<img class="foto" src="'.base_url().$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['foto'].
@@ -577,7 +589,7 @@ class CasosVentanas_c extends CI_Controller {
 					"</div>
 					<div class='three columns'>
 						<br> <br> <br> <br> 
-							<input type='button' class='tiny button' value='Eliminar' Onclick=".'"eliminarIntervenidoAjax('."'".$intervenidos['intervenidoId']."','".$idCaso."','".$idInternvencion."')".'">
+							<input type='button' class='tiny button' value='Eliminar' Onclick=".'"eliminarIntervenidoAjax('."'".$intervenidos['intervenidoId']."','".$idCaso."','".$idInternvencion."','".$valorCaso."')".'">
 					</div>
 				</div>';
 

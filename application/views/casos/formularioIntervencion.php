@@ -15,6 +15,8 @@
 		<input type="hidden" name="intervenciones_interventorId" id="intervenciones_interventorId" value="<?= (isset($intervenciones['interventorId'])) ? $intervenciones['interventorId'] : " " ;?>" >
 		
 		<input type="hidden" name="intervenciones_casos_casoId" id="intervenciones_casos_casoId" value="<?= $casoId;?>" >
+
+		<input type="hidden" name="casoId" id="casoId" value="<?= $casoId;?>" >
 		
 		<input type="hidden"  id="ValoresBotonCancelar" value="<?= (isset($intervenciones['interventorId'])&&($intervenciones['interventorId']!=0)) ? $intervenciones['interventorId']."*".$catalogos['listaTodosActores'][$intervenciones['interventorId']]['nombre']." ".$catalogos['listaTodosActores'][$intervenciones['interventorId']]['apellidosSiglas']."*".$catalogos['listaTodosActores'][$intervenciones['interventorId']]['foto'] : "" ;  ?>"><!--Este campo da los valores en caso de que se cancele la ventana agregar actor-->
 
@@ -42,8 +44,9 @@
 		<div id="pestania" data-collapse>
 			<h2 class="open twelve columns">Intervención</h2><!--título de la sub-pestaña-->  
 			<div>
+
 				<!-- 
-<pre><?= print_r($intervenciones)?></pre>					
+<pre><?= print_r($intervenciones['intervenidos'])?></pre>					
 <pre><?= print_r($catalogos['relacionesActoresCatalogo'])?></pre>					 -->
 				<br /><br />		
 					<fieldset>
@@ -265,13 +268,21 @@
 								  		<?php if (isset($intervenciones['intervenidos'])) {
 								  			foreach ($intervenciones['intervenidos'] as $intervenidos) {?>
 								  				<div class="twelve columns margenes" >
+								  					<?php	foreach ($intervenidos['casosActor'] as $intervenido) {
+															if ($intervenido['casos_casoId']==$casoId) {
+																$valorCaso=$intervenido['casoActorId'];
+															}
+															else{
+																$valorCaso=	0;
+															}
+													}?>
 								  					<div class="nine columns" >
 								  						<img class="foto" src="<?= base_url().$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['foto']?>">
 								  						<br> <br> <br> <br> <?= $catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['nombre']." ".$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['apellidosSiglas'] ?>
 								  					</div>
 								  					<div class="three columns">
 								  						<br> <br> <br> <br> 
-								  							<input type="button" class="small button" value="Eliminar" Onclick="eliminarIntervenidoAjax('<?= $intervenidos['intervenidoId'] ?>','<?=$casoId ?>',<?=$intervenciones['intervencionId']?>);">
+								  							<input type="button" class="small button" value="Eliminar" Onclick="eliminarIntervenidoAjax('<?= $intervenidos['intervenidoId'] ?>','<?=$casoId ?>','<?=$intervenciones['intervencionId']?>','<?=$valorCaso?>');">
 								  					</div>
 								  				</div> 
 								  			<?php }?>
