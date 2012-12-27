@@ -397,7 +397,6 @@ class Casos_m extends CI_Model {
 							$datos['tipoFuenteDocumental'][$row['tipoFuenteDocumentalId']]['actorReportadoApellidosSiglas'] = $datosActorReportado['apellidosSiglas'];
 						}	
 				}
-				
 				$this->db->select('*');
 				$this->db->from('casos_has_actores');
 				$this->db->where('actores_actorId',$row['actorReportado']);
@@ -406,9 +405,10 @@ class Casos_m extends CI_Model {
 				if($consultaCasosActor->num_rows() > 0){
 					foreach ($consultaCasosActor->result_array() as $valor) {
 						//print_r($valor);
-						$datos['fuenteInfoPersonal'][$row['fuenteInfoPersonalId']]['casosActor'][$valor['casoActorId']]=$valor;
+						$datos['tipoFuenteDocumental'][$row['tipoFuenteDocumentalId']]['casosActor'][$valor['casoActorId']]=$valor;
 					}
 				}
+				
 			}
 		}
 		
