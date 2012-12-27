@@ -352,6 +352,8 @@ class CasosVentanas_c extends CI_Controller {
 							unset($datos['derechoAfectado']['paisesCatalogo_paisId']);
 					}
 					$mensaje = $mensaje . $this->casos_m->mActualizaDatosDerechoAfectado($datos['derechoAfectado'],$datos['derechoAfectado']['derechoAfectadoCasoId']);
+					$botonVictimas=1;
+					$Id=$id;
 				}else{
 					if(!empty($datos['actos']['actoViolatorioId'])){
 		            	$datos['actos']['casos_casoId']=$datos['lugares']['casos_casoId'];
@@ -363,6 +365,8 @@ class CasosVentanas_c extends CI_Controller {
 						$Id = $this->casos_m->mAgregarDerechosAfectados($datos3);
 						$datos['actos']['derechoAfectado_derechoAfectadoCasoId']=$Id;
 						$mensaje = $this->casos_m->mAgregarActoDerechoAfectado($datos['actos']);
+						$botonVictimas=1;
+
 					} else{
 						echo "<script languaje='javascript' type='text/javascript'>
 								alert('Ningun derecho/acto fue seleccionado');
@@ -507,7 +511,7 @@ class CasosVentanas_c extends CI_Controller {
 		
 			$mensaje = $this->casos_m->mAgregarIntervenidoIntervenciones($datos);
 			
-			$datos['casos_has_actores']['casos_casoId']=$casoId;
+			$datos1['casos_has_actores']['casos_casoId']=$casoId;
 		
 			$datos1['casos_has_actores']['actores_actorId']=$_POST['actorIntervenidoId'];
 			
@@ -526,7 +530,15 @@ class CasosVentanas_c extends CI_Controller {
 
 			
 		foreach ($datos['intervenciones'][$_POST['intervenciones_intervencionId']]['intervenidos'] as $intervenidos) {
-								
+				
+				foreach ($intervenidos['casosActorIntervenido'] as $intervenido) {
+						if ($intervenido['casos_casoId']==$casoId) {
+							$valorCaso=$intervenido['casoActorId'];
+						} else {
+							$valorCaso=0;
+						}
+				}
+
 			$data= $data.
 			'<div class="twelve columns margenes" >'.
 				'<div class="nine columns" >'.
@@ -535,7 +547,7 @@ class CasosVentanas_c extends CI_Controller {
 				"</div>
 				<div class='three columns'>
 					<br> <br> <br> <br> 
-					<input type='button' class='tiny button' value='Eliminar' Onclick=".'"eliminarIntervenidoAjax('."'".$intervenidos['intervenidoId']."','".$casoId."','".$_POST['intervenciones_intervencionId']."')".'">
+					<input type='button' class='tiny button' value='Eliminar' Onclick=".'"eliminarIntervenidoAjax('."'".$intervenidos['intervenidoId']."','".$casoId."','".$_POST['intervenciones_intervencionId']."','".$valorCaso."')".'">
 				</div>
 			</div>';
 
@@ -574,7 +586,7 @@ class CasosVentanas_c extends CI_Controller {
 			foreach ($datos['intervenciones'][$idInternvencion]['intervenidos'] as $intervenidos) {
 									
 
-				foreach ($intervenidos['casosActor'] as $intervenido) {
+				foreach ($intervenidos['casosActorIntervenido'] as $intervenido) {
 						if ($intervenido['casos_casoId']==$idCaso) {
 							$valorCaso=$intervenido['casoActorId'];
 						} else {

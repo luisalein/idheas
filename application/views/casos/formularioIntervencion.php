@@ -68,6 +68,7 @@
 		}
 		}
 		?>
+<pre><?= print_r($intervenciones['intervenidos'])?></pre>					
 				<!-- 
 <pre><?= print_r($intervenciones['casosActorInterventor'])?></pre>					
 <pre><?= print_r($intervenciones['casosActorReceptor'])?></pre>					
@@ -292,7 +293,7 @@
 								  		<?php if (isset($intervenciones['intervenidos'])) {
 								  			foreach ($intervenciones['intervenidos'] as $intervenidos) {?>
 								  				<div class="twelve columns margenes" >
-								  					<?php	foreach ($intervenidos['casosActor'] as $intervenido) {
+								  					<?php	foreach ($intervenidos['casosActorIntervenido'] as $intervenido) {
 															if ($intervenido['casos_casoId']==$casoId) {
 																$valorCaso=$intervenido['casoActorId'];
 															}
