@@ -76,7 +76,7 @@ class ReportePdf_c extends CI_Controller
 		$this->cezpdf->ezSetDy(-10);
 
 /**************Información general***********************/
-		$contenidoReporte['EncabezadosInfoGeneral']="Información general:" . "\n\n";
+		$contenidoReporte['EncabezadosInfoGeneral']="Información general" . "\n\n";
 		$contenidoReporte['NombreCaso']="Nombre del caso:" ." " . $Data['reporte']['casos']['nombre'] . "\n";
 		$contenidoReporte['PersonasAfectadas']="Personas afectadas:" ." " . $Data['reporte']['casos']['personasAfectadas'] . "\n";
 		$contenidoReporte['fechaInicio']="Fecha de inicio:" ." " . $Data['reporte']['casos']['fechaInicial'] . "\n";
@@ -84,7 +84,7 @@ class ReportePdf_c extends CI_Controller
 /******************************************/	
 
 /**************Lugares***********************/
-	$contenidoReporte['encabezadoLugares']="\nLugares:\n\n";
+	$contenidoReporte['encabezadoLugares']="\nLugares\n\n";
 
 	if (isset($Data['reporte']['lugares']	)) {
 		foreach ($Data['reporte']['lugares'] as $key => $value) {
@@ -109,14 +109,14 @@ class ReportePdf_c extends CI_Controller
 /******************************************/
 
 /**************Seguimiento del caso***********************/
-		$contenidoReporte['encabezadoSeguimientoCaso']="\nSeguimiento del caso:" . "\n\n";
+		$contenidoReporte['encabezadoSeguimientoCaso']="\nSeguimiento del caso" . "\n\n";
 		
 		if (isset($Data['reporte']['fichas']	)) {
 			foreach ($Data['reporte']['fichas'] as $key => $value) {
 				$contenidoReporte['claveId'.$key]= "Clave:  ".$value['fichaId']. "\n";
 				$contenidoReporte['titulo'.$key]= "Título:  ".$value['titulo']. "\n";
 				$contenidoReporte['fecha'.$key]= "Fecha:  ".$value['fecha']. "\n";
-				$contenidoReporte['fichaComentario'.$key]= "Comentarios:  ".$value['comentarios']. "\n";
+				$contenidoReporte['fichaComentario'.$key]= "Comentarios:  ".$value['comentarios'];
 			}
 		}
 /******************************************/
@@ -125,10 +125,12 @@ class ReportePdf_c extends CI_Controller
 		
 		if (isset($Data['reporte']['derechoAfectado']	)) {
 			
-				$contenidoReporte['encabezadoDErechosAfectados']="\nDerechos afectados y actos: "."\n\n";
+				$contenidoReporte['encabezadoDErechosAfectados']="\n\nNúcleo del caso\n\nDerechos afectados y actos "."\n";
 			foreach ($Data['reporte']['derechoAfectado'] as $key => $value) {
+				
 				$contenidoReporte['derechoAfectado'.$key]="\n"."Derecho afectado:  ".$datos['catalogos']['derechosAfectadosCatalogo']['derechosAfectadosN'.$value['derechoAfectadoNivel'].'Catalogos'][$value['derechoAfectadoCasoId']]['descripcion'] ."\n";
 				$contenidoReporte['acto'.$key]="Acto:  ". $datos['catalogos']['actosCatalogo']['actosN'.$Data['reporte']['actos'][$key]['actoViolatorioNivel'].'Catalogo'][$Data['reporte']['actos'][$key]['actoViolatorioId']]['descripcion'] ."\n";
+				$contenidoReporte['noVictimas'.$key] = "No. víctimas: ". $value['noVictimas']."\n";
 				$contenidoReporte['fechaInicial'.$key]="Fecha de inicio:  ". $value['fechaInicial']."\n";
 				$contenidoReporte['fechaTermino'.$key]="Fecha de termino:  " . $value['fechaTermino']."\n";
 
@@ -161,7 +163,7 @@ class ReportePdf_c extends CI_Controller
 /******************************************/		
 
 /**************Intervenciones***********************/
-		$contenidoReporte['encabezadoIntervenciones']="\nIntervenciones: "."\n\n";
+		$contenidoReporte['encabezadoIntervenciones']="\nIntervenciones "."\n\n";
 
 		if (isset($Data['reporte']['intervenciones'])) {
 			foreach ($Data['reporte']['intervenciones'] as $key => $intervencion) {
@@ -206,7 +208,7 @@ class ReportePdf_c extends CI_Controller
 
 			}
 		}
-
+		$content ="";
 /******************************************/
 		foreach ($contenidoReporte as  $value) {
 		
