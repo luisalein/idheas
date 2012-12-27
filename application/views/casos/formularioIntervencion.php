@@ -45,8 +45,32 @@
 			<h2 class="open twelve columns">Intervención</h2><!--título de la sub-pestaña-->  
 			<div>
 
+		<?php if (isset($intervenciones['interventorId'])&&($intervenciones['interventorId']>0)) {
+			foreach ($intervenciones['casosActorInterventor'] as $casoActor) {
+			if ($casoId== $casoActor['casos_casoId'] ) {
+			
+				echo '<input type="hidden"  id="casoActorIdInterventor" name="casoActorIdInterventor" value="'.$casoActor['casoActorId'].'">';
+			}else
+
+				echo '<input type="hidden"  id="casoActorIdInterventor" name="casoActorIdInterventor" value="0">';
+		}
+		}
+		?>
+
+		<?php if (isset($intervenciones['receptorId'])&&($intervenciones['receptorId']>0)) {
+			foreach ($intervenciones['casosActorReceptor'] as $casoActor) {
+			if ($casoId== $casoActor['casos_casoId'] ) {
+			
+				echo '<input type="hidden"  id="casoActorIdReceptor" name="casoActorIdReceptor" value="'.$casoActor['casoActorId'].'">';
+			}else
+
+				echo '<input type="hidden"  id="casoActorIdReceptor" name="casoActorIdReceptor" value="0">';
+		}
+		}
+		?>
 				<!-- 
-<pre><?= print_r($intervenciones['intervenidos'])?></pre>					
+<pre><?= print_r($intervenciones['casosActorInterventor'])?></pre>					
+<pre><?= print_r($intervenciones['casosActorReceptor'])?></pre>					
 <pre><?= print_r($catalogos['relacionesActoresCatalogo'])?></pre>					 -->
 				<br /><br />		
 					<fieldset>
