@@ -358,7 +358,7 @@ class CasosVentanas_c extends CI_Controller {
 						$datos3['derechoAfectado'] =  $datos['derechoAfectado'];
 						
 						if(empty($datos3['derechoAfectado']['paisesCatalogo_paisId'])){
-							unset($datos['derechoAfectado']['paisesCatalogo_paisId']);
+							unset($datos3['derechoAfectado']['paisesCatalogo_paisId']);
 						}
 						$Id = $this->casos_m->mAgregarDerechosAfectados($datos3);
 						$datos['actos']['derechoAfectado_derechoAfectadoCasoId']=$Id;

@@ -87,7 +87,7 @@
 				if ($consulta->num_rows() > 0){				
 					/* Pasa la consulta a un cadena */
 					foreach ($consulta->result_array() as $row) {
-						$datos['actos'][$row['actoId']] = $row;
+						$datos['actos'][$row['derechoAfectado_derechoAfectadoCasoId']] = $row;
 					}
 					
 					/*Trae todos los datos de derechosafectados*/
