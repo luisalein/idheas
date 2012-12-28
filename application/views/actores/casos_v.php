@@ -3,7 +3,7 @@
 	<!-- 
 	<pre> <?php print_r($casosRelacionados)?></pre>
 	 -->
-	<?php if (isset($casosRelacionados)) {?>
+	<?php if (isset($casosRelacionados) && ($casosRelacionados['casosRelacionadosId'])>0) {?>
 	<?php foreach ($casosRelacionados as $datosCaso) {?>
 	<div>
 		<div class="twelve columns" data-collapse>	

@@ -195,7 +195,6 @@ class Actores_c extends CI_Controller {
             	$datos['form'] = $this->load->view('actores/transmigrante_v', $datos, true);
                 
             break;
-        
             case(3): $datos['form'] = $this->load->view('actores/colectivo_v', $datos, true);
                 
             break;
