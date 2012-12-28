@@ -4,7 +4,6 @@
     <br />
     <?php }?>
 </div>
-
 <div class="ten columns">
 	        <fieldset> <!--Información general-->
               <legend>Información general</legend>
