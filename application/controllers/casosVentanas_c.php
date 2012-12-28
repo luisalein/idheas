@@ -312,7 +312,6 @@ class CasosVentanas_c extends CI_Controller {
         
             case(2):if($_POST['editar'] == 1){
             	
-				
 					$rutas = $this->cargarPDF();
 					
 					if($rutas != '0'){
