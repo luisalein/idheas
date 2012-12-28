@@ -44,19 +44,20 @@
 		?>
 		<?php if (isset($fuenteInfoPersonal['casosActor'])) {
 			foreach ($fuenteInfoPersonal['casosActor'] as $casoActor) {
-			if ($casoId== $casosActorReportado['casos_casoId'] ) {
+			if ($casoId== $casoActor['casos_casoId'] ) {
 			
 				echo '<input type="hidden"  id="casoActorId" name="casoActorId" value="'.$casoActor['casoActorId'].'">';
 				$casoActorId=$casoActor['casoActorId'];
 			}else
 
 				$casoActorId=0;
+				echo '<input type="hidden"  id="casoActorIdReportado" name="casoActorIdReportado" value="0">';
 		}
 		}
 		?>
 		<!-- 
-		<pre> <?php print_r($fuenteInfoPersonal['casosActor'])?></pre>
 		<pre> <?php print_r($fuenteInfoPersonal['casosActorReportado'])?></pre>
+		<pre> <?php print_r($fuenteInfoPersonal['casosActor'])?></pre>
 		<pre> <?php print_r($catalogos['relacionesActoresCatalogo'][$fuenteInfoPersonal['relacionId']])?></pre>
 		<pre> <?php print_r($catalogos['relacionesActoresCatalogo'][$fuenteInfoPersonal['relacionId']]['actorRelacionadoId'])?></pre>
 		<pre> <?php print_r($catalogos['listaTodosActores'][$fuenteInfoPersonal['actorId']])?></pre>
