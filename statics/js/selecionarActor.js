@@ -113,6 +113,7 @@ function seleccionarRelacionColectivo(nombre, Siglas, TipoRelacion,IdRelacion,fo
     }
     window.opener.document.getElementById(nameSeleccionado).value = IdRelacion;
     window.opener.document.getElementById(vista).innerHTML = ('<div class="three columns"><img style="width:120px !important; height:150px !important;" src="'+foto+'" /></div><b><h6>'+nombre+' '+Siglas+'<br>Tipo de relacion<br>'+TipoRelacion+'</h6></b>');
+    window.close();
 }    
 
 

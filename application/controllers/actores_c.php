@@ -129,17 +129,19 @@ class Actores_c extends CI_Controller {
             $datos['citaActor'] = $this->actores_m->mTraerCitasActor($actorId);
 
 			if ($tipoActorId==3) {
-				echo "<pre>";
-				print_r($datos['citaActor']['citas']);
-				echo "</pre>";
+				//echo "<pre>";
+				//print_r($datos['citaActor']['citas']);
+				//echo "</pre>";
 				$contador=0;
+				if(isset($datos['citaActor']['citas'])){
 				foreach ($datos['citaActor']['citas'] as $persona) {
 					$contador=$contador+1;
 				}
 				foreach ($datos['citaActor']['citas'] as $persona) {
 
 					$actoresRelacionados = $this->actores_m->mTraerRelacionesActor($persona['datosCitas']['relacionActoresId']);
-
+					
+				if($actoresRelacionados!=0){
 					foreach ($actoresRelacionados as $actorReacionado) {
 
 						if ($actorReacionado['tipoRelacionIndividualColectivoId']==1) {
@@ -155,10 +157,13 @@ class Actores_c extends CI_Controller {
 							// echo "</pre>";
 						}
 					}
+					
 				}
-				echo "<pre>";
-							print_r($datos['citaActor']['citas']);
-							echo "</pre>";
+				}
+				}
+//echo "<pre>";
+	//						print_r($datos['citaActor']['citas']);
+		//					echo "</pre>";
             $datos['casosRelacionados'] = $this->casosRelacionados($actorId);
             }
             

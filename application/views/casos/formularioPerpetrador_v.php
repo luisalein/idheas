@@ -33,7 +33,7 @@
 					 <!-- 
 				<pre><?= print_r($perpetrador['casosActor'])?></pre>
 					<pre><?= print_r($catalogos)?></pre>   -->
-			<fieldset>
+			<fieldset class="espacioSuperior espacioInferior">
 				<legend>Información general</legend>
 				<?php if (isset($perpetrador['perpetradorId']) && ($perpetrador['perpetradorId']!=0)) {
 					foreach ($perpetrador['casosActor'] as $casosActor) {
@@ -203,14 +203,14 @@
 			</div>
 
 
-			<label>Notas</label>
-			<div id="notastipoLugarActo"></div>
 			<label>Lugar de Acto</label>
 			<div id="tipoLugarActo">
 				<?php if (isset($perpetrador['tipoLugarId']) && isset($perpetrador['tipoLugarNivelId']) && $perpetrador['tipoLugarNivelId']>0) { ?>
 							Actualmente: <?= $catalogos['tipoLugarN'.$perpetrador['tipoLugarNivelId'].'Catalogo'][$perpetrador['tipoLugarId']]['descripcion']; ?>
 				<?php }?>
 			</div>
+			<label>Notas</label>
+			<div id="notastipoLugarActo"></div>
 			<div class="caja CatalogoTipoPerpetrador">
 
 				<ul>
@@ -256,8 +256,8 @@
 			</div>
 
 
-			<input type="submit" value="Guardar" class="tiny button">
-			<input type="button" value="Cancelar" onclick="ventanaVictimas('1')" class="tiny button">
+			<input type="submit" value="Guardar" class="tiny button" style="padding:5px 15px 5px 15px;margin-bottom: 5px">
+			<input type="button" value="Cancelar" onclick="cerrarVentana()" class="tiny button" style="padding:5px 15px 5px 15px;margin-bottom: 5px">
 
 		</form>
 	</body>

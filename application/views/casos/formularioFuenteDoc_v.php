@@ -4,8 +4,8 @@
 	</head>
 	<body>
 	<pre>
-	<pre><?= print_r($fuenteDocumental) ?></pre>
 	<!-- 
+	<pre><?= print_r($fuenteDocumental) ?></pre>
 	<pre><?= print_r($catalogos['listaTodosActores']) ?></pre> 
 	 <pre><?= print_r($catalogos['tipoFuenteDocumentalN1Catalogo']) ?></pre> 
 	 <pre><?= print_r($catalogos['tipoFuenteDocumentalN2Catalogo']) ?></pre> 
@@ -32,6 +32,18 @@
 	
 	<input type="hidden" id='nameDeLaRelacion' value="tipoFuenteDocumental_relacionId"/>
 	<input type="hidden" id='tipoFuenteDocumental_relacionId' name='tipoFuenteDocumental_relacionId' value="<?= (isset($fuenteDocumental['relacionId'])) ? $fuenteDocumental['relacionId'] : " " ; ?>"/>
+
+		<?php if (isset($fuenteDocumental['actorReportado'])&&($fuenteDocumental['actorReportado']>0)) {
+			foreach ($fuenteDocumental['casosActor'] as $casoActor) {
+			if ($casoId== $casoActor['casos_casoId'] ) {
+			
+				echo '<input type="hidden"  id="casoActorIdInterventor" name="casoActorIdActorReportado" value="'.$casoActor['casoActorId'].'">';
+			}else
+
+				echo '<input type="hidden"  id="casoActorIdInterventor" name="casoActorIdActorReportado" value="0">';
+		}
+		}
+		?>
 
 		<!-----------------Comienza la parte de Fuente documental- ---------------------->
 		<div id="formularioFuenteDocumental" class="twelve columns">
@@ -90,11 +102,11 @@
 											<option></option>						
 											<?php if(isset($fuenteDocumental['nivelConfiabilidadCatalogo_nivelConfiabilidadId'])){
 						                                foreach($catalogos['nivelConfiabilidadCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
-						                                    <option onclick="notasCatalogos('<?=$item['notas']; ?>','nivelConfiabilidadCatalogo','2')" value="<?=$item['nivelConfiabilidadId']?>" <?=($fuenteDocumental['nivelConfiabilidadCatalogo_nivelConfiabilidadId'] == $item['nivelConfiabilidadId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
+						                                    <option onkeyup="notasCatalogos2('<?=$item['notas']; ?>','nivelConfiabilidadCatalogo','2')" onclick="notasCatalogos2('<?=$item['notas']; ?>','nivelConfiabilidadCatalogo','2')" value="<?=$item['nivelConfiabilidadId']?>" <?=($fuenteDocumental['nivelConfiabilidadCatalogo_nivelConfiabilidadId'] == $item['nivelConfiabilidadId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
 						                                <?php endforeach;
 						                            } else { ?>
 						                                <?php foreach($catalogos['nivelConfiabilidadCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
-						                                    <option onclick="notasCatalogos('<?=$item['notas']; ?>','nivelConfiabilidadCatalogo','2')" value="<?=$item['nivelConfiabilidadId']?>" > <?=$item['descripcion']?></option>
+						                                    <option onkeyup="notasCatalogos2('<?=$item['notas']; ?>','nivelConfiabilidadCatalogo','2')" onclick="notasCatalogos2('<?=$item['notas']; ?>','nivelConfiabilidadCatalogo','2')" value="<?=$item['nivelConfiabilidadId']?>" > <?=$item['descripcion']?></option>
 						                                <?php endforeach; } 
 						                      ?>
 										</select>
