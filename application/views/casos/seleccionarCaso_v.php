@@ -20,7 +20,7 @@
     <?=br(2);?>
     <div class="twelve columns">
         <h1><div class="six columns">Nombre</div></h1>
-    </div>
+        </div>
     <!------------Lista ind-------------------->
     <?php $total=0;?>
     <div  id="listaActorIndiv" class="PruebaScorll">
@@ -53,4 +53,7 @@
     </div>
     
 </div>
+    <div class="espacioSuperior">
+        <input type="button" class="tiny button" value="Cerrar" onclick="cerrarVentana()">
+    </div>
 </div>

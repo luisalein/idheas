@@ -56,7 +56,6 @@
 	  		</div>
 
 	  	</div><!--fin acordeon Derechos afectados y actos-->
-
 	  	<div id="subPestanias" data-collapse>
 	  		<h2 class="open">Intervenciones</h2>
 	  		<div>
@@ -75,12 +74,34 @@
 			              <?php if(isset($datosCaso['intervenciones'])){ ?>
 			              <?php foreach ($datosCaso['intervenciones'] as $index => $inter) {?>
 			              	 <tr>
+
+			              <?php	if ($inter['casosActorReceptor']) {
+				              		foreach ($inter['casosActorReceptor'] as $inter2) {
+					              		if ($inter2['casos_casoId'] == $casoId) {
+					              			$casoActorIdReceptor=$inter2['casoActorId'];
+					              		}
+					              		else{
+					              			$casoActorIdReceptor=0;	
+					              		}
+					              	}
+			              		}
+
+			              		if ($inter['casosActorInterventor']) {
+			              			foreach ($inter['casosActorInterventor'] as $inter2) {
+					              		if ($inter2['casos_casoId'] == $casoId) {
+					              			$casoActorIdInterventor=$inter2['casoActorId'];
+					              		}
+					              		else{
+					              			$casoActorIdInterventor=0;	
+					              		}
+			              		}
+			              	} ?>
 			                <td><span id="descho_fichaId"><?=(isset($inter['receptorId']) && ($inter['receptorId']>0)) ? $catalogos['listaTodosActores'][$inter['receptorId']]['nombre']." ".$catalogos['listaTodosActores'][$inter['receptorId']]['apellidosSiglas'] : ''; ?></span></td>
 			                <td><span id="descho_fichaId"><?=(isset($inter['interventorId']) && ($inter['interventorId']>0)) ?  $catalogos['listaTodosActores'][$inter['interventorId']]['nombre']." ".$catalogos['listaTodosActores'][$inter['interventorId']]['apellidosSiglas'] : ''; ?></span></td>
 			                <td><span id="descho_fichaId"><?=(isset($inter['tipoIntervencionId']) && isset($inter['intervencionNId'])) ?  $catalogos['tipoIntervencionN'.$inter['intervencionNId'].'Catalogo'][$inter['tipoIntervencionId']]['descripcion'] : ''; ?></span></td>
 			                <td><span id="descho_fichaId"><?=(isset($inter['fecha'])) ? $inter['fecha'] : ''; ?></span>	</td>
 			                <td><input type="button" class="tiny button"  value="Editar" onclick="ventanaInterevenciones('<?=$casoId; ?>', '<?=$inter['intervencionId']?>')" />
-			                <input type="button" class="tiny button"  value="Eliminar" onclick="ventanaInterevenciones()" /></td>
+			                <input type="button" class="tiny button"  value="Eliminar" onclick="eliminarIntervencion('<?=$inter['intervencionId']?>','<?=$casoId?>','<?=$casoActorIdReceptor?>','<?=$casoActorIdInterventor?>')" /></td>
 			              </tr> <?php } }?>
 			            </tbody>
 			          </table>
