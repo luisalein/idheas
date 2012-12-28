@@ -166,6 +166,7 @@ class Casos_m extends CI_Model {
 			foreach ($consulta->result_array() as $row) {
 				$datos['intervenciones'][$row['intervencionId']] = $row;
 				
+				/*Trae los casos relacionados directamente a un interventor */
 				$this->db->select('*');
 				$this->db->from('casos_has_actores');
 				$this->db->where('actores_actorId',$row['interventorId']);
@@ -173,11 +174,11 @@ class Casos_m extends CI_Model {
 				
 				if($consultaCasosActor->num_rows() > 0){
 					foreach ($consultaCasosActor->result_array() as $valor) {
-						//print_r($valor);
 						$datos['intervenciones'][$row['intervencionId']]['casosActorInterventor'][$valor['casoActorId']]=$valor;
 					}
 				}
 
+				/*Trae los casos relacionados directamente a un receptor */
 				$this->db->select('*');
 				$this->db->from('casos_has_actores');
 				$this->db->where('actores_actorId',$row['receptorId']);
@@ -185,7 +186,6 @@ class Casos_m extends CI_Model {
 				
 				if($consultaCasosActor->num_rows() > 0){
 					foreach ($consultaCasosActor->result_array() as $valor) {
-						//print_r($valor);
 						$datos['intervenciones'][$row['intervencionId']]['casosActorReceptor'][$valor['casoActorId']]=$valor;
 					}
 				}
@@ -204,6 +204,7 @@ class Casos_m extends CI_Model {
 					foreach ($consultaIntervenidos->result_array() as $row4) {
 						$datos['intervenciones'][$row['intervencionId']]['intervenidos'][$row4['intervenidoId']]=$row4;
 						
+						/*Trae los casos relacionados directamente a un intervenido */
 						$this->db->select('*');
 						$this->db->from('casos_has_actores');
 						$this->db->where('actores_actorId',$row4['actorIntervenidoId']);
@@ -211,7 +212,6 @@ class Casos_m extends CI_Model {
 						
 						if($consultaCasosActor->num_rows() > 0){
 							foreach ($consultaCasosActor->result_array() as $valor) {
-								//print_r($valor);
 								$datos['intervenciones'][$row['intervencionId']]['intervenidos'][$row4['intervenidoId']]['casosActorIntervenido'][$valor['casoActorId']]=$valor;
 							}
 						}	

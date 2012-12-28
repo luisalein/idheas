@@ -312,15 +312,21 @@ class CasosVentanas_c extends CI_Controller {
         
             case(2):if($_POST['editar'] == 1){
             	
-            		$ruta = $this->cargarPDF();
+				
+					$rutas = $this->cargarPDF();
 					
-					$nombreArchivo = $_FILES["pdf"]['name'];
-					
-					$data = array('nombreRegistro'=>$nombreArchivo,'ruta'=>$ruta,'fichas_fichaId'=>$datos['fichas']['fichaId']);
-					
-					if($nombreArchivo != '' && $ruta != '')
-						$this->casos_m->mAgregarRegistroFicha($data);
-					
+					if($rutas != '0'){
+						$tot = count($_FILES["archivos"]["name"]);
+				         //este for recorre el arreglo
+					         for ($i = 0; $i < $tot; $i++){
+					         		$nombreArchivo = $_FILES["archivos"]['name'][$i];
+								 	
+									$data = array('nombreRegistro'=>$nombreArchivo,'ruta'=>$rutas[$i],'fichas_fichaId'=>$datos['fichas']['fichaId']);
+									
+									if($nombreArchivo != '' && $rutas[$i] != '')
+										$mensaje=$this->casos_m->mAgregarRegistroFicha($data);
+							}
+						}
 	            	$mensaje=$this->general_m->casos_m->mActualizaDatosFicha($datos['fichas'],$datos['fichas']['fichaId']); 
 					
 				}else{
@@ -328,16 +334,21 @@ class CasosVentanas_c extends CI_Controller {
 					$datos2['fichas']=$datos['fichas'];
 	            	$id = $this->general_m->general_m->llenar_ficha($datos2); 
 					
-					$ruta = $this->cargarPDF();
+					$rutas = $this->cargarPDF();
 					
-					$nombreArchivo = $_FILES["pdf"]['name'];
-					
-					$data = array('nombreRegistro'=>$nombreArchivo,'ruta'=>$ruta,'fichas_fichaId'=>$id);
-					
-					if($nombreArchivo != '' && $ruta != '')
-						$this->casos_m->mAgregarRegistroFicha($data);
-					
-				}
+					if($rutas != '0'){
+						$tot = count($_FILES["archivos"]["name"]);
+				         //este for recorre el arreglo
+					         for ($i = 0; $i < $tot; $i++){
+					         		$nombreArchivo = $_FILES["archivos"]['name'][$i];
+								 	
+									$data = array('nombreRegistro'=>$nombreArchivo,'ruta'=>$rutas[$i],'fichas_fichaId'=>$id);
+									
+									if($nombreArchivo != '' && $rutas[$i] != '')
+										$mensaje=$this->casos_m->mAgregarRegistroFicha($data);
+							}
+						}
+					}
 				
             break;
 			
@@ -483,7 +494,7 @@ class CasosVentanas_c extends CI_Controller {
             break;
             
         }
-       if (!isset($botonVictimas)) {
+      if (!isset($botonVictimas)) {
 		echo "<script languaje='javascript' type='text/javascript'>
 		window.opener.location.reload();
 		window.close();
@@ -813,60 +824,63 @@ class CasosVentanas_c extends CI_Controller {
 			     $lista = $lista.'</li></ul>';
 		    }
 	
-		//print_r($data);
 		print_r($lista);
-		
-		//echo $id1 .$id2 .$id3.$id4  ;
-		
+				
 	}
 	
 	public function cargarPDF(){
-		
-		$status = "aca";
-	   
-			// obtenemos los datos del archivo
-			$tamano = $_FILES["pdf"]['size'];
-			$tipo = $_FILES["pdf"]['type'];
-			$archivo = $_FILES["pdf"]['name'];
-			$prefijo = substr(md5(uniqid(rand())),0,6);
-	
 			
-			if($tipo == "application/pdf"){			
-				if ($archivo != "") {
-				    // guardamos el archivo a la carpeta files
-				    
-				    //para MAC y Linux
-				    $urlBase = system('pwd');
+   //Preguntamos si nuetro arreglo 'archivos' fue definido
+         if (isset ($_FILES["archivos"])) {
+        	$tot = count($_FILES["archivos"]["name"]);
+         //este for recorre el arreglo
+	         for ($i = 0; $i < $tot; $i++){
+	         //con el indice $i, poemos obtener la propiedad que desemos de cada archivo
+	         //para trabajar con este
+	         		
+					$tamano = $_FILES["archivos"]['size'][$i];
+					$tipo = $_FILES["archivos"]['type'][$i];
+					$archivo = $_FILES["archivos"]['name'][$i];
+					$prefijo = substr(md5(uniqid(rand())),0,6);
 					
-				    //Para windows
-					//$urlBase = system('chdir');
-					
-				    $destino = $urlBase.'/statics/fichas/'.$prefijo.'_'.$archivo;
-				  					
-				    if (move_uploaded_file($_FILES['pdf']['tmp_name'],$destino)) {
-				    	
-						$status = "Archivo subido: <b>".$archivo."</b>";
+					if($tipo == "application/pdf"){			
+						if ($archivo != "") {
+						    // guardamos el archivo a la carpeta files
+						    
+						    //para MAC y Linux
+						    $urlBase = system('pwd');
+							
+						    //Para windows
+							//$urlBase = system('chdir');
+							
+						    $destino = $urlBase.'/statics/fichas/'.$prefijo.'_'.$archivo;
+						  					
+						    if (move_uploaded_file($_FILES['archivos']['tmp_name'][$i],$destino)) {
+						    	
+								$status = "Archivo subido: <b>".$archivo."</b>";
+								
+								$urls[$i]= '/statics/fichas/'.$prefijo.'_'.$archivo;
+								
+						    } else {
+						    	
+								 return '0';
+								
+						    }
+						} else {
+							
+						    return '0';
+							
+						}
 						
-						return '/statics/fichas/'.$prefijo.'_'.$archivo;
+					}else{
+							
+						return '0';
 						
-				    } else {
-				    	
-						$status = $destino;
-						
-				    }
-				} else {
-					
-				    $status = $archivo;
-					
-				}
-				
-			}else{
-					
-				$status = $tipo;
-				
-			}
-	    
-		return $status;
+					}
+	            }	
+     		 } 
+		
+		return $urls;
 	}
 	
 }
