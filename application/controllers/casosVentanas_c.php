@@ -316,7 +316,6 @@ class CasosVentanas_c extends CI_Controller {
 					
 					if($rutas != '0'){
 						$tot = count($_FILES["archivos"]["name"]);
-				         //este for recorre el arreglo
 					         for ($i = 0; $i < $tot; $i++){
 					         		$nombreArchivo = $_FILES["archivos"]['name'][$i];
 								 	
