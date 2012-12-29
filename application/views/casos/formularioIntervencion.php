@@ -68,8 +68,8 @@
 		}
 		}
 		?>
-<pre><?= print_r($intervenciones['intervenidos'])?></pre>					
 				<!-- 
+<pre><?= print_r($intervenciones['intervenidos'])?></pre>					
 <pre><?= print_r($intervenciones['casosActorInterventor'])?></pre>					
 <pre><?= print_r($intervenciones['casosActorReceptor'])?></pre>					
 <pre><?= print_r($catalogos['relacionesActoresCatalogo'])?></pre>					 -->

@@ -9,11 +9,7 @@
 <form action='<?=base_url(); ?>index.php/casosVentanas_c/guardarDatosVentanas/3' method="post" accept-charset="utf-8" id="menuForm" name="menuForm">
 <!-------------------------Comienza la parte de Acto---------------------------->
 <div id="formularioCasoActo">
-	<!---
-	<?= print_r($derechoAfectado['fechaTermino'])?>
-	<?= print_r($derechoAfectado['fechaInicial'])?>
--->
-
+	
 	<div id="pestania" data-collapse>
 		<h2 class="open" >Acto</h2><!--título de la sub-pestaña---->  
 		<div>	
