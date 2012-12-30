@@ -4,11 +4,7 @@
 	<?=$head?>
 	</head>
 		
-	<body><!-- casos_casoId
-		<pre><?= print_r($victimas['victimas'])?><pre>
-		<pre><?= print_r($victimas['victimas'][$idVictima]['casosActor'])?><pre>
-		 -->
-
+	<body>
 
 		<?php if ($idVictima>0) {
 			foreach ($victimas['victimas'][$idVictima]['casosActor'] as $casoActor) {
