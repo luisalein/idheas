@@ -344,6 +344,7 @@ class Casos_c extends CI_Controller {
 	 */
 	public function mostrarVictimas($idActo,$idVictima = 0, $ventana = 0, $casoId){
 		
+        $datos['is_active'] = 'casos';
 		
 		$datos['catalogos'] = $this->traer_catalogos();
 		
