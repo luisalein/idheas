@@ -343,7 +343,8 @@ class Casos_c extends CI_Controller {
 	 * Carga la vista para editar o para guardar una nueva victima
 	 */
 	public function mostrarVictimas($idActo,$idVictima = 0, $ventana = 0, $casoId){
-			
+		
+		
 		$datos['catalogos'] = $this->traer_catalogos();
 		
 		$datos['casoId']=$casoId;
