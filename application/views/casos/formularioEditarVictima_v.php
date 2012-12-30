@@ -123,7 +123,7 @@
 						<input type="submit" value="Guardar" class="small button"/>
 					</div>
 					<div class="four columns">
-						<a href="<?=base_url(); ?>index.php/casos_c/mostrarVictimas/<?=$idActo;  ;?>/" class="small button">Cancelar</a>
+						<a href="<?=base_url(); ?>index.php/casos_c/mostrarVictimas/<?=$idActo;?>/<?=$idVictima;?>/0/<?=$casoId?>" class="small button">Cancelar</a>
 					</div>
 				</form>	
 							<div class="twelve columns espacio">
