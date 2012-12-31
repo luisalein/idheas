@@ -209,8 +209,6 @@ class ReportePdf_c extends CI_Controller
 		}
 
 		$contenidoReporte['encabezadoFuentePersonal']="\n Fuentes de información personal:  \n\n";
-		echo "<pre>";
-		print_r($Data['reporte']['fuenteInfoPersonal']);
 		if (isset($Data['reporte']['fuenteInfoPersonal'])) {
 			foreach ($Data['reporte']['fuenteInfoPersonal'] as $key => $infoAdicional) {
 				$contenidoReporte['infoAdicionalPersonal'.$key]="Nombre:  ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorId']]['nombre']." ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorId']]['apellidosSiglas']."\n";
@@ -226,9 +224,9 @@ class ReportePdf_c extends CI_Controller
 
 		}
 
-//this->cezpdf->ezText($content, 10);
+	$this->cezpdf->ezText($content, 10);
 
-	//$this->cezpdf->ezStream();
+	$this->cezpdf->ezStream();
 		
 	}
 
