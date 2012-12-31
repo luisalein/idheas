@@ -15,8 +15,6 @@
 			}
 		}
 		}?>
-<!-- <pre><?= $idVictima?><pre>
-<pre><?= print_r($victimas['victimas'])?><pre> -->
 		
 		<div class="twelve columns">
 			<div class="four columns"> 	<!--Lista de victimas-->
@@ -166,4 +164,4 @@
 			</div><!--Termina información general de la victima-->
 		</div>
 	</body>	
-</html> 
+</html><!-- -->

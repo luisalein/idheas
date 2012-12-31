@@ -333,6 +333,7 @@
 				/* Trae los actosId relacionados con un derecho afectado*/
 				$this->db->select('casos_casoId');
 				$this->db->from('actos');
+				$this->db->where('estadoActivo',1);
 				$this->db->where('actoViolatorioId',$datos['actoViolatorioId']);
 				$this->db->where('actoViolatorioNivel',$datos['actoViolatorioNivel']);
 				$consultaCasos = $this->db->get();
