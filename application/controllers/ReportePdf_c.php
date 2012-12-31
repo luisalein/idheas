@@ -223,10 +223,11 @@ class ReportePdf_c extends CI_Controller
 		$content = $content . $value;
 
 		}
+echo "<pre>";
+print_r($Data['reporte']);
+	//$this->cezpdf->ezText($content, 10);
 
-	$this->cezpdf->ezText($content, 10);
-
-	$this->cezpdf->ezStream();
+	//$this->cezpdf->ezStream();
 		
 	}
 

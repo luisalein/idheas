@@ -116,11 +116,11 @@ class Actores_c extends CI_Controller {
             $datos['datosActor'] = $this->actores_m->traer_datos_actor_m($actorId, $tipoActorId);
 			
 			/*----------Esta parte me trae los casos con los que se encuntra relacionado un actor------------------*/
-			$casosRelacionados=$this-> casosRelacionados($actorId);
+			$casosRelacionados=$this-> actores_m->mTraeCasosRelacionadosActor($actorId);
 		
             if ($casosRelacionados != 0) {
 
-            	$datos['casosRelacionados'] = $this-> casosRelacionados($actorId);
+            	$datos['casosRelacionados'] = $this-> actores_m->mTraeCasosRelacionadosActor($actorId);
             	
             }
 
