@@ -191,11 +191,11 @@
 				
 				<div class="twelve columns">
 					<label for="comentFuente">Observaciones</label>
-					<textarea id="infoAdicional_observaciones"  name="infoAdicional_observaciones" ><?=(isset($fuenteInfoPersonal['observaciones']) ? $fuenteInfoPersonal['observaciones'] : ''); ?></textarea>
+					<textarea id="fuenteInfoPersonal_observaciones"  name="fuenteInfoPersonal_observaciones" ><?=(isset($fuenteInfoPersonal['observaciones']) ? $fuenteInfoPersonal['observaciones'] : ''); ?></textarea>
 				</div>
 				<div class="twelve columns">
 					<label for="comentFuente">Comentarios</label>
-					<textarea id="infoAdicional_comentarios" name="infoAdicional_comentarios"><?=(isset($fuenteInfoPersonal['comentarios']) ? $fuenteInfoPersonal['comentarios'] : ''); ?></textarea>
+					<textarea id="fuenteInfoPersonal_comentarios" name="fuenteInfoPersonal_comentarios"><?=(isset($fuenteInfoPersonal['comentarios']) ? $fuenteInfoPersonal['comentarios'] : ''); ?></textarea>
 				</div>
 
 

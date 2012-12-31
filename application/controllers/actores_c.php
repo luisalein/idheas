@@ -116,12 +116,12 @@ class Actores_c extends CI_Controller {
             $datos['datosActor'] = $this->actores_m->traer_datos_actor_m($actorId, $tipoActorId);
 			
 			/*----------Esta parte me trae los casos con los que se encuntra relacionado un actor------------------*/
-			$casosRelacionados=$this->actores_m->mTraeCasosRelacionadosActor($actorId);
-
+			$casosRelacionados=$this-> casosRelacionados($actorId);
+		
             if ($casosRelacionados != 0) {
 
-            	$datos['casosRelacionados'] = $this->actores_m->mTraeCasosRelacionadosActor($actorId);
-            	//print_r($datos['casosRelacionados']);
+            	$datos['casosRelacionados'] = $this-> casosRelacionados($actorId);
+            	
             }
 
 			/*----------Termina la parte que me trae los casos con los que se encuntra relacionado un actor------------------*/
@@ -129,9 +129,6 @@ class Actores_c extends CI_Controller {
             $datos['citaActor'] = $this->actores_m->mTraerCitasActor($actorId);
 
 			if ($tipoActorId==3) {
-				//echo "<pre>";
-				//print_r($datos['citaActor']['citas']);
-				//echo "</pre>";
 				$contador=0;
 				if(isset($datos['citaActor']['citas'])){
 				foreach ($datos['citaActor']['citas'] as $persona) {
@@ -152,18 +149,12 @@ class Actores_c extends CI_Controller {
 							$citas[$contador]['datosCitas']=$actorReacionado;
 							$datos['citaActor']['citas']=$datos['citaActor']['citas']+$citas;
 							$contador=$contador+1;
-							// echo "<pre>";
-							// print_r($datos['citaActor']['citas']);
-							// echo "</pre>";
 						}
 					}
 					
 				}
 				}
 				}
-//echo "<pre>";
-	//						print_r($datos['citaActor']['citas']);
-		//					echo "</pre>";
             $datos['casosRelacionados'] = $this->casosRelacionados($actorId);
             }
             
@@ -768,8 +759,8 @@ class Actores_c extends CI_Controller {
 		//Traer casos relacionados con el actor colectivo
 		$datos['casosRelacionadosId']=$this->actores_m->mTraeCasosRelacionadosActor($actorCId);
 
-		if(!empty($datos['casosRelacionadosId'])){
-			
+		if(!empty($datos['casosRelacionadosId']) && $datos['casosRelacionadosId'] !='0'){
+
 			for($i=1 ;$i <= sizeof($datos['casosRelacionadosId']);$i++){
 			
 				if(!empty($datos['casosRelacionadosId'][$i]['casos_casoId'])){
