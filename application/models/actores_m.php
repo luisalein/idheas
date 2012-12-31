@@ -1225,10 +1225,12 @@
 			$consulta = $this->db->get();
 			
 			if ($consulta->num_rows() > 0){
+				$i=1;
 				foreach ($consulta->result_array() as $row) {
 					//$casos[$row['casos_casoId']]=$row;
 					
-					$casos[$row['casoActorId']]=$row['casos_casoId'];
+					$casos[$i]=$row['casos_casoId'];
+					$i++;
 				}
 				
 				return $casos;
