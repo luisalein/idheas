@@ -123,9 +123,8 @@ class ReportePdf_c extends CI_Controller
 
 /**************Derechos afectados y actos***********************/
 		
-		if (isset($Data['reporte']['derechoAfectado']	)) {
-			
-				$contenidoReporte['encabezadoDErechosAfectados']="\n\nNúcleo del caso\n\nDerechos afectados y actos "."\n";
+		if (isset($Data['reporte']['derechoAfectado'])) {
+			$contenidoReporte['encabezadoDErechosAfectados']="\n\nNúcleo del caso\n\nDerechos afectados y actos "."\n";
 			foreach ($Data['reporte']['derechoAfectado'] as $key => $value) {
 				
 				$contenidoReporte['derechoAfectado'.$key]="\n"."Derecho afectado:  ".$datos['catalogos']['derechosAfectadosCatalogo']['derechosAfectadosN'.$value['derechoAfectadoNivel'].'Catalogos'][$value['derechoAfectadoCasoId']]['descripcion'] ."\n";
@@ -133,30 +132,40 @@ class ReportePdf_c extends CI_Controller
 				$contenidoReporte['noVictimas'.$key] = "No. víctimas: ". $value['noVictimas']."\n";
 				$contenidoReporte['fechaInicial'.$key]="Fecha de inicio:  ". $value['fechaInicial']."\n";
 				$contenidoReporte['fechaTermino'.$key]="Fecha de termino:  " . $value['fechaTermino']."\n";
-
+				
+				$actoId=$Data['reporte']['actos'][$key]['actoId'];
 				if (isset($Data['reporte']['victimas']	)) {
+					$contenidoReporte['EncabezadoVictimas'.$key]="\nVictimas  ". "\n";
+					$nVic = 1;
 					foreach ($Data['reporte']['victimas'] as $key => $value2) {
-						if ($value2['actos_actoId']==$value['actos_actoId']) {
-							$contenidoReporte['EncabezadoVictimas'.$key]="\nVictimas:  ". "\n";
-							$contenidoReporte['victimasComentarios'.$key]="Comentarios sobre victimas y perpetradores:  \n". $value2['comentarios'] ."\n";
+						$nPerp = 0;
+						if ($value2['actos_actoId']==$actoId) {
+							$contenidoReporte['victimasComentarios'.$key]= "\n".'Víctima '.$nVic.': '.
+							$datos['catalogos']['ListaTodosActores'][$value2['victimaId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$value2['victimaId']]['apellidosSiglas'] ."\n".
+							"Comentarios sobre victimas y perpetradores:  \n". $value2['comentarios'];
 							$contenidoReporte['estatusVictimaId'.$key]="Estado:  ". $datos['catalogos']['estatusVictimaCatalogo']['estatusVictimaCatalogo'][$value2['estatusVictimaId']]['descripcion']."\n";
+							if (isset($Data['reporte']['perpetradores']	)) {
+								$contenidoReporte['EncabezadoPerpetradores'.$key]="\nPerpetradores  "."\n";
+								foreach ($Data['reporte']['perpetradores'] as $key => $value3) {
+									if ($value3['victimas_victimaId']==$value2['victimaId']) {
+										$nPerp = $nPerp+1;
+										$status = $value3['estatusPerpetradorCatalogo_estatusPerpetradorId'] -1;
+										$contenidoReporte['perpetradorId'.$key]="Perpetrador ".$nPerp.":  ". $datos['catalogos']['ListaTodosActores'][$value3['perpetradorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$value3['perpetradorId']]['apellidosSiglas'] ."\n";
+										$contenidoReporte['tipoPerpetradorId'.$key]="Tipo de perpetrador:  ".$datos['catalogos']['tipoPerpetrador']['tipoPerpetradorN'.$value3['tipoPerpetradorNivel'].'Catalogo'][$value3['tipoPerpetradorId']]['descripcion']. "\n";
+										$contenidoReporte['estatusPerpetradorId'.$key]="Estado del perpetrador:  ". $datos['catalogos']['estatusPerpetradorCatalogo']['estatusPerpetradorCatalogo'][$status]['descripcion']."\n";
+										$contenidoReporte['gradoInvolucramientoid'.$key]="Grado de involucramiento:  ". $datos['catalogos']['gradoDeInvolucramiento']['gradoInvolucramientoN'.$value3['nivelInvolugramientoId'].'Catalogo'][$value3['gradoInvolucramientoid']]['descripcion']."\n";
+										$contenidoReporte['afiliacionPerpetrador'.$key]="Tipo de afiliación:  ".$datos['catalogos']['relacionActoresCatalogo'][$value3['nivelInvolugramientoId']]['nombre']."\n\n";
+									}
+									
+								}
+							}
+						
 						}
+						$nVic = $nVic+1;
 					}
 				}
 
-				if (isset($Data['reporte']['perpetradores']	)) {
-					foreach ($Data['reporte']['perpetradores'] as $key => $value3) {
-						if ($value3['victimas_victimaId']==$value2['victimaId']) {
-							$contenidoReporte['EncabezadoPerpetradores'.$key]="\nPerpetradores:  "."\n";
-							$contenidoReporte['perpetradorId'.$key]="Perpetrador".$key.":  ". $datos['catalogos']['ListaTodosActores'][$value3['perpetradorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$value3['perpetradorId']]['apellidosSiglas'] ."\n";
-							$value3['tipoPerpetradorNivel']=1;//lo puse porque el campo estaba en blanco
-							$contenidoReporte['tipoPerpetradorId'.$key]="Tipo de perpetrador:  ".$datos['catalogos']['tipoPerpetrador']['tipoPerpetradorN'.$value3['tipoPerpetradorNivel'].'Catalogo'][$value3['tipoPerpetradorId']]['descripcion']. "\n";
-							$contenidoReporte['estatusPerpetradorId'.$key]="Estado del perpetrador:  ". $datos['catalogos']['estatusPerpetradorCatalogo']['estatusPerpetradorCatalogo'][$value3['estatusPerpetradorCatalogo_estatusPerpetradorId']]['descripcion']."\n";
-							$contenidoReporte['gradoInvolucramientoid'.$key]="Grado de involucramiento:  ". $datos['catalogos']['gradoDeInvolucramiento']['gradoInvolucramientoN'.$value3['nivelInvolugramientoId'].'Catalogo'][$value3['gradoInvolucramientoid']]['descripcion']."\n";
-							$contenidoReporte['afiliacionPerpetrador'.$key]="Tipo de afiliación:  ".$datos['catalogos']['relacionActoresCatalogo'][$value3['nivelInvolugramientoId']]['nombre']."\n";
-						}
-					}
-				}
+				
 
 			}
 		}
@@ -200,11 +209,12 @@ class ReportePdf_c extends CI_Controller
 		}
 
 		$contenidoReporte['encabezadoFuentePersonal']="\n Fuentes de información personal:  \n\n";
-
+		echo "<pre>";
+		print_r($Data['reporte']['fuenteInfoPersonal']);
 		if (isset($Data['reporte']['fuenteInfoPersonal'])) {
 			foreach ($Data['reporte']['fuenteInfoPersonal'] as $key => $infoAdicional) {
 				$contenidoReporte['infoAdicionalPersonal'.$key]="Nombre:  ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorId']]['nombre']." ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorId']]['apellidosSiglas']."\n";
-				$contenidoReporte['infoAdicionalfehca'.$key]="Fecha:  ".$infoAdicional['fecha']."\n";
+				$contenidoReporte['infoAdicionalfehca'.$key]="Observaciones:  ".$infoAdicional['observaciones']."\n";
 
 			}
 		}
@@ -216,9 +226,9 @@ class ReportePdf_c extends CI_Controller
 
 		}
 
-		$this->cezpdf->ezText($content, 10);
+//this->cezpdf->ezText($content, 10);
 
-		$this->cezpdf->ezStream();
+	//$this->cezpdf->ezStream();
 		
 	}
 
