@@ -121,7 +121,7 @@ class Actores_c extends CI_Controller {
             if ($casosRelacionados != 0) {
 
             	$datos['casosRelacionados'] = $this->actores_m->mTraeCasosRelacionadosActor($actorId);
-            	//print_r($datos['casosRelacionados']);
+            	
             }
 
 			/*----------Termina la parte que me trae los casos con los que se encuntra relacionado un actor------------------*/
@@ -129,9 +129,6 @@ class Actores_c extends CI_Controller {
             $datos['citaActor'] = $this->actores_m->mTraerCitasActor($actorId);
 
 			if ($tipoActorId==3) {
-				//echo "<pre>";
-				//print_r($datos['citaActor']['citas']);
-				//echo "</pre>";
 				$contador=0;
 				if(isset($datos['citaActor']['citas'])){
 				foreach ($datos['citaActor']['citas'] as $persona) {
@@ -152,18 +149,12 @@ class Actores_c extends CI_Controller {
 							$citas[$contador]['datosCitas']=$actorReacionado;
 							$datos['citaActor']['citas']=$datos['citaActor']['citas']+$citas;
 							$contador=$contador+1;
-							// echo "<pre>";
-							// print_r($datos['citaActor']['citas']);
-							// echo "</pre>";
 						}
 					}
 					
 				}
 				}
 				}
-//echo "<pre>";
-	//						print_r($datos['citaActor']['citas']);
-		//					echo "</pre>";
             $datos['casosRelacionados'] = $this->casosRelacionados($actorId);
             }
             
