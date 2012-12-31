@@ -1,6 +1,7 @@
 <div id="pestania" data-collapse>	
 	<h2 class="open">Casos</h2><!--título de la pestaña-->  
 	<div>
+		<pre><?= print_r($casosRelacionados)?></pre>
 	<?php if (isset($casosRelacionados) && ($casosRelacionados!=0)) {?>
 	<?php foreach ($casosRelacionados as $datosCaso) {?>
 		<div class="twelve columns" data-collapse>	
