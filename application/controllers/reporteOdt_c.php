@@ -57,12 +57,10 @@ class ReporteOdt_c extends CI_Controller
     }
 	function generaReporteLargoOdt($casoId)
 	{
-		echo "aca";
 		$datos['catalogos'] = $this->traer_catalogos();
 		$Data['reporte']= $this->reportes_m->mReporteLargo($casoId);
 		$Data['nombreCaso']=$Data['reporte']['casos']['nombre'];
 		
-		print_r($Data['reporte']);
 		
 		$section = $this->word->createSection(array('orientation'=>'landscape'));
 
