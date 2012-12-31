@@ -22,7 +22,10 @@
           	<span id="casos_fechaInicial"><?=(isset($datosCaso['casos']['fechaTermino'])) ? $datosCaso['casos']['fechaTermino'] : ''; ?></span>
           	</p>
                 <form action="<?=base_url(); ?>index.php/ReportePdf_c/generaReporteLargo/<?=$casoId; ?>" method="post" >
-                    <input type="submit" class="tiny button <?=$clase?>" value="Exportar" />
+                    <input type="submit" class="tiny button <?=$clase?>" value="Exportar PDF" />
+                </form>
+                <form action="<?=base_url(); ?>index.php/reporteOdt_c/generaReporteLargoOdt/<?=$casoId; ?>" method="post" >
+                    <input type="submit" class="tiny button <?=$clase?>" value="Exportar DOC" />
                 </form>
 	  	</div>
 	  	

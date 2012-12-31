@@ -8,7 +8,7 @@ class ReporteOdt_c extends CI_Controller
           
             $this->load->helper(array('html', 'url'));
         	$this->load->model(array('actores_m', 'general_m','reportes_m', 'catalogos_m','casos_m'));
-			$this->load->library('word');
+			//$this->load->library('word');
        }
 	
 	
@@ -55,14 +55,14 @@ class ReporteOdt_c extends CI_Controller
         return $datos;
         
     }
-	
 	function generaReporteLargoOdt($casoId)
 	{
+		echo "aca";
 		$datos['catalogos'] = $this->traer_catalogos();
 		$Data['reporte']= $this->reportes_m->mReporteLargo($casoId);
 		$Data['nombreCaso']=$Data['reporte']['casos']['nombre'];
 		
-		
+		print_r($Data['reporte']);
 		
 		$section = $this->word->createSection(array('orientation'=>'landscape'));
 
@@ -275,13 +275,13 @@ class ReporteOdt_c extends CI_Controller
 			$section->addText($fuentePersonal[$key],'estilo');
 		}
 			
-		$filename='reporte_largo_del_'.$Data['nombreCaso'].'.odt'; //save our document as this file name
+		/*$filename='reporte_largo_del_'.$Data['nombreCaso'].'.odt'; //save our document as this file name
 		header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document'); //mime type
 		header('Content-Disposition: attachment;filename="'.$filename.'"'); //tell browser what's the file name
 		header('Cache-Control: max-age=0'); //no cache
 		 
 		$objWriter = PHPWord_IOFactory::createWriter($this->word, 'ODText');
-		$objWriter->save('php://output');
+		$objWriter->save('php://output');*/
 	}
 	
 }
