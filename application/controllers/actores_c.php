@@ -123,7 +123,6 @@ class Actores_c extends CI_Controller {
             	$datos['casosRelacionados'] = $this-> actores_m->mTraeCasosRelacionadosActor($actorId);
             	
             }
-
 			/*----------Termina la parte que me trae los casos con los que se encuntra relacionado un actor------------------*/
 
             $datos['citaActor'] = $this->actores_m->mTraerCitasActor($actorId);
@@ -874,8 +873,6 @@ class Actores_c extends CI_Controller {
 			}
 				
 		}
-
-		//print_r($datos['casosActor']);
 		
 		//Traer casos relacionados con los afiliados del actor colectivo
 		
@@ -997,15 +994,19 @@ class Actores_c extends CI_Controller {
 			
 		}
 		
-		if(!empty($datos['actoresAfiliados']) || !empty($datos['casosRelacionadosId'])){
-				
-			return $datos;
-			
-		}else{
-			
-			return '0';	
-			
-		}	
+		if(!empty($datos['casosActor']) && !empty($datos['casosAfiliados'])){
+			$datos['casos'] = array_merge($datos['casosActor'],$datos['casosAfiliados']);
+			return $datos['casos'];
+		}
+		
+		if(!empty($datos['casosActor']) && empty($datos['casosAfiliados'])){
+			return $datos['casosActor'];
+		}
+		
+		if(empty($datos['casosActor']) && !empty($datos['casosAfiliados'])){
+			return $datos['casosAfiliados'];
+		}
+		
 	}
 
 	public function filtrarActorVentana(){
