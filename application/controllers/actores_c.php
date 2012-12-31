@@ -757,8 +757,8 @@ class Actores_c extends CI_Controller {
 	{
 		
 		//Traer casos relacionados con el actor colectivo
-		$datos['casosRelacionadosId']=$this->actores_m->mTraeCasosRelacionadosActor($actorCId);
-
+		$datos['casosRelacionadosId']=$this->actores_m->mTraeCasosIdRelacionadosActor($actorCId);
+		
 		if(!empty($datos['casosRelacionadosId']) && $datos['casosRelacionadosId'] !='0'){
 
 			for($i=1 ;$i <= sizeof($datos['casosRelacionadosId']);$i++){
