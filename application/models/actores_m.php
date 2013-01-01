@@ -1195,7 +1195,7 @@
 			
 		}/* filtrosBusquedaActor */
 		
-		/* Este modelo trae los id's de los casos relaciones con un actor*/
+		/* Este modelo trae los datos de los casos relaciones con un actor*/
 		public function mTraeCasosRelacionadosActor($actorId){
 			$this->db->select('*');
 			$this->db->from('casos_has_actores');
@@ -1208,6 +1208,29 @@
 					//$casos[$row['casos_casoId']]=$row;
 					
 					$casos[$row['casoActorId']]=$this->casos_m->mTraerDatosCaso($row['casos_casoId']);
+				}
+				
+				return $casos;
+			}else{
+				return '0';
+			}
+		}/* Fin de mTraeCasosRelacionadosActor */
+		
+		/* Este modelo trae los id's de los casos relaciones con un actor*/
+		public function mTraeCasosIdRelacionadosActor($actorId){
+			$this->db->select('*');
+			$this->db->from('casos_has_actores');
+			$this->db->where('actores_actorId',$actorId);
+            $this->db->distinct();
+			$consulta = $this->db->get();
+			
+			if ($consulta->num_rows() > 0){
+				$i=1;
+				foreach ($consulta->result_array() as $row) {
+					//$casos[$row['casos_casoId']]=$row;
+					
+					$casos[$i]=$row['casos_casoId'];
+					$i++;
 				}
 				
 				return $casos;

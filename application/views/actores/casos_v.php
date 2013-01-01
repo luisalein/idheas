@@ -1,9 +1,9 @@
 <div id="pestania" data-collapse>	
 	<h2 class="open">Casos</h2><!--título de la pestaña-->  
 	<div>
-		<pre><?= print_r($casosRelacionados)?></pre>
 	<?php if (isset($casosRelacionados) && ($casosRelacionados!=0)) {?>
-	<?php foreach ($casosRelacionados as $datosCaso) {?>
+	<?php foreach ($casosRelacionados as $casos) {?>		
+	<?php foreach ($casos as $datosCaso) {?>
 		<div class="twelve columns" data-collapse>	
   
 			<h2 class="twelve columns open"><?php print_r($datosCaso['casos']['nombre'])?></h2><!--título de la pestaña-->  
@@ -311,6 +311,7 @@
 
 				</div>
 		</div>
+	<?php }?>
 	<?php }?>
 	<?php }?>
 	</div>

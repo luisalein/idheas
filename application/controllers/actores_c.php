@@ -116,14 +116,13 @@ class Actores_c extends CI_Controller {
             $datos['datosActor'] = $this->actores_m->traer_datos_actor_m($actorId, $tipoActorId);
 			
 			/*----------Esta parte me trae los casos con los que se encuntra relacionado un actor------------------*/
-			$casosRelacionados=$this-> casosRelacionados($actorId);
+			$casosRelacionados=$this-> actores_m->mTraeCasosRelacionadosActor($actorId);
 		
             if ($casosRelacionados != 0) {
 
-            	$datos['casosRelacionados'] = $this-> casosRelacionados($actorId);
+            	$datos['casosRelacionados'] = $this-> actores_m->mTraeCasosRelacionadosActor($actorId);
             	
             }
-
 			/*----------Termina la parte que me trae los casos con los que se encuntra relacionado un actor------------------*/
 
             $datos['citaActor'] = $this->actores_m->mTraerCitasActor($actorId);
@@ -757,15 +756,15 @@ class Actores_c extends CI_Controller {
 	{
 		
 		//Traer casos relacionados con el actor colectivo
-		$datos['casosRelacionadosId']=$this->actores_m->mTraeCasosRelacionadosActor($actorCId);
+		$datos['casosRelacionadosId']=$this->actores_m->mTraeCasosIdRelacionadosActor($actorCId);
 
 		if(!empty($datos['casosRelacionadosId']) && $datos['casosRelacionadosId'] !='0'){
 
 			for($i=1 ;$i <= sizeof($datos['casosRelacionadosId']);$i++){
 			
-				if(!empty($datos['casosRelacionadosId'][$i]['casos_casoId'])){
+				if(!empty($datos['casosRelacionadosId'][$i])){
 					
-					$v1 = $datos['casosRelacionadosId'][$i]['casos_casoId'];
+					$v1 = $datos['casosRelacionadosId'][$i];
 					
 					$datos['casosActor'][$v1]=$this->casos_m->mTraerDatosCaso($v1);
 				
@@ -874,8 +873,6 @@ class Actores_c extends CI_Controller {
 			}
 				
 		}
-
-		//print_r($datos['casosActor']);
 		
 		//Traer casos relacionados con los afiliados del actor colectivo
 		
@@ -997,15 +994,19 @@ class Actores_c extends CI_Controller {
 			
 		}
 		
-		if(!empty($datos['actoresAfiliados']) || !empty($datos['casosRelacionadosId'])){
-				
-			return $datos;
-			
-		}else{
-			
-			return '0';	
-			
-		}	
+		if(!empty($datos['casosActor']) && !empty($datos['casosAfiliados'])){
+			$datos['casos'] = array_merge($datos['casosActor'],$datos['casosAfiliados']);
+			return $datos['casos'];
+		}
+		
+		if(!empty($datos['casosActor']) && empty($datos['casosAfiliados'])){
+			return $datos['casosActor'];
+		}
+		
+		if(empty($datos['casosActor']) && !empty($datos['casosAfiliados'])){
+			return $datos['casosAfiliados'];
+		}
+		
 	}
 
 	public function filtrarActorVentana(){
