@@ -98,7 +98,7 @@
 		<div class="six columns" >
 	<br/>
 		<label for="edad">Fecha inicial</label>
-			<select onclick="fechaInicialCasosRP(value)" >
+			<select onclick="fechaInicialCasosRP(value)" onkeyup="fechaInicialCasosRP(value)" >
 								<option></option>
 						<option  value="1" >fecha exacta</option>
 						<option  value="2">fecha aproximada</option>
@@ -135,7 +135,7 @@
 	<div class="twelve columns" >
 	<label for="Termonio">Fecha término</label>
 				<div class="six columns">
-					<select onclick="fechaTerminalCasosRP(value)" >
+					<select onclick="fechaTerminalCasosRP(value)" onkeyup="fechaTerminalCasosRP(value)" >
 								<option></option>
 								<option  value="1">fecha exacta</option>
 								<option  value="2">fecha aproximada</option>
