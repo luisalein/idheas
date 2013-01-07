@@ -392,16 +392,18 @@ class Casos_c extends CI_Controller {
 		
 		$data['casos_has_actores']= array('casos_casoId' =>$_POST['casoId'],'actores_actorId'=>$datos['victimas']['actorId']);
 			
-		echo "<pre>"; print_r($data);
+		echo "<pre>"; print_r($_POST);
 		echo "</pre>";
 
 		$this->general_m->llenar_tabla_m($data);
 		
 		$datos['victimas']['actos_actoId'] = $idActo;
-		
-		$this->casos_m->mAgregarVictimaActo($datos['victimas']);
-		
-		redirect(base_url().'index.php/casos_c/mostrarVictimas/'.$idActo.'/0/0/'.$data['casos_has_actores']['casos_casoId']);
+		echo "<pre>";
+		print_r($datos['victimas']);
+		echo "</pre>";
+
+		$victimaId=$this->casos_m->mAgregarVictimaActo($datos['victimas']);
+		redirect(base_url().'index.php/casos_c/mostrarVictimas/'.$idActo.'/'.$victimaId.'/1/'.$data['casos_has_actores']['casos_casoId']);
 				
 	}
 

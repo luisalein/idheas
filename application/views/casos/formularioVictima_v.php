@@ -5,10 +5,12 @@
 	</head>
 		
 	<body>
-		<?php if ($idVictima>0) {
+<!-- 		
+
+ -->		<?php if ($idVictima>0) {
+ 			
 			foreach ($victimas['victimas'][$idVictima]['casosActor'] as $casoActor) {
 			if ($casoId== $casoActor['casos_casoId'] ) {
-			
 				$casoVictimaActorId=$casoActor['casoActorId'];
 			}else {
 				$casoVictimaActorId=0;
