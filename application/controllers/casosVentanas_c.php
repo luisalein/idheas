@@ -182,9 +182,6 @@ class CasosVentanas_c extends CI_Controller {
 		$datos['datosCaso'] = $this->casos_m->mTraerDatosCaso($casoId);
 
 		if ($i>0) {
-			// echo "<pre>";
-			// print_r($datos['datosCaso']['tipoFuenteDocumental']);
-			// echo "</pre>";
 			$datos['fuenteDocumental']=$datos['datosCaso']['tipoFuenteDocumental'][$i];
 
 		}
@@ -315,15 +312,19 @@ class CasosVentanas_c extends CI_Controller {
         
             case(2):if($_POST['editar'] == 1){
             	
-            		$ruta = $this->cargarPDF();
+					$rutas = $this->cargarPDF();
 					
-					$nombreArchivo = $_FILES["pdf"]['name'];
-					
-					$data = array('nombreRegistro'=>$nombreArchivo,'ruta'=>$ruta,'fichas_fichaId'=>$datos['fichas']['fichaId']);
-					
-					if($nombreArchivo != '' && $ruta != '')
-						$this->casos_m->mAgregarRegistroFicha($data);
-					
+					if($rutas != '0'){
+						$tot = count($_FILES["archivos"]["name"]);
+					         for ($i = 0; $i < $tot; $i++){
+					         		$nombreArchivo = $_FILES["archivos"]['name'][$i];
+								 	
+									$data = array('nombreRegistro'=>$nombreArchivo,'ruta'=>$rutas[$i],'fichas_fichaId'=>$datos['fichas']['fichaId']);
+									
+									if($nombreArchivo != '' && $rutas[$i] != '')
+										$mensaje=$this->casos_m->mAgregarRegistroFicha($data);
+							}
+						}
 	            	$mensaje=$this->general_m->casos_m->mActualizaDatosFicha($datos['fichas'],$datos['fichas']['fichaId']); 
 					
 				}else{
@@ -331,16 +332,21 @@ class CasosVentanas_c extends CI_Controller {
 					$datos2['fichas']=$datos['fichas'];
 	            	$id = $this->general_m->general_m->llenar_ficha($datos2); 
 					
-					$ruta = $this->cargarPDF();
+					$rutas = $this->cargarPDF();
 					
-					$nombreArchivo = $_FILES["pdf"]['name'];
-					
-					$data = array('nombreRegistro'=>$nombreArchivo,'ruta'=>$ruta,'fichas_fichaId'=>$id);
-					
-					if($nombreArchivo != '' && $ruta != '')
-						$this->casos_m->mAgregarRegistroFicha($data);
-					
-				}
+					if($rutas != '0'){
+						$tot = count($_FILES["archivos"]["name"]);
+				         //este for recorre el arreglo
+					         for ($i = 0; $i < $tot; $i++){
+					         		$nombreArchivo = $_FILES["archivos"]['name'][$i];
+								 	
+									$data = array('nombreRegistro'=>$nombreArchivo,'ruta'=>$rutas[$i],'fichas_fichaId'=>$id);
+									
+									if($nombreArchivo != '' && $rutas[$i] != '')
+										$mensaje=$this->casos_m->mAgregarRegistroFicha($data);
+							}
+						}
+					}
 				
             break;
 			
@@ -351,18 +357,25 @@ class CasosVentanas_c extends CI_Controller {
 					if(isset($datos['actos'])){
 						$mensaje = $this->casos_m->mActualizaDatosActo($datos['actos'],$datos['actos']['actoId']);
 					}
+					if(empty($datos['derechoAfectado']['paisesCatalogo_paisId'])){
+							unset($datos['derechoAfectado']['paisesCatalogo_paisId']);
+					}
 					$mensaje = $mensaje . $this->casos_m->mActualizaDatosDerechoAfectado($datos['derechoAfectado'],$datos['derechoAfectado']['derechoAfectadoCasoId']);
+					$botonVictimas=1;
+					$Id=$id;
 				}else{
-					print_r($datos['derechoAfectado'] );
 					if(!empty($datos['actos']['actoViolatorioId'])){
 		            	$datos['actos']['casos_casoId']=$datos['lugares']['casos_casoId'];
 						$datos3['derechoAfectado'] =  $datos['derechoAfectado'];
+						
 						if(empty($datos3['derechoAfectado']['paisesCatalogo_paisId'])){
-							$datos3['derechoAfectado']['paisesCatalogo_paisId']=NULL;
+							unset($datos3['derechoAfectado']['paisesCatalogo_paisId']);
 						}
 						$Id = $this->casos_m->mAgregarDerechosAfectados($datos3);
 						$datos['actos']['derechoAfectado_derechoAfectadoCasoId']=$Id;
 						$mensaje = $this->casos_m->mAgregarActoDerechoAfectado($datos['actos']);
+						$botonVictimas=1;
+
 					} else{
 						echo "<script languaje='javascript' type='text/javascript'>
 								alert('Ningun derecho/acto fue seleccionado');
@@ -378,12 +391,33 @@ class CasosVentanas_c extends CI_Controller {
 				if($_POST['editar'] == 1){
 					if (isset($datos['intervenciones'])) {
 						$mensaje =  $this->casos_m->mActualizaDatosIntervencion($datos['intervenciones'],$datos['intervenciones']['intervencionId']);
+						
+						$data1 = array('casos_casoId'=>$_POST['casoId'],'actores_actorId'=>$datos['intervenciones']['interventorId'],'casoActorId'=>$_POST['casoActorIdInterventor']);
+		
+						$this->casos_m->mActualizaRelacionCasoActor($data1);
+						
+						$data2 = array('casos_casoId'=>$_POST['casoId'],'actores_actorId'=>$datos['intervenciones']['receptorId'],'casoActorId'=>$_POST['casoActorIdReceptor']);
+		
+						$this->casos_m->mActualizaRelacionCasoActor($data2);
 					}
 					
 					if (isset($datos['intervenidos'])) {
 						$mensaje = $mensaje . $this->casos_m->mActualizaDatosIntervenido($datos['intervenidos'],$datos['intervenidos']['intervenidoId']);
+						
+						$data = array('casos_casoId'=>$_POST['casoId'],'actores_actorId'=>$datos['intervenidos']['actorIntervenidoId'],'casoActorId'=>$_POST['casoActorIdIntervenido']);
+		
+						$this->casos_m->mActualizaRelacionCasoActor($data);		
+			
 					}
 				}else{
+					$data1['casos_has_actores']= array('casos_casoId' =>$_POST['casoId'],'actores_actorId'=>$datos['intervenciones']['interventorId']);
+							
+					$data2['casos_has_actores']= array('casos_casoId' =>$_POST['casoId'],'actores_actorId'=>$datos['intervenciones']['receptorId']);
+													
+					$this->general_m->llenar_tabla_m($data1);
+					
+					$this->general_m->llenar_tabla_m($data2);
+					
 					$datos4['intervencion'] = $datos['intervenciones'];
 					$mensaje = $this->casos_m->mAgregarIntervenciones($datos4);
 				}
@@ -392,10 +426,26 @@ class CasosVentanas_c extends CI_Controller {
 			
 			case(5): 
 				if($_POST['editar'] == 1){
-					// echo "<pre>"; print_r($_POST);echo "</pre>";
-					// echo "<pre>"; print_r($datos['fuenteInfoPersonal']);echo "</pre>";
 					$mensaje = $this->casos_m->mActualizaDatosFuenteInfoPersonal($datos['fuenteInfoPersonal'],$datos['fuenteInfoPersonal']['fuenteInfoPersonalId']);
+			
+					$data1 = array('casos_casoId'=>$_POST['casoId'],'actores_actorId'=>$datos['fuenteInfoPersonal']['actorId'],'casoActorId'=>$_POST['casoActorIdActor']);
+		
+					$this->casos_m->mActualizaRelacionCasoActor($data1);
+						
+					$data2 = array('casos_casoId'=>$_POST['casoId'],'actores_actorId'=>$datos['fuenteInfoPersonal']['actorReportado'],'casoActorId'=>$_POST['casoActorIdActorReportado']);
+		
+					$this->casos_m->mActualizaRelacionCasoActor($data2);	
+					
 				}else{
+					
+					$data1['casos_has_actores']= array('casos_casoId' =>$_POST['casoId'],'actores_actorId'=>$datos['fuenteInfoPersonal']['actorId']);
+							
+					$data2['casos_has_actores']= array('casos_casoId' =>$_POST['casoId'],'actores_actorId'=>$datos['fuenteInfoPersonal']['actorReportado']);
+													
+					$this->general_m->llenar_tabla_m($data1);
+					
+					$this->general_m->llenar_tabla_m($data2);
+					
 					$datos5['fuenteInfoPersonal'] = $datos['fuenteInfoPersonal'];
 					$mensaje = $this->general_m->llenar_tabla_m($datos5);
 				}
@@ -403,11 +453,18 @@ class CasosVentanas_c extends CI_Controller {
             break;
 			
 			case(6):
-					echo "<pre>"; print_r($_POST);echo "</pre>";
-					echo "<pre>"; print_r($datos['tipoFuenteDocumental']);echo "</pre>";
 				if($_POST['editar'] == 1){
 					$mensaje = $this->casos_m->mActualizaDatosTipoFuenteDocumental($datos['tipoFuenteDocumental'],$datos['tipoFuenteDocumental']['tipoFuenteDocumentalId']);
-				}else{ 
+					
+					$data = array('casos_casoId'=>$_POST['casoId'],'actores_actorId'=>$datos['tipoFuenteDocumental']['actorReportado'],'casoActorId'=>$_POST['casoActorIdActorReportado']);
+		
+					$this->casos_m->mActualizaRelacionCasoActor($data);				
+	
+				}else{
+					$data2['casos_has_actores']= array('casos_casoId' =>$_POST['casoId'],'actores_actorId'=>$datos['tipoFuenteDocumental']['actorReportado']);
+																		
+					$this->general_m->llenar_tabla_m($data2);
+					 
 					$datos6['tipoFuenteDocumental'] = $datos['tipoFuenteDocumental'];
 					$mensaje = $this->general_m->llenar_tabla_m($datos6);
 				}
@@ -416,6 +473,7 @@ class CasosVentanas_c extends CI_Controller {
         
             case(7):
 				if($_POST['editar'] == 1){
+					print_r($datos['relacionCasos']);
 	            	$mensaje = $this->casos_m->mActualizaDatosRelacionCaso($datos['relacionCasos']['relacionId'],$datos['relacionCasos']);
 				}else{
 					if(isset($datos['casoSeleccionado']['seleccionado']) && $datos['casoSeleccionado']['seleccionado'] == 1){
@@ -434,7 +492,7 @@ class CasosVentanas_c extends CI_Controller {
             break;
             
         }
-        if (!isset($botonVictimas)) {
+      if (!isset($botonVictimas)) {
 		echo "<script languaje='javascript' type='text/javascript'>
 		window.opener.location.reload();
 		window.close();
@@ -446,7 +504,6 @@ class CasosVentanas_c extends CI_Controller {
 		</script>";
         	redirect(base_url().'index.php/casosVentanas_c/derechosAfectados/'.$datos['lugares']['casos_casoId'].'/'.$Id);
         }
-			
 		
 		return $mensaje;
 	}
@@ -456,16 +513,23 @@ class CasosVentanas_c extends CI_Controller {
 		
 		$catalogos= $this->traer_catalogos();
 
+		$casoId=$_POST['casoId'];
 
 		if(isset($_POST['intervenciones_intervencionId']) && isset($_POST['actorIntervenidoId'])){
 			$datos = array('actorIntervenidoId'=>$_POST['actorIntervenidoId'],'intervenciones_intervencionId'=>$_POST['intervenciones_intervencionId']);
 		
 			$mensaje = $this->casos_m->mAgregarIntervenidoIntervenciones($datos);
+			
+			$datos1['casos_has_actores']['casos_casoId']=$casoId;
+		
+			$datos1['casos_has_actores']['actores_actorId']=$_POST['actorIntervenidoId'];
+			
+			$this->general_m->llenar_tabla_m($datos1);	
+			
 		}else{
 			$mensaje = 'faltan datos';
 		}
 
-		$casoId=$_POST['casoId'];
 
 		$datos['datosCaso'] = $this->casos_m->mTraerDatosCaso($casoId);
 
@@ -473,8 +537,17 @@ class CasosVentanas_c extends CI_Controller {
 
 		$data="";
 
+			
 		foreach ($datos['intervenciones'][$_POST['intervenciones_intervencionId']]['intervenidos'] as $intervenidos) {
-								
+				
+				foreach ($intervenidos['casosActorIntervenido'] as $intervenido) {
+						if ($intervenido['casos_casoId']==$casoId) {
+							$valorCaso=$intervenido['casoActorId'];
+						} else {
+							$valorCaso=0;
+						}
+				}
+
 			$data= $data.
 			'<div class="twelve columns margenes" >'.
 				'<div class="nine columns" >'.
@@ -483,7 +556,7 @@ class CasosVentanas_c extends CI_Controller {
 				"</div>
 				<div class='three columns'>
 					<br> <br> <br> <br> 
-					<input type='button' class='tiny button' value='Eliminar' Onclick=".'"eliminarIntervenidoAjax('."'".$intervenidos['intervenidoId']."','".$casoId."','".$_POST['intervenciones_intervencionId']."')".'">
+					<input type='button' class='tiny button' value='Eliminar' Onclick=".'"eliminarIntervenidoAjax('."'".$intervenidos['intervenidoId']."','".$casoId."','".$_POST['intervenciones_intervencionId']."','".$valorCaso."')".'">
 				</div>
 			</div>';
 
@@ -499,11 +572,12 @@ class CasosVentanas_c extends CI_Controller {
 	 * Recibe el id del intervenido
 	 * Redirecciona al caso en donde se elimino el intervenido
 	 * **/
-	public function eliminarIntervenido($idIntervenido,$idCaso,$idInternvencion){
+	public function eliminarIntervenido($idIntervenido,$idCaso,$idInternvencion,$casoActorId){
 		
 		$mensaje = $this->casos_m->mEliminarIntervenido($idIntervenido);
 		
 		//redirect(base_url().'index.php/casos_c/mostrar_caso/'.$idCaso);
+		$this->casos_m->mEliminarRelacionCasoActor($casoActorId);
 	
 		$catalogos= $this->traer_catalogos();
 
@@ -511,11 +585,23 @@ class CasosVentanas_c extends CI_Controller {
 
 		$datos['intervenciones'] =$datos['datosCaso']['intervenciones'];
 
+		// echo "<pre>";
+		// print_r($datos['intervenciones'][$idInternvencion]['intervenidos']);
+		// echo "</pre>";
+
 		$data="";
 		if (isset($datos['intervenciones'][$idInternvencion]['intervenidos'])) {
 			
 			foreach ($datos['intervenciones'][$idInternvencion]['intervenidos'] as $intervenidos) {
 									
+
+				foreach ($intervenidos['casosActorIntervenido'] as $intervenido) {
+						if ($intervenido['casos_casoId']==$idCaso) {
+							$valorCaso=$intervenido['casoActorId'];
+						} else {
+							$valorCaso=0;
+						}
+				}
 				$data= $data.'<div class="twelve columns margenes" >'.
 					'<div class="nine columns">
 						<img class="foto" src="'.base_url().$catalogos['listaTodosActores'][$intervenidos['actorIntervenidoId']]['foto'].
@@ -524,7 +610,7 @@ class CasosVentanas_c extends CI_Controller {
 					"</div>
 					<div class='three columns'>
 						<br> <br> <br> <br> 
-							<input type='button' class='tiny button' value='Eliminar' Onclick=".'"eliminarIntervenidoAjax('."'".$intervenidos['intervenidoId']."','".$idCaso."','".$idInternvencion."')".'">
+							<input type='button' class='tiny button' value='Eliminar' Onclick=".'"eliminarIntervenidoAjax('."'".$intervenidos['intervenidoId']."','".$idCaso."','".$idInternvencion."','".$valorCaso."')".'">
 					</div>
 				</div>';
 
@@ -582,27 +668,37 @@ class CasosVentanas_c extends CI_Controller {
 		
 	}
 	
-	public function eliminarIntervencion($intervencionId,$idCaso){
+	public function eliminarIntervencion($intervencionId,$idCaso,$casoActorIdReceptor,$casoActorIdInterventor){
 		
 		$mensaje =  $this->casos_m-> mEliminaIntervenciones($intervencionId);
 		
+		$this->casos_m->mEliminarRelacionCasoActor($casoActorIdReceptor);
+		
+		$this->casos_m->mEliminarRelacionCasoActor($casoActorIdInterventor);
+		
 		redirect(base_url().'index.php/casos_c/mostrar_caso/'.$idCaso);
 		
 		return $mensaje;
 	}
 	
-	public function eliminarFuenteInfoPersonal($fuenteInfoPersonalId,$idCaso){
+	public function eliminarFuenteInfoPersonal($fuenteInfoPersonalId,$idCaso,$casoActorIdActorId,$actorReportado){
 			
 		$mensaje =  $this->casos_m->mEliminaFuenteInfoPersonal($fuenteInfoPersonalId);
 		
+		$this->casos_m->mEliminarRelacionCasoActor($casoActorIdActorId);
+		
+		$this->casos_m->mEliminarRelacionCasoActor($actorReportado);
+		
 		redirect(base_url().'index.php/casos_c/mostrar_caso/'.$idCaso);
 		
 		return $mensaje;
 	}
 	
-	public function eliminarFuenteInfoDocumental($tipoFuenteDocumentalId,$idCaso){
+	public function eliminarFuenteInfoDocumental($tipoFuenteDocumentalId,$idCaso,$actorReportado){
 		
-		$mensaje =  $this->casos_m->mEliminaTipoFuenteDocumental($tipoFuenteDocumentalId);
+		$mensaje =  $this->casos_m->mEliminaTipoFuenteDocumental($tipoFuenteDocumentalId);		
+		
+		$this->casos_m->mEliminarRelacionCasoActor($actorReportado);
 		
 		redirect(base_url().'index.php/casos_c/mostrar_caso/'.$idCaso);
 		
@@ -726,60 +822,63 @@ class CasosVentanas_c extends CI_Controller {
 			     $lista = $lista.'</li></ul>';
 		    }
 	
-		//print_r($data);
 		print_r($lista);
-		
-		//echo $id1 .$id2 .$id3.$id4  ;
-		
+				
 	}
 	
 	public function cargarPDF(){
-		
-		$status = "aca";
-	   
-			// obtenemos los datos del archivo
-			$tamano = $_FILES["pdf"]['size'];
-			$tipo = $_FILES["pdf"]['type'];
-			$archivo = $_FILES["pdf"]['name'];
-			$prefijo = substr(md5(uniqid(rand())),0,6);
-	
 			
-			if($tipo == "application/pdf"){			
-				if ($archivo != "") {
-				    // guardamos el archivo a la carpeta files
-				    
-				    //para MAC y Linux
-				    $urlBase = system('pwd');
+   //Preguntamos si nuetro arreglo 'archivos' fue definido
+         if (isset ($_FILES["archivos"])) {
+        	$tot = count($_FILES["archivos"]["name"]);
+         //este for recorre el arreglo
+	         for ($i = 0; $i < $tot; $i++){
+	         //con el indice $i, poemos obtener la propiedad que desemos de cada archivo
+	         //para trabajar con este
+	         		
+					$tamano = $_FILES["archivos"]['size'][$i];
+					$tipo = $_FILES["archivos"]['type'][$i];
+					$archivo = $_FILES["archivos"]['name'][$i];
+					$prefijo = substr(md5(uniqid(rand())),0,6);
 					
-				    //Para windows
-					//$urlBase = system('chdir');
-					
-				    $destino = $urlBase.'/statics/fichas/'.$prefijo.'_'.$archivo;
-				  					
-				    if (move_uploaded_file($_FILES['pdf']['tmp_name'],$destino)) {
-				    	
-						$status = "Archivo subido: <b>".$archivo."</b>";
+					if($tipo == "application/pdf"){			
+						if ($archivo != "") {
+						    // guardamos el archivo a la carpeta files
+						    
+						    //para MAC y Linux
+						    $urlBase = system('pwd');
+							
+						    //Para windows
+							//$urlBase = system('chdir');
+							
+						    $destino = $urlBase.'/statics/fichas/'.$prefijo.'_'.$archivo;
+						  					
+						    if (move_uploaded_file($_FILES['archivos']['tmp_name'][$i],$destino)) {
+						    	
+								$status = "Archivo subido: <b>".$archivo."</b>";
+								
+								$urls[$i]= '/statics/fichas/'.$prefijo.'_'.$archivo;
+								
+						    } else {
+						    	
+								 return '0';
+								
+						    }
+						} else {
+							
+						    return '0';
+							
+						}
 						
-						return '/statics/fichas/'.$prefijo.'_'.$archivo;
+					}else{
+							
+						return '0';
 						
-				    } else {
-				    	
-						$status = $destino;
-						
-				    }
-				} else {
-					
-				    $status = $archivo;
-					
-				}
-				
-			}else{
-					
-				$status = $tipo;
-				
-			}
-	    
-		return $status;
+					}
+	            }	
+     		 } 
+		
+		return $urls;
 	}
 	
 }

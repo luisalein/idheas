@@ -76,6 +76,23 @@
 					foreach ($consulta->result_array() as $row) {
 						$datos['intervenciones'][$row['intervencionId']] = $row;
 					}
+					
+					foreach ($datos['intervenciones'] as $row) {
+				
+						/*Trae los intervenidos de una intervención*/
+						$this->db->select('*');
+						$this->db->from('intervenidos');
+						$this->db->where('intervenciones_intervencionId',$row['intervencionId']);
+						$this->db->order_by("intervenidoId", "desc"); 
+						$consultaIntervenidos = $this->db->get();
+						
+						if ($consultaIntervenidos->num_rows() > 0) {
+							foreach ($consultaIntervenidos->result_array() as $row4) {
+								$datos['intervenciones'][$row['intervencionId']]['intervenidos'][$row4['intervenidoId']]=$row4;
+								
+							}
+						}
+					}
 				}
 				
 				/* Trae todos los datos de actos*/
@@ -87,7 +104,7 @@
 				if ($consulta->num_rows() > 0){				
 					/* Pasa la consulta a un cadena */
 					foreach ($consulta->result_array() as $row) {
-						$datos['actos'][$row['actoId']] = $row;
+						$datos['actos'][$row['derechoAfectado_derechoAfectadoCasoId']] = $row;
 					}
 					
 					/*Trae todos los datos de derechosafectados*/
@@ -333,6 +350,7 @@
 				/* Trae los actosId relacionados con un derecho afectado*/
 				$this->db->select('casos_casoId');
 				$this->db->from('actos');
+				$this->db->where('estadoActivo',1);
 				$this->db->where('actoViolatorioId',$datos['actoViolatorioId']);
 				$this->db->where('actoViolatorioNivel',$datos['actoViolatorioNivel']);
 				$consultaCasos = $this->db->get();

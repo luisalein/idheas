@@ -142,12 +142,14 @@ class Casos_m extends CI_Model {
 				if ($consultaCaso->num_rows() > 0){
 					foreach ($consultaCaso->result_array() as $row3) {
 						$nombreCaso = $row3;
-					}	
+					}
+					
+					$datos['relacionCasos'][$row['relacionId']]['nombreCasoIdB'] = $nombreCaso['nombre']; 
+					$datos['relacionCasos'][$row['relacionId']]['fechaIncial'] = $nombreCaso['fechaInicial'];
+					$datos['relacionCasos'][$row['relacionId']]['fechaTermino'] = $nombreCaso['fechaTermino'];	
 				}
 				
-				$datos['relacionCasos'][$row['relacionId']]['nombreCasoIdB'] = $nombreCaso['nombre']; 
-				$datos['relacionCasos'][$row['relacionId']]['fechaIncial'] = $nombreCaso['fechaInicial'];
-				$datos['relacionCasos'][$row['relacionId']]['fechaTermino'] = $nombreCaso['fechaTermino'];
+				
 			}
 
 			
@@ -163,6 +165,30 @@ class Casos_m extends CI_Model {
 			/* Pasa la consulta a un cadena */
 			foreach ($consulta->result_array() as $row) {
 				$datos['intervenciones'][$row['intervencionId']] = $row;
+				
+				/*Trae los casos relacionados directamente a un interventor */
+				$this->db->select('*');
+				$this->db->from('casos_has_actores');
+				$this->db->where('actores_actorId',$row['interventorId']);
+				$consultaCasosActor = $this->db->get();
+				
+				if($consultaCasosActor->num_rows() > 0){
+					foreach ($consultaCasosActor->result_array() as $valor) {
+						$datos['intervenciones'][$row['intervencionId']]['casosActorInterventor'][$valor['casoActorId']]=$valor;
+					}
+				}
+
+				/*Trae los casos relacionados directamente a un receptor */
+				$this->db->select('*');
+				$this->db->from('casos_has_actores');
+				$this->db->where('actores_actorId',$row['receptorId']);
+				$consultaCasosActor = $this->db->get();
+				
+				if($consultaCasosActor->num_rows() > 0){
+					foreach ($consultaCasosActor->result_array() as $valor) {
+						$datos['intervenciones'][$row['intervencionId']]['casosActorReceptor'][$valor['casoActorId']]=$valor;
+					}
+				}
 			}
 			
 			foreach ($datos['intervenciones'] as $row) {
@@ -177,6 +203,18 @@ class Casos_m extends CI_Model {
 				if ($consultaIntervenidos->num_rows() > 0) {
 					foreach ($consultaIntervenidos->result_array() as $row4) {
 						$datos['intervenciones'][$row['intervencionId']]['intervenidos'][$row4['intervenidoId']]=$row4;
+						
+						/*Trae los casos relacionados directamente a un intervenido */
+						$this->db->select('*');
+						$this->db->from('casos_has_actores');
+						$this->db->where('actores_actorId',$row4['actorIntervenidoId']);
+						$consultaCasosActor = $this->db->get();
+						
+						if($consultaCasosActor->num_rows() > 0){
+							foreach ($consultaCasosActor->result_array() as $valor) {
+								$datos['intervenciones'][$row['intervencionId']]['intervenidos'][$row4['intervenidoId']]['casosActorIntervenido'][$valor['casoActorId']]=$valor;
+							}
+						}	
 					}
 				}
 				
@@ -200,9 +238,22 @@ class Casos_m extends CI_Model {
 								
 								$datos['intervenciones'][$row['intervencionId']]['actorReportado'][$row3['actorId']] =$row3;
 								
+								$this->db->select('*');
+								$this->db->from('casos_has_actores');
+								$this->db->where('actores_actorId',$row3['actorId']);
+								$consultaCasosActor = $this->db->get();
+								
+								if($consultaCasosActor->num_rows() > 0){
+									foreach ($consultaCasosActor->result_array() as $valor) {
+										//print_r($valor);
+										$datos['intervenciones'][$row['intervencionId']]['actorReportado'][$row3['actorId']]['casosActor'][$valor['casoActorId']]=$valor;
+									}
+								}
+								
 								
 							}
 						}/*fin if consultaActorReportado*/ 
+						
 					}/*fin foreach consulta de intervenciones */
 				}/* fin de if consulta intervenciones*/
 				
@@ -301,6 +352,31 @@ class Casos_m extends CI_Model {
 							$datos['fuenteInfoPersonal'][$row['fuenteInfoPersonalId']]['actorReportadoApellidosSiglas'] = $datosActorReportado['apellidosSiglas'];
 						}	
 					}
+				
+				$this->db->select('*');
+				$this->db->from('casos_has_actores');
+				$this->db->where('actores_actorId',$row['actorReportado']);
+				$consultaCasosActor = $this->db->get();
+				
+				if($consultaCasosActor->num_rows() > 0){
+					foreach ($consultaCasosActor->result_array() as $valor) {
+						//print_r($valor);
+						$datos['fuenteInfoPersonal'][$row['fuenteInfoPersonalId']]['casosActorReportado'][$valor['casoActorId']]=$valor;
+					}
+				}
+
+				$this->db->select('*');
+				$this->db->from('casos_has_actores');
+				$this->db->where('actores_actorId',$row['actorId']);
+				$consultaCasosActor = $this->db->get();
+				
+				if($consultaCasosActor->num_rows() > 0){
+					foreach ($consultaCasosActor->result_array() as $valor) {
+						//print_r($valor);
+						$datos['fuenteInfoPersonal'][$row['fuenteInfoPersonalId']]['casosActor'][$valor['casoActorId']]=$valor;
+					}
+				}
+				
 			}/*fin foreach consulta de fuenteInfoPersonal */
 			
 			
@@ -333,6 +409,18 @@ class Casos_m extends CI_Model {
 							$datos['tipoFuenteDocumental'][$row['tipoFuenteDocumentalId']]['actorReportadoApellidosSiglas'] = $datosActorReportado['apellidosSiglas'];
 						}	
 				}
+				$this->db->select('*');
+				$this->db->from('casos_has_actores');
+				$this->db->where('actores_actorId',$row['actorReportado']);
+				$consultaCasosActor = $this->db->get();
+				
+				if($consultaCasosActor->num_rows() > 0){
+					foreach ($consultaCasosActor->result_array() as $valor) {
+						//print_r($valor);
+						$datos['tipoFuenteDocumental'][$row['tipoFuenteDocumentalId']]['casosActor'][$valor['casoActorId']]=$valor;
+					}
+				}/*Fin if de consultaCasosActor*/
+				
 			}
 		}
 		
@@ -570,7 +658,8 @@ class Casos_m extends CI_Model {
 	 * @param $casoId
 	 * */
     public function mTraeRelacionesCaso($casoId){
-			
+		
+		/*Trae datos relacion directa*/	
 		$this->db->select('*');
 		$this->db->from('relacionCasos');
 		$this->db->where('casos_casoId',$casoId);
@@ -580,13 +669,35 @@ class Casos_m extends CI_Model {
 		if ($consulta->num_rows() > 0){				
 				/* Pasa la consulta a un cadena */
 				foreach ($consulta->result_array() as $row) {
-                    $relaciones[$casoId] = $row;
-                    $relaciones[$casoId]['casoIdB'] = $this->db->select('*')->from('casos')->where('casoId', $row['casoIdB'])->get()->result_array();
+					
+                    $relaciones[$row['casoIdB']] = $row;
+                    //$relaciones[$casoId]['casoIdB'] = $this->db->select('*')->from('casos')->where('casoId', $row['casoIdB'])->get()->result_array();
+					
+					$this->db->select('nombre,fechaInicial,fechaTermino');
+					$this->db->from('casos');
+					$this->db->where('casoId', $row['casoIdB']);
+					$consultaCaso = $this->db->get();
+					// echo 'hola';
+					// print_r($consultaCaso->resul_array());
+					if ($consultaCaso->num_rows() > 0){
+						foreach ($consultaCaso->result_array() as $row3) {
+							$nombreCaso = $row3;
+						}	
+						
+						
+						$relaciones[$row['casoIdB']]['nombreCasoIdB'] = $nombreCaso['nombre']; 
+						$relaciones[$row['casoIdB']]['fechaIncial'] = $nombreCaso['fechaInicial'];
+						$relaciones[$row['casoIdB']]['fechaTermino'] = $nombreCaso['fechaTermino'];
+					}
+					
+					
+					
 					
 				}
 				
 		}
-		
+	
+		/*Trae datos relacion citada*/
 		$this->db->select('*');
 		$this->db->from('relacionCasos');
 		$this->db->where('casoIdB',$casoId);
@@ -597,7 +708,22 @@ class Casos_m extends CI_Model {
 				/* Pasa la consulta a un cadena */
 				foreach ($consulta->result_array() as $row) {
                     $relacionesIdB[$casoId] = $row;
-                    $relacionesIdB[$casoId]['casoIdB'] = $this->db->select('*')->from('casos')->where('casoId', $row['casos_casoId'])->get()->result_array();
+                    //$relacionesIdB[$casoId]['casoIdB'] = $this->db->select('*')->from('casos')->where('casoId', $row['casos_casoId'])->get()->result_array();
+					
+					$this->db->select('nombre,fechaInicial,fechaTermino');
+					$this->db->from('casos');
+					$this->db->where('casoId', $row['casos_casoId']);
+					$consultaCaso = $this->db->get();
+					
+					if ($consultaCaso->num_rows() > 0){
+						foreach ($consultaCaso->result_array() as $row3) {
+							$nombreCaso = $row3;
+						}	
+					}
+					
+					$relacionesIdB[$casoId]['nombreCasoId'] = $nombreCaso['nombre']; 
+					$relacionesIdB[$casoId]['fechaIncialCasoId'] = $nombreCaso['fechaInicial'];
+					$relacionesIdB[$casoId]['fechaTerminoCasoId'] = $nombreCaso['fechaTermino'];
 					
 				}
 		}
@@ -1377,10 +1503,38 @@ class Casos_m extends CI_Model {
 			
 							foreach ($consultaPerpetradores->result_array() as $datosPerpetradores) {
 								$datos['victimas'][$victimas['victimaId']]['perpetradores'][$datosPerpetradores['perpetradorVictimaId']]=$datosPerpetradores;
-							}	
-						}/* fin if $consultaPerpetradores */		
+							
+								$this->db->select('*');
+								$this->db->from('casos_has_actores');
+								$this->db->where('actores_actorId',$victimas['actorId']);
+								$consultaCasosActor = $this->db->get();
+								
+								if($consultaCasosActor->num_rows() > 0){
+									foreach ($consultaCasosActor->result_array() as $valor) {
+										//print_r($valor);
+										$datos['victimas'][$victimas['victimaId']]['perpetradores'][$datosPerpetradores['perpetradorVictimaId']]['casosActor'][$valor['casoActorId']]=$valor;
+									}
+								}
+							
+							}
+								
+						}/* fin if $consultaPerpetradores */	
+						
+						$this->db->select('*');
+						$this->db->from('casos_has_actores');
+						$this->db->where('actores_actorId',$victimas['actorId']);
+						$consultaCasosActor = $this->db->get();
+						
+						if($consultaCasosActor->num_rows() > 0){
+							foreach ($consultaCasosActor->result_array() as $valor) {
+								//print_r($valor);
+								$datos['victimas'][$victimas['victimaId']]['casosActor'][$valor['casoActorId']]=$valor;
+							}
+						}	
 					}
 				}/* fin if consultaActores*/		
+				
+				
 				
 			}/*fin for each consultaVictimas */
 			
@@ -1605,6 +1759,34 @@ class Casos_m extends CI_Model {
 			$mensaje['error'] = $this->db->_error_message();
 			/* Regresa la cadena al controlador*/
         	return $mensaje;
+		}
+	}
+	
+	public function mActualizaRelacionCasoActor($datosRelacion){
+		
+		$this->db->where('casoActorId', $datosRelacion['casoActorId']);
+		if($this->db->update('casos_has_actores',$datosRelacion)){
+			/* Regresa la cadena al controlador*/
+			return ($mensaje = 'Hecho');
+		}else{
+			$mensaje['error'] = $this->db->_error_message();
+			/* Regresa la cadena al controlador*/
+        	return $mensaje;
+		}
+	}
+	
+	public function mEliminarRelacionCasoActor($casoActorId){
+		$this->db->where('casoActorId', $casoActorId);
+		if($this->db->delete('casos_has_actores')){
+			/* Regresa la cadena al controlador*/
+			return ($mensaje = 'Hecho');
+			
+		}else{
+			
+			$mensaje['error'] = $this->db->_error_message();
+			/* Regresa la cadena al controlador*/
+        	return $mensaje;
+			
 		}
 	}
 	 

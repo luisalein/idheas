@@ -52,6 +52,52 @@ class Actores_c extends CI_Controller {
 		$datos['motivoViaje'] = $this->general_m->obtener_todo('motivoViajeCatalogo', 'motivoViajeId', 'descripcion');
 		
         $datos['listaTodosActores'] = $this->actores_m-> mListaTodosActores();
+/*Desde aquí agregue estos catalogos*/		
+
+		$datos['nivelConfiabilidadCatalogo'] = $this->general_m->obtener_todo('nivelConfiabilidadCatalogo', 'nivelConfiabilidadId', 'descripcion');
+		
+		$datos['tipoFuenteCatalogo'] = $this->general_m->obtener_todo('tipoFuenteCatalogo', 'tipoFuenteId', 'descripcion');
+
+		$datos['actosN1Catalogo'] = $this->general_m->obtener_todo('actosN1Catalogo', 'actoId', 'descripcion');
+		
+		$datos['actosN2Catalogo'] = $this->general_m->obtener_todo('actosN2Catalogo', 'actoN2Id', 'descripcion');
+		
+		$datos['actosN3Catalogo'] = $this->general_m->obtener_todo('actosN3Catalogo', 'actoN3Id', 'descripcion');
+		
+		$datos['actosN4Catalogo'] = $this->general_m->obtener_todo('actosN4Catalogo', 'actoN4Id', 'descripcion');
+		
+		$datos['derechosAfectadosN1Catalogo'] = $this->general_m->obtener_todo('derechosAfectadosN1Catalogo', 'derechoAfectadoN1Id', 'descripcion');
+		
+		$datos['derechosAfectadosN2Catalogo'] = $this->general_m->obtener_todo('derechosAfectadosN2Catalogo', 'derechoAfectadoN2Id', 'descripcion');
+		
+		$datos['derechosAfectadosN3Catalogo'] = $this->general_m->obtener_todo('derechosAfectadosN3Catalogo', 'derechoAfectadoN3Id', 'descripcion');
+		
+		$datos['derechosAfectadosN4Catalogo'] = $this->general_m->obtener_todo('derechosAfectadosN4Catalogo', 'derechoAfectadoN4Id', 'descripcion');
+
+		$datos['derechosAfectadosN1Catalogo'] = $this->general_m->obtener_todo('derechosAfectadosN1Catalogo', 'derechoAfectadoN1Id', 'descripcion');
+		
+		$datos['derechosAfectadosN2Catalogo'] = $this->general_m->obtener_todo('derechosAfectadosN2Catalogo', 'derechoAfectadoN2Id', 'descripcion');
+		
+		$datos['derechosAfectadosN3Catalogo'] = $this->general_m->obtener_todo('derechosAfectadosN3Catalogo', 'derechoAfectadoN3Id', 'descripcion');
+		
+		$datos['derechosAfectadosN4Catalogo'] = $this->general_m->obtener_todo('derechosAfectadosN4Catalogo', 'derechoAfectadoN4Id', 'descripcion');
+       
+	   	$datos['relacionCasosCatalogo'] = $this->general_m->obtener_todo('relacionCasosCatalogo', 'relacionCasosId', 'descripcion');
+
+	   	$datos['tipoIntervencionN1Catalogo'] = $this->general_m->obtener_todo('tipoIntervencionN1Catalogo', 'tipoIntervencionN1Id', 'descripcion');
+
+	   	$datos['tipoIntervencionN2Catalogo'] = $this->general_m->obtener_todo('tipoIntervencionN2Catalogo', 'tipoIntervencionN2Id', 'descripcion');
+
+	   	$datos['tipoIntervencionN3Catalogo'] = $this->general_m->obtener_todo('tipoIntervencionN3Catalogo', 'tipoIntervencionN3Id', 'descripcion');
+	   	
+	   	$datos['tipoIntervencionN4Catalogo'] = $this->general_m->obtener_todo('tipoIntervencionN4Catalogo', 'tipoIntervencionN4Id', 'descripcion');
+
+	   	$datos['relacionesActoresCatalogo'] = $this->general_m->obtener_todo('relacionActores', 'relacionActoresId', 'relacionActoresId');
+
+	   	$datos['tipoFuenteDocumentalN1Catalogo'] = $this->general_m->obtener_todo('tipoFuenteDocumentalN1Catalogo','tipoFuenteDocumentalN1CatalogoId', 'descripcion', 'notas');
+
+	   	$datos['tipoFuenteDocumentalN2Catalogo'] = $this->general_m->obtener_todo('tipoFuenteDocumentalN2Catalogo','tipoFuenteDocumentalN2CatalogoId', 'tipoFuenteDocumentalN1Catalogo_tipoFuenteDocumentalN1CatalogoId','descripcion', 'notas');
+
 
         return $datos;
         
@@ -70,19 +116,44 @@ class Actores_c extends CI_Controller {
             $datos['datosActor'] = $this->actores_m->traer_datos_actor_m($actorId, $tipoActorId);
 			
 			/*----------Esta parte me trae los casos con los que se encuntra relacionado un actor------------------*/
-			$casosRelacionados=$this->actores_m->mTraeCasosRelacionadosActor($actorId);
-
+			$casosRelacionados=$this-> actores_m->mTraeCasosRelacionadosActor($actorId);
+		
             if ($casosRelacionados != 0) {
 
-            	$datos['casosRelacionados'] = $this->actores_m->mTraeCasosRelacionadosActor($actorId);
-            	print_r($datos['casosRelacionados']);
+            	$datos['casosRelacionados'] = $this-> actores_m->mTraeCasosRelacionadosActor($actorId);
+            	
             }
-
 			/*----------Termina la parte que me trae los casos con los que se encuntra relacionado un actor------------------*/
 
             $datos['citaActor'] = $this->actores_m->mTraerCitasActor($actorId);
 
 			if ($tipoActorId==3) {
+				$contador=0;
+				if(isset($datos['citaActor']['citas'])){
+				foreach ($datos['citaActor']['citas'] as $persona) {
+					$contador=$contador+1;
+				}
+				foreach ($datos['citaActor']['citas'] as $persona) {
+
+					$actoresRelacionados = $this->actores_m->mTraerRelacionesActor($persona['datosCitas']['relacionActoresId']);
+					
+				if($actoresRelacionados!=0){
+					foreach ($actoresRelacionados as $actorReacionado) {
+
+						if ($actorReacionado['tipoRelacionIndividualColectivoId']==1) {
+
+							$aux=$actorReacionado['actorRelacionadoId'];
+							$actorReacionado['actorRelacionadoId']=$actorReacionado['actorId'];
+							$actorReacionado['actorId']=$aux;
+							$citas[$contador]['datosCitas']=$actorReacionado;
+							$datos['citaActor']['citas']=$datos['citaActor']['citas']+$citas;
+							$contador=$contador+1;
+						}
+					}
+					
+				}
+				}
+				}
             $datos['casosRelacionados'] = $this->casosRelacionados($actorId);
             }
             
@@ -114,7 +185,6 @@ class Actores_c extends CI_Controller {
             	$datos['form'] = $this->load->view('actores/transmigrante_v', $datos, true);
                 
             break;
-        
             case(3): $datos['form'] = $this->load->view('actores/colectivo_v', $datos, true);
                 
             break;
@@ -686,15 +756,15 @@ class Actores_c extends CI_Controller {
 	{
 		
 		//Traer casos relacionados con el actor colectivo
-		$datos['casosRelacionadosId']=$this->actores_m->mTraeCasosRelacionadosActor($actorCId);
+		$datos['casosRelacionadosId']=$this->actores_m->mTraeCasosIdRelacionadosActor($actorCId);
 
-		if(!empty($datos['casosRelacionadosId'])){
-			
+		if(!empty($datos['casosRelacionadosId']) && $datos['casosRelacionadosId'] !='0'){
+
 			for($i=1 ;$i <= sizeof($datos['casosRelacionadosId']);$i++){
 			
-				if(!empty($datos['casosRelacionadosId'][$i]['casos_casoId'])){
+				if(!empty($datos['casosRelacionadosId'][$i])){
 					
-					$v1 = $datos['casosRelacionadosId'][$i]['casos_casoId'];
+					$v1 = $datos['casosRelacionadosId'][$i];
 					
 					$datos['casosActor'][$v1]=$this->casos_m->mTraerDatosCaso($v1);
 				
@@ -803,8 +873,6 @@ class Actores_c extends CI_Controller {
 			}
 				
 		}
-
-		//print_r($datos['casosActor']);
 		
 		//Traer casos relacionados con los afiliados del actor colectivo
 		
@@ -926,15 +994,19 @@ class Actores_c extends CI_Controller {
 			
 		}
 		
-		if(!empty($datos['actoresAfiliados']) || !empty($datos['casosRelacionadosId'])){
-				
-			return $datos;
-			
-		}else{
-			
-			return '0';	
-			
-		}	
+		if(!empty($datos['casosActor']) && !empty($datos['casosAfiliados'])){
+			$datos['casos'] = array_merge($datos['casosActor'],$datos['casosAfiliados']);
+			return $datos['casos'];
+		}
+		
+		if(!empty($datos['casosActor']) && empty($datos['casosAfiliados'])){
+			return $datos['casosActor'];
+		}
+		
+		if(empty($datos['casosActor']) && !empty($datos['casosAfiliados'])){
+			return $datos['casosAfiliados'];
+		}
+		
 	}
 
 	public function filtrarActorVentana(){

@@ -5,26 +5,35 @@
 	</head>
 		
 	<body>
-<!-- <pre><?= $idVictima?><pre>
-<pre><?= print_r($victimas['victimas'])?><pre> -->
+		<?php if ($idVictima>0) {
+			foreach ($victimas['victimas'][$idVictima]['casosActor'] as $casoActor) {
+			if ($casoId== $casoActor['casos_casoId'] ) {
+			
+				$casoVictimaActorId=$casoActor['casoActorId'];
+			}else {
+				$casoVictimaActorId=0;
+			}
+		}
+		}?>
+		
 		<div class="twelve columns">
 			<div class="four columns"> 	<!--Lista de victimas-->
 
 				<div class="twelve columns espacioSuperior">
 					<?php if ($idVictima>0) {?>
 						<div class="six columns">
-							<form action="<?= base_url(); ?>index.php/casos_c/eliminarVictima/<?=$idActo; ?>/<?=$victimas['victimas'][$idVictima]['victimaId']; ?>">
+							<form action="<?= base_url(); ?>index.php/casos_c/eliminarVictima/<?=$idActo; ?>/<?=$victimas['victimas'][$idVictima]['victimaId']; ?>/<?=$casoVictimaActorId?>/<?=$casoId?>">
 							<center><input class="small button" value="Eliminar víctima" type="submit"></center>
 							</form>
 						</div>
 						<div class="six columns">
-							<form action="<?= base_url(); ?>index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/<?=$idVictima; ?>/1" method="post">
+							<form action="<?= base_url(); ?>index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/<?=$idVictima; ?>/1/<?=$casoId?>" method="post">
 								<center><input class="small button" value="Editar víctima" type="submit"></center>
 							</form>
 						</div>
 					<?php }?>
 					<div  class="twelve columns">
-						<form action="<?= base_url(); ?>index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/0/1" method="post" >
+						<form action="<?= base_url(); ?>index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/0/1/<?=$casoId?>" method="post" >
 							<center><input class="small button " value="Nueva víctima" type="submit"></center>
 						</form>
 					</div>
@@ -36,7 +45,7 @@
 				<div class="twelve columns lineasLista" >
 					<?php if ($victimas!="0") {
 						foreach ($victimas['victimas'] as $victima) { ?>
-							 <a href="<?=base_url(); ?>index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/<?=$victima['victimaId']; ?>/0">
+							 <a href="<?=base_url(); ?>index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/<?=$victima['victimaId']; ?>/0/<?=$casoId?>">
 							 	<div class="<?= $idVictima==($victima['victimaId']) ? "victimaSeleccionada" : "victimaNoSeleccionada" ;?>">
 									<img class="four columns " style="width:90px !important; height:70px !important;" src="<?=base_url().$victima["foto"]; ?>" />
 									<span class="eight columns"><?= $victima['nombre']." ".$victima['apellidosSiglas']?></span>
@@ -92,7 +101,9 @@
 				                </tbody>
 				            </table>
 						</div>
+ <pre><?=print_r($victimas['victimas'][$idVictima]['perpetradores'])?></pre>
  -->
+
 							<div class="twelve columns espacio">
 								<br/><label>Perpetradores</label> <br/>
 
@@ -109,15 +120,26 @@
 						                <tbody>
 											<?php if (isset($victimas['victimas'][$idVictima]['perpetradores'])) { ?>
 						            			<?php foreach ($victimas['victimas'][$idVictima]['perpetradores'] as $key => $perpetrador) { ?>
+
+														<?php foreach ($perpetrador['casosActor'] as $casoActor) {
+																if ($casoId== $casoActor['casos_casoId'] ) {
+																
+																	$casoActorId=$casoActor['casoActorId'];
+																	
+																} else{
+																	$casoActorId=0;
+																}
+															}
+														?>
 						                			<tr>
 								                        <td><?=(isset($perpetrador['perpetradorId'])) ? $catalogos['listaTodosActores'][$perpetrador['perpetradorId']]['nombre'] : ''; ?></td>
 								                        <td><?=(isset($perpetrador['perpetradorId'])) ? $catalogos['listaTodosActores'][$perpetrador['perpetradorId']]['apellidosSiglas'] : ''; ?></td>
 								                          <td><?=(isset($perpetrador['actorRelacionadoId'])&&($perpetrador['actorRelacionadoId']>0)) ? $catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$perpetrador['actorRelacionadoId']]['actorRelacionadoId']]['nombre'] : ''; ?></td>
 								                        <td><?=(isset($perpetrador['tipoPerpetradorId'])&& isset($perpetrador['tipoPerpetradorNivel'])) ? $catalogos['tipoPerpetradorN'.$perpetrador['tipoPerpetradorNivel'].'Catalogo'][$perpetrador['tipoPerpetradorId']]['descripcion'] : ''; ?></td>
 								                        <td>
-								                        	<div class="twelve columns"><input class="tiny button" value="Editar" onclick="ventanaPerpetradores('<?=$idActo;?>', '<?= $victimas['victimas'][$idVictima]['victimaId']?>', '<?= $perpetrador['perpetradorVictimaId'] ?>')" type="button"> </div>
+								                        	<div class="twelve columns"><input class="tiny button" value="Editar" onclick="ventanaPerpetradores('<?=$idActo;?>', '<?= $victimas['victimas'][$idVictima]['victimaId']?>', '<?= $perpetrador['perpetradorVictimaId'] ?>','<?=$casoId?>')" type="button"> </div>
 								                        	<div class="twelve columns">
-								                        		<form method="POST" action="<?= base_url(); ?>index.php/casos_c/eliminarPerpetrador/<?=$idActo; ?>/<?=$victimas['victimas'][$idVictima]['victimaId']; ?>/<?= $perpetrador['perpetradorVictimaId']; ?>">
+								                        		<form method="POST" action="<?= base_url(); ?>index.php/casos_c/eliminarPerpetrador/<?=$idActo; ?>/<?=$victimas['victimas'][$idVictima]['victimaId']; ?>/<?= $perpetrador['perpetradorVictimaId']; ?>/<?=$casoActorId?>/<?=$casoId?>">
 								                        		<input class="tiny button" value="Eliminar"type="submit"> 
 								                        		</form>
 								                        	</div>
@@ -130,7 +152,7 @@
 						            <div class="twelve columns"> 
 											<div class="three columns push-nine" >
 												<?php if ($idVictima>0) {?>
-													<input class="tiny button" value="nuevo perpetrador" onclick="ventanaPerpetradores('<?=$idActo;  ;?>', <?= $victimas['victimas'][$idVictima]['victimaId']?>, 0)" type="button">
+													<input class="tiny button" value="nuevo perpetrador" onclick="ventanaPerpetradores('<?=$idActo;  ;?>', <?= $victimas['victimas'][$idVictima]['victimaId']?>, 0,'<?=$casoId?>')" type="button">
 												<?php }?>
 											</div>
 									</div>
@@ -142,4 +164,4 @@
 			</div><!--Termina información general de la victima-->
 		</div>
 	</body>	
-</html> 
+</html><!-- -->

@@ -69,11 +69,15 @@ function SeleccionarYTreaeRelaciones(title){
     notas="ventanaColectivoRelacionados('"+n[0]+"','')";
     window.opener.document.getElementById('vistaActorRelacionado').innerHTML = ('<div class="three columns"><img style="width:120px !important; height:150px !important;" src="'+base+n[2]+'" /></div><b><h4>'+n[1]+'</h4></b>');
     window.opener.document.getElementById('vistaActorRelacionadoPerpetrador').innerHTML = ('<input type="button" class="tiny button" value="Seleccionar relación" onclick="'+notas+'" />');
+    var nameDeLaRelacion= window.opener.document.getElementById('nameDeLaRelacion').value;
+    notas2="eliminarRelacionVista('vistaActorRelacionadoPerpetrador','"+nameDeLaRelacion+"')";
+    window.opener.document.getElementById('BotonesColectivo').innerHTML = ('<input type="button" class="tiny button" value="Seleccionar relación" onclick="'+notas+'" /><input type="button" value="Eliminar" onclick='+notas2+' class="tiny button"> ');
+    window.opener.document.getElementById('vistaActorRelacionadoPerpetrador').innerHTML = (' ');
 }    
 
 function eliminarRelacionVista(id,name,id2,name2){  
-    //alert(name);
     document.getElementById(name).value = 0;
+alert(name);
     document.getElementById(id).innerHTML = (" ");
     document.getElementById(id2).innerHTML = (" ");
     document.getElementById(name2).value = 0;
@@ -109,6 +113,7 @@ function seleccionarRelacionColectivo(nombre, Siglas, TipoRelacion,IdRelacion,fo
     }
     window.opener.document.getElementById(nameSeleccionado).value = IdRelacion;
     window.opener.document.getElementById(vista).innerHTML = ('<div class="three columns"><img style="width:120px !important; height:150px !important;" src="'+foto+'" /></div><b><h6>'+nombre+' '+Siglas+'<br>Tipo de relacion<br>'+TipoRelacion+'</h6></b>');
+    window.close();
 }    
 
 
@@ -158,7 +163,6 @@ function agregarIntervenidoAjax(){
     var casoId = document.getElementById('casoId').value;
 
         var url = base+'index.php/casosVentanas_c/agregarIntervenido';
-    
         var data = 'actorIntervenidoId='+actorIntervenidoId + '&intervenciones_intervencionId='+intervenciones_intervencionId+'&casoId='+casoId;
 
             $.ajax({
@@ -179,7 +183,7 @@ function agregarIntervenidoAjax(){
             },
             
             error: function(){
-            
+                
                alert("no es posible agregar actor");
             }
         
@@ -188,9 +192,9 @@ function agregarIntervenidoAjax(){
 
 
 //Actualizará dinámicamente los actores intervenido de una intervención
-function eliminarIntervenidoAjax(idIntervenido,idCaso,idInternvencion){
+function eliminarIntervenidoAjax(idIntervenido,idCaso,idInternvencion, casoActor){
     
-        var url = base+'index.php/casosVentanas_c/eliminarIntervenido/'+idIntervenido+'/'+idCaso+'/'+idInternvencion;
+        var url = base+'index.php/casosVentanas_c/eliminarIntervenido/'+idIntervenido+'/'+idCaso+'/'+idInternvencion+'/'+casoActor;
 
             var data;
 

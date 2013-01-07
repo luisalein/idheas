@@ -31,22 +31,7 @@ class ReporteExcel_c extends CI_Controller
 	}
 	
 	function generaExcel(){
-		//activate worksheet number 1
-		/*$this->excel->setActiveSheetIndex(0);
-		//name the worksheet
-		$this->excel->getActiveSheet()->setTitle('test worksheet');
-		//set cell A1 content with some text
-		$this->excel->getActiveSheet()->setCellValue('A1', 'This is just some text value');
-		//change the font size
-		$this->excel->getActiveSheet()->getStyle('A1')->getFont()->setSize(20);
-		//make the font become bold
-		$this->excel->getActiveSheet()->getStyle('A1')->getFont()->setBold(true);
-		//merge cell A1 until D1
-		$this->excel->getActiveSheet()->mergeCells('A1:D1');
-		//set aligment to center for that merged cell (A1 to D1)
-		$this->excel->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-		 */
-		 
+		
 		$this->excel->setActiveSheetIndex(0);
 		
 		$this->excel->getActiveSheet()->getStyle('B1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
@@ -64,40 +49,36 @@ class ReporteExcel_c extends CI_Controller
 		$this->excel->getActiveSheet()->setCellValue('E1', 'Fecha de inicio');
 						
 		$this->excel->getActiveSheet()->setCellValue('F1', 'Fecha de término'); 
-		 
-		 
+		
 		$catActos = $this->catalogos_m->mTraerDatosCatalogoActos(); 
 		$catPerpe = $this->catalogos_m->mTraerDatosCatalogoTipoPerpetrador();
 		$catDA = $this->catalogos_m->mTraerDatosCatalogoDerechosAfectados();
-		 
-		/*$datos = array('actoViolatorioId'=>'1','actoViolatorioNivel'=>'1');
-			
-		$Data = $this->reportes_m->mReporteCortoActoDerechoAfectado($datos);
-		
-		$datos = array('nombre'=>'Caso 2');
-			
-		$Data = $this->reportes_m->mReporteCortoNombre($datos);
-		
-		$tipo = 1;*/
 		
 		$Data = array();
 		$tipo = $_POST['tipoFiltro'];
-		
 		switch ($tipo){
 
                     case(1):
 						$datos = array('nombre'=>$_POST['nombreCaso']);
-                       	$Data = $this->reportes_m->mReporteCortioNombre($datos);
+                       	$Data = $this->reportes_m->mReporteCortoNombre($datos);
+						if($Data == ''){
+						
+							redirect(base_url().'index.php/reportes_c/generar_reporte');	
+						}
                     break;
 
                     case(2): 
 						$datos = array('desdeFecha'=>$_POST['fechaInicial'],'hastaFecha'=>$_POST['fechaTermino']);
                         $Data = $this->reportes_m->mReporteCortoFechas($datos);
+						if($Data == '')
+						 	redirect(base_url().'index.php/reportes_c/generar_reporte');
                     break;
 
                     case(3): 
 						$datos =array('derechoAfectadoId'=>$_POST['derechoAfectadoId'],'actoViolatorioNivel'=>$_POST['actoViolatorioNivel'],'actoViolatorioId'=>$_POST['actoViolatorioId']);
                         $Data = $this->reportes_m->mReporteCortoActoDerechoAfectado($datos);
+						if($Data == '')
+						 	redirect(base_url().'index.php/reportes_c/generar_reporte');
                     break;
                 
                     default : redirect(base_url().'index.php/reportes_c/generar_reporte');
@@ -107,7 +88,6 @@ class ReporteExcel_c extends CI_Controller
                 }
 		
 		if($tipo == 1){
-			
 			$actoslist="";
 			if(isset($Data['actos']) && isset($Data['derechoAfectado']) ){
 					foreach($Data['actos'] as $acto){
@@ -131,18 +111,32 @@ class ReporteExcel_c extends CI_Controller
 							}
 						}
 						
-						$listaPerpetradores =" ";
-						if(isset($Data['perpetradores'])){
-							foreach ($Data['perpetradores'] as $perpetrador) {
-								$listaPerpetradores = $listaPerpetradores . $perpetrador['nombre'].' '.$perpetrador['apellidos'].'. ';
+						$listaPerpetradores ='';
+						if(isset($Data['victimas'])){
+							foreach($Data['victimas'] as $victima){
+								if($acto['actoId']== $victima['actos_actoId']){
+									foreach($Data['perpetradores'] as $perpetrador){
+										if($perpetrador['victimas_victimaId']==$victima['victimaId']){
+											foreach ($Data['perpetradores'] as $perpetrador) {
+												$listaPerpetradores = $listaPerpetradores . $perpetrador['nombre'].' '.$perpetrador['apellidos'].'. ';
+											}
+										}
+								
+									}
+								}
 							}
-						}
 							
+						}
+						
 						
 						$actoslist = $actoslist."Derecho Afectado: ".$derechoAfectado." . Acto:".$nombreActo.". "
 						."(Fecha inicio: ".$Data['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['fechaInicial'].". Fecha término: ".
 						$Data['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['fechaTermino']." )."."No victimas:  "
-						.$Data['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['noVictimas']."Perpetradores: ".$listaPerpetradores;
+						.$Data['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['noVictimas'].'. ';
+						
+						if($listaPerpetradores != ''){
+							$actoslist =$actoslist."Perpetradores: ".$listaPerpetradores.'. ';
+						}				
 	
 					}
 				}
@@ -186,7 +180,7 @@ class ReporteExcel_c extends CI_Controller
 						}
 						
 						if($acto['actoViolatorioNivel']==1){
-							foreach ($catActos['actosN'.$acto['actoViolatorioNivel'].'Catalogos'] as $catA) {
+							foreach ($catActos['actosN'.$acto['actoViolatorioNivel'].'Catalogo'] as $catA) {
 								if($catA['actoId']==$acto['actoId']){
 									$nombreActo = $catA['descripcion'];
 								}
@@ -198,18 +192,31 @@ class ReporteExcel_c extends CI_Controller
 								}
 							}
 						}
-						$listaPerpetradores =" ";
-						if(isset($caso['perpetradores'])){
-							foreach ($caso['perpetradores'] as $perpetrador) {
-								$listaPerpetradores = $listaPerpetradores . $perpetrador['nombre'].' '.$perpetrador['apellidos'].'. ';
+						$listaPerpetradores ='';
+						if(isset($caso['victimas'])){
+							foreach($caso['victimas'] as $victima){
+								if($acto['actoId']== $victima['actos_actoId']){
+									foreach($caso['perpetradores'] as $perpetrador){
+										if($perpetrador['victimas_victimaId']==$victima['victimaId']){
+											foreach ($caso['perpetradores'] as $perpetrador) {
+												$listaPerpetradores = $listaPerpetradores . $perpetrador['nombre'].' '.$perpetrador['apellidos'].'. ';
+											}
+										}
+								
+									}
+								}
 							}
+							
 						}
 						
 						$actoslist = $actoslist."Derecho Afectado: ".$derechoAfectado." . Acto:".$nombreActo.". "
 						."(Fecha inicio: ".$caso['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['fechaInicial'].". Fecha término: ".
 						$caso['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['fechaTermino'].")."." No victimas: ".
-						$caso['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['noVictimas']."Perpetradores: ".$listaPerpetradores;
-	
+						$caso['derechoAfectado'][$acto['derechoAfectado_derechoAfectadoCasoId']]['noVictimas'].'. ';
+						
+						if($listaPerpetradores != ''){
+							$actoslist =$actoslist."Perpetradores: ".$listaPerpetradores.'. ';
+						}				
 					}
 				}
 
@@ -245,7 +252,6 @@ class ReporteExcel_c extends CI_Controller
 			
 		}
 		
-		
 		$filename='reporte_corto.xls'; //save our workbook as this file name
 		header('Content-Type: application/vnd.ms-excel'); //mime type
 		header('Content-Disposition: attachment;filename="'.$filename.'"'); //tell browser what's the file name
@@ -256,7 +262,6 @@ class ReporteExcel_c extends CI_Controller
 		$objWriter = PHPExcel_IOFactory::createWriter($this->excel, 'Excel5');  
 		//force user to download the Excel file without writing it to server's HD
 		$objWriter->save('php://output');
-	
 	}
 
 }

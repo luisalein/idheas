@@ -24,16 +24,44 @@
 		<input type="hidden" id="fuenteInfoPersonal_tipoRelacionActorReportadoId"  name="fuenteInfoPersonal_tipoRelacionActorReportadoId" value="<?= (isset($fuenteInfoPersonal['tipoRelacionActorReportadoId'])) ? $fuenteInfoPersonal['tipoRelacionActorReportadoId'] : " " ;?>"/>
 
 		<input type="hidden" id='casos_casoId' name='casos_casoId'	value="<?= $casoId ?>"/>
+		<input type="hidden" id='casoId' name='casoId'	value="<?= $casoId ?>"/>
 		<input type="hidden" id='fuenteInfoPersonal_casos_casoId' name='fuenteInfoPersonal_casos_casoId' value="<?= $casoId ?>"/>
 
 		<input type="hidden" id="fuenteInfoPersonal_fuenteInfoPersonalId"  name="fuenteInfoPersonal_fuenteInfoPersonalId" value="<?= (isset($fuenteInfoPersonal['fuenteInfoPersonalId'])) ? $fuenteInfoPersonal['fuenteInfoPersonalId'] : " " ;?>"/>
 
+
+		<?php if (isset($fuenteInfoPersonal['casosActorReportado'])) {
+			foreach ($fuenteInfoPersonal['casosActorReportado'] as $casosActorReportado) {
+			if ($casoId== $casosActorReportado['casos_casoId'] ) {
+			
+				echo '<input type="hidden"  id="casoActorIdReportado" name="casoActorIdReportado" value="'.$casosActorReportado['casoActorId'].'">';
+				$casoActorReportadoId=$casosActorReportado['casoActorId'];
+			}else
+
+				$casoActorReportadoId=0;
+		}
+		}
+		?>
+		<?php if (isset($fuenteInfoPersonal['casosActor'])) {
+			foreach ($fuenteInfoPersonal['casosActor'] as $casoActor) {
+			if ($casoId== $casoActor['casos_casoId'] ) {
+			
+				echo '<input type="hidden"  id="casoActorId" name="casoActorId" value="'.$casoActor['casoActorId'].'">';
+				$casoActorId=$casoActor['casoActorId'];
+			}else
+
+				$casoActorId=0;
+				echo '<input type="hidden"  id="casoActorIdReportado" name="casoActorIdReportado" value="0">';
+		}
+		}
+		?>
 		<!-- 
+		<pre> <?php print_r($fuenteInfoPersonal['casosActorReportado'])?></pre>
+		<pre> <?php print_r($fuenteInfoPersonal['casosActor'])?></pre>
 		<pre> <?php print_r($catalogos['relacionesActoresCatalogo'][$fuenteInfoPersonal['relacionId']])?></pre>
 		<pre> <?php print_r($catalogos['relacionesActoresCatalogo'][$fuenteInfoPersonal['relacionId']]['actorRelacionadoId'])?></pre>
 		<pre> <?php print_r($catalogos['listaTodosActores'][$fuenteInfoPersonal['actorId']])?></pre>
 		<pre> <?php print_r($catalogos['listaTodosActores'][$fuenteInfoPersonal['actorId']]['actorId'])?></pre>
-		<pre> <?php print_r($fuenteInfoPersonal['relacionId'])?></pre>
 		 -->
 			<fieldset>
 				<legend class="espacioInferior">Fuente de información personal</legend>
@@ -163,18 +191,18 @@
 				
 				<div class="twelve columns">
 					<label for="comentFuente">Observaciones</label>
-					<textarea id="infoAdicional_observaciones"  name="infoAdicional_observaciones" ><?=(isset($fuenteInfoPersonal['observaciones']) ? $fuenteInfoPersonal['observaciones'] : ''); ?></textarea>
+					<textarea id="fuenteInfoPersonal_observaciones"  name="fuenteInfoPersonal_observaciones" ><?=(isset($fuenteInfoPersonal['observaciones']) ? $fuenteInfoPersonal['observaciones'] : ''); ?></textarea>
 				</div>
 				<div class="twelve columns">
 					<label for="comentFuente">Comentarios</label>
-					<textarea id="infoAdicional_comentarios" name="infoAdicional_comentarios"><?=(isset($fuenteInfoPersonal['comentarios']) ? $fuenteInfoPersonal['comentarios'] : ''); ?></textarea>
+					<textarea id="fuenteInfoPersonal_comentarios" name="fuenteInfoPersonal_comentarios"><?=(isset($fuenteInfoPersonal['comentarios']) ? $fuenteInfoPersonal['comentarios'] : ''); ?></textarea>
 				</div>
 
 
 			<fieldset>
 				<legend class="espacioInferior">Actor reportado</legend>
-					<input type="radio" onclick="pintaIndividualesInfoPersonalReportado()" name="selecionaActorReportado" <?= (isset($fuenteInfoPersonal['actorReportado']) && ($catalogos['listaTodosActores'][$fuenteInfoPersonal['actorReportado']]['tipoActorId']< 3)) ? "checked='checked'" : " " ;?> />Persona
-					<input type="radio"	onclick="pintaColectivosInfoPersonalReportado()" name="selecionaActorReportado" <?= (isset($fuenteInfoPersonal['actorReportado']) && ($catalogos['listaTodosActores'][$fuenteInfoPersonal['actorReportado']]['tipoActorId']== 3)) ? "checked='checked'" : " " ;?>/>Actor colectivo <br />
+					<input type="radio" onclick="pintaIndividualesInfoPersonalReportado()" name="selecionaActorReportado" <?= (isset($fuenteInfoPersonal['actorReportado']) && ($fuenteInfoPersonal['actorReportado']>0 )&& ($catalogos['listaTodosActores'][$fuenteInfoPersonal['actorReportado']]['tipoActorId']< 3)) ? "checked='checked'" : " " ;?> />Persona
+					<input type="radio"	onclick="pintaColectivosInfoPersonalReportado()" name="selecionaActorReportado" <?= (isset($fuenteInfoPersonal['actorReportado'])&& ($fuenteInfoPersonal['actorReportado']>0 ) && ($catalogos['listaTodosActores'][$fuenteInfoPersonal['actorReportado']]['tipoActorId']== 3)) ? "checked='checked'" : " " ;?>/>Actor colectivo <br />
 					<label class="espacioSuperior"><b >Persona:</b></label> <br />
 
 					<div class="twelve columns espacioSuperior" id="infoPersonalActorReportado">

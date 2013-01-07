@@ -2,7 +2,7 @@
 <html >
 	<head>
 		<meta charset="utf-8">
-		<title>Login Ideas</title>
+		<title>Login Idheas</title>
 
 <meta charset ="utf-8" />
 <meta name="viewport" content="width=device-width" />
@@ -16,7 +16,7 @@
 		<div id="container" name="container" class="six columns" class="twelve columns">
 			<div id="encabezado" name="encabezado" class="twelve columns">	
 				<div id="bienvenido" name="bienvenido" class="six columns" >
-					<h2>Bienvenido</h2>
+					<h3>Bienvenido</h3>
 				</div>
 				<br>
 				<div id="logo" class="six columns">

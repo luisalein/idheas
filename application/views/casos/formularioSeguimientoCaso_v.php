@@ -68,12 +68,16 @@
 					<?php echo br(2);?>	
 						<label for="comentFichas">Comentarios</label>
 						<textarea id="fichas_Comentarios" style="width: 690px; height: 200px" name="fichas_Comentarios" wrap="hard"  value=""><?=(isset($ficha['comentarios'])) ? $ficha['comentarios'] : " " ; ?> </textarea>
-			
 			</div>	
 			<div id="pestania">
 				<p style="margin-left: 15px;" >Agregar nuevo registro</p><!--título de la sub-pestaña-->  
 				<div>
-					<input style="margin-left: 15px;" name="pdf" type="file" size="10" accept="appplication/pdf""/>
+					<dl>            
+					   <dd><div id="adjuntos">
+							   <input type="file" name="archivos[]"/><br />
+						</div></dd>
+					   <dt><a href="#" onClick="addCampo()">Subir otro archivo</a></dt>      
+				   </dl>
 				</div>
 			</div>
 		</div>

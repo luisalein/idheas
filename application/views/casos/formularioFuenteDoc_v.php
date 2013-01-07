@@ -14,7 +14,11 @@
 	</pre>
 	<form action='<?=base_url(); ?>index.php/casosVentanas_c/guardarDatosVentanas/6' method="post" accept-charset="utf-8">
 	<input type="hidden" id="editar"  name="editar" value="<?= (isset($fuenteDocumental)) ? "1" : "0" ;?>"/>
+
 	<input type="hidden" id='casos_casoId' name='casos_casoId'	value="<?= $casoId ?>"/>
+
+	<input type="hidden" id='casoId' name='casoId'	value="<?= $casoId ?>"/>
+
 	<input type="hidden" id='tipoFuenteDocumental_casos_casoId' name='tipoFuenteDocumental_casos_casoId' value="<?= $casoId ?>"/>
 	
 	<input type="hidden" id='nameSeleccionado' value="tipoFuenteDocumental_actorReportado"/>
@@ -28,6 +32,18 @@
 	
 	<input type="hidden" id='nameDeLaRelacion' value="tipoFuenteDocumental_relacionId"/>
 	<input type="hidden" id='tipoFuenteDocumental_relacionId' name='tipoFuenteDocumental_relacionId' value="<?= (isset($fuenteDocumental['relacionId'])) ? $fuenteDocumental['relacionId'] : " " ; ?>"/>
+
+		<?php if (isset($fuenteDocumental['actorReportado'])&&($fuenteDocumental['actorReportado']>0)) {
+			foreach ($fuenteDocumental['casosActor'] as $casoActor) {
+			if ($casoId== $casoActor['casos_casoId'] ) {
+			
+				echo '<input type="hidden"  id="casoActorIdInterventor" name="casoActorIdActorReportado" value="'.$casoActor['casoActorId'].'">';
+			}else
+
+				echo '<input type="hidden"  id="casoActorIdInterventor" name="casoActorIdActorReportado" value="0">';
+		}
+		}
+		?>
 
 		<!-----------------Comienza la parte de Fuente documental- ---------------------->
 		<div id="formularioFuenteDocumental" class="twelve columns">
@@ -86,11 +102,11 @@
 											<option></option>						
 											<?php if(isset($fuenteDocumental['nivelConfiabilidadCatalogo_nivelConfiabilidadId'])){
 						                                foreach($catalogos['nivelConfiabilidadCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
-						                                    <option onclick="notasCatalogos('<?=$item['notas']; ?>','nivelConfiabilidadCatalogo','2')" value="<?=$item['nivelConfiabilidadId']?>" <?=($fuenteDocumental['nivelConfiabilidadCatalogo_nivelConfiabilidadId'] == $item['nivelConfiabilidadId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
+						                                    <option onkeyup="notasCatalogos2('<?=$item['notas']; ?>','nivelConfiabilidadCatalogo','2')" onclick="notasCatalogos2('<?=$item['notas']; ?>','nivelConfiabilidadCatalogo','2')" value="<?=$item['nivelConfiabilidadId']?>" <?=($fuenteDocumental['nivelConfiabilidadCatalogo_nivelConfiabilidadId'] == $item['nivelConfiabilidadId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
 						                                <?php endforeach;
 						                            } else { ?>
 						                                <?php foreach($catalogos['nivelConfiabilidadCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
-						                                    <option onclick="notasCatalogos('<?=$item['notas']; ?>','nivelConfiabilidadCatalogo','2')" value="<?=$item['nivelConfiabilidadId']?>" > <?=$item['descripcion']?></option>
+						                                    <option onkeyup="notasCatalogos2('<?=$item['notas']; ?>','nivelConfiabilidadCatalogo','2')" onclick="notasCatalogos2('<?=$item['notas']; ?>','nivelConfiabilidadCatalogo','2')" value="<?=$item['nivelConfiabilidadId']?>" > <?=$item['descripcion']?></option>
 						                                <?php endforeach; } 
 						                      ?>
 										</select>
@@ -135,7 +151,12 @@
 
 					<div class="twelve columns espacioSuperior" id="actorReportado">
 						<?php if (isset($fuenteDocumental['actorReportado']) && ($fuenteDocumental['actorReportado']>0)) {?>
-						<div class="three columns"><img class="foto" src="<?= base_url().$catalogos['listaTodosActores'][$fuenteDocumental['actorReportado']]['foto']?>" /></div><b><h4><?= (isset($catalogos['listaTodosActores'][$fuenteDocumental['actorReportado']]['nombre'])) ? $catalogos['listaTodosActores'][$fuenteDocumental['actorReportado']]['nombre'] : " " ; ?>  <?= (isset($fuenteDocumental['actorReportado'])) ? $catalogos['listaTodosActores'][$fuenteDocumental['actorReportado']]['apellidosSiglas'] :  '' ;?></h4></b>
+						<div class="three columns">
+							<img class="foto" src="<?= base_url().$catalogos['listaTodosActores'][$fuenteDocumental['actorReportado']]['foto']?>" />
+						</div>
+						<b>
+							<h4><?= (isset($catalogos['listaTodosActores'][$fuenteDocumental['actorReportado']]['nombre'])) ? $catalogos['listaTodosActores'][$fuenteDocumental['actorReportado']]['nombre'] : " " ; ?>  <?= (isset($fuenteDocumental['actorReportado'])) ? $catalogos['listaTodosActores'][$fuenteDocumental['actorReportado']]['apellidosSiglas'] :  '' ;?></h4>
+						</b>
 						<?php }?>
 					</div>
 
@@ -149,7 +170,7 @@
 							</div>
 							<div id="eliminarVistaActor" class="three columns">
 								<?php if (isset($fuenteDocumental['actorReportado']) && ($fuenteDocumental['actorReportado']>0)) {?>
-									<input class="tiny button" type="button" onclick="eliminarRelacionVista('eliminarVistaActor','fuenteDocumental_actorReportado','infoColectio','fuenteDocumental_relacionId')" value="Eliminar Actor">
+									<input class="tiny button" type="button" onclick="eliminarRelacionVista('actorReportado','tipoFuenteDocumental_actorReportado','infoColectio','fuenteDocumental_relacionId')" value="Eliminar Actor">
 								<?php }?>
 							</div>
 					</div>
