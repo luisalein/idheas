@@ -232,7 +232,6 @@
         
         </div>
 </div>
-    
     <!--Comienza actores colectivos---->
     <div id="pestania" data-collapse>
         <h2>Actores colectivos </h2>
@@ -275,7 +274,7 @@
                                                     <input style="margin-left: -20px;padding: 5px 12px 6px 12px" type="button" class="small button"  value="Editar" onclick="nueva_relacion_a_Col('<?=$idActor ?>',1, '<?=$relacion['relacionActoresId']; ?>')" />
                                                 </div>
                                                 <div class="six columns">
-                                                    <form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarRelacionActor/<?=$relacion['relacionActoresId']."/".$relacion['actorRelacionadoId']; ?>" >
+                                                    <form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarRelacionActor/<?=$relacion['relacionActoresId']."/".$relacion['actorRelacionadoId']."/".$datosActor['actores']['actorId']."/".$datosActor['actores']['tipoActorId']; ?>" >
                                                         <input style="margin-left: -20px;" type="submit" value="Elminar" class="small button" />
                                                     </form>
                                                 </div>

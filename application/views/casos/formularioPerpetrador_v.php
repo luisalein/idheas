@@ -61,16 +61,44 @@
 
 					<input type="button" class="small button" onclick="seleccionarActorseleccionarActorIndColDatos('1')" value="Seleccionar actor">
 					<input type="button" class="small button" value="Eliminar actor" onclick="eliminaActor()">
+
+			<div id="pestania" class="twelve columns" data-collapse>
+				<h2 class="open" >Actor Colectivo</h2>
+				<div class="twelve columns">
+					<div id="vistaActorRelacionadoPerpetrador">
+								<?php if (isset($perpetrador['actorRelacionadoId']) && ($perpetrador['actorRelacionadoId']>0) ) { ?>
+								
+								<div class="nine columns">
+
+								Actualmente relacionado con:
+									<h5><?=(isset($perpetrador['actorRelacionadoId']) && ($perpetrador['actorRelacionadoId']>0)) ? $catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$perpetrador['actorRelacionadoId']]['actorRelacionadoId']]['nombre'] : ''; ?>
+								</h5> 
+								Tipo de relación
+								<h5><?=(isset($perpetrador['actorRelacionadoId']) && ($perpetrador['actorRelacionadoId']>0)) ? $catalogos['relacionActoresCatalogo'][$catalogos['relacionesActoresCatalogo'][$perpetrador['actorRelacionadoId']]['tipoRelacionId']]['Nivel2'] : ''; ?></h5>
+								</div> 
+				                <div class="three columns" >
+				                <img style="width:120px !important; height:150px !important;" src="<?= (isset($perpetrador['actorRelacionadoId']) && ($perpetrador['actorRelacionadoId']>0)) ? base_url().$catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$perpetrador['actorRelacionadoId']]['actorRelacionadoId']]['foto'] : " " ; ?>" />
+								</div>
+								<input type="button" class="tiny button" value="Seleccionar relación" onclick="ventanaColectivoRelacionados('<?= $perpetrador['perpetradorId']?>','')" />
+								<?php }?> 
+						</div>
+					<div id="BotonesColectivo">
+					<input type="button" value="Eliminar" onclick="eliminarRelacionVista('vistaActorRelacionadoPerpetrador','perpetradores_actorRelacionadoId')" class="tiny button">	
+					</div>
+				</div>
+			</div>
+
+
 			</fieldset>
 
-			<label>Notas</label>
-			<div id="notasPerpetrador"></div>
-			<label>Tipo de perpetrador</label>
+			<label><b><h5>Tipo de perpetrador</h5></b></label>
 			<div id="tipoPerpetrador" class="EspacioInferior">
 				<?php if (isset($perpetrador['tipoPerpetradorNivel']) && isset($perpetrador['tipoPerpetradorId']) ) { ?>
 					Actualmente: <?= $catalogos['tipoPerpetradorN'.$perpetrador['tipoPerpetradorNivel'].'Catalogo'][$perpetrador['tipoPerpetradorId']]['descripcion']; ?>
 				<?php }?>
 			</div>
+			<label><b><h5>Notas</h5></b></label>
+			<div id="notasPerpetrador"></div>
 
 			<div class="caja CatalogoTipoPerpetrador">
 				<ol>
@@ -139,9 +167,7 @@
 					<div id="notasestatusPerpetradorCatalogo_estatusPerpetradorId"> </div>
 			</div>
 
-			<label>Notas</label>
-			<div id="notasgradoDeInvolucramiento"></div>
-			<label>Grado de involucramiento</label>
+			<label><b><h5>Grado de involucramiento</h5></b></label>
 			<div id="gradoDeInvolucramiento">
 				<?php if (isset($perpetrador['gradoInvolucramientoid']) && isset($perpetrador['nivelInvolugramientoId']) ) { ?>
 					<?php if (($perpetrador['gradoInvolucramientoid']>0) && ($perpetrador['nivelInvolugramientoId']>0) ) { ?>
@@ -149,6 +175,8 @@
 					<?php }?>
 				<?php }?>
 			</div>
+			<label><b><h5>Notas</h5></b></label>
+			<div id="notasgradoDeInvolucramiento"></div>
 
 			<div class="caja CatalogoTipoPerpetrador">
 				<ul>
@@ -176,40 +204,14 @@
 				</ul>
 			</div>
 
-			<div id="pestania" data-collapse>
-				<h2 class="open" >Actor Colectivo</h2>
-				<div class="twelve columns">
-					<div id="vistaActorRelacionadoPerpetrador">
-								<?php if (isset($perpetrador['actorRelacionadoId']) && ($perpetrador['actorRelacionadoId']>0) ) { ?>
-								
-								<div class="nine columns">
 
-								Actualmente relacionado con:
-									<h5><?=(isset($perpetrador['actorRelacionadoId']) && ($perpetrador['actorRelacionadoId']>0)) ? $catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$perpetrador['actorRelacionadoId']]['actorRelacionadoId']]['nombre'] : ''; ?>
-								</h5> 
-								Tipo de relación
-								<h5><?=(isset($perpetrador['actorRelacionadoId']) && ($perpetrador['actorRelacionadoId']>0)) ? $catalogos['relacionActoresCatalogo'][$catalogos['relacionesActoresCatalogo'][$perpetrador['actorRelacionadoId']]['tipoRelacionId']]['Nivel2'] : ''; ?></h5>
-								</div> 
-				                <div class="three columns" >
-				                <img style="width:120px !important; height:150px !important;" src="<?= (isset($perpetrador['actorRelacionadoId']) && ($perpetrador['actorRelacionadoId']>0)) ? base_url().$catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$perpetrador['actorRelacionadoId']]['actorRelacionadoId']]['foto'] : " " ; ?>" />
-								</div>
-								<input type="button" class="tiny button" value="Seleccionar relación" onclick="ventanaColectivoRelacionados('<?= $perpetrador['perpetradorId']?>','')" />
-								<?php }?> 
-						</div>
-					<div id="BotonesColectivo">
-					<input type="button" value="Eliminar" onclick="eliminarRelacionVista('vistaActorRelacionadoPerpetrador','perpetradores_actorRelacionadoId')" class="tiny button">	
-					</div>
-				</div>
-			</div>
-
-
-			<label>Lugar de Acto</label>
+			<label><b><h5>Lugar de Acto</h5></b></label>
 			<div id="tipoLugarActo">
 				<?php if (isset($perpetrador['tipoLugarId']) && isset($perpetrador['tipoLugarNivelId']) && $perpetrador['tipoLugarNivelId']>0) { ?>
 							Actualmente: <?= $catalogos['tipoLugarN'.$perpetrador['tipoLugarNivelId'].'Catalogo'][$perpetrador['tipoLugarId']]['descripcion']; ?>
 				<?php }?>
 			</div>
-			<label>Notas</label>
+			<label><b><h5>Notas</h5></b></label>
 			<div id="notastipoLugarActo"></div>
 			<div class="caja CatalogoTipoPerpetrador">
 

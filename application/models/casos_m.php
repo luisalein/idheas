@@ -1051,7 +1051,20 @@ class Casos_m extends CI_Model {
 	 public function mAgregarVictimaActo($datos){
 		
 		if($this->db->insert('victimas', $datos)){
-			return ($mensaje = 'Hecho');
+			
+			$obtener_id = $this->db->select_max('victimaId')->from('victimas')->get();
+            
+            if($obtener_id->num_rows() > 0){
+                
+                foreach ($obtener_id->result_array() as $row) {
+                
+                    $victimaId = $row['victimaId'];
+        	
+                }
+                
+            }
+			return $victimaId;
+
 		}else{
 			$mensaje['error'] = $this->db->_error_message();
 			/* Regresa la cadena al controlador*/

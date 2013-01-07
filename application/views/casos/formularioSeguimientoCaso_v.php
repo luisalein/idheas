@@ -67,8 +67,11 @@
 			<div class="twelve columns">
 					<?php echo br(2);?>	
 						<label for="comentFichas">Comentarios</label>
-						<textarea id="fichas_Comentarios" style="width: 690px; height: 200px" name="fichas_Comentarios" wrap="hard"  value=""><?=(isset($ficha['comentarios'])) ? $ficha['comentarios'] : " " ; ?> </textarea>
+						<textarea id="fichas_Comentarios" placeholder="Comentarios"  rows="15" cols="100"  name="fichas_Comentarios" wrap="hard"  value=""><?=(isset($ficha['comentarios'])) ? $ficha['comentarios'] : " " ; ?></textarea>
 			</div>	
+
+
+
 			<div id="pestania">
 				<p style="margin-left: 15px;" >Agregar nuevo registro</p><!--título de la sub-pestaña-->  
 				<div>
@@ -80,6 +83,26 @@
 				   </dl>
 				</div>
 			</div>
+
+		<div id="pestania" data-collapse >
+			<h2 class="open">Registros actuales</h2><!--título de la sub-pestaña-->  
+				<div>
+
+					<div class="twelve columns espacioIzq">
+			        	<ul >
+			        		<?php if(isset($ficha['registros'])):?>
+			            		<?php foreach($ficha['registros'] as $registro):?>
+			            			<li><input type="button" class="tiny button"  value="x" style="margin-left: -35px; margin-bottom: 5px;" onclick="eliminarRegistro(<?=$registro['registroId']?>,<?=$casoId; ?>)" />
+			            				<a style="margin-left: 5px;" href="<?=base_url().$registro['ruta']?>"><?=$registro['nombreRegistro']?></a>
+			            			</li>
+			            		<?php endforeach;?>
+			        		<?php endif;?>
+			        	</ul>
+		        	</div>
+        		</div>
+        </div>
+
+
 		</div>
 	
 		</div>

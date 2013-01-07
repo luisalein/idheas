@@ -388,9 +388,9 @@
 		                    foreach($citaActor['citas'] as $citas){ 
 		                    	if ($citas['datosCitas']['tipoRelacionIndividualColectivoId']==1) {?>
 			                        <tr>
-			                            <td><?=$datosActor['actores']['nombre'].' '.$datosActor['actores']['apellidosSiglas']; ?></td>
-			                            <td><?=$catalogos['relacionActoresCatalogo'][$citas['datosCitas']['tipoRelacionId']]['nombre']; ?></td>
 			                            <td><?=$catalogos['listaTodosActores'][$citas['datosCitas']['actores_actorId']]['nombre']." ".$catalogos['listaTodosActores'][$citas['datosCitas']['actores_actorId']]['apellidosSiglas']?></td>
+			                            <td><?=$catalogos['relacionActoresCatalogo'][$citas['datosCitas']['tipoRelacionId']]['nombre']; ?></td>
+			                            <td><?=$datosActor['actores']['nombre'].' '.$datosActor['actores']['apellidosSiglas']; ?></td>
 			                            <td><?=$citas['datosCitas']['fechaInicial']; ?></td>
 			                            <td><?=$citas['datosCitas']['fechaTermino']; ?></td>
 			                        </tr><?php
