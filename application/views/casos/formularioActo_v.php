@@ -3,6 +3,9 @@
 
 	<head>
 	<?=$head?>
+	<?php echo meta('Content-type', 'text/html; charset='.config_item('charset'), 'equiv');?>
+    <!-- or -->
+    <meta http-equiv="content-type" content="text/html; charset=<?php echo config_item('charset');?>" />
 	</head>
 	
 <body>
