@@ -6,6 +6,7 @@
 	</head>
 	
 <body>
+
 <form action='<?=base_url(); ?>index.php/casosVentanas_c/guardarDatosVentanas/3' method="post" accept-charset="utf-8" id="menuForm" name="menuForm">
 <!-------------------------Comienza la parte de Acto---------------------------->
 <div id="formularioCasoActo">

@@ -744,6 +744,10 @@ class CasosVentanas_c extends CI_Controller {
 		
 		$catalogos= $this->traer_catalogos();
 		
+		echo "<pre>";
+			print_r($catalogos['actosN3Catalogo']);
+		echo "</pre>";	
+		
 		$datos=array();
 		
 		if($id1 !='undefined')
@@ -760,14 +764,14 @@ class CasosVentanas_c extends CI_Controller {
 		
 		$data=$this->casos_m->mTraerActoDerechoAfectado($datos);
 		
+		
+		
 		$lista='';
 		$expander='';
 		$sub = '';
 		//print_r($data['actosN1']);
 			if(isset($data['actosN1'])){
-			$lista = $lista.'<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>';	
 			$lista = $lista.' <ul>';
-				
 			foreach ($data['actosN1'] as $acto1) {
 				$lista = $lista. '<li class="listas">'.
 						'<div class="ExpanderFlecha flecha hand" value="subnivel" onclick="nombrarActo('."'".$acto1['descripcion']."'".','."'".$acto1['actoId']."'".','."'".$acto1['notas']."'".','."'1',this".')">'.
