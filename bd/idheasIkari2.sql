@@ -3,7 +3,7 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
 DROP SCHEMA IF EXISTS `idheasIkari` ;
-CREATE SCHEMA IF NOT EXISTS `idheasIkari` DEFAULT CHARACTER SET latin1 COLLATE latin1_spanish_ci ;
+CREATE SCHEMA IF NOT EXISTS `idheasIkari` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
 USE `idheasIkari` ;
 
 -- -----------------------------------------------------
@@ -1304,7 +1304,7 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoFuenteDocumentalN2Catalogo` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
+INSERT INTO usuarios(nombre,pass) VALUES ('admin','idheas');
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

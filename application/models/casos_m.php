@@ -153,7 +153,7 @@ class Casos_m extends CI_Model {
 			}
 
 			
-		}
+		}/* fin else */
 		
 		/* Trae todos los datos de intervenciones*/
 		$this->db->select('*');
@@ -1802,6 +1802,7 @@ class Casos_m extends CI_Model {
 			
 		}
 	}
+	 
 	 
 }
 
