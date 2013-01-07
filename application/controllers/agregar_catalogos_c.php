@@ -78,6 +78,10 @@ class Agregar_catalogos_c extends CI_Controller {
 		$this->cAgregarCatalogoTipoFuenteDocumentalN1();
 		
 		$this->cAgregarCatalogoTipoFuenteDocumentalN2();
+
+		
+
+		//$this->cAgregarActosCatalogo();
     }
     
     /*
@@ -110,6 +114,88 @@ class Agregar_catalogos_c extends CI_Controller {
         echo 'Catalogos de estados civiles insertados exitosamente<br />';
         
     }
+
+	public function cAgregarActosCatalogo(){
+		
+		$actoN3Catalogo['actosN3Catalogo'][1] = array('actoN3Id' =>1, 'descripcion' => 'Desaparición forzada', 'actosN2Catalogo_actoN2Id' =>1,'notas' =>'');
+		$actoN3Catalogo['actosN3Catalogo'][2] = array('actoN3Id' =>2,'descripcion' =>'Ejecución','actosN2Catalogo_actoN2Id' =>1,'notas' =>'');
+		$actoN3Catalogo['actosN3Catalogo'][3] = array('actoN3Id' =>3,'descripcion' =>'Ejecución judicial por aplicación de la pena de muerte','actosN2Catalogo_actoN2Id' =>1,'notas' =>'');/*
+(4,'Genocidio',1,''),
+(5,'Masacre',1,''),
+(6,'Muerte bajo custodia',1,''),
+(7,'Muerte en contexto de operaciones militares',1,'Excepto los operativos militares de seguridad pública'),
+(8,'Muerte en contexto de operativos de seguridad pública',1,''),
+(9,'Muerte resultado de negligencia',1,''),
+(10,'Muerte resultado de otras VDH',1,''),
+(11,'Muerte sospechosa',1,''),
+(12,'Muerte violenta',1,''),
+(13,'Agresión sexual',2,''),
+(14,'Agresiones físicas',2,''),
+(15,'Hostigamiento sexual',2,''),
+(16,'Intento de violación sexual',2,''),
+(17,'Intimidación',2,''),
+(18,'Tortura',2,''),
+(19,'Tratos crueles, inhumanos o degradantes',2,''),
+(20,'Uso desproporcionado o indebido de la fuerza pública',2,'Se utiliza independientemente de si el uso de la fuerza es justificado o no, legal o no, cuando este uso de la fuerza es desproporcionado (cuando no es proporcional a lo estrictamente necesario). La utilización de la fuerza debe ser una medida excepcional. Cfr. Código de conducta para funcionarios encargados de hacer cumplir la ley. Adoptado por la Asamblea General en su resolución 34/169, de 17 de diciembre de 1979'),
+(21,'Deportación a un lugar en el que se pueda sufrir violaciones a derechos humanos',2,''),
+(22,'Violación sexual',2,''),
+(23,'Arraigo',3,''),
+(24,'Arresto domiciliario',3,''),
+(25,'Detención arbitraria o ilegal',3,''),
+(26,'Encarcelamiento arbitrario',3,''),
+(27,'Reclutamiento forzoso',3,''),
+(28,'Redada',3,''),
+(29,'Revisión irregular o arbitraria',3,''),
+(30,'Secuestro',3,''),
+(31,'Toque de queda',3,''),
+(32,'Esclavitud',4,''),
+(33,'Prostitución forzada',4,''),
+(34,'Servidumbre',4,''),
+(35,'Trabajo forzoso',4,''),
+(36,'Tráfico de personas',4,''),
+(37,'Trata de personas',4,''),
+(40,'Violaciones al derecho a ser comunicado(a)s con las autoridades consulares de su Estado en caso de ser detenido(a)s',5,'Violaciones a los derechos humanos y violación al derecho internacional'),
+(53,'Derecho a un tribunal independiente e imparcial',6,'Violaciones a los derechos humanos y violación al derecho internacional'),
+(60,'Extradición',6,''),
+(70,'Extorsión',11,'Aplica a situaciones donde la autoridad o particulares utilizan de forma arbitraria o injustificada el poder (ya sea económico, político, etc.) que legalmente poseen. No se trata de actos ilegales, sino de que empleando sus facultades, las utilizan arbitrariamente, ejerciendo acciones innecesarias, intimidatorias con una gran carga de discrecionalidad. Ej. El caso del General Gallardo, al cual se le abrieron 13 averiguaciones previas, cada una después de una exoneración de la anterior. No puede hablarse de acciones ilegales, pero sí arbitrarias y discrecionales, con una intencionalidad de castigar. Otro ejemplo son los operativos injustificados o arbitrarios, que nuevamente no son ilegales porque la autoridad tiene facultades para realizar operativos, pero cuando se hacen sin causa que amerite el operativo, como denuncias específicas o pruebas de que es necesario el operativo, causan molestia a la población y pueden ser utilizados para intimidar a comunidades'),
+(71,'Allanamiento',15,''),
+(72,'Cateo',15,''),
+(73,'Injerencias arbitrarias e ilegales en el domicilio',15,'Incluye injerencias arbitrarias e ilegales en comunidades'),
+(74,'Violación a la confidencialidad de las comunicaciones',16,''),
+(75,'Violación a la correspondencia',16,''),
+(76,'Censura',17,''),
+(77,'Restricciones para publicar o difundir información',17,'Ej. Recolectar o comprar todos los ejemplares de un periódico o una revista evitando el acceso a la misma'),
+(78,'Negación de la existencia de información',18,''),
+(79,'Retención de información',18,''),
+(85,'Bloqueo de vías de comunicación',22,''),
+(86,'Retenes',22,''),
+(92,'Alto número de alumnos por maestro',35,''),
+(93,'Ubicación de la escuela a gran distancia de la casa del o la estudiante',35,''),
+(94,'Condiciones inadecuadas de escuelas y salones de clase',35,''),
+(95,'Cuotas escolares prohibitivas',35,''),
+(96,'Negación del tratamiento adecuado',36,''),
+(97,'Atención primaria de salud no proporcionada a comunidades específicas',36,''),
+(98,'Negación de subsidio a los servicios para personas que no pueden pagar la atención primaria a la salud',36,''),
+(99,'Costos prohibitivos de la atención médica',36,''),
+(102,'Falta de oportunidades de empleo',37,''),
+(103,'Expropiación arbitraria de la vivienda',38,''),
+(104,'Destrucción de vivienda',38,''),
+(105,'Negación de escrituras de vivienda',38,''),
+(106,'Desalojos forzosos o ilegales',38,''),
+(107,'Exposición a sustancias peligrosas',41,''),
+(108,'Contaminación',41,''),
+(112,'Robo',46,''),
+(113,'Expropiación arbitraria',46,''),
+(114,'Negación de título de propiedad de la tierra',46,''),
+(121,'Violaciones al derecho de los y las trabajadore(a)s la negociación colectiva',48,''),
+(125,'Negación de indemnización por despido injustificado',48,''),
+(126,'Despido injustificado',48,''),
+(127,'Negación de vacaciones periódicas con goce de sueldo',48,''),
+(128,'Negación del descanso, del tiempo libre y de la limitación razonable de la jornada laboral',48,''),
+(129,'No pago de salarios',48,'');*/
+		echo 'Cataologos de actos ingresados correctamente<br />';
+
+	}
 
 
     public function cAgregarDerechosCatalogos(){
