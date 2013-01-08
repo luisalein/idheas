@@ -744,6 +744,10 @@ class CasosVentanas_c extends CI_Controller {
 		
 		$catalogos= $this->traer_catalogos();
 		
+		echo "<pre>";
+			print_r($catalogos['actosN3Catalogo']);
+		echo "</pre>";
+		
 		$datos=array();
 		
 		if($id1 !='undefined')
