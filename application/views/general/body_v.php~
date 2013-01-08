@@ -1,6 +1,6 @@
 <!---Encabezado de la página---->
 <div class="twelve columns">
-        <div class="four columns" div="logo" style="!important; width:25%;" >
+        <div class="four columns" div="logo" style="!important; width:20%;" >
             <?php echo img('statics/media/img/system/logo.png');?>
             
         </div>
