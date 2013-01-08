@@ -1,13 +1,14 @@
 <div id="pestania" data-collapse>	
 	<h2 class="open">Casos</h2><!--título de la pestaña-->  
 	<div>
+		<!-- 
 		<pre><?=print_r($casosRelacionados)?></pre>
+ -->
 	<?php if (isset($casosRelacionados) && ($casosRelacionados!=0)) {?>
-	<?php foreach ($casosRelacionados as $casos) {?>		
-	<?php foreach ($casos as $datosCaso) {?>
+	<?php foreach ($casosRelacionados as $datosCaso) {?>
 		<div class="twelve columns" data-collapse>	
   
-			<h2 class="twelve columns open"><?php print_r($datosCaso['casos']['nombre'])?></h2><!--título de la pestaña-->  
+			<h2 class="twelve columns open"><?=(isset($datosCaso['casos']['nombre'])) ? $datosCaso['casos']['nombre'] :  " " ; ?></h2><!--título de la pestaña-->  
 				<div>
 
 						<div id="casos_nombre">
@@ -312,7 +313,6 @@
 
 				</div>
 		</div>
-	<?php }?>
 	<?php }?>
 	<?php }?>
 	</div>

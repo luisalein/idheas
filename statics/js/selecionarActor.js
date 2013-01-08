@@ -77,7 +77,7 @@ function SeleccionarYTreaeRelaciones(title){
 
 function eliminarRelacionVista(id,name,id2,name2){  
     document.getElementById(name).value = 0;
-alert(name);
+//alert(name);
     document.getElementById(id).innerHTML = (" ");
     document.getElementById(id2).innerHTML = (" ");
     document.getElementById(name2).value = 0;

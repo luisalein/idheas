@@ -100,14 +100,15 @@
 									<option></option>
 									<?php if ($idVictima>0){
 										foreach ($catalogos['estatusVictimaCatalogo'] as $estatus) { ?>
-										<option value="<?= $estatus['estatusVictimaId'];?>" onclick="notasCatalogos('<?= $estatus['notas']; ?>')" <?= ($victimas['victimas'][$idVictima]['estatusVictimaId']==$estatus['estatusVictimaId']) ? "selected=selected" : "" ;?> ><?= $estatus['descripcion'];?></option>
+										<option value="<?= $estatus['estatusVictimaId'];?>" onclick="notasCatalogos2('<?= $estatus['notas']; ?>','EstadoVictima','<?= $estatus['estatusVictimaId'];?>')" <?= ($victimas['victimas'][$idVictima]['estatusVictimaId']==$estatus['estatusVictimaId']) ? "selected=selected" : "" ;?> ><?= $estatus['descripcion'];?></option>
 									<?php }
 									}else{ 
 										foreach ($catalogos['estatusVictimaCatalogo'] as $estatus) { ?>
-										<option value="<?= $estatus['estatusVictimaId'];?>" onclick="notasCatalogos('<?= $estatus['notas']; ?>')" ><?= $estatus['descripcion'];?></option>
+										<option value="<?= $estatus['estatusVictimaId'];?>" onclick="notasCatalogos2('<?= $estatus['notas']; ?>','EstadoVictima','<?= $estatus['estatusVictimaId'];?>')" ><?= $estatus['descripcion'];?></option>
 										<?php } 
 									}?>
 								</select>
+									<div id="notasEstadoVictima"></div>
 							</div>
 
 							<div class="twelve columns">

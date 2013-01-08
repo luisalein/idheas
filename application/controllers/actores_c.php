@@ -154,7 +154,17 @@ class Actores_c extends CI_Controller {
 				}
 				}
 				}
-            $datos['casosRelacionados'] = $this->casosRelacionados($actorId);
+            $casoAfiliados= $this->casosRelacionados($actorId);
+            
+            if ($casoAfiliados!=0) {
+            	if ($casosRelacionados!=0) {
+
+            		$datos['casosRelacionados']=$datos['casosRelacionados']+$casoAfiliados;
+            	} else{
+            		$datos['casosRelacionados']=$casoAfiliados;
+            	}
+            }
+
             }
             
         }
@@ -755,256 +765,33 @@ class Actores_c extends CI_Controller {
 	public function casosRelacionados($actorCId)
 	{
 		
-		//Traer casos relacionados con el actor colectivo
-		$datos['casosRelacionadosId']=$this->actores_m->mTraeCasosIdRelacionadosActor($actorCId);
-
-		if(!empty($datos['casosRelacionadosId']) && $datos['casosRelacionadosId'] !='0'){
-
-			for($i=1 ;$i <= sizeof($datos['casosRelacionadosId']);$i++){
-			
-				if(!empty($datos['casosRelacionadosId'][$i])){
-					
-					$v1 = $datos['casosRelacionadosId'][$i];
-					
-					$datos['casosActor'][$v1]=$this->casos_m->mTraerDatosCaso($v1);
-				
-					//Modifica el arreglo de casos actor para cambiar el id de tipo de intervencion por su nombre
-					if(isset($datos['casosActor'][$v1]['intervenciones'])){
-						for($k=1; $k <= sizeof($datos['casosActor'][$v1]['intervenciones']); $k++){
-							
-							if(isset($datos['casosActor'][$v1]['intervenciones'][$k]['IntervencionNId'])){
-								
-								$n = $datos['casosActor'][$v1]['intervenciones'][$k]['IntervencionNId'];
-					
-								$datos['tipoIntervencionN'.$n['IntervencionNId'].'Catalogo'] = $this->general_m->obtener_todo('tipoIntervencionN'.$n['IntervencionNId'].'Catalogo', 'tipoIntervencionN'.$n['IntervencionNId'].'Id', 'descripcion');
-						
-						
-								for($m=1; $m <= sizeof($datos['tipoIntervencionN'.$n['IntervencionNId'].'Catalogo']); $m++){
-									
-									$v2 = $datos['tipoIntervencionN'.$n['IntervencionNId'].'Catalogo'][$m];
-									
-									if($v2['tipoIntervencionN'.$n['IntervencionNId'].'Id'] == $n){
-										
-										$datos['casosActor'][$v1]['intervenciones'][$k]['tipoIntervencionId']=$v2['descripcion'];
-									}
-									
-									
-								}
-							}
-							
-						}
-					}
-					
-					
-					//Modifica el arreglo de casos actor para cambiar el id de tipo de derecho afectado por su nombre
-					if(isset($datos['casosActor'][$v1]['derechoAfectado'])){
-						for($k=1; $k <= sizeof($datos['casosActor'][$v1]['derechoAfectado']); $k++){
-						
-							if(isset($datos['casosActor'][$v1]['derechoAfectado'][$k]['derechoAfectadoNivel'])){
-								
-								$n = $datos['casosActor'][$v1]['derechoAfectado'][$k]['derechoAfectadoNivel'];
-					
-								$datos['derechosAfectadosN'.$n['derechoAfectadoNivel'].'Catalogo'] = $this->general_m->obtener_todo('derechosAfectadosN'.$n['derechoAfectadoNivel'].'Catalogo', 'derechoAfectadoN'.$n['derechoAfectadoNivel'].'Id', 'descripcion');
-						
-						
-								for($m=1; $m <= sizeof($datos['derechosAfectadosN'.$n['derechoAfectadoNivel'].'Catalogo']); $m++){
-									
-									$v2 = $datos['derechosAfectadosN'.$n['derechoAfectadoNivel'].'Catalogo'][$m];
-									
-									if($v2['derechoAfectadoN'.$n['derechoAfectadoNivel'].'Id'] == $n){
-										
-										$datos['casosActor'][$v1]['derechoAfectado'][$k]['derechoAfectadoId']=$v2['descripcion'];
-									}
-									
-									
-								}
-							}
-							
-						}
-					}
-					
-					
-					//Modifica el arreglo de casos actor para cambiar el id de tipo acto violatorio por su nombre
-					if(isset($datos['casosActor'][$v1]['actos'])){
-						for($k=1; $k <= sizeof($datos['casosActor'][$v1]['actos']); $k++){
-						
-							if(isset($datos['casosActor'][$v1]['actos'][$k]['actoViolatorioNivel'])){
-								
-								$n = $datos['casosActor'][$v1]['actos'][$k]['actoViolatorioNivel'];
-								
-								if($n['actoViolatorioNivel']==1){
-									$datos['actosN'.$n['actoViolatorioNivel'].'Catalogo'] = $this->general_m->obtener_todo('actosN'.$n['actoViolatorioNivel'].'Catalogo', 'actoId', 'descripcion');
-									
-									for($m=1; $m <= sizeof($datos['actosN'.$n['actoViolatorioNivel'].'Catalogo']); $m++){
-									
-									$v2 = $datos['actosN'.$n['actoViolatorioNivel'].'Catalogo'][$m];
-									
-									if($v2['actoId'] == $n){
-										
-										$datos['casosActor'][$v1]['actos'][$k]['actoViolatorioId']=$v2['descripcion'];
-									}
-									
-								}
-									
-								}else{
-									$datos['actosN'.$n['actoViolatorioNivel'].'Catalogo'] = $this->general_m->obtener_todo('actosN'.$n['actoViolatorioNivel'].'Catalogo', 'actoN'.$n['actoViolatorioNivel'].'Id', 'descripcion');
-									for($m=1; $m <= sizeof($datos['actosN'.$n['actoViolatorioNivel'].'Catalogo']); $m++){
-									
-										$v2 = $datos['actosN'.$n['actoViolatorioNivel'].'Catalogo'][$m];
-										
-										if($v2['actoN'.$n['actoViolatorioNivel'].'Id'] == $n){
-											
-											$datos['casosActor'][$v1]['actos'][$k]['actoViolatorioId']=$v2['descripcion'];
-										}
-										
-									}
-								}
-						 					
-							}
-							
-						}
-					}
-					
-					
-					
-					
-				}
-			
-			}
-				
-		}
-		
 		//Traer casos relacionados con los afiliados del actor colectivo
 		
 		$datos['actoresAfiliados']=$this->actores_m->mTraeRelacionesColectivo($actorCId);		
-		
-	
-		
+
 		if($datos['actoresAfiliados'] != '0' && $datos['actoresAfiliados'] != ''){
+			foreach ($datos['actoresAfiliados'] as $valor){
 			
-			foreach ($datos['actoresAfiliados'] as $valor)
-			
-				$datos['casosAfiliados'][$valor['actorId']]=$this->actores_m->mTraeCasosRelacionadosActor($valor['actorId']);
-		
-			if($datos['casosAfiliados'] ==	'0'){
-				foreach ($datos['casosAfiliados'] as $valor){
+				$casosAfiliadosIndice=$this->actores_m->mTraeCasosRelacionadosActor($valor['actorId']);
+				$arregloCasosAfiliados="";
+				if($casosAfiliadosIndice !=	'0'){
+
+					foreach ($casosAfiliadosIndice as $valor){
+
+						$datos['casosAfiliados'][$valor['casos']['casoId']]=$valor;	
+						
 				
-				if(isset($datos['casosAfiliados'][$valor[1]['casos_casoId']])){
-					
-					$datos['casosAfiliados'][$valor[1]['casos_casoId']]=$this->casos_m->mTraerDatosCaso($valor[1]['casos_casoId']);
-				
-					//Modifica el arreglo de casos actor para cambiar el id de tipo de intervencion por su nombre
-					for($k=1; $k <= sizeof($datos['casosAfiliados'][$valor[1]['casos_casoId']]['intervenciones']); $k++){
-						
-						if(isset($datos['casosAfiliados'][$valor[1]['casos_casoId']]['intervenciones'][$k]['IntervencionNId'])){
-							
-							$n = $datos['casosAfiliados'][$valor[1]['casos_casoId']]['intervenciones'][$k]['IntervencionNId'];
-				
-							$datos['tipoIntervencionN'.$n['IntervencionNId'].'Catalogo'] = $this->general_m->obtener_todo('tipoIntervencionN'.$n['IntervencionNId'].'Catalogo', 'tipoIntervencionN'.$n['IntervencionNId'].'Id', 'descripcion');
-					
-					
-							for($m=1; $m <= sizeof($datos['tipoIntervencionN'.$n['IntervencionNId'].'Catalogo']); $m++){
-								
-								$v2 = $datos['tipoIntervencionN'.$n['IntervencionNId'].'Catalogo'][$m];
-								
-								if($v2['tipoIntervencionN'.$n['IntervencionNId'].'Id'] == $n){
-									
-									$datos['casosAfiliados'][$valor[1]['casos_casoId']]['intervenciones'][$k]['tipoIntervencionId']=$v2['descripcion'];
-								}
-								
-								
-							}
-						}
-						
-					}
-					
-					//Modifica el arreglo de casos actor para cambiar el id de tipo de derecho afectado por su nombre
-				
-					for($k=1; $k <= sizeof($datos['casosAfiliados'][$valor[1]['casos_casoId']]['derechoAfectado']); $k++){
-						
-						if(isset($datos['casosAfiliados'][$valor[1]['casos_casoId']]['derechoAfectado'][$k]['derechoAfectadoNivel'])){
-							
-							$n = $datos['casosAfiliados'][$valor[1]['casos_casoId']]['derechoAfectado'][$k]['derechoAfectadoNivel'];
-				
-							$datos['derechosAfectadosN'.$n['derechoAfectadoNivel'].'Catalogo'] = $this->general_m->obtener_todo('derechosAfectadosN'.$n['derechoAfectadoNivel'].'Catalogo', 'derechoAfectadoN'.$n['derechoAfectadoNivel'].'Id', 'descripcion');
-					
-					
-							for($m=1; $m <= sizeof($datos['derechosAfectadosN'.$n['derechoAfectadoNivel'].'Catalogo']); $m++){
-								
-								$v2 = $datos['derechosAfectadosN'.$n['derechoAfectadoNivel'].'Catalogo'][$m];
-								
-								if($v2['derechoAfectadoN'.$n['derechoAfectadoNivel'].'Id'] == $n){
-									
-									$datos['casosAfiliados'][$valor[1]['casos_casoId']]['derechoAfectado'][$k]['derechoAfectadoId']=$v2['descripcion'];
-								}
-								
-								
-							}
-						}
-						
-					}
-					
-					
-					//Modifica el arreglo de casos actor para cambiar el id de tipo acto violatorio por su nombre
-	
-					for($k=1; $k <= sizeof($datos['casosAfiliados'][$valor[1]['casos_casoId']]['actos']); $k++){
-						
-						if(isset($datos['casosAfiliados'][$valor[1]['casos_casoId']]['actos'][$k]['actoViolatorioNivel'])){
-							
-							$n = $datos['casosAfiliados'][$valor[1]['casos_casoId']]['actos'][$k]['actoViolatorioNivel'];
-							
-							if($n['actoViolatorioNivel']==1){
-								$datos['actosN'.$n['actoViolatorioNivel'].'Catalogo'] = $this->general_m->obtener_todo('actosN'.$n['actoViolatorioNivel'].'Catalogo', 'actoId', 'descripcion');
-								
-								for($m=1; $m <= sizeof($datos['actosN'.$n['actoViolatorioNivel'].'Catalogo']); $m++){
-								
-								$v2 = $datos['actosN'.$n['actoViolatorioNivel'].'Catalogo'][$m];
-								
-								if($v2['actoId'] == $n){
-									
-									$datos['casosAfiliados'][$valor[1]['casos_casoId']]['actos'][$k]['actoViolatorioId']=$v2['descripcion'];
-								}
-								
-							}
-								
-							}else{
-								$datos['actosN'.$n['actoViolatorioNivel'].'Catalogo'] = $this->general_m->obtener_todo('actosN'.$n['actoViolatorioNivel'].'Catalogo', 'actoN'.$n['actoViolatorioNivel'].'Id', 'descripcion');
-								for($m=1; $m <= sizeof($datos['actosN'.$n['actoViolatorioNivel'].'Catalogo']); $m++){
-								
-									$v2 = $datos['actosN'.$n['actoViolatorioNivel'].'Catalogo'][$m];
-									
-									if($v2['actoN'.$n['actoViolatorioNivel'].'Id'] == $n){
-										
-										$datos['casosAfiliados'][$valor[1]['casos_casoId']]['actos'][$k]['actoViolatorioId']=$v2['descripcion'];
-									}
-									
-								}
-							}
-					 					
-						}
-						
 					}
 				}
-				
-				
-			
-			}
 			}
 			
 			
 		}
 		
-		if(!empty($datos['casosActor']) && !empty($datos['casosAfiliados'])){
-			$datos['casos'] = array_merge($datos['casosActor'],$datos['casosAfiliados']);
+		if(!empty($datos['casosAfiliados'])){
+	echo "entra a casosRelacionados";		
+			$datos['casos'] = $datos['casosAfiliados'];
 			return $datos['casos'];
-		}
-		
-		if(!empty($datos['casosActor']) && empty($datos['casosAfiliados'])){
-			return $datos['casosActor'];
-		}
-		
-		if(empty($datos['casosActor']) && !empty($datos['casosAfiliados'])){
-			return $datos['casosAfiliados'];
 		}
 		
 	}

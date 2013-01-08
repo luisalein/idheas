@@ -101,6 +101,8 @@
 											<img class="foto" src="<?= base_url().$catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$fuenteInfoPersonal['relacionId']]['actorRelacionadoId']]['foto']?>" />
 										</div>
 										<b><h4><?= (isset($catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$fuenteInfoPersonal['relacionId']]['actorRelacionadoId']]['nombre'])) ? $catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$fuenteInfoPersonal['relacionId']]['actorRelacionadoId']]['nombre'] : " " ; ?>  <?= (isset($catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$fuenteInfoPersonal['relacionId']]['actorRelacionadoId']]['apellidosSiglas'])) ? $catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$fuenteInfoPersonal['relacionId']]['actorRelacionadoId']]['apellidosSiglas'] :  '' ;?></h4></b>
+									<h5>Tipo de relacion</h5>
+										<?=(isset($fuenteInfoPersonal['relacionId'])&&($fuenteInfoPersonal['relacionId'] > 0)) ? $catalogos['relacionActoresCatalogo'][$catalogos['relacionesActoresCatalogo'][$fuenteInfoPersonal['relacionId']]['tipoRelacionId']]['Nivel2']	 : " " ; ?></h5> <br> 
 										<?php } ?>
 									</div>
 									<div id="infoColectioContenidoBotones" >
@@ -122,11 +124,11 @@
 							 <option></option>							
 							 <?php if(isset($fuenteInfoPersonal['tipoFuenteCatalogo_tipoFuenteId'])){
 		                                foreach($catalogos['tipoFuenteCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
-		                                    <option onclick="notasCatalogos('<?=$item['notas']; ?>','tipoFuenteDocumentalCatalogo','2')" value="<?=$item['tipoFuenteId']?>" <?=($fuenteInfoPersonal['tipoFuenteCatalogo_tipoFuenteId'] == $item['tipoFuenteId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
+		                                    <option onkeyup="notasCatalogos2('<?=$item['notas']; ?>','tipoFuenteDocumentalCatalogo','2')" onclick="notasCatalogos2('<?=$item['notas']; ?>','tipoFuenteDocumentalCatalogo','2')" value="<?=$item['tipoFuenteId']?>" <?=($fuenteInfoPersonal['tipoFuenteCatalogo_tipoFuenteId'] == $item['tipoFuenteId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
 		                                <?php endforeach;
 		                            } else { ?>
 		                                <?php foreach($catalogos['tipoFuenteCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
-		                                    <option onclick="notasCatalogos('<?=$item['notas']; ?>','tipoFuenteDocumentalCatalogo','2')"  value="<?=$item['tipoFuenteId']?>" ><?=$item['descripcion']?></option>
+		                                    <option onkeyup="notasCatalogos2('<?=$item['notas']; ?>','tipoFuenteDocumentalCatalogo','2')" onclick="notasCatalogos2('<?=$item['notas']; ?>','tipoFuenteDocumentalCatalogo','2')"  value="<?=$item['tipoFuenteId']?>" ><?=$item['descripcion']?></option>
 		                                <?php endforeach; } 
 		                      ?>
 						</select>
@@ -137,7 +139,7 @@
 				<div class="twelve columns espacioSuperior espacioInferior">
 					<div class="six columns">
 						<label for="edad">Fecha</label>
-							<select onclick="fechaInicialCasosActos(value)">
+							<select onclick="fechaInicialCasosActos(value)" onkeyup="fechaInicialCasosActos(value)">
 										<option  value="1" checked="checked" >fecha exacta</option>
 										<option  value="2">fecha aproximada</option>
 										<option  value="3">Se desconce el día</option>
@@ -177,11 +179,11 @@
 							<option></option>						
 							<?php if(isset($fuenteInfoPersonal['nivelConfiabilidadCatalogo_nivelConfiabilidadId'])){
 		                                foreach($catalogos['nivelConfiabilidadCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
-		                                    <option onclick="notasCatalogos('<?=$item['notas']; ?>','nivelConfiabilidadCatalogo','2')" value="<?=$item['nivelConfiabilidadId']?>" <?=($fuenteInfoPersonal['nivelConfiabilidadCatalogo_nivelConfiabilidadId'] == $item['nivelConfiabilidadId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
+		                                    <option onclick="notasCatalogos2('<?=$item['notas']; ?>','nivelConfiabilidadCatalogo','2')" onkeyup="notasCatalogos2('<?=$item['notas']; ?>','nivelConfiabilidadCatalogo','2')" value="<?=$item['nivelConfiabilidadId']?>" <?=($fuenteInfoPersonal['nivelConfiabilidadCatalogo_nivelConfiabilidadId'] == $item['nivelConfiabilidadId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
 		                                <?php endforeach;
 		                            } else { ?>
 		                                <?php foreach($catalogos['nivelConfiabilidadCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
-		                                    <option onclick="notasCatalogos('<?=$item['notas']; ?>','nivelConfiabilidadCatalogo','2')" value="<?=$item['nivelConfiabilidadId']?>" > <?=$item['descripcion']?></option>
+		                                    <option onclick="notasCatalogos2('<?=$item['notas']; ?>','nivelConfiabilidadCatalogo','2')" onkeyup="notasCatalogos2('<?=$item['notas']; ?>','nivelConfiabilidadCatalogo','2')" value="<?=$item['nivelConfiabilidadId']?>" > <?=$item['descripcion']?></option>
 		                                <?php endforeach; } 
 		                      ?>
 						</select>

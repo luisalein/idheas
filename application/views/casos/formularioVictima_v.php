@@ -8,7 +8,7 @@
 <!-- 		
 
  -->		<?php if ($idVictima>0) {
- 			
+
 			foreach ($victimas['victimas'][$idVictima]['casosActor'] as $casoActor) {
 			if ($casoId== $casoActor['casos_casoId'] ) {
 				$casoVictimaActorId=$casoActor['casoActorId'];
@@ -139,10 +139,10 @@
 								                          <td><?=(isset($perpetrador['actorRelacionadoId'])&&($perpetrador['actorRelacionadoId']>0)) ? $catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$perpetrador['actorRelacionadoId']]['actorRelacionadoId']]['nombre'] : ''; ?></td>
 								                        <td><?=(isset($perpetrador['tipoPerpetradorId'])&& isset($perpetrador['tipoPerpetradorNivel'])) ? $catalogos['tipoPerpetradorN'.$perpetrador['tipoPerpetradorNivel'].'Catalogo'][$perpetrador['tipoPerpetradorId']]['descripcion'] : ''; ?></td>
 								                        <td>
-								                        	<div class="twelve columns"><input class="tiny button" value="Editar" onclick="ventanaPerpetradores('<?=$idActo;?>', '<?= $victimas['victimas'][$idVictima]['victimaId']?>', '<?= $perpetrador['perpetradorVictimaId'] ?>','<?=$casoId?>')" type="button"> </div>
+								                        	<div class="twelve columns"><input  style="margin-left: -20px;padding: 5px 20px 6px 20px" class="small button" value="Editar" onclick="ventanaPerpetradores('<?=$idActo;?>', '<?= $victimas['victimas'][$idVictima]['victimaId']?>', '<?= $perpetrador['perpetradorVictimaId'] ?>','<?=$casoId?>')" type="button"> </div>
 								                        	<div class="twelve columns">
 								                        		<form method="POST" action="<?= base_url(); ?>index.php/casos_c/eliminarPerpetrador/<?=$idActo; ?>/<?=$victimas['victimas'][$idVictima]['victimaId']; ?>/<?= $perpetrador['perpetradorVictimaId']; ?>/<?=$casoActorId?>/<?=$casoId?>">
-								                        		<input class="tiny button" value="Eliminar"type="submit"> 
+								                        		<input  style="margin-left: -20px;"  class="small button" value="Eliminar" type="submit"> 
 								                        		</form>
 								                        	</div>
 								                        </td>
