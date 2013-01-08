@@ -3,13 +3,9 @@
 
 	<head>
 	<?=$head?>
-	<?php echo meta('Content-type', 'text/html; charset='.config_item('charset'), 'equiv');?>
-    <!-- or -->
-    <meta http-equiv="content-type" content="text/html; charset=<?php echo config_item('charset');?>" />
 	</head>
 	
 <body>
-
 <form action='<?=base_url(); ?>index.php/casosVentanas_c/guardarDatosVentanas/3' method="post" accept-charset="utf-8" id="menuForm" name="menuForm">
 <!-------------------------Comienza la parte de Acto---------------------------->
 <div id="formularioCasoActo">

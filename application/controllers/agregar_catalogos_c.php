@@ -81,7 +81,7 @@ class Agregar_catalogos_c extends CI_Controller {
 
 		
 
-		//$this->cAgregarActosCatalogo();
+		$this->cAgregarActosCatalogo();
     }
     
     /*
@@ -193,7 +193,11 @@ class Agregar_catalogos_c extends CI_Controller {
 (127,'Negación de vacaciones periódicas con goce de sueldo',48,''),
 (128,'Negación del descanso, del tiempo libre y de la limitación razonable de la jornada laboral',48,''),
 (129,'No pago de salarios',48,'');*/
+
+		$this->agregar_catalogos_m->mAgregarDerechosCatalogos($actoN3Catalogo);
 		echo 'Cataologos de actos ingresados correctamente<br />';
+		
+		
 
 	}
 

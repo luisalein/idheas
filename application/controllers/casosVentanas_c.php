@@ -746,7 +746,7 @@ class CasosVentanas_c extends CI_Controller {
 		
 		echo "<pre>";
 			print_r($catalogos['actosN3Catalogo']);
-		echo "</pre>";	
+		echo "</pre>";
 		
 		$datos=array();
 		
