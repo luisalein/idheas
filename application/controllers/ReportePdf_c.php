@@ -74,10 +74,9 @@ class ReportePdf_c extends CI_Controller
 		
 		$this->cezpdf->ezText($Data['nombreCaso'] , 15, array('justification' => 'center'));
 		$this->cezpdf->ezSetDy(-10);
-
-/**************Información general***********************/
+		/**************Información general***********************/
 		$contenidoReporte['EncabezadosInfoGeneral']="Información general" . "\n\n";
-		$contenidoReporte['NombreCaso']="Nombre del caso:" ." " . $Data['reporte']['casos']['nombre'] . "\n";
+		$contenidoReporte['NombreCaso']='Nombre del caso:' ." " . $Data['reporte']['casos']['nombre'] . "\n";
 		$contenidoReporte['PersonasAfectadas']="Personas afectadas:" ." " . $Data['reporte']['casos']['personasAfectadas'] . "\n";
 		$contenidoReporte['fechaInicio']="Fecha de inicio:" ." " . $Data['reporte']['casos']['fechaInicial'] . "\n";
 		$contenidoReporte['fechaTermino']="Fecha de término:" ." " . $Data['reporte']['casos']['fechaTermino'] . "\n";

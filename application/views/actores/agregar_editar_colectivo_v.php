@@ -17,7 +17,7 @@
                 <input name="archivo" type="file" size="10" accept="image/*" />  
                 <input type="hidden" <?= (isset($datosActor['actores']['foto'])) ? 'value="'.$datosActor['actores']['foto'].'"' : "" ;?>  name="actores_foto" />
                <?php if(isset($datosActor['actores']['foto'])):?>
-                	<input type="button" class="small button" value="Eliminar Foto" onclick="eliminarFoto()">
+                	<input type="button" class="small button" value="Eliminar Foto" onclick="eliminarFoto()" onkeyup="eliminarFoto()">
     			<?php endif;?>
 </div>
 

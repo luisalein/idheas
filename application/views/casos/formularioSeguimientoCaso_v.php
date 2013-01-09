@@ -30,7 +30,7 @@
 			<div class="twelve columns">
 				<div class="six columns">
 					<label for="edad">Fecha de recepción</label>
-					<select onclick="fichadeRecepcion(value)">
+					<select onclick="fichadeRecepcion(value)" onkeyup="fichadeRecepcion(value)">
 								<option  value="1" <?=(isset($ficha['fecha'])) ? 'checked="checked"' : " " ;?>  >fecha exacta</option>
 								<option  value="2">fecha aproximada</option>
 								<option  value="3">Se desconce el día</option>
