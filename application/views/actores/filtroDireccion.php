@@ -1,6 +1,6 @@
  <div class="ten columns">		
 	        <label for="pais">País</label>
-			         	<select id="direccionActor_paisesCatalogo_paisId" name="direccionActor_paisesCatalogo_paisId" onclick="changeTest2(1)" onkeypress="changeTest2(1)">						
+			         	<select id="direccionActor_paisesCatalogo_paisId" name="direccionActor_paisesCatalogo_paisId" onclick="changeTest2(1)" onkeypress="changeTest2(1)" onkeyup="changeTest2(1)">						
 			                    <option></option>
 			                    <?php if(isset($datosActor['direccionActor'])){
 							        foreach ($datosActor['direccionActor'] as $direccion) {
@@ -21,7 +21,7 @@
         </div>
         <div class="ten columns">
             <label for="estado">Estado</label>
-            <select id="direccionActor_estadosCatalogo_estadoId"  disabled="disabled"  name="direccionActor_estadosCatalogo_estadoId" onclick="changeTest2(2)" onkeypress="changeTest2(2)">						
+            <select id="direccionActor_estadosCatalogo_estadoId"  disabled="disabled"  name="direccionActor_estadosCatalogo_estadoId" onclick="changeTest2(2)" onkeypress="changeTest2(2)" onkeyup="changeTest2(2)">						
 		               
 	        </select>
         </div>

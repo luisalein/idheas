@@ -413,10 +413,16 @@ class CasosVentanas_c extends CI_Controller {
 					$data1['casos_has_actores']= array('casos_casoId' =>$_POST['casoId'],'actores_actorId'=>$datos['intervenciones']['interventorId']);
 							
 					$data2['casos_has_actores']= array('casos_casoId' =>$_POST['casoId'],'actores_actorId'=>$datos['intervenciones']['receptorId']);
-													
-					$this->general_m->llenar_tabla_m($data1);
 					
+					if (isset($datos['intervenciones']['interventorId'])&& ($datos['intervenciones']['interventorId']>0)) {
+					$this->general_m->llenar_tabla_m($data1);	
+					}
+													
+					if (isset($datos['intervenciones']['receptorId'])&& ($datos['intervenciones']['receptorId']>0)) {
 					$this->general_m->llenar_tabla_m($data2);
+						
+					}
+					
 					
 					$datos4['intervencion'] = $datos['intervenciones'];
 					$mensaje = $this->casos_m->mAgregarIntervenciones($datos4);

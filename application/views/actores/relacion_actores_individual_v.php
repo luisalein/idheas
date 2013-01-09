@@ -28,14 +28,14 @@
 						if (isset($relaciones['tipoRelacionId'])) {?>
 							<?php foreach($catalogos['relacionActoresCatalogo'] as $index => $item):?> 
 								<?php if ($item['tipoDeRelacionId']==1){?>
-									<option <?= ($item['tipoRelacionId']==$relaciones['tipoRelacionId']) ? 'selected="selected"' : "" ;?> onclick="notasCatalogos('<?php print_r($item['notas']);?>','notasTipoDeRelacion','1')" value="<?= $item['tipoRelacionId']; ?>"><?php print_r($item['nombre']); ?> </option>
+									<option <?= ($item['tipoRelacionId']==$relaciones['tipoRelacionId']) ? 'selected="selected"' : "" ;?> onclick="notasCatalogos('<?php print_r($item['notas']);?>','notasTipoDeRelacion','1')" onkeyup="notasCatalogos('<?php print_r($item['notas']);?>','notasTipoDeRelacion','1')" value="<?= $item['tipoRelacionId']; ?>"><?php print_r($item['nombre']); ?> </option>
 								<?php }?>	
 							<?php endforeach;?><!--Termina lista de los actores-->
 							<?php } 
 						else{?>
 							<?php foreach($catalogos['relacionActoresCatalogo'] as $index => $item):?> 
 								<?php if ($item['tipoDeRelacionId']==1){?>
-									<option onclick="notasCatalogos('<?php print_r($item['notas']);?>','notasTipoDeRelacion','1')" value="<?php print_r($item['tipoRelacionId']); ?>"><?php print_r($item['nombre']); ?> </option>
+									<option onclick="notasCatalogos('<?php print_r($item['notas']);?>','notasTipoDeRelacion','1')" onkeyup="notasCatalogos('<?php print_r($item['notas']);?>','notasTipoDeRelacion','1')" value="<?php print_r($item['tipoRelacionId']); ?>"><?php print_r($item['nombre']); ?> </option>
 								<?php }?>	
 							<?php endforeach;}?><!--Termina lista de los actores-->
 				</select>

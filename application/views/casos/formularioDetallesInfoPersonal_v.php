@@ -82,7 +82,7 @@
 				<div class="twelve columns">
 				<div class="six columns">
 			<label for="fecha">Fecha</label>
-					<select onclick="Detalleinfo(value)" id="fuenteInfoPersonal_fecha" name="fuenteInfoPersonal_fecha">
+					<select onclick="Detalleinfo(value)" onkeyup="Detalleinfo(value)" id="fuenteInfoPersonal_fecha" name="fuenteInfoPersonal_fecha">
 								<option  value="1" checked="checked" >fecha exacta</option>
 								<option  value="2">fecha aproximada</option>
 								<option  value="3">Se desconce el día</option>

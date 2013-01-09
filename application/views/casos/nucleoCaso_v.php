@@ -59,6 +59,7 @@
 	  	<div id="subPestanias" data-collapse>
 	  		<h2 class="open">Intervenciones</h2>
 	  		<div>
+
 	  			<div>
 	  				<table class="twelve columns">
 			            <thead>
@@ -75,7 +76,7 @@
 			              <?php foreach ($datosCaso['intervenciones'] as $index => $inter) {?>
 			              	 <tr>
 
-			              <?php	if ($inter['casosActorReceptor']) {
+			              <?php	if (isset($inter['casosActorReceptor'])) {
 				              		foreach ($inter['casosActorReceptor'] as $inter2) {
 					              		if ($inter2['casos_casoId'] == $casoId) {
 					              			$casoActorIdReceptor=$inter2['casoActorId'];
@@ -101,7 +102,7 @@
 			                <td><span id="descho_fichaId"><?=(isset($inter['tipoIntervencionId']) && isset($inter['intervencionNId'])) ?  $catalogos['tipoIntervencionN'.$inter['intervencionNId'].'Catalogo'][$inter['tipoIntervencionId']]['descripcion'] : ''; ?></span></td>
 			                <td><span id="descho_fichaId"><?=(isset($inter['fecha'])) ? $inter['fecha'] : ''; ?></span>	</td>
 			                <td><input type="button" class="tiny button"  value="Editar" onclick="ventanaInterevenciones('<?=$casoId; ?>', '<?=$inter['intervencionId']?>')" />
-			                <input type="button" class="tiny button"  value="Eliminar" onclick="eliminarIntervencion('<?=$inter['intervencionId']?>','<?=$casoId?>','<?=$casoActorIdReceptor?>','<?=$casoActorIdInterventor?>')" /></td>
+			                <input type="button" class="tiny button"  value="Eliminar" onclick="eliminarIntervencion('<?=$inter['intervencionId']?>','<?=$casoId?>','<?=(isset($casoActorIdReceptor))? $casoActorIdReceptor : '0' ?>','<?=(isset($casoActorIdInterventor) ? $casoActorIdInterventor : '0')?>')" /></td>
 			              </tr> <?php } }?>
 			            </tbody>
 			          </table>

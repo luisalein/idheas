@@ -21,7 +21,7 @@
 			<div class="twelve columns">
 				<div class="six columns">
 				<label for="edad">Fecha inicial</label>
-					<select onclick="fechaInicialCasos(value)" name="casos_fechaInicial">
+					<select onclick="fechaInicialCasos(value)" onkeyup="fechaInicialCasos(value)" name="casos_fechaInicial">
 								<option></option>
 								<option  value="1" <?= (isset($datosCaso['casos']['fechaInicial'])) ? 'checked="checked"' : "" ;?> >fecha exacta</option>
 								<option  value="2">fecha aproximada</option>
@@ -56,7 +56,7 @@
 			<div class="twelve columns">
 					<label for="edad">Fecha término</label>
 				<div class="six columns">
-					<select onclick="fechaTerminalCasos(value)" name="casos_fechaTermino" >
+					<select onclick="fechaTerminalCasos(value)" onkeyup="fechaTerminalCasos(value)" name="casos_fechaTermino" >
 								<option></option>
 								<option  value="1" <?= (isset($datosCaso['casos']['fechaTermino'])) ? 'checked="checked"' : "" ;?>>fecha exacta</option>
 								<option  value="2">fecha aproximada</option>
