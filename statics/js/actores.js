@@ -85,7 +85,8 @@ function eliminarDireccionActor(direccionId,actorId,tipoActor){
         type: 'POST',
                 
         success: function(data){
-            
+        
+	        window.location.reload();    
               
         },
         

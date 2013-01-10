@@ -521,12 +521,8 @@
                                             <td><?=(isset($direccion['estadosCatalogo_estadoId'])) ? $catalogos['estadosCatalogo'][$direccion['estadosCatalogo_estadoId']]['nombre'] : ''; ?></td>
                                             <td><?=(isset($direccion['municipiosCatalogo_municipioId'])) ? $catalogos['municipiosCatalogo'][$direccion['municipiosCatalogo_municipioId']]['nombre'] : ''; ?></td>                        
                                             <td>
-                                                <div class="six columns">
-                                                    <input type="button" class="tiny button"  value="Editar" onclick="nuevaDireccion('<?=$actorId?>','<?=$direccion['direccionId']?>')"/>
-                                                </div>
-                                                <div class="six columns">
-                                                <input type="button" value="Elminar" class="tiny button" onclick="eliminarDireccionActor('<?=$direccion['direccionId']?>','<?=$actorId?>','2')"/>
-                                                </div>
+                                                <input type="button" class="tiny button" style="padding: 5px 20px 6px 13px"  value="Editar" onclick="nuevaDireccion('<?=$actorId?>','<?=$direccion['direccionId']?>')"/>
+                                                <input type="button" value="Elminar" style="padding: 7px 12px 6px 12px"  class="tiny button" onclick="eliminarDireccionActor('<?=$direccion['direccionId']?>','<?=$actorId?>','2')"/>
                                             </td>
                                     </tr>
                                     <?php }}?>

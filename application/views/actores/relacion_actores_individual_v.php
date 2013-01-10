@@ -19,23 +19,23 @@
 
 	<div class="twelve columns">
 		<br/>
-		<label  style="margin-left: 15px;"  for="TipoRel">Tipo de relación</label>
+		<label  style="margin-left: 15px;"  for="TipoRel"><b><h5>Tipo de relación</b></h5></label>
 			<?php 
 			if($catalogos['listaTodosActores'][$actorId]['tipoActorId']<3){ ?>
-				<select id="tipoRelacionId" name="tipoRelacionId">
-					<option></option>
+				<select id="tipoRelacionId" name="tipoRelacionId" required="required">
+					<option></option> 
 					<?php 
 						if (isset($relaciones['tipoRelacionId'])) {?>
 							<?php foreach($catalogos['relacionActoresCatalogo'] as $index => $item):?> 
 								<?php if ($item['tipoDeRelacionId']==1){?>
-									<option <?= ($item['tipoRelacionId']==$relaciones['tipoRelacionId']) ? 'selected="selected"' : "" ;?> onclick="notasCatalogos('<?php print_r($item['notas']);?>','notasTipoDeRelacion','1')" onkeyup="notasCatalogos('<?php print_r($item['notas']);?>','notasTipoDeRelacion','1')" value="<?= $item['tipoRelacionId']; ?>"><?php print_r($item['nombre']); ?> </option>
+									<option <?= ($item['tipoRelacionId']==$relaciones['tipoRelacionId']) ? 'selected="selected"' : "" ;?> onclick="notasCatalogos2('<?=$item['notas'];?>','notasTipoDeRelacion','1')" onkeyup="notasCatalogos2('<?=$item['notas'];?>','notasTipoDeRelacion','1')" value="<?= $item['tipoRelacionId']; ?>"><?php print_r($item['nombre']); ?> </option>
 								<?php }?>	
 							<?php endforeach;?><!--Termina lista de los actores-->
 							<?php } 
 						else{?>
 							<?php foreach($catalogos['relacionActoresCatalogo'] as $index => $item):?> 
 								<?php if ($item['tipoDeRelacionId']==1){?>
-									<option onclick="notasCatalogos('<?php print_r($item['notas']);?>','notasTipoDeRelacion','1')" onkeyup="notasCatalogos('<?php print_r($item['notas']);?>','notasTipoDeRelacion','1')" value="<?php print_r($item['tipoRelacionId']); ?>"><?php print_r($item['nombre']); ?> </option>
+									<option onclick="notasCatalogos2('<?=$item['notas'];?>','notasTipoDeRelacion','1')" onkeyup="notasCatalogos2('<?=$item['notas'];?>','notasTipoDeRelacion','1')" value="<?php print_r($item['tipoRelacionId']); ?>"><?php print_r($item['nombre']); ?> </option>
 								<?php }?>	
 							<?php endforeach;}?><!--Termina lista de los actores-->
 				</select>
@@ -72,32 +72,32 @@
 			<?php }?>
 			
 		<br />
-		<label style="margin-left: 15px;"  for="TipoRel">Notas tipo de relación</label>
+		<label style="margin-left: 15px;"  for="TipoRel"><b><h5>Notas tipo de relación</h5></b></label>
 		<br />
 		<div style="margin-left: 15px;"  id="notasTipoDeRelacion" class="twelve columns"></div>
 		<div style="margin-left: 15px;"  id="tipoRelNotas" class="twelve columns"></div>
-	<br/><br/>
 	</div>
 
-	<br /><br />
 	<div class="twelve columns">
-	<label for="PerRelacionada">Actor relacionado</label><br />
-	<div id="vistaActorRelacionado"  >
-	<?php if (isset($relaciones['actorRelacionadoId'])) {?> 
-	<?php if ($relaciones['actorRelacionadoId']!=0) {?> 
-		<img class="three columns foto"  src="<?php print_r(base_url().$catalogos['listaTodosActores'][$relaciones['actorRelacionadoId']]['foto']) ?>" >
-		<h4><b><?php print_r($catalogos['listaTodosActores'][$relaciones['actorRelacionadoId']]['nombre']." ".$catalogos['listaTodosActores'][$relaciones['actorRelacionadoId']]['apellidosSiglas']) ?></h4></b>
-	<?php }}?>
-	</div>
-		<input type="button" class="small button" onclick="seleccionarActorIndividual()" value="Agregar actor">
-		<input type="button" class="small button" value="Eliminar actor">
+		<label for="PerRelacionada"><b><h5>Actor relacionado</b></h5></label><br />
+			<div id="vistaActorRelacionado"  >
+			<?php if (isset($relaciones['actorRelacionadoId'])) {?> 
+			<?php if ($relaciones['actorRelacionadoId']!=0) {?> 
+				<img class="three columns foto"  src="<?php print_r(base_url().$catalogos['listaTodosActores'][$relaciones['actorRelacionadoId']]['foto']) ?>" >
+				<h4><b><?php print_r($catalogos['listaTodosActores'][$relaciones['actorRelacionadoId']]['nombre']." ".$catalogos['listaTodosActores'][$relaciones['actorRelacionadoId']]['apellidosSiglas']) ?></h4></b>
+			<?php }}?>
+			</div>
+			<input type="button" class="small button" onclick="seleccionarActorIndividual()" value="Agregar actor">
+			<input type="button" class="small button"  onclick="eliminarRelacionVista('vistaActorRelacionado','actorRelacionadoId')" value="Eliminar actor">
+		<br/>
+	<br/>
+	<br/>
 	<br/>
 	</div>
 	<div class="twelve columns">
 
 		<div class="six columns" >
-	<br/>
-		<label for="edad">Fecha inicial</label>
+		<label for="edad"><b>Fecha inicial</b></label>
 			<select onclick="fechaInicialCasosRP(value)" onkeyup="fechaInicialCasosRP(value)" >
 								<option></option>
 						<option  value="1" >fecha exacta</option>
@@ -133,7 +133,7 @@
 
 
 	<div class="twelve columns" >
-	<label for="Termonio">Fecha término</label>
+	<label for="Termonio"><b>Fecha término</b></label>
 				<div class="six columns">
 					<select onclick="fechaTerminalCasosRP(value)" onkeyup="fechaTerminalCasosRP(value)" >
 								<option></option>
@@ -164,12 +164,13 @@
 						<input type="text" id="fechaSinDiaSinMes2RP" placeholder="AAAA-00-00" />
 
 					</p>
-				</div>
+				</div><br /><br /><br/>
 	</div> <!---termina opciones de fechaTermino-->
 
-	<br /><br />
+	
 	<fieldset>
-		<legend>Comentarios</legend>
+		<legend><b>Comentarios</b></legend>
+
 			<textarea placeholder="Agregar un comentario" rows="10"   cols="100" id="TextoRelActoresIndividual" value="" style="width: 400px; height: 200px" wrap="hard"  name="comentarios"> <?=(isset($relaciones['comentarios']) ? $relaciones['comentarios'] : ''); ?></textarea>
 	</fieldset>
 	<input style="margin:5px 0px 5px 20px;" class="medium button" type="submit" value="Guardar" />
