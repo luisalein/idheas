@@ -392,35 +392,22 @@ class CasosVentanas_c extends CI_Controller {
 				if($_POST['editar'] == 1){
 					if (isset($datos['intervenciones'])) {
 						$mensaje =  $this->casos_m->mActualizaDatosIntervencion($datos['intervenciones'],$datos['intervenciones']['intervencionId']);
-
-						if (isset($datos['intervenciones']['interventorId']) && ($datos['intervenciones']['interventorId']>0)) {
 						
-							$data1 = array('casos_casoId'=>$_POST['casoId'],'actores_actorId'=>$datos['intervenciones']['interventorId'],'casoActorId'=>$_POST['casoActorIdInterventor']);
-
-							$this->casos_m->mActualizaRelacionCasoActor($data1);
-						
-						}
+						$data1 = array('casos_casoId'=>$_POST['casoId'],'actores_actorId'=>$datos['intervenciones']['interventorId'],'casoActorId'=>$_POST['casoActorIdInterventor']);
 		
-						if (isset($datos['intervenciones']['receptorId']) && ($datos['intervenciones']['receptorId']>0)) {
-
-							$data2 = array('casos_casoId'=>$_POST['casoId'],'actores_actorId'=>$datos['intervenciones']['receptorId'],'casoActorId'=>$_POST['casoActorIdReceptor']);
-							
-							$this->casos_m->mActualizaRelacionCasoActor($data2);
-
-						}
+						$this->casos_m->mActualizaRelacionCasoActor($data1);
+						
+						$data2 = array('casos_casoId'=>$_POST['casoId'],'actores_actorId'=>$datos['intervenciones']['receptorId'],'casoActorId'=>$_POST['casoActorIdReceptor']);
+		
+						$this->casos_m->mActualizaRelacionCasoActor($data2);
 					}
 					
 					if (isset($datos['intervenidos'])) {
-
 						$mensaje = $mensaje . $this->casos_m->mActualizaDatosIntervenido($datos['intervenidos'],$datos['intervenidos']['intervenidoId']);
 						
-						if (isset($datos['intervenidos']['actorIntervenidoId']) && ($datos['intervenidos']['actorIntervenidoId']>0)) {
-
-							$data = array('casos_casoId'=>$_POST['casoId'],'actores_actorId'=>$datos['intervenidos']['actorIntervenidoId'],'casoActorId'=>$_POST['casoActorIdIntervenido']);
-			
-							$this->casos_m->mActualizaRelacionCasoActor($data);		
-							
-						}
+						$data = array('casos_casoId'=>$_POST['casoId'],'actores_actorId'=>$datos['intervenidos']['actorIntervenidoId'],'casoActorId'=>$_POST['casoActorIdIntervenido']);
+		
+						$this->casos_m->mActualizaRelacionCasoActor($data);		
 			
 					}
 				}else{
@@ -428,14 +415,10 @@ class CasosVentanas_c extends CI_Controller {
 							
 					$data2['casos_has_actores']= array('casos_casoId' =>$_POST['casoId'],'actores_actorId'=>$datos['intervenciones']['receptorId']);
 					
-					if (isset($datos['intervenciones']['interventorId'])&& ($datos['intervenciones']['interventorId']>0)) {
-					$this->general_m->llenar_tabla_m($data1);	
-					}
+					$this->casos_m->llenarCasoActor($data1);	
 													
-					if (isset($datos['intervenciones']['receptorId'])&& ($datos['intervenciones']['receptorId']>0)) {
-					$this->general_m->llenar_tabla_m($data2);
+					$this->casos_m->llenarCasoActor($data2);
 						
-					}
 					
 					
 					$datos4['intervencion'] = $datos['intervenciones'];
@@ -448,21 +431,13 @@ class CasosVentanas_c extends CI_Controller {
 				if($_POST['editar'] == 1){
 					$mensaje = $this->casos_m->mActualizaDatosFuenteInfoPersonal($datos['fuenteInfoPersonal'],$datos['fuenteInfoPersonal']['fuenteInfoPersonalId']);
 			
-					if (isset($datos['fuenteInfoPersonal']['actorId']) && ($datos['fuenteInfoPersonal']['actorId']>0)) {
-
-						$data1 = array('casos_casoId'=>$_POST['casoId'],'actores_actorId'=>$datos['fuenteInfoPersonal']['actorId'],'casoActorId'=>$_POST['casoActorIdActor']);
-			
-						$this->casos_m->mActualizaRelacionCasoActor($data1);
+					$data1 = array('casos_casoId'=>$_POST['casoId'],'actores_actorId'=>$datos['fuenteInfoPersonal']['actorId'],'casoActorId'=>$_POST['casoActorIdActor']);
+		
+					$this->casos_m->mActualizaRelacionCasoActor($data1);
 						
-					}
-						
-					if (isset($datos['fuenteInfoPersonal']['actorReportado']) && ($datos['fuenteInfoPersonal']['actorReportado']>0)) {
-
-						$data2 = array('casos_casoId'=>$_POST['casoId'],'actores_actorId'=>$datos['fuenteInfoPersonal']['actorReportado'],'casoActorId'=>$_POST['casoActorIdActorReportado']);
-			
-						$this->casos_m->mActualizaRelacionCasoActor($data2);	
-
-					}
+					$data2 = array('casos_casoId'=>$_POST['casoId'],'actores_actorId'=>$datos['fuenteInfoPersonal']['actorReportado'],'casoActorId'=>$_POST['casoActorIdActorReportado']);
+		
+					$this->casos_m->mActualizaRelacionCasoActor($data2);	
 					
 				}else{
 					
@@ -470,9 +445,9 @@ class CasosVentanas_c extends CI_Controller {
 							
 					$data2['casos_has_actores']= array('casos_casoId' =>$_POST['casoId'],'actores_actorId'=>$datos['fuenteInfoPersonal']['actorReportado']);
 													
-					$this->general_m->llenar_tabla_m($data1);
+					$this->casos_m->llenarCasoActor($data1);
 					
-					$this->general_m->llenar_tabla_m($data2);
+					$this->casos_m->llenarCasoActor($data2);
 					
 					$datos5['fuenteInfoPersonal'] = $datos['fuenteInfoPersonal'];
 					$mensaje = $this->general_m->llenar_tabla_m($datos5);
@@ -484,18 +459,14 @@ class CasosVentanas_c extends CI_Controller {
 				if($_POST['editar'] == 1){
 					$mensaje = $this->casos_m->mActualizaDatosTipoFuenteDocumental($datos['tipoFuenteDocumental'],$datos['tipoFuenteDocumental']['tipoFuenteDocumentalId']);
 					
-					if (isset($datos['tipoFuenteDocumental']['actorReportado']) && ($datos['tipoFuenteDocumental']['actorReportado']>0)) {
-
-						$data = array('casos_casoId'=>$_POST['casoId'],'actores_actorId'=>$datos['tipoFuenteDocumental']['actorReportado'],'casoActorId'=>$_POST['casoActorIdActorReportado']);
-			
-						$this->casos_m->mActualizaRelacionCasoActor($data);				
-
-					}			
+					$data = array('casos_casoId'=>$_POST['casoId'],'actores_actorId'=>$datos['tipoFuenteDocumental']['actorReportado'],'casoActorId'=>$_POST['casoActorIdActorReportado']);
+		
+					$this->casos_m->mActualizaRelacionCasoActor($data);				
 	
 				}else{
 					$data2['casos_has_actores']= array('casos_casoId' =>$_POST['casoId'],'actores_actorId'=>$datos['tipoFuenteDocumental']['actorReportado']);
 																		
-					$this->general_m->llenar_tabla_m($data2);
+					$this->casos_m->llenarCasoActor($data2);
 					 
 					$datos6['tipoFuenteDocumental'] = $datos['tipoFuenteDocumental'];
 					$mensaje = $this->general_m->llenar_tabla_m($datos6);
@@ -556,7 +527,7 @@ class CasosVentanas_c extends CI_Controller {
 		
 			$datos1['casos_has_actores']['actores_actorId']=$_POST['actorIntervenidoId'];
 			
-			$this->general_m->llenar_tabla_m($datos1);	
+			$this->casos_m->llenarCasoActor($datos1);	
 			
 		}else{
 			$mensaje = 'faltan datos';

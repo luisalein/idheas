@@ -1776,6 +1776,13 @@ class Casos_m extends CI_Model {
 	}
 	
 	public function mActualizaRelacionCasoActor($datosRelacion){
+
+
+        	if ($datosRelacion['casos_has_actores']['actores_actorId']==0 || (empty($datosRelacion['casos_has_actores']['actores_actorId'])) || (isset($datosRelacion['casos_has_actores']['actores_actorId'])) ) {
+
+        		$datos['actores_actorId']=NULL;
+        		
+        	}
 		
 		$this->db->where('casoActorId', $datosRelacion['casoActorId']);
 		if($this->db->update('casos_has_actores',$datosRelacion)){
@@ -1802,6 +1809,28 @@ class Casos_m extends CI_Model {
 			
 		}
 	}
+
+
+        public function llenarCasoActor($datos){
+
+        	if ( (!isset($datos['casos_has_actores']['actores_actorId'])) || ($datos['casos_has_actores']['actores_actorId']==0) || (empty($datos['casos_has_actores']['actores_actorId'])) ) {
+
+        		$datos['casos_has_actores']['actores_actorId']=NULL;
+
+        	}
+
+        	echo "<pre>";
+        	print_r($datos);
+        	echo "</pre>";
+            foreach($datos as $key => $value){
+
+                    $this->db->insert($key, $datos[$key]);
+
+            }
+
+            return ($mensaje = 'Listo datos insertados, por favor cierra la ventana y actualiza tu navegador.');
+	
+        }
 	 
 	 
 }
