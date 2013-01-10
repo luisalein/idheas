@@ -12,8 +12,8 @@ function personaRelacionadaColectivo(idPersona){
 };
 
 function tipoRelacion(tipoRelacion,notas,nombre){
-	$('#tipoRelTexto').html("Tipo de relación<br/>"+nombre); 
-	$('#tipoRelNotas').html("Notas<br/>"+notas); 
+	$('#tipoRelTexto').html("<b><h5>Tipo de relación</h5></b>"+nombre); 
+	$('#tipoRelNotas').html("<b><h5>Notas</h5></b>"+notas); 
     $('.cambiarColorRelacion').css('background-color', '#efefef');
     $('#'+tipoRelacion).css('background-color', '#ddd');
 	$('#tipoRelacionId').attr('value', tipoRelacion); 

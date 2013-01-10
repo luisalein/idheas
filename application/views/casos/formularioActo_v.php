@@ -168,26 +168,26 @@
 												<option  value="4">Se desconce el día y el mes</option>
 									</select>
 								</div>
-				
+								
 							<div class="six columns">
 								<br />
-								<p class="<?php if(isset($derechoAfectado['fechaInicial'])) echo ''; else echo 'Escondido';?>" id="fechaExactaVAct">
-									<input type="text" id="fechaExactaAct" onclick="fechaInicialCasosActos(1)" value="<?php if(isset($derechoAfectado['fechaInicial'])) echo $derechoAfectado['fechaInicial'];?>" placeholder="AAAA-MM-DD" />
+								<p class="<?=(isset($derechoAfectado2['fechaInicial']))  ? " " : 'Escondido';?>" id="fechaExactaVAct">
+									<input type="text" id="fechaExactaAct"  value="<?php if(isset($derechoAfectado2['fechaInicial'])) echo $derechoAfectado2['fechaInicial'];?>" placeholder="AAAA-MM-DD" />
 
 								</p>
 
 								<p class="Escondido" id="fechaAproxVAct">
-									<input type="text" id="fechaAproxAct" onclick="fechaInicialCasosActos(2)"  placeholder="AAAA-MM-DD" />
+									<input type="text" id="fechaAproxAct" placeholder="AAAA-MM-DD" />
 
 								</p>
 
 								<p class="Escondido" id="fechaSinDiaVAct">
-									<input type="text" id="fechaSinDiaAct" onclick="fechaInicialCasosActos(3)"  placeholder="AAAA-MM-00" />
+									<input type="text" id="fechaSinDiaAct"  placeholder="AAAA-MM-00" />
 
 								</p >
 
 								<p class="Escondido" id="fechaSinDiaSinMesVAct">
-									<input type="text" id="fechaSinDiaSinMesAct" onclick="fechaInicialCasosActos(4)"  placeholder="AAAA-00-00" />
+									<input type="text" id="fechaSinDiaSinMesAct" placeholder="AAAA-00-00" />
 
 								</p>
 							</div>
@@ -205,23 +205,23 @@
 							</select>
 						</div>
 						<div class="six columns">
-							<p class="<?php if(isset($derechoAfectado['fechaTermino'])) echo ''; else echo 'Escondido';?>" id="fechaExactaVAct2">
-								<input type="text" id="fechaExactaAct2" onclick="fechaTerminalCasosActos(1)" value="<?php if(isset($derechoAfectado['fechaTermino'])) echo $derechoAfectado['fechaTermino'];?>"  placeholder="AAAA-MM-DD" />
+							<p class="<?php if(isset($derechoAfectado2['fechaTermino'])) echo ''; else echo 'Escondido';?>" id="fechaExactaVAct2">
+								<input type="text" id="fechaExactaAct2"  value="<?php if(isset($derechoAfectado2['fechaTermino'])) echo $derechoAfectado2['fechaTermino'];?>"  placeholder="AAAA-MM-DD" />
 
 							</p>
 
 							<p class="Escondido" id="fechaAproxVAct2">
-								<input type="text" id="fechaAproxAct2" onclick="fechaTerminalCasosActos(2)"  placeholder="AAAA-MM-DD" />
+								<input type="text" id="fechaAproxAct2"   placeholder="AAAA-MM-DD" />
 
 							</p>
 
 							<p class="Escondido" id="fechaSinDiaVAct2">
-								<input type="text" id="fechaSinDiaAct2" onclick="fechaTerminalCasosActos(3)"  placeholder="AAAA-MM-00" />
+								<input type="text" id="fechaSinDiaAct2"  placeholder="AAAA-MM-00" />
 
 							</p >
 
 							<p class="Escondido" id="fechaSinDiaSinMesVAct2">
-								<input type="text" id="fechaSinDiaSinMesAct2" onclick="fechaTerminalCasosActos(4|	)" placeholder="AAAA-00-00" />
+								<input type="text" id="fechaSinDiaSinMesAct2"  placeholder="AAAA-00-00" />
 
 							</p>
 						</div>

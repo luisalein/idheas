@@ -64,7 +64,7 @@
 		<pre> <?php print_r($catalogos['listaTodosActores'][$fuenteInfoPersonal['actorId']]['actorId'])?></pre>
 		 -->
 			<fieldset>
-				<legend class="espacioInferior">Fuente de información personal</legend>
+				<legend class="espacioInferior">Fuente de información individual o colectiva</legend>
 					<input type="radio" onclick="pintaIndividualesInfoPersonal()" name="selecionaActor" <?= (isset($fuenteInfoPersonal['actorId']) &&($fuenteInfoPersonal['actorId']>0) && ($catalogos['listaTodosActores'][$fuenteInfoPersonal['actorId']]['tipoActorId']< 3)) ? "checked='checked'" : " " ;?>/>Persona
 					<input type="radio"	onclick="pintaColectivosInfoPersonal()" name="selecionaActor"<?= (isset($fuenteInfoPersonal['actorId'])  &&($fuenteInfoPersonal['actorId']>0) && ($catalogos['listaTodosActores'][$fuenteInfoPersonal['actorId']]['tipoActorId']== 3)) ? "checked='checked'" : " " ;?> />Actor colectivo <br />
 					<label class="espacioSuperior"><b >Persona:</b></label> <br />

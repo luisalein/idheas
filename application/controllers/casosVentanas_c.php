@@ -129,6 +129,7 @@ class CasosVentanas_c extends CI_Controller {
 		if(!empty($datos['datosCaso']['derechoAfectado'][$i])){
 			
 			$datos['derechoAfectado']=$datos['datosCaso']['derechoAfectado'][$i];
+			$datos['derechoAfectado2']=$datos['datosCaso']['derechoAfectado'][$i];
 			$datos['victimas']=$datos['derechoAfectado']['noVictimas'];
 			$datos['fInicial']=$datos['derechoAfectado']['fechaInicial'];
 			$datos['fTermino']=$datos['derechoAfectado']['fechaTermino'];

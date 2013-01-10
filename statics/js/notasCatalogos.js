@@ -34,6 +34,7 @@ function notasCatalogos2(notas,escribeNotas,id){
 	}
 	else{
 		$('#notas'+escribeNotas).html(" "); 
+		 	$('#'+escribeNotas).html(" "); 
 	}
 }
 function botonNotas(notas){

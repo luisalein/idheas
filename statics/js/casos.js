@@ -780,7 +780,7 @@ function pintaColectivosInfoPersonalReportado(){
     var nameSeleccionado2= document.getElementById('nameDeLaRelacionReceptor').value;
     document.getElementById(nameSeleccionado2).value = 0;
     notas="seleccionarActorseleccionarColDatos('2')";
-    notas2="eliminarRelacionVista('eliminarVistaActorReportado','fuenteInfoPersonal_actorId')";
+    notas2="eliminarRelacionVista('infoPersonalActorReportado','fuenteInfoPersonal_actorId')"; 
 	$('#infoColectioReportado').addClass("Escondido");
 	document.getElementById('infoPersonalActorReportado').innerHTML =" ";
 	document.getElementById('infoPersonalActorReportadoBotones').innerHTML =('<div class="nine columns"><input type="button" class="tiny button" value="Seleccionar actor" onclick="'+notas+'" /></div>'+

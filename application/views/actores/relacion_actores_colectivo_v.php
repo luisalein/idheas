@@ -23,23 +23,19 @@
 
 			<br />
 	
-			<label style="margin-left: 15px;">Actor</label>
+			<label style="margin-left: 15px;"><h5><b>Actor</h5></b></label>
 
-			<div style="margin-left: 15px;" class="twelve columns">
-			<img class="foto" src="<?=base_url().$listaTodosActores[$actorId]['foto']?>" />
-			<br /><br />
-			<?=$listaTodosActores[$actorId]['nombre']." ".$listaTodosActores[$actorId]['apellidosSiglas']?>
+			<div style="margin-left: 15px;" class="twelve columns espacioInferior">
+				<img class="foto" src="<?=base_url().$listaTodosActores[$actorId]['foto']?>" />
+				<br /><br />
+				<?=$listaTodosActores[$actorId]['nombre']." ".$listaTodosActores[$actorId]['apellidosSiglas']?>
 			</div>
-
-			<br />
-			<div id="tipoRelTexto"> </div>
+			<div id="tipoRelTexto" class="espacioSuperior" > <label for="TipoRel" style="margin-left: 15px;"><h5><b>Tipo de relación</h5></b></label> </div>
 			
 			<br/>
 			<div id="tipoRelNotas"> </div>
 			
-			<br/><br/>
 
-		<label for="TipoRel" style="margin-left: 15px;">Tipo de relación</label>
 		<!--Estos datos solo apareceran para su actualización-->
 			<?php if (isset($relaciones['tipoRelacionId'])) {?>
 				<div style="margin-left: 15px;" id="relacionActual"> <br />
@@ -102,7 +98,7 @@
 			
 			
 			<br /><br />
-	<label style="margin-left: 15px;">Actores colectivos</label>
+	<label style="margin-left: 15px;"><h5><b>Actores colectivos</h5></b></label>
 	
 	<div id="vistaActorRelacionado">
 	<?php if (isset($relaciones['actorRelacionadoId'])) {?> 
@@ -112,7 +108,7 @@
 	<?php }}?>
 	</div>
 		<input style="margin-left: 15px;" type="button" class="small button" onclick="seleccionarActorColectivo()" value="Agregar actor">
-		<input type="button" class="small button" value="Eliminar actor">
+		<input type="button" class="small button" value="Eliminar actor" <input type='button' onclick="eliminarRelacionVista('vistaActorRelacionado','actorRelacionadoId')" >
 	<br/>
 
 			<br/><br/>

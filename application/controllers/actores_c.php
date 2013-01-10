@@ -134,16 +134,18 @@ class Actores_c extends CI_Controller {
 				if(isset($datos['citaActor']['citas'])){
 				
 					foreach ($datos['citaActor']['citas'] as $persona) {
+
 						$casosRelacionadoIndividual=$this->actores_m->mTraeCasosRelacionadosActor($persona['datosCitas']['actores_actorId']);
+						if ($casosRelacionadoIndividual!=0) {
+							if (isset($datos['casosRelacionados']) ) {
 
-						if (isset($datos['casosRelacionados'])) {
+								array_merge($datos['casosRelacionados'],$casosRelacionadoIndividual);
+							}
 
-							array_merge($datos['casosRelacionados'],$casosRelacionadoIndividual);
-						}
+							else{
 
-						else{
-
-							$datos['casosRelacionados']=$casosRelacionadoIndividual;
+								$datos['casosRelacionados']=$casosRelacionadoIndividual;
+							}
 						}
 
 					}
@@ -173,9 +175,10 @@ class Actores_c extends CI_Controller {
             $casoAfiliados= $this->casosRelacionados($actorId);
 
             if ($casoAfiliados!=0) {
+
             	if (isset($datos['casosRelacionados'])) {
 
-            	array_merge($datos['casosRelacionados'],$casoAfiliados);
+            		array_merge($datos['casosRelacionados'],$casoAfiliados);
             	}
 
             	else{
@@ -189,9 +192,13 @@ class Actores_c extends CI_Controller {
             /**Esta parte se asegura de que no se repita ningun caso, es decir, que es caso solo aparezca una vez**/
 
             if (isset($datos['casosRelacionados'])) {
+
             		$auxiliar=$datos['casosRelacionados'];
+
             		$datos['casosRelacionados']="";
+
             	foreach ($auxiliar as $caso) {
+            		
             		$datos['casosRelacionados'][$caso['casos']['casoId']]=$caso;
             	}
             }
@@ -1242,6 +1249,7 @@ class Actores_c extends CI_Controller {
         $mensaje = $this->actores_m->mAgregarDireccionActor($datos['direccionActor']);
 		
 		echo "<script languaje='javascript' type='text/javascript'>
+			 window.opener.location.reload();
 		     window.close();</script>";
 		
      	return $mensaje;
@@ -1278,9 +1286,10 @@ class Actores_c extends CI_Controller {
 		
         $mensaje = $this->actores_m->mActualizaDatosDireccion($datos['direccionActor'],$direccionId);
 		
-		echo "<script languaje='javascript' type='text/javascript'>
+		 echo "<script languaje='javascript' type='text/javascript'>
+			 window.opener.location.reload();
 		     window.close();</script>";
-		
+
 		//redirect(base_url().'index.php/actores_c/mostrar_actor/'.$actorId.'/'.$_POST['actores_tipoActorId']);
 		
 		return $mensaje;
