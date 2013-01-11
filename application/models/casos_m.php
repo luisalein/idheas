@@ -300,8 +300,8 @@ class Casos_m extends CI_Model {
 						$datos['actos'][$row['actoId']]['victimas'][$row2['victimaId']] = $row2;
 
 						foreach ($datos['actos'] as $row3) {
-								if (isset($row3['victimas'])) {
-									//echo "<pre>"; print_r($datos['actos']); echo "</pre>";
+						//echo "<pre>"; print_r($row3); echo "</pre>";
+								if (isset($row3['victimas']) && (isset($row3['victimas'][$row2['victimaId']]['victimaId'])) ) {
 									$this->db->select('*');
 									$this->db->from('perpetradores');
 									$this->db->where('victimas_victimaId', $row3['victimas'][$row2['victimaId']]['victimaId']);

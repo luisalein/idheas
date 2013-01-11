@@ -151,7 +151,7 @@
 			</div>
 
 			<div class="twelve columns espacioSuperior espacioInferior">
-				<label>Status del perpetrador</label>
+				<label>Estatus del perpetrador</label>
 					<select name="perpetradores_estatusPerpetradorCatalogo_estatusPerpetradorId">
 						<option></option>
 						<?php if (isset($perpetrador['estatusPerpetradorCatalogo_estatusPerpetradorId'])) {

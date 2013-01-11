@@ -40,7 +40,7 @@ function ventanaRelacionCasos(casoId, indice){
 	};
 
 function ventanaVictimas(actoId,casoId){
-	  var windowSizeArray = [ "width=900,height=700,scrollbars=yes" ];
+	  var windowSizeArray = [ "width=950,height=700,scrollbars=yes" ];
 	window.open(base+'index.php/casos_c/mostrarVictimas/'+actoId+'/0/0/'+casoId, 'Ventana victimas', windowSizeArray);
 	};
 

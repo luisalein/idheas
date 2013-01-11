@@ -48,8 +48,8 @@
 					<?php if (isset($victimas['victimas']) && ($victimas['victimas']!=0)) {
 						foreach ($victimas['victimas'] as $victima) { ?>
 							 <a href="<?=base_url(); ?>index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/<?=$victima['victimaId']; ?>/0/<?=$casoId?>">
-							 	<div class="<?= $idVictima==($victima['victimaId']) ? "victimaSeleccionada" : "victimaNoSeleccionada" ;?>">
-									<img class="four columns" style="width:90px !important; height:70px !important;" src="<?=base_url().$victima["foto"]; ?>" />
+							 	<div class="twelve columns espacioInferior <?= $idVictima==($victima['victimaId']) ? "victimaSeleccionada" : "victimaNoSeleccionada" ;?>">
+									<img class="four columns" style="min-width:70px !important; min-height:50px !important;" src="<?=base_url().$victima["foto"]; ?>" />
 									<span class="eight columns"><?= $victima['nombre']." ".$victima['apellidosSiglas']?></span>
 								</div>
 							</a>
