@@ -1,4 +1,14 @@
 /******************Ventanas Nuevo*************************/
+// $(function(){
+//       //Set button disabled
+//       $("input[type=submit]").attr("disabled", "disabled");
+ 
+//       //Append a change event listener to you inputs
+//       $('#cambio').click(function(){
+//       	$("#nome").removeAttr("disabled");                             
+//       });
+ 
+// })
 
 function ventanaDetalleLugar(casoId, indice){
 	  var windowSizeArray = [ "width=800,height=200,scrollbars=yes" ];
