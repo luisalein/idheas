@@ -403,6 +403,7 @@ class CasosVentanas_c extends CI_Controller {
 					}
 					
 					if (isset($datos['intervenidos'])) {
+						
 						$mensaje = $mensaje . $this->casos_m->mActualizaDatosIntervenido($datos['intervenidos'],$datos['intervenidos']['intervenidoId']);
 						
 						$data = array('casos_casoId'=>$_POST['casoId'],'actores_actorId'=>$datos['intervenidos']['actorIntervenidoId'],'casoActorId'=>$_POST['casoActorIdIntervenido']);
@@ -411,6 +412,7 @@ class CasosVentanas_c extends CI_Controller {
 			
 					}
 				}else{
+
 					$data1['casos_has_actores']= array('casos_casoId' =>$_POST['casoId'],'actores_actorId'=>$datos['intervenciones']['interventorId']);
 							
 					$data2['casos_has_actores']= array('casos_casoId' =>$_POST['casoId'],'actores_actorId'=>$datos['intervenciones']['receptorId']);

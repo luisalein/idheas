@@ -1819,9 +1819,6 @@ class Casos_m extends CI_Model {
 
         	}
 
-        	echo "<pre>";
-        	print_r($datos);
-        	echo "</pre>";
             foreach($datos as $key => $value){
 
                     $this->db->insert($key, $datos[$key]);

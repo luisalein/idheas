@@ -658,15 +658,17 @@ class Actores_c extends CI_Controller {
                     break;
 
                     case(2): 
-						$datos['tipo'] = '2';
-						$datos['filtroPais'] = $this->load->view('actores/filtroPaisEstadoMunicipio_v', $datos, true);
-						//si esta relacionado con un caso y si si envior relacionadoCaso
-						$relaciones = $this->actores_m->mTraeCasosRelacionadosActor($actorId);
-						
-						if($relaciones != '0'){
-							$datos['relacionadoCaso'] = 1;
-						}
-						
+                      $datos['tipo'] = '2';
+                        $datos['tipoT'] = '2';
+                        $datos['filtroPais'] = $this->load->view('actores/filtroPaisEstadoMunicipio_v', $datos, true);
+                        $datos['filtroPaisDatosN'] = $this->load->view('actores/filtroDireccion', $datos, true);
+                        //si esta relacionado con un caso y si si envior relacionadoCaso
+                        $relaciones = $this->actores_m->mTraeCasosRelacionadosActor($actorId);
+                       
+                        if($relaciones != '0'){
+                            $datos['relacionadoCaso'] = 1;
+                        }
+                       
                         $datos['form'] = $this->load->view('actores/agregar_editar_transmigrante_v', $datos, true);
 
                     break;

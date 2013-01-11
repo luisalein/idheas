@@ -433,7 +433,7 @@
                 <legend>Datos de nacimiento</legend>
                             
                             <!--Llamada a los filtros-->
-                            <?=$filtroPais;?>                               
+                            <?=$filtroPaisDatosN;?> 
                     
                          <div class="six columns">
                             <label for="fechaNacimiento">Fecha de nacimiento</label>
