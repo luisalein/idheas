@@ -198,12 +198,13 @@ class ReporteOdt_c extends CI_Controller
 				$contenidoIntervenciones['intervencionRespuesta']=	"Respuesta:  ". $intervencion['respuesta']."\n";
 				
 				$intervenidos ="Personas por las que se intervino: "."\n";
-				foreach ($intervencion['intervenidos'] as $intervenido) {
-					$intervenidos = $intervenidos. $datos['catalogos']['ListaTodosActores'][$intervenido['intervenidoId']]['nombre']." ". $datos['catalogos']['ListaTodosActores'][$intervenido['intervenidoId']]['apellidosSiglas'] ."\n";
-				}
-				
-				$contenidoIntervenciones['intervenidos'] =$intervenidos;
-			}
+				if(isset($intervencion['intervenidos'])){}
+					foreach ($intervencion['intervenidos'] as $intervenido) {
+						$intervenidos = $intervenidos. $datos['catalogos']['ListaTodosActores'][$intervenido['intervenidoId']]['nombre']." ". $datos['catalogos']['ListaTodosActores'][$intervenido['intervenidoId']]['apellidosSiglas'] ."\n";
+					}
+					
+					$contenidoIntervenciones['intervenidos'] =$intervenidos;
+					}
 		}else{
 			$contenidoIntervenciones[1]="";
 						
@@ -218,7 +219,7 @@ class ReporteOdt_c extends CI_Controller
 					$contenidoFuenteDocumental['fuenteDocNombre'.$key]="\nNombre:  ".$documental['nombre']. "\n";
 					$contenidoFuenteDocumental['fuenteDocfechaPublicacion'.$key]="Fecha de publicación:  ".$documental['fecha']. "\n";
 					$contenidoFuenteDocumental['fuenteDocfechaAcceso'.$key]="Fecha de acceso:  ".$documental['fechaAcceso']. "\n";
-					$contenidoFuenteDocumental['fuenteDocinfoAdiocional'.$key]="Informción adicional:  ".$documental['infoAdiocional']. "\n";
+					$contenidoFuenteDocumental['fuenteDocinfoAdiocional'.$key]="Informción adicional:  ".$documental['infoAdicional']. "\n";
 					$contenidoFuenteDocumental['fuenteDocNivelConfiabilidad'.$key]="Nivel de confiabilidad:  ". $datos['catalogos']['nivelConfiabilidadCatalogo']['nivelConfiabilidadCatalogo'][$documental['nivelConfiabilidadCatalogo_nivelConfiabilidadId']]['descripcion']. "\n";
 					$contenidoFuenteDocumental['fuenteDocobservaciones'.$key]="Observaciones:  ".$documental['observaciones']. "\n";
 			}
