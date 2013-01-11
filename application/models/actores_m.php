@@ -864,7 +864,7 @@
 							
 							$this->db->select('actorId,tipoActorId,nombre,apellidosSiglas,foto');
 							$this->db->from('actores');
-							$this->db->where('actorId',$row2['victimaId']);
+							$this->db->where('actorId',$row2['actorId']);
 							$this->db->where('estadoActivo', 1);
 							$this->db->where('tipoActorId', $tipoActorId);
 							$consultaDatosActor = $this->db->get();
