@@ -149,7 +149,7 @@
 					<?php };?>	
 				</ol>
 			</div>
-
+    
 			<div class="twelve columns espacioSuperior espacioInferior">
 				<label>Estatus del perpetrador</label>
 					<select name="perpetradores_estatusPerpetradorCatalogo_estatusPerpetradorId">
