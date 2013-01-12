@@ -241,7 +241,9 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`casos` (
   `nombre` VARCHAR(50) NOT NULL ,
   `personasAfectadas` INT NULL ,
   `fechaInicial` DATE NULL ,
+  `tipoFechaInicialId` INT NULL ,
   `fechaTermino` DATE NULL ,
+  `tipoFechaTerminoId` INT NULL ,
   `estadoActivo` TINYINT(1) NULL DEFAULT 1 ,
   PRIMARY KEY (`casoId`) )
 ENGINE = InnoDB;
@@ -319,6 +321,7 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`fuenteInfoPersonal` (
   `fuenteInfoPersonalId` INT NOT NULL AUTO_INCREMENT ,
   `actorId` INT NULL ,
   `fecha` DATE NULL ,
+  `tipoFechaId` INT NULL ,
   `actorReportado` INT NULL ,
   `observaciones` VARCHAR(1500) NULL ,
   `comentarios` VARCHAR(1500) NULL ,
@@ -394,6 +397,7 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`fichas` (
   `clave` INT NULL ,
   `titulo` VARCHAR(100) NULL ,
   `fecha` DATE NULL ,
+  `tipoFechaId` INT NULL ,
   `comentarios` VARCHAR(3000) NULL ,
   `casos_casoId` INT NOT NULL ,
   PRIMARY KEY (`fichaId`) ,
@@ -524,7 +528,9 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`derechoAfectado` (
   `derechoAfectadoCasoId` INT NOT NULL AUTO_INCREMENT ,
   `fechaInicial` DATE NULL ,
+  `tipoFechaInicialId` INT NULL ,
   `fechaTermino` DATE NULL ,
+  `tipoFechaTerminoId` INT NULL ,
   `noVictimas` INT NULL ,
   `derechoAfectadoNivel` INT NULL ,
   `derechoAfectadoId` INT NULL ,
@@ -1304,7 +1310,7 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoFuenteDocumentalN2Catalogo` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-INSERT INTO usuarios(usuario,pass) values ('admin','idheas'); 
+INSERT INTO USUARIOS(nombre,pass) VALUES('admin','idheas');
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
