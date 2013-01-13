@@ -60,7 +60,7 @@
 					</div>
 
 					<input type="button" class="small button" onclick="seleccionarActorseleccionarActorIndColDatos('1')" value="Seleccionar actor">
-					<input type="button" class="small button" value="Eliminar actor" onclick="eliminaActor()">
+					<input type="button" class="small button" value="Eliminar actor" onclick="eliminarRelacionVista('vistaActorRelacionado','perpetradores_perpetradorId','vistaActorRelacionadoPerpetrador','perpetradores_actorRelacionadoId')">
 
 			<div id="pestania" class="twelve columns" data-collapse>
 				<h2 class="open" >Actor Colectivo</h2>

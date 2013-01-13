@@ -467,9 +467,9 @@ class Casos_c extends CI_Controller {
 
 		if($idPerpetrador != 0){
 			
-			$datos['idPerpetrador']=$idPerpetrador;
+			$datos['idPerpetrador']=$datos['victimas'][$idVictima]['perpetradores'][$idPerpetrador]['perpetradorId'];
 
-			$datos['action'] = base_url().'index.php/casos_c/editarPerpetrador/'.$idActo.'/'.$idVictima.'/'.$idPerpetrador;
+			$datos['action'] = base_url().'index.php/casos_c/editarPerpetrador/'.$idActo.'/'.$idVictima.'/'.$datos['idPerpetrador'];
 			
 			if(isset($datos['victimas'][$idVictima]['perpetradores'][$idPerpetrador]))
 
@@ -534,7 +534,11 @@ class Casos_c extends CI_Controller {
 
         } 
 		$data = array('casos_casoId'=>$_POST['casoId'],'actores_actorId'=>$idPerpetrador,'casoActorId'=>$_POST['casoActorId']);
-		
+
+		echo "<pre>";
+		print_r($data);
+		echo "</pre>";
+
 		$this->casos_m->mActualizaRelacionCasoActor($data);
 
 		$this->casos_m->mActualizaDatosPerpetrador($datos['perpetradores'],$idPerpetrador);

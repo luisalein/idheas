@@ -363,7 +363,7 @@ class CasosVentanas_c extends CI_Controller {
 					}
 					$mensaje = $mensaje . $this->casos_m->mActualizaDatosDerechoAfectado($datos['derechoAfectado'],$datos['derechoAfectado']['derechoAfectadoCasoId']);
 					$botonVictimas=1;
-					$Id=$id;
+					$Id=$datos['derechoAfectado']['derechoAfectadoCasoId'];
 				}else{
 					if(!empty($datos['actos']['actoViolatorioId'])){
 		            	$datos['actos']['casos_casoId']=$datos['lugares']['casos_casoId'];
@@ -372,7 +372,7 @@ class CasosVentanas_c extends CI_Controller {
 						if(empty($datos3['derechoAfectado']['paisesCatalogo_paisId'])){
 							unset($datos3['derechoAfectado']['paisesCatalogo_paisId']);
 						}
-						$Id = $this->casos_m->mAgregarDerechosAfectados($datos3);
+						$Id =$datos['derechoAfectado']['derechoAfectadoCasoId'];
 						$datos['actos']['derechoAfectado_derechoAfectadoCasoId']=$Id;
 						$mensaje = $this->casos_m->mAgregarActoDerechoAfectado($datos['actos']);
 						$botonVictimas=1;

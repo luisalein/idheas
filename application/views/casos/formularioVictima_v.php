@@ -8,7 +8,9 @@
 		
 		<div class="twelve columns">
 <!-- 		
-
+		<pre>
+			<?=print_r($victimas['victimas'][$idVictima]) ?>
+		</pre>
  -->		<?php if ($idVictima>0) {
 
 			foreach ($victimas['victimas'][$idVictima]['casosActor'] as $casoActor) {
@@ -164,6 +166,8 @@
 
 				</div>
 			</div><!--Termina información general de la victima-->
+			
+<input type="button" class="small button" value="Guardar y Cerrar" onclick="cerrarVentana()">
 		</div>
 	</body>	
 </html><!-- -->

@@ -77,7 +77,7 @@ function SeleccionarYTreaeRelaciones(title){
 
 function eliminarRelacionVista(id,name,id2,name2){  
     document.getElementById(name).value = 0;
-//alert(name);
+    //alert(name);
     document.getElementById(id).innerHTML = (" ");
     document.getElementById(id2).innerHTML = (" ");
     document.getElementById(name2).value = 0;
@@ -132,6 +132,11 @@ function SeleccionarYTreaeRelacionesrceptor(title){
 
 function cerrarVentana(){
   window.close();
+};
+
+function cerrarVentanaActualizar(){    
+    window.opener.location.reload();
+    window.close();
 };
 
 function cerrarVentanaCancelar(){
@@ -230,7 +235,7 @@ function agregarActorFuenteInfoPersonal(title){
     var nameSeleccionado= window.opener.document.getElementById('nameSeleccionado').value;
     var nameSeleccionado2= window.opener.document.getElementById('nameDeLaRelacion').value;
     notas="seleccionarActorseleccionarActorIndColDatos('7')";
-    notas2="eliminarRelacionVista('infoPersonalActor','fuenteInfoPersonal_actorId','infoColectioContenido','"+nameSeleccionado2+"')";
+    notas2="eliminarRelacionVista('eliminarVistaActor','fuenteInfoPersonal_actorId','infoColectio','"+nameSeleccionado2+"')";
     notas3="ventanaColectivoRelacionados('"+n[0]+"','3')";
     notas4="eliminarRelacionVista('infoColectioContenido','"+nameSeleccionado+"')";
     window.opener.document.getElementById(nameSeleccionado).value = n[0];
@@ -248,7 +253,7 @@ function agregarActorFuenteDocumental(title){
     var nameSeleccionado= window.opener.document.getElementById('nameSeleccionado').value;
     var nameSeleccionado2= window.opener.document.getElementById('nameDeLaRelacion').value;
     notas="seleccionarActorseleccionarActorIndColDatos('7')";
-    notas2="eliminarRelacionVista('infoPersonalActor','fuenteInfoPersonal_actorId','infoColectioContenido','"+nameSeleccionado2+"')";
+    notas2="eliminarRelacionVista('actorReportado','tipoFuenteDocumental_actorReportado','infoColectio','fuenteDocumental_relacionId')";
     notas3="ventanaColectivoRelacionados('"+n[0]+"','3')";
     notas4="eliminarRelacionVista('infoColectioContenido','fuenteInfoPersonal_relacionId')";
     window.opener.document.getElementById(nameSeleccionado).value = n[0];
