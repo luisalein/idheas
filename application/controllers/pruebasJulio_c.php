@@ -13,7 +13,7 @@ class PruebasJulio_c extends CI_Controller
 	
 	function index() 
 	{	
-			$datos['nombre']='cool'; 
+			$datos['nombre']='cola'; 
 							   
 			echo 'Antes de entrar a la funcion....';
 			  						
