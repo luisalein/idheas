@@ -87,7 +87,7 @@
 					              	}
 			              		}
 
-			              		if ($inter['casosActorInterventor']) {
+			              		if (isset($inter['casosActorInterventor'])) {
 			              			foreach ($inter['casosActorInterventor'] as $inter2) {
 					              		if ($inter2['casos_casoId'] == $casoId) {
 					              			$casoActorIdInterventor=$inter2['casoActorId'];
