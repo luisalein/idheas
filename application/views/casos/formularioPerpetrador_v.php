@@ -60,7 +60,7 @@
 					</div>
 
 					<input type="button" class="small button" onclick="seleccionarActorseleccionarActorIndColDatos('1')" value="Seleccionar actor">
-					<input type="button" class="small button" value="Eliminar actor" onclick="eliminaActor()">
+					<input type="button" class="small button" value="Eliminar actor" onclick="eliminarRelacionVista('vistaActorRelacionado','perpetradores_perpetradorId','vistaActorRelacionadoPerpetrador','perpetradores_actorRelacionadoId')">
 
 			<div id="pestania" class="twelve columns" data-collapse>
 				<h2 class="open" >Actor Colectivo</h2>
@@ -149,9 +149,9 @@
 					<?php };?>	
 				</ol>
 			</div>
-
+       
 			<div class="twelve columns espacioSuperior espacioInferior">
-				<label>Status del perpetrador</label>
+				<label>Estatus del perpetrador</label>
 					<select name="perpetradores_estatusPerpetradorCatalogo_estatusPerpetradorId">
 						<option></option>
 						<?php if (isset($perpetrador['estatusPerpetradorCatalogo_estatusPerpetradorId'])) {

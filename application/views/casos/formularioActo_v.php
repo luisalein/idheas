@@ -255,7 +255,7 @@
 			<input class="medium button" type="submit" value="Guardar" style="padding: 10px 15px 11px 15px; "/>
 			<input class="medium button" type="button" value="Cancelar" onclick="cerrarVentana()" />
 			<?php if (isset($botonVictimas)) { ?>
-			<input class="medium button" type="button" value="Cerrar" onclick="cerrarVentana()"/>
+			<input class="medium button" type="button" value="Cerrar" onclick="cerrarVentanaActualizar()"/>
 			<?php } ?>
 		</div>
 	</div><!--fin acordeon información general-->

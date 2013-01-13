@@ -1,4 +1,14 @@
 /******************Ventanas Nuevo*************************/
+// $(function(){
+//       //Set button disabled
+//       $("input[type=submit]").attr("disabled", "disabled");
+ 
+//       //Append a change event listener to you inputs
+//       $('#cambio').click(function(){
+//       	$("#nome").removeAttr("disabled");                             
+//       });
+ 
+// })
 
 function ventanaDetalleLugar(casoId, indice){
 	  var windowSizeArray = [ "width=800,height=200,scrollbars=yes" ];
@@ -40,7 +50,7 @@ function ventanaRelacionCasos(casoId, indice){
 	};
 
 function ventanaVictimas(actoId,casoId){
-	  var windowSizeArray = [ "width=900,height=700,scrollbars=yes" ];
+	  var windowSizeArray = [ "width=950,height=700,scrollbars=yes" ];
 	window.open(base+'index.php/casos_c/mostrarVictimas/'+actoId+'/0/0/'+casoId, 'Ventana victimas', windowSizeArray);
 	};
 

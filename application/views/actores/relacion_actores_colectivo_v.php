@@ -30,31 +30,29 @@
 				<br /><br />
 				<?=$listaTodosActores[$actorId]['nombre']." ".$listaTodosActores[$actorId]['apellidosSiglas']?>
 			</div>
-			<div id="tipoRelTexto" class="espacioSuperior" > <label for="TipoRel" style="margin-left: 15px;"><h5><b>Tipo de relación</h5></b></label> </div>
-			
-			<br/>
-			<div id="tipoRelNotas"> </div>
-			
 
-		<!--Estos datos solo apareceran para su actualización-->
-			<?php if (isset($relaciones['tipoRelacionId'])) {?>
-				<div style="margin-left: 15px;" id="relacionActual"> <br />
-					Relación Actual<br />
-					<?php if ($listaTodosActores[$actorId]['tipoActorId']<3) {?>
-						<?php print_r($relacionActoresColectivo['relacionActoresCatalogo'][$relaciones['tipoRelacionId']]['Nivel2'])?>
-						<label style="margin-left: 15px;">notas</label>
-						<label style="margin-left: 15px;"><?php print_r($relacionActoresColectivo['relacionActoresCatalogo'][$relaciones['tipoRelacionId']]['notas'])?></label>
-					<?php } else{?>
-						<?php print_r($relacionActoresColectivo['relacionActoresCatalogo'][$relaciones['tipoRelacionId']]['nombre'])?>
-						<label style="margin-left: 15px;">notas</label>
-						<label style="margin-left: 15px;"><?php print_r($relacionActoresColectivo['relacionActoresCatalogo'][$relaciones['tipoRelacionId']]['notas'])?></label>
-					<?php }?>
-					<br />
-					<br />
-					<br />
-				</div>
-			<?php }?>
-
+			<div class="twelve columns">
+			<div id="tipoRelTexto" class="espacioSuperior" > <h5><b>Tipo de relación</h5></b> </div>			
+			<div id="tipoRelNotas"> 
+				<!--Estos datos solo apareceran para su actualización-->
+				<?php if (isset($relaciones['tipoRelacionId'])) {?>
+					<div id="relacionActual"> <br />
+						<label style="margin-left: 15px;"><h5><b>Relación Actual</h5></b></label>
+						<?php if ($listaTodosActores[$actorId]['tipoActorId']<3) {?>
+							<span style="margin-left: 15px;"> <?php print_r($relacionActoresColectivo['relacionActoresCatalogo'][$relaciones['tipoRelacionId']]['Nivel2'])?></span>
+							<label style="margin-left: 15px;">notas</label>
+							<span style="margin-left: 15px;"><?php print_r($relacionActoresColectivo['relacionActoresCatalogo'][$relaciones['tipoRelacionId']]['notas'])?></span>
+						<?php } else{?>
+							<?php print_r($relacionActoresColectivo['relacionActoresCatalogo'][$relaciones['tipoRelacionId']]['nombre'])?>
+							<label style="margin-left: 15px;">notas</label>
+							<span style="margin-left: 15px;"><?php print_r($relacionActoresColectivo['relacionActoresCatalogo'][$relaciones['tipoRelacionId']]['notas'])?></span>
+						<?php }?>
+						<br />
+						<br />
+						<br />
+					</div>
+				<?php }?>
+			</div>
 			<div style="margin-left: 15px;" class="caja">
 				<?php if ($listaTodosActores[$actorId]['tipoActorId']<3) {?>
 
@@ -96,7 +94,7 @@
 
 			</div>
 			
-			
+			</div>
 			<br /><br />
 	<label style="margin-left: 15px;"><h5><b>Actores colectivos</h5></b></label>
 	
@@ -152,7 +150,7 @@
 				
 				
 			<div class="twelve columns">
-					<label for="Termonio">Fecha término</label>
+					<label for="FechaTermino">Fecha término</label>
 				<div class="six columns">
 					<select onclick="fechaTerminalCasosRIC(value)" onkeyup="fechaTerminalCasosRIC(value)">
 						<option></option>
@@ -186,11 +184,11 @@
 				</div>
 			</div> <!---termina opciones de fechaTermino-->
 			
-		<div class="twelve columns">
+		<div id="Comentarios"class="twelve columns">
 			<br /><br />
-			<fieldset>
-				<legend>Comentarios</legend>
-					<textarea rows="10" cols="100"  id="TextoRelActoresColectivo" style="width: 400px; height: 200px" wrap="hard"  name="comentarios"><?=(isset($relaciones) ? $relaciones['comentarios'] : ''); ?></textarea>
+			<fieldset style="padding:10px;">
+				<legend>Comentarios</legend><br />
+					<textarea rows="10" cols="100"  id="TextoRelActoresColectivo" style="min-width: 400px; min-height: 200px" wrap="hard"  name="comentarios"><?=(isset($relaciones) ? $relaciones['comentarios'] : ''); ?></textarea>
 			</fieldset>	
 			<input style="margin:5px 0px 5px 20px;" class="medium button" type="submit" value="Guardar" />
 			<input style="padding: 9px 22px 9px 22px !important;margin:5px 0px 5px 0px;" class="medium button" type="button" value="Cancelar"  onclick="cerrarVentana()"/>

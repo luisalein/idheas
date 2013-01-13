@@ -351,8 +351,6 @@ class CasosVentanas_c extends CI_Controller {
 				
             break;
 			
-			
-			
 			case(3): 
 				if($_POST['editar'] == 1){
 					if(isset($datos['actos'])){
@@ -363,7 +361,8 @@ class CasosVentanas_c extends CI_Controller {
 					}
 					$mensaje = $mensaje . $this->casos_m->mActualizaDatosDerechoAfectado($datos['derechoAfectado'],$datos['derechoAfectado']['derechoAfectadoCasoId']);
 					$botonVictimas=1;
-					$Id=$id;
+					$indice=$datos['derechoAfectado']['derechoAfectadoCasoId'];
+					$Id=$datos['derechoAfectado']['derechoAfectadoCasoId'];
 				}else{
 					if(!empty($datos['actos']['actoViolatorioId'])){
 		            	$datos['actos']['casos_casoId']=$datos['lugares']['casos_casoId'];
@@ -372,8 +371,11 @@ class CasosVentanas_c extends CI_Controller {
 						if(empty($datos3['derechoAfectado']['paisesCatalogo_paisId'])){
 							unset($datos3['derechoAfectado']['paisesCatalogo_paisId']);
 						}
+						$indice =$datos['derechoAfectado']['derechoAfectadoCasoId'];
 						$Id = $this->casos_m->mAgregarDerechosAfectados($datos3);
+						
 						$datos['actos']['derechoAfectado_derechoAfectadoCasoId']=$Id;
+
 						$mensaje = $this->casos_m->mAgregarActoDerechoAfectado($datos['actos']);
 						$botonVictimas=1;
 
@@ -387,7 +389,7 @@ class CasosVentanas_c extends CI_Controller {
 					
 				}
             break;
-			
+			  
 			case(4):  
 				if($_POST['editar'] == 1){
 					if (isset($datos['intervenciones'])) {
@@ -403,6 +405,7 @@ class CasosVentanas_c extends CI_Controller {
 					}
 					
 					if (isset($datos['intervenidos'])) {
+						
 						$mensaje = $mensaje . $this->casos_m->mActualizaDatosIntervenido($datos['intervenidos'],$datos['intervenidos']['intervenidoId']);
 						
 						$data = array('casos_casoId'=>$_POST['casoId'],'actores_actorId'=>$datos['intervenidos']['actorIntervenidoId'],'casoActorId'=>$_POST['casoActorIdIntervenido']);
@@ -411,18 +414,15 @@ class CasosVentanas_c extends CI_Controller {
 			
 					}
 				}else{
+
 					$data1['casos_has_actores']= array('casos_casoId' =>$_POST['casoId'],'actores_actorId'=>$datos['intervenciones']['interventorId']);
 							
 					$data2['casos_has_actores']= array('casos_casoId' =>$_POST['casoId'],'actores_actorId'=>$datos['intervenciones']['receptorId']);
 					
-					if (isset($datos['intervenciones']['interventorId'])&& ($datos['intervenciones']['interventorId']>0)) {
-					$this->general_m->llenar_tabla_m($data1);	
-					}
+					$this->casos_m->llenarCasoActor($data1);	
 													
-					if (isset($datos['intervenciones']['receptorId'])&& ($datos['intervenciones']['receptorId']>0)) {
-					$this->general_m->llenar_tabla_m($data2);
+					$this->casos_m->llenarCasoActor($data2);
 						
-					}
 					
 					
 					$datos4['intervencion'] = $datos['intervenciones'];
@@ -449,9 +449,9 @@ class CasosVentanas_c extends CI_Controller {
 							
 					$data2['casos_has_actores']= array('casos_casoId' =>$_POST['casoId'],'actores_actorId'=>$datos['fuenteInfoPersonal']['actorReportado']);
 													
-					$this->general_m->llenar_tabla_m($data1);
+					$this->casos_m->llenarCasoActor($data1);
 					
-					$this->general_m->llenar_tabla_m($data2);
+					$this->casos_m->llenarCasoActor($data2);
 					
 					$datos5['fuenteInfoPersonal'] = $datos['fuenteInfoPersonal'];
 					$mensaje = $this->general_m->llenar_tabla_m($datos5);
@@ -470,7 +470,7 @@ class CasosVentanas_c extends CI_Controller {
 				}else{
 					$data2['casos_has_actores']= array('casos_casoId' =>$_POST['casoId'],'actores_actorId'=>$datos['tipoFuenteDocumental']['actorReportado']);
 																		
-					$this->general_m->llenar_tabla_m($data2);
+					$this->casos_m->llenarCasoActor($data2);
 					 
 					$datos6['tipoFuenteDocumental'] = $datos['tipoFuenteDocumental'];
 					$mensaje = $this->general_m->llenar_tabla_m($datos6);
@@ -531,7 +531,7 @@ class CasosVentanas_c extends CI_Controller {
 		
 			$datos1['casos_has_actores']['actores_actorId']=$_POST['actorIntervenidoId'];
 			
-			$this->general_m->llenar_tabla_m($datos1);	
+			$this->casos_m->llenarCasoActor($datos1);	
 			
 		}else{
 			$mensaje = 'faltan datos';

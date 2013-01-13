@@ -658,15 +658,17 @@ class Actores_c extends CI_Controller {
                     break;
 
                     case(2): 
-						$datos['tipo'] = '2';
-						$datos['filtroPais'] = $this->load->view('actores/filtroPaisEstadoMunicipio_v', $datos, true);
-						//si esta relacionado con un caso y si si envior relacionadoCaso
-						$relaciones = $this->actores_m->mTraeCasosRelacionadosActor($actorId);
-						
-						if($relaciones != '0'){
-							$datos['relacionadoCaso'] = 1;
-						}
-						
+                      $datos['tipo'] = '2';
+                        $datos['tipoT'] = '2';
+                        $datos['filtroPais'] = $this->load->view('actores/filtroPaisEstadoMunicipio_v', $datos, true);
+                        $datos['filtroPaisDatosN'] = $this->load->view('actores/filtroDireccion', $datos, true);
+                        //si esta relacionado con un caso y si si envior relacionadoCaso
+                        $relaciones = $this->actores_m->mTraeCasosRelacionadosActor($actorId);
+                       
+                        if($relaciones != '0'){
+                            $datos['relacionadoCaso'] = 1;
+                        }
+                       
                         $datos['form'] = $this->load->view('actores/agregar_editar_transmigrante_v', $datos, true);
 
                     break;
@@ -1424,7 +1426,7 @@ class Actores_c extends CI_Controller {
 	                                        <th>País</th>
 	                                        <th>Estado</th>
 	                                        <th>Municipio</th>
-	                                        <th>Acciones</th>
+	                                        <th>Accion</th>
 	                                    </tr>
 	                                </thead>
 	                                <tbody>
@@ -1484,12 +1486,8 @@ class Actores_c extends CI_Controller {
 						<td>'.$municipio.'</td>
 					';
 						$data = $data .' <td>
-											<div style="margin-left:-15px;"  class="six columns">
-												<input type="button" class="tiny button"  value="Editar" onclick="nuevaDireccion('.$idActor.','.$direccion['direccionId'].')"/> 
-											</div>
-		                                 	<div class="six columns">
-		                                 		<input type="button" value="Elminar" class="tiny button" onclick="eliminarDireccionActor('.$direccion['direccionId'].','.$idActor.',2)"/> 
-		                                 	</div>
+												<input type="button" class="tiny button espacioInferior" style="padding: 7px 19px 7px 19px" value="Editar" onclick="nuevaDireccion('.$idActor.','.$direccion['direccionId'].')"/> 
+		                                 		<input type="button" value="Elminar" class="tiny button" style="padding: 7px 15px 7px 15px" onclick="eliminarDireccionActor('.$direccion['direccionId'].','.$idActor.',2)"/> 
 		                             </td></tr>';
 					
 	      		}

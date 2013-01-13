@@ -167,13 +167,13 @@
 </fieldset><!--Termina información de contacto-->
 
 
-    <div class="row espacioInferior espacioSuperior">
-        <div class="nine columns">
-            <input style="float: right;" class="medium button" type="submit" value="Guardar" />
+    <div class="twelve columns espacioInferior espacioSuperior">
+        <div class="six columns">
+            <input class="medium button" type="submit" value="Guardar" />
         </div>      
 </form>
-        <div  class="three columns" >
-                <a href="<?=base_url(); ?>index.php/actores_c/mostrar_actor/<?= (isset($actorId)) ? $actorId : "0" ;?>/3" class="medium button">Cancelar</a>
+        <div  class="six columns" >
+                <a style="float: right;" href="<?=base_url(); ?>index.php/actores_c/mostrar_actor/<?= (isset($actorId)) ? $actorId : "0" ;?>/3" class="medium button">Cancelar</a>
         </div>
     </div>
 
@@ -189,10 +189,36 @@
         $clase="Escondido";
     } ?>
 
-<!-- <div id="pestania" data-collapse>
-        <h2>Actores individuales o transmigrantes</h2> 
+<div id="pestania" data-collapse>
+        <h2 class="open" >Actores individuales o transmigrantes</h2> 
         <div>
-        <div id="subPestanias" data-collapse>   
+              <table>
+                        <thead>
+                            <tr>
+                                <th>Actor</th>
+                                <th>Tipo de relación</th>
+                                <th>Actor relacionado</th>
+                                <th>Fecha de incio</th>
+                                <th>Fecha de témino</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if(isset($citaActor['citas'])){
+                                foreach($citaActor['citas'] as $citas){ 
+                                    if ($citas['datosCitas']['tipoRelacionIndividualColectivoId']==2) {?>
+                                        <tr>
+                                            <td><?=$catalogos['listaTodosActores'][$citas['datosCitas']['actores_actorId']]['nombre']." ".$catalogos['listaTodosActores'][$citas['datosCitas']['actores_actorId']]['apellidosSiglas']?></td>
+                                            <td><?=$catalogos['relacionActoresCatalogo'][$citas['datosCitas']['tipoRelacionId']]['Nivel2']; ?></td>
+                                            <td><?=$datosActor['actores']['nombre'].' '.$datosActor['actores']['apellidosSiglas']; ?></td>
+                                            <td><?=$citas['datosCitas']['fechaInicial']; ?></td>
+                                            <td><?=$citas['datosCitas']['fechaTermino']; ?></td>
+                                        </tr><?php
+                                    }
+                                }
+                            } ?>
+                            </tbody>
+                        </table>
+<!--         <div id="subPestanias" data-collapse>   
             <h2>Relacion con otros actores </h2>
             <div>
             <table>
@@ -277,17 +303,17 @@
                 </div>
         </div>
         
+  -->       
         </div>
 </div>
-  -->       
     
     <!--Comienza actores colectivos---->
     <div id="pestania" data-collapse>
-        <h2>Actores colectivos </h2>
+        <h2  class="open" >Actores colectivos </h2>
         <div>
 
             <div id="subPestanias" data-collapse >
-                <h2>Relacion con otros actores </h2>
+                <h2 class="open" >Relacion con otros actores </h2>
                 <div>
 
                     <table>
@@ -319,14 +345,11 @@
                                         <td><?=$relacion['fechaTermino']; ?></td>
                                         <td>
                                             <div class="twelve columns">
-                                                <div style="margin-left: -20px;" class="six columns">
-                                                <input style="margin-left: -20px;padding: 5px 12px 6px 12px" type="button" class="small button"  value="Editar" onclick="nueva_relacion_a_Col('<?=$idActor ?>','1', '<?=$relacion['relacionActoresId']; ?>')" />
-                                                </div>
-                                                <div class="six columns">
+                                                <input style="padding: 5px 18px 6px 18px" type="button" class="small button espacioInferior"  value="Editar" onclick="nueva_relacion_a_Col('<?=$idActor ?>','1', '<?=$relacion['relacionActoresId']; ?>')" />
+                                                
                                                 <form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarRelacionActor/<?=$relacion['relacionActoresId']."/".$relacion['actorRelacionadoId']; ?>/<?= $actorId?>/3" >
-                                                    <input style="margin-left: -20px;" type="submit" value="Elminar" class="small button" />
+                                                    <input  type="submit" value="Elminar" class="small button" />
                                                 </form>
-                                                </div>
                                             </div>
                                         </td>
                                     </tr><?php

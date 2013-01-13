@@ -48,8 +48,8 @@
 					<?php if (isset($victimas['victimas']) && ($victimas['victimas']!=0)) {
 						foreach ($victimas['victimas'] as $victima) { ?>
 							 <a href="<?=base_url(); ?>index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/<?=$victima['victimaId']; ?>/0/<?=$casoId?>">
-							 	<div class="<?= $idVictima==($victima['victimaId']) ? "victimaSeleccionada" : "victimaNoSeleccionada" ;?>">
-									<img class="four columns" style="width:90px !important; height:70px !important;" src="<?=base_url().$victima["foto"]; ?>" />
+							 	<div class="twelve columns espacioInferior <?= $idVictima==($victima['victimaId']) ? "victimaSeleccionada" : "victimaNoSeleccionada" ;?>">
+									<img class="four columns" style="min-width:70px !important; min-height:50px !important;" src="<?=base_url().$victima["foto"]; ?>" />
 									<span class="eight columns"><?= $victima['nombre']." ".$victima['apellidosSiglas']?></span>
 								</div>
 							</a>
@@ -96,15 +96,15 @@
 							</div>
 							<div class="twelve columns"> 
 								<br /><label><b><h5>Estado de la víctima</h5></b></label>	<br />
-								<select name="victimas_estatusVictimaId" id="victimas_estatusVictimaId">
+								<select onkeyup="notasCatalogos(1, value+'EdoVictima','EstadoVictima',2)" name="victimas_estatusVictimaId" id="victimas_estatusVictimaId">
 									<option></option>
 									<?php if ($idVictima>0){
 										foreach ($catalogos['estatusVictimaCatalogo'] as $estatus) { ?>
-										<option value="<?= $estatus['estatusVictimaId'];?>" onkeyup="notasCatalogos2('<?= $estatus['notas']; ?>','EstadoVictima','<?= $estatus['estatusVictimaId'];?>')" onclick="notasCatalogos2('<?= $estatus['notas']; ?>','EstadoVictima','<?= $estatus['estatusVictimaId'];?>')" <?= ($victimas['victimas'][$idVictima]['estatusVictimaId']==$estatus['estatusVictimaId']) ? "selected=selected" : "" ;?> ><?= $estatus['descripcion'];?></option>
+										<option value="<?= $estatus['estatusVictimaId'];?>" name='<?= $estatus['notas']; ?>' id="<?= $estatus['estatusVictimaId'];?>EdoVictima" onclick="notasCatalogos2('<?= $estatus['notas']; ?>','EstadoVictima',2)" onclick="notasCatalogos2('<?= $estatus['notas']; ?>','EstadoVictima','<?= $estatus['estatusVictimaId'];?>')" <?= ($victimas['victimas'][$idVictima]['estatusVictimaId']==$estatus['estatusVictimaId']) ? "selected=selected" : "" ;?> ><?= $estatus['descripcion'];?></option>
 									<?php }
 									}else{ 
 										foreach ($catalogos['estatusVictimaCatalogo'] as $estatus) { ?>
-										<option value="<?= $estatus['estatusVictimaId'];?>" onkeyup="notasCatalogos2('<?= $estatus['notas']; ?>','EstadoVictima','<?= $estatus['estatusVictimaId'];?>')" onclick="notasCatalogos2('<?= $estatus['notas']; ?>','EstadoVictima','<?= $estatus['estatusVictimaId'];?>')" ><?= $estatus['descripcion'];?></option>
+										<option value="<?= $estatus['estatusVictimaId'];?>" onclick="notasCatalogos2('<?= $estatus['notas']; ?>','EstadoVictima',2)" onclick="notasCatalogos2('<?= $estatus['notas']; ?>','EstadoVictima','<?= $estatus['estatusVictimaId'];?>')" ><?= $estatus['descripcion'];?></option>
 										<?php } 
 									}?>
 								</select>
@@ -156,7 +156,7 @@
 								                          <td><?=(isset($perpetrador['actorRelacionadoId'])&&($perpetrador['actorRelacionadoId']>0)) ? $catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$perpetrador['actorRelacionadoId']]['actorRelacionadoId']]['nombre'] : ''; ?></td>
 								                        <td><?=(isset($perpetrador['tipoPerpetradorId'])&& isset($perpetrador['tipoPerpetradorNivel'])) ? $catalogos['tipoPerpetradorN'.$perpetrador['tipoPerpetradorNivel'].'Catalogo'][$perpetrador['tipoPerpetradorId']]['descripcion'] : ''; ?></td>
 								                        <td>
-								                        	<div class="twelve columns"><input  style="margin-left: -20px;padding: 5px 20px 6px 20px" class="small button" value="Editar" onclick="ventanaPerpetradores('<?=$idActo;?>', '<?= $victimas['victimas'][$idVictima]['victimaId']?>', '<?= $perpetrador['perpetradorVictimaId'] ?>','<?=$casoId?>')" type="button"> </div>
+								                        	<div class="twelve columns espacioInferior"><input  style="margin-left: -20px;padding: 5px 20px 6px 20px" class="small button" value="Editar" onclick="ventanaPerpetradores('<?=$idActo;?>', '<?= $victimas['victimas'][$idVictima]['victimaId']?>', '<?= $perpetrador['perpetradorVictimaId'] ?>','<?=$casoId?>')" type="button"> </div>
 								                        	<div class="twelve columns">
 								                        		<form method="POST" action="<?= base_url(); ?>index.php/casos_c/eliminarPerpetrador/<?=$idActo; ?>/<?=$victimas['victimas'][$idVictima]['victimaId']; ?>/<?= $perpetrador['perpetradorVictimaId']; ?>/<?=$casoActorId?>/<?=$casoId?>">
 								                        		<input  style="margin-left: -20px;"  class="small button" value="Eliminar" type="submit"> 
@@ -180,7 +180,7 @@
 					</fieldset>
 				</div>
 			</div><!--Termina información general de la victima-->
-
+<input type="button" class="small button" value="Guardar y Cerrar" onclick="cerrarVentana()">
 <!-- --------Termina Formulario --------- -->
 		</div>
 	</body>	

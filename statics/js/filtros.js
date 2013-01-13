@@ -495,6 +495,55 @@ function changeTest2 (tipo) {
     
     });
 } 
+function changeTest3 (tipo) { 
+	
+		if(tipo == 1){
+			var Index = document.menuForm.datosDeNacimiento_paisesCatalogo_paisId.options[document.menuForm.datosDeNacimiento_paisesCatalogo_paisId.selectedIndex].value; 
+			document.getElementById('datosDeNacimiento_municipiosCatalogo_municipioId').options.length = 0;
+		}
+		if(tipo == 2){
+			var Index = document.menuForm.datosDeNacimiento_estadosCatalogo_estadoId.options[document.menuForm.datosDeNacimiento_estadosCatalogo_estadoId.selectedIndex].value; 
+			document.getElementById('datosDeNacimiento_municipiosCatalogo_municipioId').options.length = 0;
+		}
+
+	//$("#notasUltimaOcupacion").html(Index+tipo);
+
+	var url = base+'index.php/actores_c/filtroPaisEstado';
+	
+	var data = 'tipo='+tipo+'&id='+Index;
+	
+	$.ajax({
+    
+        url: url,
+    
+        data: data,
+        
+        type: 'POST',
+                
+        success: function(data){
+        	
+        		if(tipo == 1){
+        			var select=document.getElementById('datosDeNacimiento_estadosCatalogo_estadoId');
+  					select.removeAttribute('disabled');
+        			
+	             	$("#datosDeNacimiento_estadosCatalogo_estadoId").html(data);	             
+	             }  
+	             if(tipo == 2){
+	             	var select=document.getElementById('datosDeNacimiento_municipiosCatalogo_municipioId');
+  					select.removeAttribute('disabled');
+  					
+					$("#datosDeNacimiento_municipiosCatalogo_municipioId").html(data);					
+	             }
+        	
+        },
+        
+        error: function(){
+        
+           alert("no se pudo");
+        }
+    
+    });
+} 
 
 
 function clearDiv(){

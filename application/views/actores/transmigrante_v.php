@@ -315,10 +315,10 @@
 	        <!--Comienza relacion con otros actores-->
 	
 	<div id="pestania" data-collapse>
-	        <h2>Actores individuales o transmigrantes</h2> <!--Comienza relacion con otros actores-->
+	        <h2 class="open">Actores individuales o transmigrantes</h2> <!--Comienza relacion con otros actores-->
 	        <div>
 		        <div id="subPestanias" data-collapse>   
-		            <h2>Relacion con otros actores </h2>
+		            <h2 class="open">Relacion con otros actores </h2>
 		            <div>
 		            <table>
 		                <thead>
@@ -349,14 +349,11 @@
 		                                <td><?=$relacion['fechaTermino']; ?></td>
 		                                <td>
 		                                	<div class="twelve columns">
-	                                        	<div style="margin-left: -20px;" class="six columns">
-			                                	<input style="margin-left: -20px;padding: 6px 12px 6px 12px" type="button" class="small button"  value="Editar" onclick="nueva_relacion_a_a('<?=$idActor ?>' , 1 , '<?=$relacion['relacionActoresId']; ?>')" />
-			                                	</div>
-	                                        	<div class="six columns">
+			                                	<input  style="padding: 5px 20px 6px 16px"  class="small button espacioInferior" type="button" value="Editar" onclick="nueva_relacion_a_a('<?=$idActor ?>' , 1 , '<?=$relacion['relacionActoresId']; ?>')" />
+			                                	
 	                                            <form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarRelacionActor/<?=$relacion['relacionActoresId']."/".$relacion['actorRelacionadoId']; ?>/<?=$datosActor['actores']['actorId']?>/2" >
-	                                                <input style="margin-left: -20px;" class="small button" type="submit" value="Elminar"/>
+	                                                <input class="small button" type="submit" value="Elminar"/>
 	                                            </form>
-	                                        	</div>
                                         	</div>
                                         </td>
 		                            </tr>
@@ -408,11 +405,8 @@
     
     <!--Comienza actores colectivos---->
     <div id="pestania" data-collapse>
-        <h2>Actores colectivos </h2>
+        <h2 class="open">Actores colectivos </h2>
         <div>
-
-            <div id="subPestanias" data-collapse >
-                <h2>Relacion con otros actores </h2>
                 <div>
 
 		            <table>
@@ -444,14 +438,11 @@
 		                                <td><?=$relacion['fechaTermino']; ?></td>
 		                                <td>
 		                                	<div class="twelve columns">
-			                                	<div style="margin-left: -20px;" class="six columns">
-			                                		<input type="button" class="small button" style="margin-left: -20px;padding: 6px 12px 5px 12px;"  value="Editar" onclick="nueva_relacion_a_Col('<?=$idActor ?>',1, '<?=$relacion['relacionActoresId']; ?>')" />
-							                    </div>
-							                    <div class="six columns">
+			                                		<input type="button"  style="padding: 5px 20px 6px 16px"  class="small button espacioInferior"   value="Editar" onclick="nueva_relacion_a_Col('<?=$idActor ?>',1, '<?=$relacion['relacionActoresId']; ?>')" />
+							                    
 								                    <form  method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarRelacionActor/<?=$relacion['relacionActoresId']."/".$relacion['actorRelacionadoId']; ?>/<?=$datosActor['actores']['actorId']?>/2" >
-								                        <input style="margin-left: -20px;" type="submit" value="Elminar" class="small button" />
+								                        <input type="submit" value="Elminar" class="small button" />
 								                    </form>
-								               	</div>
 							              	</div>
 		                                </td>
 		                            </tr><?php
@@ -462,41 +453,6 @@
 		            </table>
 		            <input type="button" class="tiny button <?=$clase?>"  value="Nuevo" onclick="nueva_relacion_a_Col(<?=$idActor; ?>,0,0)" />
 		        </div>
-		    </div>
-
-            <!--Comienza citado como persona relacionada colectivo-->
-		    <div id="subPestanias" data-collapse>
-		        <h2>Citado como actor</h2>
-		        <div>
-		            <table>
-		            <thead>
-		                <tr>
-		                    <th>Actor</th>
-		                    <th>Tipo de relación</th>
-		                    <th>Actor relacionado</th>
-		                    <th>Fecha de incio</th>
-		                    <th>Fecha de témino</th>
-		                </tr>
-		            </thead>
-		            <tbody>
-		                <?php if(isset($citaActor['citas'])){
-		                    foreach($citaActor['citas'] as $citas){ 
-		                    	if ($citas['datosCitas']['tipoRelacionIndividualColectivoId']==2) {?>
-			                        <tr>
-			                            <td><?=$catalogos['listaTodosActores'][$citas['datosCitas']['actores_actorId']]['nombre']." ".$catalogos['listaTodosActores'][$citas['datosCitas']['actores_actorId']]['apellidosSiglas']?></td>
-			                            <td><?=$catalogos['relacionActoresCatalogo'][$citas['datosCitas']['tipoRelacionId']]['Nivel2']; ?></td>
-			                            <td><?=$datosActor['actores']['nombre'].' '.$datosActor['actores']['apellidosSiglas']; ?></td>
-			                            <td><?=$citas['datosCitas']['fechaInicial']; ?></td>
-			                            <td><?=$citas['datosCitas']['fechaTermino']; ?></td>
-			                        </tr><?php
-		                    	}
-		                    }
-		                } ?>
-		                </tbody>
-		            </table>
-		        </div>
-		    </div>
-		    <!--Termina citado como persona relacionada colectivo-->
 
         </div>
     </div>

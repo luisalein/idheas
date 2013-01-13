@@ -81,6 +81,6 @@
 		</ul>
 		
 	<input type="button"  class="button" value="Aceptar" onclick="cerrarVentana()"/>
-	<input type="button"  class="button" value="Cancelar" onclick="cerrarVentanaCancelar()"/>
+	<input type="button"  class="button" value="Cancelar" onclick="cerrarVentana()"/>
 	</body>
 </html>

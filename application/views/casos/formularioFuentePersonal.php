@@ -10,7 +10,7 @@
 		 
 		<input type="hidden" id="editar"  name="editar" value="<?= (isset($fuenteInfoPersonal)) ? "1" : "0" ;?>"/>
 		<input type="hidden" id="nameSeleccionado"  value="fuenteInfoPersonal_actorId"/>
-		
+		<input type="hidden"  id="ValoresBotonCancelar" value=" "><!--Este campo da los valores en caso de que se cancele la ventana agregar actor-->
 		<input type="hidden" id="nameSeleccionado"  value="fuenteInfoPersonal_actorId"/>
 		<input type="hidden" id="fuenteInfoPersonal_actorId"  name="fuenteInfoPersonal_actorId" value="<?= (isset($fuenteInfoPersonal['actorId'])) ? $fuenteInfoPersonal['actorId'] : " " ;?>"/>
 		
@@ -175,15 +175,15 @@
 					
 					<div class="six columns">
 						<label for="nivelConfiabilidad">Nivel de confiabilidad</label>
-						<select id="nivelConfiabilidadCatalogo_nivelConfiabilidadCatalogo_nivelConfiabilidadId" name="fuenteInfoPersonal_nivelConfiabilidadCatalogo_nivelConfiabilidadId">
+						<select id="nivelConfiabilidadCatalogo_nivelConfiabilidadCatalogo_nivelConfiabilidadId" onkeyup="notasCatalogos('1',value+'NCon','nivelConfiabilidadCatalogo','2')" name="fuenteInfoPersonal_nivelConfiabilidadCatalogo_nivelConfiabilidadId">
 							<option></option>						
 							<?php if(isset($fuenteInfoPersonal['nivelConfiabilidadCatalogo_nivelConfiabilidadId'])){
 		                                foreach($catalogos['nivelConfiabilidadCatalogo'] as $key => $item): ?> <!--muestra los estados civiles-->
-		                                    <option onclick="notasCatalogos2('<?=$item['notas']; ?>','nivelConfiabilidadCatalogo','2')" onkeyup="notasCatalogos2('<?=$item['notas']; ?>','nivelConfiabilidadCatalogo','2')" value="<?=$item['nivelConfiabilidadId']?>" <?=($fuenteInfoPersonal['nivelConfiabilidadCatalogo_nivelConfiabilidadId'] == $item['nivelConfiabilidadId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
+		                                    <option id="<?=$item['nivelConfiabilidadId'];?>NCon" name="<?=$item['notas']; ?>" onclick="notasCatalogos2('<?=$item['notas']; ?>','nivelConfiabilidadCatalogo','2')" onkeyup="notasCatalogos2('<?=$item['notas']; ?>','nivelConfiabilidadCatalogo','2')" value="<?=$item['nivelConfiabilidadId']?>" <?=($fuenteInfoPersonal['nivelConfiabilidadCatalogo_nivelConfiabilidadId'] == $item['nivelConfiabilidadId']) ? 'selected="selected"' : '' ; ?> > <?=$item['descripcion']?></option>
 		                                <?php endforeach;
 		                            } else { ?>
 		                                <?php foreach($catalogos['nivelConfiabilidadCatalogo'] as $key => $item):?> <!--muestra los estados civiles-->
-		                                    <option onclick="notasCatalogos2('<?=$item['notas']; ?>','nivelConfiabilidadCatalogo','2')" onkeyup="notasCatalogos2('<?=$item['notas']; ?>','nivelConfiabilidadCatalogo','2')" value="<?=$item['nivelConfiabilidadId']?>" > <?=$item['descripcion']?></option>
+		                                    <option id="<?=$item['nivelConfiabilidadId'];?>NCon" name='<?=$item['notas']; ?>' onclick="notasCatalogos2('<?=$item['notas']; ?>','nivelConfiabilidadCatalogo','2')" onkeyup="notasCatalogos2('<?=$item['notas']; ?>','nivelConfiabilidadCatalogo','2')" value="<?=$item['nivelConfiabilidadId']?>" > <?=$item['descripcion']?></option>
 		                                <?php endforeach; } 
 		                      ?>
 						</select>

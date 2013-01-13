@@ -64,18 +64,26 @@
 
     <div class="six columns">
 
-    <div class="seven columns">
+    <div class="twelve columns">
         <label for="genero">Género</label>
         <?php if(isset($datosActor['infoGralActor']['generoId'])) { ?>
+                <span class="six columns">
                     <input type="radio" id="infoGralActor_generoid" name="infoGralActor_generoId" <?php if($datosActor['infoGralActor']['generoId'] == 1){ echo 'checked="checked"'; }?> checked="checked" value="1" />Hombre
-                    <input type="radio" id="infoGralActor_generoid" name="infoGralActor_generoId" <?php if($datosActor['infoGralActor']['generoId'] == 2){ echo 'checked="checked"'; }?> value="2" />Mujer
+                    </span>
+                <span class="six columns">
+                     <input type="radio" id="infoGralActor_generoid" name="infoGralActor_generoId" <?php if($datosActor['infoGralActor']['generoId'] == 2){ echo 'checked="checked"'; }?> value="2" />Mujer
+                </span>
                 <?php } else { ?>
+                <span class="six columns">
                     <input type="radio" id="infoGralActor_generoid" name="infoGralActor_generoId"  checked="checked" value="1" />Hombre
+                </span>
+                <span class="six columns">
                     <input type="radio" id="infoGralActor_generoid" name="infoGralActor_generoId"  value="2" />Mujer
+                </span>
                 <?php } ?>
     </div>
 
-    <div class="five columns">
+    <div class="twelve columns">
         <label for="edad">Edad</label>
         <select name="infoGralActor_edad" id="infoGralActor_edad">					
         <option  > </option>	
@@ -389,14 +397,14 @@
                 </div>
                 <div class="six columns">
                     <label for="tipoEstancia">Tipo de estancia</label>
-                    <select name="infoMigratoria_tipoEstanciaId" id="infoMigratoria_tipoEstanciaId">
+                    <select name="infoMigratoria_tipoEstanciaId" id="infoMigratoria_tipoEstanciaId" onkeyup="notasCatalogos('1',value+'Estancia','TipoEstancia','2')">
                         <option></option>
                         <?php if(isset($datosActor['infoMigratoria']['tipoEstanciaId'])){ ?>
-                            <option onkeyup="notasCatalogos2('Personas migrantes que han residido en el país de destino hasta por 2 años, mantienen fuertes vínculos con el país de origen y poseen documentos de identidad del mismo. Por lo general no ha creado los vinculos sociales que los arraigue al país de destino','TipoEstancia','2')" value="1" <?=($datosActor['infoMigratoria']['tipoEstanciaId'] == 1) ? 'selected="selected"' : '' ; ?>>Corta estancia</option>
-                            <option onkeyup="notasCatalogos2('Personas migrantes que han residido en el país destino hasta por 40 años y/o la decisión de migrar se ha efectuado por conseso familiar, como en el caso de los menores de edad. En general, debido a la permanencia en el país de destino, estas personas unca han tramitado documentos de identidad oficiales del país origen o únicamente poseen su acta de nacimiento. En su mayoría, han intentado o han estado sujetos a algún proceso de regularización migratoria y/o la han obtenido por algun periodo de tiempo en el país destino. Asi mismo las personas con este tipo de estancia mantiene pocos o no poseen ningun vinculo familiar en el país de origen','TipoEstancia','2')" value="2" <?=($datosActor['infoMigratoria']['tipoEstanciaId'] == 2) ? 'selected="selected"' : '' ; ?>>Larga estancia </option>
+                            <option name='Personas migrantes que han residido en el país de destino hasta por 2 años, mantienen fuertes vínculos con el país de origen y poseen documentos de identidad del mismo. Por lo general no ha creado los vinculos sociales que los arraigue al país de destino' id="1Estancia" value="1" <?=($datosActor['infoMigratoria']['tipoEstanciaId'] == 1) ? 'selected="selected"' : '' ; ?>>Corta estancia</option>
+                            <option name='Personas migrantes que han residido en el país destino hasta por 40 años y/o la decisión de migrar se ha efectuado por conseso familiar, como en el caso de los menores de edad. En general, debido a la permanencia en el país de destino, estas personas unca han tramitado documentos de identidad oficiales del país origen o únicamente poseen su acta de nacimiento. En su mayoría, han intentado o han estado sujetos a algún proceso de regularización migratoria y/o la han obtenido por algun periodo de tiempo en el país destino. Asi mismo las personas con este tipo de estancia mantiene pocos o no poseen ningun vinculo familiar en el país de origen','TipoEstancia' value="2" id="2Estancia" <?=($datosActor['infoMigratoria']['tipoEstanciaId'] == 2) ? 'selected="selected"' : '' ; ?>>Larga estancia </option>
                         <?php } else { ?>
-                            <option onclick="notasCatalogos2('Personas migrantes que han residido en el país de destino hasta por 2 años, mantienen fuertes vínculos con el país de origen y poseen documentos de identidad del mismo. Por lo general no ha creado los vinculos sociales que los arraigue al país de destino','TipoEstancia','2')" onkeyup="notasCatalogos2('Personas migrantes que han residido en el país de destino hasta por 2 años, mantienen fuertes vínculos con el país de origen y poseen documentos de identidad del mismo. Por lo general no ha creado los vinculos sociales que los arraigue al país de destino','TipoEstancia','2')" value="1" >Corta estancia</option>
-                            <option onclick="notasCatalogos2('Personas migrantes que han residido en el país destino hasta por 40 años y/o la decisión de migrar se ha efectuado por conseso familiar, como en el caso de los menores de edad. En general, debido a la permanencia en el país de destino, estas personas unca han tramitado documentos de identidad oficiales del país origen o únicamente poseen su acta de nacimiento. En su mayoría, han intentado o han estado sujetos a algún proceso de regularización migratoria y/o la han obtenido por algun periodo de tiempo en el país destino. Asi mismo las personas con este tipo de estancia mantiene pocos o no poseen ningun vinculo familiar en el país de origen','TipoEstancia','2')" onkeyup="notasCatalogos2('Personas migrantes que han residido en el país destino hasta por 40 años y/o la decisión de migrar se ha efectuado por conseso familiar, como en el caso de los menores de edad. En general, debido a la permanencia en el país de destino, estas personas unca han tramitado documentos de identidad oficiales del país origen o únicamente poseen su acta de nacimiento. En su mayoría, han intentado o han estado sujetos a algún proceso de regularización migratoria y/o la han obtenido por algun periodo de tiempo en el país destino. Asi mismo las personas con este tipo de estancia mantiene pocos o no poseen ningun vinculo familiar en el país de origen','TipoEstancia','2')" value="2" >Larga estancia</option>
+                            <option name='Personas migrantes que han residido en el país de destino hasta por 2 años, mantienen fuertes vínculos con el país de origen y poseen documentos de identidad del mismo. Por lo general no ha creado los vinculos sociales que los arraigue al país de destino','TipoEstancia' value="1" id="1Estancia" >Corta estancia</option>
+                            <option name='Personas migrantes que han residido en el país destino hasta por 40 años y/o la decisión de migrar se ha efectuado por conseso familiar, como en el caso de los menores de edad. En general, debido a la permanencia en el país de destino, estas personas unca han tramitado documentos de identidad oficiales del país origen o únicamente poseen su acta de nacimiento. En su mayoría, han intentado o han estado sujetos a algún proceso de regularización migratoria y/o la han obtenido por algun periodo de tiempo en el país destino. Asi mismo las personas con este tipo de estancia mantiene pocos o no poseen ningun vinculo familiar en el país de origen' value="2" id="2Estancia" >Larga estancia</option>
                          <?php } ?>
                     </select>
                     <div id="notasTipoEstancia"></div>
@@ -433,9 +441,9 @@
                 <legend>Datos de nacimiento</legend>
                             
                             <!--Llamada a los filtros-->
-                            <?=$filtroPais;?>                               
+                            <?=$filtroPaisDatosN;?> 
                     
-                         <div class="six columns">
+                         <div class="twelve columns">
                             <label for="fechaNacimiento">Fecha de nacimiento</label>
                             <input type="text" id="fechaDeNacimientoIndividual" name="datosDeNacimiento_fechaNacimiento" <?=(isset($datosActor['datosDeNacimiento']['fechaNacimiento']) ? 'value="'.$datosActor['datosDeNacimiento']['fechaNacimiento'].'"' : 'value=""'); ?> placeholder="AAAA-MM-DD" />
                         
@@ -497,7 +505,7 @@
                 <div id="pestania" data-collapse>
                     <h2 class="open">Dirección(es) </h2>
                     <div>
-                        <table>
+                        <table class="twelve columns">
                             <thead>
                                 <tr>
                                     <th>Tipo de dirección</th>
@@ -506,7 +514,7 @@
                                     <th>País</th>
                                     <th>Estado</th>
                                     <th>Municipio</th>
-                                    <th>Acciones</th>
+                                    <th>Accion</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -521,8 +529,8 @@
                                             <td><?=(isset($direccion['estadosCatalogo_estadoId'])) ? $catalogos['estadosCatalogo'][$direccion['estadosCatalogo_estadoId']]['nombre'] : ''; ?></td>
                                             <td><?=(isset($direccion['municipiosCatalogo_municipioId'])) ? $catalogos['municipiosCatalogo'][$direccion['municipiosCatalogo_municipioId']]['nombre'] : ''; ?></td>                        
                                             <td>
-                                                <input type="button" class="tiny button" style="padding: 5px 20px 6px 13px"  value="Editar" onclick="nuevaDireccion('<?=$actorId?>','<?=$direccion['direccionId']?>')"/>
-                                                <input type="button" value="Elminar" style="padding: 7px 12px 6px 12px"  class="tiny button" onclick="eliminarDireccionActor('<?=$direccion['direccionId']?>','<?=$actorId?>','2')"/>
+                                                <input type="button"  style="padding: 7px 20px 7px 16px"  class="small button espacioInferior" value="Editar" onclick="nuevaDireccion('<?=$actorId?>','<?=$direccion['direccionId']?>')"/>
+                                                <input type="button" value="Elminar" class="small button" onclick="eliminarDireccionActor('<?=$direccion['direccionId']?>','<?=$actorId?>','2')"/>
                                             </td>
                                     </tr>
                                     <?php }}?>
@@ -539,12 +547,12 @@
     <?php } ?>
     <!--Terminan los campos que solo apareceran cuando el actor este relacionado con un caso-->
 
-        <div class="row espacioInferior espacioSuperior">
-            <div class="nine columns">
-                <input style="float: right;" class="medium button" type="submit" value="Guardar" />
+        <div class="twelve columns espacioInferior espacioSuperior">
+            <div class="six columns">
+                <input  class="medium button" type="submit" value="Guardar" />
             </div>
-            <div  class="three columns" >
-                <a href="<?=base_url(); ?>index.php/actores_c/mostrar_actor/<?= (isset($actorId)) ? $actorId : "0" ;?>/2" class="medium button">Cancelar</a>
+            <div  class="six columns" >
+                <a style="float: right;" href="<?=base_url(); ?>index.php/actores_c/mostrar_actor/<?= (isset($actorId)) ? $actorId : "0" ;?>/2" class="medium button">Cancelar</a>
             </div>
         </div>
     </div>
@@ -572,10 +580,10 @@
             <!--Comienza relacion con otros actores-->
     
     <div id="pestania" data-collapse>
-            <h2>Actores individuales o transmigrantes</h2> <!--Comienza relacion con otros actores-->
+            <h2 class="open">Actores individuales o transmigrantes</h2> <!--Comienza relacion con otros actores-->
             <div>
                 <div id="subPestanias" data-collapse>   
-                    <h2>Relacion con otros actores </h2>
+                    <h2 class="open">Relacion con otros actores </h2>
                     <div>
                     <table>
                         <thead>
@@ -605,16 +613,11 @@
                                         <td><?=$relacion['fechaInicial']; ?></td>
                                         <td><?=$relacion['fechaTermino']; ?></td>
                                         <td>
-                                            <div class="twelve columns">
-                                                <div style="margin-left: -20px;"  class="six columns">
-                                                    <input type="button" style="margin-left: -20px;padding: 5px 12px 6px 12px"  class="small button"  value="Editar" onclick="nueva_relacion_a_a('<?=$idActor ?>' , 1 , '<?=$relacion['relacionActoresId']; ?>')" />
-                                                </div>
-                                                <div class="six columns">
+
+                                                    <input type="button" style="padding: 5px 20px 6px 16px"  class="small button espacioInferior"  value="Editar" onclick="nueva_relacion_a_a('<?=$idActor ?>' , 1 , '<?=$relacion['relacionActoresId']; ?>')" />
                                                 <form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarRelacionActor/<?=$relacion['relacionActoresId']."/".$relacion['actorRelacionadoId']; ?>/<?= $actorId?>/2" >
-                                                    <input style="margin-left: -20px;"  type="submit" value="Elminar" class="small button" />
+                                                    <input  type="submit" value="Elminar" class="small button" />
                                                 </form>
-                                                </div>
-                                            </div>
                                         </td>
                                     </tr>
                                 <?php }
@@ -665,12 +668,9 @@
     
     <!--Comienza actores colectivos---->
     <div id="pestania" data-collapse>
-        <h2>Actores colectivos </h2>
+        <h2 class="open" >Actores colectivos </h2>
         <div>
-
-            <div id="subPestanias" data-collapse >
-                <h2>Relacion con otros actores </h2>
-                <div>
+            <div>
 
                     <table>
                         <thead>
@@ -701,14 +701,11 @@
                                         <td><?=$relacion['fechaTermino']; ?></td>
                                         <td>
                                             <div class="twelve columns">
-                                                <div style="margin-left: -20px;" class="six columns">
-                                                    <input style="margin-left: -20px;padding: 5px 12px 6px 12px" type="button" class="small button"  value="Editar" onclick="nueva_relacion_a_Col('<?=$idActor ?>',1, '<?=$relacion['relacionActoresId']; ?>')" />
-                                                </div>
-                                                <div class="six columns">
+                                                    <input  style="padding: 5px 20px 6px 16px"  class="small button espacioInferior" type="button"  value="Editar" onclick="nueva_relacion_a_Col('<?=$idActor ?>',1, '<?=$relacion['relacionActoresId']; ?>')" />
+                                                
                                                 <form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarRelacionActor/<?=$relacion['relacionActoresId']."/".$relacion['actorRelacionadoId']; ?>/<?= $actorId?>/2" >
-                                                    <input style="margin-left: -20px;" type="submit" value="Elminar" class="small button" />
+                                                    <input type="submit" value="Elminar" class="small button" />
                                                 </form>
-                                                </div>
                                             </div>
                                         </td>
                                     </tr><?php
@@ -719,41 +716,6 @@
                     </table>
                     <input type="button" class="tiny button <?=$clase?>"  value="Nuevo" onclick="nueva_relacion_a_Col(<?=$idActor; ?>,0,0)" />
                 </div>
-            </div>
-
-            <!--Comienza citado como persona relacionada colectivo-->
-            <div id="subPestanias" data-collapse>
-                <h2>Citado como actor</h2>
-                <div>
-                    <table>
-                    <thead>
-                        <tr>
-                            <th>Actor</th>
-                            <th>Tipo de relación</th>
-                            <th>Actor relacionado</th>
-                            <th>Fecha de incio</th>
-                            <th>Fecha de témino</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php if(isset($citaActor['citas'])){
-                            foreach($citaActor['citas'] as $citas){ 
-                                if ($citas['datosCitas']['tipoRelacionIndividualColectivoId']==2) {?>
-                                    <tr>
-                                        <td><?=$catalogos['listaTodosActores'][$citas['datosCitas']['actores_actorId']]['nombre']." ".$catalogos['listaTodosActores'][$citas['datosCitas']['actores_actorId']]['apellidosSiglas']?></td>
-                                        <td><?=$catalogos['relacionActoresCatalogo'][$citas['datosCitas']['tipoRelacionId']]['Nivel2']; ?></td>
-                                        <td><?=$datosActor['actores']['nombre'].' '.$datosActor['actores']['apellidosSiglas']; ?></td>
-                                        <td><?=$citas['datosCitas']['fechaInicial']; ?></td>
-                                        <td><?=$citas['datosCitas']['fechaTermino']; ?></td>
-                                    </tr><?php
-                                }
-                            }
-                        } ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <!--Termina citado como persona relacionada colectivo-->
 
         </div>
     </div>

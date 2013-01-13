@@ -300,8 +300,8 @@ class Casos_m extends CI_Model {
 						$datos['actos'][$row['actoId']]['victimas'][$row2['victimaId']] = $row2;
 
 						foreach ($datos['actos'] as $row3) {
-								if (isset($row3['victimas'])) {
-									//echo "<pre>"; print_r($datos['actos']); echo "</pre>";
+						//echo "<pre>"; print_r($row3); echo "</pre>";
+								if (isset($row3['victimas']) && (isset($row3['victimas'][$row2['victimaId']]['victimaId'])) ) {
 									$this->db->select('*');
 									$this->db->from('perpetradores');
 									$this->db->where('victimas_victimaId', $row3['victimas'][$row2['victimaId']]['victimaId']);
@@ -578,13 +578,25 @@ class Casos_m extends CI_Model {
 	 * */
 	
 	public function mEliminaIntervenciones($intervencionId){
+
+		$this->db->where('intervenciones_intervencionId', $intervencionId);
+
+		if($this->db->delete('intervenidos')){
+		
+				
+			$this->db->where('intervencionId', $intervencionId);
 			
-		$this->db->where('intervencionId', $intervencionId);
-		
-		if($this->db->delete('intervenciones')){
-		
-			/* Regresa la cadena al controlador*/
-			return ($mensaje = 'Hecho');
+			if($this->db->delete('intervenciones')){
+			
+				/* Regresa la cadena al controlador*/
+				return ($mensaje = 'Hecho');
+				
+			}else{
+				
+				$mensaje['error'] = $this->db->_error_message();
+				/* Regresa la cadena al controlador*/
+	        	return $mensaje;
+			}
 			
 		}else{
 			
@@ -592,6 +604,7 @@ class Casos_m extends CI_Model {
 			/* Regresa la cadena al controlador*/
         	return $mensaje;
 		}
+		
 		
 	}/*Fin de mEliminaIntervenciones*/
 	
@@ -1519,7 +1532,7 @@ class Casos_m extends CI_Model {
 							
 								$this->db->select('*');
 								$this->db->from('casos_has_actores');
-								$this->db->where('actores_actorId',$victimas['actorId']);
+								$this->db->where('actores_actorId',$datosPerpetradores['perpetradorId']);
 								$consultaCasosActor = $this->db->get();
 								
 								if($consultaCasosActor->num_rows() > 0){
@@ -1776,6 +1789,13 @@ class Casos_m extends CI_Model {
 	}
 	
 	public function mActualizaRelacionCasoActor($datosRelacion){
+
+
+        	if ($datosRelacion['actores_actorId']==0 || (empty($datosRelacion['actores_actorId'])) || (isset($datosRelacion['actores_actorId'])) ) {
+
+        		$datos['actores_actorId']=NULL;
+        		
+        	}
 		
 		$this->db->where('casoActorId', $datosRelacion['casoActorId']);
 		if($this->db->update('casos_has_actores',$datosRelacion)){
@@ -1802,6 +1822,25 @@ class Casos_m extends CI_Model {
 			
 		}
 	}
+
+
+        public function llenarCasoActor($datos){
+
+        	if ( (!isset($datos['casos_has_actores']['actores_actorId'])) || ($datos['casos_has_actores']['actores_actorId']==0) || (empty($datos['casos_has_actores']['actores_actorId'])) ) {
+
+        		$datos['casos_has_actores']['actores_actorId']=NULL;
+
+        	}
+
+            foreach($datos as $key => $value){
+
+                    $this->db->insert($key, $datos[$key]);
+
+            }
+
+            return ($mensaje = 'Listo datos insertados, por favor cierra la ventana y actualiza tu navegador.');
+	
+        }
 	 
 	 
 }

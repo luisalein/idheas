@@ -8,7 +8,7 @@
 	<?php foreach ($casosRelacionados as $datosCaso) {?>
 		<div class="twelve columns" data-collapse>	
   
-			<h2 class="twelve columns open"><?=(isset($datosCaso['casos']['nombre'])) ? $datosCaso['casos']['nombre'] :  " " ; ?></h2><!--título de la pestaña-->  
+			<h2 class="twelve columns"><?=(isset($datosCaso['casos']['nombre'])) ? $datosCaso['casos']['nombre'] :  " " ; ?></h2><!--título de la pestaña-->  
 				<div>
 
 						<div id="casos_nombre">
@@ -59,10 +59,10 @@
 								
 
 						<div id="subPestanias" data-collapse>	
-							<h2>Núcleo caso</h2><!--título de la pestaña-->  
+							<h2 class="open" >Núcleo caso</h2><!--título de la pestaña-->  
 								<div>
 									<div id="subPestanias" data-collapse>
-										<h2>Derechos afectados y actos</h2>
+										<h2 class="open" >Derechos afectados y actos</h2>
 										<div>
 											<div>
 												<table>
@@ -112,7 +112,7 @@
 									</div>
 										<!--fin acordeon Derechos afectados y actos-->
 									<div id="subPestanias" data-collapse>
-										<h2>Intervenciones</h2>
+										<h2 class="open" >Intervenciones</h2>
 										<div>
 												<table>
 													<thead>
@@ -127,9 +127,9 @@
 													  <?php if(isset($datosCaso['intervenciones'])){ ?>
 										              <?php foreach ($datosCaso['intervenciones'] as $inter) {?>
 										              	 <tr>
-										                <td><span id="descho_fichaId"><?=(isset($inter['receptorId'])) ? $catalogos['listaTodosActores'][$inter['receptorId']]['nombre']." ".$catalogos['listaTodosActores'][$inter['receptorId']]['apellidosSiglas'] : ''; ?></span></td>
+										                <td><span id="descho_fichaId"><?=(isset($inter['receptorId'])&& ($inter['receptorId']>0)) ? $catalogos['listaTodosActores'][$inter['receptorId']]['nombre']." ".$catalogos['listaTodosActores'][$inter['receptorId']]['apellidosSiglas'] : ''; ?></span></td>
 										                <td><span id="descho_fichaId"><?=(isset($inter['interventorId'])) ?  $catalogos['listaTodosActores'][$inter['interventorId']]['nombre']." ".$catalogos['listaTodosActores'][$inter['interventorId']]['apellidosSiglas'] : ''; ?></span></td>
-							                			<td><span id="descho_fichaId"><?=(isset($inter['tipoIntervencionId']) && isset($inter['intervencionNId'])) ?  $catalogos['tipoIntervencionN'.$inter['intervencionNId'].'Catalogo'][$inter['tipoIntervencionId']]['descripcion'] : ''; ?></span></td>
+							                			<td><span id="descho_fichaId"><?=(isset($inter['tipoIntervencionId']) && isset($inter['intervencionNId']) &&($inter['intervencionNId']>0)) ?  $catalogos['tipoIntervencionN'.$inter['intervencionNId'].'Catalogo'][$inter['tipoIntervencionId']]['descripcion'] : ''; ?></span></td>
 										                <td><span id="descho_fichaId"><?=(isset($inter['fecha'])) ? $inter['fecha'] : ''; ?></span>	</td>
 										              </tr> <?php } }?>
 													</tbody>
@@ -283,7 +283,7 @@
 						</div>
 
 						<div id="subPestanias" data-collapse>	
-							<h2>Relación entre casos</h2><!--título de la pestaña-->
+							<h2 class="open" >Relación entre casos</h2><!--título de la pestaña-->
 							<div>
 <!--parte de relacion casos-->
 	  		<div>

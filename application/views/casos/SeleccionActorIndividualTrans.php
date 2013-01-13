@@ -101,6 +101,13 @@
 					<input type="button"  class="button" value="Aceptar" onclick="agregarIntervenidoAjax()"/>
 					<input type="button"  class="button" value="Cancelar" onclick="cerrarVentana()"/>
 				<?php }
+
+				if (($dato==7) || ($dato==5)) {
+					$formulario=1;?>
+					
+					<input type="button"  class="button" value="Aceptar" onclick="cerrarVentana()"/>
+					<input type="button"  class="button" value="Cancelar" onclick="cerrarVentana()"/>
+				<?php }
 			} ?>
 
 		</div>
