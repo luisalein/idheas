@@ -243,6 +243,8 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`casos` (
   `fechaInicial` DATE NULL ,
   `fechaTermino` DATE NULL ,
   `estadoActivo` TINYINT(1) NULL DEFAULT 1 ,
+  `tipoFechaInicialId` INT NULL ,
+  `tipoFechaTerminoId` INT NULL ,
   PRIMARY KEY (`casoId`) )
 ENGINE = InnoDB;
 
@@ -532,6 +534,8 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`derechoAfectado` (
   `paisesCatalogo_paisId` INT NULL ,
   `estadosCatalogo_estadoId` INT NULL ,
   `municipiosCatalogo_municipioId` INT NULL ,
+  `tipoFechaInicialId` INT NULL ,
+  `tipoFechaTerminoId` INT NULL ,
   PRIMARY KEY (`derechoAfectadoCasoId`) ,
   INDEX `fk_derechoAfectado_paisesCatalogo1` (`paisesCatalogo_paisId` ASC) ,
   INDEX `fk_derechoAfectado_estadosCatalogo1` (`estadosCatalogo_estadoId` ASC) ,
@@ -1308,6 +1312,7 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoFuenteDocumentalN2Catalogo` (
 ENGINE = InnoDB;
 
 insert into usuarios(nombre,pass) values ('admin','idheas');
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
