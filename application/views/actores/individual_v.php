@@ -237,7 +237,7 @@
     <div id="pestania" data-collapse>
         <h2>Actores colectivos </h2>
         <div>
-
+ 
         	<div>
 
 		            <table>
