@@ -396,6 +396,7 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`fichas` (
   `fecha` DATE NULL ,
   `comentarios` VARCHAR(3000) NULL ,
   `casos_casoId` INT NOT NULL ,
+  `tipoFechaId` INT NULL ,
   PRIMARY KEY (`fichaId`) ,
   INDEX `fk_fichas_casos1_idx` (`casos_casoId` ASC) ,
   CONSTRAINT `fk_fichas_casos1`
@@ -1306,7 +1307,7 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoFuenteDocumentalN2Catalogo` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-insert into usuarios(nombre,pass) values('admin','idheas');
+insert into usuarios(nombre,pass) values ('admin','idheas');
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

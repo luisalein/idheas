@@ -396,6 +396,7 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`fichas` (
   `fecha` DATE NULL ,
   `comentarios` VARCHAR(3000) NULL ,
   `casos_casoId` INT NOT NULL ,
+  `tipoFechaId` INT NULL ,
   PRIMARY KEY (`fichaId`) ,
   INDEX `fk_fichas_casos1_idx` (`casos_casoId` ASC) ,
   CONSTRAINT `fk_fichas_casos1`
