@@ -167,12 +167,13 @@
 				</div><br /><br /><br/>
 	</div> <!---termina opciones de fechaTermino-->
 
-	
-	<fieldset>
+	<div class="twelve columns">
+	<fieldset  style="padding:10px;">
 		<legend><b>Comentarios</b></legend>
 
-			<textarea placeholder="Agregar un comentario" rows="10"   cols="100" id="TextoRelActoresIndividual" value="" style="width: 400px; height: 200px" wrap="hard"  name="comentarios"> <?=(isset($relaciones['comentarios']) ? $relaciones['comentarios'] : ''); ?></textarea>
+			<textarea placeholder="Agregar un comentario" rows="10"   cols="100" id="TextoRelActoresIndividual" value="" style="min-width: 400px; min-height: 200px" wrap="hard"  name="comentarios"> <?=(isset($relaciones['comentarios']) ? $relaciones['comentarios'] : ''); ?></textarea>
 	</fieldset>
+	</div>
 	<input style="margin:5px 0px 5px 20px;" class="medium button" type="submit" value="Guardar" />
 	<input style="padding: 9px 22px 9px 22px !important;margin:5px 0px 5px 0px;" class="medium button" type="button" value="Cancelar"  onclick="cerrarVentana()"/>
 

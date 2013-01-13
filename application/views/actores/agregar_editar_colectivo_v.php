@@ -189,10 +189,36 @@
         $clase="Escondido";
     } ?>
 
-<!-- <div id="pestania" data-collapse>
-        <h2>Actores individuales o transmigrantes</h2> 
+<div id="pestania" data-collapse>
+        <h2 class="open" >Actores individuales o transmigrantes</h2> 
         <div>
-        <div id="subPestanias" data-collapse>   
+              <table>
+                        <thead>
+                            <tr>
+                                <th>Actor</th>
+                                <th>Tipo de relación</th>
+                                <th>Actor relacionado</th>
+                                <th>Fecha de incio</th>
+                                <th>Fecha de témino</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if(isset($citaActor['citas'])){
+                                foreach($citaActor['citas'] as $citas){ 
+                                    if ($citas['datosCitas']['tipoRelacionIndividualColectivoId']==2) {?>
+                                        <tr>
+                                            <td><?=$catalogos['listaTodosActores'][$citas['datosCitas']['actores_actorId']]['nombre']." ".$catalogos['listaTodosActores'][$citas['datosCitas']['actores_actorId']]['apellidosSiglas']?></td>
+                                            <td><?=$catalogos['relacionActoresCatalogo'][$citas['datosCitas']['tipoRelacionId']]['Nivel2']; ?></td>
+                                            <td><?=$datosActor['actores']['nombre'].' '.$datosActor['actores']['apellidosSiglas']; ?></td>
+                                            <td><?=$citas['datosCitas']['fechaInicial']; ?></td>
+                                            <td><?=$citas['datosCitas']['fechaTermino']; ?></td>
+                                        </tr><?php
+                                    }
+                                }
+                            } ?>
+                            </tbody>
+                        </table>
+<!--         <div id="subPestanias" data-collapse>   
             <h2>Relacion con otros actores </h2>
             <div>
             <table>
@@ -277,17 +303,17 @@
                 </div>
         </div>
         
+  -->       
         </div>
 </div>
-  -->       
     
     <!--Comienza actores colectivos---->
     <div id="pestania" data-collapse>
-        <h2>Actores colectivos </h2>
+        <h2  class="open" >Actores colectivos </h2>
         <div>
 
             <div id="subPestanias" data-collapse >
-                <h2>Relacion con otros actores </h2>
+                <h2 class="open" >Relacion con otros actores </h2>
                 <div>
 
                     <table>

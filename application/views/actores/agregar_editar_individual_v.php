@@ -40,11 +40,19 @@
                     <div class="six columns">
                         <label for="infoGralActor_generoId" >Género</label>
                         <?php if(isset($datosActor['infoGralActor']['generoId'])) { ?>
+                            <span class="six columns">
                             <input type="radio" id="infoGralActor_generoid" name="infoGralActor_generoId" <?php if($datosActor['infoGralActor']['generoId'] == 1){ echo 'checked="checked"'; }?> checked="checked" value="1" />Hombre
+                            </span>
+                            <span class="six columns">
                             <input type="radio" id="infoGralActor_generoid" name="infoGralActor_generoId" <?php if($datosActor['infoGralActor']['generoId'] == 2){ echo 'checked="checked"'; }?> value="2" />Mujer
+                            </span>
                         <?php } else { ?>
-                            <input type="radio" id="infoGralActor_generoid" name="infoGralActor_generoId"  value="1" checked="checked" />Hombre
-                            <input type="radio" id="infoGralActor_generoid" name="infoGralActor_generoId"  value="2" />Mujer
+                            <span class="six columns">
+                                <input type="radio" id="infoGralActor_generoid" name="infoGralActor_generoId"  value="1" checked="checked" />Hombre
+                            </span>
+                            <span class="six columns">
+                                <input type="radio" id="infoGralActor_generoid" name="infoGralActor_generoId"  value="2" />Mujer
+                            </span>
                         <?php } ?>
                         <label for="edad">Edad</label>
                         <select id="infoGralActor_edad" name="infoGralActor_edad">
@@ -221,7 +229,7 @@
 	                                        <th>País</th>
 	                                        <th>Estado</th>
 	                                        <th>Municipio</th>
-	                                        <th>Acciones</th>
+	                                        <th>Accion</th>
 	                                    </tr>
 	                                </thead>
 	                                <tbody>
@@ -310,10 +318,10 @@
             $clase="Escondido";
         } ?>
     <div id="pestania" data-collapse>
-            <h2>Actores individuales o transmigrantes</h2> <!--Comienza relacion con otros actores-->
+            <h2 class="open" >Actores individuales o transmigrantes</h2> <!--Comienza relacion con otros actores-->
             <div>
                 <div id="subPestanias" data-collapse >
-                    <h2>Relacion con otros actores </h2>
+                    <h2 class="open" >Relacion con otros actores </h2>
                     <div>
                         <table>
                             <thead>
@@ -400,7 +408,7 @@
     
     <!--Comienza actores colectivos---->
     <div id="pestania" data-collapse>
-        <h2>Actores colectivos </h2>
+        <h2 class="open" >Actores colectivos </h2>
         <div>
 
             <div>

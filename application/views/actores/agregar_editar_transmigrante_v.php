@@ -64,18 +64,26 @@
 
     <div class="six columns">
 
-    <div class="seven columns">
+    <div class="twelve columns">
         <label for="genero">Género</label>
         <?php if(isset($datosActor['infoGralActor']['generoId'])) { ?>
+                <span class="six columns">
                     <input type="radio" id="infoGralActor_generoid" name="infoGralActor_generoId" <?php if($datosActor['infoGralActor']['generoId'] == 1){ echo 'checked="checked"'; }?> checked="checked" value="1" />Hombre
-                    <input type="radio" id="infoGralActor_generoid" name="infoGralActor_generoId" <?php if($datosActor['infoGralActor']['generoId'] == 2){ echo 'checked="checked"'; }?> value="2" />Mujer
+                    </span>
+                <span class="six columns">
+                     <input type="radio" id="infoGralActor_generoid" name="infoGralActor_generoId" <?php if($datosActor['infoGralActor']['generoId'] == 2){ echo 'checked="checked"'; }?> value="2" />Mujer
+                </span>
                 <?php } else { ?>
+                <span class="six columns">
                     <input type="radio" id="infoGralActor_generoid" name="infoGralActor_generoId"  checked="checked" value="1" />Hombre
+                </span>
+                <span class="six columns">
                     <input type="radio" id="infoGralActor_generoid" name="infoGralActor_generoId"  value="2" />Mujer
+                </span>
                 <?php } ?>
     </div>
 
-    <div class="five columns">
+    <div class="twelve columns">
         <label for="edad">Edad</label>
         <select name="infoGralActor_edad" id="infoGralActor_edad">					
         <option  > </option>	
@@ -497,7 +505,7 @@
                 <div id="pestania" data-collapse>
                     <h2 class="open">Dirección(es) </h2>
                     <div>
-                        <table>
+                        <table class="twelve columns">
                             <thead>
                                 <tr>
                                     <th>Tipo de dirección</th>
@@ -506,7 +514,7 @@
                                     <th>País</th>
                                     <th>Estado</th>
                                     <th>Municipio</th>
-                                    <th>Acciones</th>
+                                    <th>Accion</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -660,7 +668,7 @@
     
     <!--Comienza actores colectivos---->
     <div id="pestania" data-collapse>
-        <h2>Actores colectivos </h2>
+        <h2 class="open" >Actores colectivos </h2>
         <div>
             <div>
 

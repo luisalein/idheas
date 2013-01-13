@@ -140,7 +140,7 @@
         $clase="Escondido";
     } ?>
  <div id="pestania" data-collapse>
-        <h2>Actores individuales o transmigrantes</h2>
+        <h2 class="open">Actores individuales o transmigrantes</h2>
         <div>
 <!--
         <div id="subPestanias" data-collapse>   
@@ -197,9 +197,6 @@
         </div>
 
  -->        
-        <div id="subPestanias"  data-collapse>
-            <h2>Citado como actor</h2>
-               <div>
                         <table>
                         <thead>
                             <tr>
@@ -226,19 +223,16 @@
                             } ?>
                             </tbody>
                         </table>
-                </div>
-        </div>
-        
         
         </div>
 </div>
     <!--Comienza actores colectivos---->
     <div id="pestania" data-collapse>
-        <h2>Actores colectivos </h2>
+        <h2 class="open" >Actores colectivos </h2>
         <div>
 
             <div id="subPestanias" data-collapse >
-                <h2>Relacion con otros actores </h2>
+                <h2 class="open" >Relacion con otros actores </h2>
                 <div>
 
                     <table>

@@ -315,10 +315,10 @@
 	        <!--Comienza relacion con otros actores-->
 	
 	<div id="pestania" data-collapse>
-	        <h2>Actores individuales o transmigrantes</h2> <!--Comienza relacion con otros actores-->
+	        <h2 class="open">Actores individuales o transmigrantes</h2> <!--Comienza relacion con otros actores-->
 	        <div>
 		        <div id="subPestanias" data-collapse>   
-		            <h2>Relacion con otros actores </h2>
+		            <h2 class="open">Relacion con otros actores </h2>
 		            <div>
 		            <table>
 		                <thead>
@@ -405,7 +405,7 @@
     
     <!--Comienza actores colectivos---->
     <div id="pestania" data-collapse>
-        <h2>Actores colectivos </h2>
+        <h2 class="open">Actores colectivos </h2>
         <div>
                 <div>
 
@@ -453,7 +453,7 @@
 		            </table>
 		            <input type="button" class="tiny button <?=$clase?>"  value="Nuevo" onclick="nueva_relacion_a_Col(<?=$idActor; ?>,0,0)" />
 		        </div>
-		        
+
         </div>
     </div>
         <!--Termina actores colectivos-->
