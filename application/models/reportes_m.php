@@ -193,6 +193,7 @@
 				/* Trae el nombre del caso */
 				$this->db->select('*');
 				$this->db->from('casos');
+				$this->db->where('estadoActivo',1);
 				$this->db->where('casoId',$casoId);
 				$consulta = $this->db->get();
 
@@ -306,6 +307,7 @@
 			public function mReporteCortoNombre($datos){
 				$this->db->select('casoId');
 				$this->db->from('casos');
+				$this->db->where('estadoActivo',1);
 				$this->db->where('nombre',$datos['nombre']);
 				$consulta = $this->db->get();
 				
@@ -325,6 +327,7 @@
 				/* Trae los casoId de los casos que esten entre las fechas desdeFecha, hastaFecha*/
 				$this->db->select('casoId');
 				$this->db->from('casos');
+				$this->db->where('estadoActivo',1);
 				$this->db->where('fechaInicial >=',$datos['desdeFecha']);
 				$this->db->where('fechaInicial <=',$datos['hastaFecha']);
 				$consulta = $this->db->get();
@@ -350,7 +353,6 @@
 				/* Trae los actosId relacionados con un derecho afectado*/
 				$this->db->select('casos_casoId');
 				$this->db->from('actos');
-				$this->db->where('estadoActivo',1);
 				$this->db->where('actoViolatorioId',$datos['actoViolatorioId']);
 				$this->db->where('actoViolatorioNivel',$datos['actoViolatorioNivel']);
 				$consultaCasos = $this->db->get();
