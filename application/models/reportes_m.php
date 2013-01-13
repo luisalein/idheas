@@ -272,7 +272,8 @@
 							}
 						}
 					}/* Fin foreach de derechoAfectado*/
-				}/* Fin de if Actos*/
+				}
+				
 				
 				return $datos;
 			}/* Fin de mTraeDatosCorto */
@@ -318,7 +319,11 @@
 					}
 					
 					$datos=$this->mTraeDatosCorto($casoId['casoId']);
-					return $datos;
+					
+					
+						return $datos;
+				}else{
+					return '0';
 				}
 			}
 			/*$datos = array('desdeFecha'=>'fechainicial','hastaFecha'=>'fechafinal');
@@ -343,9 +348,11 @@
 						$casoId = $row['casoId'];
 						$datosCasos['casos'][$row['casoId']]=$this->mTraeDatosCorto($casoId);
 					}
-					return($datosCasos);
+						return $datosCasos;
 					
-				}/*fin if */
+				}else{
+					return '0';
+				}
 				
 			}/* fin de mReporteCortoFechas*/
 			
@@ -367,8 +374,10 @@
 						$casoId = $row['casos_casoId'];
 						$datosCasos['casos'][$row['casos_casoId']]=$this->mTraeDatosCorto($casoId);
 					}
-					return($datosCasos);
-				}/*fin if consultaCasos */
+						return $datosCasos;
+				}else{
+					return '0';
+				}
 			}/* fin de mReporteCortoActoDerechoAfectado*/
 			
 			
