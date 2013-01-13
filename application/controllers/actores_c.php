@@ -130,12 +130,12 @@ class Actores_c extends CI_Controller {
             $datos['citaActor'] = $this->actores_m->mTraerCitasActor($actorId);
 
 			if ($tipoActorId==3) {
-				
 				if(isset($datos['citaActor']['citas'])){
 				
 					foreach ($datos['citaActor']['citas'] as $persona) {
 
 						$casosRelacionadoIndividual=$this->actores_m->mTraeCasosRelacionadosActor($persona['datosCitas']['actores_actorId']);
+				
 						if ($casosRelacionadoIndividual!=0) {
 							if (isset($datos['casosRelacionados']) ) {
 

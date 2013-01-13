@@ -37,7 +37,6 @@
 				echo '<input type="hidden"  id="casoActorIdReportado" name="casoActorIdReportado" value="'.$casosActorReportado['casoActorId'].'">';
 				$casoActorReportadoId=$casosActorReportado['casoActorId'];
 			}else
-
 				$casoActorReportadoId=0;
 		}
 		}
@@ -55,14 +54,6 @@
 		}
 		}
 		?>
-		<!-- 
-		<pre> <?php print_r($fuenteInfoPersonal['casosActorReportado'])?></pre>
-		<pre> <?php print_r($fuenteInfoPersonal['casosActor'])?></pre>
-		<pre> <?php print_r($catalogos['relacionesActoresCatalogo'][$fuenteInfoPersonal['relacionId']])?></pre>
-		<pre> <?php print_r($catalogos['relacionesActoresCatalogo'][$fuenteInfoPersonal['relacionId']]['actorRelacionadoId'])?></pre>
-		<pre> <?php print_r($catalogos['listaTodosActores'][$fuenteInfoPersonal['actorId']])?></pre>
-		<pre> <?php print_r($catalogos['listaTodosActores'][$fuenteInfoPersonal['actorId']]['actorId'])?></pre>
-		 -->
 			<fieldset>
 				<legend class="espacioInferior">Fuente de información individual o colectiva</legend>
 					<input type="radio" onclick="pintaIndividualesInfoPersonal()" name="selecionaActor" <?= (isset($fuenteInfoPersonal['actorId']) &&($fuenteInfoPersonal['actorId']>0) && ($catalogos['listaTodosActores'][$fuenteInfoPersonal['actorId']]['tipoActorId']< 3)) ? "checked='checked'" : " " ;?>/>Persona
@@ -139,18 +130,18 @@
 				<div class="twelve columns espacioSuperior espacioInferior">
 					<div class="six columns">
 						<label for="edad">Fecha</label>
-							<select onclick="fechaInicialCasosActos(value)" onkeyup="fechaInicialCasosActos(value)">
-										<option  value="1" checked="checked" >fecha exacta</option>
-										<option  value="2">fecha aproximada</option>
-										<option  value="3">Se desconce el día</option>
-										<option  value="4">Se desconce el día y el mes</option>
+							<select name="fuenteInfoPersonal_tipoFechaId"onclick="fechaInicialCasosInfoP(value)" onkeyup="fechaInicialCasosActos(value)">
+										<option <?=((isset($fuenteInfoPersonal['tipoFechaId'])) && ($fuenteInfoPersonal['tipoFechaId']==1) ) ? 'selected="selected"' : "" ;?> value="1" >fecha exacta</option>
+										<option <?=((isset($fuenteInfoPersonal['tipoFechaId'])) && ($fuenteInfoPersonal['tipoFechaId']==2) ) ? 'selected="selected"' : "" ;?> value="2">fecha aproximada</option>
+										<option <?=((isset($fuenteInfoPersonal['tipoFechaId'])) && ($fuenteInfoPersonal['tipoFechaId']==3) ) ? 'selected="selected"' : "" ;?> value="3">Se desconce el día</option>
+										<option <?=((isset($fuenteInfoPersonal['tipoFechaId'])) && ($fuenteInfoPersonal['tipoFechaId']==4) ) ? 'selected="selected"' : "" ;?> value="4">Se desconce el día y el mes</option>
 							</select>
 					</div>
 		
 					<div class="six columns">
 						<br />
-						<p class="Escondido" id="fechaExactaVAct">
-							<input type="text" id="fechaExactaAct"   placeholder="AAAA-MM-DD" />
+						<p  id="fechaExactaVAct" <?(isset($fuenteInfoPersonal['tipoFechaId'])) ? '' : 'class="Escondido"' ;?> >
+							<input type="text" id="fechaExactaAct" <?(isset($fuenteInfoPersonal['fecha'])) ? 'value="'.$fuenteInfoPersonal['fecha'].'"' : " " ;?>  placeholder="AAAA-MM-DD" />
 
 						</p>
 
