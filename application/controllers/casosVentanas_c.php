@@ -389,7 +389,7 @@ class CasosVentanas_c extends CI_Controller {
 					
 				}
             break;
-			
+			  
 			case(4):  
 				if($_POST['editar'] == 1){
 					if (isset($datos['intervenciones'])) {
