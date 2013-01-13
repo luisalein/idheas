@@ -96,7 +96,7 @@
 							</div>
 							<div class="twelve columns"> 
 								<br /><label><b><h5>Estado de la víctima</h5></b></label>	<br />
-								<select onkeyup="notasCatalogos(1, value+'EdoVictima','EstadoVictima',2)" onclick="notasCatalogos2('<?= $estatus['notas']; ?>','EstadoVictima','<?= $estatus['estatusVictimaId'];?>')" name="victimas_estatusVictimaId" id="victimas_estatusVictimaId">
+								<select onkeyup="notasCatalogos(1, value+'EdoVictima','EstadoVictima',2)" name="victimas_estatusVictimaId" id="victimas_estatusVictimaId">
 									<option></option>
 									<?php if ($idVictima>0){
 										foreach ($catalogos['estatusVictimaCatalogo'] as $estatus) { ?>

@@ -8,9 +8,6 @@
 		
 		<div class="twelve columns">
 <!-- 		
-		<pre>
-			<?=print_r($victimas['victimas'][$idVictima]) ?>
-		</pre>
  -->		<?php if ($idVictima>0) {
 
 			foreach ($victimas['victimas'][$idVictima]['casosActor'] as $casoActor) {
@@ -80,33 +77,6 @@
 							</div>
 						</div>
 
-<!-- 						<div class="twelve columns espacio">
-							<br/><label>Perpetradores</label> <br/>
-				            <table class="twelve columns">
-				                <thead>
-				                    <tr>
-				                        <th>Apellido(s)</th>
-				                        <th>Nombre(s)</th>
-				                        <th>Institución/Organización</th>
-				                        <th>Tipo perpetrador</th>
-				                    </tr>
-				                </thead>
-				                <tbody>
-									<?php if (isset($victimas['victimas'][$idVictima]['perpetradores'])) { ?>
-				            			<?php foreach ($victimas['victimas'][$idVictima]['perpetradores'] as $key => $perpetrador) { ?>
-				                			<tr>
-						                        <td><?=(isset($perpetrador['perpetradorId'])) ? $catalogos['listaTodosActores'][$perpetrador['perpetradorId']]['nombre'] : ''; ?></td>
-						                        <td><?=(isset($perpetrador['perpetradorId'])) ? $catalogos['listaTodosActores'][$perpetrador['perpetradorId']]['apellidosSiglas'] : ''; ?></td>
-						                        <td><?=(isset($perpetrador['actorRelacionadoId'])&&($perpetrador['actorRelacionadoId']>0)) ? $catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$perpetrador['actorRelacionadoId']]['actorRelacionadoId']]['nombre'] : ''; ?></td>
-						                        <td><?=(isset($perpetrador['tipoPerpetradorId'])&& isset($perpetrador['tipoPerpetradorNivel'])) ? $catalogos['tipoPerpetradorN'.$perpetrador['tipoPerpetradorNivel'].'Catalogo'][$perpetrador['tipoPerpetradorId']]['descripcion'] : ''; ?></td>
-				                    		</tr>
-					            		<?php } ?>
-									<?php } ?>
-				                </tbody>
-				            </table>
-						</div>
- <pre><?=print_r($victimas['victimas'][$idVictima]['perpetradores'])?></pre>
- -->
 
 							<div class="twelve columns espacio">
 								<br/><label>Perpetradores</label> <br/>
