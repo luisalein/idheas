@@ -351,8 +351,6 @@ class CasosVentanas_c extends CI_Controller {
 				
             break;
 			
-			
-			
 			case(3): 
 				if($_POST['editar'] == 1){
 					if(isset($datos['actos'])){
@@ -375,7 +373,9 @@ class CasosVentanas_c extends CI_Controller {
 						}
 						$indice =$datos['derechoAfectado']['derechoAfectadoCasoId'];
 						$Id = $this->casos_m->mAgregarDerechosAfectados($datos3);
+						
 						$datos['actos']['derechoAfectado_derechoAfectadoCasoId']=$Id;
+
 						$mensaje = $this->casos_m->mAgregarActoDerechoAfectado($datos['actos']);
 						$botonVictimas=1;
 
