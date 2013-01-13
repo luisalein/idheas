@@ -96,15 +96,15 @@
 							</div>
 							<div class="twelve columns"> 
 								<br /><label><b><h5>Estado de la víctima</h5></b></label>	<br />
-								<select name="victimas_estatusVictimaId" id="victimas_estatusVictimaId">
+								<select onkeyup="notasCatalogos(1, value+'EdoVictima','EstadoVictima',2)" onclick="notasCatalogos2('<?= $estatus['notas']; ?>','EstadoVictima','<?= $estatus['estatusVictimaId'];?>')" name="victimas_estatusVictimaId" id="victimas_estatusVictimaId">
 									<option></option>
 									<?php if ($idVictima>0){
 										foreach ($catalogos['estatusVictimaCatalogo'] as $estatus) { ?>
-										<option value="<?= $estatus['estatusVictimaId'];?>" onkeyup="notasCatalogos2('<?= $estatus['notas']; ?>','EstadoVictima','<?= $estatus['estatusVictimaId'];?>')" onclick="notasCatalogos2('<?= $estatus['notas']; ?>','EstadoVictima','<?= $estatus['estatusVictimaId'];?>')" <?= ($victimas['victimas'][$idVictima]['estatusVictimaId']==$estatus['estatusVictimaId']) ? "selected=selected" : "" ;?> ><?= $estatus['descripcion'];?></option>
+										<option value="<?= $estatus['estatusVictimaId'];?>" name='<?= $estatus['notas']; ?>' id="<?= $estatus['estatusVictimaId'];?>EdoVictima" onclick="notasCatalogos2('<?= $estatus['notas']; ?>','EstadoVictima',2)" onclick="notasCatalogos2('<?= $estatus['notas']; ?>','EstadoVictima','<?= $estatus['estatusVictimaId'];?>')" <?= ($victimas['victimas'][$idVictima]['estatusVictimaId']==$estatus['estatusVictimaId']) ? "selected=selected" : "" ;?> ><?= $estatus['descripcion'];?></option>
 									<?php }
 									}else{ 
 										foreach ($catalogos['estatusVictimaCatalogo'] as $estatus) { ?>
-										<option value="<?= $estatus['estatusVictimaId'];?>" onkeyup="notasCatalogos2('<?= $estatus['notas']; ?>','EstadoVictima','<?= $estatus['estatusVictimaId'];?>')" onclick="notasCatalogos2('<?= $estatus['notas']; ?>','EstadoVictima','<?= $estatus['estatusVictimaId'];?>')" ><?= $estatus['descripcion'];?></option>
+										<option value="<?= $estatus['estatusVictimaId'];?>" onclick="notasCatalogos2('<?= $estatus['notas']; ?>','EstadoVictima',2)" onclick="notasCatalogos2('<?= $estatus['notas']; ?>','EstadoVictima','<?= $estatus['estatusVictimaId'];?>')" ><?= $estatus['descripcion'];?></option>
 										<?php } 
 									}?>
 								</select>
@@ -180,7 +180,7 @@
 					</fieldset>
 				</div>
 			</div><!--Termina información general de la victima-->
-
+<input type="button" class="small button" value="Guardar y Cerrar" onclick="cerrarVentana()">
 <!-- --------Termina Formulario --------- -->
 		</div>
 	</body>	

@@ -34,7 +34,7 @@
 							              <tr>
 							              	
 							                <td><?= $fuenteDoc['nombre'] ?></td>
-							                <td><?= (isset($relacionId['tipoFuenteDocumentalCatalogoId']) && isset($fuenteDoc['tipoFuenteDocumentalCatalogoNivel']) && ($fuenteDoc['tipoFuenteDocumentalCatalogoId']>0)) ? $catalogos['tipoFuenteDocumentalN'.$fuenteDoc['tipoFuenteDocumentalCatalogoNivel'].'Catalogo'][$fuenteDoc['tipoFuenteDocumentalCatalogoId']]['descripcion'] : " " ; ?></td>
+							                <td><?= (isset($fuenteDoc['tipoFuenteDocumentalCatalogoId']) && ($fuenteDoc['tipoFuenteDocumentalCatalogoId']>0)) ? $catalogos['tipoFuenteDocumentalN'.$fuenteDoc['tipoFuenteDocumentalCatalogoNivel'].'Catalogo'][$fuenteDoc['tipoFuenteDocumentalCatalogoId']]['descripcion'] : " " ; ?></td>
 							                <td><?= (isset($fuenteDoc['actorReportado']) ? $catalogos['listaTodosActores'][$fuenteDoc['actorReportado']]['nombre'].' '.$catalogos['listaTodosActores'][$fuenteDoc['actorReportado']]['apellidosSiglas'] : 'No hay actor reportado') ?><?=(isset($fuenteDoc['relacionId']) && ($fuenteDoc['relacionId']>0)&&(isset($catalogos['relacionesActoresCatalogo'][$fuenteDoc['relacionId']]))) ? ' ('.$catalogos['relacionActoresCatalogo'][$catalogos['relacionesActoresCatalogo'][$fuenteDoc['relacionId']]['tipoRelacionId']]['Nivel2'].') '.$catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$fuenteDoc['relacionId']]['actorRelacionadoId']]['nombre']." ".$catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$fuenteDoc['relacionId']]['actorRelacionadoId']]['apellidosSiglas'] : ''; ?></td>
 							                <td><?= $fuenteDoc['fecha'] ?></td>
 							                <td><?= $fuenteDoc['fechaAcceso'] ?></td>
@@ -67,24 +67,29 @@
 						            	<?php if(isset($datosCaso['fuenteInfoPersonal'])){
 						            		foreach ($datosCaso['fuenteInfoPersonal'] as $index => $fuentePersonal) { 
 						            			foreach ($fuentePersonal['casosActorReportado'] as $documental) {
-						            				if ($documental['casos_casoId']==$casoId) {
+						            				if ((isset($documental['casos_casoId']))&&($documental['casos_casoId']==$casoId)) {
 						            					$actorReportado=$documental['casoActorId'];
 						            				}
 						            				else{
 						            					$actorReportado=0;
 						            				}
-						            			}foreach ($fuentePersonal['casosActor'] as $documental) {
-						            				if ($documental['casos_casoId']==$casoId) {
+						            			}if (isset($fuentePersonal['casosActor'])) {
+							            			foreach ($fuentePersonal['casosActor'] as $documental) {
+							            				if ($documental['casos_casoId']==$casoId) {
 
-						            					$casoActorIdActorId=$documental['casoActorId'];
-						            				}
-						            				else{
-						            					$casoActorIdActorId=0;
-						            				}
+							            					$casoActorIdActorId=$documental['casoActorId'];
+							            				}
+							            				else{
+							            					$casoActorIdActorId=0;
+							            				}
+							            			}
 						            			}
+					            				else{
+					            					$casoActorIdActorId=0;
+					            				}
 						            	?>
 								              <tr>
-								              	<td><?= (isset($fuentePersonal['actorId'])) ? $catalogos['listaTodosActores'][$fuentePersonal['actorId']]['nombre']." ".$catalogos['listaTodosActores'][$fuentePersonal['actorId']]['apellidosSiglas'] : "No hay hactor" ; ?> <?=(isset($fuentePersonal['relacionId']) && ($fuentePersonal['relacionId']>0)&&(isset($catalogos['relacionesActoresCatalogo'][$fuentePersonal['relacionId']]))) ? ' ('.$catalogos['relacionActoresCatalogo'][$catalogos['relacionesActoresCatalogo'][$fuentePersonal['relacionId']]['tipoRelacionId']]['Nivel2'].') '.$catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$fuentePersonal['relacionId']]['actorRelacionadoId']]['nombre']." ".$catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$fuentePersonal['relacionId']]['actorRelacionadoId']]['apellidosSiglas'] : ''; ?></td>
+								              	<td><?= (isset($fuentePersonal['actorId']) && ($fuentePersonal['actorId']>0)) ? $catalogos['listaTodosActores'][$fuentePersonal['actorId']]['nombre']." ".$catalogos['listaTodosActores'][$fuentePersonal['actorId']]['apellidosSiglas'] : "No hay hactor" ; ?> <?=(isset($fuentePersonal['relacionId']) && ($fuentePersonal['relacionId']>0)&&(isset($catalogos['relacionesActoresCatalogo'][$fuentePersonal['relacionId']]))) ? ' ('.$catalogos['relacionActoresCatalogo'][$catalogos['relacionesActoresCatalogo'][$fuentePersonal['relacionId']]['tipoRelacionId']]['Nivel2'].') '.$catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$fuentePersonal['relacionId']]['actorRelacionadoId']]['nombre']." ".$catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$fuentePersonal['relacionId']]['actorRelacionadoId']]['apellidosSiglas'] : ''; ?></td>
 								                <td><?= (isset($fuentePersonal['tipoFuenteCatalogo_tipoFuenteId'])) ? $catalogos['tipoFuenteCatalogo'][$fuentePersonal['tipoFuenteCatalogo_tipoFuenteId']]['descripcion'] : " " ; ?> </td>
 								              	<td><?= (isset($fuentePersonal['actorReportadoNombre'])) ? $fuentePersonal['actorReportadoNombre']." ".$fuentePersonal['actorReportadoApellidosSiglas']  : "No hay hactor" ; ?><?=(isset($fuentePersonal['tipoRelacionActorReportadoId']) && ($fuentePersonal['tipoRelacionActorReportadoId']>0)&&(isset($catalogos['relacionesActoresCatalogo'][$fuentePersonal['tipoRelacionActorReportadoId']]))) ? ' ('.$catalogos['relacionActoresCatalogo'][$catalogos['relacionesActoresCatalogo'][$fuentePersonal['tipoRelacionActorReportadoId']]['tipoRelacionId']]['Nivel2'].') '.$catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$fuentePersonal['tipoRelacionActorReportadoId']]['actorRelacionadoId']]['nombre']." ".$catalogos['listaTodosActores'][$catalogos['relacionesActoresCatalogo'][$fuentePersonal['tipoRelacionActorReportadoId']]['actorRelacionadoId']]['apellidosSiglas'] : ''; ?> </td>
 								                <td><?= $fuentePersonal['fecha'] ?></td>

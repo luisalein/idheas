@@ -167,13 +167,13 @@
 </fieldset><!--Termina información de contacto-->
 
 
-    <div class="row espacioInferior espacioSuperior">
-        <div class="nine columns">
-            <input style="float: right;" class="medium button" type="submit" value="Guardar" />
+    <div class="twelve columns espacioInferior espacioSuperior">
+        <div class="six columns">
+            <input class="medium button" type="submit" value="Guardar" />
         </div>      
 </form>
-        <div  class="three columns" >
-                <a href="<?=base_url(); ?>index.php/actores_c/mostrar_actor/<?= (isset($actorId)) ? $actorId : "0" ;?>/3" class="medium button">Cancelar</a>
+        <div  class="six columns" >
+                <a style="float: right;" href="<?=base_url(); ?>index.php/actores_c/mostrar_actor/<?= (isset($actorId)) ? $actorId : "0" ;?>/3" class="medium button">Cancelar</a>
         </div>
     </div>
 
@@ -319,14 +319,11 @@
                                         <td><?=$relacion['fechaTermino']; ?></td>
                                         <td>
                                             <div class="twelve columns">
-                                                <div style="margin-left: -20px;" class="six columns">
-                                                <input style="margin-left: -20px;padding: 5px 12px 6px 12px" type="button" class="small button"  value="Editar" onclick="nueva_relacion_a_Col('<?=$idActor ?>','1', '<?=$relacion['relacionActoresId']; ?>')" />
-                                                </div>
-                                                <div class="six columns">
+                                                <input style="padding: 5px 18px 6px 18px" type="button" class="small button espacioInferior"  value="Editar" onclick="nueva_relacion_a_Col('<?=$idActor ?>','1', '<?=$relacion['relacionActoresId']; ?>')" />
+                                                
                                                 <form method="post" action="<?=base_url(); ?>index.php/actores_c/eliminarRelacionActor/<?=$relacion['relacionActoresId']."/".$relacion['actorRelacionadoId']; ?>/<?= $actorId?>/3" >
-                                                    <input style="margin-left: -20px;" type="submit" value="Elminar" class="small button" />
+                                                    <input  type="submit" value="Elminar" class="small button" />
                                                 </form>
-                                                </div>
                                             </div>
                                         </td>
                                     </tr><?php
