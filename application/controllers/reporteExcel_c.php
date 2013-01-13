@@ -15,6 +15,8 @@ class ReporteExcel_c extends CI_Controller
 			$this->is_logged_in();
 		
         	$this->load->model(array('actores_m', 'general_m','reportes_m', 'catalogos_m','casos_m'));
+			
+			
        }
 	
 	
@@ -26,7 +28,8 @@ class ReporteExcel_c extends CI_Controller
 	}
 	
 	function index() 
-	{	
+	{
+		date_default_timezone_set('America/Mexico_City');	
 		$this->generaExcel();	
 	}
 	
