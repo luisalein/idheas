@@ -341,6 +341,7 @@
 					            <tbody>	
 			  			   <?php if(isset($datosCaso['relacionCasos']) && $datosCaso['relacionCasos'] != '0'):?>		
 					              	<?php foreach($datosCaso['relacionCasos'] as $casoRelacionado):?>
+					              		<?php if (isset($casoRelacionado['nombreCasoId'])) {?>
 					              		<tr>
 						              		<td><?=(isset($casoRelacionado['nombreCasoId']))? $casoRelacionado['nombreCasoId']: ''?></td>
 						              		<td><?php if(isset($casoRelacionado['tipoRelacionId']) && isset($casoRelacionado['nombreCasoId'])) 
@@ -354,6 +355,7 @@
 						              		<td><?=(isset($casoRelacionado['fechaIncialCasoId']))? $casoRelacionado['fechaIncialCasoId']: ''?></td>
 						              		<td><?=(isset($casoRelacionado['fechaTerminoCasoId']))? $casoRelacionado['fechaTerminoCasoId']: ''?></td>
 					              		</tr>
+					              		<?php }?>
 					              	<?php endforeach;?>		
 					             <?php endif;?>  
 					            </tbody>

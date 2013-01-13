@@ -98,12 +98,12 @@
 
 		<div class="six columns" >
 		<label for="edad"><b>Fecha inicial</b></label>
-			<select onclick="fechaInicialCasosRP(value)" onkeyup="fechaInicialCasosRP(value)" >
-								<option></option>
-						<option  value="1" >fecha exacta</option>
-						<option  value="2">fecha aproximada</option>
-						<option  value="3">Se desconce el día</option>
-						<option  value="4">Se desconce el día y el mes</option>
+			<select name="tipoFechaInicialId" onclick="fechaInicialCasosRP(value)" onkeyup="fechaInicialCasosRP(value)" >
+						<option></option>
+						<option  value="1" <?=(isset($relaciones['tipoFechaInicialId']) && ($relaciones['tipoFechaInicialId']==1)) ? 'selected="selected"' : " " ;?>>fecha exacta</option>
+						<option  value="2" <?=(isset($relaciones['tipoFechaInicialId']) && ($relaciones['tipoFechaInicialId']==2)) ? 'selected="selected"' : " " ;?>>fecha aproximada</option>
+						<option  value="3" <?=(isset($relaciones['tipoFechaInicialId']) && ($relaciones['tipoFechaInicialId']==3)) ? 'selected="selected"' : " " ;?>>Se desconce el día</option>
+						<option  value="4" <?=(isset($relaciones['tipoFechaInicialId']) && ($relaciones['tipoFechaInicialId']==4)) ? 'selected="selected"' : " " ;?>>Se desconce el día y el mes</option>
 			</select>
 			</div>
 			<div class="six columns">
@@ -135,12 +135,12 @@
 	<div class="twelve columns" >
 	<label for="Termonio"><b>Fecha término</b></label>
 				<div class="six columns">
-					<select onclick="fechaTerminalCasosRP(value)" onkeyup="fechaTerminalCasosRP(value)" >
+					<select name="tipoFechaTerminoId" onclick="fechaTerminalCasosRP(value)" onkeyup="fechaTerminalCasosRP(value)" >
 								<option></option>
-								<option  value="1">fecha exacta</option>
-								<option  value="2">fecha aproximada</option>
-								<option  value="3">Se desconce el día</option>
-								<option  value="4">Se desconce el día y el mes</option>
+								<option  value="1" <?=(isset($relaciones['tipoFechaTerminoId']) && ($relaciones['tipoFechaTerminoId']==1)) ? 'selected="selected"' : " " ;?> >fecha exacta</option>
+								<option  value="2" <?=(isset($relaciones['tipoFechaTerminoId']) && ($relaciones['tipoFechaTerminoId']==2)) ? 'selected="selected"' : " " ;?> >fecha aproximada</option>
+								<option  value="3" <?=(isset($relaciones['tipoFechaTerminoId']) && ($relaciones['tipoFechaTerminoId']==3)) ? 'selected="selected"' : " " ;?> >Se desconce el día</option>
+								<option  value="4" <?=(isset($relaciones['tipoFechaTerminoId']) && ($relaciones['tipoFechaTerminoId']==4)) ? 'selected="selected"' : " " ;?> >Se desconce el día y el mes</option>
 					</select>
 				</div>
 				
