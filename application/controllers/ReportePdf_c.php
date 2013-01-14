@@ -256,7 +256,7 @@ class ReportePdf_c extends CI_Controller
 				if(isset($infoAdicional['actorReportado']) && $infoAdicional['actorReportado'] > 0){
 				$contenidoReporte['infoAdicionalPersonalReportado'.$key]="Actor reportado:  ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorReportado']]['nombre']." ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorReportado']]['apellidosSiglas']."\n";
 				}
-				if($infoAdicional['tipoRelacionActorReportadoId'] > 0 && isset($infoAdicional['tipoRelacionActorReportadoId'])){
+				if($infoAdicional['tipoRelacionActorReportadoId'] > 0){
 						$contenidoReporte['actorRelacionadoReportado']= "Actor colectivo relacionado:  ".$infoAdicional['actorRelacionadoReportado'][$infoAdicional['tipoRelacionActorReportadoId']]['nombre']."\n";
 						$contenidoReporte['tipoRelacionPersonal']= "Tipo relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$infoAdicional['actorRelacionadoReportado'][$infoAdicional['tipoRelacionActorReportadoId']]['tipoRelacionId']]['Nivel2']."\n";
 				}

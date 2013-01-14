@@ -380,13 +380,13 @@ class ReporteOdt_c extends CI_Controller
 			$section->addText($relacionCasos[$key],'estilo');
 		}
 			
-		// $filename='reporte_largo_del_'.$Data['nombreCaso'].'.odt'; //save our document as this file name
-		// header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document'); //mime type
-		// header('Content-Disposition: attachment;filename="'.$filename.'"'); //tell browser what's the file name
-		// header('Cache-Control: max-age=0'); //no cache
-// 		 
-		// $objWriter = PHPWord_IOFactory::createWriter($this->word, 'ODText');
-		// $objWriter->save('php://output');
+		$filename='reporte_largo_del_'.$Data['nombreCaso'].'.odt'; //save our document as this file name
+		header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document'); //mime type
+		header('Content-Disposition: attachment;filename="'.$filename.'"'); //tell browser what's the file name
+		header('Cache-Control: max-age=0'); //no cache
+		 
+		$objWriter = PHPWord_IOFactory::createWriter($this->word, 'ODText');
+		$objWriter->save('php://output');
 	}
 	
 }
