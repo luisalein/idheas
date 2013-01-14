@@ -251,7 +251,9 @@ class ReportePdf_c extends CI_Controller
 				$contenidoReporte['infoAdicionalNivelConfiabilidad'] = "Nivel confiabilidad:  ".$datos['catalogos']['nivelConfiabilidadCatalogo']['nivelConfiabilidadCatalogo'][$infoAdicional['nivelConfiabilidadCatalogo_nivelConfiabilidadId']-1]['descripcion']."\n";				
 				$contenidoReporte['infoadicionalObservaciones']= "Observaciones:  ".$infoAdicional['observaciones']."\n";
 				$contenidoReporte['infoadicionalComentarios']= "Comentarios:  ".$infoAdicional['comentarios']."\n";
+				if(isset($infoAdicional['actorReportado']) && $infoAdicional['actorReportado'] > 0){
 				$contenidoReporte['infoAdicionalPersonalReportado'.$key]="Actor reportado:  ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorReportado']]['nombre']." ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorReportado']]['apellidosSiglas']."\n";
+				}
 				if($infoAdicional['actorRelacionadoReportado'] > 0){
 						$contenidoReporte['actorRelacionadoReportado']= "Actor colectivo relacionado:  ".$infoAdicional['actorRelacionadoReportado'][$infoAdicional['tipoRelacionActorReportadoId']]['nombre']."\n";
 						$contenidoReporte['tipoRelacionPersonal']= "Tipo relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$infoAdicional['actorRelacionadoReportado'][$infoAdicional['tipoRelacionActorReportadoId']]['tipoRelacionId']]['Nivel2']."\n";
