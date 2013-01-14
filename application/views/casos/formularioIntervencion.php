@@ -68,11 +68,7 @@
 		}
 		}
 		?>
-				<!-- 
-<pre><?= print_r($intervenciones['intervenidos'])?></pre>					
-<pre><?= print_r($intervenciones['casosActorInterventor'])?></pre>					
-<pre><?= print_r($intervenciones['casosActorReceptor'])?></pre>					
-<pre><?= print_r($catalogos['relacionesActoresCatalogo'])?></pre>					 -->
+				
 				<br /><br />		
 					<fieldset>
 						<input type="hidden" value="<?=$casoId; ?>" name="lugares_casos_casoId" id="lugares_casos_casoId" />

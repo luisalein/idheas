@@ -20,18 +20,17 @@
 			</div>
 			<div class="twelve columns">
 				<div class="six columns">
-				<label for="edad">Fecha inicial</label>
-					<select onclick="fechaInicialCasos(value)" onkeyup="fechaInicialCasos(value)" name="casos_fechaInicial">
+				<label name="casos_tipoFechaInicialId" for="edad">Fecha inicial</label>
+					<select onclick="fechaInicialCasos(value)" onkeyup="fechaInicialCasos(value)" name="casos_tipoFechaInicialId">
 								<option></option>
-								<option  value="1" <?= (isset($datosCaso['casos']['fechaInicial'])) ? 'checked="checked"' : "" ;?> >fecha exacta</option>
-								<option  value="2">fecha aproximada</option>
-								<option  value="3">Se desconce el día</option>
-								<option  value="4">Se desconce el día y el mes</option>
+								<option  value="1" <?= (isset($datosCaso['casos']['tipoFechaInicialId']) && ($datosCaso['casos']['tipoFechaInicialId']==1)) ? 'selected=selected"' : "" ;?> >fecha exacta</option>
+								<option  value="2" <?= (isset($datosCaso['casos']['tipoFechaInicialId']) && ($datosCaso['casos']['tipoFechaInicialId']==2)) ? 'selected=selected"' : "" ;?> >fecha aproximada</option>
+								<option  value="3" <?= (isset($datosCaso['casos']['tipoFechaInicialId']) && ($datosCaso['casos']['tipoFechaInicialId']==3)) ? 'selected=selected"' : "" ;?> >Se desconce el día</option>
+								<option  value="4" <?= (isset($datosCaso['casos']['tipoFechaInicialId']) && ($datosCaso['casos']['tipoFechaInicialId']==4)) ? 'selected=selected"' : "" ;?> >Se desconce el día y el mes</option>
 					</select>
 				</div>
-				
 				<div class="six columns">
-					<br />
+					<br /> 
 					<p <?= (isset($datosCaso['casos']['fechaInicial'])) ? '' : 'class="Escondido"' ;?> id="fechaExactaV">
 						<input type="text" id="fechaExacta"  value="<?= (isset($datosCaso['casos']['nombre'])) ? $datosCaso['casos']['fechaInicial'] : "" ;?>" placeholder="AAAA-MM-DD" />
 
@@ -56,12 +55,12 @@
 			<div class="twelve columns">
 					<label for="edad">Fecha término</label>
 				<div class="six columns">
-					<select onclick="fechaTerminalCasos(value)" onkeyup="fechaTerminalCasos(value)" name="casos_fechaTermino" >
+					<select name="casos_tipoFechaTerminoId" onclick="fechaTerminalCasos(value)" onkeyup="fechaTerminalCasos(value)" name="casos_fechaTermino" >
 								<option></option>
-								<option  value="1" <?= (isset($datosCaso['casos']['fechaTermino'])) ? 'checked="checked"' : "" ;?>>fecha exacta</option>
-								<option  value="2">fecha aproximada</option>
-								<option  value="3">Se desconce el día</option>
-								<option  value="4">Se desconce el día y el mes</option>
+								<option  value="1" <?= (isset($datosCaso['casos']['tipoFechaTerminoId']) && ($datosCaso['casos']['tipoFechaTerminoId']==1)) ? 'selected=selected"' : "" ;?> >fecha exacta</option>
+								<option  value="2" <?= (isset($datosCaso['casos']['tipoFechaTerminoId']) && ($datosCaso['casos']['tipoFechaTerminoId']==2)) ? 'selected=selected"' : "" ;?> >fecha aproximada</option>
+								<option  value="3" <?= (isset($datosCaso['casos']['tipoFechaTerminoId']) && ($datosCaso['casos']['tipoFechaTerminoId']==3)) ? 'selected=selected"' : "" ;?> >Se desconce el día</option>
+								<option  value="4" <?= (isset($datosCaso['casos']['tipoFechaTerminoId']) && ($datosCaso['casos']['tipoFechaTerminoId']==4)) ? 'selected=selected"' : "" ;?> >Se desconce el día y el mes</option>
 					</select>
 				</div>
 				<div class="six columns">
