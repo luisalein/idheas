@@ -150,7 +150,9 @@ class ReportePdf_c extends CI_Controller
 							$contenidoReporte['victimasComentarios'.$key]= "\n".'Víctima '.$nVic.': '.
 							$datos['catalogos']['ListaTodosActores'][$value2['victimaId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$value2['victimaId']]['apellidosSiglas'] ."\n".
 							"Comentarios sobre victimas y perpetradores:  \n". $value2['comentarios'];
-							$contenidoReporte['estatusVictimaId'.$key]="Estado:  ". $datos['catalogos']['estatusVictimaCatalogo']['estatusVictimaCatalogo'][$value2['estatusVictimaId']]['descripcion']."\n";
+							if(isset($value2['estatusVictimaId'])){
+								$contenidoReporte['estatusVictimaId'.$key]="Estado:  ". $datos['catalogos']['estatusVictimaCatalogo']['estatusVictimaCatalogo'][$value2['estatusVictimaId']]['descripcion']."\n";
+							}
 							if (isset($Data['reporte']['perpetradores']	)) {
 								$contenidoReporte['EncabezadoPerpetradores'.$key]="\nPerpetradores  "."\n\n";
 								foreach ($Data['reporte']['perpetradores'] as $key => $value3) {
