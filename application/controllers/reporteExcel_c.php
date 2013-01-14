@@ -26,7 +26,8 @@ class ReporteExcel_c extends CI_Controller
 	}
 	
 	function index() 
-	{	
+	{
+		date_default_timezone_set('America/Mexico_City');	
 		$this->generaExcel();	
 	}
 	function traer_catalogos(){

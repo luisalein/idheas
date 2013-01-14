@@ -13,11 +13,11 @@ class PruebasJulio_c extends CI_Controller
 	
 	function index() 
 	{	
-			$datos['nombre']='cola'; 
+			$datos= array('actoViolatorioId'=>1,'actoViolatorioNivel'=>3); 
 							   
 			echo 'Antes de entrar a la funcion....';
 			  						
-			$Data['datos']=$this->reportes_m->mReporteLargo(1);
+			$Data['datos']=$this->reportes_m->mReporteCortoActoDerechoAfectado($datos);
 			
 			echo 'Entro a la funcion.....';
 			
