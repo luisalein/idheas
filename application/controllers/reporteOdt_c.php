@@ -264,7 +264,9 @@ class ReporteOdt_c extends CI_Controller
 				}
 				$contenidoFuentePersonal['infoAdicionalTipoFuente'] = "Tipo fuente:  ".$datos['catalogos']['tipoFuenteCatalogo']['tipoFuenteCatalogo'][$infoAdicional['tipoFuenteCatalogo_tipoFuenteId']]['descripcion']."\n";
 				$contenidoFuentePersonal['infoAdicionalfecha'] = "Fecha:  ".$infoAdicional['fecha']."\n";
-				$contenidoFuentePersonal['infoAdicionalNivelConfiabilidad'] = "Nivel confiabilidad:  ".$datos['catalogos']['nivelConfiabilidadCatalogo']['nivelConfiabilidadCatalogo'][$infoAdicional['nivelConfiabilidadCatalogo_nivelConfiabilidadId']]['descripcion']."\n";				
+				if(isset($infoAdicional['nivelConfiabilidadCatalogo_nivelConfiabilidadId'])){	
+					$contenidoFuentePersonal['infoAdicionalNivelConfiabilidad'] = "Nivel confiabilidad:  ".$datos['catalogos']['nivelConfiabilidadCatalogo']['nivelConfiabilidadCatalogo'][$infoAdicional['nivelConfiabilidadCatalogo_nivelConfiabilidadId']-1]['descripcion']."\n";				
+				}
 				$contenidoFuentePersonal['infoadicionalObservaciones']= "Observaciones:  ".$infoAdicional['observaciones']."\n";
 				$contenidoFuentePersonal['infoadicionalComentarios']= "Comentarios:  ".$infoAdicional['comentarios']."\n";
 				$contenidoFuentePersonal['infoAdicionalPersonalReportado'.$key]="Actor reportado:  ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorReportado']]['nombre']." ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorReportado']]['apellidosSiglas']."\n";
