@@ -14,7 +14,7 @@ class ReporteOdt_c extends CI_Controller
 	
 	function index() 
 	{
-		$casoId = 1;
+		
 		$this->generaReporteLargoOdt($casoId);
 	}
 	
@@ -157,7 +157,9 @@ class ReporteOdt_c extends CI_Controller
 							$contenidoDerechoAfectado['victimasComentarios'.$key]= "\n".'Víctima '.$nVic.': '.
 							$datos['catalogos']['ListaTodosActores'][$value2['victimaId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$value2['victimaId']]['apellidosSiglas'] ."\n".
 							"Comentarios sobre victimas y perpetradores:  \n". $value2['comentarios'];
-							$contenidoDerechoAfectado['estatusVictimaId'.$key]="Estado:  ". $datos['catalogos']['estatusVictimaCatalogo']['estatusVictimaCatalogo'][$value2['estatusVictimaId']]['descripcion']."\n";
+							if(isset($value2['estatusVictimaId'])){
+								$contenidoDerechoAfectado['estatusVictimaId'.$key]="Estado:  ". $datos['catalogos']['estatusVictimaCatalogo']['estatusVictimaCatalogo'][$value2['estatusVictimaId']]['descripcion']."\n";
+							}
 							if (isset($Data['reporte']['perpetradores']	)) {
 								$contenidoDerechoAfectado['EncabezadoPerpetradores'.$key]="\nPerpetradores  "."\n\n";
 								foreach ($Data['reporte']['perpetradores'] as $key => $value3) {
@@ -368,13 +370,13 @@ class ReporteOdt_c extends CI_Controller
 			$section->addText($relacionCasos[$key],'estilo');
 		}
 			
-		$filename='reporte_largo_del_'.$Data['nombreCaso'].'.odt'; //save our document as this file name
-		header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document'); //mime type
-		header('Content-Disposition: attachment;filename="'.$filename.'"'); //tell browser what's the file name
-		header('Cache-Control: max-age=0'); //no cache
-		 
-		$objWriter = PHPWord_IOFactory::createWriter($this->word, 'ODText');
-		$objWriter->save('php://output');
+		// $filename='reporte_largo_del_'.$Data['nombreCaso'].'.odt'; //save our document as this file name
+		// header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document'); //mime type
+		// header('Content-Disposition: attachment;filename="'.$filename.'"'); //tell browser what's the file name
+		// header('Cache-Control: max-age=0'); //no cache
+// 		 
+		// $objWriter = PHPWord_IOFactory::createWriter($this->word, 'ODText');
+		// $objWriter->save('php://output');
 	}
 	
 }
