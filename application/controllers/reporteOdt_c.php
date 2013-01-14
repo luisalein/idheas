@@ -49,6 +49,10 @@ class ReporteOdt_c extends CI_Controller
         $datos['estatusPerpetradorCatalogo'] = $this->catalogos_m->mTraerDatosCatalogoNombre('estatusPerpetradorCatalogo');
 
         $datos['estatusVictimaCatalogo'] = $this->catalogos_m->mTraerDatosCatalogoNombre('estatusVictimaCatalogo');
+		
+		$datos['tipoFuenteCatalogo'] = $this->catalogos_m->mTraerDatosCatalogoNombre('tipoFuenteCatalogo');
+		
+		$datos['relacionCasosCatalogo'] = $this->catalogos_m->mTraerDatosCatalogoNombre('relacionCasosCatalogo');
 
         $datos['ListaTodosActores'] = $this->actores_m-> mListaTodosActores();
 
@@ -74,7 +78,7 @@ class ReporteOdt_c extends CI_Controller
 		if (isset($Data['reporte']['lugares']	)) {
 			foreach ($Data['reporte']['lugares'] as $key => $value) {
 				
-				$contenidoLugares['numeroLugar'.$key]=" Lugar " . $key . ":  ";
+				$contenidoLugares['numeroLugar'.$key]=" Lugar:  ";
 				$contenidoLugares['pais'.$key]=$datos['catalogos']['paisesCatalogo'][$value['paisesCatalogo_paisId']]['nombre'] . ", ";
 				$contenidoLugares['estado'.$key]=$datos['catalogos']['estadosCatalogo'][$value['estadosCatalogo_estadoId']]['nombre'] . ", ";
 				$contenidoLugares['municipio'.$key]=$datos['catalogos']['municipiosCatalogo'][$value['municipiosCatalogo_municipioId']]['nombre'];
@@ -108,7 +112,7 @@ class ReporteOdt_c extends CI_Controller
 				$contenidoSeguimientoCaso['claveId'.$key]= "Clave:  ".$value['fichaId']. "\n";
 				$contenidoSeguimientoCaso['titulo'.$key]= "Título:  ".$value['titulo']. "\n";
 				$contenidoSeguimientoCaso['fecha'.$key]= "Fecha:  ".$value['fecha']. "\n";
-				$contenidoSeguimientoCaso['fichaComentario'.$key]= "Comentarios:  ".$value['comentarios']. "\n";
+				$contenidoSeguimientoCaso['fichaComentario'.$key]= "Comentarios:  ".$value['comentarios']. "\n\n";
 			}
 		}else{
 			$contenidoSeguimientoCaso[1]="";
@@ -137,9 +141,11 @@ class ReporteOdt_c extends CI_Controller
 				
 				$contenidoDerechoAfectado['derechoAfectado'.$key]="\n"."Derecho afectado:  ".$datos['catalogos']['derechosAfectadosCatalogo']['derechosAfectadosN'.$value['derechoAfectadoNivel'].'Catalogos'][$value['derechoAfectadoCasoId']]['descripcion'] ."\n";
 				$contenidoDerechoAfectado['acto'.$key]="Acto:  ". $datos['catalogos']['actosCatalogo']['actosN'.$Data['reporte']['actos'][$key]['actoViolatorioNivel'].'Catalogo'][$Data['reporte']['actos'][$key]['actoViolatorioId']]['descripcion'] ."\n";
-				$contenidoDerechoAfectado['noVictimas'.$key] = "No. víctimas: ". $value['noVictimas']."\n";
+				$contenidoDerechoAfectado['noVictimas'.$key] = "No. afectados: ". $value['noVictimas']."\n";
 				$contenidoDerechoAfectado['fechaInicial'.$key]="Fecha de inicio:  ". $value['fechaInicial']."\n";
+				$contenidoDerechoAfectado['tipoFechaInicial'.$key]="Tipo de fecha:  ". $value['tipoFechaInicialId']."\n";
 				$contenidoDerechoAfectado['fechaTermino'.$key]="Fecha de termino:  " . $value['fechaTermino']."\n";
+				$contenidoDerechoAfectado['tipoFechaTermino'.$key]="Tipo de fecha:  ". $value['tipoFechaTerminoId']."\n";
 				
 				$actoId=$Data['reporte']['actos'][$key]['actoId'];
 				if (isset($Data['reporte']['victimas']	)) {
@@ -153,7 +159,7 @@ class ReporteOdt_c extends CI_Controller
 							"Comentarios sobre victimas y perpetradores:  \n". $value2['comentarios'];
 							$contenidoDerechoAfectado['estatusVictimaId'.$key]="Estado:  ". $datos['catalogos']['estatusVictimaCatalogo']['estatusVictimaCatalogo'][$value2['estatusVictimaId']]['descripcion']."\n";
 							if (isset($Data['reporte']['perpetradores']	)) {
-								$contenidoDerechoAfectado['EncabezadoPerpetradores'.$key]="\nPerpetradores  "."\n";
+								$contenidoDerechoAfectado['EncabezadoPerpetradores'.$key]="\nPerpetradores  "."\n\n";
 								foreach ($Data['reporte']['perpetradores'] as $key => $value3) {
 									if ($value3['victimas_victimaId']==$value2['victimaId']) {
 										$nPerp = $nPerp+1;
@@ -195,7 +201,11 @@ class ReporteOdt_c extends CI_Controller
 				}
 				else{
 					if ($intervencion['interventorId'] >0  && isset($intervencion['interventorId']) ) {				
-						$contenidoIntervenciones['intervencionInterventor']=	"Interventor:  ".$datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['apellidosSiglas'] ."\n";
+						$contenidoIntervenciones['intervencionInterventor']="Interventor:  ".$datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['apellidosSiglas'] ."\n";
+						if($intervencion['tipoRelacionInterventor'] > 0){
+							$contenidoReporte['actorRelacionadoInterventor']= "Actor colectivo relacionado:  ".$intervencion['actorRelacionadoInterventor'][$intervencion['tipoRelacionInterventor']]['nombre']."\n";
+							$contenidoReporte['tipoRelacionInterventor']= "Tipo relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$intervencion['actorRelacionadoInterventor'][$intervencion['tipoRelacionInterventor']]['tipoRelacionId']]['Nivel2']."\n";
+						}
 					}
 				}
 				
@@ -239,13 +249,38 @@ class ReporteOdt_c extends CI_Controller
 
 		if (isset($Data['reporte']['fuenteInfoPersonal'])) {
 			foreach ($Data['reporte']['fuenteInfoPersonal'] as $key => $infoAdicional) {
-				$contenidoFuentePersonal['infoAdicionalPersonal'.$key]="Nombre:  ".$infoAdicional['actorId']."\n";
-				$contenidoFuentePersonal['infoAdicionalfehca'.$key]="Fecha:  ".$infoAdicional['fecha']."\n";
-
+				$contenidoFuentePersonal['infoAdicionalPersonal'.$key]="Nombre:  ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorId']]['nombre']." ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorId']]['apellidosSiglas']."\n";
+				if($infoAdicional['relacionId'] > 0){
+						$contenidoFuentePersonal['actorRelacionadoPersonal']= "Actor colectivo relacionado:  ".$infoAdicional['actorRelacionadoPersonal'][$infoAdicional['relacionId']]['nombre']."\n";
+						$contenidoFuentePersonal['tipoRelacionPersonal']= "Tipo relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$infoAdicional['actorRelacionadoPersonal'][$infoAdicional['relacionId']]['tipoRelacionId']]['Nivel2']."\n";
+				}
+				$contenidoFuentePersonal['infoAdicionalTipoFuente'] = "Tipo fuente:  ".$datos['catalogos']['tipoFuenteCatalogo']['tipoFuenteCatalogo'][$infoAdicional['tipoFuenteCatalogo_tipoFuenteId']]['descripcion']."\n";
+				$contenidoFuentePersonal['infoAdicionalfecha'] = "Fecha:  ".$infoAdicional['fecha']."\n";
+				$contenidoFuentePersonal['infoAdicionalNivelConfiabilidad'] = "Nivel confiabilidad:  ".$datos['catalogos']['nivelConfiabilidadCatalogo']['nivelConfiabilidadCatalogo'][$infoAdicional['nivelConfiabilidadCatalogo_nivelConfiabilidadId']]['descripcion']."\n";				
+				$contenidoFuentePersonal['infoadicionalObservaciones']= "Observaciones:  ".$infoAdicional['observaciones']."\n";
+				$contenidoFuentePersonal['infoadicionalComentarios']= "Comentarios:  ".$infoAdicional['comentarios']."\n";
+				$contenidoFuentePersonal['infoAdicionalPersonalReportado'.$key]="Actor reportado:  ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorReportado']]['nombre']." ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorReportado']]['apellidosSiglas']."\n";
+				if($infoAdicional['actorRelacionadoReportado'] > 0){
+						$contenidoFuentePersonal['actorRelacionadoReportado']= "Actor colectivo relacionado:  ".$infoAdicional['actorRelacionadoReportado'][$infoAdicional['tipoRelacionActorReportadoId']]['nombre']."\n";
+						$contenidoFuentePersonal['tipoRelacionPersonal']= "Tipo relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$infoAdicional['actorRelacionadoReportado'][$infoAdicional['tipoRelacionActorReportadoId']]['tipoRelacionId']]['Nivel2']."\n";
+				}
 			}
 		}else{
 			$contenidoFuentePersonal[1]="";
 						
+		}
+		
+		if(isset($Data['reporte']['relacionCasos'])){
+			foreach ($Data['reporte']['relacionCasos'] as $key => $relacionCasos) {
+				$contenidoRelacionCasos['encabezadoCaso'.$key] = "Caso"."\n";
+				$contenidoRelacionCasos['nombrecaso'.$key]="Caso relacionado:  ".$relacionCasos['nombreCasoIdB']."\n";
+				$contenidoRelacionCasos['tipoRelacionCaso'.$key]="Tipo de relación:  ".$datos['catalogos']['relacionCasosCatalogo']['relacionCasosCatalogo'][$relacionCasos['tipoRelacionId']]['descripcion']."\n";
+				$contenidoRelacionCasos['FechaInicio'.$key]="Fecha de inicio:  ".$relacionCasos['fechaIncial']."\n";
+				$contenidoRelacionCasos['FechaTermino'.$key]="Fecha de término:  ".$relacionCasos['fechaTermino']."\n";
+			}	
+			
+		}else{
+			$contenidoRelacionCasos[1]="";
 		}
 
 		/******************************************/
@@ -323,6 +358,14 @@ class ReporteOdt_c extends CI_Controller
 		foreach ($contenidoFuentePersonal as $key => $value) {
 			$fuentePersonal[$key]=$value;
 			$section->addText($fuentePersonal[$key],'estilo');
+		}
+		
+		$section->addText(' ', 'Style');
+		$section->addText('Relacion entre casos', 'Style');
+		$section->addText(' ', 'Style');
+		foreach ($contenidoRelacionCasos as $key => $value) {
+			$relacionCasos[$key]=$value;
+			$section->addText($relacionCasos[$key],'estilo');
 		}
 			
 		$filename='reporte_largo_del_'.$Data['nombreCaso'].'.odt'; //save our document as this file name

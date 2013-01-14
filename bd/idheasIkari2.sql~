@@ -887,7 +887,9 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`relacionActores` (
   `tipoRelacionId` INT NOT NULL ,
   `tipoRelacionIndividualColectivoId` INT NULL ,
   `fechaInicial` DATE NULL ,
+  `tipoFechaInicialId` INT NULL ,
   `fechaTermino` DATE NULL ,
+  `tipoFechaTerminoId` INT NULL ,
   `comentarios` VARCHAR(3000) NULL ,
   `actores_actorId` INT NOT NULL ,
   INDEX `fk_relacionActores_relacionActoresCatalogo1_idx` (`tipoRelacionId` ASC) ,
@@ -1310,7 +1312,7 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoFuenteDocumentalN2Catalogo` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-INSERT INTO USUARIOS(nombre,pass) VALUES('admin','idheas');
+insert into usuarios(nombre,pass) values('admin','idheas');
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

@@ -30,11 +30,11 @@
 			<div class="twelve columns">
 				<div class="six columns">
 					<label for="edad">Fecha de recepción</label>
-					<select onclick="fichadeRecepcion(value)" onkeyup="fichadeRecepcion(value)">
-								<option  value="1" <?=(isset($ficha['fecha'])) ? 'checked="checked"' : " " ;?>  >fecha exacta</option>
-								<option  value="2">fecha aproximada</option>
-								<option  value="3">Se desconce el día</option>
-								<option  value="4">Se desconce el día y el mes</option>
+					<select name="fichas_tipoFechaId" onclick="fichadeRecepcion(value)" onkeyup="fichadeRecepcion(value)">
+								<option  value="1" <?=(isset($ficha['tipoFechaId']) && ($ficha['tipoFechaId']==1)) ? 'selected="selected"' : " " ;?> >fecha exacta</option>
+								<option  value="2" <?=(isset($ficha['tipoFechaId']) && ($ficha['tipoFechaId']==2)) ? 'selected="selected"' : " " ;?> >fecha aproximada</option>
+								<option  value="3" <?=(isset($ficha['tipoFechaId']) && ($ficha['tipoFechaId']==3)) ? 'selected="selected"' : " " ;?> >Se desconce el día</option>
+								<option  value="4" <?=(isset($ficha['tipoFechaId']) && ($ficha['tipoFechaId']==4)) ? 'selected="selected"' : " " ;?> >Se desconce el día y el mes</option>
 					</select>
 					</div>
 					

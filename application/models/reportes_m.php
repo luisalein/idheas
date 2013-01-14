@@ -9,6 +9,96 @@
             $this->load->database();
         
         }
+	     
+	     /*Este modelo trae las relaciones actor-actor de un actor 
+		  * @param $actorId [INT]
+		  * 
+		  * */
+        public function mTraerRelacionesActor($actorId){
+            $this->db->select('*');
+            $this->db->from('relacionActores');
+            $this->db->where('actores_actorId',$actorId);
+            $consulta = $this->db->get();
+			
+			//echo '<pre>';
+			//print_r($consulta->num_rows());
+			if($consulta->num_rows() != 0){
+				foreach($consulta->result_array() as $row){
+					
+					$listaActores[$row['relacionActoresId']] = $row;
+					
+					$this->db->select('*');
+		            $this->db->from('actores');
+					$this->db->where('tipoActorId',3);
+					$this->db->where('estadoActivo',1);
+		            $this->db->where('actorId',$row['actorRelacionadoId']);
+		            $actores = $this->db->get();
+					
+					if($actores->num_rows() > 0){
+						foreach($actores->result_array() as $row2){
+							$listaActores[$row['relacionActoresId']]['actorId'] = $row2['actorId'];
+							$listaActores[$row['relacionActoresId']]['nombre'] = $row2['nombre'];
+							$listaActores[$row['relacionActoresId']]['apellidosSiglas'] = $row2['apellidosSiglas'];
+							$listaActores[$row['relacionActoresId']]['tipoActorId'] = $row2['tipoActorId'];
+							$listaActores[$row['relacionActoresId']]['foto'] = $row2['foto'];
+						}
+					}
+
+				}
+				
+			}
+
+			/* Trae todos los datos de relacionActores */
+			$this->db->select('*');
+			$this->db->from('relacionActores');
+			$this->db->where('actorRelacionadoId',$actorId);
+			$consulta = $this->db->get();
+						
+			if($consulta->num_rows() != 0){
+				foreach($consulta->result_array() as $row3){
+					
+					$listaCitados[$row3['relacionActoresId']] = $row3;
+					
+					$this->db->select('*');
+		            $this->db->from('actores');
+					$this->db->where('tipoActorId',3);
+					$this->db->where('estadoActivo',1);
+		            $this->db->where('actorId',$row3['actores_actorId']);
+		            $actores = $this->db->get();
+					
+					if($actores->num_rows() > 0){
+						foreach($actores->result_array() as $row4){
+							$listaCitados[$row3['relacionActoresId']]['actorId'] = $row4['actorId'];
+							$listaCitados[$row3['relacionActoresId']]['nombre'] = $row4['nombre'];
+							$listaCitados[$row3['relacionActoresId']]['apellidosSiglas'] = $row4['apellidosSiglas'];
+							$listaCitados[$row3['relacionActoresId']]['tipoActorId'] = $row4['tipoActorId'];
+							$listaCitados[$row3['relacionActoresId']]['foto'] = $row4['foto'];
+						}
+					}
+
+				}
+				
+			}
+				
+				
+				
+				
+			if(isset($listaActores) && isset($listaCitados)){
+				$lista = array_merge($listaActores, $listaCitados);
+				return $lista;
+				
+			}else{
+				if (isset($listaActores)) {
+					return $listaActores;
+					
+				} elseif (isset($listaCitados)) {
+					return $listaCitados;
+				}else{
+					return 0;
+				}
+			}/*fin else*/
+               
+	     }/* fin mTraeRekacionesColectivo*/
 		
 			public function mReporteLargo($casoId){
 		
@@ -75,6 +165,8 @@
 					/* Pasa la consulta a un cadena */
 					foreach ($consulta->result_array() as $row) {
 						$datos['intervenciones'][$row['intervencionId']] = $row;
+						$datos['intervenciones'][$row['intervencionId']]['actorRelacionadoInterventor']=$this->mTraerRelacionesActor($row['interventorId']);
+						$datos['intervenciones'][$row['intervencionId']]['actorRelacionadoReceptor']=$this->mTraerRelacionesActor($row['receptorId']);
 					}
 					
 					foreach ($datos['intervenciones'] as $row) {
@@ -89,9 +181,10 @@
 						if ($consultaIntervenidos->num_rows() > 0) {
 							foreach ($consultaIntervenidos->result_array() as $row4) {
 								$datos['intervenciones'][$row['intervencionId']]['intervenidos'][$row4['intervenidoId']]=$row4;
-								
 							}
 						}
+						
+						
 					}
 				}
 				
@@ -150,7 +243,7 @@
 						}
 						
 					}/*Fin foreach actos*/
-					
+				}
 					/* Trae todos los datos de fuenteInfoPersonal*/
 					$this->db->select('*');
 					$this->db->from('fuenteInfoPersonal');
@@ -161,6 +254,8 @@
 						/* Pasa la consulta a un cadena */
 						foreach ($consulta->result_array() as $row) {
 							$datos['fuenteInfoPersonal'][$row['fuenteInfoPersonalId']] = $row;
+							$datos['fuenteInfoPersonal'][$row['fuenteInfoPersonalId']]['actorRelacionadoPersonal']=$this->mTraerRelacionesActor($row['actorId']);
+							$datos['fuenteInfoPersonal'][$row['fuenteInfoPersonalId']]['actorRelacionadoReportado']=$this->mTraerRelacionesActor($row['actorReportado']);
 						}
 					}
 					
@@ -175,8 +270,39 @@
 						foreach ($consulta->result_array() as $row) {
 							$datos['tipoFuenteDocumental'][$row['tipoFuenteDocumentalId']] = $row;
 						}
+					}
+					
+					/* Trae todos los datos de relacionCasos*/
+					$this->db->select('*');
+					$this->db->from('relacionCasos');
+					$this->db->where('casos_casoId',$casoId);
+					$consulta = $this->db->get();
+								
+					if ($consulta->num_rows() > 0){				
+						/* Pasa la consulta a un cadena */
+						foreach ($consulta->result_array() as $row) {
+							$datos['relacionCasos'][$row['relacionId']] = $row;
+							$datos['relacionCasos'][$row['relacionId']]['casoIdB'] = $row['casoIdB'];
+							
+							$this->db->select('nombre,fechaInicial,fechaTermino');
+							$this->db->from('casos');
+							$this->db->where('casoId', $row['casoIdB']);
+							$consultaCaso = $this->db->get();
+							
+							if ($consultaCaso->num_rows() > 0){
+								foreach ($consultaCaso->result_array() as $row3) {
+									$nombreCaso = $row3;
+								}
+								
+								$datos['relacionCasos'][$row['relacionId']]['nombreCasoIdB'] = $nombreCaso['nombre']; 
+								$datos['relacionCasos'][$row['relacionId']]['fechaIncial'] = $nombreCaso['fechaInicial'];
+								$datos['relacionCasos'][$row['relacionId']]['fechaTermino'] = $nombreCaso['fechaTermino'];	
+							}
+							
+							
+						}
 					} 	
-				}
+				
 				if (isset($datos)) {
 					return $datos;
 				}else{
@@ -272,7 +398,8 @@
 							}
 						}
 					}/* Fin foreach de derechoAfectado*/
-				}/* Fin de if Actos*/
+				}
+				
 				
 				return $datos;
 			}/* Fin de mTraeDatosCorto */
@@ -318,7 +445,11 @@
 					}
 					
 					$datos=$this->mTraeDatosCorto($casoId['casoId']);
-					return $datos;
+					
+					
+						return $datos;
+				}else{
+					return '0';
 				}
 			}
 			/*$datos = array('desdeFecha'=>'fechainicial','hastaFecha'=>'fechafinal');
@@ -343,9 +474,11 @@
 						$casoId = $row['casoId'];
 						$datosCasos['casos'][$row['casoId']]=$this->mTraeDatosCorto($casoId);
 					}
-					return($datosCasos);
+						return $datosCasos;
 					
-				}/*fin if */
+				}else{
+					return '0';
+				}
 				
 			}/* fin de mReporteCortoFechas*/
 			
@@ -367,8 +500,10 @@
 						$casoId = $row['casos_casoId'];
 						$datosCasos['casos'][$row['casos_casoId']]=$this->mTraeDatosCorto($casoId);
 					}
-					return($datosCasos);
-				}/*fin if consultaCasos */
+						return $datosCasos;
+				}else{
+					return '0';
+				}
 			}/* fin de mReporteCortoActoDerechoAfectado*/
 			
 			

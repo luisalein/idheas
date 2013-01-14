@@ -836,59 +836,55 @@ class CasosVentanas_c extends CI_Controller {
 	}
 	
 	public function cargarPDF(){
-			
+           
    //Preguntamos si nuetro arreglo 'archivos' fue definido
          if (isset ($_FILES["archivos"])) {
-        	$tot = count($_FILES["archivos"]["name"]);
+            $tot = count($_FILES["archivos"]["name"]);
          //este for recorre el arreglo
-	         for ($i = 0; $i < $tot; $i++){
-	         //con el indice $i, poemos obtener la propiedad que desemos de cada archivo
-	         //para trabajar con este
-	         		
-					$tamano = $_FILES["archivos"]['size'][$i];
-					$tipo = $_FILES["archivos"]['type'][$i];
-					$archivo = $_FILES["archivos"]['name'][$i];
-					$prefijo = substr(md5(uniqid(rand())),0,6);
-					
-					if($tipo == "application/pdf"){			
-						if ($archivo != "") {
-						    // guardamos el archivo a la carpeta files
-						    
-						    //para MAC y Linux
-						    $urlBase = system('pwd');
-							
-						    //Para windows
-							//$urlBase = system('chdir');
-							
-						    $destino = $urlBase.'/statics/fichas/'.$prefijo.'_'.$archivo;
-						  					
-						    if (move_uploaded_file($_FILES['archivos']['tmp_name'][$i],$destino)) {
-						    	
-								$status = "Archivo subido: <b>".$archivo."</b>";
-								
-								$urls[$i]= '/statics/fichas/'.$prefijo.'_'.$archivo;
-								
-						    } else {
-						    	
-								 return '0';
-								
-						    }
-						} else {
-							
-						    return '0';
-							
-						}
-						
-					}else{
-							
-						return '0';
-						
-					}
-	            }	
-     		 } 
-		
-		return $urls;
-	}
+             for ($i = 0; $i < $tot; $i++){
+             //con el indice $i, poemos obtener la propiedad que desemos de cada archivo
+             //para trabajar con este
+                    
+                    $tamano = $_FILES["archivos"]['size'][$i];
+                    $tipo = $_FILES["archivos"]['type'][$i];
+                    $archivo = $_FILES["archivos"]['name'][$i];
+                    $prefijo = substr(md5(uniqid(rand())),0,6);
+                   
+               
+                        if ($archivo != "") {
+                            // guardamos el archivo a la carpeta files
+                           
+                            //para MAC y Linux
+                            $urlBase = system('pwd');
+                           
+                            //Para windows
+                            //$urlBase = system('chdir');
+                           
+                            $destino = $urlBase.'/statics/fichas/'.$prefijo.'_'.$archivo;
+                                             
+                            if (move_uploaded_file($_FILES['archivos']['tmp_name'][$i],$destino)) {
+                               
+                                $status = "Archivo subido: <b>".$archivo."</b>";
+                               
+                                $urls[$i]= '/statics/fichas/'.$prefijo.'_'.$archivo;
+                               
+                            } else {
+                               
+                                 return '0';
+                               
+                            }
+                        } else {
+                           
+                            return '0';
+                           
+                        }
+                       
+                    }
+                   
+              }
+       
+        return $urls;
+    }
 	
 }
     

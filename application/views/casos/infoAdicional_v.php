@@ -22,8 +22,11 @@
 					            </thead>
 					            <tbody>
 					            	<?php if(isset($datosCaso['tipoFuenteDocumental'])){
+
 					            		foreach ($datosCaso['tipoFuenteDocumental'] as $index => $fuenteDoc) {
+
 					            			if (isset($fuenteDoc['casosActor'])) {
+
 							            		foreach ($fuenteDoc['casosActor'] as $fuenteDoc2) {
 							            			if ($fuenteDoc2['casos_casoId']==$casoId) {
 							            				$actorReportado=$fuenteDoc2['casoActorId'];
@@ -31,6 +34,7 @@
 							            				$actorReportado=0;
 							            			}
 							            		}
+
 					            			} else{
 					            				$actorReportado=0;
 					            			}
@@ -70,15 +74,20 @@
 						            <tbody>
 						            	<?php if(isset($datosCaso['fuenteInfoPersonal'])){
 						            		foreach ($datosCaso['fuenteInfoPersonal'] as $index => $fuentePersonal) { 
-
-						            			foreach ($fuentePersonal['casosActorReportado'] as $documental) {
-						            				if ((isset($documental['casos_casoId']))&&($documental['casos_casoId']==$casoId)) {
-						            					$actorReportado=$documental['casoActorId'];
-						            				}
-						            				else{
-						            					$actorReportado=0;
-						            				}
-						            			}if (isset($fuentePersonal['casosActor'])) {
+						            			if (isset($fuentePersonal['casosActorReportado'])) {
+							            			foreach ($fuentePersonal['casosActorReportado'] as $documental) {
+							            				if ((isset($documental['casos_casoId']))&&($documental['casos_casoId']==$casoId)) {
+							            					$actorReportado=$documental['casoActorId'];
+							            				}
+							            				else{
+							            					$actorReportado=0;
+							            				}
+							            			} 
+						            			}
+						            			else{
+						            				$actorReportado=0;
+						            			}
+						            			if (isset($fuentePersonal['casosActor'])) {
 							            			foreach ($fuentePersonal['casosActor'] as $documental) {
 							            				if ($documental['casos_casoId']==$casoId) {
 

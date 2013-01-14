@@ -1,3 +1,5 @@
+<div id="mensaje"></div>
+
 <form method="post" name="formRelacionCasos"  action='<?=base_url(); ?>index.php/reporteExcel_c/generaExcel' accept-charset="utf-8">
 	<fieldset style="padding:10px;">
 	<div class="twelve columns">
@@ -6,6 +8,8 @@
 		<input type="hidden" id="tipoFiltro" name="tipoFiltro" value="1"/>
 	</div>	
 	<input class="medium button" type="submit" value="Guardar" id="botonNombre" disabled="disabled" style="margin-left:15px; background: #E32500 !important;"/>
+	<input onclick="limpiarReporte()" class="medium button" type="button" value="Limpiar" id="botonNombre" style="margin-left:15px; background: #E32500 !important; padding:8px 15px 8px 15px !important;"/>
+
 	<br /></fieldset><br />
 
 </form>
@@ -24,6 +28,7 @@
 	</div>
 	</div>
 		<input class="medium button" type="submit" value="Guardar"  id="botonFecha"  disabled="disabled" style="margin-left:15px; background: #E32500 !important;"/>
+		<input onclick="limpiarReporte()" class="medium button" type="button" value="Limpiar" id="botonNombre" style="margin-left:15px; background: #E32500 !important; padding:8px 15px 8px 15px !important;"/>
 
 	<br /></fieldset><br />
 
@@ -125,5 +130,7 @@
 							<br /><br />
 		<br />
 	<input class="medium button" type="submit" value="Guardar"  id="botonDA" disabled="disabled" style="background: #E32500 !important;"/>
+	<input onclick="limpiarReporte()" class="medium button" type="button" value="Limpiar" id="botonNombre" style="margin-left:15px; background: #E32500 !important; padding:8px 15px 8px 15px !important;"/>
+
 <br /></fieldset><br />
 </form>
