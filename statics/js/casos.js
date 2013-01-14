@@ -10,6 +10,11 @@
  
 // })
 
+function limpiarReporte(){
+    document.location.href = base+'index.php/reportes_c/generar_reporte';
+}
+
+
 function ventanaDetalleLugar(casoId, indice){
 	  var windowSizeArray = [ "width=800,height=200,scrollbars=yes" ];
 		window.open(base+'index.php/casosVentanas_c/ventanaLugares/'+casoId+'/'+indice+'/', 'Detalles Lugar', windowSizeArray);
