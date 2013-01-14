@@ -237,6 +237,7 @@
 									/* Pasa la consulta a un cadena */
 									foreach ($consulta->result_array() as $row) {
 										$datos['perpetradores'][$row['perpetradorVictimaId']] = $row;
+										$datos['perpetradores'][$row['perpetradorVictimaId']]['actorRelacionadoPerpetrador']=$this->mTraerRelacionesActor($row['perpetradorId']);
 									}
 								}
 							}/*Fin foreach Victimas*/
@@ -269,6 +270,7 @@
 						/* Pasa la consulta a un cadena */
 						foreach ($consulta->result_array() as $row) {
 							$datos['tipoFuenteDocumental'][$row['tipoFuenteDocumentalId']] = $row;
+							$datos['tipoFuenteDocumental'][$row['tipoFuenteDocumentalId']]['actorRelacionadoReportado']=$this->mTraerRelacionesActor($row['actorReportado']);
 						}
 					}
 					

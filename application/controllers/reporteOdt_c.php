@@ -52,6 +52,10 @@ class ReporteOdt_c extends CI_Controller
 		
 		$datos['tipoFuenteCatalogo'] = $this->catalogos_m->mTraerDatosCatalogoNombre('tipoFuenteCatalogo');
 		
+		$datos['tipoFuenteDocumentalN1Catalogo'] = $this->catalogos_m->mTraerDatosCatalogoNombre('tipoFuenteCatalogoDocumentalN1Catalogo');
+		
+		$datos['tipoFuenteDocumentalN2Catalogo'] = $this->catalogos_m->mTraerDatosCatalogoNombre('tipoFuenteCatalogoDocumentalN2Catalogo');
+		
 		$datos['relacionCasosCatalogo'] = $this->catalogos_m->mTraerDatosCatalogoNombre('relacionCasosCatalogo');
 
         $datos['ListaTodosActores'] = $this->actores_m-> mListaTodosActores();
