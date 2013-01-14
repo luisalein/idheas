@@ -201,7 +201,7 @@ class ReportePdf_c extends CI_Controller
 					}
 				}
 				$contenidoReporte['intervencionReceptor']=	"Receptor:  ". $datos['catalogos']['ListaTodosActores'][$intervencion['receptorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$intervencion['receptorId']]['apellidosSiglas'] ."\n";
-				if($intervencion['tipoRelaciontipoRelacionReceptor'] > 0){
+				if(isset($intervencion['tipoRelaciontipoRelacionReceptor']) && $intervencion['tipoRelaciontipoRelacionReceptor'] > 0){
 					$contenidoReporte['actorRelacionadoReceptor']= "Actor colectivo relacionado:  ".$intervencion['actorRelacionadoReceptor'][$intervencion['tipoRelacionReceptor']]['nombre']."\n";
 					$contenidoReporte['tipoRelacionReceptor']= "Tipo relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$intervencion['actorRelacionadoReceptor'][$intervencion['tipoRelacionReceptor']]['tipoRelacionId']]['Nivel2']."\n";
 				}
@@ -209,10 +209,11 @@ class ReportePdf_c extends CI_Controller
 				$contenidoReporte['intervencionRespuesta']=	"Respuesta:  ". $intervencion['respuesta']."\n";
 				
 				$intervenidos ="Personas por las que se intervino: "."\n";
-				foreach ($intervencion['intervenidos'] as $intervenido) {
-					$intervenidos = $intervenidos. $datos['catalogos']['ListaTodosActores'][$intervenido['intervenidoId']]['nombre']." ". $datos['catalogos']['ListaTodosActores'][$intervenido['intervenidoId']]['apellidosSiglas'] ."\n";
+				if(isset($intervencion['intervenidos'])){
+					foreach ($intervencion['intervenidos'] as $intervenido) {
+						$intervenidos = $intervenidos. $datos['catalogos']['ListaTodosActores'][$intervenido['intervenidoId']]['nombre']." ". $datos['catalogos']['ListaTodosActores'][$intervenido['intervenidoId']]['apellidosSiglas'] ."\n";
+					}
 				}
-				
 				$contenidoReporte['intervenidos'] =$intervenidos;
 			}
 		}	
