@@ -176,6 +176,11 @@ class ReportePdf_c extends CI_Controller
 										$contenidoReporte['perpetradorId'.$key]="Perpetrador ".$nPerp.":  ". $datos['catalogos']['ListaTodosActores'][$value3['perpetradorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$value3['perpetradorId']]['apellidosSiglas'] ."\n";
 										$contenidoReporte['tipoPerpetradorId'.$key]="Tipo de perpetrador:  ".$datos['catalogos']['tipoPerpetrador']['tipoPerpetradorN'.$value3['tipoPerpetradorNivel'].'Catalogo'][$value3['tipoPerpetradorId']]['descripcion']. "\n";
 										if(isset($value3['actorRelacionadoPerpetrador']) && $value3['actorRelacionadoPerpetrador']>0){
+											echo "<pre>";
+											print_r($value3);
+											echo '**********';
+											print_r($value3['actorRelacionadoPerpetrador'][$value3['actorRelacionadoId']]['nombre' ]);
+											echo "</pre>";
 											$contenidoReporte['actorRelacionadoPerpetatrador']="Actor colectivo relacionado:  ".$value3['actorRelacionadoPerpetrador'][$value3['actorRelacionadoId']]['nombre']."\n";
 											$contenidoReporte['tipoRelacionPerpetatrador']="Tipo de relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$value3['actorRelacionadoPerpetrador'][$value3['actorRelacionadoId']]['tipoRelacionId']]['Nivel2']."\n";
 										}
@@ -308,9 +313,9 @@ class ReportePdf_c extends CI_Controller
 		$content = $content . $value;
 
 		}
-	$this->cezpdf->ezText($content, 10);
-
-	$this->cezpdf->ezStream();
+	// $this->cezpdf->ezText($content, 10);
+// 
+	// $this->cezpdf->ezStream();
 		
 	}
 
