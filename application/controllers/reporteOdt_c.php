@@ -272,7 +272,7 @@ class ReporteOdt_c extends CI_Controller
 				if(isset($infoAdicional['actorReportado']) && $infoAdicional['actorReportado'] > 0){
 				$contenidoFuentePersonal['infoAdicionalPersonalReportado'.$key]="Actor reportado:  ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorReportado']]['nombre']." ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorReportado']]['apellidosSiglas']."\n";
 				}
-				if($infoAdicional['actorRelacionadoReportado'] > 0){
+				if($infoAdicional['actorRelacionadoReportado'] > 0 && isset($infoAdicional['tipoRelacionActorReportadoId'])){
 						$contenidoFuentePersonal['actorRelacionadoReportado']= "Actor colectivo relacionado:  ".$infoAdicional['actorRelacionadoReportado'][$infoAdicional['tipoRelacionActorReportadoId']]['nombre']."\n";
 						$contenidoFuentePersonal['tipoRelacionPersonal']= "Tipo relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$infoAdicional['actorRelacionadoReportado'][$infoAdicional['tipoRelacionActorReportadoId']]['tipoRelacionId']]['Nivel2']."\n";
 				}
