@@ -62,6 +62,8 @@ class ReportePdf_c extends CI_Controller
 		$datos['tipoFuenteCatalogo'] = $this->catalogos_m->mTraerDatosCatalogoNombre('tipoFuenteCatalogo');
 		
 		$datos['relacionCasosCatalogo'] = $this->catalogos_m->mTraerDatosCatalogoNombre('relacionCasosCatalogo');
+		
+		$datos['tipoFechaCatalogo']= array('1'=>'Fecha exacta','2'=>'Fecha proximada','3'=>'Se desconoce el día','4'=>'Se desconoce el mes y el día');
 
         $datos['ListaTodosActores'] = $this->actores_m-> mListaTodosActores();
 
@@ -85,7 +87,13 @@ class ReportePdf_c extends CI_Controller
 		$contenidoReporte['NombreCaso']='Nombre del caso:' ." " . $Data['reporte']['casos']['nombre'] . "\n";
 		$contenidoReporte['PersonasAfectadas']="Personas afectadas:" ." " . $Data['reporte']['casos']['personasAfectadas'] . "\n";
 		$contenidoReporte['fechaInicio']="Fecha de inicio:" ." " . $Data['reporte']['casos']['fechaInicial'] . "\n";
+		if($Data['reporte']['casos']['tipoFechaInicialId'] > 0){
+			$contenidoRpoerte['tipoFechaInicio'] = "Tipo fecha:  ".$datos['tipoFechaCatalogo'][$Data['reporte']['casos']['tipoFechaInicialId']]."\n";
+		}
 		$contenidoReporte['fechaTermino']="Fecha de término:" ." " . $Data['reporte']['casos']['fechaTermino'] . "\n";
+		if($Data['reporte']['casos']['tipoFechaTerminoId'] > 0){
+			$contenidoRpoerte['tipoFechaTermino'] = "Tipo fecha:  ".$datos['tipoFechaCatalogo'][$Data['reporte']['casos']['tipoFechaTerminoId']]."\n";
+		}
 /******************************************/	
 
 /**************Lugares***********************/
