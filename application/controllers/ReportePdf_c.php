@@ -248,7 +248,7 @@ class ReportePdf_c extends CI_Controller
 				}
 				$contenidoReporte['infoAdicionalTipoFuente'] = "Tipo fuente:  ".$datos['catalogos']['tipoFuenteCatalogo']['tipoFuenteCatalogo'][$infoAdicional['tipoFuenteCatalogo_tipoFuenteId']]['descripcion']."\n";
 				$contenidoReporte['infoAdicionalfecha'] = "Fecha:  ".$infoAdicional['fecha']."\n";
-				$contenidoReporte['infoAdicionalNivelConfiabilidad'] = "Nivel confiabilidad:  ".$datos['catalogos']['nivelConfiabilidadCatalogo']['nivelConfiabilidadCatalogo'][$infoAdicional['nivelConfiabilidadCatalogo_nivelConfiabilidadId']]['descripcion']."\n";				
+				$contenidoReporte['infoAdicionalNivelConfiabilidad'] = "Nivel confiabilidad:  ".$datos['catalogos']['nivelConfiabilidadCatalogo']['nivelConfiabilidadCatalogo'][$infoAdicional['nivelConfiabilidadCatalogo_nivelConfiabilidadId']-1]['descripcion']."\n";				
 				$contenidoReporte['infoadicionalObservaciones']= "Observaciones:  ".$infoAdicional['observaciones']."\n";
 				$contenidoReporte['infoadicionalComentarios']= "Comentarios:  ".$infoAdicional['comentarios']."\n";
 				$contenidoReporte['infoAdicionalPersonalReportado'.$key]="Actor reportado:  ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorReportado']]['nombre']." ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorReportado']]['apellidosSiglas']."\n";
