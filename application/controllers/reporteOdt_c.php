@@ -245,7 +245,9 @@ class ReporteOdt_c extends CI_Controller
 					$contenidoFuenteDocumental['fuenteDocfechaPublicacion'.$key]="Fecha de publicación:  ".$documental['fecha']. "\n";
 					$contenidoFuenteDocumental['fuenteDocfechaAcceso'.$key]="Fecha de acceso:  ".$documental['fechaAcceso']. "\n";
 					$contenidoFuenteDocumental['fuenteDocinfoAdiocional'.$key]="Informción adicional:  ".$documental['infoAdicional']. "\n";
-					$contenidoFuenteDocumental['fuenteDocNivelConfiabilidad'.$key]="Nivel de confiabilidad:  ". $datos['catalogos']['nivelConfiabilidadCatalogo']['nivelConfiabilidadCatalogo'][$documental['nivelConfiabilidadCatalogo_nivelConfiabilidadId']]['descripcion']. "\n";
+					if(isset($documental['nivelConfiabilidadCatalogo_nivelConfiabilidadId'])){
+						$contenidoFuenteDocumental['fuenteDocNivelConfiabilidad'.$key]="Nivel de confiabilidad:  ". $datos['catalogos']['nivelConfiabilidadCatalogo']['nivelConfiabilidadCatalogo'][$documental['nivelConfiabilidadCatalogo_nivelConfiabilidadId']-1]['descripcion']. "\n";
+					}
 					$contenidoFuenteDocumental['fuenteDocobservaciones'.$key]="Observaciones:  ".$documental['observaciones']. "\n";
 			}
 		}else{
