@@ -1791,7 +1791,7 @@ class Casos_m extends CI_Model {
 	public function mActualizaRelacionCasoActor($datosRelacion){
 
 
-        	if ($datosRelacion['actores_actorId']==0 || (empty($datosRelacion['actores_actorId'])) || (isset($datosRelacion['actores_actorId'])) ) {
+        	if ( (!isset($datos['casos_has_actores']['actores_actorId'])) || ($datos['casos_has_actores']['actores_actorId']==0) || (empty($datos['casos_has_actores']['actores_actorId'])) ) {
 
         		$datos['actores_actorId']=NULL;
         		

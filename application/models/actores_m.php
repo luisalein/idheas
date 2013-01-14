@@ -555,6 +555,7 @@
 				foreach ($listaActoresId as $key => $value) {
 					$this->db->select('actorId,nombre,apellidosSiglas,tipoActorId');
 		            $this->db->from('actores');
+					$this->db->where('estadoActivo',1);
 		            $this->db->where('actorId',$value['actorRelacionadoId']);
 		            $actores = $this->db->get();
 					
@@ -593,6 +594,7 @@
 					
 					$this->db->select('*');
 		            $this->db->from('actores');
+					$this->db->where('estadoActivo',1);
 		            $this->db->where('actorId',$row['actorRelacionadoId']);
 		            $actores = $this->db->get();
 					
@@ -623,6 +625,7 @@
 					
 					$this->db->select('*');
 		            $this->db->from('actores');
+					$this->db->where('estadoActivo',1);
 		            $this->db->where('actorId',$row3['actores_actorId']);
 		            $actores = $this->db->get();
 					

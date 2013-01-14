@@ -3,7 +3,7 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
 DROP SCHEMA IF EXISTS `idheasIkari` ;
-CREATE SCHEMA IF NOT EXISTS `idheasIkari` DEFAULT CHARACTER SET latin1 COLLATE latin1_spanish_ci ;
+CREATE SCHEMA IF NOT EXISTS `idheasIkari` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
 USE `idheasIkari` ;
 
 -- -----------------------------------------------------
@@ -241,10 +241,10 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`casos` (
   `nombre` VARCHAR(50) NOT NULL ,
   `personasAfectadas` INT NULL ,
   `fechaInicial` DATE NULL ,
-  `fechaTermino` DATE NULL ,
-  `estadoActivo` TINYINT(1) NULL DEFAULT 1 ,
   `tipoFechaInicialId` INT NULL ,
+  `fechaTermino` DATE NULL ,
   `tipoFechaTerminoId` INT NULL ,
+  `estadoActivo` TINYINT(1) NULL DEFAULT 1 ,
   PRIMARY KEY (`casoId`) )
 ENGINE = InnoDB;
 
@@ -321,14 +321,15 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`fuenteInfoPersonal` (
   `fuenteInfoPersonalId` INT NOT NULL AUTO_INCREMENT ,
   `actorId` INT NULL ,
   `fecha` DATE NULL ,
+  `tipoFechaId` INT NULL ,
   `actorReportado` INT NULL ,
   `observaciones` VARCHAR(1500) NULL ,
   `comentarios` VARCHAR(1500) NULL ,
   `tipoRelacionActorReportadoId` INT NULL ,
   `relacionId` INT NULL ,
   `casos_casoId` INT NOT NULL ,
-  `tipoFuenteCatalogo_tipoFuenteId` INT NOT NULL ,
-  `nivelConfiabilidadCatalogo_nivelConfiabilidadId` INT NOT NULL ,
+  `tipoFuenteCatalogo_tipoFuenteId` INT NULL ,
+  `nivelConfiabilidadCatalogo_nivelConfiabilidadId` INT NULL ,
   PRIMARY KEY (`fuenteInfoPersonalId`) ,
   INDEX `fk_fuenteInfoPersonal_casos1_idx` (`casos_casoId` ASC) ,
   INDEX `fk_fuenteInfoPersonal_tipoFuenteCatalogo1_idx` (`tipoFuenteCatalogo_tipoFuenteId` ASC) ,
@@ -396,9 +397,9 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`fichas` (
   `clave` INT NULL ,
   `titulo` VARCHAR(100) NULL ,
   `fecha` DATE NULL ,
+  `tipoFechaId` INT NULL ,
   `comentarios` VARCHAR(3000) NULL ,
   `casos_casoId` INT NOT NULL ,
-  `tipoFechaId` INT NULL ,
   PRIMARY KEY (`fichaId`) ,
   INDEX `fk_fichas_casos1_idx` (`casos_casoId` ASC) ,
   CONSTRAINT `fk_fichas_casos1`
@@ -527,15 +528,15 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`derechoAfectado` (
   `derechoAfectadoCasoId` INT NOT NULL AUTO_INCREMENT ,
   `fechaInicial` DATE NULL ,
+  `tipoFechaInicialId` INT NULL ,
   `fechaTermino` DATE NULL ,
+  `tipoFechaTerminoId` INT NULL ,
   `noVictimas` INT NULL ,
   `derechoAfectadoNivel` INT NULL ,
   `derechoAfectadoId` INT NULL ,
   `paisesCatalogo_paisId` INT NULL ,
   `estadosCatalogo_estadoId` INT NULL ,
   `municipiosCatalogo_municipioId` INT NULL ,
-  `tipoFechaInicialId` INT NULL ,
-  `tipoFechaTerminoId` INT NULL ,
   PRIMARY KEY (`derechoAfectadoCasoId`) ,
   INDEX `fk_derechoAfectado_paisesCatalogo1` (`paisesCatalogo_paisId` ASC) ,
   INDEX `fk_derechoAfectado_estadosCatalogo1` (`estadosCatalogo_estadoId` ASC) ,
@@ -650,7 +651,7 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`perpetradores` (
   `gradoInvolucramientoid` INT NULL ,
   `nivelInvolugramientoId` INT NULL ,
   `actorRelacionadoId` INT NULL ,
-  `estatusPerpetradorCatalogo_estatusPerpetradorId` INT NOT NULL ,
+  `estatusPerpetradorCatalogo_estatusPerpetradorId` INT NULL ,
   `victimas_victimaId` INT NOT NULL ,
   PRIMARY KEY (`perpetradorVictimaId`) ,
   INDEX `fk_perpetradorCaso_estatusPerpetradorCatalogo1_idx` (`estatusPerpetradorCatalogo_estatusPerpetradorId` ASC) ,
@@ -912,9 +913,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`casos_has_actores` (
   `casos_casoId` INT NOT NULL ,
-  `actores_actorId` INT NOT NULL ,
+  `actores_actorId` INT NULL ,
   `casoActorId` INT NOT NULL AUTO_INCREMENT ,
-  PRIMARY KEY (`casoActorId`, `casos_casoId`, `actores_actorId`) ,
+  PRIMARY KEY (`casoActorId`, `casos_casoId`) ,
   INDEX `fk_casos_has_actores_actores1_idx` (`actores_actorId` ASC) ,
   INDEX `fk_casos_has_actores_casos1_idx` (`casos_casoId` ASC) ,
   CONSTRAINT `fk_casos_has_actores_casos1`
@@ -1200,7 +1201,7 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoFuenteDocumental` (
   `tipoFuenteDocumentalCatalogoId` INT NULL ,
   `tipoFuenteDocumentalCatalogoNivel` INT NULL ,
   `casos_casoId` INT NOT NULL ,
-  `nivelConfiabilidadCatalogo_nivelConfiabilidadId` INT NOT NULL ,
+  `nivelConfiabilidadCatalogo_nivelConfiabilidadId` INT NULL ,
   PRIMARY KEY (`tipoFuenteDocumentalId`) ,
   INDEX `fk_tipoFuenteDocumental_casos1_idx` (`casos_casoId` ASC) ,
   INDEX `fk_tipoFuenteDocumental_nivelConfiabilidadCatalogo1_idx` (`nivelConfiabilidadCatalogo_nivelConfiabilidadId` ASC) ,
@@ -1301,7 +1302,7 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoFuenteDocumentalN2Catalogo` (
   `tipoFuenteDocumentalN2CatalogoId` INT NOT NULL AUTO_INCREMENT ,
   `descripcion` VARCHAR(100) NULL ,
   `notas` VARCHAR(1000) NULL ,
-  `tipoFuenteDocumentalN1Catalogo_tipoFuenteDocumentalN1CatalogoId` INT NOT NULL ,
+  `tipoFuenteDocumentalN1Catalogo_tipoFuenteDocumentalN1CatalogoId` INT NULL ,
   PRIMARY KEY (`tipoFuenteDocumentalN2CatalogoId`) ,
   INDEX `fk_tipoFuenteDocumentalN2Catalogo_tipoFuenteDocumentalN1Catal1` (`tipoFuenteDocumentalN1Catalogo_tipoFuenteDocumentalN1CatalogoId` ASC) ,
   CONSTRAINT `fk_tipoFuenteDocumentalN2Catalogo_tipoFuenteDocumentalN1Catal1`
@@ -1311,7 +1312,6 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoFuenteDocumentalN2Catalogo` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-insert into usuarios(nombre,pass) values ('admin','idheas');
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

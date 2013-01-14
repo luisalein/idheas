@@ -912,9 +912,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`casos_has_actores` (
   `casos_casoId` INT NOT NULL ,
-  `actores_actorId` INT NOT NULL ,
+  `actores_actorId` INT NULL ,
   `casoActorId` INT NOT NULL AUTO_INCREMENT ,
-  PRIMARY KEY (`casoActorId`, `casos_casoId`, `actores_actorId`) ,
+  PRIMARY KEY (`casoActorId`, `casos_casoId`) ,
   INDEX `fk_casos_has_actores_actores1_idx` (`actores_actorId` ASC) ,
   INDEX `fk_casos_has_actores_casos1_idx` (`casos_casoId` ASC) ,
   CONSTRAINT `fk_casos_has_actores_casos1`
@@ -1311,7 +1311,7 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoFuenteDocumentalN2Catalogo` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
+insert into usuarios(nombre,pass) values ('admin','idheas');
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
