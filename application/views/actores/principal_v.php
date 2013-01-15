@@ -17,7 +17,7 @@
             <?php if(isset($is_actor_type)){ ?>
                 <div class="<?= ($actorId>0) ? 'six columns' : 'twelve columns espacioSuperior' ;?>">
                 <form method="post" action="<?=base_url(); ?>index.php/actores_c/agregar_actor/<?=$is_actor_type; ?>">
-                    <center><input type="submit" value="Agregar Actor" class="tiny button"/></center>
+                    <center><input type="submit" value="Agregar Actor" class="tiny button  espacioSuperior"/></center>
                 </form>
                 </div>
                 
@@ -25,11 +25,11 @@
                     if ( $actorId > 0) {
                      ?>
                         <div class="six columns">
-                                <center><input type="button" value="Eliminar Actor" class="tiny button" name="<?=$actorId; ?>&<?=$is_actor_type; ?>" id="eliminarActor"/></center>
+                                <center><input type="button" value="Eliminar Actor" class="tiny button espacioSuperior" style="padding: 4px 11px 4px 11px" name="<?=$actorId; ?>&<?=$is_actor_type; ?>" id="eliminarActor"/></center>
                         </div>
                         <div class="twelve columns">
                             <form method="post" action="<?=base_url(); ?>index.php/actores_c/editar_actor/<?=$actorId; ?>/<?=$is_actor_type; ?>" >
-                                <center><input type="submit" value="Editar Actor" class="tiny button" /></center>
+                                <center><input type="submit" value="Editar Actor" class="tiny button espacioSuperior" /></center>
                             </form>
                         </div>
                 <?php } } ?>
@@ -39,12 +39,12 @@
                     if ($casoId>0) {?>
                         <div class="six columns">
                            <form method="post" action="<?=base_url(); ?>index.php/casos_c/editarCaso/<?=$casoId; ?>">
-                                <input type="submit" class="tiny button" value="Editar Caso" />
+                                <input type="submit" class="tiny button espacioSuperior" value="Editar Caso" />
                            </form>
                         </div>
                         <div class="six columns">
                            <form method="post" >
-                           	 <input type="button" value="Eliminar Caso" class="tiny button"  name="<?=$casoId; ?>" id="eliminarCaso"/>	
+                           	 <input type="button" value="Eliminar Caso" class="tiny button espacioSuperior" style="padding: 4px 11px 4px 11px"  name="<?=$casoId; ?>" id="eliminarCaso"/>	
                            </form>
                        </div>
                      <?php }
@@ -53,7 +53,7 @@
                 <div class="three columns"></div>
                 <div clas="six columns">
                     <form method="post" action="<?=base_url(); ?>index.php/casos_c/agregar_caso">
-                        <input type="submit" value="Agregar Caso" class="tiny button" />
+                        <input type="submit" value="Agregar Caso" class="tiny button espacioSuperior" />
                     </form>
                 </div>
             </div>

@@ -120,7 +120,6 @@
 	  		</div>
 
 	  	</div><!--fin acordeon Fuentes de información-->
-	  	<pre><?=print_r($datosCaso['relacionCasos'])?></pre>
 	  	<div id="subPestanias" data-collapse>
 	  		<h2>Relación entre casos</h2>
 	  		<div>

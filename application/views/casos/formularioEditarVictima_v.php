@@ -21,18 +21,18 @@
 		<div class="twelve columns">
 			<div class="four columns"> 	<!--Lista de victimas-->
 					<div class="twelve columns espacioSuperior">
-						<div class="six columns">
+						<div class="six columns espacioSuperior">
 							<form action="<?= base_url(); ?>index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/0/1/<?=$casoId?>" method="post">
 								<center><input class="small button" value="Nueva víctima" type="submit"></center>
 							</form>
 						</div>
 						<?php if ($idVictima>0) { ?>
-							<div class="six columns">
+							<div class="six columns espacioSuperior">
 								<form action="<?= base_url(); ?>index.php/casos_c/eliminarVictima/<?=$idActo; ?>/<?=$victimas['victimas'][$idVictima]['victimaId']; ?>/<?=$casoVictimaActorId?>/<?=$casoId?>">
 								<center><input class="small button" value="Eliminar víctima" type="submit"></center>
 								</form>
 							</div>
-							<div class="twelve columns">
+							<div class="twelve columns espacioSuperior">
 								<form action="http://localhost/idheas/index.php/casos_c/mostrarVictimas/<?=$idActo; ?>/<?=$idVictima; ?>/1/<?=$casoId?>" method="post">
 									<center><input class="small button" value="Editar víctima" type="submit"></center>
 								</form>

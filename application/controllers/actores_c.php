@@ -130,79 +130,21 @@ class Actores_c extends CI_Controller {
             $datos['citaActor'] = $this->actores_m->mTraerCitasActor($actorId);
 
 			if ($tipoActorId==3) {
-				if(isset($datos['citaActor']['citas'])){
-				
-					foreach ($datos['citaActor']['citas'] as $persona) {
+				$datos['casosRelacionados']="";
+				$arreglo="";
+	            $casoAfiliados= $this->casosRelacionados($actorId,$actorId,$arreglo);
+	            
+	            if ($casoAfiliados!=0) {
 
-						$casosRelacionadoIndividual=$this->actores_m->mTraeCasosRelacionadosActor($persona['datosCitas']['actores_actorId']);
-				
-						if ($casosRelacionadoIndividual!=0) {
-							if (isset($datos['casosRelacionados']) ) {
+		            foreach ($casoAfiliados as $casosColectivos) {
 
-								array_merge($datos['casosRelacionados'],$casosRelacionadoIndividual);
-							}
+		            	$datos['casosRelacionados'][$casosColectivos['casos']['casoId']]=$casosColectivos;
 
-							else{
-
-								$datos['casosRelacionados']=$casosRelacionadoIndividual;
-							}
-						}
-
-					}
-					// foreach ($datos['citaActor']['citas'] as $persona) {
-
-					// 	$actoresRelacionados = $this->actores_m->mTraerRelacionesActor($persona['datosCitas']['relacionActoresId']);
-							
-					// 	if($actoresRelacionados!=0){
-					// 		foreach ($actoresRelacionados as $actorReacionado) {
-
-					// 			if ($actorReacionado['tipoRelacionIndividualColectivoId']==1) {
-
-					// 				$aux=$actorReacionado['actorRelacionadoId'];
-					// 				$actorReacionado['actorRelacionadoId']=$actorReacionado['actorId'];
-					// 				$actorReacionado['actorId']=$aux;
-					// 				$citas[$contador]['datosCitas']=$actorReacionado;
-					// 				$datos['citaActor']['citas']=$datos['citaActor']['citas']+$citas;
-					// 				$contador=$contador+1;
-					// 			}
-					// 		}
-							
-					// 	}
-					// }
-				}
-            
-            
-            $casoAfiliados= $this->casosRelacionados($actorId);
-
-            if ($casoAfiliados!=0) {
-
-            	if (isset($datos['casosRelacionados'])) {
-
-            		array_merge($datos['casosRelacionados'],$casoAfiliados);
-            	}
-
-            	else{
-            	$datos['casosRelacionados']=$casoAfiliados;
-            	}
-            }
-
+		            }
+	            
+	            }
 
             }
-
-            /**Esta parte se asegura de que no se repita ningun caso, es decir, que es caso solo aparezca una vez**/
-
-            if (isset($datos['casosRelacionados'])) {
-
-            		$auxiliar=$datos['casosRelacionados'];
-
-            		$datos['casosRelacionados']="";
-
-            	foreach ($auxiliar as $caso) {
-            		
-            		$datos['casosRelacionados'][$caso['casos']['casoId']]=$caso;
-            	}
-            }
-            /**Termina la parte que se asegura de que no se repita ningun caso, es decir, que es caso solo aparezca una vez**/
             
         }
         
@@ -799,42 +741,103 @@ class Actores_c extends CI_Controller {
 		print_r($data);
 	}
 
+	public function casosIndividuales($actorId){
+
+            $citaActor = $this->actores_m->mTraerCitasActor($actorId);
+
+            if ($citaActor!=0) {
+            	
+            	foreach ($citaActor['citas'] as $citado) {
+            		if ($citado['datosCitas']['tipoRelacionIndividualColectivoId']<3) {
+            			$casosActorActual=$this->actores_m->mTraeCasosRelacionadosActor($citado['datosCitas']['actores_actorId']);
+
+            			if ($casosActorActual!=0) {
+            				if (isset($casosDeIndividuales)) {
+            					$casosDeIndividuales=$casosDeIndividuales+$casosActorActual;
+            				}
+            				else{ 
+            					$casosDeIndividuales=$casosActorActual;
+            				}
+            	
+            			}
+            		}
+            		
+            	}
+            }
+            if (isset($casosDeIndividuales)) {
+            	return $casosDeIndividuales;            	
+            }
+            else {
+            	return 0;
+            }
+	}
 
 	/*Trae los casos relacionados con un actor colectivo y sus afiliados*/
-	public function casosRelacionados($actorCId)
+	public function casosRelacionados($actorInicial,$actorColectivo,$casosColectivo)
 	{
-		
 		//Traer casos relacionados con los afiliados del actor colectivo
 		
-		$datos['actoresAfiliados']=$this->actores_m->mTraeRelacionesColectivo($actorCId);		
+		$casosActorActual=$this->actores_m->mTraeCasosRelacionadosActor($actorColectivo);
 
-		if($datos['actoresAfiliados'] != '0' && $datos['actoresAfiliados'] != ''){
-			foreach ($datos['actoresAfiliados'] as $valor){
+		if ($casosActorActual!=0) {
 			
-				$casosAfiliadosIndice=$this->actores_m->mTraeCasosRelacionadosActor($valor['actorId']);
-				$arregloCasosAfiliados="";
-				if($casosAfiliadosIndice !=	'0'){
+			if (empty($casosColectivo)) {
 
-					foreach ($casosAfiliadosIndice as $valor){
+				$casosColectivo=$casosActorActual;
 
-						$datos['casosAfiliados'][$valor['casos']['casoId']]=$valor;	
+			}else{
+				$casosColectivo=$casosColectivo+$casosActorActual;
+			}
+		}
+
+		$casosDeIndividuales=$this->casosIndividuales($actorColectivo);
+
+		if ($casosDeIndividuales!=0) {
+
+			if (empty($casosColectivo)) {
+
+				$casosColectivo=$casosDeIndividuales;
+			}
+
+			else{
+				$casosColectivo=$casosColectivo+$casosDeIndividuales;
+			}
+		}
+
+		if ($actorColectivo>0) {
+
+			$listaActores=  $this->actores_m->mListaTodosActores();
+
+	        $datosActor = $this->actores_m->traer_datos_actor_m($actorColectivo, $listaActores[$actorColectivo]['tipoActorId']);
+			
+	        if (isset($datosActor['actoresRelacionados'])) {
+	        	
+	        	$colectivosRelacionados=$datosActor['actoresRelacionados'];
+
+				foreach ($colectivosRelacionados as $key => $ColectivoRelacionado) {
+					
+					if ($key!=$actorInicial) {
+
+						$arregloCaso=$this->casosRelacionados($actorInicial,$key,$casosColectivo);
 						
-				
+						if ($arregloCaso!=0) {
+
+							return $arregloCaso;
+						}
+
 					}
 				}
-			}
-			
-			
+
+	        }
+
+	        else{
+
+	        	return $casosColectivo;
+	        }
+
 		}
-		
-		if(!empty($datos['casosAfiliados'])){
 
-			echo "entra a casosRelacionados";		
-
-				$datos['casos'] = $datos['casosAfiliados'];
-
-			return $datos['casos'];
-		}
+		//Obtengo los casos de sus actoresIndividuales relacionados
 		
 	}
 

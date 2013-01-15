@@ -413,13 +413,16 @@
                     </span>-->
                 </div>
             </div>
-
                 <div class="twelve columns"> 
-                    <div class="six columns"> 
-                        <label for="realizaViaje">Realiza el viaje</label>
-                        <input type="radio" name="infoMigratoria_realizaViaje" value="No acompanado" /> No acompañado
-                        <input type="radio" name="infoMigratoria_realizaViaje" value="Acompanado" /> Acompañado
-                    </div>
+                    <label for="realizaViaje">Realiza el viaje</label>
+                        <?php if(isset($datosActor['inofGralActor']['realizaViaje'])){ ?>
+                            <input type="radio" name="infoMigratoria_realizaViaje" id="infoMigratoria_realizaViaje" <?=($datosActor['infoGralActor']['realizaViaje'] == 'No acompanado') ? 'checked="checked"' : ''; ?> value="No acompanado" />No acompañado
+                            <input type="radio" id="infoGralActor_espaniol" name="infoGralActor_espaniol" <?=($datosActor['infoGralActor']['realizaViaje'] == 'Acompanado') ? 'checked="checked"' : ''; ?> value="Acompanado" />Acompañado
+                        <?php } else { ?>
+                            <input type="radio" name="infoMigratoria_realizaViaje" id="infoMigratoria_realizaViaje" checked="checked" value="No acompanado" />No acompañado
+                            <input type="radio" id="infoGralActor_realizaViaje" name="infoGralActor_realizaViaje" value="Acompanado" />Acompañado
+                        <?php } ?>
+
                 </div>
 
     </fieldset><!--Termina datos de nacimiento-->
