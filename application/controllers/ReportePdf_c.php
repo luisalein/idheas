@@ -177,7 +177,7 @@ class ReportePdf_c extends CI_Controller
 										$status = $value3['estatusPerpetradorCatalogo_estatusPerpetradorId'] -1;
 										$contenidoReporte['perpetradorId'.$key]="Perpetrador ".$nPerp.":  ". $datos['catalogos']['ListaTodosActores'][$value3['perpetradorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$value3['perpetradorId']]['apellidosSiglas'] ."\n";
 										$contenidoReporte['tipoPerpetradorId'.$key]="Tipo de perpetrador:  ".$datos['catalogos']['tipoPerpetrador']['tipoPerpetradorN'.$value3['tipoPerpetradorNivel'].'Catalogo'][$value3['tipoPerpetradorId']]['descripcion']. "\n";
-										if(isset($value3['actorRelacionadoPerpetrador'.$key]) && $value3['actorRelacionadoPerpetrador']>0){
+										if(isset($value3['actorRelacionadoPerpetrador']) && $value3['actorRelacionadoPerpetrador']>0){
 											$contenidoReporte['actorRelacionadoPerpetatrador'.$key]="Actor colectivo relacionado:  ".$value3['actorRelacionadoPerpetrador'][$value3['actorRelacionadoId']]['nombre']."\n";
 											$contenidoReporte['tipoRelacionPerpetatrador'.$key]="Tipo de relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$value3['actorRelacionadoPerpetrador'][$value3['actorRelacionadoId']]['tipoRelacionId']]['Nivel2']."\n";
 										}
