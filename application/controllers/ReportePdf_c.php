@@ -167,7 +167,7 @@ class ReportePdf_c extends CI_Controller
 							$datos['catalogos']['ListaTodosActores'][$value2['actorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$value2['actorId']]['apellidosSiglas'] ."\n".
 							"Comentarios sobre victimas y perpetradores:  \n". $value2['comentarios'];
 							if(isset($value2['estatusVictimaId'])){
-								$contenidoReporte['estatusVictimaId'.$key]="Estado:  ". $datos['catalogos']['estatusVictimaCatalogo']['estatusVictimaCatalogo'][$value2['estatusVictimaId']]['descripcion']."\n";
+								$contenidoReporte['estatusVictimaId'.$key]="Estado:  ". $datos['catalogos']['estatusVictimaCatalogo']['estatusVictimaCatalogo'][$value2['estatusVictimaId']-1]['descripcion']."\n";
 							}
 							if (isset($Data['reporte']['perpetradores']	)) {
 								$contenidoReporte['EncabezadoPerpetradores'.$key]="\nPerpetradores  "."\n\n";
@@ -175,7 +175,7 @@ class ReportePdf_c extends CI_Controller
 									if ($value3['victimas_victimaId']==$value2['victimaId']) {
 										$nPerp = $nPerp+1;
 										$status = $value3['estatusPerpetradorCatalogo_estatusPerpetradorId'] -1;
-										$contenidoReporte['perpetradorId'.$key]="Perpetrador ".$nPerp.":  ". $datos['catalogos']['ListaTodosActores'][$value3['perpetradorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$value3['perpetradorId']]['apellidosSiglas'] ."\n";
+										$contenidoReporte['perpetradorId'.$key]="\nPerpetrador ".$nPerp.":  ". $datos['catalogos']['ListaTodosActores'][$value3['perpetradorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$value3['perpetradorId']]['apellidosSiglas'] ."\n";
 										$contenidoReporte['tipoPerpetradorId'.$key]="Tipo de perpetrador:  ".$datos['catalogos']['tipoPerpetrador']['tipoPerpetradorN'.$value3['tipoPerpetradorNivel'].'Catalogo'][$value3['tipoPerpetradorId']]['descripcion']. "\n";
 										if(isset($value3['actorRelacionadoPerpetrador']) && $value3['actorRelacionadoPerpetrador']>0){
 											$contenidoReporte['actorRelacionadoPerpetatrador'.$key]="Actor colectivo relacionado:  ".$value3['actorRelacionadoPerpetrador'][$value3['actorRelacionadoId']]['nombre']."\n";
