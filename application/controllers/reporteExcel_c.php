@@ -124,7 +124,7 @@ class ReporteExcel_c extends CI_Controller
 						
 						if($acto['actoViolatorioNivel']==1){
 							foreach ($catActos['actosN'.$acto['actoViolatorioNivel'].'Catalogos'] as $catA) {
-								if($catA['actoId']==$acto['actoId']){
+								if($catA['actoId']==$acto['actoViolatorioId']){
 									$nombreActo = $catA['descripcion'];
 								}
 							}
