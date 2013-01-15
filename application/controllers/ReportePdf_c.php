@@ -158,10 +158,10 @@ class ReportePdf_c extends CI_Controller
 				if(isset($value['derechoAfectadoNivel']) && isset($value['derechoAfectadoId'])){
 					$contenidoReporte['derechoAfectado'.$key]="\n"."Derecho afectado:  ".$datos['catalogos']['derechosAfectadosCatalogo']['derechosAfectadosN'.$value['derechoAfectadoNivel'].'Catalogos'][$value['derechoAfectadoId']]['descripcion'] ."\n";
 				}
-				if(isset($Data['reporte']['actos'][$key]['actoViolatorioId']))
+				if(isset($Data['reporte']['actos'][$key]['actoViolatorioId'])){
 					$contenidoReporte['acto'.$key]="Acto:  ". $datos['catalogos']['actosCatalogo']['actosN'.$Data['reporte']['actos'][$key]['actoViolatorioNivel'].'Catalogo'][$Data['reporte']['actos'][$key]['actoViolatorioId']]['descripcion'] ."\n";
 				}
-				if(isset($value['noVictimas']))
+				if(isset($value['noVictimas'])){
 					$contenidoReporte['noVictimas'.$key] = "No. afectados: ".$value['noVictimas']."\n";
 				}
 				if(isset($value['fechaInicial'])){
