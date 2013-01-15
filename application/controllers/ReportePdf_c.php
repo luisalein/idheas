@@ -158,14 +158,21 @@ class ReportePdf_c extends CI_Controller
 				if(isset($value['derechoAfectadoNivel']) && isset($value['derechoAfectadoId'])){
 					$contenidoReporte['derechoAfectado'.$key]="\n"."Derecho afectado:  ".$datos['catalogos']['derechosAfectadosCatalogo']['derechosAfectadosN'.$value['derechoAfectadoNivel'].'Catalogos'][$value['derechoAfectadoId']]['descripcion'] ."\n";
 				}
-				$contenidoReporte['acto'.$key]="Acto:  ". $datos['catalogos']['actosCatalogo']['actosN'.$Data['reporte']['actos'][$key]['actoViolatorioNivel'].'Catalogo'][$Data['reporte']['actos'][$key]['actoViolatorioId']]['descripcion'] ."\n";
-				$contenidoReporte['noVictimas'.$key] = "No. afectados: ". $value['noVictimas']."\n";
-				
-				$contenidoReporte['fechaInicial'.$key]="Fecha de inicio:  ". $value['fechaInicial']."\n";
+				if(isset($Data['reporte']['actos'][$key]['actoViolatorioId']))
+					$contenidoReporte['acto'.$key]="Acto:  ". $datos['catalogos']['actosCatalogo']['actosN'.$Data['reporte']['actos'][$key]['actoViolatorioNivel'].'Catalogo'][$Data['reporte']['actos'][$key]['actoViolatorioId']]['descripcion'] ."\n";
+				}
+				if(isset($value['noVictimas']))
+					$contenidoReporte['noVictimas'.$key] = "No. afectados: ".$value['noVictimas']."\n";
+				}
+				if(isset($value['fechaInicial'])){
+					$contenidoReporte['fechaInicial'.$key]="Fecha de inicio:  ".$value['fechaInicial']."\n";
+				}
 				if($value['tipoFechaInicialId'] > 0){
 					$contenidoReporte['tipoFechaInicioDerechoAfectado'.$key] = "Tipo fecha:  ".$datos['catalogos']['tipoFechaCatalogo'][$value['tipoFechaInicialId']]."\n";
 				}
-				$contenidoReporte['fechaTermino'.$key]="Fecha de termino:  " . $value['fechaTermino']."\n";
+				if(isset($value['fechaTermino'])){
+					$contenidoReporte['fechaTermino'.$key]="Fecha de termino:  " .$value['fechaTermino']."\n";
+				}
 				if($value['tipoFechaTerminoId'] > 0){
 					$contenidoReporte['tipoFechaTerminoDerechoAdectado'.$key] = "Tipo fecha:  ".$datos['catalogos']['tipoFechaCatalogo'][$value['tipoFechaTerminoId']]."\n";
 				}
@@ -292,15 +299,23 @@ class ReportePdf_c extends CI_Controller
 						$contenidoReporte['actorRelacionadoPersonal'.$key]= "Actor colectivo relacionado:  ".$infoAdicional['actorRelacionadoPersonal'][$infoAdicional['relacionId']]['nombre']."\n";
 						$contenidoReporte['tipoRelacionPersonal'.$key]= "Tipo relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$infoAdicional['actorRelacionadoPersonal'][$infoAdicional['relacionId']]['tipoRelacionId']]['Nivel2']."\n";
 				}
-				$contenidoReporte['infoAdicionalTipoFuente'.$key] = "Tipo fuente:  ".$datos['catalogos']['tipoFuenteCatalogo']['tipoFuenteCatalogo'][$infoAdicional['tipoFuenteCatalogo_tipoFuenteId']-1]['descripcion']."\n";
-				$contenidoReporte['infoAdicionalfecha'.$key] = "Fecha:  ".$infoAdicional['fecha']."\n";
+				if(isset($infoAdicional['tipoFuenteCatalogo_tipoFuenteId'])){
+					$contenidoReporte['infoAdicionalTipoFuente'.$key] = "Tipo fuente:  ".$datos['catalogos']['tipoFuenteCatalogo']['tipoFuenteCatalogo'][$infoAdicional['tipoFuenteCatalogo_tipoFuenteId']-1]['descripcion']."\n";
+				}
+				if(isset($infoAdicional['fecha'])){
+					$contenidoReporte['infoAdicionalfecha'.$key] = "Fecha:  ".$infoAdicional['fecha']."\n";
+				}
 				if(isset($infoAdicional['nivelConfiabilidadCatalogo_nivelConfiabilidadId'])){
 					$contenidoReporte['infoAdicionalNivelConfiabilidad'.$key] = "Nivel confiabilidad:  ".$datos['catalogos']['nivelConfiabilidadCatalogo']['nivelConfiabilidadCatalogo'][$infoAdicional['nivelConfiabilidadCatalogo_nivelConfiabilidadId']-1]['descripcion']."\n";				
 				}
-				$contenidoReporte['infoadicionalObservaciones'.$key]= "Observaciones:  ".$infoAdicional['observaciones']."\n";
-				$contenidoReporte['infoadicionalComentarios'.$key]= "Comentarios:  ".$infoAdicional['comentarios']."\n";
+				if(isset($infoAdicional['observaciones'])){
+					$contenidoReporte['infoadicionalObservaciones'.$key]= "Observaciones:  ".$infoAdicional['observaciones']."\n";
+				}
+				if(isset($infoAdicional['comentarios'])){
+					$contenidoReporte['infoadicionalComentarios'.$key]= "Comentarios:  ".$infoAdicional['comentarios']."\n";
+				}
 				if(isset($infoAdicional['actorReportado']) && $infoAdicional['actorReportado'] > 0){
-				$contenidoReporte['infoAdicionalPersonalReportado'.$key]="Actor reportado:  ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorReportado']]['nombre']." ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorReportado']]['apellidosSiglas']."\n";
+					$contenidoReporte['infoAdicionalPersonalReportado'.$key]="Actor reportado:  ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorReportado']]['nombre']." ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorReportado']]['apellidosSiglas']."\n";
 				}
 				if($infoAdicional['tipoRelacionActorReportadoId'] > 0){
 						$contenidoReporte['actorRelacionadoReportado'.$key]= "Actor colectivo relacionado:  ".$infoAdicional['actorRelacionadoReportado'][$infoAdicional['tipoRelacionActorReportadoId']]['nombre']."\n";
@@ -309,14 +324,23 @@ class ReportePdf_c extends CI_Controller
 			}
 		}
 		
-		$contenidoReporte['encabezadoCasosRelacionados']="\n Casos relacionados  \n\n";
+		
 		if(isset($Data['reporte']['relacionCasos'])){
+			$contenidoReporte['encabezadoCasosRelacionados']="\n Casos relacionados  \n\n";
 			foreach ($Data['reporte']['relacionCasos'] as $key => $relacionCasos) {
-				$contenidoReporte['encabezadoCaso'.$key] = "Caso"."\n";
-				$contenidoReporte['nombrecaso'.$key]="Caso relacionado:  ".$relacionCasos['nombreCasoIdB']."\n";
-				$contenidoReporte['tipoRelacionCaso'.$key]="Tipo de relación:  ".$datos['catalogos']['relacionCasosCatalogo']['relacionCasosCatalogo'][$relacionCasos['tipoRelacionId']]['descripcion']."\n";
-				$contenidoReporte['FechaInicio'.$key]="Fecha de inicio:  ".$relacionCasos['fechaIncial']."\n";
+				if(isset($relacionCasos['nombreCasoIdB'])){
+					$contenidoReporte['encabezadoCaso'.$key] = "Caso"."\n";
+					$contenidoReporte['nombrecaso'.$key]="Caso relacionado:  ".$relacionCasos['nombreCasoIdB']."\n";
+				}
+				if(isset($relacionCasos['tipoRelacionId'])){
+					$contenidoReporte['tipoRelacionCaso'.$key]="Tipo de relación:  ".$datos['catalogos']['relacionCasosCatalogo']['relacionCasosCatalogo'][$relacionCasos['tipoRelacionId']]['descripcion']."\n";
+				}
+				if(isset($relacionCasos['fechaIncial'])){
+					$contenidoReporte['FechaInicio'.$key]="Fecha de inicio:  ".$relacionCasos['fechaIncial']."\n";
+				}
+				if(isset($relacionCasos['fechaTermino'])){
 				$contenidoReporte['FechaTermino'.$key]="Fecha de término:  ".$relacionCasos['fechaTermino']."\n";
+				}
 			}	
 			
 		}
