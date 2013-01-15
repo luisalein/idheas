@@ -130,7 +130,7 @@ class ReporteExcel_c extends CI_Controller
 							}
 						}else{
 							foreach ($catActos['actosN'.$acto['actoViolatorioNivel'].'Catalogo'] as $catA) {
-								if($catA['actoN'.$acto['actoViolatorioNivel'].'Id']==$acto['actoViolatorioNivel']){
+								if($catA['actoN'.$acto['actoViolatorioNivel'].'Id']==$acto['actoViolatorioId']){
 									$nombreActo = $catA['descripcion'];
 								}
 							}
