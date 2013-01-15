@@ -48,55 +48,18 @@
 				
 			}
 
-			/* Trae todos los datos de relacionActores */
-			$this->db->select('*');
-			$this->db->from('relacionActores');
-			$this->db->where('actorRelacionadoId',$actorId);
-			$consulta = $this->db->get();
-						
-			if($consulta->num_rows() != 0){
-				foreach($consulta->result_array() as $row3){
-					
-					$listaCitados[$row3['relacionActoresId']] = $row3;
-					
-					$this->db->select('*');
-		            $this->db->from('actores');
-					$this->db->where('tipoActorId',3);
-					$this->db->where('estadoActivo',1);
-		            $this->db->where('actorId',$row3['actores_actorId']);
-		            $actores = $this->db->get();
-					
-					if($actores->num_rows() > 0){
-						foreach($actores->result_array() as $row4){
-							$listaCitados[$row3['relacionActoresId']]['actorId'] = $row4['actorId'];
-							$listaCitados[$row3['relacionActoresId']]['nombre'] = $row4['nombre'];
-							$listaCitados[$row3['relacionActoresId']]['apellidosSiglas'] = $row4['apellidosSiglas'];
-							$listaCitados[$row3['relacionActoresId']]['tipoActorId'] = $row4['tipoActorId'];
-							$listaCitados[$row3['relacionActoresId']]['foto'] = $row4['foto'];
-						}
-					}
-
-				}
-				
-			}
+			
 				
 				
 				
 				
-			if(isset($listaActores) && isset($listaCitados)){
-				$lista = array_merge($listaActores, $listaCitados);
-				return $lista;
-				
-			}else{
+			
 				if (isset($listaActores)) {
 					return $listaActores;
 					
-				} elseif (isset($listaCitados)) {
-					return $listaCitados;
 				}else{
 					return 0;
 				}
-			}/*fin else*/
                
 	     }/* fin mTraeRekacionesColectivo*/
 		
@@ -237,6 +200,7 @@
 									/* Pasa la consulta a un cadena */
 									foreach ($consulta->result_array() as $row) {
 										$datos['perpetradores'][$row['perpetradorVictimaId']] = $row;
+										$datos['perpetradores'][$row['perpetradorVictimaId']]['actorRelacionadoPerpetrador']=$this->mTraerRelacionesActor($row['perpetradorId']);
 									}
 								}
 							}/*Fin foreach Victimas*/
@@ -269,6 +233,7 @@
 						/* Pasa la consulta a un cadena */
 						foreach ($consulta->result_array() as $row) {
 							$datos['tipoFuenteDocumental'][$row['tipoFuenteDocumentalId']] = $row;
+							$datos['tipoFuenteDocumental'][$row['tipoFuenteDocumentalId']]['actorRelacionadoReportado']=$this->mTraerRelacionesActor($row['actorReportado']);
 						}
 					}
 					
