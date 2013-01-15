@@ -1,16 +1,21 @@
 <div id="pestania" data-collapse>	
 	<h2 class="open">Casos</h2><!--título de la pestaña-->  
 	<div>
-		<!-- 
-		<pre><?=print_r($casosRelacionados)?></pre>
- -->
+
 	<?php if (isset($casosRelacionados) && ($casosRelacionados!=0)) {?>
 	<?php foreach ($casosRelacionados as $datosCaso) {?>
 		<div class="twelve columns" data-collapse>	
   
 			<h2 class="twelve columns"><?=(isset($datosCaso['casos']['nombre'])) ? $datosCaso['casos']['nombre'] :  " " ; ?></h2><!--título de la pestaña-->  
 				<div>
-
+					<?php
+					$victimas=array();
+					$intervento=array();
+					$perpetrador=array();
+					$infoDoc=array();
+					$infoPersonal=array();
+					$receptor=array();
+					?>
 						<div id="casos_nombre">
 					  		<p>Nombre:
 				          	<span id="casos_nombre"><?=(isset($datosCaso['casos']['nombre'])) ? $datosCaso['casos']['nombre'] : ''; ?></span>
@@ -151,10 +156,10 @@
 																if ($actor['actorId']>0) {
 
 																		if (isset($victimas)) {
-																			$victima[$actor['actorId']]=$actor;
+
+																			$victimas[$actor['actorId']]=$actor;
 																		}
 																		else{
-
 																			$victimas[$actor['actorId']]=$actor;
 																		}
 
@@ -162,7 +167,6 @@
 															<?php }?>
 															<?php endforeach;?><!--Termina lista de los actores-->
 															<?php }?>
-
 															<?php 	if (isset($victimas)) {
 															foreach ($victimas as $actor) {?>
 																	  <div class="twelve columns">
@@ -172,7 +176,10 @@
 																	                        <?=$catalogos['listaTodosActores'][$actor['actorId']]['nombre'].' '.$catalogos['listaTodosActores'][$actor['actorId']]['apellidosSiglas']; ?>
 																	                </div>
 																      </div>
-															<?php } }?>
+															<?php } 
+															
+
+															}?>
 
 														</div>
 													</div>
