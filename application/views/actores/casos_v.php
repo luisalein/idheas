@@ -151,8 +151,7 @@
 																if ($actor['actorId']>0) {
 
 																		if (isset($victimas)) {
-																			$victima2[$actor['actorId']]=$actor;
-																			$victimas= $victimas+$victima2;
+																			$victima[$actor['actorId']]=$actor;
 																		}
 																		else{
 
@@ -352,7 +351,7 @@
 												                </div>
 												                
 														 <?php } } }?>
-														 
+
 														</div>
 													</div>
 											</div>

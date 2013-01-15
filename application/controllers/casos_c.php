@@ -467,9 +467,9 @@ class Casos_c extends CI_Controller {
 
 		if($idPerpetrador != 0){
 			
-			$datos['idPerpetrador']=$datos['victimas'][$idVictima]['perpetradores'][$idPerpetrador]['perpetradorId'];
+			$datos['perpetradorVictimaId']=$datos['victimas'][$idVictima]['perpetradores'][$idPerpetrador]['perpetradorVictimaId'];
 
-			$datos['action'] = base_url().'index.php/casos_c/editarPerpetrador/'.$idActo.'/'.$idVictima.'/'.$datos['idPerpetrador'];
+			$datos['action'] = base_url().'index.php/casos_c/editarPerpetrador/'.$idActo.'/'.$idVictima.'/'.$datos['perpetradorVictimaId'];
 			
 			if(isset($datos['victimas'][$idVictima]['perpetradores'][$idPerpetrador]))
 
@@ -519,7 +519,7 @@ class Casos_c extends CI_Controller {
 	 * Edita el perpetrador y redirecciona a la victima del perpetrador que se edito.
 	 * */
 	public function editarPerpetrador($idActo,$idVictima,$idPerpetrador){
-
+		
 		foreach($_POST as $campo => $valor){ 
 			
             $pos = strpos($campo, '_');
@@ -534,10 +534,6 @@ class Casos_c extends CI_Controller {
 
         } 
 		$data = array('casos_casoId'=>$_POST['casoId'],'actores_actorId'=>$idPerpetrador,'casoActorId'=>$_POST['casoActorId']);
-
-		echo "<pre>";
-		print_r($data);
-		echo "</pre>";
 
 		$this->casos_m->mActualizaRelacionCasoActor($data);
 
