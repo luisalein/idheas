@@ -5,11 +5,7 @@
 	<body>
 	<pre>
 	<!-- 
-	<pre><?= print_r($fuenteDocumental) ?></pre>
-	<pre><?= print_r($catalogos['listaTodosActores']) ?></pre> 
-	 <pre><?= print_r($catalogos['tipoFuenteDocumentalN1Catalogo']) ?></pre> 
-	 <pre><?= print_r($catalogos['tipoFuenteDocumentalN2Catalogo']) ?></pre> 
-									<pre> <?= print_r($fuenteDocumental)?></pre>
+	
 	 -->
 	</pre>
 	<form action='<?=base_url(); ?>index.php/casosVentanas_c/guardarDatosVentanas/6' method="post" accept-charset="utf-8">
@@ -144,8 +140,8 @@
 						<div class="twelve columns">
 			<fieldset>
 				<legend class="espacioInferior">Actor reportado</legend>
-					<input type="radio" onclick="pintaIndividualesInfoDocumental()" name="selecionaActor" <?= (isset($fuenteDocumental['actorReportado']) && ($catalogos['listaTodosActores'][$fuenteDocumental['actorReportado']]['tipoActorId']< 3)) ? "checked='checked'" : " " ;?>/>Persona
-					<input type="radio"	onclick="pintaColectivosInfoDocumental()" name="selecionaActor"<?= (isset($fuenteDocumental['actorReportado']) && ($catalogos['listaTodosActores'][$fuenteDocumental['actorReportado']]['tipoActorId']== 3)) ? "checked='checked'" : " " ;?> />Actor colectivo <br />
+					<input type="radio" onclick="pintaIndividualesInfoDocumental()" name="selecionaActor" <?= (isset($fuenteDocumental['actorReportado'])&& ($fuenteDocumental['actorReportado']>0) && ($catalogos['listaTodosActores'][$fuenteDocumental['actorReportado']]['tipoActorId']< 3)) ? "checked='checked'" : " " ;?>/>Persona
+					<input type="radio"	onclick="pintaColectivosInfoDocumental()" name="selecionaActor"<?= (isset($fuenteDocumental['actorReportado'])&& ($fuenteDocumental['actorReportado']>0) && ($catalogos['listaTodosActores'][$fuenteDocumental['actorReportado']]['tipoActorId']== 3)) ? "checked='checked'" : " " ;?> />Actor colectivo <br />
 					<label class="espacioSuperior"><b >Persona:</b></label> <br />
 
 
@@ -162,7 +158,7 @@
 
 					<div class="twelve columns espacioSuperior" id="actorReportadoBotones">
 							<div class="nine columns">
-								<?php if (isset($fuenteDocumental['actorReportado']) && ($catalogos['listaTodosActores'][$fuenteDocumental['actorReportado']]['tipoActorId']< 3)) {?>
+								<?php if (isset($fuenteDocumental['actorReportado']) &&($fuenteDocumental['actorReportado']>0)&& ($catalogos['listaTodosActores'][$fuenteDocumental['actorReportado']]['tipoActorId']< 3)) {?>
 									<input class="tiny button" type="button" onclick="seleccionarActorseleccionarActorIndColDatos('6')" value="Seleccionar actor">
 								<?php } else { ?>
 								<input class="tiny button" type="button" onclick="seleccionarActorseleccionarColDatos('4')" value="Seleccionar actor">

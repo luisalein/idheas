@@ -141,29 +141,44 @@
 										<h2>Actores asociados al caso</h2><!--título de la pestaña-->
 										<div>
 											<div class="twelve" id="subPestanias" data-collapse>	
-												  <h2>Victimas</h2><!--título de la pestaña-->									
+												  <h2>Víctimas</h2><!--título de la pestaña-->									
 													<div >		
 														<div class="PruebaScorll">		
-															<?php if (isset($datosCaso['actos'])) {?>
+															<?php if (isset($datosCaso['actos'])) { ;?>
 															<?php foreach($datosCaso['actos'] as $acto):?> <!--muestra cada elemento de la lista-->
 															<?php if (isset($acto['victimas'])) {?>
 															<?php foreach($acto['victimas'] as $actor):
-																if ($actor['actorId']>0) {?> <!--muestra cada elemento de la lista-->
-												                <div class="twelve columns">
-												                    <img class="three columns" src="<?=base_url().$catalogos['listaTodosActores'][$actor['actorId']]['foto'] ?>" />
-												                    <br/><br/>
-													                <div class="nine columns">
-													                        <?=$catalogos['listaTodosActores'][$actor['actorId']]['nombre'].' '.$catalogos['listaTodosActores'][$actor['actorId']]['apellidosSiglas']; ?>
-													                </div>
-												                </div>
-															<?php } endforeach;?><!--Termina lista de los actores-->
+																if ($actor['actorId']>0) {
+
+																		if (isset($victimas)) {
+																			$victima2[$actor['actorId']]=$actor;
+																			$victimas= $victimas+$victima2;
+																		}
+																		else{
+
+																			$victimas[$actor['actorId']]=$actor;
+																		}
+
+																} endforeach;?><!--Termina lista de los actores-->
 															<?php }?>
 															<?php endforeach;?><!--Termina lista de los actores-->
 															<?php }?>
+
+															<?php 	if (isset($victimas)) {
+															foreach ($victimas as $actor) {?>
+																	  <div class="twelve columns">
+																                    <img class="three columns" src="<?=base_url().$catalogos['listaTodosActores'][$actor['actorId']]['foto'] ?>" />
+																                    <br/><br/>
+																	                <div class="nine columns">
+																	                        <?=$catalogos['listaTodosActores'][$actor['actorId']]['nombre'].' '.$catalogos['listaTodosActores'][$actor['actorId']]['apellidosSiglas']; ?>
+																	                </div>
+																      </div>
+															<?php } }?>
+
 														</div>
 													</div>
 											</div>
-													  
+
 											<div class="twelve" id="subPestanias" data-collapse>	
 												  <h2 >Perpetradores</h2><!--título de la pestaña---->			
 													<div>											
@@ -173,8 +188,27 @@
 																<?php if (isset($actos['victimas'])) {?>
 																<?php foreach($actos['victimas'] as $victimas):?> <!--muestra cada elemento de la lista-->
 																	<?php if (isset($victimas['perpetradores'])) {?>
-																	<?php foreach($victimas['perpetradores'] as $actor):?> <!--muestra cada elemento de la lista-->
-																	
+																	<?php foreach($victimas['perpetradores'] as $actor):
+
+																		if (isset($perpetrador)) {
+																			$perpetrador[$actor['perpetradorId']]=$actor;
+																		}
+																		else{
+
+																			$perpetrador[$actor['perpetradorId']]=$actor;
+																		}
+																		?> <!--muestra cada elemento de la lista-->
+																			 
+																	<?php endforeach;?><!--Termina lista de los actores-->
+																	<?php }?>
+																<?php endforeach;?><!--Termina lista de los actores-->
+																<?php }?>
+															<?php endforeach;?><!--Termina lista de los actores-->
+															<?php }?>
+															<?php 	if (isset($perpetrador)) {
+															foreach ($perpetrador as $actor) {
+																if ($actor['perpetradorId']>0) { ?>
+
 														                <div class="twelve columns">
 														                    <img class="three columns" src="<?=base_url().$catalogos['listaTodosActores'][$actor['perpetradorId']]['foto'] ?>" />
 														                    <br/><br/>
@@ -182,13 +216,7 @@
 															                        <?=$catalogos['listaTodosActores'][$actor['perpetradorId']]['nombre'].' '.$catalogos['listaTodosActores'][$actor['perpetradorId']]['apellidosSiglas']; ?>
 															                </div>
 														                </div>
-																			
-																	<?php endforeach;?><!--Termina lista de los actores-->
-																	<?php }?>
-																<?php endforeach;?><!--Termina lista de los actores-->
-																<?php }?>
-															<?php endforeach;?><!--Termina lista de los actores-->
-															<?php }?>
+														    <?php } } }?>
 														</div>
 													</div>
 											</div>
@@ -199,8 +227,23 @@
 														<div class="PruebaScorll">		
 															<?php if (isset($datosCaso['intervenciones'])) {?>
 															<?php foreach($datosCaso['intervenciones'] as $actor):
-															if ($actor['interventorId']>0) {?> <!--muestra cada elemento de la lista-->
-															
+															if ($actor['interventorId']>0) {
+
+																if (isset($intervento)) {
+																			$intervento[$actor['interventorId']]=$actor;
+																		}
+																		else{
+
+																			$intervento[$actor['interventorId']]=$actor;
+																		}
+
+																		?> <!--muestra cada elemento de la lista-->
+															<?php } endforeach;?><!--Termina lista de los actores-->
+															<?php }?>
+														<?php 	if (isset($intervento)) {
+															foreach ($intervento as $actor) {
+																if ($actor['interventorId']>0) { ?>
+
 												                <div class="twelve columns">
 												                    <img class="three columns" src="<?=base_url().$catalogos['listaTodosActores'][$actor['interventorId']]['foto'] ?>" />
 												                    <br/><br/>
@@ -208,9 +251,9 @@
 													                        <?=(isset($actor['interventorId'])) ? $catalogos['listaTodosActores'][$actor['interventorId']]['nombre'].' '.$catalogos['listaTodosActores'][$actor['interventorId']]['apellidosSiglas'] : " " ;?>
 													                </div>
 												                </div>
-																	
-															<?php } endforeach;?><!--Termina lista de los actores-->
-															<?php }?>
+
+														    <?php } } }?>
+
 														</div>
 													</div>
 											</div>
@@ -220,8 +263,21 @@
 														<div class="PruebaScorll">
 															<?php if (isset($datosCaso['intervenciones'])) {?>		
 															<?php foreach($datosCaso['intervenciones'] as $actor):
-															if ($actor['receptorId']>0) { ?> <!--muestra cada elemento de la lista-->
-															
+															if ($actor['receptorId']>0) {
+															if (isset($receptor)) {
+																			$receptor[$actor['receptorId']]=$actor;
+																		}
+																		else{
+
+																			$receptor[$actor['receptorId']]=$actor;
+																		}
+ 																?>																	
+															<?php } endforeach;?><!--Termina lista de los actores-->
+															<?php }?>
+														<?php 	if (isset($receptor)) {
+															foreach ($receptor as $actor) {
+																if ($actor['receptorId']>0) { ?>
+
 												                <div class="twelve columns">
 												                    <img class="three columns" src="<?=base_url().$catalogos['listaTodosActores'][$actor['receptorId']]['foto'] ?>" />
 												                    <br/><br/>
@@ -229,9 +285,9 @@
 													                        <?=(isset($actor['receptorId'])) ? $catalogos['listaTodosActores'][$actor['receptorId']]['nombre'].' '.$catalogos['listaTodosActores'][$actor['receptorId']]['apellidosSiglas'] : " " ; ?>
 													                </div>
 												                </div>
-																	
-															<?php } endforeach;?><!--Termina lista de los actores-->
-															<?php }?>
+
+														 <?php } } }?>
+
 														</div>
 													</div>
 
@@ -240,8 +296,22 @@
 														<div class="PruebaScorll">		
 															<?php if (isset($datosCaso['fuenteInfoPersonal'])) {?>
 															<?php foreach($datosCaso['fuenteInfoPersonal'] as $actor):
-															if ($actor['actorId']>0) { ?> <!--muestra cada elemento de la lista-->
-															
+															if ($actor['actorId']>0) {
+
+																if (isset($infoPersonal)) {
+																			$infoPersonal[$actor['actorId']]=$actor;
+																		}
+																		else{
+
+																			$infoPersonal[$actor['actorId']]=$actor;
+																		}
+																 ?> <!--muestra cada elemento de la lista-->
+															<?php } endforeach;?><!--Termina lista de los actores-->
+															<?php }?>
+
+														<?php 	if (isset($infoPersonal)) {
+															foreach ($infoPersonal as $actor) {
+																if ($actor['actorId']>0) { ?>
 												                <div class="twelve columns">
 												                    <img class="three columns" src="<?=base_url().$catalogos['listaTodosActores'][$actor['actorId']]['foto'] ?>" />
 												                    <br/><br/>
@@ -249,9 +319,8 @@
 													                        <?=$catalogos['listaTodosActores'][$actor['actorId']]['nombre'].' '.$catalogos['listaTodosActores'][$actor['actorId']]['apellidosSiglas']; ?>
 													                </div>
 												                </div>
-																	
-															<?php } endforeach;?><!--Termina lista de los actores-->
-															<?php }?>
+
+														 <?php } } }?>
 														</div>
 													</div>
 
@@ -260,8 +329,20 @@
 														<div class="PruebaScorll">		
 															<?php if (isset($datosCaso['tipoFuenteDocumental'])) {?>
 															<?php foreach($datosCaso['tipoFuenteDocumental'] as $actor):
-															if ($actor['actorReportado']>0) { ?> <!--muestra cada elemento de la lista-->
-															
+															if ($actor['actorReportado']>0) { 
+																if (isset($infoDoc)) {
+																			$infoDoc[$actor['actorReportado']]=$actor;
+																		}
+																		else{
+
+																			$infoDoc[$actor['actorReportado']]=$actor;
+																		}?> <!--muestra cada elemento de la lista-->
+															<?php } endforeach;?><!--Termina lista de los actores-->
+															<?php }?>
+
+														<?php 	if (isset($infoDoc)) {
+															foreach ($infoDoc as $actor) {
+																if ($actor['actorReportado']>0) { ?>
 												                <div class="twelve columns">
 												                	<img class="three columns" src="<?=base_url().$catalogos['listaTodosActores'][$actor['actorReportado']]['foto'] ?>" />
 												                    <br/><br/>
@@ -269,9 +350,9 @@
 													                        <?=$catalogos['listaTodosActores'][$actor['actorReportado']]['nombre'].' '.$catalogos['listaTodosActores'][$actor['actorReportado']]['apellidosSiglas']; ?>
 													                </div>
 												                </div>
-																	
-															<?php } endforeach;?><!--Termina lista de los actores-->
-															<?php }?>
+												                
+														 <?php } } }?>
+														 
 														</div>
 													</div>
 											</div>

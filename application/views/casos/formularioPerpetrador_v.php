@@ -9,7 +9,7 @@
 
 			<input type="hidden"  id="ValoresBotonCancelar" value="<?= (isset($perpetrador['perpetradorId'])&&($perpetrador['perpetradorId']!=0)) ? $perpetrador['perpetradorId']."*".$catalogos['listaTodosActores'][$perpetrador['perpetradorId']]['nombre']." ".$catalogos['listaTodosActores'][$perpetrador['perpetradorId']]['apellidosSiglas']."*".$catalogos['listaTodosActores'][$perpetrador['perpetradorId']]['foto'] : "" ;  ?>"><!--Este campo da los valores en caso de que se cancele la ventana agregar actor-->
 
-			<input type="hidden" name="perpetradores_perpetradorId" id="perpetradores_perpetradorId" value="<?= (isset($perpetrador['perpetradorId'])) ? $perpetrador['perpetradorId'] : " " ;?>" >
+			<input type="hidden" name="perpetradores_perpetradorId" onchange="habilitarboton()" id="perpetradores_perpetradorId" value="<?= (isset($perpetrador['perpetradorId'])) ? $perpetrador['perpetradorId'] : " " ;?>" >
 
 			<input type="hidden" name="perpetradores_tipoPerpetradorId" value="<?= (isset($perpetrador['tipoPerpetradorId'])) ? $perpetrador['tipoPerpetradorId'] : " " ;?>" id="perpetradores_tipoPerpetradorId" >
 
@@ -30,9 +30,6 @@
 			<input type="hidden" value="<?=$casoId?>" id="casoId" name='casoId' >
 
 
-					 <!-- 
-				<pre><?= print_r($perpetrador['casosActor'])?></pre>
-					<pre><?= print_r($catalogos)?></pre>   -->
 			<fieldset class="espacioSuperior espacioInferior">
 				<legend>Información general</legend>
 				<?php if (isset($perpetrador['perpetradorId']) && ($perpetrador['perpetradorId']!=0)) {
@@ -47,7 +44,7 @@
 				}?>
 				<label>Perpetrador</label>
 
-					<div id="vistaActorRelacionado"  >
+					<div id="vistaActorRelacionado" onchange="habilitarboton()" >
 
 		                <?php if(isset($perpetrador['perpetradorId'])){ ?>    
 		                <div class="three columns" >
@@ -59,7 +56,7 @@
 
 					</div>
 
-					<input type="button" class="small button" onclick="seleccionarActorseleccionarActorIndColDatos('1')" value="Seleccionar actor">
+					<input type="button" class="small button" onclick="habilitarboton()" value="Seleccionar actor">
 					<input type="button" class="small button" value="Eliminar actor" onclick="eliminarRelacionVista('vistaActorRelacionado','perpetradores_perpetradorId','vistaActorRelacionadoPerpetrador','perpetradores_actorRelacionadoId')">
 
 			<div id="pestania" class="twelve columns" data-collapse>
@@ -258,7 +255,7 @@
 			</div>
 
 
-			<input type="submit" value="Guardar" class="tiny button" style="padding:5px 15px 5px 15px;margin-bottom: 5px">
+			<input type="submit" value="Guardar" <?=(isset($perpetrador['perpetradorId']) && ($perpetrador['perpetradorId']>0)) ? " " : "disabled" ;?> class="tiny button" style="padding:5px 15px 5px 15px;margin-bottom: 5px">
 			<input type="button" value="Cancelar" onclick="cerrarVentana()" class="tiny button" style="padding:5px 15px 5px 15px;margin-bottom: 5px">
 
 		</form>

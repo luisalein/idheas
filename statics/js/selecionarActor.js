@@ -310,3 +310,8 @@ function SeleccionarInfoGeneralDocumental(title){
     window.opener.document.getElementById(nameSeleccionado).value = n[0];
     window.opener.document.getElementById('actorReportado').innerHTML = ('<div class="three columns"><img style="width:120px !important; height:150px !important;" src="'+base+n[2]+'" /></div><b><h4>'+n[1]+'</h4></b>');
 }   
+
+function habilitarboton(){
+    seleccionarActorseleccionarActorIndColDatos('1');
+$('input[type="submit"]').removeAttr('disabled');
+}
