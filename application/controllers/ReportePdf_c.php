@@ -234,6 +234,8 @@ class ReportePdf_c extends CI_Controller
 					}
 				}
 				$contenidoReporte['intervenidos'] =$intervenidos;
+				
+				$contenidoReporte['espaciosIntervenciones']= "\n\n\n";
 			}
 		}	
 
