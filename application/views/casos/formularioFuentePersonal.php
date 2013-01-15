@@ -163,7 +163,6 @@
 					</div>
 				</div> <!---termina opciones de fechaInicial-->
 				
-					<?=print_r($fuenteInfoPersonal['fecha'])?>
 				<div class="twelve columns">	
 					
 					<div class="six columns">
