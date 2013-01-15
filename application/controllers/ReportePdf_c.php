@@ -162,7 +162,7 @@ class ReportePdf_c extends CI_Controller
 						$nPerp = 0;
 						if ($value2['actos_actoId']==$actoId) {
 							$contenidoReporte['victimasComentarios'.$key]= "\n".'Víctima '.$nVic.': '.
-							$datos['catalogos']['ListaTodosActores'][$value2['victimaId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$value2['actorId']]['apellidosSiglas'] ."\n".
+							$datos['catalogos']['ListaTodosActores'][$value2['actorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$value2['actorId']]['apellidosSiglas'] ."\n".
 							"Comentarios sobre victimas y perpetradores:  \n". $value2['comentarios'];
 							if(isset($value2['estatusVictimaId'])){
 								$contenidoReporte['estatusVictimaId'.$key]="Estado:  ". $datos['catalogos']['estatusVictimaCatalogo']['estatusVictimaCatalogo'][$value2['estatusVictimaId']]['descripcion']."\n";
