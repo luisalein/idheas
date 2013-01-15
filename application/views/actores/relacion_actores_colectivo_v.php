@@ -127,7 +127,7 @@
 				
 				<div class="six columns">
 					<p class='<?=(isset($relaciones['fechaInicial']) ? ' ' : 'Escondido'); ?>' id="fechaExactaVRIC">
-						<input type="text" id="fechaExactaRP" <?=(isset($relaciones) ? 'value="'.$relaciones['fechaInicial'].'"' : ''); ?> placeholder="AAAA-MM-DD" />
+						<input type="text" id="fechaExactaRP" <?=(isset($relaciones) ? 'name="fechaInicial" value="'.$relaciones['fechaInicial'].'"' : ''); ?> placeholder="AAAA-MM-DD" />
 
 					</p>
 
@@ -163,7 +163,7 @@
 				
 				<div class="six columns">
 					<p class='<?=(isset($relaciones['fechaTermino']) ? ' ' : 'Escondido'); ?>' id="fechaExactaV2RIC">
-						<input type="text" id="fechaExacta2RIC"  <?=(isset($relaciones) ? 'value="'.$relaciones['fechaTermino'].'"' : ''); ?> placeholder="AAAA-MM-DD" />
+						<input type="text" id="fechaExacta2RIC"  <?=(isset($relaciones) ? 'name="fechaTermino" value="'.$relaciones['fechaTermino'].'"' : ''); ?> placeholder="AAAA-MM-DD" />
 
 					</p>
 

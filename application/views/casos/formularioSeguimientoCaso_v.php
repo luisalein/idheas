@@ -41,7 +41,7 @@
 					<div class="six columns">
 					<?php echo br(1);?>	
 						<p <?=(isset($ficha['fecha'])) ? "" : 'class="Escondido"' ;?> id="fichaExactaVR">
-							<input <?=(isset($ficha['fecha'])) ? 'value="'.$ficha['fecha'].'"' : " " ;?> type="text" id="fichaExactaR"  placeholder="AAAA-MM-DD" value=""/>
+							<input <?=(isset($ficha['fecha'])) ? 'name="fichas_fecha" value="'.$ficha['fecha'].'"' : " " ;?> type="text" id="fichaExactaR"  placeholder="AAAA-MM-DD" value=""/>
 
 						</p>
 
