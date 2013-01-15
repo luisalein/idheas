@@ -165,17 +165,17 @@ class ReportePdf_c extends CI_Controller
 						if ($value2['actos_actoId']==$actoId) {
 							$contenidoReporte['victimasComentarios'.$key]= "\n".'Víctima '.$nVic.': '.
 							$datos['catalogos']['ListaTodosActores'][$value2['actorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$value2['actorId']]['apellidosSiglas'] ."\n".
-							"Comentarios sobre victimas y perpetradores:  \n". $value2['comentarios'];
+							"Comentarios sobre victimas y perpetradores:  ". $value2['comentarios']."\n";
 							if(isset($value2['estatusVictimaId'])){
-								$contenidoReporte['estatusVictimaId'.$key]="Estado:  ". $datos['catalogos']['estatusVictimaCatalogo']['estatusVictimaCatalogo'][$value2['estatusVictimaId']]['descripcion']."\n";
+								$contenidoReporte['estatusVictimaId'.$key]="Estado:  ". $datos['catalogos']['estatusVictimaCatalogo']['estatusVictimaCatalogo'][$value2['estatusVictimaId']-1]['descripcion']."\n\n\n";
 							}
 							if (isset($Data['reporte']['perpetradores']	)) {
-								$contenidoReporte['EncabezadoPerpetradores'.$key]="\nPerpetradores  "."\n\n";
+								$contenidoReporte['EncabezadoPerpetradores'.$key]="\n\nPerpetradores  "."\n\n";
 								foreach ($Data['reporte']['perpetradores'] as $key => $value3) {
 									if ($value3['victimas_victimaId']==$value2['victimaId']) {
 										$nPerp = $nPerp+1;
 										$status = $value3['estatusPerpetradorCatalogo_estatusPerpetradorId'] -1;
-										$contenidoReporte['perpetradorId'.$key]="Perpetrador ".$nPerp.":  ". $datos['catalogos']['ListaTodosActores'][$value3['perpetradorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$value3['perpetradorId']]['apellidosSiglas'] ."\n";
+										$contenidoReporte['perpetradorId'.$key]="\nPerpetrador ".$nPerp.":  ". $datos['catalogos']['ListaTodosActores'][$value3['perpetradorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$value3['perpetradorId']]['apellidosSiglas'] ."\n";
 										$contenidoReporte['tipoPerpetradorId'.$key]="Tipo de perpetrador:  ".$datos['catalogos']['tipoPerpetrador']['tipoPerpetradorN'.$value3['tipoPerpetradorNivel'].'Catalogo'][$value3['tipoPerpetradorId']]['descripcion']. "\n";
 										if(isset($value3['actorRelacionadoPerpetrador']) && $value3['actorRelacionadoPerpetrador']>0){
 											$contenidoReporte['actorRelacionadoPerpetatrador'.$key]="Actor colectivo relacionado:  ".$value3['actorRelacionadoPerpetrador'][$value3['actorRelacionadoId']]['nombre']."\n";
@@ -185,7 +185,7 @@ class ReportePdf_c extends CI_Controller
 											$contenidoReporte['estatusPerpetradorId'.$key]="Estatus del perpetrador:  ". $datos['catalogos']['estatusPerpetradorCatalogo']['estatusPerpetradorCatalogo'][$value3['estatusPerpetradorCatalogo_estatusPerpetradorId']-1]['descripcion']."\n";
 										}
 										if( $value3['nivelInvolugramientoId'] != 0 ){
-											$contenidoReporte['gradoInvolucramientoid'.$key]="Grado de involucramiento:  ". $datos['catalogos']['gradoDeInvolucramiento']['gradoInvolucramientoN'.$value3['nivelInvolugramientoId'].'Catalogo'][$value3['gradoInvolucramientoid']]['descripcion']."\n";
+											$contenidoReporte['gradoInvolucramientoid'.$key]="Grado de involucramiento:  ". $datos['catalogos']['gradoDeInvolucramiento']['gradoInvolucramientoN'.$value3['nivelInvolugramientoId'].'Catalogo'][$value3['gradoInvolucramientoid']]['descripcion']."\n\n";
 										}
 									}
 									
@@ -208,24 +208,24 @@ class ReportePdf_c extends CI_Controller
 
 		if (isset($Data['reporte']['intervenciones'])) {
 			foreach ($Data['reporte']['intervenciones'] as $key => $intervencion) {
-				$contenidoReporte['intervencionFecha']=	"Fecha de la intervención:  ". $intervencion['fecha']."\n";
+				$contenidoReporte['intervencionFecha'.$key]=	"Fecha de la intervención:  ". $intervencion['fecha']."\n";
 				if ( ($datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['tipoActorId']) == 3) {
-					$contenidoReporte['intervencionInstitucion']=	"Institución:  ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['apellidosSiglas'] ."\n";
+					$contenidoReporte['intervencionInstitucion'.$key]=	"Institución:  ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['apellidosSiglas'] ."\n";
 				}
 				else{				
-					$contenidoReporte['intervencionInterventor']=	"Interventor:  ".$datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['apellidosSiglas'] ."\n";
+					$contenidoReporte['intervencionInterventor'.$key]=	"Interventor:  ".$datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['apellidosSiglas'] ."\n";
 					if($intervencion['tipoRelacionInterventor'] > 0){
-						$contenidoReporte['actorRelacionadoInterventor']= "Actor colectivo relacionado:  ".$intervencion['actorRelacionadoInterventor'][$intervencion['tipoRelacionInterventor']]['nombre']."\n";
-						$contenidoReporte['tipoRelacionInterventor']= "Tipo relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$intervencion['actorRelacionadoInterventor'][$intervencion['tipoRelacionInterventor']]['tipoRelacionId']]['Nivel2']."\n";
+						$contenidoReporte['actorRelacionadoInterventor'.$key]= "Actor colectivo relacionado:  ".$intervencion['actorRelacionadoInterventor'][$intervencion['tipoRelacionInterventor']]['nombre']."\n";
+						$contenidoReporte['tipoRelacionInterventor'.$key]= "Tipo relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$intervencion['actorRelacionadoInterventor'][$intervencion['tipoRelacionInterventor']]['tipoRelacionId']]['Nivel2']."\n";
 					}
 				}
-				$contenidoReporte['intervencionReceptor']=	"Receptor:  ". $datos['catalogos']['ListaTodosActores'][$intervencion['receptorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$intervencion['receptorId']]['apellidosSiglas'] ."\n";
-				if($intervencion['actorRelacionadoReceptor']){
-					$contenidoReporte['actorRelacionadoReceptor']= "Actor colectivo relacionado:  ".$intervencion['actorRelacionadoReceptor'][$intervencion['tipoRelacionReceptor']]['nombre']."\n";
-					$contenidoReporte['tipoRelacionReceptor']= "Tipo relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$intervencion['actorRelacionadoReceptor'][$intervencion['tipoRelacionReceptor']]['tipoRelacionId']]['Nivel2']."\n";
+				$contenidoReporte['intervencionReceptor'.$key]=	"Receptor:  ". $datos['catalogos']['ListaTodosActores'][$intervencion['receptorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$intervencion['receptorId']]['apellidosSiglas'] ."\n";
+				if($intervencion['actorRelacionadoReceptor'.$key]){
+					$contenidoReporte['actorRelacionadoReceptor'.$key]= "Actor colectivo relacionado:  ".$intervencion['actorRelacionadoReceptor'][$intervencion['tipoRelacionReceptor']]['nombre']."\n";
+					$contenidoReporte['tipoRelacionReceptor'.$key]= "Tipo relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$intervencion['actorRelacionadoReceptor'][$intervencion['tipoRelacionReceptor']]['tipoRelacionId']]['Nivel2']."\n";
 				}
-				$contenidoReporte['intervencionImpacto']=	"Impacto:  ". $intervencion['impacto']."\n";
-				$contenidoReporte['intervencionRespuesta']=	"Respuesta:  ". $intervencion['respuesta']."\n";
+				$contenidoReporte['intervencionImpacto'.$key]=	"Impacto:  ". $intervencion['impacto']."\n";
+				$contenidoReporte['intervencionRespuesta'.$key]=	"Respuesta:  ". $intervencion['respuesta']."\n";
 				
 				$intervenidos ="Personas por las que se intervino: "."\n";
 				if(isset($intervencion['intervenidos'])){
@@ -234,6 +234,8 @@ class ReportePdf_c extends CI_Controller
 					}
 				}
 				$contenidoReporte['intervenidos'] =$intervenidos;
+				
+				$contenidoReporte['espaciosIntervenciones']= "\n\n\n";
 			}
 		}	
 
@@ -250,9 +252,9 @@ class ReportePdf_c extends CI_Controller
 					$contenidoReporte['tipofuenteDocumental'.$key]="Tipo fuente:  ".$datos['catalogos']['tipoFuenteDocumentalN'.$documental['tipoFuenteDocumentalCatalogoNivel'].'Catalogo']['tipoFuenteDocumentalN'.$documental['tipoFuenteDocumentalCatalogoNivel'].'Catalogo'][$documental['tipoFuenteDocumentalCatalogoId']-1]['descripcion']."\n";
 					$contenidoReporte['fuenteDocfechaPublicacion'.$key]="Fecha de publicación:  ".$documental['fecha']. "\n";
 					$contenidoReporte['fuenteDocfechaAcceso'.$key]="Fecha de acceso:  ".$documental['fechaAcceso']. "\n";
-					$contenidoReporte['fuenteDocinfoAdiocional'.$key]="Informción adicional:  ".$documental['infoAdicional']. "\n";
+					$contenidoReporte['fuenteDocinfoAdiocional'.$key]="Informción adicional:  ".$documental['infoAdicional']."\n";
 					if(isset($documental['nivelConfiabilidadCatalogo_nivelConfiabilidadId'])){
-						$contenidoReporte['fuenteDocNivelConfiabilidad'.$key]="Nivel de confiabilidad:  ". $datos['catalogos']['nivelConfiabilidadCatalogo']['nivelConfiabilidadCatalogo'][$documental['nivelConfiabilidadCatalogo_nivelConfiabilidadId']-1]['descripcion']. "\n";
+						$contenidoReporte['fuenteDocNivelConfiabilidad'.$key]="Nivel de confiabilidad:  ". $datos['catalogos']['nivelConfiabilidadCatalogo']['nivelConfiabilidadCatalogo'][$documental['nivelConfiabilidadCatalogo_nivelConfiabilidadId']-1]['descripcion']."\n";
 					}
 					$contemidoReporte['fuenteDocLiga'.$key]= "Liga:  ".$documental['url']."\n";
 					$contemidoReporte['fuenteDocComentarios'.$key]= "comentarios:  ".$documental['comentarios']."\n";
@@ -267,27 +269,27 @@ class ReportePdf_c extends CI_Controller
 			}
 		}
 
-		$contenidoReporte['encabezadoFuentePersonal']="\n Fuentes de información personal  \n\n";
+		$contenidoReporte['encabezadoFuentePersonal']="\nFuente individual/colectiva\n\n";
 		if (isset($Data['reporte']['fuenteInfoPersonal'])) {
 			foreach ($Data['reporte']['fuenteInfoPersonal'] as $key => $infoAdicional) {
 				$contenidoReporte['infoAdicionalPersonal'.$key]="Nombre:  ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorId']]['nombre']." ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorId']]['apellidosSiglas']."\n";
 				if($infoAdicional['relacionId'] > 0){
-						$contenidoReporte['actorRelacionadoPersonal']= "Actor colectivo relacionado:  ".$infoAdicional['actorRelacionadoPersonal'][$infoAdicional['relacionId']]['nombre']."\n";
-						$contenidoReporte['tipoRelacionPersonal']= "Tipo relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$infoAdicional['actorRelacionadoPersonal'][$infoAdicional['relacionId']]['tipoRelacionId']]['Nivel2']."\n";
+						$contenidoReporte['actorRelacionadoPersonal'.$key]= "Actor colectivo relacionado:  ".$infoAdicional['actorRelacionadoPersonal'][$infoAdicional['relacionId']]['nombre']."\n";
+						$contenidoReporte['tipoRelacionPersonal'.$key]= "Tipo relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$infoAdicional['actorRelacionadoPersonal'][$infoAdicional['relacionId']]['tipoRelacionId']]['Nivel2']."\n";
 				}
-				$contenidoReporte['infoAdicionalTipoFuente'] = "Tipo fuente:  ".$datos['catalogos']['tipoFuenteCatalogo']['tipoFuenteCatalogo'][$infoAdicional['tipoFuenteCatalogo_tipoFuenteId']]['descripcion']."\n";
-				$contenidoReporte['infoAdicionalfecha'] = "Fecha:  ".$infoAdicional['fecha']."\n";
+				$contenidoReporte['infoAdicionalTipoFuente'.$key] = "Tipo fuente:  ".$datos['catalogos']['tipoFuenteCatalogo']['tipoFuenteCatalogo'][$infoAdicional['tipoFuenteCatalogo_tipoFuenteId']-1]['descripcion']."\n";
+				$contenidoReporte['infoAdicionalfecha'.$key] = "Fecha:  ".$infoAdicional['fecha']."\n";
 				if(isset($infoAdicional['nivelConfiabilidadCatalogo_nivelConfiabilidadId'])){
-					$contenidoReporte['infoAdicionalNivelConfiabilidad'] = "Nivel confiabilidad:  ".$datos['catalogos']['nivelConfiabilidadCatalogo']['nivelConfiabilidadCatalogo'][$infoAdicional['nivelConfiabilidadCatalogo_nivelConfiabilidadId']-1]['descripcion']."\n";				
+					$contenidoReporte['infoAdicionalNivelConfiabilidad'.$key] = "Nivel confiabilidad:  ".$datos['catalogos']['nivelConfiabilidadCatalogo']['nivelConfiabilidadCatalogo'][$infoAdicional['nivelConfiabilidadCatalogo_nivelConfiabilidadId']-1]['descripcion']."\n";				
 				}
-				$contenidoReporte['infoadicionalObservaciones']= "Observaciones:  ".$infoAdicional['observaciones']."\n";
-				$contenidoReporte['infoadicionalComentarios']= "Comentarios:  ".$infoAdicional['comentarios']."\n";
+				$contenidoReporte['infoadicionalObservaciones'.$key]= "Observaciones:  ".$infoAdicional['observaciones']."\n";
+				$contenidoReporte['infoadicionalComentarios'.$key]= "Comentarios:  ".$infoAdicional['comentarios']."\n";
 				if(isset($infoAdicional['actorReportado']) && $infoAdicional['actorReportado'] > 0){
 				$contenidoReporte['infoAdicionalPersonalReportado'.$key]="Actor reportado:  ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorReportado']]['nombre']." ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorReportado']]['apellidosSiglas']."\n";
 				}
 				if($infoAdicional['tipoRelacionActorReportadoId'] > 0){
-						$contenidoReporte['actorRelacionadoReportado']= "Actor colectivo relacionado:  ".$infoAdicional['actorRelacionadoReportado'][$infoAdicional['tipoRelacionActorReportadoId']]['nombre']."\n";
-						$contenidoReporte['tipoRelacionPersonal']= "Tipo relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$infoAdicional['actorRelacionadoReportado'][$infoAdicional['tipoRelacionActorReportadoId']]['tipoRelacionId']]['Nivel2']."\n";
+						$contenidoReporte['actorRelacionadoReportado'.$key]= "Actor colectivo relacionado:  ".$infoAdicional['actorRelacionadoReportado'][$infoAdicional['tipoRelacionActorReportadoId']]['nombre']."\n";
+						$contenidoReporte['tipoRelacionPersonal'.$key]= "Tipo relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$infoAdicional['actorRelacionadoReportado'][$infoAdicional['tipoRelacionActorReportadoId']]['tipoRelacionId']]['Nivel2']."\n\n\n";
 				}
 			}
 		}
