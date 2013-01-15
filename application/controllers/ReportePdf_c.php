@@ -267,7 +267,7 @@ class ReportePdf_c extends CI_Controller
 			}
 		}
 
-		$contenidoReporte['encabezadoFuentePersonal']="\nFuent\n\n";
+		$contenidoReporte['encabezadoFuentePersonal']="\nFuente\n\n";
 		if (isset($Data['reporte']['fuenteInfoPersonal'])) {
 			foreach ($Data['reporte']['fuenteInfoPersonal'] as $key => $infoAdicional) {
 				$contenidoReporte['infoAdicionalPersonal'.$key]="Nombre:  ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorId']]['nombre']." ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorId']]['apellidosSiglas']."\n";
@@ -275,7 +275,7 @@ class ReportePdf_c extends CI_Controller
 						$contenidoReporte['actorRelacionadoPersonal'.$key]= "Actor colectivo relacionado:  ".$infoAdicional['actorRelacionadoPersonal'][$infoAdicional['relacionId']]['nombre']."\n";
 						$contenidoReporte['tipoRelacionPersonal'.$key]= "Tipo relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$infoAdicional['actorRelacionadoPersonal'][$infoAdicional['relacionId']]['tipoRelacionId']]['Nivel2']."\n";
 				}
-				$contenidoReporte['infoAdicionalTipoFuente'.$key] = "Tipo fuente:  ".$datos['catalogos']['tipoFuenteCatalogo']['tipoFuenteCatalogo'][$infoAdicional['tipoFuenteCatalogo_tipoFuenteId']]['descripcion']."\n";
+				$contenidoReporte['infoAdicionalTipoFuente'.$key] = "Tipo fuente:  ".$datos['catalogos']['tipoFuenteCatalogo']['tipoFuenteCatalogo'][$infoAdicional['tipoFuenteCatalogo_tipoFuenteId']-1]['descripcion']."\n";
 				$contenidoReporte['infoAdicionalfecha'.$key] = "Fecha:  ".$infoAdicional['fecha']."\n";
 				if(isset($infoAdicional['nivelConfiabilidadCatalogo_nivelConfiabilidadId'])){
 					$contenidoReporte['infoAdicionalNivelConfiabilidad'.$key] = "Nivel confiabilidad:  ".$datos['catalogos']['nivelConfiabilidadCatalogo']['nivelConfiabilidadCatalogo'][$infoAdicional['nivelConfiabilidadCatalogo_nivelConfiabilidadId']-1]['descripcion']."\n";				
