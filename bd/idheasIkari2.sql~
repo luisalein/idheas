@@ -296,7 +296,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoFuenteCatalogo` (
   `tipoFuenteId` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion` VARCHAR(45) NULL ,
+  `descripcion` VARCHAR(500) NULL ,
   `notas` VARCHAR(1500) NULL ,
   `selectorTipoFuente` ENUM('1','2') NULL ,
   PRIMARY KEY (`tipoFuenteId`) )
@@ -308,7 +308,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`nivelConfiabilidadCatalogo` (
   `nivelConfiabilidadId` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion` VARCHAR(100) NULL ,
+  `descripcion` VARCHAR(500) NULL ,
   `notas` VARCHAR(3000) NULL ,
   PRIMARY KEY (`nivelConfiabilidadId`) )
 ENGINE = InnoDB;
@@ -564,7 +564,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoActorColectivo` (
   `tipoActorColectivoId` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion` VARCHAR(60) NULL ,
+  `descripcion` VARCHAR(100) NULL ,
   `notas` VARCHAR(1500) NULL ,
   PRIMARY KEY (`tipoActorColectivoId`) )
 ENGINE = InnoDB;
@@ -575,7 +575,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`relacionActoresCatalogo` (
   `tipoRelacionId` INT NOT NULL AUTO_INCREMENT ,
-  `nombre` VARCHAR(100) NULL ,
+  `nombre` VARCHAR(500) NULL ,
   `notas` VARCHAR(1500) NULL ,
   `Nivel2` VARCHAR(100) NULL ,
   `tipoDeRelacionId` INT NULL ,
@@ -632,7 +632,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`estatusPerpetradorCatalogo` (
   `estatusPerpetradorId` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion` VARCHAR(60) NULL ,
+  `descripcion` VARCHAR(500) NULL ,
   `notas` VARCHAR(3000) NULL ,
   PRIMARY KEY (`estatusPerpetradorId`) )
 ENGINE = InnoDB;
@@ -674,7 +674,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`estatusVictimaCatalogo` (
   `estatusVictimaId` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion` VARCHAR(60) NULL ,
+  `descripcion` VARCHAR(500) NULL ,
   `notas` VARCHAR(1500) NULL ,
   PRIMARY KEY (`estatusVictimaId`) )
 ENGINE = InnoDB;
@@ -707,7 +707,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`derechosAfectadosN2Catalogo` (
   `derechoAfectadoN2Id` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion` VARCHAR(100) NULL ,
+  `descripcion` VARCHAR(500) NULL ,
   `notas` VARCHAR(3000) NULL ,
   `derechosAfectadosN1Catalogo_derechoAfectadoN1Id` INT NOT NULL ,
   PRIMARY KEY (`derechoAfectadoN2Id`) ,
@@ -750,7 +750,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`derechosAfectadosN3Catalogo` (
   `derechoAfectadoN3Id` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion` VARCHAR(100) NULL ,
+  `descripcion` VARCHAR(500) NULL ,
   `notas` VARCHAR(3000) NULL ,
   `derechosAfectadosN2Catalogo_derechoAfectadoN2Id` INT NOT NULL ,
   PRIMARY KEY (`derechoAfectadoN3Id`) ,
@@ -793,7 +793,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`derechosAfectadosN4Catalogo` (
   `derechoAfectadoN4Id` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion` VARCHAR(100) NULL ,
+  `descripcion` VARCHAR(500) NULL ,
   `notas` VARCHAR(3000) NULL ,
   `derechosAfectadosN3Catalogo_derechoAfectadoN3Id` INT NOT NULL ,
   PRIMARY KEY (`derechoAfectadoN4Id`) ,
@@ -836,7 +836,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoLugarN1Catalogo` (
   `tipoLugarId` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion` VARCHAR(100) NULL ,
+  `descripcion` VARCHAR(500) NULL ,
   `notas` VARCHAR(500) NULL ,
   PRIMARY KEY (`tipoLugarId`) )
 ENGINE = InnoDB;
@@ -847,7 +847,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoLugarN2Catalogo` (
   `tipoLugarN2Id` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion` VARCHAR(100) NULL ,
+  `descripcion` VARCHAR(500) NULL ,
   `notas` VARCHAR(500) NULL ,
   `tipoLugarN1Catalogo_tipoLugarId` INT NOT NULL ,
   PRIMARY KEY (`tipoLugarN2Id`) ,
@@ -865,7 +865,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoLugarN3Catalogo` (
   `tipoLugarN3Id` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion` VARCHAR(100) NULL ,
+  `descripcion` VARCHAR(500) NULL ,
   `notas` VARCHAR(500) NULL ,
   `tipoLugarN2Catalogo_tipoLugarN2Id` INT NOT NULL ,
   PRIMARY KEY (`tipoLugarN3Id`) ,
@@ -936,7 +936,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoIntervencionN1Catalogo` (
   `tipoIntervencionN1Id` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion` VARCHAR(100) NULL ,
+  `descripcion` VARCHAR(500) NULL ,
   PRIMARY KEY (`tipoIntervencionN1Id`) )
 ENGINE = InnoDB;
 
@@ -946,7 +946,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoIntervencionN2Catalogo` (
   `tipoIntervencionN2Id` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion` VARCHAR(100) NULL ,
+  `descripcion` VARCHAR(500) NULL ,
   `tipoIntervencionN1Catalogo_tipoIntervencionN1Id` INT NOT NULL ,
   PRIMARY KEY (`tipoIntervencionN2Id`) ,
   INDEX `fk_tipoIntervencionN2Catalogo_tipoIntervencionN1Catalogo1_idx` (`tipoIntervencionN1Catalogo_tipoIntervencionN1Id` ASC) ,
@@ -963,7 +963,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoIntervencionN3Catalogo` (
   `tipoIntervencionN3Id` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion` VARCHAR(100) NULL ,
+  `descripcion` VARCHAR(500) NULL ,
   `tipoIntervencionN2Catalogo_tipoIntervencionN2Id` INT NOT NULL ,
   PRIMARY KEY (`tipoIntervencionN3Id`) ,
   INDEX `fk_tipoIntervencionN3Catalogo_tipoIntervencionN2Catalogo1_idx` (`tipoIntervencionN2Catalogo_tipoIntervencionN2Id` ASC) ,
@@ -980,7 +980,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoIntervencionN4Catalogo` (
   `tipoIntervencionN4Id` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion` VARCHAR(100) NULL ,
+  `descripcion` VARCHAR(500) NULL ,
   `tipoIntervencionN3Catalogo_tipoIntervencionN3Id` INT NOT NULL ,
   PRIMARY KEY (`tipoIntervencionN4Id`) ,
   INDEX `fk_tipoIntervencionN4Catalogo_tipoIntervencionN3Catalogo1_idx` (`tipoIntervencionN3Catalogo_tipoIntervencionN3Id` ASC) ,
@@ -1076,7 +1076,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`gradoInvolucramientoN1Catalogo` (
   `gradoInvolucramientoN1Id` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion` VARCHAR(100) NULL ,
+  `descripcion` VARCHAR(500) NULL ,
   `notas` VARCHAR(3000) NULL ,
   PRIMARY KEY (`gradoInvolucramientoN1Id`) )
 ENGINE = InnoDB;
@@ -1087,7 +1087,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`gradoInvolucramientoN2Catalogo` (
   `gradoInvolucramientoN2Id` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion` VARCHAR(100) NULL ,
+  `descripcion` VARCHAR(500) NULL ,
   `notas` VARCHAR(300) NULL ,
   `gradoInvolucramientoN1Catalogo_gradoInvolucramientoN1Id` INT NOT NULL ,
   PRIMARY KEY (`gradoInvolucramientoN2Id`) ,
@@ -1105,7 +1105,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoPerpetradorN1Catalogo` (
   `tipoPerpetradorN1Id` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion` VARCHAR(100) NULL ,
+  `descripcion` VARCHAR(500) NULL ,
   `notas` VARCHAR(3000) NULL ,
   PRIMARY KEY (`tipoPerpetradorN1Id`) )
 ENGINE = InnoDB;
@@ -1116,7 +1116,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoPerpetradorN2Catalogo` (
   `tipoPerpetradorN2Id` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion` VARCHAR(100) NULL ,
+  `descripcion` VARCHAR(500) NULL ,
   `notas` VARCHAR(3000) NULL ,
   `tipoPerpetradorN1Catalogo_tipoPerpetradorN1Id` INT NOT NULL ,
   PRIMARY KEY (`tipoPerpetradorN2Id`) ,
@@ -1134,7 +1134,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoPerpetradorN3Catalogo` (
   `tipoPerpetradorN3Id` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion` VARCHAR(100) NULL ,
+  `descripcion` VARCHAR(500) NULL ,
   `notas` VARCHAR(3000) NULL ,
   `tipoPerpetradorN2Catalogo_tipoPerpetradorN2Id` INT NOT NULL ,
   PRIMARY KEY (`tipoPerpetradorN3Id`) ,
@@ -1152,7 +1152,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoPerpetradorN4Catalogo` (
   `tipoPerpetradorN4Id` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion` VARCHAR(100) NULL ,
+  `descripcion` VARCHAR(500) NULL ,
   `notas` VARCHAR(3000) NULL ,
   `tipoPerpetradorN3Catalogo_tipoPerpetradorN3Id` INT NOT NULL ,
   PRIMARY KEY (`tipoPerpetradorN4Id`) ,
@@ -1170,7 +1170,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoPerpetradorN5Catalogo` (
   `tipoPerpetradorN5Id` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion` VARCHAR(100) NULL ,
+  `descripcion` VARCHAR(500) NULL ,
   `notas` VARCHAR(3000) NULL ,
   `tipoPerpetradorN4Catalogo_tipoPerpetradorN4Id` INT NOT NULL ,
   PRIMARY KEY (`tipoPerpetradorN5Id`) ,
@@ -1192,7 +1192,7 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoFuenteDocumental` (
   `fechaAcceso` DATE NULL ,
   `comentarios` VARCHAR(3000) NULL ,
   `observaciones` VARCHAR(3000) NULL ,
-  `nombre` VARCHAR(45) NULL ,
+  `nombre` VARCHAR(500) NULL ,
   `infoAdicional` VARCHAR(3000) NULL ,
   `url` VARCHAR(100) NULL ,
   `actorReportado` INT NULL ,
@@ -1234,7 +1234,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`nivelEscolaridadCatalogo` (
   `nivelEscolaridadId` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion` VARCHAR(100) NULL ,
+  `descripcion` VARCHAR(500) NULL ,
   `notas` VARCHAR(300) NULL ,
   PRIMARY KEY (`nivelEscolaridadId`) )
 ENGINE = InnoDB;
@@ -1245,7 +1245,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoDireccionCatalogo` (
   `tipoDireccionId` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion` VARCHAR(100) NULL ,
+  `descripcion` VARCHAR(500) NULL ,
   `notas` VARCHAR(3000) NULL ,
   PRIMARY KEY (`tipoDireccionId`) )
 ENGINE = InnoDB;
@@ -1278,8 +1278,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`relacionCasosCatalogo` (
   `relacionCasosId` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion` VARCHAR(100) NULL ,
-  `notas` VARCHAR(45) NULL ,
+  `descripcion` VARCHAR(500) NULL ,
+  `notas` VARCHAR(1000) NULL ,
   PRIMARY KEY (`relacionCasosId`) )
 ENGINE = InnoDB;
 
@@ -1289,7 +1289,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoFuenteDocumentalN1Catalogo` (
   `tipoFuenteDocumentalN1CatalogoId` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion` VARCHAR(100) NULL ,
+  `descripcion` VARCHAR(500) NULL ,
   `notas` VARCHAR(1000) NULL ,
   PRIMARY KEY (`tipoFuenteDocumentalN1CatalogoId`) )
 ENGINE = InnoDB;
@@ -1300,7 +1300,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoFuenteDocumentalN2Catalogo` (
   `tipoFuenteDocumentalN2CatalogoId` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion` VARCHAR(100) NULL ,
+  `descripcion` VARCHAR(500) NULL ,
   `notas` VARCHAR(1000) NULL ,
   `tipoFuenteDocumentalN1Catalogo_tipoFuenteDocumentalN1CatalogoId` INT NULL ,
   PRIMARY KEY (`tipoFuenteDocumentalN2CatalogoId`) ,
@@ -1312,7 +1312,7 @@ CREATE  TABLE IF NOT EXISTS `idheasIkari`.`tipoFuenteDocumentalN2Catalogo` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-insert into usuarios(nombre,pass) values('admin','idheas');
+insert into usuarios(nombre,pass) values ('admin','idheas');
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
