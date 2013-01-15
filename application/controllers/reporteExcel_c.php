@@ -117,7 +117,7 @@ class ReporteExcel_c extends CI_Controller
 							foreach($Data['victimas'] as $victima){
 								if($acto['actoId']== $victima['actos_actoId']){
 									foreach($Data['perpetradores'] as $perpetrador){
-										if($perpetrador['victimas_victimaId']==$victima['victimaId']){
+										if($perpetrador['victimas_victimaId']==$victima['actorId']){
 											foreach ($Data['perpetradores'] as $perpetrador) {
 												$listaPerpetradores = $listaPerpetradores . $perpetrador['nombre'].' '.$perpetrador['apellidos'].'. ';
 											}
