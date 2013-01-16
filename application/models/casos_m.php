@@ -729,9 +729,6 @@ class Casos_m extends CI_Model {
 					
 					
 				}
-				echo "<pre>";
-					print_r( $relaciones);
-					echo "</pre>";
 		}
 	
 		/*Trae datos relacion citada*/
