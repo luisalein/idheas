@@ -91,6 +91,14 @@ class ReportePdf_c extends CI_Controller
 		
 		$datos['relacionCasosCatalogo'] = $this->catalogos_m->mTraerDatosCatalogoNombre('relacionCasosCatalogo');
 		
+		$datos['tipoIntervencionN1Catalogo'] = $this->catalogos_m->mTraerDatosCatalogoNombre('tipoIntervencionN1Catalogo');
+		
+		$datos['tipoIntervencionN2Catalogo'] = $this->catalogos_m->mTraerDatosCatalogoNombre('tipoIntervencionN2Catalogo');
+		
+		$datos['tipoIntervencionN3Catalogo'] = $this->catalogos_m->mTraerDatosCatalogoNombre('tipoIntervencionN3Catalogo');
+		
+		$datos['tipoIntervencionN4Catalogo'] = $this->catalogos_m->mTraerDatosCatalogoNombre('tipoIntervencionN4Catalogo');
+		
 		$datos['tipoFechaCatalogo']= array('1'=>'Fecha exacta','2'=>'Fecha aproximada','3'=>'Se desconoce el día','4'=>'Se desconoce el mes y el día');
 
         $datos['ListaTodosActores'] = $this->actores_m-> mListaTodosActores();
@@ -106,7 +114,7 @@ class ReportePdf_c extends CI_Controller
 		$Data['reporte']= $this->reportes_m->mReporteLargo($casoId);
 		$Data['nombreCaso']=$Data['reporte']['casos']['nombre'];
 		// echo "<pre>";
-		// print_r($datos['catalogos']['tipoFuenteDocumentalN2Catalogo']);
+		// print_r($datos['catalogos']['tipoIntervencionN1Catalogo']);
 		$this->cezpdf->ezText($Data['nombreCaso'] , 15, array('justification' => 'center'));
 		$this->cezpdf->ezSetDy(-10);
 		
@@ -258,6 +266,9 @@ class ReportePdf_c extends CI_Controller
 		if (isset($Data['reporte']['intervenciones'])) {
 			$contenidoReporte['encabezadoIntervenciones']="\nIntervenciones "."\n\n";
 			foreach ($Data['reporte']['intervenciones'] as $key => $intervencion) {
+				if(isset($intervencion['tipoIntervencionId'])){
+					$contenidoReporte['tipoIntervencion'.$key] = "Tipo de intervención:  ".$datos['catalogos']['tipoIntervencionN'.$intervencion['intervencionNId'].'Catalogo']['tipoIntervencionN'.$intervencion['intervencionNId'].'Catalogo'][$intervencion['tipoIntervencionId']-1]['descripcion']."\n";
+				}
 				$contenidoReporte['intervencionFecha'.$key]=	"Fecha de la intervención:  ". $intervencion['fecha']."\n";
 				if(isset($intervencion['interventorId']) && $intervencion['interventorId']>0){
 					if ( ($datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['tipoActorId']) == 3) {
@@ -283,6 +294,7 @@ class ReportePdf_c extends CI_Controller
 					$contenidoReporte['actorRelacionadoReceptor'.$key]= "Actor colectivo relacionado:  ".$intervencion['actorRelacionadoReceptor'][$intervencion['tipoRelacionReceptor']]['nombre']."\n";
 					$contenidoReporte['tipoRelacionReceptor'.$key]= "Tipo relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$intervencion['actorRelacionadoReceptor'][$intervencion['tipoRelacionReceptor']]['tipoRelacionId']]['Nivel2']."\n";
 				}
+				
 				$contenidoReporte['intervencionImpacto'.$key]=	"Impacto:  ". $intervencion['impacto']."\n";
 				$contenidoReporte['intervencionRespuesta'.$key]=	"Respuesta:  ". $intervencion['respuesta']."\n";
 				
