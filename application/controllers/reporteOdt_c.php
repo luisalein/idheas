@@ -387,7 +387,7 @@ class ReporteOdt_c extends CI_Controller
 					$contenidoRelacionCasos['nombrecaso'.$key]="Caso relacionado:  ".$relacionCasos['nombreCasoIdB']."\n";
 				}
 				if(isset($relacionCasos['tipoRelacionId'])){
-					$contenidoRelacionCasos['tipoRelacionCaso'.$key]="Tipo de relación:  ".$datos['catalogos']['relacionCasosCatalogo']['relacionCasosCatalogo'][$relacionCasos['tipoRelacionId']]['descripcion']."\n";
+					$contenidoRelacionCasos['tipoRelacionCaso'.$key]="Tipo de relación:  ".$datos['catalogos']['relacionCasosCatalogo']['relacionCasosCatalogo'][$relacionCasos['tipoRelacionId']-1]['descripcion']."\n";
 				}
 				if(isset($relacionCasos['fechaIncial'])){
 					$contenidoRelacionCasos['FechaInicio'.$key]="Fecha de inicio:  ".$relacionCasos['fechaIncial']."\n";
