@@ -259,8 +259,10 @@ class ReportePdf_c extends CI_Controller
 			$contenidoReporte['encabezadoIntervenciones']="\nIntervenciones "."\n\n";
 			foreach ($Data['reporte']['intervenciones'] as $key => $intervencion) {
 				$contenidoReporte['intervencionFecha'.$key]=	"Fecha de la intervención:  ". $intervencion['fecha']."\n";
-				if ( ($datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['tipoActorId']) > 0 && ($datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['tipoActorId']) == 3) {
-					$contenidoReporte['intervencionInstitucion'.$key]=	"Institución:  ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['apellidosSiglas'] ."\n";
+				if($intervencion['interventorId']){
+					if ( ($datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['tipoActorId']) == 3) {
+						$contenidoReporte['intervencionInstitucion'.$key]=	"Institución:  ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['apellidosSiglas'] ."\n";
+					}
 				}
 				else{
 					if($intervencion['interventorId']>0){				
