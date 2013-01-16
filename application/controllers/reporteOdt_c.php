@@ -273,24 +273,24 @@ class ReporteOdt_c extends CI_Controller
 				
 				if(isset($intervencion['interventorId']) && $intervencion['interventorId']>0){
 					if ( ($datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['tipoActorId']) == 3) {
-						$contenidoReporte['intervencionInstitucion'.$key]=	"Institución:  ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['apellidosSiglas'] ."\n";
+						$contenidoIntervenciones['intervencionInstitucion'.$key]=	"Institución:  ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['apellidosSiglas'] ."\n";
 					}
 				
 					else{
 						if($intervencion['interventorId']>0){				
-							$contenidoReporte['intervencionInterventor'.$key]=	"Interventor:  ".$datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['apellidosSiglas'] ."\n";
+							$contenidoIntervenciones['intervencionInterventor'.$key]=	"Interventor:  ".$datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['apellidosSiglas'] ."\n";
 						}
 						if($intervencion['tipoRelacionInterventor'] > 0){
-							$contenidoReporte['actorRelacionadoInterventor'.$key]= "Actor colectivo relacionado:  ".$intervencion['actorRelacionadoInterventor'][$intervencion['tipoRelacionInterventor']]['nombre']."\n";
+							$contenidoIntervenciones['actorRelacionadoInterventor'.$key]= "Actor colectivo relacionado:  ".$intervencion['actorRelacionadoInterventor'][$intervencion['tipoRelacionInterventor']]['nombre']."\n";
 							if(isset($datos['catalogos']['relacionActoresCatalogo'][$intervencion['actorRelacionadoInterventor'][$intervencion['tipoRelacionInterventor']]['tipoRelacionId']]['Nivel2'])){
-								$contenidoReporte['tipoRelacionInterventor'.$key]= "Tipo relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$intervencion['actorRelacionadoInterventor'][$intervencion['tipoRelacionInterventor']]['tipoRelacionId']]['Nivel2']."\n";
+								$contenidoIntervenciones['tipoRelacionInterventor'.$key]= "Tipo relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$intervencion['actorRelacionadoInterventor'][$intervencion['tipoRelacionInterventor']]['tipoRelacionId']]['Nivel2']."\n";
 							}
 						}
 					}
 				}
 				
 				if($intervencion['receptorId'] > 0){
-					$contenidoReporte['intervencionReceptor'.$key]=	"Receptor:  ". $datos['catalogos']['ListaTodosActores'][$intervencion['receptorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$intervencion['receptorId']]['apellidosSiglas'] ."\n";
+					$contenidoIntervenciones['intervencionReceptor'.$key]=	"Receptor:  ". $datos['catalogos']['ListaTodosActores'][$intervencion['receptorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$intervencion['receptorId']]['apellidosSiglas'] ."\n";
 				}
 				if($intervencion['actorRelacionadoReceptor'] > 0){
 					$contenidoIntervenciones['actorRelacionadoReceptor'.$key]= "Actor colectivo relacionado:  ".$intervencion['actorRelacionadoReceptor'][$intervencion['tipoRelacionReceptor']]['nombre']."\n";
@@ -303,11 +303,11 @@ class ReporteOdt_c extends CI_Controller
 				if(isset($intervencion['intervenidos'])){
 					$i=1;
 					foreach ($intervencion['intervenidos'] as $intervenido) {
-						$contenidoReporte['intervenido'.$i] = $datos['catalogos']['ListaTodosActores'][$intervenido['actorIntervenidoId']]['nombre']." ". $datos['catalogos']['ListaTodosActores'][$intervenido['actorIntervenidoId']]['apellidosSiglas'] ."\n";
+						$contenidoIntervenciones['intervenido'.$i] = $datos['catalogos']['ListaTodosActores'][$intervenido['actorIntervenidoId']]['nombre']." ". $datos['catalogos']['ListaTodosActores'][$intervenido['actorIntervenidoId']]['apellidosSiglas'] ."\n";
 						$i++;
 					}
 				}
-				$contenidoIntervenciones['intervenidos'] =$intervenidos;
+				
 				
 				$contenidoIntervenciones['espaciosIntervenciones']= "\n\n\n";
 			}
