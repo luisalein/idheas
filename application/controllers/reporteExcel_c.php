@@ -142,9 +142,9 @@ class ReporteExcel_c extends CI_Controller
 								if($acto['actoId']== $victima['actos_actoId']){
 									foreach($Data['perpetradores'] as $perpetrador){
 										if($perpetrador['victimas_victimaId']==$victima['victimaId']){
-											foreach ($Data['perpetradores'] as $perpetrador) {
+
 												$listaPerpetradores = $listaPerpetradores . $perpetrador['nombre'].' '.$perpetrador['apellidos'].'. ';
-											}
+
 										}
 								
 									}
@@ -224,9 +224,9 @@ class ReporteExcel_c extends CI_Controller
 								if($acto['actoId']== $victima['actos_actoId']){
 									foreach($caso['perpetradores'] as $perpetrador){
 										if($perpetrador['victimas_victimaId']==$victima['victimaId']){
-											foreach ($caso['perpetradores'] as $perpetrador) {
+											
 												$listaPerpetradores = $listaPerpetradores . $perpetrador['nombre'].' '.$perpetrador['apellidos'].'. ';
-											}
+											
 										}
 								
 									}
