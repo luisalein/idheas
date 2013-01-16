@@ -150,6 +150,9 @@
 			              				<td><?=(isset($datosCaso['casos']['nombre']) && isset($casoRelacionado['nombreCasoIdB'])) ? $datosCaso['casos']['nombre'] : ''; ?></td>
 					              		<td><?=(isset($casoRelacionado['fechaIncial']))? $casoRelacionado['fechaIncial']: ''?></td>
 					              		<td><?=(isset($casoRelacionado['fechaTermino']))? $casoRelacionado['fechaTermino']: ''?></td>
+					              		<td><input type="button"  class="tiny button" style="padding:5px 15px 5px 15px;margin-bottom: 5px" value="Editar" onclick="ventanaRelacionCasos('<?= $casoId; ?>', '<?=$casoRelacionado['relacionId']?>')"/>
+						              			<input type="button"  class="tiny button" value="Eliminar" onclick="eliminarRelacionCasos('<?=$casoRelacionado['relacionId']?>','<?= $casoId; ?>')" />
+					              			</td>
 				              		</tr>
 				              	<?php } endforeach;?>		
 				             <?php endif;?>  
@@ -193,9 +196,7 @@
 						              		<td><?=(isset($casoRelacionado['nombreCasoId']))? $casoRelacionado['nombreCasoId']: ''?></td>
 						              		<td><?=(isset($casoRelacionado['fechaIncialCasoId']))? $casoRelacionado['fechaIncialCasoId']: ''?></td>
 						              		<td><?=(isset($casoRelacionado['fechaTerminoCasoId']))? $casoRelacionado['fechaTerminoCasoId']: ''?></td>
-						              		<td><input type="button"  class="tiny button" style="padding:5px 15px 5px 15px;margin-bottom: 5px" value="Editar" onclick="ventanaRelacionCasos('<?= $casoId; ?>', '<?=$casoRelacionado['relacionId']?>')"/>
-						              			<input type="button"  class="tiny button" value="Eliminar" onclick="eliminarRelacionCasos('<?=$casoRelacionado['relacionId']?>','<?= $casoId; ?>')" />
-					              			</td>
+						              		
 					              		</tr>
 					              	<?php } } endforeach;?>		
 					             <?php endif;?>  
