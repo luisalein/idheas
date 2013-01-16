@@ -118,11 +118,10 @@
 				  		</div>
 				  	</div><!--fin acordeon Fuentes de información personal-->
 	  		</div>
-
 	  	</div><!--fin acordeon Fuentes de información-->
 	  	<div id="subPestanias" data-collapse>
 	  		<h2>Relación entre casos</h2>
-	  		<div>
+	  		<div>      
 	  			<div class="twelve columns">
 	  				<?php if(isset($datosCaso['relacionCasos']) && $datosCaso['relacionCasos'] != '0'):?>	
 	  				<table class="twelve columns">
