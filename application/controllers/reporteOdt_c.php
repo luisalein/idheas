@@ -332,11 +332,11 @@ class ReporteOdt_c extends CI_Controller
 					$contenidoFuenteDocumental['fuenteDocComentarios'.$key]= "comentarios:  ".$documental['comentarios']."\n";
 					$contenidoFuenteDocumental['fuenteDocObaservaciones'.$key]= "observaciones:  ".$documental['observaciones']."\n";
 					if(isset($documental['actorReportado']) && $documental['actorReportado'] > 0){
-					$contenidoFuenteDocumental['infoAdicionalPersonalReportado'.$key]="Actor reportado:  ".$datos['catalogos']['ListaTodosActores'][$documental['actorReportado']]['nombre']." ".$datos['catalogos']['ListaTodosActores'][$documental['actorReportado']]['apellidosSiglas']."\n";
+					$contenidoFuenteDocumental['infoAdicionalDocumentalReportado'.$key]="Actor reportado:  ".$datos['catalogos']['ListaTodosActores'][$documental['actorReportado']]['nombre']." ".$datos['catalogos']['ListaTodosActores'][$documental['actorReportado']]['apellidosSiglas']."\n";
 					}
 					if($documental['relacionId'] > 0){
-							$contenidoReporte['actorRelacionadoReportado']= "Actor colectivo relacionado:  ".$documental['actorRelacionadoReportado'][$documental['relacionId']]['nombre']."\n";
-							$contenidoReporte['tipoRelacionPersonal']= "Tipo relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$documental['actorRelacionadoReportado'][$documental['relacionId']]['tipoRelacionId']]['Nivel2']."\n";
+							$contenidoReporte['actorRelacionadoDocReportado'.$key]= "Actor colectivo relacionado:  ".$documental['actorRelacionadoReportado'][$documental['relacionId']]['nombre']."\n";
+							$contenidoReporte['tipoRelacionDoc'.$key]= "Tipo relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$documental['actorRelacionadoReportado'][$documental['relacionId']]['tipoRelacionId']]['Nivel2']."\n";
 					}
 					$contenidoFuenteDocumental['espaciosFuentes']= "\n\n\n";
 			}
