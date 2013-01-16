@@ -273,7 +273,7 @@ class ReportePdf_c extends CI_Controller
 						}
 					}
 				}
-				if(isset($intervencion['receptorId'])){
+				if($intervencion['receptorId'] > 0){
 					$contenidoReporte['intervencionReceptor'.$key]=	"Receptor:  ". $datos['catalogos']['ListaTodosActores'][$intervencion['receptorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$intervencion['receptorId']]['apellidosSiglas'] ."\n";
 				}
 				if($intervencion['actorRelacionadoReceptor'] > 0){
