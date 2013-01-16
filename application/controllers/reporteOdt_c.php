@@ -383,7 +383,7 @@ class ReporteOdt_c extends CI_Controller
 		if(isset($Data['reporte']['relacionCasos'])){
 			foreach ($Data['reporte']['relacionCasos'] as $key => $relacionCasos) {
 				if(isset($relacionCasos['nombreCasoIdB'])){
-					$contenidoRelacionCasos['encabezadoCaso'.$key] = "Caso"."\n";
+					$contenidoRelacionCasos['encabezadoCaso'.$key] = $Data['nombreCaso']."\n";
 					$contenidoRelacionCasos['nombrecaso'.$key]="Caso relacionado:  ".$relacionCasos['nombreCasoIdB']."\n";
 				}
 				if(isset($relacionCasos['tipoRelacionId'])){

@@ -368,11 +368,11 @@ class ReportePdf_c extends CI_Controller
 			$contenidoReporte['encabezadoCasosRelacionados']="\n Casos relacionados  \n\n";
 			foreach ($Data['reporte']['relacionCasos'] as $key => $relacionCasos) {
 				if(isset($relacionCasos['nombreCasoIdB'])){
-					$contenidoReporte['encabezadoCaso'.$key] = "Caso"."\n";
+					$contenidoReporte['encabezadoCaso'.$key] = $Data['nombreCaso']."\n";
 					$contenidoReporte['nombrecaso'.$key]="Caso relacionado:  ".$relacionCasos['nombreCasoIdB']."\n";
 				}
 				if(isset($relacionCasos['tipoRelacionId'])){
-					$contenidoReporte['tipoRelacionCaso'.$key]="Tipo de relación:  ".$datos['catalogos']['relacionCasosCatalogo']['relacionCasosCatalogo'][$relacionCasos['tipoRelacionId']]['descripcion']."\n";
+					$contenidoReporte['tipoRelacionCaso'.$key]="Tipo de relación:  ".$datos['catalogos']['relacionCasosCatalogo']['relacionCasosCatalogo'][$relacionCasos['tipoRelacionId']-1]['descripcion']."\n";
 				}
 				if(isset($relacionCasos['fechaIncial'])){
 					$contenidoReporte['FechaInicio'.$key]="Fecha de inicio:  ".$relacionCasos['fechaIncial']."\n";
