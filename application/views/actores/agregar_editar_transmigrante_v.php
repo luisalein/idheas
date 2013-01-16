@@ -415,12 +415,12 @@
             </div>
                 <div class="twelve columns"> 
                     <label for="realizaViaje">Realiza el viaje</label>
-                        <?php if(isset($datosActor['inofGralActor']['realizaViaje'])){ ?>
-                            <input type="radio" name="infoMigratoria_realizaViaje" id="infoMigratoria_realizaViaje" <?=($datosActor['infoGralActor']['realizaViaje'] == 'No acompanado') ? 'checked="checked"' : ''; ?> value="No acompanado" />No acompañado
-                            <input type="radio" id="infoGralActor_espaniol" name="infoGralActor_espaniol" <?=($datosActor['infoGralActor']['realizaViaje'] == 'Acompanado') ? 'checked="checked"' : ''; ?> value="Acompanado" />Acompañado
+                        <?php if(isset($datosActor['infoMigratoria']['realizaViaje'])){ ?>
+                            <input type="radio" name="infoMigratoria_realizaViaje" id="infoMigratoria_realizaViaje" <?=($datosActor['infoMigratoria']['realizaViaje'] == 'No acompanado') ? 'checked="checked"' : ''; ?> value="No acompanado" />No acompañado
+                            <input type="radio" id="infoMigratoria_realizaViaje" name="infoMigratoria_realizaViaje" <?=($datosActor['infoMigratoria']['realizaViaje'] == 'Acompanado') ? 'checked="checked"' : ''; ?> value="Acompanado" />Acompañado
                         <?php } else { ?>
                             <input type="radio" name="infoMigratoria_realizaViaje" id="infoMigratoria_realizaViaje" checked="checked" value="No acompanado" />No acompañado
-                            <input type="radio" id="infoGralActor_realizaViaje" name="infoGralActor_realizaViaje" value="Acompanado" />Acompañado
+                            <input type="radio" id="infoMigratoria_realizaViaje" name="infoMigratoria_realizaViaje" value="Acompanado" />Acompañado
                         <?php } ?>
 
                 </div>

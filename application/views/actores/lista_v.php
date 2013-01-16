@@ -33,34 +33,34 @@
 							<div>
 								<?php if(isset($tipoFiltro) && $tipoFiltro == 1): ?>
 									<input type="radio" name="filtroR" value="1" onclick="filtroRadio(1)" checked="checked">Víctima</input>
-							    <? else:?>
+							    <?php else:?>
 							    	<input type="radio" name="filtroR" value="1" onclick="filtroRadio(1)">Víctima</input>
-							    <? endif;?>
+							    <?php endif;?>
 							    
 							    <?php if(isset($tipoFiltro) && $tipoFiltro == 2): ?>
 									<input type="radio" name="filtroR" value="2" onclick="filtroRadio(2)" checked="checked">Perpetrador</input>
-							    <? else:?>
+							    <?php else:?>
 							    	<input type="radio" name="filtroR" value="2" onclick="filtroRadio(2)">Perpetrador</input>
-							    <? endif;?>
+							    <?php endif;?>
 							</div>
 							<div>
 								<?php if(isset($tipoFiltro) && $tipoFiltro == 3): ?>
 									<input type="radio" name="filtroR" value="3" onclick="filtroRadio(3)" checked="checked">Interventor</input>
-							    <? else:?>
+							    <?php else:?>
 							    	<input type="radio" name="filtroR" value="3" onclick="filtroRadio(3)">Interventor</input>
-							    <? endif;?>
+							    <?php endif;?>
 							    <?php if(isset($tipoFiltro) && $tipoFiltro == 4): ?>
 									<input type="radio" name="filtroR" value="4" onclick="filtroRadio(4)" checked="checked">Receptor</input>
-							    <? else:?>
+							    <?php else:?>
 							    	<input type="radio" name="filtroR" value="4" onclick="filtroRadio(4)">Receptor</input>
-							    <? endif;?>
+							    <?php endif;?>
 							</div>
 							<div>
 								<?php if(isset($tipoFiltro) && $tipoFiltro == 0): ?>
 									<input type="radio" name="filtroR" value="0" onclick="filtroRadio(0)" checked="checked">Sin filtro</input>
-							    <? else:?>
+							    <?php else:?>
 							    	<input type="radio" name="filtroR" value="0" onclick="filtroRadio(0)">Sin filtro</input>
-							    <? endif;?>
+							    <?php endif;?>
 								<input type="hidden" name="<?=$is_actor_type; ?>" id="tipoActor" ></input>
 								<input type="hidden" name="0" id="tipoVentana" />
 							</div>
@@ -133,5 +133,5 @@
 		<?php } ?> 
     </div>
     
-</div>
+	</div>
 </div>

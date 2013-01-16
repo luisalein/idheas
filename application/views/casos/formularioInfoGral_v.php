@@ -32,7 +32,7 @@
 				<div class="six columns">
 					<br /> 
 					<p <?= (isset($datosCaso['casos']['fechaInicial'])) ? '' : 'class="Escondido"' ;?> id="fechaExactaV">
-						<input type="text" id="fechaExacta"  value="<?= (isset($datosCaso['casos']['nombre'])) ? $datosCaso['casos']['fechaInicial'] : "" ;?>" placeholder="AAAA-MM-DD" />
+						<input type="text" id="fechaExacta"  <?= (isset($datosCaso['casos']['nombre'])) ? 'name="casos_fechaInicial" value="'.$datosCaso['casos']['fechaInicial'].'"' : "" ;?> placeholder="AAAA-MM-DD" />
 
 					</p>
 
@@ -65,7 +65,7 @@
 				</div>
 				<div class="six columns">
 					<p <?= (isset($datosCaso['casos']['fechaTermino'])) ? '' : 'class="Escondido"' ;?> id="fechaExactaV2">
-						<input type="text" id="fechaExacta2" value="<?= (isset($datosCaso['casos']['nombre'])) ? $datosCaso['casos']['fechaTermino'] : "" ;?>" placeholder="AAAA-MM-DD" />
+						<input type="text" id="fechaExacta2" <?= (isset($datosCaso['casos']['nombre'])) ? 'name="casos_fechaTermino" value="'.$datosCaso['casos']['fechaTermino'].'"' : "" ;?> placeholder="AAAA-MM-DD" />
 
 					</p>
 

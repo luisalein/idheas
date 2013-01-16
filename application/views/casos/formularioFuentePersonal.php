@@ -126,7 +126,8 @@
 								<div id="notastipoFuenteDocumentalCatalogo"></div>
 					</div>
 				</div>
-				
+				<pre>
+				</pre>
 				<div class="twelve columns espacioSuperior espacioInferior">
 					<div class="six columns">
 						<label for="edad">Fecha</label>
@@ -140,8 +141,8 @@
 		
 					<div class="six columns">
 						<br />
-						<p  id="fechaExactaVAct" <?(isset($fuenteInfoPersonal['tipoFechaId'])) ? '' : 'class="Escondido"' ;?> >
-							<input type="text" id="fechaExactaAct" <?(isset($fuenteInfoPersonal['fecha'])) ? 'value="'.$fuenteInfoPersonal['fecha'].'"' : " " ;?>  placeholder="AAAA-MM-DD" />
+						<p  id="fechaExactaVAct" <?=(isset($fuenteInfoPersonal['fecha'])) ? '' : 'class="Escondido"' ;?> >
+							<input type="text" id="fechaExactaAct" <?=(isset($fuenteInfoPersonal['fecha'])) ? 'name="fuenteInfoPersonal_fecha" value="'.$fuenteInfoPersonal['fecha'].'"' : " " ;?>  placeholder="AAAA-MM-DD" />
 
 						</p>
 
