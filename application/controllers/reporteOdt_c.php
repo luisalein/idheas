@@ -301,8 +301,10 @@ class ReporteOdt_c extends CI_Controller
 				
 				$intervenidos ="Personas por las que se intervino: "."\n";
 				if(isset($intervencion['intervenidos'])){
+					$i=1;
 					foreach ($intervencion['intervenidos'] as $intervenido) {
-						$intervenidos = $intervenidos. $datos['catalogos']['ListaTodosActores'][$intervenido['intervenidoId']]['nombre']." ". $datos['catalogos']['ListaTodosActores'][$intervenido['intervenidoId']]['apellidosSiglas'] ."\n";
+						$intervenidos[$i] = $intervenidos. $datos['catalogos']['ListaTodosActores'][$intervenido['intervenidoId']]['nombre']." ". $datos['catalogos']['ListaTodosActores'][$intervenido['intervenidoId']]['apellidosSiglas'] ."\n";
+						$i++;
 					}
 				}
 				$contenidoIntervenciones['intervenidos'] =$intervenidos;

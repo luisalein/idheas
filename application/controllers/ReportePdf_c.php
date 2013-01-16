@@ -303,6 +303,7 @@ class ReportePdf_c extends CI_Controller
 					$i=1;
 					foreach ($intervencion['intervenidos'] as $intervenido) {
 						$intervenidos[$i] = $intervenidos. $datos['catalogos']['ListaTodosActores'][$intervenido['intervenidoId']]['nombre']." ". $datos['catalogos']['ListaTodosActores'][$intervenido['intervenidoId']]['apellidosSiglas'] ."\n";
+						$i++;
 					}
 				}
 				$contenidoReporte['intervenidos'] =$intervenidos;
