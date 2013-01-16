@@ -259,17 +259,26 @@ class ReportePdf_c extends CI_Controller
 			$contenidoReporte['encabezadoIntervenciones']="\nIntervenciones "."\n\n";
 			foreach ($Data['reporte']['intervenciones'] as $key => $intervencion) {
 				$contenidoReporte['intervencionFecha'.$key]=	"Fecha de la intervención:  ". $intervencion['fecha']."\n";
-				if ( ($datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['tipoActorId']) == 3) {
-					$contenidoReporte['intervencionInstitucion'.$key]=	"Institución:  ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['apellidosSiglas'] ."\n";
-				}
-				else{				
-					$contenidoReporte['intervencionInterventor'.$key]=	"Interventor:  ".$datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['apellidosSiglas'] ."\n";
-					if($intervencion['tipoRelacionInterventor'] > 0){
-						$contenidoReporte['actorRelacionadoInterventor'.$key]= "Actor colectivo relacionado:  ".$intervencion['actorRelacionadoInterventor'][$intervencion['tipoRelacionInterventor']]['nombre']."\n";
-						$contenidoReporte['tipoRelacionInterventor'.$key]= "Tipo relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$intervencion['actorRelacionadoInterventor'][$intervencion['tipoRelacionInterventor']]['tipoRelacionId']]['Nivel2']."\n";
+				if(isset($intervencion['interventorId']) && $intervencion['interventorId']>0){
+					if ( ($datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['tipoActorId']) == 3) {
+						$contenidoReporte['intervencionInstitucion'.$key]=	"Institución:  ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['apellidosSiglas'] ."\n";
+					}
+				
+					else{
+						if($intervencion['interventorId']>0){				
+							$contenidoReporte['intervencionInterventor'.$key]=	"Interventor:  ".$datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['apellidosSiglas'] ."\n";
+						}
+						if($intervencion['tipoRelacionInterventor'] > 0){
+							$contenidoReporte['actorRelacionadoInterventor'.$key]= "Actor colectivo relacionado:  ".$intervencion['actorRelacionadoInterventor'][$intervencion['tipoRelacionInterventor']]['nombre']."\n";
+							if(isset($datos['catalogos']['relacionActoresCatalogo'][$intervencion['actorRelacionadoInterventor'][$intervencion['tipoRelacionInterventor']]['tipoRelacionId']]['Nivel2'])){
+								$contenidoReporte['tipoRelacionInterventor'.$key]= "Tipo relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$intervencion['actorRelacionadoInterventor'][$intervencion['tipoRelacionInterventor']]['tipoRelacionId']]['Nivel2']."\n";
+							}
+						}
 					}
 				}
-				$contenidoReporte['intervencionReceptor'.$key]=	"Receptor:  ". $datos['catalogos']['ListaTodosActores'][$intervencion['receptorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$intervencion['receptorId']]['apellidosSiglas'] ."\n";
+				if($intervencion['receptorId'] > 0){
+					$contenidoReporte['intervencionReceptor'.$key]=	"Receptor:  ". $datos['catalogos']['ListaTodosActores'][$intervencion['receptorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$intervencion['receptorId']]['apellidosSiglas'] ."\n";
+				}
 				if($intervencion['actorRelacionadoReceptor'] > 0){
 					$contenidoReporte['actorRelacionadoReceptor'.$key]= "Actor colectivo relacionado:  ".$intervencion['actorRelacionadoReceptor'][$intervencion['tipoRelacionReceptor']]['nombre']."\n";
 					$contenidoReporte['tipoRelacionReceptor'.$key]= "Tipo relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$intervencion['actorRelacionadoReceptor'][$intervencion['tipoRelacionReceptor']]['tipoRelacionId']]['Nivel2']."\n";
@@ -324,7 +333,7 @@ class ReportePdf_c extends CI_Controller
 		if (isset($Data['reporte']['fuenteInfoPersonal'])) {
 			$contenidoReporte['encabezadoFuentePersonal']="\nFuente individual/colectiva\n\n";
 			foreach ($Data['reporte']['fuenteInfoPersonal'] as $key => $infoAdicional) {
-				$contenidoReporte['infoAdicionalPersonal'.$key]="Nombre:  ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorId']]['nombre']." ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorId']]['apellidosSiglas']."\n";
+				$contenidoReporte['infoAdicionalPersonal'.$key]="\n\nNombre:  ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorId']]['nombre']." ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorId']]['apellidosSiglas']."\n";
 				if($infoAdicional['relacionId'] > 0){
 						$contenidoReporte['actorRelacionadoPersonal'.$key]= "Actor colectivo relacionado:  ".$infoAdicional['actorRelacionadoPersonal'][$infoAdicional['relacionId']]['nombre']."\n";
 						$contenidoReporte['tipoRelacionPersonal'.$key]= "Tipo relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$infoAdicional['actorRelacionadoPersonal'][$infoAdicional['relacionId']]['tipoRelacionId']]['Nivel2']."\n";
@@ -359,11 +368,11 @@ class ReportePdf_c extends CI_Controller
 			$contenidoReporte['encabezadoCasosRelacionados']="\n Casos relacionados  \n\n";
 			foreach ($Data['reporte']['relacionCasos'] as $key => $relacionCasos) {
 				if(isset($relacionCasos['nombreCasoIdB'])){
-					$contenidoReporte['encabezadoCaso'.$key] = "Caso"."\n";
+					$contenidoReporte['encabezadoCaso'.$key] = $Data['nombreCaso']."\n";
 					$contenidoReporte['nombrecaso'.$key]="Caso relacionado:  ".$relacionCasos['nombreCasoIdB']."\n";
 				}
 				if(isset($relacionCasos['tipoRelacionId'])){
-					$contenidoReporte['tipoRelacionCaso'.$key]="Tipo de relación:  ".$datos['catalogos']['relacionCasosCatalogo']['relacionCasosCatalogo'][$relacionCasos['tipoRelacionId']]['descripcion']."\n";
+					$contenidoReporte['tipoRelacionCaso'.$key]="Tipo de relación:  ".$datos['catalogos']['relacionCasosCatalogo']['relacionCasosCatalogo'][$relacionCasos['tipoRelacionId']-1]['descripcion']."\n";
 				}
 				if(isset($relacionCasos['fechaIncial'])){
 					$contenidoReporte['FechaInicio'.$key]="Fecha de inicio:  ".$relacionCasos['fechaIncial']."\n";

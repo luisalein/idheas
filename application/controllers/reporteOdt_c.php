@@ -270,17 +270,28 @@ class ReporteOdt_c extends CI_Controller
 		if (isset($Data['reporte']['intervenciones'])) {
 			foreach ($Data['reporte']['intervenciones'] as $key => $intervencion) {
 				$contenidoIntervenciones['intervencionFecha'.$key]=	"Fecha de la intervención:  ". $intervencion['fecha']."\n";
-				if ( ($datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['tipoActorId']) == 3) {
-					$contenidoIntervenciones['intervencionInstitucion'.$key]=	"Institución:  ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['apellidosSiglas'] ."\n";
-				}
-				else{				
-					$contenidoIntervenciones['intervencionInterventor'.$key]=	"Interventor:  ".$datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['apellidosSiglas'] ."\n";
-					if($intervencion['tipoRelacionInterventor'] > 0){
-						$contenidoIntervenciones['actorRelacionadoInterventor'.$key]= "Actor colectivo relacionado:  ".$intervencion['actorRelacionadoInterventor'][$intervencion['tipoRelacionInterventor']]['nombre']."\n";
-						$contenidoIntervenciones['tipoRelacionInterventor'.$key]= "Tipo relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$intervencion['actorRelacionadoInterventor'][$intervencion['tipoRelacionInterventor']]['tipoRelacionId']]['Nivel2']."\n";
+				
+				if(isset($intervencion['interventorId']) && $intervencion['interventorId']>0){
+					if ( ($datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['tipoActorId']) == 3) {
+						$contenidoReporte['intervencionInstitucion'.$key]=	"Institución:  ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['apellidosSiglas'] ."\n";
+					}
+				
+					else{
+						if($intervencion['interventorId']>0){				
+							$contenidoReporte['intervencionInterventor'.$key]=	"Interventor:  ".$datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['apellidosSiglas'] ."\n";
+						}
+						if($intervencion['tipoRelacionInterventor'] > 0){
+							$contenidoReporte['actorRelacionadoInterventor'.$key]= "Actor colectivo relacionado:  ".$intervencion['actorRelacionadoInterventor'][$intervencion['tipoRelacionInterventor']]['nombre']."\n";
+							if(isset($datos['catalogos']['relacionActoresCatalogo'][$intervencion['actorRelacionadoInterventor'][$intervencion['tipoRelacionInterventor']]['tipoRelacionId']]['Nivel2'])){
+								$contenidoReporte['tipoRelacionInterventor'.$key]= "Tipo relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$intervencion['actorRelacionadoInterventor'][$intervencion['tipoRelacionInterventor']]['tipoRelacionId']]['Nivel2']."\n";
+							}
+						}
 					}
 				}
-				$contenidoIntervenciones['intervencionReceptor'.$key]=	"Receptor:  ". $datos['catalogos']['ListaTodosActores'][$intervencion['receptorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$intervencion['receptorId']]['apellidosSiglas'] ."\n";
+				
+				if($intervencion['receptorId'] > 0){
+					$contenidoReporte['intervencionReceptor'.$key]=	"Receptor:  ". $datos['catalogos']['ListaTodosActores'][$intervencion['receptorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$intervencion['receptorId']]['apellidosSiglas'] ."\n";
+				}
 				if($intervencion['actorRelacionadoReceptor'] > 0){
 					$contenidoIntervenciones['actorRelacionadoReceptor'.$key]= "Actor colectivo relacionado:  ".$intervencion['actorRelacionadoReceptor'][$intervencion['tipoRelacionReceptor']]['nombre']."\n";
 					$contenidoIntervenciones['tipoRelacionReceptor'.$key]= "Tipo relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$intervencion['actorRelacionadoReceptor'][$intervencion['tipoRelacionReceptor']]['tipoRelacionId']]['Nivel2']."\n";
@@ -372,11 +383,11 @@ class ReporteOdt_c extends CI_Controller
 		if(isset($Data['reporte']['relacionCasos'])){
 			foreach ($Data['reporte']['relacionCasos'] as $key => $relacionCasos) {
 				if(isset($relacionCasos['nombreCasoIdB'])){
-					$contenidoRelacionCasos['encabezadoCaso'.$key] = "Caso"."\n";
+					$contenidoRelacionCasos['encabezadoCaso'.$key] = $Data['nombreCaso']."\n";
 					$contenidoRelacionCasos['nombrecaso'.$key]="Caso relacionado:  ".$relacionCasos['nombreCasoIdB']."\n";
 				}
 				if(isset($relacionCasos['tipoRelacionId'])){
-					$contenidoRelacionCasos['tipoRelacionCaso'.$key]="Tipo de relación:  ".$datos['catalogos']['relacionCasosCatalogo']['relacionCasosCatalogo'][$relacionCasos['tipoRelacionId']]['descripcion']."\n";
+					$contenidoRelacionCasos['tipoRelacionCaso'.$key]="Tipo de relación:  ".$datos['catalogos']['relacionCasosCatalogo']['relacionCasosCatalogo'][$relacionCasos['tipoRelacionId']-1]['descripcion']."\n";
 				}
 				if(isset($relacionCasos['fechaIncial'])){
 					$contenidoRelacionCasos['FechaInicio'.$key]="Fecha de inicio:  ".$relacionCasos['fechaIncial']."\n";
