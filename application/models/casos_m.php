@@ -707,6 +707,7 @@ class Casos_m extends CI_Model {
                     $relaciones[$row['casoIdB']] = $row;
                     //$relaciones[$casoId]['casoIdB'] = $this->db->select('*')->from('casos')->where('casoId', $row['casoIdB'])->get()->result_array();
 					
+
 					$this->db->select('nombre,fechaInicial,fechaTermino');
 					$this->db->from('casos');
 					$this->db->where('casoId', $row['casoIdB']);
@@ -719,16 +720,18 @@ class Casos_m extends CI_Model {
 						}	
 						
 						
-						$relaciones[$row['relacionId']]['nombreCasoIdB'] = $nombreCaso['nombre']; 
-						$relaciones[$row['relacionId']]['fechaIncial'] = $nombreCaso['fechaInicial'];
-						$relaciones[$row['relacionId']]['fechaTermino'] = $nombreCaso['fechaTermino'];
+						$relaciones[$row['casoIdB']]['nombreCasoIdB'] = $nombreCaso['nombre']; 
+						$relaciones[$row['casoIdB']]['fechaIncial'] = $nombreCaso['fechaInicial'];
+						$relaciones[$row['casoIdB']]['fechaTermino'] = $nombreCaso['fechaTermino'];
 					}
 					
 					
 					
 					
 				}
-				
+				echo "<pre>";
+					print_r( $relaciones);
+					echo "</pre>";
 		}
 	
 		/*Trae datos relacion citada*/
