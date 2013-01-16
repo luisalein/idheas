@@ -127,13 +127,13 @@
 							
 							<div class="twelve columns">
 								<label for="comentFuente">Comentarios</label>
-								<textarea id="infoAdicional_comentarios" name="infoAdicional_comentarios"><?=(isset($fuenteDocumental['comentarios']) ? $fuenteDocumental['comentarios'] : ''); ?></textarea>
+								<textarea id="tipoFuenteDocumental_comentarios" name="tipoFuenteDocumental_comentarios"><?=(isset($fuenteDocumental['comentarios']) ? $fuenteDocumental['comentarios'] : ''); ?></textarea>
 							</div>
 							
 							
 							<div class="twelve columns">
 								<label for="comentFuente">Observaciones</label>
-								<textarea id="infoAdicional_observaciones"  name="infoAdicional_observaciones" ><?=(isset($fuenteDocumental['observaciones']) ? $fuenteDocumental['observaciones'] : ''); ?></textarea>
+								<textarea id="tipoFuenteDocumental_observaciones"  name="tipoFuenteDocumental_observaciones" ><?=(isset($fuenteDocumental['observaciones']) ? $fuenteDocumental['observaciones'] : ''); ?></textarea>
 							</div>
 							
 							
