@@ -329,7 +329,7 @@ class ReportePdf_c extends CI_Controller
 					if(isset($documental['nivelConfiabilidadCatalogo_nivelConfiabilidadId'])){
 						$contenidoReporte['fuenteDocNivelConfiabilidad'.$key]="Nivel de confiabilidad:  ". $datos['catalogos']['nivelConfiabilidadCatalogo']['nivelConfiabilidadCatalogo'][$documental['nivelConfiabilidadCatalogo_nivelConfiabilidadId']-1]['descripcion']."\n";
 					}
-					$conteidoReporte['fuenteDocLiga'.$key]= "Liga:  ".$documental['url']."\n";
+					$contenidoReporte['fuenteDocLiga'.$key]= "Liga:  ".$documental['url']."\n";
 					$contenidoReporte['fuenteDocComentarios'.$key]= "comentarios:  ".$documental['comentarios']."\n";
 					$contenidoReporte['fuenteDocObaservaciones'.$key]= "observaciones:  ".$documental['observaciones']."\n";
 					
