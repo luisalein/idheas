@@ -268,7 +268,7 @@ class ReportePdf_c extends CI_Controller
 					}
 					if($intervencion['tipoRelacionInterventor'] > 0){
 						$contenidoReporte['actorRelacionadoInterventor'.$key]= "Actor colectivo relacionado:  ".$intervencion['actorRelacionadoInterventor'][$intervencion['tipoRelacionInterventor']]['nombre']."\n";
-						if(isset($intervencion['tipoRelacionInterventor'])){
+						if(isset($datos['catalogos']['relacionActoresCatalogo'][$intervencion['actorRelacionadoInterventor'][$intervencion['tipoRelacionInterventor']]['tipoRelacionId']]['Nivel2'])){
 							$contenidoReporte['tipoRelacionInterventor'.$key]= "Tipo relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$intervencion['actorRelacionadoInterventor'][$intervencion['tipoRelacionInterventor']]['tipoRelacionId']]['Nivel2']."\n";
 						}
 					}
