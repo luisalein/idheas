@@ -269,6 +269,9 @@ class ReporteOdt_c extends CI_Controller
 
 		if (isset($Data['reporte']['intervenciones'])) {
 			foreach ($Data['reporte']['intervenciones'] as $key => $intervencion) {
+				if(isset($intervencion['tipoIntervencionId'])){
+					$contenidoIntervenciones['tipoIntervencion'.$key] = "Tipo de intervención:  ".$datos['catalogos']['tipoIntervencionN'.$intervencion['intervencionNId'].'Catalogo']['tipoIntervencionN'.$intervencion['intervencionNId'].'Catalogo'][$intervencion['tipoIntervencionId']-1]['descripcion']."\n";
+				}
 				$contenidoIntervenciones['intervencionFecha'.$key]=	"Fecha de la intervención:  ". $intervencion['fecha']."\n";
 				
 				if(isset($intervencion['interventorId']) && $intervencion['interventorId']>0){
