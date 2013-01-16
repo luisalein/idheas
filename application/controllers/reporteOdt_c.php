@@ -270,8 +270,10 @@ class ReporteOdt_c extends CI_Controller
 		if (isset($Data['reporte']['intervenciones'])) {
 			foreach ($Data['reporte']['intervenciones'] as $key => $intervencion) {
 				$contenidoIntervenciones['intervencionFecha'.$key]=	"Fecha de la intervención:  ". $intervencion['fecha']."\n";
-				if ( ($datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['tipoActorId']) == 3) {
-					$contenidoIntervenciones['intervencionInstitucion'.$key]=	"Institución:  ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['apellidosSiglas'] ."\n";
+				if($intervencion['interventorId']){
+					if ( ($datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['tipoActorId']) == 3) {
+						$contenidoReporte['intervencionInstitucion'.$key]=	"Institución:  ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['apellidosSiglas'] ."\n";
+					}
 				}
 				else{				
 					$contenidoIntervenciones['intervencionInterventor'.$key]=	"Interventor:  ".$datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['nombre'] ." ". $datos['catalogos']['ListaTodosActores'][$intervencion['interventorId']]['apellidosSiglas'] ."\n";
