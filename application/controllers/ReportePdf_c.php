@@ -381,9 +381,9 @@ class ReportePdf_c extends CI_Controller
 		$content = $content . $value;
 
 		}
-	$this->cezpdf->ezText($content, 10);
-
-	$this->cezpdf->ezStream();
+	// $this->cezpdf->ezText($content, 10);
+// 
+	// $this->cezpdf->ezStream();
 		
 	}
 
