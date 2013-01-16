@@ -303,7 +303,7 @@ class ReporteOdt_c extends CI_Controller
 				if(isset($intervencion['intervenidos'])){
 					$i=1;
 					foreach ($intervencion['intervenidos'] as $intervenido) {
-						$intervenidos[$i] = $intervenidos. $datos['catalogos']['ListaTodosActores'][$intervenido['intervenidoId']]['nombre']." ". $datos['catalogos']['ListaTodosActores'][$intervenido['intervenidoId']]['apellidosSiglas'] ."\n";
+						$contenidoReporte['intervenido'.$i] = $datos['catalogos']['ListaTodosActores'][$intervenido['actorIntervenidoId']]['nombre']." ". $datos['catalogos']['ListaTodosActores'][$intervenido['actorIntervenidoId']]['apellidosSiglas'] ."\n";
 						$i++;
 					}
 				}

@@ -329,9 +329,9 @@ class ReportePdf_c extends CI_Controller
 					if(isset($documental['nivelConfiabilidadCatalogo_nivelConfiabilidadId'])){
 						$contenidoReporte['fuenteDocNivelConfiabilidad'.$key]="Nivel de confiabilidad:  ". $datos['catalogos']['nivelConfiabilidadCatalogo']['nivelConfiabilidadCatalogo'][$documental['nivelConfiabilidadCatalogo_nivelConfiabilidadId']-1]['descripcion']."\n";
 					}
-					$contemidoReporte['fuenteDocLiga'.$key]= "Liga:  ".$documental['url']."\n";
-					$contemidoReporte['fuenteDocComentarios'.$key]= "comentarios:  ".$documental['comentarios']."\n";
-					$contemidoReporte['fuenteDocObaservaciones'.$key]= "observaciones:  ".$documental['observaciones']."\n";
+					$conteidoReporte['fuenteDocLiga'.$key]= "Liga:  ".$documental['url']."\n";
+					$contenidoReporte['fuenteDocComentarios'.$key]= "comentarios:  ".$documental['comentarios']."\n";
+					$contenidoReporte['fuenteDocObaservaciones'.$key]= "observaciones:  ".$documental['observaciones']."\n";
 					
 					if(isset($documental['actorReportado']) && $documental['actorReportado'] > 0){
 						$contenidoReporte['infoAdicionalDocumentalReportado'.$key]="Actor reportado:  ".$datos['catalogos']['ListaTodosActores'][$documental['actorReportado']]['nombre']." ".$datos['catalogos']['ListaTodosActores'][$documental['actorReportado']]['apellidosSiglas']."\n";
