@@ -339,3 +339,8 @@ function habilitarboton(){
     seleccionarActorseleccionarActorIndColDatos('1');
 $('input[type="submit"]').removeAttr('disabled');
 }
+
+function habilitarboton2(){
+seleccionarActorIndividual();
+$('input[type="submit"]').removeAttr('disabled');
+}

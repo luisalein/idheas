@@ -114,7 +114,7 @@
 
 								</div>
 
-								<input type="button" class="small button" onclick="seleccionarActorIndividual()" value="Agregar actor">
+								<input type="button" class="small button" onclick="habilitarboton2()"  value="Agregar actor">
 								<input type="button" class="small button" value="Eliminar actor" onclick="eliminaActor()">
 
 							</div>
@@ -141,7 +141,7 @@
 							</div>
 
 					<div class="eight columns">
-						<input type="submit" value="Guardar" class="small button"/>
+						<input type="submit" value="Guardar" <?=(isset($idVictima) && ($idVictima>0)) ? " " : "disabled" ;?> class="small button"/>
 					</div>
 					<div class="four columns">
 						<a href="<?=base_url(); ?>index.php/casos_c/mostrarVictimas/<?=$idActo;?>/<?=$idVictima;?>/0/<?=$casoId?>" class="small button">Cancelar</a>
