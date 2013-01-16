@@ -298,15 +298,15 @@ class ReportePdf_c extends CI_Controller
 				$contenidoReporte['intervencionImpacto'.$key]=	"Impacto:  ". $intervencion['impacto']."\n";
 				$contenidoReporte['intervencionRespuesta'.$key]=	"Respuesta:  ". $intervencion['respuesta']."\n";
 				
-				$intervenidos ="Personas por las que se intervino: "."\n";
+				$contenidoReporte['encabezadoPerIntervenidas'] ="Personas por las que se intervino: "."\n";
 				if(isset($intervencion['intervenidos'])){
 					$i=1;
 					foreach ($intervencion['intervenidos'] as $intervenido) {
-						$intervenidos[$i] = $intervenidos. $datos['catalogos']['ListaTodosActores'][$intervenido['intervenidoId']]['nombre']." ". $datos['catalogos']['ListaTodosActores'][$intervenido['intervenidoId']]['apellidosSiglas'] ."\n";
+						$contenidoReporte['intervenido'.$i] = $datos['catalogos']['ListaTodosActores'][$intervenido['actorIntervenidoId']]['nombre']." ". $datos['catalogos']['ListaTodosActores'][$intervenido['actorIntervenidoId']]['apellidosSiglas'] ."\n";
 						$i++;
 					}
 				}
-				$contenidoReporte['intervenidos'] =$intervenidos;
+				
 				
 				$contenidoReporte['espaciosIntervenciones']= "\n\n\n";
 			}
