@@ -82,6 +82,14 @@ class ReporteOdt_c extends CI_Controller
 		
 		$datos['relacionCasosCatalogo'] = $this->catalogos_m->mTraerDatosCatalogoNombre('relacionCasosCatalogo');
 		
+		$datos['tipoIntervencionN1Catalogo'] = $this->catalogos_m->mTraerDatosCatalogoNombre('tipoIntervencionN1Catalogo');
+		
+		$datos['tipoIntervencionN2Catalogo'] = $this->catalogos_m->mTraerDatosCatalogoNombre('tipoIntervencionN2Catalogo');
+		
+		$datos['tipoIntervencionN3Catalogo'] = $this->catalogos_m->mTraerDatosCatalogoNombre('tipoIntervencionN3Catalogo');
+		
+		$datos['tipoIntervencionN4Catalogo'] = $this->catalogos_m->mTraerDatosCatalogoNombre('tipoIntervencionN4Catalogo');
+		
 		$datos['tipoFechaCatalogo']= array('1'=>'Fecha exacta','2'=>'Fecha aproximada','3'=>'Se desconoce el día','4'=>'Se desconoce el mes y el día');
 
         $datos['ListaTodosActores'] = $this->actores_m-> mListaTodosActores();
