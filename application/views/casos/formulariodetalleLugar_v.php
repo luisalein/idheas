@@ -12,7 +12,31 @@
 	</head>
 	
 <body>
-	
+	<!-- 
+    Copyright 2013, i(dh)eas, Litigio Estratégico en Derechos Humanos A.C
+
+
+    This file is part of bd(i).
+
+    bd(i) is free software: you can redistribute it and/or modify
+
+
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    bd(i) is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with bd(i). If not, see <http://www.gnu.org/licenses/>.
+
+
+ -->
+
+ 
 <form action='<?=base_url(); ?>index.php/casosVentanas_c/guardarDatosVentanas/1' method="post" accept-charset="utf-8"  id="menuForm" name="menuForm" >
 		   <input type="hidden" id="tipoActorAE"  name="4"/>
 	       <input type="hidden" value="<?=$casoId; ?>" name="lugares_casos_casoId" id="lugares_casos_casoId" />

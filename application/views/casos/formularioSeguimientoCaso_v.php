@@ -6,7 +6,31 @@
 	</head>
 	
 <body>
-<form method="post"  action='<?=base_url(); ?>index.php/casosVentanas_c/guardarDatosVentanas/2' enctype="multipart/form-data" accept-charset="utf-8">
+<!-- 
+    Copyright 2013, i(dh)eas, Litigio Estratégico en Derechos Humanos A.C
+
+
+    This file is part of bd(i).
+
+    bd(i) is free software: you can redistribute it and/or modify
+
+
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    bd(i) is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with bd(i). If not, see <http://www.gnu.org/licenses/>.
+
+
+ -->
+
+ <form method="post"  action='<?=base_url(); ?>index.php/casosVentanas_c/guardarDatosVentanas/2' enctype="multipart/form-data" accept-charset="utf-8">
 <input type="hidden" value="<?= (isset($ficha)) ? "1" : "0" ;?>" name="editar" id="editar"> 
 <input type="hidden" value="<?= (isset($ficha)) ? $ficha['fichaId'] : '' ;?>" name="fichas_fichaId" id="fichas_fichaId"> 
 <input type="hidden" value="<?=$casoId; ?>" name="fichas_casos_casoId" id="fichas_casos_casoId" />
