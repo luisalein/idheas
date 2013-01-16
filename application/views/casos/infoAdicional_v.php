@@ -123,6 +123,7 @@
 	  	<div id="subPestanias" data-collapse>
 	  		<h2>Relación entre casos</h2>
 	  		<div>
+	  			
 	  			<div class="twelve columns">
 	  				<?php if(isset($datosCaso['relacionCasos']) && $datosCaso['relacionCasos'] != '0'):?>	
 	  				<table class="twelve columns">
@@ -139,10 +140,11 @@
 			            <tbody>			            
 			              		
 			              	<?php foreach($datosCaso['relacionCasos'] as $casoRelacionado):?>
+			              	<?php if (!isset($casoRelacionado['nombreCasoIdB'])) {?>
 			              		<tr>
-				              		<td><?=(isset($datosCaso['casos']['nombre']) && isset($casoRelacionado['nombreCasoIdB'])) ? $datosCaso['casos']['nombre'] : ''; ?></td>
+				              		<td><?=(isset($datosCaso['casos']['nombre'])) ? $datosCaso['casos']['nombre'] : ''; ?></td>
 				              		<td>
-				              			<?php if(isset($casoRelacionado['tipoRelacionId']) && isset($casoRelacionado['nombreCasoIdB'])){ 
+				              			<?php if(isset($casoRelacionado['tipoRelacionId'])){ 
 											foreach($catalogos['relacionCasosCatalogo'] as $relacion){
 												if($relacion['relacionCasosId'] == $casoRelacionado['tipoRelacionId'] ){
 													echo $relacion['descripcion'];
@@ -150,14 +152,14 @@
 											} 
 				              			?>
 				              		</td>
-				              		<td><?=(isset($casoRelacionado['nombreCasoIdB']))? $casoRelacionado['nombreCasoIdB']: ''?></td>
-				              		<td><?=(isset($casoRelacionado['fechaIncial']))? $casoRelacionado['fechaIncial']: ''?></td>
-				              		<td><?=(isset($casoRelacionado['fechaTermino']))? $casoRelacionado['fechaTermino']: ''?></td>
+				              		<td><?=(isset($casoRelacionado['nombreCasoId']))? $casoRelacionado['nombreCasoId']: ''?></td>
+				              		<td><?=(isset($casoRelacionado['fechaIncialCasoId']))? $casoRelacionado['fechaIncialCasoId']: ''?></td>
+				              		<td><?=(isset($casoRelacionado['fechaTerminoCasoId']))? $casoRelacionado['fechaTerminoCasoId']: ''?></td>
 				              		<td><input type="button"  class="tiny button" style="padding:5px 15px 5px 15px;margin-bottom: 5px" value="Editar" onclick="ventanaRelacionCasos('<?= $casoId; ?>', '<?=$casoRelacionado['relacionId']?>')"/>
 				              			<input type="button"  class="tiny button" value="Eliminar" onclick="eliminarRelacionCasos('<?=$casoRelacionado['relacionId']?>','<?= $casoId; ?>')" />
 			              			</td>
 			              		</tr>
-			              	<?php }endforeach;?>		
+			              	<?php } } endforeach;?>		
 			             <?php endif;?>  
 			            </tbody>
 	          		</table>
@@ -182,20 +184,21 @@
 					            </thead>
 					            <tbody>	
 					              	<?php foreach($datosCaso['relacionCasos'] as $casoRelacionado):?>
+			              				<?php if (isset($casoRelacionado['nombreCasoIdB'])) {?>
 					              		<tr>
-						              		<td><?=(isset($casoRelacionado['nombreCasoId']))? $casoRelacionado['nombreCasoId']: ''?></td>
-						              		<td><?php if(isset($casoRelacionado['tipoRelacionId']) && isset($casoRelacionado['nombreCasoId'])) 
+						              		<td><?=(isset($casoRelacionado['nombreCasoIdB']))? $casoRelacionado['nombreCasoIdB']: ''?></td>
+						              		<td><?php if(isset($casoRelacionado['tipoRelacionId']) && isset($casoRelacionado['nombreCasoIdB'])) 
 													foreach($catalogos['relacionCasosCatalogo'] as $relacion){
 														if($relacion['relacionCasosId'] == $casoRelacionado['tipoRelacionId'] ){
 															echo $relacion['descripcion'];
 														}
 													} 
 						              		?></td>
-				              				<td><?=(isset($datosCaso['casos']['nombre']) && isset($casoRelacionado['nombreCasoId'])) ? $datosCaso['casos']['nombre'] : ''; ?></td>
-						              		<td><?=(isset($casoRelacionado['fechaIncialCasoId']))? $casoRelacionado['fechaIncialCasoId']: ''?></td>
-						              		<td><?=(isset($casoRelacionado['fechaTerminoCasoId']))? $casoRelacionado['fechaTerminoCasoId']: ''?></td>
+				              				<td><?=(isset($datosCaso['casos']['nombre']) && isset($casoRelacionado['nombreCasoIdB'])) ? $datosCaso['casos']['nombre'] : ''; ?></td>
+						              		<td><?=(isset($casoRelacionado['fechaIncial']))? $casoRelacionado['fechaIncial']: ''?></td>
+						              		<td><?=(isset($casoRelacionado['fechaTermino']))? $casoRelacionado['fechaTermino']: ''?></td>
 					              		</tr>
-					              	<?php endforeach;?>		
+					              	<?php } endforeach;?>		
 					             <?php endif;?>  
 					            </tbody>
 			          		</table>
