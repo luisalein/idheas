@@ -318,6 +318,7 @@ class ReportePdf_c extends CI_Controller
 					$contemidoReporte['fuenteDocLiga'.$key]= "Liga:  ".$documental['url']."\n";
 					$contemidoReporte['fuenteDocComentarios'.$key]= "comentarios:  ".$documental['comentarios']."\n";
 					$contemidoReporte['fuenteDocObaservaciones'.$key]= "observaciones:  ".$documental['observaciones']."\n";
+					
 					if(isset($documental['actorReportado']) && $documental['actorReportado'] > 0){
 						$contenidoReporte['infoAdicionalDocumentalReportado'.$key]="Actor reportado:  ".$datos['catalogos']['ListaTodosActores'][$documental['actorReportado']]['nombre']." ".$datos['catalogos']['ListaTodosActores'][$documental['actorReportado']]['apellidosSiglas']."\n";
 					}
@@ -353,9 +354,9 @@ class ReportePdf_c extends CI_Controller
 				if(isset($infoAdicional['comentarios'])){
 					$contenidoReporte['infoadicionalComentarios'.$key]= "Comentarios:  ".$infoAdicional['comentarios']."\n";
 				}
-				if(isset($infoAdicional['actorReportado']) && $infoAdicional['actorReportado'] > 0){
+				
 					$contenidoReporte['infoAdicionalPersonalReportado'.$key]="Actor reportado:  ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorReportado']]['nombre']." ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorReportado']]['apellidosSiglas']."\n";
-				}
+				
 				if($infoAdicional['tipoRelacionActorReportadoId'] > 0){
 						$contenidoReporte['actorRelacionadoReportado'.$key]= "Actor colectivo relacionado:  ".$infoAdicional['actorRelacionadoReportado'][$infoAdicional['tipoRelacionActorReportadoId']]['nombre']."\n";
 						$contenidoReporte['tipoRelacionPersonal'.$key]= "Tipo relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$infoAdicional['actorRelacionadoReportado'][$infoAdicional['tipoRelacionActorReportadoId']]['tipoRelacionId']]['Nivel2']."\n\n\n";
