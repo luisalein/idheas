@@ -302,7 +302,7 @@ class ReporteOdt_c extends CI_Controller
 				$contenidoIntervenciones['intervencionImpacto'.$key]=	"Impacto:  ". $intervencion['impacto']."\n";
 				$contenidoIntervenciones['intervencionRespuesta'.$key]=	"Respuesta:  ". $intervencion['respuesta']."\n";
 				
-				$intervenidos ="Personas por las que se intervino: "."\n";
+				$contenidoIntervenciones['encabezadoPerIntervenidas'] ="Personas por las que se intervino: "."\n";
 				if(isset($intervencion['intervenidos'])){
 					$i=1;
 					foreach ($intervencion['intervenidos'] as $intervenido) {
