@@ -225,7 +225,7 @@ class ReporteOdt_c extends CI_Controller
 								$contenidoDerechoAfectado['comentariosVictimasPerpetradores']="\n\nComentarios sobre víctimas y perpetradores:  \n". $value2['comentarios'];
 							}
 							if(isset($value2['estatusVictimaId'])){
-								$contenidoReporte['estatusVictimaId'.$key]="Estado:  ". $datos['catalogos']['estatusVictimaCatalogo']['estatusVictimaCatalogo'][$value2['estatusVictimaId']-1]['descripcion']."\n\n\n";
+								$contenidoDerechoAfectado['estatusVictimaId'.$key]="Estado:  ". $datos['catalogos']['estatusVictimaCatalogo']['estatusVictimaCatalogo'][$value2['estatusVictimaId']-1]['descripcion']."\n\n\n";
 							}
 							if (isset($Data['reporte']['perpetradores']	)) {
 								$contenidoDerechoAfectado['EncabezadoPerpetradores'.$key]="\nPerpetradores  "."\n\n";
