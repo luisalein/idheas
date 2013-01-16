@@ -333,7 +333,7 @@ class ReportePdf_c extends CI_Controller
 		if (isset($Data['reporte']['fuenteInfoPersonal'])) {
 			$contenidoReporte['encabezadoFuentePersonal']="\nFuente individual/colectiva\n\n";
 			foreach ($Data['reporte']['fuenteInfoPersonal'] as $key => $infoAdicional) {
-				$contenidoReporte['infoAdicionalPersonal'.$key]="Nombre:  ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorId']]['nombre']." ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorId']]['apellidosSiglas']."\n";
+				$contenidoReporte['infoAdicionalPersonal'.$key]="\n\nNombre:  ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorId']]['nombre']." ".$datos['catalogos']['ListaTodosActores'][$infoAdicional['actorId']]['apellidosSiglas']."\n";
 				if($infoAdicional['relacionId'] > 0){
 						$contenidoReporte['actorRelacionadoPersonal'.$key]= "Actor colectivo relacionado:  ".$infoAdicional['actorRelacionadoPersonal'][$infoAdicional['relacionId']]['nombre']."\n";
 						$contenidoReporte['tipoRelacionPersonal'.$key]= "Tipo relación:  ".$datos['catalogos']['relacionActoresCatalogo'][$infoAdicional['actorRelacionadoPersonal'][$infoAdicional['relacionId']]['tipoRelacionId']]['Nivel2']."\n";
