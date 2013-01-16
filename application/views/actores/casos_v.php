@@ -392,7 +392,6 @@
 									</div>
 								</div>
 						</div>
-
 						<div id="subPestanias" data-collapse>	
 							<h2 class="open" >Relación entre casos</h2><!--título de la pestaña-->
 							<div>
@@ -425,7 +424,6 @@
 					              		<td><?=(isset($casoRelacionado['nombreCasoIdB']))? $casoRelacionado['nombreCasoIdB']: ''?></td>
 					              		<td><?=(isset($casoRelacionado['fechaIncial']))? $casoRelacionado['fechaIncial']: ''?></td>
 					              		<td><?=(isset($casoRelacionado['fechaTermino']))? $casoRelacionado['fechaTermino']: ''?></td>
-					              		
 				              		</tr>
 				              	<?php } endforeach;?>		
 				             <?php endif;?>  

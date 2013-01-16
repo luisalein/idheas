@@ -127,6 +127,8 @@ class Actores_c extends CI_Controller {
 
 		            	$datos['casosRelacionados'][$casosColectivos['casos']['casoId']]=$casosColectivos;
 
+						$datos['casosRelacionados'][$casosColectivos['casos']['casoId']]['relacionCasos'] = $this->casos_m->mTraeRelacionesCaso($casosColectivos['casos']['casoId']);
+
 		            }
 
             	
