@@ -65,7 +65,7 @@
 			              			}
 								  		
 							  	} ?>
-			              	<?} }?>
+			              	<?php } }?>
 
 			              	<td><?=(isset($derecho['fechaInicial'])) ? $derecho['fechaInicial'] : " " ; ?></td>
 			              	<td><?=(isset($derecho['fechaTermino'])) ? $derecho['fechaTermino'] : " " ; ?></td>
